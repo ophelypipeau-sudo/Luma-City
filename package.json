@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "concurrently -k -n serveur,client \"tsx watch apps/server/src/index.ts\" \"vite --host 127.0.0.1\"",
     "build": "npm run check:poses && tsc --noEmit && npm test && vite build",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "node scripts/run-tests.mjs",
     "start": "tsx apps/server/src/index.ts",
     "check:poses": "tsx scripts/check-pose-wardrobe.ts",
     "assets:fit": "tsx scripts/prepare-redrawn-clothes.ts",
     "assets:fit:archive": "tsx scripts/calibrate-winter-patterns.ts",
-    "test:avatar": "tsx --test tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts",
+    "test:avatar": "node scripts/run-tests.mjs tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts",
     "build:fast": "tsc --noEmit && vite build"
   },
   "dependencies": {

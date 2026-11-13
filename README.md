@@ -98,7 +98,10 @@ npm start
 
 `npm run build` lance la vérification des poses, le typage, **toute la suite de
 tests**, puis Vite : un déploiement Railway échoue si un test échoue
-(`npm run build:fast` saute les tests en local).
+(`npm run build:fast` saute les tests en local). `npm test` passe par
+`scripts/run-tests.mjs`, qui retire les réglages de déploiement (`DATABASE_URL`,
+`APP_ORIGIN`, `PORT`, variables Railway et Neon…) : sur Railway, ils désignent la
+production et les tests ne doivent jamais les voir.
 
 `npm start` sert le client construit et l'API sur **http://127.0.0.1:3001/**.
 Les serveurs restent liés à l'adresse de boucle locale. Les ports 5173 et 3001

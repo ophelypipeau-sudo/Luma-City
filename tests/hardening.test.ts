@@ -208,3 +208,9 @@ test("les tests n’ouvrent jamais la base désignée par DATABASE_URL (build Ra
     else process.env.DATABASE_URL = previous;
   }
 });
+
+test("la suite tourne sans les réglages de déploiement (npm test via scripts/run-tests.mjs)", () => {
+  // Railway exposes production settings during `npm run build`; the runner removes them.
+  for (const key of ["APP_ORIGIN", "PORT", "DATABASE_URL", "NEON_AUTH_BASE_URL", "RAILWAY_ENVIRONMENT_ID"])
+    assert.equal(process.env[key], undefined, key);
+});

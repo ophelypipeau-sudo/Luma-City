@@ -13,7 +13,7 @@ if (Boolean(NEON_AUTH_BASE_URL) !== Boolean(NEON_AUTH_JWKS_URL))
   throw new Error("La configuration de Neon Auth est incomplète.");
 const neonAuth = NEON_AUTH_BASE_URL && NEON_AUTH_JWKS_URL
   ? createNeonPlayerAuth(NEON_AUTH_BASE_URL, NEON_AUTH_JWKS_URL) : undefined;
-const db = await openDatabase();
+const db = await openDatabase(undefined, { url: process.env.DATABASE_URL });
 const app = await createApp(db, {
   recover: true, irisOnly: process.env.IRIS_ONLY === "1", neonAuth, publicOrigin,
   // Structured JSON logs (errors, refused and slow requests) are read in the Railway console.

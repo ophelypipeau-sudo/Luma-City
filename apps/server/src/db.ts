@@ -21,9 +21,17 @@ export type Database = {
 export function explicitSslMode(connectionString: string) {
   return connectionString.replace(/([?&]sslmode=)(require|prefer|verify-ca)\b/, "$1verify-full");
 }
-export async function openDatabase(path = ".data/postgres"): Promise<Database> {
-  if (process.env.DATABASE_URL) {
-    const pool = new pg.Pool({ connectionString: explicitSslMode(process.env.DATABASE_URL) });
+/**
+ * Opens PostgreSQL only when a connection URL is passed explicitly; otherwise the
+ * embedded PGlite database at `path`. The environment is never read here: tests run
+ * during the Railway build, where DATABASE_URL points at the production database.
+ */
+export async function openDatabase(
+  path = ".data/postgres",
+  { url }: { url?: string } = {},
+): Promise<Database> {
+  if (url) {
+    const pool = new pg.Pool({ connectionString: explicitSslMode(url) });
     return {
       query: (sql, params) => pool.query(sql, params),
       exec: (sql) => pool.query(sql),

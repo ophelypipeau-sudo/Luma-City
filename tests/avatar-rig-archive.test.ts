@@ -88,7 +88,6 @@ test("builder removal is persistent and reversible; purchases, variants and sour
   assert.equal(visible.top, null);
   assert.equal(visible.bottom, DEFAULT_LAYERS.bottom);
   assert.equal(visible.shoes, DEFAULT_LAYERS.shoes);
-  assert.equal(DEFAULT_LAYERS.top, "fashion.cardigan-lilac");
   assert.equal(JSON.stringify(receipt.next), saved);
   restorePiece(DEFAULT_LAYERS.top!);
   assert.equal(notifications, 2);

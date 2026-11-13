@@ -66,112 +66,26 @@ test("rose outfit pieces replace individual slots while preserving the other gar
   assert.deepEqual(layers, { ...ROSE_LAYERS, belt: null });
 });
 
-test("rose clothes hide opaque underwear and feet while preserving bare arms and user hands", () => {
-  const raw = render(EMPTY_LAYERS),
-    cut = render(ROSE_LAYERS, "body-cutaway");
-  const misses: string[] = [];
-  let underwear = 0,
-    hands = 0;
-  for (let y = 340; y < 860; y++)
-    for (let x = 260; x < 630; x++) {
-      const p = (y * 887 + x) * 4;
-      if (
-        raw[p + 3] > 230 &&
-        raw[p] - raw[p + 1] > 12 &&
-        raw[p + 2] - raw[p + 1] > 10 &&
-        Math.abs(raw[p] - raw[p + 2]) < 30
-      ) {
-        underwear++;
-        if (
-          cut[p + 3] > 20 &&
-          cut[p] - cut[p + 1] > 12 &&
-          cut[p + 2] - cut[p + 1] > 10 &&
-          Math.abs(cut[p] - cut[p + 2]) < 30 &&
-          misses.length < 12
-        )
-          misses.push(`${x},${y}`);
-      }
-    }
-  assert.ok(underwear > 10000);
-  assert.deepEqual(misses, [], "no purple underwear protrudes");
-  for (let y = 875; y < 1000; y++)
-    for (const [left, right] of [
-      [80, 215],
-      [672, 807],
-    ])
-      for (let x = left; x < right; x++) {
-        const p = (y * 887 + x) * 4;
-        if (raw[p + 3] > 230) {
-          hands++;
-          assert.ok(Math.abs(cut[p + 3] - raw[p + 3]) <= 2, `hand ${x},${y}`);
-        }
-      }
-  assert.ok(hands > 1000);
-  for (const [x, y] of [
-    [280, 580],
-    [210, 735],
-    [607, 580],
-    [677, 735],
-  ]) {
-    const p = (y * 887 + x) * 4;
-    assert.ok(raw[p + 3] > 230);
-    assert.ok(Math.abs(cut[p + 3] - raw[p + 3]) <= 2, `bare arm ${x},${y}`);
-  }
-  for (let y = 1690; y < 1760; y++)
-    for (let x = 250; x < 630; x++) {
-      const p = (y * 887 + x) * 4;
-      if (raw[p + 3] > 230) assert.ok(cut[p + 3] <= 20, `bare foot ${x},${y}`);
-    }
-});
-
 test("palette colors keep garment identity, survive slot changes and are included in the cart", () => {
+  // The rose collection was retired: the same rules are checked on pieces on sale.
+  const live = { ...DEFAULT_LAYERS, top: "fashion.premium-velvet", bottom: "fashion.pants-rocade", shoes: "fashion.shoes-campus" };
   const pink = RGB_PALETTE[11][1];
-  const colored = colorGarment(ROSE_LAYERS, ROSE_LAYERS.top!, pink);
+  const colored = colorGarment(live, live.top, pink);
   const switched = equipLayer(colored, "top", DEFAULT_LAYERS.top);
-  const restored = equipLayer(switched, "top", ROSE_LAYERS.top);
-  assert.equal(restored.colors?.[ROSE_LAYERS.top!], pink);
-  assert.equal(restored.bottom, ROSE_LAYERS.bottom);
-  assert.equal(fittingCart(restored)[0].color, pink);
+  const restored = equipLayer(switched, "top", live.top);
+  assert.equal(restored.colors?.[live.top], pink);
+  assert.equal(restored.bottom, live.bottom);
+  assert.equal(fittingCart(restored).find(({ piece }) => piece.id === live.top)?.color, pink);
   assert.equal(
     fittingCart(restored).reduce((sum, p) => sum + p.price, 0),
-    1400,
+    900 + 900 + fittingCart(restored).filter(({ piece }) => piece.id === live.shoes)[0].price,
   );
   assert.equal(
-    colorGarment(restored, ROSE_LAYERS.bottom!, "#ff80bf").colors?.[
-      ROSE_LAYERS.bottom!
-    ],
+    colorGarment(restored, live.bottom, "#ff80bf").colors?.[live.bottom],
     "#ff80bf",
   );
   assert.throws(() => colorGarment(restored, "pleated-skirt.denim", "#ff80bf"));
-  assert.throws(() => colorGarment(restored, ROSE_LAYERS.top!, "pink"));
-});
-
-test("sneaker tongues cover the instep without rectangular leg overlays; pink cloth retains black trim", () => {
-  const shoes = render({ ...EMPTY_LAYERS, shoes: ROSE_LAYERS.shoes });
-  for (const x of [340, 550]) {
-    const p = (1625 * 887 + x) * 4;
-    assert.ok(
-      shoes[p] > 140 && Math.abs(shoes[p] - shoes[p + 1]) < 30,
-      "white tongue covers instep at " + x,
-    );
-  }
-  const white = render(ROSE_LAYERS);
-  const pink = render(colorGarment(ROSE_LAYERS, ROSE_LAYERS.top!, "#ff80bf"));
-  const chest = (510 * 887 + 420) * 4;
-  assert.ok(pink[chest] > pink[chest + 1] + 30, "white fabric becomes pink");
-  for (const [x, y] of [
-    [352, 370],
-    [535, 370],
-    [443, 130],
-    [115, 920],
-  ]) {
-    const p = (y * 887 + x) * 4;
-    assert.deepEqual(
-      pink.subarray(p, p + 4),
-      white.subarray(p, p + 4),
-      "black strap, face and hands unchanged",
-    );
-  }
+  assert.throws(() => colorGarment(restored, live.top, "pink"));
 });
 
 test("all six articles recolor without changing silhouettes, transparency or dark printed details", () => {
@@ -251,42 +165,3 @@ test("all six articles recolor without changing silhouettes, transparency or dar
   }
 });
 
-test("two color zones remain independent through equipment changes and the cart", () => {
-  const id = ROSE_LAYERS.top!;
-  const main = colorGarment(ROSE_LAYERS, id, "#408000");
-  const both = colorGarment(main, id, "#ffffff", "detail");
-  assert.equal(both.colors?.[id], "#408000");
-  assert.equal(both.detailColors?.[id], "#ffffff");
-  const restored = equipLayer(
-    equipLayer(both, "top", DEFAULT_LAYERS.top),
-    "top",
-    id,
-  );
-  assert.equal(fittingCart(restored)[0].detailColor, "#ffffff");
-  assert.throws(() =>
-    colorGarment(both, ROSE_LAYERS.shoes!, "#ffffff", "detail"),
-  );
-});
-
-test("recoloring the second zone changes the straps while leaving the main fabric and body alone", () => {
-  const green = colorGarment(ROSE_LAYERS, ROSE_LAYERS.top!, "#408000");
-  const before = render(green),
-    after = render(colorGarment(green, ROSE_LAYERS.top!, "#ffffff", "detail"));
-  const strap = (370 * 887 + 352) * 4;
-  assert.ok(
-    after[strap] > before[strap] + 100,
-    "second color changes the strap",
-  );
-  for (const [x, y] of [
-    [420, 510],
-    [443, 130],
-    [115, 920],
-  ]) {
-    const p = (y * 887 + x) * 4;
-    assert.deepEqual(
-      after.subarray(p, p + 4),
-      before.subarray(p, p + 4),
-      "primary cloth, face and hands preserved",
-    );
-  }
-});

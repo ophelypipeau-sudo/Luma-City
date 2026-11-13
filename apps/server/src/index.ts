@@ -14,7 +14,12 @@ if (Boolean(NEON_AUTH_BASE_URL) !== Boolean(NEON_AUTH_JWKS_URL))
 const neonAuth = NEON_AUTH_BASE_URL && NEON_AUTH_JWKS_URL
   ? createNeonPlayerAuth(NEON_AUTH_BASE_URL, NEON_AUTH_JWKS_URL) : undefined;
 const db = await openDatabase();
-const app = await createApp(db, { recover: true, irisOnly: process.env.IRIS_ONLY === "1", neonAuth, publicOrigin });
+const app = await createApp(db, {
+  recover: true, irisOnly: process.env.IRIS_ONLY === "1", neonAuth, publicOrigin,
+  // Structured JSON logs (errors, refused and slow requests) are read in the Railway console.
+  // "warn" leaves out the per-request lines Fastify writes at the "info" level.
+  logger: onRailway || process.env.LOG_LEVEL ? { level: process.env.LOG_LEVEL ?? "warn" } : false,
+});
 const address = await app.listen({
   host: onRailway ? "0.0.0.0" : "127.0.0.1",
   port: Number(process.env.PORT ?? 3001),

@@ -15,6 +15,7 @@ import { z } from "zod";
 import type { WebSocket } from "ws";
 import type { Database, Query } from "./db.ts";
 import { migrate } from "./db.ts";
+import { createWardrobe, legacyItemsSchema, PlayerError } from "./wardrobe.ts";
 import type { createNeonPlayerAuth } from "./neon-auth.ts";
 import {
   commandSchema,
@@ -53,6 +54,22 @@ import {
 } from "../../../packages/domain/src/arcade.ts";
 
 type Login = { account: string; expires: number };
+const CONVERSATION_PAGE = 200;
+/**
+ * Messages thrown with a plain Error are written for players. Driver, database and
+ * programming errors are hidden behind a generic 500 and logged instead.
+ */
+export function describeError(error: unknown): { status: number; message: string } {
+  if (error instanceof z.ZodError) return { status: 400, message: "Données invalides." };
+  const statusCode = (error as { statusCode?: unknown })?.statusCode;
+  if (typeof statusCode === "number" && statusCode >= 400 && statusCode < 500)
+    return { status: statusCode, message: statusCode === 413 ? "Envoi trop volumineux." : "Requête invalide." };
+  const playerFacing = error instanceof PlayerError ||
+    (error instanceof Error && error.constructor === Error && !("code" in error));
+  if (!playerFacing) return { status: 500, message: "Erreur du serveur. Réessaie dans un instant." };
+  const message = (error as Error).message;
+  return { status: message.includes("Connexion") ? 401 : 400, message };
+}
 const derivePassword = promisify(scrypt);
 const demoAccounts = new Set(["aurore", "sacha", XP_TEST_ACCOUNT]);
 const passwordSchema = z.string().min(8).max(128);
@@ -84,6 +101,7 @@ export async function createApp(
     profileImageVipAccounts?: readonly string[];
     neonAuth?: ReturnType<typeof createNeonPlayerAuth>;
     publicOrigin?: string;
+    logger?: boolean | { level: string };
   } = {},
 ) {
   const irisOnly = atelierOptions.irisOnly === true;
@@ -95,8 +113,9 @@ export async function createApp(
     atelierOptions.profileImageVipAccounts ??
       (process.env.PROFILE_IMAGE_VIP_ACCOUNTS ?? "").split(",").map((account) => account.trim()).filter(Boolean),
   );
-  await migrate(db, irisOnly);
-  const app = Fastify({ logger: false, bodyLimit: 8192 });
+  // Demonstration identities have no password: they never exist on a public server.
+  await migrate(db, { irisOnly, seedDemo: !publicOrigin });
+  const app = Fastify({ logger: atelierOptions.logger ?? false, bodyLimit: 8192 });
   await app.register(cookie);
   await app.register(websocket, { options: { maxPayload: 2048 } });
   const logins = new Map<string, Login>();
@@ -104,12 +123,24 @@ export async function createApp(
   const presence = new Map<string, Presence & { roomId: RoomId }>();
   const chatHistory = new Map<RoomId, RoomMessage[]>();
   const lastSend = new Map<string, number>();
-  let queue: Promise<unknown> = Promise.resolve();
-  const serial = <T>(fn: () => Promise<T>): Promise<T> => {
-    const task = queue.then(fn);
-    queue = task.catch(() => {});
+  // Commands of one account run in order; different accounts no longer wait for each other.
+  // Cross-account invariants rely on database constraints and row locks.
+  const queues = new Map<string, Promise<unknown>>();
+  const serialFor = <T>(key: string, fn: () => Promise<T>): Promise<T> => {
+    const task = (queues.get(key) ?? Promise.resolve()).then(fn);
+    const tail = task.catch(() => {});
+    queues.set(key, tail);
+    void tail.then(() => {
+      if (queues.get(key) === tail) queues.delete(key);
+    });
     return task;
   };
+  const accountKey = (token?: string) => {
+    const value = token ? logins.get(token) : undefined;
+    return value ? "account:" + value.account : "anonymous";
+  };
+  const serialRequest = <T>(req: import("fastify").FastifyRequest, fn: () => Promise<T>) =>
+    serialFor(accountKey(req.cookies.session), fn);
   const send = (ws: WebSocket, event: unknown) => {
     if (ws.readyState === 1) ws.send(JSON.stringify(event));
   };
@@ -138,7 +169,9 @@ export async function createApp(
     roomIds: readonly RoomId[],
     recipient?: WebSocket,
   ) {
-    const { rows } = await db.query("SELECT actor, target FROM blocks");
+    const present = [...presence.keys()];
+    const { rows } = await db.query(
+      "SELECT actor, target FROM blocks WHERE actor = ANY($1::text[]) AND target = ANY($1::text[])", [present]);
     const blocked = new Set<string>();
     for (const { actor, target } of rows) {
       blocked.add(JSON.stringify([actor, target]));
@@ -174,7 +207,21 @@ export async function createApp(
       throw new Error("Session remplacée dans un autre onglet.");
     return requireActive(state, generation);
   }
+  // Rows created by former demo seeds stay out of a public server's lists.
+  const listed = publicOrigin ? "c.id LIKE 'player-%'" : "TRUE";
+  const CONTACT_LIMIT = 200;
+  async function activeCharacter(token: string) {
+    const account = login(token).account;
+    const { rows: [play] } = await db.query(
+      "SELECT character_id FROM play_sessions WHERE account_id=$1 AND owner_token=$2", [account, token]);
+    if (!play?.character_id) throw new Error("Choisis un personnage.");
+    return play.character_id as string;
+  }
+  async function listedCharacter(id: string) {
+    return (await db.query(`SELECT 1 FROM characters c WHERE c.id=$1 AND ${listed}`, [id])).rows.length > 0;
+  }
   async function contacts(character: string) {
+    const online = [...presence.keys()];
     return (
       await db.query(
         `SELECT c.*, EXISTS(SELECT 1 FROM blocks b WHERE b.actor=$1 AND b.target=c.id) AS blocked,
@@ -194,10 +241,17 @@ export async function createApp(
        AND r.kind='friend' AND NOT r.accepted AND r.requester=c.id
        AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
          (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))) AS "friendRequest"
-      FROM characters c WHERE c.id<>$1 ORDER BY c.name`,
-        [character],
+      FROM characters c WHERE c.id<>$1 AND (${listed} OR c.id = ANY($2::text[]))
+      ORDER BY (
+        c.id = ANY($2::text[])
+        OR EXISTS(SELECT 1 FROM profile_relations r WHERE r.first_id=LEAST($1,c.id) AND r.second_id=GREATEST($1,c.id))
+        OR EXISTS(SELECT 1 FROM messages m WHERE (m.sender=$1 AND m.recipient=c.id) OR (m.sender=c.id AND m.recipient=$1))
+        OR EXISTS(SELECT 1 FROM blocks b WHERE (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))
+      ) DESC, c.xp DESC, c.name
+      LIMIT ${CONTACT_LIMIT}`,
+        [character, online],
       )
-    ).rows;
+    ).rows.sort((a, b) => String(a.name).localeCompare(String(b.name)));
   }
   const configuredXpMultiplier = Number(process.env.XP_MULTIPLIER ?? 1);
   const xpMultiplier = Number.isSafeInteger(configuredXpMultiplier) && configuredXpMultiplier > 0
@@ -343,6 +397,7 @@ export async function createApp(
       play.owner_token === token
         ? (characters.find((c) => c.id === play.character_id) ?? null)
         : null;
+    const wheel = character ? await rewardWheel(db.query, character.id) : undefined;
     return {
       account,
       uiCapabilities: { customProfileImage: profileImageVipAccounts.has(account) },
@@ -354,7 +409,10 @@ export async function createApp(
       homeGifts: character
         ? (await db.query("SELECT home_gifts FROM accounts WHERE id=$1", [account])).rows[0].home_gifts
         : null,
-      rewardWheel: character ? await rewardWheel(db.query, character.id) : undefined,
+      rewardWheel: wheel,
+      wardrobe: character && wheel
+        ? await wardrobe.view(db.query, character, wheel.accountCoins, wheel.accountDiamonds)
+        : undefined,
       garmentTransfers: character
         ? (
             await db.query(
@@ -401,25 +459,26 @@ export async function createApp(
     }
     if (req.url.startsWith("/api")) reply.header("Cache-Control", "no-store");
   });
-  app.setErrorHandler((error, _req, reply) => {
-    const message =
-      error instanceof z.ZodError
-        ? "Données invalides."
-        : error instanceof Error
-          ? error.message
-          : "Requête invalide.";
-    reply
-      .code(message.includes("Connexion") ? 401 : 400)
-      .send({ error: message });
+  app.setErrorHandler((error, req, reply) => {
+    const { status, message } = describeError(error);
+    if (status >= 500) req.log.error({ err: error, url: req.url }, "request failed");
+    reply.code(status).send({ error: message });
+  });
+  app.addHook("onResponse", async (req, reply) => {
+    if (reply.statusCode >= 400 && reply.statusCode < 500 && reply.statusCode !== 401)
+      req.log.warn({ method: req.method, url: req.url.split("?")[0], status: reply.statusCode }, "request refused");
+    else if (reply.elapsedTime > 1500)
+      req.log.warn({ method: req.method, url: req.url.split("?")[0], ms: Math.round(reply.elapsedTime) }, "slow request");
   });
   app.get("/api/health", async () => ({ ok: true, mode: publicOrigin ? "public" : "local-demo", multiplayer: !irisOnly,
     demoAccounts: !publicOrigin,
     authUrl: neonAuth?.baseUrl }));
-  await registerAtelier(
+  const atelier = await registerAtelier(
     app,
     (req) => login(req.cookies.session).account,
     atelierOptions,
   );
+  const wardrobe = createWardrobe(atelier);
   async function startSession(account: string, req: import("fastify").FastifyRequest,
     reply: import("fastify").FastifyReply, character?: string, expires = Date.now() + 86_400_000) {
       const token = randomBytes(32).toString("hex");
@@ -491,7 +550,7 @@ export async function createApp(
       return true;
     });
     if (!created) return reply.code(409).send({ error: "Ce pseudo est déjà pris." });
-    return serial(() => startSession(account, req, reply, character));
+    return serialFor("account:" + account, () => startSession(account, req, reply, character));
   });
   app.post("/api/login", async (req, reply) => {
     const input = z.union([
@@ -504,7 +563,7 @@ export async function createApp(
       if (!demoAccounts.has(account) || (irisOnly && account !== "aurore") ||
         !(await db.query("SELECT 1 FROM accounts WHERE id=$1", [account])).rows.length)
         throw new Error("Compte de démonstration inconnu.");
-      return serial(() => startSession(account, req, reply));
+      return serialFor("account:" + account, () => startSession(account, req, reply));
     }
     if (neonAuth) return reply.code(404).send({ error: "Utilise la connexion par e-mail." });
     const { rows: [credential] } = await db.query(
@@ -515,16 +574,18 @@ export async function createApp(
     const supplied = (await derivePassword(input.password, salt, 64)) as Buffer;
     if (!timingSafeEqual(supplied, Buffer.from(hash, "hex")) || !credential)
       return reply.code(401).send({ error: "Pseudo ou mot de passe incorrect." });
-    return serial(() => startSession(credential.account_id, req, reply, credential.character_id));
+    return serialFor("account:" + credential.account_id, () => startSession(credential.account_id, req, reply, credential.character_id));
   });
   if (neonAuth) app.post("/api/neon-session", async (req, reply) => {
     const user = await neonAuth.verify(req.headers.authorization);
     if (!user) return reply.code(401).send({ error: "Connexion Neon expirée ou invalide." });
     const setup = z.object({ name: playerNameSchema, privacy: z.literal(true), outfit: starterOutfitSchema })
       .optional().parse(req.body ?? undefined);
-    return serial(async () => {
-      const { rows: [existing] } = await db.query(
-        "SELECT n.account_id,c.id AS character_id FROM neon_player_accounts n JOIN characters c ON c.account_id=n.account_id AND c.slot=1 WHERE n.auth_user_id=$1", [user.id]);
+    const findExisting = async () => (await db.query(
+      "SELECT n.account_id,c.id AS character_id FROM neon_player_accounts n JOIN characters c ON c.account_id=n.account_id AND c.slot=1 WHERE n.auth_user_id=$1", [user.id])).rows[0];
+    const known = await findExisting();
+    return serialFor(known ? "account:" + known.account_id : "neon:" + user.id, async () => {
+      const existing = known ?? await findExisting();
       if (existing) {
         const token = req.cookies.session;
         const current = logins.get(token ?? "");
@@ -560,7 +621,7 @@ export async function createApp(
     });
   });
   app.post("/api/logout", async (req, reply) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const token = req.cookies.session!;
       logins.delete(token);
       for (const [ws, c] of clients)
@@ -574,23 +635,19 @@ export async function createApp(
     }),
   );
   app.get("/api/state", async (req) =>
-    serial(() => state(req.cookies.session!)),
+    serialRequest(req, () => state(req.cookies.session!)),
   );
   app.get("/api/profile/social/:peer", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const { peer } = z.object({ peer: z.string().max(64) }).parse(req.params);
-      const current = await state(req.cookies.session!);
-      if (!current.character) throw new Error("Choisis un personnage.");
-      if (
-        peer !== current.character.id &&
-        !current.contacts.some((c) => c.id === peer)
-      )
+      const me = await activeCharacter(req.cookies.session!);
+      if (peer !== me && (irisOnly || !(await listedCharacter(peer))))
         throw new Error("Personnage inconnu.");
-      return socialProfile(db.query, current.character.id, peer);
+      return socialProfile(db.query, me, peer);
     }),
   );
   app.post("/api/profile/social", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const { generation, peer, action } = z
         .object({
           generation: z.number().int(),
@@ -611,7 +668,8 @@ export async function createApp(
             }),
             z.object({
               type: z.literal("gift"),
-              item: giftItemSchema.refine(({ pieceId }) => !retiredGarments.has(pieceId), "Cet article a été retiré du jeu."),
+              item: giftItemSchema.pick({ key: true, pieceId: true }).passthrough()
+                .refine(({ pieceId }) => !retiredGarments.has(pieceId), "Cet article a été retiré du jeu."),
               id: z.uuid(),
             }),
           ]),
@@ -699,31 +757,9 @@ export async function createApp(
             [me, peer, action.kind],
           );
         } else {
-          const { item } = action;
-          const { rows } = await q(
-            `INSERT INTO profile_garment_transfers
-            (id,sender,recipient,item_key,purchased_at,item)
-            VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT DO NOTHING RETURNING id`,
-            [
-              action.id,
-              me,
-              peer,
-              item.key,
-              item.purchasedAt,
-              JSON.stringify(item),
-            ],
-          );
-          if (
-            !rows.length &&
-            !(
-              await q(
-                `SELECT 1 FROM profile_garment_transfers
-            WHERE id=$1 AND sender=$2 AND recipient=$3 AND item_key=$4 AND purchased_at=$5`,
-                [action.id, me, peer, item.key, item.purchasedAt],
-              )
-            ).rows.length
-          )
-            throw new Error("Cet article a déjà été offert.");
+          // Ownership is checked on the server: the gifted row moves to the recipient.
+          const { rows: [sender] } = await q("SELECT * FROM characters WHERE id=$1", [me]);
+          await wardrobe.gift(q, sender, peer, action.id, action.item.key);
         }
         return { ...(await socialProfile(q, me, peer)), xpSent };
       });
@@ -731,7 +767,7 @@ export async function createApp(
       return social;
     }),
   );
-  app.post("/api/home-gifts", async (req) => serial(async () => {
+  app.post("/api/home-gifts", async (req) => serialRequest(req, async () => {
     const { generation, gift } = z.object({
       generation: z.number().int(),
       gift: z.number().int().min(1).max(5).optional(),
@@ -756,7 +792,7 @@ export async function createApp(
     return state(token);
   }));
   app.post("/api/xp/claim", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const { generation, pickup, source } = z.object({
         generation: z.number().int(),
         pickup: z.object({ id: z.uuid(), points: z.number().int().positive() }).optional(),
@@ -807,24 +843,23 @@ export async function createApp(
     }),
   );
   app.get("/api/ranking", async (req) => {
-    const current = await state(req.cookies.session!);
-    if (!current.character) throw new Error("Choisis un personnage.");
+    const me = await activeCharacter(req.cookies.session!);
     const { rows } = await db.query(
       `SELECT c.id,c.name,c.outfit,c.xp,
        (SELECT COUNT(*)::integer FROM profile_likes WHERE target=c.id) AS "profileLikes",
        COALESCE((SELECT MAX(score) FROM arcade_rounds WHERE character_id=c.id AND completed),0) AS "bestScore",
        EXISTS(SELECT 1 FROM profile_relations r WHERE r.kind='friend' AND r.accepted
          AND r.first_id=LEAST($3,c.id) AND r.second_id=GREATEST($3,c.id)) AS friend
-       FROM characters c WHERE ($1::boolean = FALSE OR c.id='iris') AND c.account_id<>$2
+       FROM characters c WHERE ($1::boolean = FALSE OR c.id='iris') AND c.account_id<>$2 AND ${listed}
        AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
          (b.actor=$3 AND b.target=c.id) OR (b.actor=c.id AND b.target=$3))
-       ORDER BY c.xp DESC, c.name, c.id`,
-      [irisOnly, XP_TEST_ACCOUNT, current.character.id],
+       ORDER BY c.xp DESC, c.name, c.id LIMIT 100`,
+      [irisOnly, XP_TEST_ACCOUNT, me],
     );
     return { entries: rows };
   });
   app.post("/api/arcade/start", async (req) =>
-    serial(() => db.transaction(async (q) => {
+    serialRequest(req, () => db.transaction(async (q) => {
       const { generation, game } = z.object({
         generation: z.number().int(), game: z.enum(ARCADE_GAMES),
       }).parse(req.body);
@@ -836,7 +871,7 @@ export async function createApp(
     })),
   );
   app.post("/api/arcade/finish", async (req) =>
-    serial(() => db.transaction(async (q) => {
+    serialRequest(req, () => db.transaction(async (q) => {
       const { generation, id, moves } = z.object({
         generation: z.number().int(), id: z.uuid(),
         moves: z.array(z.number().int().min(0).max(MOLE_MISS)).max(ARCADE_MAX_MOVES),
@@ -878,7 +913,7 @@ export async function createApp(
     return { ticket: await todayScratch(db.query, login(token).account) };
   });
   app.post("/api/arcade/scratch", async (req) =>
-    serial(() => db.transaction(async (q) => {
+    serialRequest(req, () => db.transaction(async (q) => {
       const token = req.cookies.session!;
       const { generation } = z.object({ generation: z.number().int() }).parse(req.body);
       const player = await active(token, generation, q);
@@ -893,7 +928,7 @@ export async function createApp(
     })),
   );
   app.post("/api/arcade/scratch/claim", async (req) => {
-    const result = await serial(() => db.transaction(async (q) => {
+    const result = await serialRequest(req, () => db.transaction(async (q) => {
       const token = req.cookies.session!;
       const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid() }).parse(req.body);
       const player = await active(token, generation, q);
@@ -915,7 +950,7 @@ export async function createApp(
     return result;
   });
   app.post("/api/wheel/spin", async (req) =>
-    serial(() => db.transaction(async (q) => {
+    serialRequest(req, () => db.transaction(async (q) => {
       const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid() }).parse(req.body);
       const player = await active(req.cookies.session!, generation, q);
       const { rows: [previous] } = await q(
@@ -943,7 +978,7 @@ export async function createApp(
     })),
   );
   app.post("/api/wheel/collect", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const result = await db.transaction(async (q) => {
         const { generation, id, ids } = z.object({
           generation: z.number().int(), id: z.uuid(), ids: z.array(z.uuid()).max(19).optional(),
@@ -976,7 +1011,7 @@ export async function createApp(
     }),
   );
   app.post("/api/profile/xp-test", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const token = req.cookies.session!;
       const { generation, start } = z
         .object({
@@ -1024,7 +1059,7 @@ export async function createApp(
     return reply.header("X-Content-Type-Options", "nosniff").type(image.mime).send(Buffer.from(image.image));
   });
   app.post("/api/profile/motto", { bodyLimit: PROFILE_IMAGE_MAX_CHARS + 4096 }, async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const token = req.cookies.session!;
       const { generation, motto, template, profileImage } = z
         .object({
@@ -1073,32 +1108,81 @@ export async function createApp(
     }),
   );
   app.post("/api/profile/outfit", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const { generation, outfit } = z.object({
         generation: z.number().int(),
         outfit: wornOutfitSchema,
       }).parse(req.body);
       const saved = await db.transaction(async (q) => {
         const id = await active(req.cookies.session!, generation, q);
+        const { rows: [character] } = await q("SELECT * FROM characters WHERE id=$1 FOR UPDATE", [id]);
+        const wearable = await wardrobe.assertWearable(q, character, outfit);
         const { rows } = await q(
           "UPDATE characters SET outfit=$1::jsonb WHERE id=$2 AND outfit IS DISTINCT FROM $1::jsonb RETURNING id",
-          [JSON.stringify(outfit), id],
+          [JSON.stringify(wearable), id],
         );
-        return rows.length ? id : null;
+        return { id: rows.length ? id : null, wearable };
       });
-      if (saved) {
-        const player = presence.get(saved);
-        if (player) {
-          player.outfit = outfit;
-          room();
-        }
-        changed();
-      }
-      return { outfit };
+      if (saved.id) shareWornOutfit(saved.id, saved.wearable);
+      return { outfit: saved.wearable };
+    }),
+  );
+  async function activeRow(q: Query, token: string, generation: number) {
+    const id = await active(token, generation, q);
+    const { rows: [character] } = await q("SELECT * FROM characters WHERE id=$1 FOR UPDATE", [id]);
+    return character;
+  }
+  async function wardrobeReply(q: Query, character: { id: string }) {
+    const { rows: [fresh] } = await q("SELECT * FROM characters WHERE id=$1", [character.id]);
+    const wheel = await rewardWheel(q, fresh.id);
+    return { outfit: fresh.outfit, wardrobe: await wardrobe.view(q, fresh, wheel.accountCoins, wheel.accountDiamonds) };
+  }
+  function shareWornOutfit(id: string, outfit: unknown) {
+    const player = presence.get(id);
+    if (player) {
+      player.outfit = outfit as typeof player.outfit;
+      room();
+    }
+    changed();
+  }
+  app.post("/api/shop/buy", async (req) =>
+    serialRequest(req, async () => {
+      const { generation, draft, onlyPieceId } = z.object({
+        generation: z.number().int(),
+        draft: wornOutfitSchema,
+        onlyPieceId: z.string().max(120).optional(),
+      }).parse(req.body);
+      // Both characters of an account share one balance: lock it before reading what was spent.
+      const account = login(req.cookies.session).account;
+      const result = await db.transaction(async (q) => {
+        await q("SELECT id FROM accounts WHERE id=$1 FOR UPDATE", [account]);
+        const character = await activeRow(q, req.cookies.session!, generation);
+        const wheel = await rewardWheel(q, character.id);
+        const receipt = await wardrobe.buy(q, character, wheel.accountCoins, draft, onlyPieceId);
+        return { ...receipt, ...(await wardrobeReply(q, character)), id: character.id as string };
+      });
+      shareWornOutfit(result.id, result.outfit);
+      return { outfit: result.outfit, wardrobe: result.wardrobe, added: result.added, charged: result.charged };
+    }),
+  );
+  app.post("/api/shop/import", { bodyLimit: 131_072 }, async (req) =>
+    serialRequest(req, async () => {
+      const { generation, items } = z.object({
+        generation: z.number().int(),
+        items: legacyItemsSchema,
+      }).parse(req.body);
+      const account = login(req.cookies.session).account;
+      return db.transaction(async (q) => {
+        await q("SELECT id FROM accounts WHERE id=$1 FOR UPDATE", [account]);
+        const character = await activeRow(q, req.cookies.session!, generation);
+        const wheel = await rewardWheel(q, character.id);
+        const summary = await wardrobe.importLegacy(q, character, wheel.accountCoins, items);
+        return { ...summary, ...(await wardrobeReply(q, character)) };
+      });
     }),
   );
   app.post("/api/activate", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const token = req.cookies.session!;
       const account = login(token).account;
       const { character } = z
@@ -1134,26 +1218,24 @@ export async function createApp(
     }),
   );
   app.get("/api/conversation/:peer", async (req) =>
-    serial(async () => {
-      const { peer } = req.params as { peer: string };
-      const s = await state(req.cookies.session!);
-      if (!s.character) throw new Error("Choisis un personnage.");
-      if (!s.contacts.some((c) => c.id === peer))
+    serialRequest(req, async () => {
+      const { peer } = z.object({ peer: z.string().max(64) }).parse(req.params);
+      const { before } = z.object({ before: z.coerce.number().int().positive().optional() }).parse(req.query);
+      const me = await activeCharacter(req.cookies.session!);
+      if (irisOnly || peer === me || !(await listedCharacter(peer)))
         throw new Error("Destinataire inconnu.");
-      // P0 loads the full conversation; pagination is required before public use.
-      return {
-        messages: (
-          await db.query(
-            `SELECT id::integer,sender,recipient,body,created_at FROM messages
-      WHERE (sender=$1 AND recipient=$2) OR (sender=$2 AND recipient=$1) ORDER BY id`,
-            [s.character.id, peer],
-          )
-        ).rows,
-      };
+      // Latest page first; older messages are requested with ?before=<id>.
+      const { rows } = await db.query(
+        `SELECT id::integer,sender,recipient,body,created_at FROM messages
+         WHERE ((sender=$1 AND recipient=$2) OR (sender=$2 AND recipient=$1)) AND ($3::bigint IS NULL OR id < $3)
+         ORDER BY id DESC LIMIT ${CONVERSATION_PAGE + 1}`,
+        [me, peer, before ?? null],
+      );
+      return { messages: rows.slice(0, CONVERSATION_PAGE).reverse(), hasMore: rows.length > CONVERSATION_PAGE };
     }),
   );
   app.post("/api/message", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const body = z
         .object({
           generation: z.number().int(),
@@ -1206,7 +1288,7 @@ export async function createApp(
     }),
   );
   app.post("/api/read", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const b = z
         .object({
           generation: z.number().int(),
@@ -1237,7 +1319,7 @@ export async function createApp(
     }),
   );
   app.post("/api/block", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const b = z
         .object({
           generation: z.number().int(),
@@ -1271,7 +1353,7 @@ export async function createApp(
     }),
   );
   app.post("/api/report", async (req) =>
-    serial(async () => {
+    serialRequest(req, async () => {
       const b = z
         .object({
           generation: z.number().int(),
@@ -1304,6 +1386,7 @@ export async function createApp(
   );
   app.get("/ws", { websocket: true }, (ws, req) => {
     const token = req.cookies.session!;
+    const serial = <T>(fn: () => Promise<T>) => serialFor(accountKey(token), fn);
     const client: Client = {
       token,
       character: null,
@@ -1401,13 +1484,14 @@ export async function createApp(
             send(ws, {
               type: "room-chat-ack",
               commandId: chatCommandId,
-              error: e instanceof Error ? e.message : "Message indisponible.",
+              error: describeError(e).message,
             });
             return;
           }
+          if (describeError(e).status >= 500) app.log.error({ err: e }, "websocket command failed");
           send(ws, {
             type: "error",
-            message: e instanceof Error ? e.message : "Commande invalide.",
+            message: describeError(e).message,
           });
         }
       });
@@ -1450,7 +1534,7 @@ export async function createApp(
       } catch (e) {
         send(ws, {
           type: "error",
-          message: e instanceof Error ? e.message : "Connexion impossible.",
+          message: describeError(e).message,
           requiresLogin:
             !logins.has(token) || logins.get(token)!.expires < Date.now(),
         });
@@ -1460,7 +1544,7 @@ export async function createApp(
     });
   });
   const timer = setInterval(() => {
-    void serial(async () => {
+    {
       for (const [ws, c] of clients) {
         if (
           c.seen < Date.now() - 30000 ||
@@ -1474,7 +1558,7 @@ export async function createApp(
       }
       for (const [token, s] of logins)
         if (s.expires < Date.now()) logins.delete(token);
-    });
+    }
   }, 10000);
   timer.unref();
   const dist = resolve("dist");
@@ -1487,7 +1571,7 @@ export async function createApp(
   app.addHook("onClose", async () => {
     clearInterval(timer);
     for (const ws of clients.keys()) ws.terminate();
-    await queue;
+    await Promise.all(queues.values());
   });
   return app;
 }

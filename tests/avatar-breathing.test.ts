@@ -21,7 +21,8 @@ test("production poses are static, including a legacy breathing flag, while fitt
       }),
     );
   const heart = draw({ fullBody: true, pose: "heart-hands", breathing: true });
-  assert.match(heart, /data-avatar-pose="heart-hands"/);
+  // Every piece on sale is drawn from the front only: other poses fall back to it.
+  assert.match(heart, /data-pose-pending="heart-hands"/);
   for (const other of [
     heart,
     draw({ fullBody: true, pose: "front", breathing: true }),

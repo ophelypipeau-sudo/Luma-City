@@ -7,6 +7,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import WebSocket from "ws";
 import { createApp } from "../apps/server/src/app.ts";
+import { starterPieces } from "../packages/contracts/src/player-account.ts";
 import { openDatabase, type Database } from "../apps/server/src/db.ts";
 import { ARCADE_COLUMNS, ARCADE_GAMES, MOLE_LIVES, MOLE_MISS, MOLE_TARGET, arcadeLevel, replayArcade, replayMemory, replayMole, WHEEL_PRIZES } from "../packages/domain/src/arcade.ts";
 
@@ -531,25 +532,15 @@ test("admission concurrente : la seizième connexion est refusée", async () => 
     const address = app.server.address();
     assert(address && typeof address !== "string");
     const url = `ws://127.0.0.1:${address.port}/ws`;
-    for (let i = 0; i < 16; i++) {
-      await db.query("INSERT INTO accounts VALUES ($1,$2)", [
-        "test" + i,
-        "Test",
-      ]);
-      await db.query("INSERT INTO play_sessions(account_id) VALUES ($1)", [
-        "test" + i,
-      ]);
-      await db.query("INSERT INTO characters VALUES ($1,$2,1,$3,$4,$5)", [
-        "char" + i,
-        "test" + i,
-        "Test " + i,
-        "#7860a8",
-        "#55354b",
-      ]);
-    }
     const identities = [];
-    for (let i = 0; i < 16; i++)
-      identities.push(await enter(app, "test" + i, "char" + i));
+    for (let i = 0; i < 16; i++) {
+      const created = await request(app, "register", undefined, {
+        name: "Joueur" + i, password: "motdepasse", privacy: true,
+        outfit: { hair: starterPieces.hair[0], top: starterPieces.top[0], bottom: starterPieces.bottom[0], shoes: starterPieces.shoes[0] },
+      });
+      assert.equal(created.status, 200);
+      identities.push({ cookie: created.cookie! });
+    }
     // All handshakes compete for admission through the same server authority.
     for (const identity of identities)
       connections.push(connect(url, identity.cookie));
@@ -649,6 +640,12 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
     );
     const outfit = { top: "fashion.premium-velvet", bottom: null, shoes: null,
       colors: { "fashion.premium-velvet": "#663388" } };
+    const unpaid = await request(app, "profile/outfit", june.cookie, { generation: june.generation, outfit });
+    assert.equal(unpaid.status, 400, "a piece must be bought before it is worn");
+    const bought = await request(app, "shop/buy", june.cookie, { generation: june.generation, draft: outfit });
+    assert.equal(bought.status, 200);
+    assert.equal(bought.data.charged, 900);
+    assert.equal(bought.data.wardrobe.balance, 10_000 - 900);
     assert.equal((await request(app, "profile/outfit", june.cookie, {
       generation: june.generation, outfit,
     })).status, 200);
@@ -756,12 +753,14 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
     assert.equal((await mutate(iris, "nova-xp", { ...bestFriend, accept: true })).status, 400);
     assert.equal((await read(iris, "iris")).data.featuredRelations.bestFriends.length, 3);
 
-    const item = {
-      pieceId: "atelier.prune-fumee-escarpins",
-      key: "variant",
-      color: "#ffffff",
-      purchasedAt: 100,
-    };
+    const forged = { pieceId: "fashion.y2k-mcbling", key: "forged", purchasedAt: 100 };
+    assert.equal((await mutate(iris, "june", { type: "gift", item: forged, id: randomUUID() })).status, 400,
+      "only an owned piece can be offered");
+    const present = { top: "fashion.capsule-mode-cerise", bottom: null, shoes: null, outerwear: "fashion.y2k-mcbling" };
+    assert.equal((await request(app, "shop/buy", iris.cookie, { generation: iris.generation, draft: present })).status, 200);
+    const item = (await request(app, "state", iris.cookie)).data.wardrobe.items
+      .find((owned: { pieceId: string; purchasedAt: number }) => owned.pieceId === "fashion.y2k-mcbling" && owned.purchasedAt > 0);
+    assert.ok(item);
     const gift = { type: "gift", item, id: randomUUID() };
     assert.equal((await mutate(iris, "june", gift)).status, 200);
     assert.equal((await mutate(iris, "june", gift)).status, 200);
@@ -773,6 +772,11 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       (await request(app, "state", june.cookie)).data.garmentTransfers,
       [{ id: gift.id, sender: "iris", recipient: "june", item }],
     );
+    const afterGift = (await request(app, "state", iris.cookie)).data;
+    assert.ok(!afterGift.wardrobe.items.some((owned: { key: string }) => owned.key === item.key));
+    assert.equal(afterGift.character.outfit.outerwear, null, "the sender stops wearing the offered piece");
+    assert.ok((await request(app, "state", june.cookie)).data.wardrobe.items
+      .some((owned: { key: string }) => owned.key === item.key));
     await db.query("INSERT INTO blocks VALUES ($1,$2)", ["june", "iris"]);
     assert.equal((await mutate(iris, "june", like)).status, 400);
     assert.deepEqual((await read(iris, "june")).data.relations, {});
@@ -795,6 +799,7 @@ test("L’ordre des calques d’une tenue est sauvegardé et partagé avec les a
       outerwear: "fashion.y2k-mcbling",
       layerOrder: ["top", "outerwear", "top2", "bottom"],
     };
+    assert.equal((await request(app, "shop/buy", iris.cookie, { generation: iris.generation, draft: outfit })).status, 200);
     const save = await request(app, "profile/outfit", iris.cookie, { generation: iris.generation, outfit });
     assert.equal(save.status, 200);
     assert.deepEqual(save.data.outfit, outfit);

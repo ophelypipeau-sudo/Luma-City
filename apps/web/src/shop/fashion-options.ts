@@ -57,10 +57,14 @@ export function colorGarment(
       }
     : { ...layers, colors: { ...layers.colors, [id]: color.toLowerCase() } };
 }
+/** Catalogue price of one piece; the server charges exactly this amount. */
+export function garmentPrice(piece: { id: string; price?: number }) {
+  return piece.price ?? FASHION_PRICES[piece.id] ?? 0;
+}
 export function fittingCart(layers: AvatarLayers) {
   return equippedPieces(layers).map((piece) => ({
     piece,
-    price: piece.price ?? FASHION_PRICES[piece.id] ?? 0,
+    price: garmentPrice(piece),
     color: layers.colors?.[piece.id],
     detailColor: piece.secondaryColor ? layers.detailColors?.[piece.id] : undefined,
   }));

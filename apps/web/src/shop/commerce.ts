@@ -1,11 +1,10 @@
 import { avatarGarment } from "../avatar/catalog";
 import { retiredGarments } from "../../../../packages/contracts/src/retired-garments";
 import { garmentMaterials } from "../avatar/materials";
-import { DEFAULT_LAYERS, equipLayer, removeGarment, wearGarment, wornSlot, type AvatarLayers } from "../avatar/model";
+import { DEFAULT_LAYERS, equipLayer, wearGarment, wornSlot, type AvatarLayers } from "../avatar/model";
 import type { AvatarSlot } from "../avatar/catalog";
 import { snapshotOutfit, readWornOutfits } from "../avatar/worn-outfits";
 import { fittingCart } from "./fashion-options";
-import type { GarmentTransfer } from "../../../../packages/contracts/src/index";
 export const COMMERCE_KEY = "fashion-commerce-v1";
 export const TEST_BALANCE = 10000;
 export type PurchasedItem = {
@@ -41,70 +40,6 @@ export const emptyCommerce = (): FashionCommerce => ({
   accounts: {},
   wardrobes: {},
 });
-export function applyWheelPayouts(state: FashionCommerce, account: string, coins: number, diamonds: number, startingBalance = TEST_BALANCE) {
-  const wallet = state.accounts[account];
-  const creditedCoins = wallet?.wheelCoins ?? 0;
-  const creditedDiamonds = wallet?.wheelDiamonds ?? 0;
-  const addCoins = Math.max(0, coins - creditedCoins);
-  const addDiamonds = Math.max(0, diamonds - creditedDiamonds);
-  if (!addCoins && !addDiamonds) return state;
-  return {
-    ...state,
-    accounts: {
-      ...state.accounts,
-      [account]: {
-        ...wallet,
-        balance: (wallet?.balance ?? startingBalance) + addCoins,
-        diamonds: (wallet?.diamonds ?? 0) + addDiamonds,
-        wheelCoins: creditedCoins + addCoins,
-        wheelDiamonds: creditedDiamonds + addDiamonds,
-      },
-    },
-  };
-}
-export function applyGarmentTransfers(
-  state: FashionCommerce,
-  owner: string,
-  characterId: string | undefined,
-  transfers: readonly GarmentTransfer[],
-  worn: AvatarLayers,
-): FashionCommerce {
-  if (!characterId || transfers.length === 0) return state;
-  const current = state.wardrobes[owner];
-  let items = [...(current?.items ?? [])];
-  let equipped = current?.equipped ?? worn;
-  const outgoing = transfers.filter(
-    (transfer) => transfer.sender === characterId,
-  );
-  for (const { item } of outgoing) {
-    items = items.filter(
-      (owned) =>
-        owned.key !== item.key || owned.purchasedAt !== item.purchasedAt,
-    );
-  }
-  for (const { recipient, item } of transfers) {
-    if (
-      !retiredGarments.has(item.pieceId) &&
-      recipient === characterId &&
-      !items.some((owned) => owned.key === item.key)
-    )
-      items.push({ ...item, purchasedAt: 0 });
-  }
-  for (const { item } of outgoing) {
-    const wearing = fittingCart(equipped).find(
-      (entry) =>
-        entry.piece.id === item.pieceId &&
-        variantKey(entry.piece.id, entry.color, entry.detailColor) ===
-          variantKey(item.pieceId, item.color, item.detailColor),
-    );
-    if (wearing && !ownsVariant(items, item.pieceId, item.color, item.detailColor))
-      equipped = removeGarment(equipped, item.pieceId);
-  }
-  return {
-    ...state,
-    wardrobes: { ...state.wardrobes, [owner]: { items, equipped } },
-  };
-}
 export function readCommerce(raw: string | null): FashionCommerce {
   try {
     const p = JSON.parse(raw ?? "null");

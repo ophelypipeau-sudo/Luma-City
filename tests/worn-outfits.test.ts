@@ -9,31 +9,38 @@ import {
   snapshotOutfit,
   outfitOwner,
 } from "../apps/web/src/avatar/worn-outfits";
-import { LEOPARD_LAYERS } from "../apps/web/src/avatar/leopard";
+// Pieces currently on sale (the former leopard and winter collections were retired).
+const LIVE_LAYERS = {
+  belt: null,
+  top: "fashion.premium-velvet",
+  outerwear: "fashion.y2k-mcbling",
+  hair: "fashion.hair-01-aureole",
+  bottom: "fashion.pants-rocade",
+  shoes: "fashion.shoes-campus",
+};
 import { Portrait } from "../apps/web/src/Avatar";
 import { Room } from "../apps/web/src/Room";
 import { clothingLayerOrder, equipLayer, moveClothingLayer, moveOutfitPiece, orderedOutfitPieces, removeGarment, wearGarment, DEFAULT_LAYERS } from "../apps/web/src/avatar/model";
-import { HAIR_CAPSULE_GARMENTS } from "../apps/web/src/avatar/hair-capsule";
-import { WINTER_GARMENTS } from "../apps/web/src/avatar/winter";
 import { wornOutfitSchema } from "../packages/contracts/src/index";
 import { LayeredDoll } from "../apps/web/src/avatar/LayeredDoll";
 test("accepted outfit preserves all slots and both colour regions, independently from future try-ons", () => {
+
   const draft = {
-    ...LEOPARD_LAYERS,
+    ...LIVE_LAYERS,
     face: { eyes: "green", lips: "berry", skin: "tan", nose: "fine" } as const,
-    colors: { [LEOPARD_LAYERS.bottom!]: "#ff80c0" },
-    detailColors: { [LEOPARD_LAYERS.bottom!]: "#ffffff" },
+    colors: { [LIVE_LAYERS.bottom!]: "#ff80c0" },
+    detailColors: { [LIVE_LAYERS.bottom!]: "#ffffff" },
   };
   const worn = snapshotOutfit(draft);
-  draft.colors[LEOPARD_LAYERS.bottom!] = "#00ff00";
-  assert.equal(worn.colors?.[LEOPARD_LAYERS.bottom!], "#ff80c0");
+  draft.colors[LIVE_LAYERS.bottom!] = "#00ff00";
+  assert.equal(worn.colors?.[LIVE_LAYERS.bottom!], "#ff80c0");
   const owner = outfitOwner("test-account", "iris");
   const restored = readWornOutfits(JSON.stringify({ [owner]: worn }))[owner];
   assert.deepEqual(restored, worn);
   assert.deepEqual(wornOutfitSchema.parse(restored).face, draft.face);
   const tryOn = equipLayer(restored, "bottom", DEFAULT_LAYERS.bottom);
   assert.equal(tryOn.belt, worn.belt);
-  assert.equal(restored.bottom, LEOPARD_LAYERS.bottom);
+  assert.equal(restored.bottom, LIVE_LAYERS.bottom);
   assert.notEqual(owner, outfitOwner("other-account", "iris"));
   assert.notEqual(owner, outfitOwner("test-account", "june"));
 });
@@ -46,7 +53,7 @@ test("the room uses the worn dressing outfit immediately, even before presence h
     players: [{ id: "iris", name: "Iris", account_id: "aurore",
       color: "#9367cb", hair: "#55354b", slot: 1, x: 50, y: 75,
       outfit: DEFAULT_LAYERS }],
-    wornLayers: { ...LEOPARD_LAYERS, top: velvet, colors: { [velvet]: "#b4629b" } },
+    wornLayers: { ...LIVE_LAYERS, top: velvet, colors: { [velvet]: "#b4629b" } },
     onMove: () => {},
     onSelect: () => {},
   }));
@@ -95,7 +102,7 @@ test("a jacket can move between the other clothes and retain its position after 
 
 test("two tops draw independently, swap in place and retain their order after saving", () => {
   const top = "fashion.capsule-mode-cerise";
-  const top2 = LEOPARD_LAYERS.top!;
+  const top2 = "fashion.premium-velvet";
   const legacy = readWornOutfits(JSON.stringify({ iris: {
     ...DEFAULT_LAYERS, top, layerOrder: ["outerwear", "top", "bottom"],
   } })).iris;
@@ -115,11 +122,9 @@ test("two tops draw independently, swap in place and retain their order after sa
 });
 
 test("all worn pieces can be stacked, reordered, saved and removed individually", () => {
-  const hairs = HAIR_CAPSULE_GARMENTS.slice(0, 2).map((piece) => piece.id);
-  const socks = WINTER_GARMENTS.find((piece) => piece.id.endsWith("ribbon-stockings"))!.id;
-  const shoes = WINTER_GARMENTS.find((piece) => piece.slot === "shoes")!.id;
-  const bag = WINTER_GARMENTS.find((piece) => piece.slot === "bag")!.id;
-  const additions = ["fashion.capsule-mode-cerise", LEOPARD_LAYERS.top!, ...hairs, socks, shoes, bag];
+  const hairs = ["fashion.hair-01-aureole", "fashion.hair-02-trait"];
+  const shoes = "fashion.shoes-campus";
+  const additions = ["fashion.premium-venus", "fashion.premium-velvet", ...hairs, shoes];
   const stacked = additions.reduce(wearGarment, DEFAULT_LAYERS);
   const initialOrder = orderedOutfitPieces(stacked).map((piece) => piece.id);
   assert.equal(initialOrder.length, additions.length + 3);
@@ -131,10 +136,10 @@ test("all worn pieces can be stacked, reordered, saved and removed individually"
     id: "iris", fullBody: true, layers: restored,
   }));
   assert.equal(Array.from(html.matchAll(/data-piece="([^"]+)"/g)).at(-1)?.[1], shoes);
-  const removed = [hairs[1], shoes, socks, bag].reduce(removeGarment, restored);
+  const removed = [hairs[1], shoes].reduce(removeGarment, restored);
   assert.deepEqual(orderedOutfitPieces(removed).map((piece) => piece.id),
     orderedOutfitPieces(restored).map((piece) => piece.id).filter((id) =>
-      ![hairs[1], shoes, socks, bag].includes(id)));
+      ![hairs[1], shoes].includes(id)));
 });
 
 test("tucking removes the lower torso paint but keeps both long sleeves intact", () => {
@@ -163,18 +168,7 @@ test("tucking removes the lower torso paint but keeps both long sleeves intact",
     assert.ok(left > 100 && right > 100 && trimmed > 30, top);
   }
 });
-test("left portrait uses validated belt and garment IDs, and malformed local saves do not crash", () => {
-  const html = renderToStaticMarkup(
-    React.createElement(Portrait, {
-      id: "iris",
-      fullBody: true,
-      pose: "hand-on-hip",
-      layers: LEOPARD_LAYERS,
-    }),
-  );
-  assert.ok(html.includes('data-piece="fashion.medallion-belt"'));
-  assert.ok(html.includes("redrawn-v1/fur-pants.png"));
-  assert.ok(!html.includes("fashion-v2/jeans.png"));
+test("malformed local saves do not crash", () => {
   assert.deepEqual(readWornOutfits("broken"), {});
   assert.deepEqual(readWornOutfits("[]"), {});
   const owner = outfitOwner("a", "iris");

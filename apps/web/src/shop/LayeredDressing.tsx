@@ -115,7 +115,7 @@ export function LayeredDressing({
   onChange: Dispatch<SetStateAction<AvatarLayers>>;
   onClose: () => void;
   onCollections: () => void;
-  onPurchase?: (layers: AvatarLayers, onlyPieceId?: string) => string | null;
+  onPurchase?: (layers: AvatarLayers, onlyPieceId?: string) => string | null | Promise<string | null>;
   ownedItems?: PurchasedItem[];
   balance?: number;
 }) {
@@ -213,10 +213,17 @@ export function LayeredDressing({
     setPaletteId(id);
     setPaletteZone(zone);
   }
-  function purchase(id?: string) {
+  const [purchasing, setPurchasing] = useState(false);
+  async function purchase(id?: string) {
+    if (purchasing) return;
     const cost = id ? (cart.find((e) => e.piece.id === id)?.price ?? 0) : total;
-    const error =
-      onPurchase?.(layers, id) ?? (!onPurchase ? "Achat indisponible." : null);
+    setPurchasing(true);
+    let error: string | null;
+    try {
+      error = onPurchase ? await onPurchase(layers, id) : "Achat indisponible.";
+    } finally {
+      setPurchasing(false);
+    }
     setPurchaseError(error ?? "");
     if (!error) {
       setReceipt({ stamp: Date.now(), cost });
@@ -687,6 +694,7 @@ export function LayeredDressing({
                     )}
                     <button
                       className="runway-buy-one"
+                      disabled={purchasing}
                       onClick={() => purchase(piece.id)}
                     >
                       Acheter
@@ -737,7 +745,7 @@ export function LayeredDressing({
             </button>
             <button
               className="fashion-checkout"
-              disabled={!onPurchase || total > balance}
+              disabled={!onPurchase || purchasing || total > balance}
               onClick={() => purchase()}
             >
               <Check size={18} />{" "}

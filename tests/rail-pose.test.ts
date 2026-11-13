@@ -13,12 +13,15 @@ import { Resvg } from "@resvg/resvg-js";
 import { avatarCatalogSnapshot } from "../apps/web/src/avatar/catalog";
 import { LEOPARD_LAYERS } from "../apps/web/src/avatar/leopard";
 import { EMPTY_LAYERS } from "../apps/web/src/avatar/model";
+import { poseFit } from "../apps/web/src/avatar/pose-wardrobe";
 test("only an explicitly posed full-body rail portrait uses the hip pose; fitting stays frontal", () => {
   const posed = renderToStaticMarkup(
     React.createElement(Portrait, {
       id: "iris",
       fullBody: true,
       pose: "hand-on-hip",
+      // The default outfit is frontal only; the underwear base keeps the posed drawing.
+      layers: EMPTY_LAYERS,
     }),
   );
   assert.match(posed, /data-avatar-pose="hand-on-hip"/);
@@ -68,33 +71,17 @@ test("the hand rests on the hip at preview coordinates and the pose mask preserv
     assert.equal(p[(y * 887 + x) * 4 + 3], 0);
 });
 
-test("every shop top and the underwear base keep the hip pose, belt and original hand; fitting remains frontal", () => {
-  for (const top of [
-    null,
-    ...avatarCatalogSnapshot()
-      .filter((p) => p.slot === "top")
-      .map((p) => p.id),
-  ]) {
-    const layers = { ...LEOPARD_LAYERS, top };
+test("shop tops are frontal only, so a hip-pose request falls back to the front while the bare base keeps it", () => {
+  for (const piece of avatarCatalogSnapshot().filter((p) => p.slot === "top")) {
+    const layers = { ...EMPTY_LAYERS, top: piece.id };
     const posed = renderToStaticMarkup(
-      React.createElement(Portrait, {
-        id: "iris",
-        fullBody: true,
-        pose: "hand-on-hip",
-        layers,
-      }),
+      React.createElement(Portrait, { id: "iris", fullBody: true, pose: "hand-on-hip", layers }),
     );
-    assert.match(posed, /data-avatar-pose="hand-on-hip"/);
-    assert.match(posed, /redraw-v4\/hip-hand.png/);
-    assert.match(posed, /data-piece="fashion.medallion-belt"/);
-    if (top === "fashion.burgundy-fold-sweater")
-      assert.match(posed, /burgundy-cut-v2\/hand-on-hip.png/);
+    const supported = poseFit(piece, "hand-on-hip")?.kind !== "unavailable";
+    if (supported) assert.match(posed, /data-avatar-pose="hand-on-hip"/, piece.id);
+    else assert.match(posed, /data-pose-pending="hand-on-hip"/, piece.id);
     const fitting = renderToStaticMarkup(
-      React.createElement(FittingAvatar, {
-        characterId: "iris",
-        outfit: BARE_OUTFIT,
-        layers,
-      }),
+      React.createElement(FittingAvatar, { characterId: "iris", outfit: BARE_OUTFIT, layers }),
     );
     assert.doesNotMatch(fitting, /data-avatar-pose="hand-on-hip"/);
   }
@@ -110,7 +97,6 @@ test("every shop top and the underwear base keep the hip pose, belt and original
     /redrawn-v1\/body-hand-on-hip.png/,
   );
 });
-
 test("the posed sleeveless avatar actually erases the old arm and keeps its approved palm on the hip", () => {
   // Render the portrait's own viewBox directly, without its outer nested viewport.
   const portrait = renderToStaticMarkup(

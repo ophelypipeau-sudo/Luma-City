@@ -110,6 +110,7 @@ function App() {
   const [state, setState] = useState<State | null>(null),
     [ready, setReady] = useState(false);
   const [multiplayer, setMultiplayer] = useState(false);
+  const [demoAccounts, setDemoAccounts] = useState(false);
   const [auth, setAuth] = useState<ReturnType<typeof createPlayerAuth>>();
   const [needsCharacter, setNeedsCharacter] = useState(false);
   async function neonGameSession(client: NonNullable<typeof auth>, setup: object | null = null) {
@@ -423,6 +424,7 @@ function App() {
     Promise.all([api("health"), api("state").catch(() => null)])
       .then(async ([health, game]) => {
         setMultiplayer(health.multiplayer === true);
+        setDemoAccounts(health.demoAccounts !== false);
         if (health.authUrl) {
           const client = createPlayerAuth(health.authUrl);
           // The SDK proxy is callable, so React needs an explicit state updater.
@@ -1512,7 +1514,7 @@ function App() {
           setProfileId(null);
           choosePeer(profile.id);
         }} />}
-      {ready && loginView && <PlayerWelcome busy={busy} error={error} multiplayer={multiplayer} neonAuth={Boolean(auth)} needsCharacter={needsCharacter} checkName={checkPlayerName} submit={enterPlayer} playDemo={playAs} />}
+      {ready && loginView && <PlayerWelcome busy={busy} error={error} multiplayer={multiplayer} neonAuth={Boolean(auth)} needsCharacter={needsCharacter} checkName={checkPlayerName} submit={enterPlayer} playDemo={demoAccounts ? playAs : undefined} />}
       {report && (
         <div className="modal-backdrop">
           <form

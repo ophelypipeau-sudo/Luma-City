@@ -83,10 +83,14 @@ export async function createApp(
     irisOnly?: boolean;
     profileImageVipAccounts?: readonly string[];
     neonAuth?: ReturnType<typeof createNeonPlayerAuth>;
+    publicOrigin?: string;
   } = {},
 ) {
   const irisOnly = atelierOptions.irisOnly === true;
   const neonAuth = atelierOptions.neonAuth;
+  const publicOrigin = atelierOptions.publicOrigin ? new URL(atelierOptions.publicOrigin) : undefined;
+  if (publicOrigin && (publicOrigin.protocol !== "https:" || !neonAuth))
+    throw new Error("L’accès public exige une origine HTTPS et Neon Auth.");
   const profileImageVipAccounts = new Set(
     atelierOptions.profileImageVipAccounts ??
       (process.env.PROFILE_IMAGE_VIP_ACCOUNTS ?? "").split(",").map((account) => account.trim()).filter(Boolean),
@@ -371,14 +375,19 @@ export async function createApp(
       presence.delete(client.character);
   }
   app.addHook("onRequest", async (req, reply) => {
-    // P0 has passwordless demo identities: it must stay on the local machine.
-    if (!["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(req.ip))
-      return reply.code(403).send({ error: "Prototype local uniquement." });
-    const hostname = (req.headers.host ?? "").split(":")[0];
-    if (!["localhost", "127.0.0.1"].includes(hostname))
-      return reply.code(403).send({ error: "Hôte local requis." });
+    if (publicOrigin) {
+      const healthCheck = req.method === "GET" && req.url === "/api/health" && req.headers.host === "healthcheck.railway.app";
+      if (!healthCheck && req.headers.host !== publicOrigin.host)
+        return reply.code(403).send({ error: "Hôte non autorisé." });
+    } else {
+      if (!["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(req.ip))
+        return reply.code(403).send({ error: "Prototype local uniquement." });
+      const hostname = (req.headers.host ?? "").split(":")[0];
+      if (!["localhost", "127.0.0.1"].includes(hostname))
+        return reply.code(403).send({ error: "Hôte local requis." });
+    }
     const port = process.env.PORT ?? "3001";
-    const allowed = new Set([
+    const allowed = new Set(publicOrigin ? [publicOrigin.origin] : [
       process.env.APP_ORIGIN ?? "http://127.0.0.1:5173",
       "http://localhost:5173",
       `http://127.0.0.1:${port}`,
@@ -403,7 +412,8 @@ export async function createApp(
       .code(message.includes("Connexion") ? 401 : 400)
       .send({ error: message });
   });
-  app.get("/api/health", async () => ({ ok: true, mode: "local-demo", multiplayer: !irisOnly,
+  app.get("/api/health", async () => ({ ok: true, mode: publicOrigin ? "public" : "local-demo", multiplayer: !irisOnly,
+    demoAccounts: !publicOrigin,
     authUrl: neonAuth?.baseUrl }));
   await registerAtelier(
     app,
@@ -438,7 +448,7 @@ export async function createApp(
       }
       logins.set(token, { account, expires });
       reply.setCookie("session", token, {
-        httpOnly: true,
+        httpOnly: true, secure: Boolean(publicOrigin),
         sameSite: "strict",
         path: "/",
         maxAge: Math.max(0, Math.floor((expires - Date.now()) / 1000)),
@@ -489,6 +499,7 @@ export async function createApp(
       z.object({ account: z.string().max(64) }).strict(),
     ]).parse(req.body);
     if ("account" in input) {
+      if (publicOrigin) return reply.code(403).send({ error: "Utilise la connexion par e-mail." });
       const { account } = input;
       if (!demoAccounts.has(account) || (irisOnly && account !== "aurore") ||
         !(await db.query("SELECT 1 FROM accounts WHERE id=$1", [account])).rows.length)
@@ -520,7 +531,7 @@ export async function createApp(
         if (token && current && current.account === existing.account_id && current.expires > Date.now()) {
           current.expires = user.expires;
           reply.setCookie("session", token, {
-            httpOnly: true, sameSite: "strict", path: "/",
+            httpOnly: true, secure: Boolean(publicOrigin), sameSite: "strict", path: "/",
             maxAge: Math.max(0, Math.floor((user.expires - Date.now()) / 1000)),
           });
           return state(token);

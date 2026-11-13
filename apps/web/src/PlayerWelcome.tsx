@@ -36,7 +36,7 @@ export function PlayerWelcome({ busy, error, multiplayer, neonAuth, needsCharact
   needsCharacter: boolean;
   checkName: (name: string) => Promise<boolean>;
   submit: (input: { name: string; email: string; password: string; outfit?: StarterOutfit }) => void;
-  playDemo: (id: "iris" | "june") => void;
+  playDemo?: (id: "iris" | "june") => void;
 }) {
   const [registering, setCreating] = useState(true);
   const creating = registering || needsCharacter;
@@ -132,11 +132,11 @@ export function PlayerWelcome({ busy, error, multiplayer, neonAuth, needsCharact
           <button className="primary-button player-enter" disabled={!valid || busy}>
             {creating ? "Créer et entrer dans le jeu" : "Entrer dans le jeu"} <ArrowRight size={17} />
           </button>
-          <details className="player-demo">
+          {playDemo && <details className="player-demo">
             <summary>Comptes de démonstration</summary>
             <button type="button" disabled={busy} onClick={() => playDemo("iris")}>Iris</button>
             {multiplayer && <button type="button" disabled={busy} onClick={() => playDemo("june")}>June</button>}
-          </details>
+          </details>}
         </form>
         <div className="player-creator">
           <div className="player-preview" aria-label="Aperçu du personnage" role="img">

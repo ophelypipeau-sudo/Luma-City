@@ -191,3 +191,20 @@ test("les erreurs internes sont masquées et les conversations paginées", async
     await db.close();
   }
 });
+
+test("les tests n’ouvrent jamais la base désignée par DATABASE_URL (build Railway)", async () => {
+  const previous = process.env.DATABASE_URL;
+  // Railway exposes the production DATABASE_URL while `npm run build` runs the tests.
+  process.env.DATABASE_URL = "postgres://nobody:secret@127.0.0.1:1/production";
+  try {
+    const db = await openDatabase("memory://");
+    try {
+      assert.deepEqual((await db.query("SELECT 1 AS ok")).rows, [{ ok: 1 }]);
+    } finally {
+      await db.close();
+    }
+  } finally {
+    if (previous === undefined) delete process.env.DATABASE_URL;
+    else process.env.DATABASE_URL = previous;
+  }
+});

@@ -39,8 +39,8 @@ import { splitReward } from "../../../packages/domain/src/arcade";
 import { MottoEditor } from "./MottoEditor";
 import { Shop } from "./shop/Shop";
 import { DEFAULT_LAYERS, type AvatarLayers } from "./avatar/model";
-import { WORN_OUTFITS_KEY, outfitOwner, readAvatarLayers, readWornOutfits, shareOutfit, snapshotOutfit } from "./avatar/worn-outfits";
-import { COMMERCE_KEY, TEST_BALANCE, readCommerce, wardrobeFor, buyOutfit, applyGarmentTransfers, applyWheelPayouts, equipPurchasedItem } from "./shop/commerce";
+import { outfitOwner, readAvatarLayers, shareOutfit, snapshotOutfit } from "./avatar/worn-outfits";
+import { COMMERCE_KEY, readCommerce, equipPurchasedItem, type PurchasedItem } from "./shop/commerce";
 import { avatarCatalogSnapshot } from "./avatar/catalog";
 import {archivedPieces,subscribeArchive,withoutArchivedPieces} from './avatar/archive';
 import {
@@ -84,8 +84,12 @@ type State = {
   homeGifts?: number[] | null;
   xpMagazine?: XpMagazine;
   rewardWheel?: RewardWheel;
+  /** Owned garments and balance, computed by the server. */
+  wardrobe?: Wardrobe;
   uiCapabilities?: { customBackground?: boolean; customGarmentColors?: boolean; customProfileImage?: boolean };
 };
+type Wardrobe = { items: PurchasedItem[]; balance: number; diamonds: number };
+const EMPTY_WARDROBE: Wardrobe = { items: [], balance: 0, diamonds: 0 };
 const createPlayerAuth = (url: string) => createAuthClient(url);
 async function api(path: string, body?: unknown, token?: string) {
   const r = await fetch("/api/" + path, {
@@ -188,60 +192,76 @@ function App() {
   const [socialOpen, setSocialOpen] = useState(false);
   const privateChatOpen = socialOpen && panel === "chat";
   const [chatPage, setChatPage] = useState(0);
-  const [wornOutfits] = useState(() => {
-    try { return readWornOutfits(localStorage.getItem(WORN_OUTFITS_KEY)); } catch { return {}; }
-  });
   const wornOwner = outfitOwner(state?.account ?? 'local', state?.character?.id ?? 'iris');
-  const [localCommerce,setCommerce]=useState(()=>{try{return readCommerce(localStorage.getItem(COMMERCE_KEY));}catch{return readCommerce(null);}});
-  const localOutfit = localCommerce.wardrobes[wornOwner]?.equipped ?? wornOutfits[wornOwner];
   const savedOutfit = readAvatarLayers(state?.character?.outfit);
   const starterOutfit = readAvatarLayers(state?.character?.starter_outfit) ?? DEFAULT_LAYERS;
-  const shopAccount=state?.account??'local';
   const characterId = state?.character?.id;
-  const startingBalance = characterId && isCreatedPlayer(characterId) ? 0 : TEST_BALANCE;
-  const commerce = applyWheelPayouts(
-    applyGarmentTransfers(localCommerce, wornOwner, state?.character?.id,
-      state?.garmentTransfers ?? [], localOutfit ?? savedOutfit ?? DEFAULT_LAYERS),
-    shopAccount,
-    state?.rewardWheel?.accountCoins ?? 0,
-    state?.rewardWheel?.accountDiamonds ?? 0,
-    startingBalance,
-  );
   const archived=useSyncExternalStore(subscribeArchive,archivedPieces,()=>[]);
-  const wornLayers = withoutArchivedPieces(commerce.wardrobes[wornOwner]?.equipped ?? localOutfit ?? savedOutfit ?? DEFAULT_LAYERS,archived);
-  const outfitPayload = localOutfit || commerce.wardrobes[wornOwner]?.equipped
-    ? JSON.stringify(shareOutfit(wornLayers)) : null;
-  const outfitGeneration = state?.generation;
+  // The server owns the worn outfit, the purchases and the balance.
+  const wornLayers = withoutArchivedPieces(savedOutfit ?? DEFAULT_LAYERS, archived);
   const activeId = state?.character?.id;
-  useEffect(() => {
-    if (!activeId || outfitGeneration === undefined || !outfitPayload || status !== "online") return;
-    const timer = window.setTimeout(() => {
-      void api("profile/outfit", {
-        generation: outfitGeneration,
-        outfit: JSON.parse(outfitPayload),
-      }).catch(() => {});
-    }, 160);
-    return () => window.clearTimeout(timer);
-  }, [activeId, outfitGeneration, outfitPayload, status]);
   const ownLayers = (id: string | undefined) => id === activeId ? wornLayers : undefined;
-  const wardrobe=wardrobeFor(commerce,shopAccount,wornOwner,wornLayers,starterOutfit,startingBalance);
-  function purchaseShopOutfit(layers:AvatarLayers,onlyPieceId?:string):string|null {
+  const wardrobe = state?.wardrobe ?? EMPTY_WARDROBE;
+  function applyWardrobe(result: { outfit?: unknown; wardrobe?: Wardrobe }, characterId = activeId) {
+    setState((current) => current?.character && current.character.id === characterId ? {
+      ...current,
+      ...(result.wardrobe && { wardrobe: result.wardrobe }),
+      character: "outfit" in result
+        ? { ...current.character, outfit: result.outfit as Character["outfit"] } : current.character,
+    } : current);
+  }
+  const outfitGeneration = state?.generation;
+  // One-time move of purchases made while the wardrobe lived in this browser.
+  // The server charges each piece again from the coins it knows, so nothing is created.
+  useEffect(() => {
+    if (!activeId || outfitGeneration === undefined || status !== "online") return;
+    const doneKey = "fashion-commerce-imported:" + wornOwner;
+    let local;
     try {
-      const receipt=buyOutfit(commerce,shopAccount,wornOwner,withoutArchivedPieces(layers,archived),wornLayers,onlyPieceId,starterOutfit,startingBalance);
-      localStorage.setItem(COMMERCE_KEY,JSON.stringify(receipt.next));
-      setCommerce(receipt.next);
-      if (!receipt.added) setNotice("Ta tenue est maintenant portée par ton personnage.");
+      if (localStorage.getItem(doneKey)) return;
+      local = readCommerce(localStorage.getItem(COMMERCE_KEY)).wardrobes[wornOwner];
+    } catch { return; }
+    if (!local) return;
+    const items = local.items.filter((item) => item.purchasedAt > 0);
+    const equipped = local.equipped;
+    void (async () => {
+      try {
+        if (items.length) {
+          const result = await api("shop/import", { generation: outfitGeneration, items });
+          applyWardrobe(result, activeId);
+          if (result.imported) setNotice(`${result.imported} article(s) de ta garde-robe ont été enregistrés sur ton compte.`);
+        }
+        if (equipped) {
+          const saved = await api("profile/outfit", { generation: outfitGeneration, outfit: shareOutfit(equipped) }).catch(() => null);
+          if (saved) applyWardrobe({ outfit: saved.outfit }, activeId);
+        }
+        try { localStorage.setItem(doneKey, "1"); } catch { /* retried next time */ }
+      } catch { /* retried at the next connection */ }
+    })();
+  }, [activeId, outfitGeneration, status, wornOwner]);
+  async function purchaseShopOutfit(layers: AvatarLayers, onlyPieceId?: string): Promise<string | null> {
+    try {
+      const result = await api("shop/buy", {
+        generation: state?.generation,
+        draft: shareOutfit(withoutArchivedPieces(layers, archived)),
+        onlyPieceId,
+      });
+      applyWardrobe(result);
+      if (!result.added) setNotice("Ta tenue est maintenant portée par ton personnage.");
       return null;
-    }catch(e){return (e as Error).message;}
+    } catch (e) { return (e as Error).message; }
   }
   function saveEquippedOutfit(layers: AvatarLayers) {
-    const equipped = snapshotOutfit(withoutArchivedPieces(layers, archived));
-    const next = {
-      ...commerce,
-      wardrobes: { ...commerce.wardrobes, [wornOwner]: { items: wardrobe.items, equipped } },
-    };
-    localStorage.setItem(COMMERCE_KEY, JSON.stringify(next));
-    setCommerce(next);
+    const outfit = shareOutfit(snapshotOutfit(withoutArchivedPieces(layers, archived)));
+    const previous = state?.character?.outfit;
+    const characterId = activeId;
+    applyWardrobe({ outfit }, characterId);
+    void api("profile/outfit", { generation: state?.generation, outfit })
+      .then((saved) => applyWardrobe({ outfit: saved.outfit }, characterId))
+      .catch((e: Error) => {
+        applyWardrobe({ outfit: previous }, characterId);
+        setError(e.message);
+      });
   }
   function wearGift(item: GarmentTransfer["item"]) {
     if (archived.includes(item.pieceId) || !avatarCatalogSnapshot().some((piece) => piece.id === item.pieceId)) return;
@@ -254,7 +274,8 @@ function App() {
     state?.uiCapabilities?.customBackground === true;
   const profile = state?.character?.id === profileId
     ? state?.character
-    : state?.contacts.find((character) => character.id === profileId);
+    : state?.contacts.find((character) => character.id === profileId)
+      ?? players.find((character) => character.id === profileId);
   const ownProfile = profile?.id === state?.character?.id;
   const guestbookCharacter = knownCharacters.find((character) => character.id === guestbookId);
   const guestbook = guestbookCharacter?.id === activeId && guestbookCharacter
@@ -1580,6 +1601,7 @@ function App() {
 }
 
 const root = createRoot(document.getElementById("root")!);
-if (new URLSearchParams(location.search).get('avatar-rig') === '1') {
+// The rig lab is a development tool: it is left out of the production bundle.
+if (import.meta.env.DEV && new URLSearchParams(location.search).get('avatar-rig') === '1') {
   import('./avatar/rig/RigLab').then(({default:RigLab})=>root.render(<RigLab/>));
 } else root.render(<App />);

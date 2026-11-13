@@ -131,4 +131,5 @@ export async function registerAtelier(
         .send(asset.bytes);
     },
   );
+  return store;
 }

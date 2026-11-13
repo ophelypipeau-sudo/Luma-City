@@ -72,7 +72,7 @@ export function Shop({
   onClose: () => void;
   canCustomizeColors?: boolean;
   equippedLayers?: AvatarLayers;
-  onPurchase: (layers: AvatarLayers, onlyPieceId?: string) => string | null;
+  onPurchase: (layers: AvatarLayers, onlyPieceId?: string) => string | null | Promise<string | null>;
   ownedItems: PurchasedItem[];
   balance: number;
 }) {

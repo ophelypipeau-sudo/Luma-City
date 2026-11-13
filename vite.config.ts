@@ -4,11 +4,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      input: [
-        "index.html",
-        "previews/prune-fumee.html",
-        "previews/capsule-hauts.html",
-      ],
+      // Preview pages (previews/*.html) stay available with `npm run dev` only.
+      input: ["index.html"],
     },
   },
   server: {

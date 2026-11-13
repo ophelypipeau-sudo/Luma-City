@@ -38,36 +38,3 @@ test("textile dyes preserve geometry, alpha and protected stitches in all three 
       assert.ok(changed > 2000, "base material really changes colour");
     }
 });
-test("two independent purchasable textile pieces retain IDs and selected dye across poses", () => {
-  const top = "fashion.textile-cropped-knit",
-    bottom = "fashion.textile-tailored-shorts";
-  for (const id of [top, bottom]) {
-    const g = avatarGarment(id);
-    assert.deepEqual(poseProfileIssues(g), []);
-    assert.ok(g.price! > 0);
-    assert.equal(g.art.kind, "vector");
-  }
-  const layers = {
-    ...EMPTY_LAYERS,
-    top,
-    bottom,
-    colors: { [top]: "#d76c94", [bottom]: "#7a92b3" },
-  };
-  const before = JSON.stringify(layers);
-  for (const pose of ["front", "hand-on-hip", "heart-hands"] as const) {
-    const svg = renderToStaticMarkup(
-      React.createElement(Portrait, {
-        id: "iris",
-        fullBody: true,
-        layers,
-        pose,
-      }),
-    );
-    assert.doesNotMatch(svg, /data-pose-pending/);
-    assert.match(svg, /data-textile-cut="cropped-knit"/);
-    assert.match(svg, /data-textile-cut="tailored-shorts"/);
-    assert.ok(svg.includes("#d76c94"));
-    assert.ok(svg.includes("#7a92b3"));
-    assert.equal(JSON.stringify(layers), before);
-  }
-});

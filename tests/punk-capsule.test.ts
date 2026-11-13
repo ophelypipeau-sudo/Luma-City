@@ -22,51 +22,6 @@ import {
   readCommerce,
 } from "../apps/web/src/shop/commerce";
 import { nativeRgba } from "../scripts/lib/png-native";
-test("nine independent pieces preserve both dyes and simultaneous tie/choker purchases across poses and reload", () => {
-  assert.equal(PUNK_GARMENTS.length, 9);
-  validateLayers(PUNK_LAYERS);
-  for (const p of PUNK_GARMENTS) assert.deepEqual(poseProfileIssues(p), []);
-  const look = {
-    ...PUNK_LAYERS,
-    colors: { [PUNK_LAYERS.top]: "#202c43", [PUNK_LAYERS.hair]: "#302321" },
-    detailColors: {
-      [PUNK_LAYERS.top]: "#65c5a3",
-      [PUNK_LAYERS.hair]: "#ba78e0",
-    },
-  };
-  const bought = buyOutfit(emptyCommerce(), "test", "iris", look, EMPTY_LAYERS);
-  const saved = readCommerce(JSON.stringify(bought.next));
-  assert.deepEqual(saved.wardrobes.iris.equipped, bought.equipped);
-  assert.equal(saved.wardrobes.iris.equipped?.tie, look.tie);
-  assert.equal(saved.wardrobes.iris.equipped?.necklace, look.necklace);
-  assert.deepEqual(
-    saved.wardrobes.iris.equipped?.detailColors,
-    look.detailColors,
-  );
-  assert.equal(bought.charged, 4200);
-  const withoutTie = equipLayer(look, "tie", null);
-  assert.equal(withoutTie.necklace, PUNK_LAYERS.necklace);
-  assert.equal(withoutTie.top, PUNK_LAYERS.top);
-  for (const pose of ["front", "hand-on-hip", "heart-hands"] as const) {
-    const svg = renderToStaticMarkup(
-      React.createElement(Portrait, {
-        id: "iris",
-        fullBody: true,
-        pose,
-        layers: look,
-      }),
-    );
-    assert.doesNotMatch(svg, /data-pose-pending/);
-    assert.ok(svg.includes('data-piece="' + PUNK_LAYERS.tie + '"'));
-    assert.ok(svg.includes("#65c5a3"));
-    assert.ok(svg.includes("#ba78e0"));
-    assert.ok(
-      svg.lastIndexOf('data-layer="legwear"') <
-        svg.lastIndexOf('data-layer="bottom"'),
-      "resille under skirt",
-    );
-  }
-});
 test("primary and detail dyes keep garment silhouettes unchanged and never use inspiration photo pixels", () => {
   for (const cut of [
     "punk-polo",

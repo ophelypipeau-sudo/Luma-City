@@ -4,13 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n serveur,client \"tsx watch apps/server/src/index.ts\" \"vite --host 127.0.0.1\"",
-    "build": "npm run check:poses && tsc --noEmit && vite build",
+    "build": "npm run check:poses && tsc --noEmit && npm test && vite build",
     "test": "tsx --test tests/*.test.ts",
     "start": "tsx apps/server/src/index.ts",
     "check:poses": "tsx scripts/check-pose-wardrobe.ts",
     "assets:fit": "tsx scripts/prepare-redrawn-clothes.ts",
     "assets:fit:archive": "tsx scripts/calibrate-winter-patterns.ts",
-    "test:avatar": "tsx --test tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts"
+    "test:avatar": "tsx --test tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts",
+    "build:fast": "tsc --noEmit && vite build"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.15",
@@ -29,6 +30,7 @@
     "pg": "^8.16.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "tsx": "^4.20.6",
     "zod": "^4.1.12"
   },
   "devDependencies": {
@@ -40,7 +42,6 @@
     "@vitejs/plugin-react": "^5.1.0",
     "concurrently": "^9.2.1",
     "prettier": "^3.9.10",
-    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
     "ws": "^8.18.3"

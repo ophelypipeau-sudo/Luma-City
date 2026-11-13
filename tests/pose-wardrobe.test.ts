@@ -20,13 +20,16 @@ import { DEFAULT_LAYERS } from "../apps/web/src/avatar/model";
 import { STATIC_POSES } from "../apps/web/src/avatar/static-poses";
 import { PREMIUM_CAPSULE_GARMENTS } from "../apps/web/src/avatar/premium-capsule";
 import { HAIR_CAPSULE_GARMENTS } from "../apps/web/src/avatar/hair-capsule";
+import { retiredGarments } from "../packages/contracts/src/retired-garments";
+// The default outfit is frontal only: pose checks start from the underwear base.
+const BARE = { ...DEFAULT_LAYERS, top: null, bottom: null, shoes: null };
 
 test("shop pieces render only calibrated poses and retain equipped identities and colors", () => {
   const pieces = avatarCatalogSnapshot();
   assert.equal(PREMIUM_CAPSULE_GARMENTS.length, 9);
   assert.equal(HAIR_CAPSULE_GARMENTS.length, 6);
   for (const hair of HAIR_CAPSULE_GARMENTS) {
-    assert.ok(pieces.some(({ id }) => id === hair.id));
+    assert.equal(pieces.some(({ id }) => id === hair.id), !retiredGarments.has(hair.id));
     assert.equal(poseFit(hair, "front")?.kind, "shared");
     assert.equal(poseFit(hair, "hand-on-hip")?.kind, "unavailable");
     assert.equal(poseFit(hair, "heart-hands")?.kind, "unavailable");
@@ -36,7 +39,7 @@ test("shop pieces render only calibrated poses and retain equipped identities an
   for (const piece of pieces) {
     assert.deepEqual(poseProfileIssues(piece, true), [], piece.id);
     const layers = {
-      ...DEFAULT_LAYERS,
+      ...BARE,
       [piece.slot]: piece.id,
       colors: { [piece.id]: "#43a0c8" },
       detailColors: { [piece.id]: "#f5dc9a" },
@@ -97,7 +100,7 @@ test("imports require frontal calibration and validate any additional poses they
           id: "iris",
           fullBody: true,
           pose,
-          layers: { ...DEFAULT_LAYERS, top: approved.id },
+          layers: { ...BARE, top: approved.id },
         }),
       );
       assert.ok(
@@ -118,7 +121,7 @@ test("imports require frontal calibration and validate any additional poses they
     };
     replaceAtelierCatalog([frontOnly]);
     assert.ok(avatarCatalogSnapshot().some((piece) => piece.id === frontOnly.id));
-    const layers = { ...DEFAULT_LAYERS, top: frontOnly.id };
+    const layers = { ...BARE, top: frontOnly.id };
     assert.equal(outfitSupportsPose(layers, "front"), true);
     assert.equal(outfitSupportsPose(layers, "heart-hands"), false);
     assert.equal(outfitSupportsPose(layers, "hand-on-hip"), false);
@@ -138,7 +141,7 @@ test("unreviewed historical imports keep their IDs and frontal view without pret
     assert.equal(avatarGarment(piece.id), piece);
     assert.ok(pendingPoseImports().some((p) => p.id === piece.id));
     assert.ok(!avatarCatalogSnapshot().some((p) => p.id === piece.id));
-    const layers = { ...DEFAULT_LAYERS, top: piece.id };
+    const layers = { ...BARE, top: piece.id };
     assert.equal(outfitSupportsPose(layers, "front"), true);
     assert.equal(outfitSupportsPose(layers, "heart-hands"), false);
     const svg = renderToStaticMarkup(

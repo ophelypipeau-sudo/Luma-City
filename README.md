@@ -75,8 +75,10 @@ npm run dev
 Le pilote `pg` exécute alors les mêmes requêtes et transactions. L'adaptateur réseau
 est fourni ; la recette sur ce poste utilise PGlite, car Docker/PostgreSQL ne sont
 pas installés. Les bases PGlite et PostgreSQL séparé ne sont pas synchronisées.
-Les tables et comptes de démonstration sont initialisés au démarrage de façon
-idempotente à partir de `db/migrations/001_initial.sql` et `apps/server/src/db.ts`.
+Au démarrage, chaque fichier de `db/migrations/` est appliqué une seule fois, dans
+l'ordre des noms, et enregistré dans la table `schema_migrations`. Pour faire évoluer
+le schéma, ajouter un nouveau fichier numéroté plutôt que modifier un fichier existant.
+Les comptes de démonstration sont créés uniquement hors mode public.
 
 ## Vérifier et servir la version construite
 
@@ -94,11 +96,35 @@ npm run build
 npm start
 ```
 
+`npm run build` lance la vérification des poses, le typage, **toute la suite de
+tests**, puis Vite : un déploiement Railway échoue si un test échoue
+(`npm run build:fast` saute les tests en local).
+
 `npm start` sert le client construit et l'API sur **http://127.0.0.1:3001/**.
 Les serveurs restent liés à l'adresse de boucle locale. Les ports 5173 et 3001
-doivent être libres. Le serveur accepte aussi `PORT` et `APP_ORIGIN` (voir
-`.env.example`) ; les variables sont à définir dans le terminal, le fichier `.env`
-n'est pas chargé automatiquement.
+doivent être libres. Le serveur accepte aussi `PORT`, `APP_ORIGIN` et `LOG_LEVEL`
+(voir `.env.example`) ; `.env` puis `.env.local` sont chargés automatiquement.
+
+## Production (Railway)
+
+Le service Railway « Luma city » déploie la branche `main` de ce dépôt
+(`npm run build` puis `npm start`). Sur Railway (`RAILWAY_ENVIRONMENT_ID` présent),
+le serveur exige `APP_ORIGIN` en HTTPS, `DATABASE_URL` (Neon) et les deux variables
+Neon Auth ; il écoute alors sur `0.0.0.0` et refuse tout autre hôte.
+
+- Connexion par e-mail Neon Auth uniquement : les comptes de démonstration sont
+  refusés et ne sont pas créés ; ceux d'une ancienne base sont masqués.
+- Solde, achats, garde-robe et cadeaux sont calculés et vérifiés par le serveur
+  (table `wardrobe_items`). Un joueur ne peut porter ou offrir qu'une pièce possédée.
+  Les achats faits avant cette version, restés dans le navigateur, sont importés
+  une fois à la connexion et repayés au prix du catalogue.
+- Journaux JSON dans la console Railway : erreurs serveur, requêtes refusées et
+  requêtes lentes. Les erreurs internes ne sont jamais renvoyées au joueur.
+- Présence, salles et sessions de jeu restent en mémoire : garder **une seule
+  instance**. Un redéploiement déconnecte les joueurs, qui sont reconnectés par
+  leur session Neon.
+- L'atelier d'import écrit sur le disque local, effacé à chaque déploiement :
+  il n'est utilisable qu'en local.
 
 ## Architecture du dépôt
 
@@ -115,19 +141,21 @@ docs/                  Cadrage, décisions, feuille de route et vérification
 ## Périmètre et limites
 
 Comptes précréés sans mot de passe : **démonstration sur ce poste uniquement**.
-Le serveur refuse les adresses distantes, les hôtes non locaux et les origines
-non autorisées. Ne pas exposer ce mode via un proxy ou un tunnel public.
+Hors mode public, le serveur refuse les adresses distantes, les hôtes non locaux et
+les origines non autorisées. Ne pas exposer ce mode via un proxy ou un tunnel public.
 
 P0 utilise une instance serveur, une salle et une autorité de présence en mémoire.
 Avant plusieurs instances, coordonner présence, admission et invalidations.
-Les conversations sont chargées intégralement ; une pagination est à prévoir
-avant utilisation à grande échelle. Le déplacement autorise tout le sol de la
+Les commandes d'un même compte sont traitées dans l'ordre ; des comptes différents
+ne s'attendent plus. Les conversations renvoient les 200 derniers messages
+(`?before=<id>` pour les précédents) et la liste de contacts est limitée aux
+200 personnages les plus pertinents (relations, conversations, présents, XP). Le déplacement autorise tout le sol de la
 salle, sans collisions avec les meubles décoratifs.
 
 Les signalements sont conservés en base, sans tableau de traitement ni équipe
-humaine active. Aucun import d'images, filtre automatique complet, inscription
-publique, paiement, économie, inventaire ou récompense n'est activé. Le catalogue
-de boutique permet uniquement des essayages. L'âge 16+
+humaine active. Aucun filtre automatique complet ni paiement réel n'est activé :
+la monnaie du jeu se gagne (roue, ticket à gratter, quêtes) et se dépense en
+boutique, avec un solde tenu par le serveur. L'âge 16+
 indique la cible, sans vérification d'âge dans ce P0.
 
 Le décor du jardin est du SVG écrit pour le projet. La carte et les quatre avatars

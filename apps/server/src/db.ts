@@ -1,26 +1,37 @@
 import { PGlite } from "@electric-sql/pglite";
 import pg from "pg";
-import { mkdir, readFile } from "node:fs/promises";
+import { mkdir, readdir, readFile } from "node:fs/promises";
 import {
   XP_TEST_ACCOUNT,
   XP_TEST_PROFILES,
 } from "../../../packages/contracts/src/index.ts";
 export type Query = (sql: string, params?: any[]) => Promise<{ rows: any[] }>;
+/** Runs a script that may contain several statements, without parameters. */
+export type Exec = (sql: string) => Promise<unknown>;
 export type Database = {
   query: Query;
-  transaction: <T>(fn: (query: Query) => Promise<T>) => Promise<T>;
+  exec: Exec;
+  transaction: <T>(fn: (query: Query, exec: Exec) => Promise<T>) => Promise<T>;
   close: () => Promise<void>;
 };
+/**
+ * pg treats sslmode=require/prefer/verify-ca as verify-full and prints a warning at
+ * each start. Spelling out the mode it already applies keeps the same security.
+ */
+export function explicitSslMode(connectionString: string) {
+  return connectionString.replace(/([?&]sslmode=)(require|prefer|verify-ca)\b/, "$1verify-full");
+}
 export async function openDatabase(path = ".data/postgres"): Promise<Database> {
   if (process.env.DATABASE_URL) {
-    const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+    const pool = new pg.Pool({ connectionString: explicitSslMode(process.env.DATABASE_URL) });
     return {
       query: (sql, params) => pool.query(sql, params),
+      exec: (sql) => pool.query(sql),
       transaction: async (fn) => {
         const client = await pool.connect();
         try {
           await client.query("BEGIN");
-          const result = await fn((s, p) => client.query(s, p));
+          const result = await fn((s, p) => client.query(s, p), (s) => client.query(s));
           await client.query("COMMIT");
           return result;
         } catch (e) {
@@ -38,39 +49,39 @@ export async function openDatabase(path = ".data/postgres"): Promise<Database> {
   await db.waitReady;
   return {
     query: (sql, params) => db.query(sql, params),
-    transaction: (fn) => db.transaction((tx) => fn((s, p) => tx.query(s, p))),
+    exec: (sql) => db.exec(sql),
+    transaction: (fn) => db.transaction((tx) => fn((s, p) => tx.query(s, p), (s) => tx.exec(s))),
     close: () => db.close(),
   };
 }
-export async function migrate(db: Database, irisOnly = false) {
-  for (const file of [
-    "001_initial.sql",
-    "002_character_motto.sql",
-    "003_profile_social.sql",
-    "004_profile_activity.sql",
-    "005_profile_template.sql",
-    "006_character_outfit.sql",
-    "007_xp_magazine.sql",
-    "008_arcade_wheel.sql",
-    "009_arcade_scores.sql",
-    "010_profile_image.sql",
-    "011_arcade_memory.sql",
-    "012_daily_scratch.sql",
-    "013_scratch_prize.sql",
-    "014_wheel_coin_drops.sql",
-    "015_xp_pickup_claims.sql",
-    "016_wheel_xp.sql",
-    "017_player_accounts.sql",
-    "018_neon_auth_accounts.sql",
-    "019_home_gift_quest.sql",
-  ]) {
-    const sql = await readFile(
-      new URL(`../../../db/migrations/${file}`, import.meta.url),
-      "utf8",
-    );
-    for (const statement of sql.split(";").filter((s) => s.trim()))
-      await db.query(statement);
+const MIGRATIONS = new URL("../../../db/migrations/", import.meta.url);
+/**
+ * Applies each file of db/migrations once, in name order, and records it in
+ * schema_migrations. Every historical file is idempotent, so databases created
+ * before this table existed simply replay them once.
+ */
+export async function migrate(
+  db: Database,
+  { irisOnly = false, seedDemo = true }: { irisOnly?: boolean; seedDemo?: boolean } = {},
+) {
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT NOW())",
+  );
+  const files = (await readdir(MIGRATIONS)).filter((name) => name.endsWith(".sql")).sort();
+  const applied = new Set(
+    (await db.query("SELECT name FROM schema_migrations")).rows.map(({ name }) => name),
+  );
+  for (const file of files) {
+    if (applied.has(file)) continue;
+    const sql = await readFile(new URL(file, MIGRATIONS), "utf8");
+    await db.transaction(async (q, exec) => {
+      // Two servers starting together must not apply the same file twice.
+      if (!(await q("INSERT INTO schema_migrations (name) VALUES ($1) ON CONFLICT DO NOTHING RETURNING name", [file])).rows.length)
+        return;
+      await exec(sql);
+    });
   }
+  if (!seedDemo) return;
   await db.transaction(async (q) => {
     for (const [id, label] of [
       ["aurore", "Compte Aurore"],

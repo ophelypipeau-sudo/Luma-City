@@ -1,0 +1,159 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "01-carre",
+      "name": "Carré espresso",
+      "crop": [
+        240,
+        -24,
+        414,
+        383
+      ],
+      "mainTone": {
+        "shadow": 20,
+        "middle": 40,
+        "highlight": 109,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "02-afro",
+      "name": "Nuage de boucles",
+      "crop": [
+        185,
+        -90,
+        508,
+        456
+      ],
+      "mainTone": {
+        "shadow": 13,
+        "middle": 26,
+        "highlight": 68,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "03-pixie",
+      "name": "Pixie cuivré",
+      "crop": [
+        209,
+        -60,
+        465,
+        407
+      ],
+      "mainTone": {
+        "shadow": 37,
+        "middle": 74,
+        "highlight": 167,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "05-lilas",
+      "name": "Chignons lilas",
+      "crop": [
+        242,
+        -50,
+        406,
+        392
+      ],
+      "mainTone": {
+        "shadow": 51,
+        "middle": 96,
+        "highlight": 179,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "06-roux",
+      "name": "Cascade acajou",
+      "crop": [
+        174,
+        -4,
+        509,
+        481
+      ],
+      "mainTone": {
+        "shadow": 31,
+        "middle": 65,
+        "highlight": 144,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "07-tresses",
+      "name": "Tresses miel",
+      "crop": [
+        167,
+        -12,
+        547,
+        624
+      ],
+      "mainTone": {
+        "shadow": 60,
+        "middle": 124,
+        "highlight": 201,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "08-queue",
+      "name": "Queue rubis",
+      "crop": [
+        188,
+        -9,
+        515,
+        569
+      ],
+      "mainTone": {
+        "shadow": 15,
+        "middle": 30,
+        "highlight": 77,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "09-platine",
+      "name": "Bixie platine",
+      "crop": [
+        257,
+        -91,
+        389,
+        393
+      ],
+      "mainTone": {
+        "shadow": 115,
+        "middle": 183,
+        "highlight": 246,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "10-couronne",
+      "name": "Couronne tressée",
+      "crop": [
+        199,
+        -54,
+        441,
+        436
+      ],
+      "mainTone": {
+        "shadow": 16,
+        "middle": 41,
+        "highlight": 115,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

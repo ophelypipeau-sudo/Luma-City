@@ -1,0 +1,683 @@
+/* Layout derived from the user's boutique sketch, using the original game palette. */
+.shop-reference-layout .shop-header {
+  padding: 13px 20px;
+  min-height: 72px;
+  gap: 14px;
+}
+.shop-reference-layout .shop-back {
+  order: 0;
+  flex-shrink: 0;
+}
+.shop-reference-layout .shop-title {
+  order: 3;
+  margin-left: auto;
+  min-width: 86px;
+}
+.shop-reference-layout .shop-title > span {
+  font-size: 5px;
+  letter-spacing: 1px;
+}
+.shop-reference-layout .shop-title h1 {
+  font-size: 20px;
+  margin-top: 5px;
+}
+.shop-reference-layout .shop-title h1 > span {
+  font-size: 19px;
+  margin-left: 6px;
+}
+.shop-reference-layout .shop-label {
+  display: none;
+}
+.shop-discovery {
+  display: flex;
+  gap: 10px;
+  order: 1;
+  flex-shrink: 0;
+}
+.shop-discovery button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 112px;
+  height: 37px;
+  border: 1px solid #b48abf6b;
+  background: linear-gradient(#a474ad32, #5332633d);
+  color: #d6b9e0;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: inset 0 1px #f0d1ff13;
+}
+.shop-discovery button.selected {
+  border-color: #e2b4d4;
+  background: linear-gradient(#b374a180, #774c894a);
+  color: #ffe4ec;
+  box-shadow:
+    inset 0 1px #ffe0ef3b,
+    0 2px 10px #1b0d2b2e;
+}
+.shop-discovery button svg {
+  stroke-width: 1.6;
+}
+.shop-reference-layout .shop-header > .shop-search {
+  order: 2;
+  margin: 0;
+  height: 37px;
+  flex: 1;
+  max-width: 340px;
+  padding: 9px 12px;
+  min-width: 90px;
+  border-radius: 7px;
+}
+.shop-reference-layout .shop-body {
+  grid-template-columns: minmax(0, 1fr) 145px minmax(260px, 30%);
+}
+.shop-reference-layout .catalog-tools {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px 17px 0;
+}
+.shop-reference-layout .catalog-tools nav {
+  flex: 1;
+  min-width: 0;
+  gap: 7px;
+}
+.shop-reference-layout .catalog-tools nav button {
+  font-size: 7px;
+  min-width: 31px;
+  padding: 0;
+  gap: 6px;
+}
+.shop-reference-layout .catalog-tools nav button > span {
+  width: 31px;
+  height: 31px;
+}
+.shop-reference-layout .catalog-tools nav button > span svg {
+  width: 15px;
+  height: 15px;
+}
+.collection-picker {
+  display: block;
+  max-width: 145px;
+  flex: 1;
+  margin-top: 2px;
+}
+.collection-picker select {
+  width: 100%;
+  background: #41264f;
+  border: 1px solid #b68ac63d;
+  color: #d6b4e0;
+  padding: 8px 5px;
+  font-size: 7px;
+  border-radius: 6px;
+  outline-offset: 3px;
+  cursor: pointer;
+}
+.collection-picker select option {
+  background: #482c59;
+  color: #f2dcfc;
+}
+.shop-reference-layout .catalog-heading {
+  padding: 16px 17px 12px;
+}
+.shop-reference-layout .catalog-heading > div > span {
+  font-size: 5px;
+}
+.shop-reference-layout .catalog-heading h2 {
+  font-size: 18px;
+}
+.shop-reference-layout .catalog-scroll {
+  padding: 0 17px 14px;
+}
+.shop-reference-layout .clothes-grid {
+  gap: 10px;
+}
+.shop-reference-layout .clothing-card {
+  padding-bottom: 7px;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #ad80b512, #a36eab05);
+}
+.shop-reference-layout .clothing-art {
+  height: 108px;
+  margin-bottom: 6px;
+  padding: 9px 5px 19px;
+}
+.shop-reference-layout .clothing-card > strong {
+  font-size: 8px;
+  padding: 0 8px;
+}
+.shop-reference-layout .clothing-card > small {
+  font-size: 6px;
+  padding: 0 8px;
+  margin: 5px 0 7px;
+}
+.shop-reference-layout .item-category {
+  left: 8px;
+  bottom: 5px;
+  font-size: 5px;
+}
+.shop-reference-layout .item-action {
+  font-size: 6px;
+  padding: 0 8px;
+}
+.shop-reference-layout .item-action svg {
+  width: 10px;
+  height: 10px;
+}
+.shop-reference-layout .look-card .clothing-art {
+  height: 220px;
+  padding-bottom: 0;
+}
+.shop-reference-layout .catalog-disclaimer {
+  padding: 10px 17px;
+  font-size: 7px;
+}
+.purchase-history {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  padding: 21px 12px 16px;
+  background: linear-gradient(160deg, #b78bc01c, #996eb60d);
+  border-right: 1px solid #bf99d03d;
+}
+.history-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #dbc0e6;
+}
+.history-title > svg {
+  color: #c69ed4;
+  flex-shrink: 0;
+}
+.history-title h2 {
+  font:
+    400 14px/1.4 Outfit,
+    sans-serif;
+  color: #e8cdef;
+  margin: 0;
+  letter-spacing: -0.15px;
+}
+.history-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1px 40px;
+  text-align: center;
+}
+.history-empty > span {
+  display: grid;
+  place-items: center;
+  height: 49px;
+  width: 49px;
+  border-radius: 50%;
+  background: #c99ed313;
+  border: 1px solid #bb8bca27;
+  color: #b58ac5;
+}
+.history-empty > span > svg {
+  stroke-width: 1.2;
+}
+.history-empty strong {
+  margin-top: 15px;
+  color: #cfa4dc;
+  font:
+    400 14px/1.3 Outfit,
+    sans-serif;
+}
+.history-empty p {
+  color: #ab83bd;
+  font-size: 8px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+.purchase-history > small {
+  font-size: 6px;
+  color: #a47ab5;
+  text-align: center;
+  line-height: 1.8;
+}
+.shop-reference-layout .fitting-room {
+  padding: 17px 15px 13px;
+}
+.shop-reference-layout .fitting-room > .fitting-heading {
+  top: 17px;
+  left: 15px;
+}
+.shop-reference-layout .fitting-heading > span {
+  font-size: 5px;
+  letter-spacing: 1.2px;
+}
+.shop-reference-layout .fitting-heading h2 {
+  font-size: 25px;
+}
+.shop-reference-layout .fitting-heading p {
+  font-size: 8px;
+  max-width: 85px;
+  line-height: 1.6;
+}
+.shop-reference-layout .shop-purchase {
+  background: linear-gradient(#d69ab45e, #a35c8d6e);
+  border: 1px solid #edbad28c;
+  color: #ffe5f1;
+  box-shadow:
+    inset 0 1px #ffe1f03d,
+    0 3px 10px #24102c33;
+  font:
+    500 16px Outfit,
+    sans-serif;
+  padding: 10px;
+  gap: 8px;
+}
+.shop-reference-layout .shop-purchase:disabled {
+  opacity: 0.7;
+}
+.shop-reference-layout .fitting-note {
+  font-size: 6px;
+  line-height: 1.6;
+  color: #b08aba;
+}
+.shop-reference-layout .fitting-actions {
+  margin-top: 9px;
+}
+.top-purchases-empty {
+  min-height: 290px;
+  padding: 40px 25px;
+}
+.top-purchases-empty p {
+  max-width: 250px;
+  line-height: 1.8;
+}
+.top-purchases-empty button {
+  border: 1px solid #b78bc660;
+  text-decoration: none;
+  padding: 10px 13px;
+  border-radius: 7px;
+  background: #aa76b522;
+  margin-top: 8px;
+}
+@media (min-width: 1500px) {
+  .shop-reference-layout .shop-body {
+    grid-template-columns: minmax(0, 1fr) 175px minmax(300px, 30%);
+  }
+  .shop-reference-layout .clothing-art {
+    height: 150px;
+  }
+  .shop-reference-layout .clothing-card > strong {
+    font-size: 10px;
+  }
+  .shop-reference-layout .clothing-card > small,
+  .shop-reference-layout .item-action {
+    font-size: 8px;
+  }
+  .shop-reference-layout .item-category {
+    font-size: 7px;
+  }
+  .history-title h2 {
+    font-size: 16px;
+  }
+  .history-empty p {
+    font-size: 10px;
+  }
+  .purchase-history > small {
+    font-size: 8px;
+  }
+  .shop-reference-layout .shop-header > .shop-search {
+    max-width: 430px;
+  }
+}
+@media (max-width: 1050px) {
+  .shop-reference-layout .shop-body {
+    grid-template-columns: minmax(0, 1fr) 115px minmax(205px, 30%);
+  }
+  .shop-reference-layout .shop-header {
+    padding: 12px 14px;
+    gap: 9px;
+    min-height: 65px;
+  }
+  .shop-discovery {
+    gap: 7px;
+  }
+  .shop-discovery button {
+    min-width: 88px;
+    font-size: 9px;
+    gap: 5px;
+  }
+  .shop-discovery button svg {
+    width: 13px;
+  }
+  .shop-reference-layout .shop-title {
+    min-width: 73px;
+  }
+  .shop-reference-layout .shop-title h1 {
+    font-size: 17px;
+  }
+  .shop-reference-layout .shop-title > span {
+    font-size: 4px;
+  }
+  .shop-reference-layout .shop-header > .shop-search {
+    padding: 8px;
+  }
+  .shop-reference-layout .catalog-tools {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 12px 0;
+  }
+  .shop-reference-layout .catalog-tools nav {
+    flex-basis: 100%;
+  }
+  .collection-picker {
+    max-width: none;
+    flex-basis: 100%;
+    margin: 0;
+  }
+  .collection-picker select {
+    font-size: 8px;
+    padding: 7px;
+  }
+  .shop-reference-layout .catalog-heading {
+    padding: 14px 12px 11px;
+  }
+  .shop-reference-layout .catalog-scroll {
+    padding: 0 12px 12px;
+  }
+  .shop-reference-layout .catalog-heading h2 {
+    font-size: 16px;
+  }
+  .purchase-history {
+    padding: 18px 9px 13px;
+  }
+  .history-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+  .history-title h2 {
+    font-size: 13px;
+  }
+  .history-empty strong {
+    font-size: 13px;
+  }
+  .history-empty p {
+    font-size: 7px;
+  }
+  .history-empty > span {
+    width: 40px;
+    height: 40px;
+  }
+  .history-empty > span > svg {
+    width: 21px;
+  }
+  .shop-reference-layout .fitting-room {
+    padding: 15px 10px 12px;
+  }
+  .shop-reference-layout .fitting-room > .fitting-heading {
+    top: 16px;
+    left: 10px;
+  }
+  .shop-reference-layout .fitting-heading > span {
+    font-size: 4px;
+  }
+  .shop-reference-layout .fitting-heading h2 {
+    font-size: 23px;
+  }
+  .shop-reference-layout .fitting-heading p {
+    font-size: 7px;
+    max-width: 65px;
+  }
+  .shop-reference-layout .compare-button {
+    font-size: 7px;
+    padding: 9px 5px;
+  }
+  .shop-reference-layout .reset-outfit {
+    width: 27px;
+  }
+  .shop-reference-layout .fitting-note {
+    font-size: 5px;
+  }
+}
+@media (max-width: 700px) {
+  .shop-reference-layout .shop-header {
+    min-height: 94px;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shop-reference-layout .shop-back {
+    width: 27px;
+    height: 29px;
+  }
+  .shop-discovery {
+    flex: 1;
+    gap: 7px;
+  }
+  .shop-discovery button {
+    flex: 1;
+    min-width: 0;
+    height: 29px;
+    font-size: 9px;
+  }
+  .shop-reference-layout .shop-title {
+    display: none;
+  }
+  .shop-reference-layout .shop-header > .shop-search {
+    flex-basis: 100%;
+    max-width: none;
+    height: 29px;
+    min-width: 0;
+    padding: 7px 9px;
+  }
+  .shop-reference-layout .shop-search input {
+    font-size: 9px;
+  }
+  .shop-reference-layout .shop-body {
+    grid-template-columns: minmax(0, 56%) minmax(0, 44%);
+    grid-template-rows: minmax(0, 1fr) 42px;
+  }
+  .shop-reference-layout .shop-catalog {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .shop-reference-layout .fitting-room {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 11px 8px 9px;
+  }
+  .purchase-history {
+    grid-column: 1/-1;
+    grid-row: 2;
+    padding: 8px 11px;
+    border-right: 0;
+    border-top: 1px solid #b28bc13b;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .history-title {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+  .history-title h2 {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .history-title > svg {
+    width: 12px;
+  }
+  .history-empty {
+    display: block;
+    flex: none;
+    padding: 0;
+  }
+  .history-empty > span,
+  .history-empty > strong,
+  .purchase-history > small {
+    display: none;
+  }
+  .history-empty p {
+    margin: 0;
+    font-size: 6px;
+    line-height: 1.5;
+    max-width: 110px;
+  }
+  .shop-reference-layout .catalog-tools {
+    padding: 11px 8px 0;
+    gap: 9px;
+  }
+  .shop-reference-layout .catalog-tools nav {
+    gap: 3px;
+  }
+  .shop-reference-layout .catalog-tools nav button {
+    min-width: 0;
+    font-size: 6px;
+    gap: 4px;
+  }
+  .shop-reference-layout .catalog-tools nav button > span {
+    width: 26px;
+    height: 26px;
+  }
+  .shop-reference-layout .catalog-tools nav button > span svg {
+    width: 12px;
+    height: 12px;
+  }
+  .collection-picker select {
+    font-size: 7px;
+    padding: 6px;
+  }
+  .shop-reference-layout .catalog-heading {
+    padding: 10px 8px 9px;
+  }
+  .shop-reference-layout .catalog-heading h2 {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .shop-reference-layout .catalog-heading > div > span {
+    font-size: 4px;
+    letter-spacing: 0.8px;
+  }
+  .shop-reference-layout .catalog-scroll {
+    padding: 0 8px 10px;
+  }
+  .shop-reference-layout .clothes-grid {
+    gap: 7px;
+  }
+  .shop-reference-layout .clothing-art {
+    height: 90px;
+    padding: 8px 4px 17px;
+  }
+  .shop-reference-layout .clothing-card {
+    padding-bottom: 7px;
+  }
+  .shop-reference-layout .clothing-card > strong {
+    font-size: 7px;
+    padding: 0 6px;
+  }
+  .shop-reference-layout .clothing-card > small {
+    font-size: 5px;
+    padding: 0 6px;
+    margin: 4px 0 6px;
+  }
+  .shop-reference-layout .item-action {
+    font-size: 6px;
+    padding: 0 6px;
+  }
+  .shop-reference-layout .item-category {
+    font-size: 4px;
+    left: 6px;
+  }
+  .shop-reference-layout .look-card .clothing-art {
+    height: 155px;
+  }
+  .shop-reference-layout .catalog-disclaimer {
+    padding: 7px 8px;
+    font-size: 5px;
+  }
+  .shop-reference-layout .fitting-room > .fitting-heading {
+    top: 12px;
+    left: 8px;
+  }
+  .shop-reference-layout .fitting-heading h2 {
+    font-size: 21px;
+    margin-top: 5px;
+  }
+  .shop-reference-layout .fitting-heading p {
+    font-size: 6px;
+    max-width: 55px;
+  }
+  .shop-reference-layout .fitting-heading > span {
+    display: none;
+  }
+  .shop-reference-layout .fitting-room > .fitting-stage {
+    margin-top: 0;
+    min-height: 120px;
+  }
+  .shop-reference-layout .outfit-selection {
+    gap: 3px;
+    padding-top: 5px;
+  }
+  .shop-reference-layout .outfit-selection > div {
+    min-height: 24px;
+    padding-right: 8px;
+  }
+  .shop-reference-layout .outfit-selection > div > span {
+    font-size: 4px;
+  }
+  .shop-reference-layout .outfit-selection strong {
+    font-size: 5px;
+  }
+  .shop-reference-layout .outfit-selection button {
+    right: 0;
+    top: 8px;
+  }
+  .shop-reference-layout .outfit-selection button svg {
+    width: 9px;
+  }
+  .shop-reference-layout .compare-button {
+    font-size: 5px;
+    padding: 6px 3px;
+    gap: 3px;
+  }
+  .shop-reference-layout .compare-button svg {
+    width: 10px;
+  }
+  .shop-reference-layout .reset-outfit {
+    width: 22px;
+  }
+  .shop-reference-layout .fitting-actions {
+    margin: 6px 0;
+  }
+  .shop-reference-layout .shop-purchase {
+    font-size: 13px;
+    padding: 7px;
+  }
+  .shop-reference-layout .shop-purchase > svg {
+    width: 12px;
+  }
+  .shop-reference-layout .fitting-note {
+    font-size: 4px;
+    margin-top: 5px;
+  }
+  .top-purchases-empty {
+    min-height: 250px;
+    padding: 30px 6px;
+  }
+  .top-purchases-empty h3 {
+    font-size: 14px;
+  }
+  .top-purchases-empty p {
+    font-size: 8px;
+    line-height: 1.7;
+  }
+  .top-purchases-empty button {
+    font-size: 7px;
+    padding: 8px;
+  }
+}

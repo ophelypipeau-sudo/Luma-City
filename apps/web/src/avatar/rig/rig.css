@@ -1,0 +1,141 @@
+.rig-lab {
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at top, #634466, #20192c);
+  color: #ffeffa;
+  padding: 24px 5vw;
+  font-family: "DM Sans", sans-serif;
+}
+.rig-lab header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+.rig-lab h1 {
+  margin: 5px 0;
+  font-size: clamp(22px, 3vw, 34px);
+}
+.rig-lab header small {
+  letter-spacing: 0.18em;
+  color: #ecc3d5;
+  font-size: 10px;
+}
+.rig-lab p {
+  font-size: 13px;
+  margin: 8px 0;
+}
+.rig-lab a {
+  color: #f9d4e7;
+  white-space: nowrap;
+}
+.rig-lab nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.rig-lab button {
+  border: 1px solid #c395b8;
+  border-radius: 18px;
+  padding: 8px 14px;
+  background: #ffffff0c;
+  color: #ffe9f4;
+  cursor: pointer;
+}
+.rig-lab button[aria-pressed="true"] {
+  background: #efd4df;
+  color: #442539;
+}
+.rig-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  max-width: 880px;
+  margin: auto;
+}
+.rig-compare section {
+  background: linear-gradient(#f2cdd218, #e3aab20b);
+  border: 1px solid #e5c9dd3d;
+  border-radius: 22px;
+  text-align: center;
+  overflow: hidden;
+}
+.rig-compare h2 {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  margin: 12px;
+}
+.rig-compare section > svg,
+.rig-canvas {
+  display: block;
+  height: min(58vh, 660px);
+  width: auto;
+  max-width: 100%;
+  margin: auto;
+}
+.rig-canvas {
+  position: relative;
+  aspect-ratio: 887/1774;
+}
+.rig-canvas canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.rig-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.rig-controls label {
+  font-size: 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.rig-lab > p {
+  text-align: center;
+}
+.rig-note {
+  color: #d3b9cc;
+  max-width: 760px;
+  margin: 10px auto !important;
+}
+@media (max-width: 600px) {
+  .rig-lab {
+    padding: 14px;
+  }
+  .rig-lab header {
+    align-items: start;
+  }
+  .rig-lab header p {
+    font-size: 11px;
+  }
+  .rig-compare {
+    gap: 8px;
+  }
+  .rig-compare h2 {
+    font-size: 10px;
+  }
+  .rig-compare section > svg,
+  .rig-canvas {
+    height: auto;
+    width: 100%;
+  }
+  .rig-controls {
+    gap: 8px;
+  }
+  .rig-lab button {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+}
+.rig-lab {
+  height: 100dvh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}

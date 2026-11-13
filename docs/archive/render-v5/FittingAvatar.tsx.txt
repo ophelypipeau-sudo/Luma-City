@@ -1,0 +1,297 @@
+import { useId } from "react";
+import { FittedGarment } from "./FittedGarment";
+import {
+  ATLAS_HEIGHT,
+  ATLAS_WIDTH,
+  BASE_BODY_ASSET,
+  CELL_WIDTH,
+  REGIONS,
+  WIG_ASSET,
+  characterIndex,
+  type Outfit,
+  type ClothingCategory,
+} from "./catalog";
+
+/** All garments are authored against this fixed body, not fitted from a separate photograph. */
+export function FittingAvatar({
+  characterId,
+  outfit,
+}: {
+  characterId: string;
+  outfit: Outfit;
+}) {
+  const id = useId(),
+    index = characterIndex(characterId);
+  const character = ["iris", "milo", "june", "noa"].includes(characterId)
+    ? characterId
+    : "iris";
+  const masculine = character === "milo" || character === "noa";
+  const femaleOffset = character === "june" ? 851 : 0;
+  const maleOffset = character === "noa" ? 885 : 0;
+  return (
+    <svg
+      className="fitting-avatar"
+      viewBox={`${index * CELL_WIDTH} 0 ${CELL_WIDTH} ${ATLAS_HEIGHT}`}
+      preserveAspectRatio="xMidYMax meet"
+      role="img"
+      aria-label={`Avatar habillé, ${outfit.hair >= 0 ? "perruque portée" : "sans perruque, tête chauve"}`}
+    >
+      <defs>
+        <filter id={`${id}-alpha`} colorInterpolationFilters="sRGB">
+          <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 0 0 0.6 1" />
+          </feComponentTransfer>
+        </filter>
+        <clipPath id={`${id}-cell`}>
+          <rect
+            x={index * CELL_WIDTH}
+            width={CELL_WIDTH}
+            height={ATLAS_HEIGHT}
+          />
+        </clipPath>
+        <clipPath id={`${id}-hair-front`}>
+          {masculine ? (
+            <>
+              <rect x={index * CELL_WIDTH} width={CELL_WIDTH} height="68" />
+              <rect x={index * CELL_WIDTH} y="68" width="193" height="65" />
+            </>
+          ) : (
+            <rect x={index * CELL_WIDTH} width={CELL_WIDTH} height="184" />
+          )}
+        </clipPath>
+        <mask
+          id={`${id}-body-mask`}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width={ATLAS_WIDTH}
+          height={ATLAS_HEIGHT}
+        >
+          <rect width={ATLAS_WIDTH} height={ATLAS_HEIGHT} fill="white" />
+          {!masculine && outfit.shoes >= 0 && (
+            <rect y="635" width={ATLAS_WIDTH} height="252" fill="black" />
+          )}
+          {masculine && outfit.bottoms >= 0 && (
+            <rect
+              y="380"
+              width={ATLAS_WIDTH}
+              height={outfit.shoes >= 0 ? 507 : 440}
+              fill="black"
+            />
+          )}
+          {masculine && outfit.shoes >= 0 && (
+            <rect y="833" width={ATLAS_WIDTH} height="54" fill="black" />
+          )}
+        </mask>
+        <mask
+          id={`${id}-skin-outline`}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width={ATLAS_WIDTH}
+          height={ATLAS_HEIGHT}
+          style={{ maskType: "alpha" }}
+        >
+          <image
+            href={BASE_BODY_ASSET}
+            width={ATLAS_WIDTH}
+            height={ATLAS_HEIGHT}
+          />
+        </mask>
+        <linearGradient id={`${id}-skin`} x1="0" x2=".9" y1="0" y2=".3">
+          <stop stopColor="#c68961" />
+          <stop offset=".6" stopColor="#dfa378" />
+          <stop offset="1" stopColor="#d49468" />
+        </linearGradient>
+        <filter
+          id={`${id}-contact`}
+          x="-20%"
+          y="-100%"
+          width="140%"
+          height="300%"
+        >
+          <feGaussianBlur stdDeviation="1.8" />
+        </filter>
+        <clipPath id={`${id}-hands`}>
+          {masculine ? (
+            <path
+              transform={`translate(${maleOffset} 0)`}
+              d="M600 384Q622 389 640 403L628 433Q620 450 609 445L598 429L587 418Z M747 438Q762 436 790 455L793 491L783 516L755 512L748 487Z"
+            />
+          ) : character === "iris" ? (
+            <>
+              <rect x="75" y="430" width="76" height="100" />
+              <rect x="351" y="430" width="52" height="100" />
+            </>
+          ) : (
+            <>
+              <rect x="950" y="457" width="72" height="70" />
+              <rect x="1200" y="457" width="70" height="70" />
+            </>
+          )}
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#${id}-cell)`}>
+        {outfit.hair >= 0 && (
+          <image
+            data-layer="wig-back"
+            href={WIG_ASSET}
+            width={ATLAS_WIDTH}
+            height={ATLAS_HEIGHT}
+            filter={`url(#${id}-alpha)`}
+          />
+        )}
+        <image
+          data-layer="body"
+          href={BASE_BODY_ASSET}
+          width={ATLAS_WIDTH}
+          height={ATLAS_HEIGHT}
+          mask={`url(#${id}-body-mask)`}
+          filter={`url(#${id}-alpha)`}
+        />
+        {!masculine && outfit.tops >= 0 && (
+          <g mask={`url(#${id}-skin-outline)`}>
+            <path
+              transform={`translate(${femaleOffset} 0)`}
+              d="M192 254Q211 238 246 240L319 239Q333 243 333 264L330 280L322 295L207 298Q195 281 192 254Z"
+              fill={`url(#${id}-skin)`}
+            />
+          </g>
+        )}
+        {!masculine && (
+          <g
+            mask={`url(#${id}-skin-outline)`}
+            fill="none"
+            stroke="#71432f"
+            strokeWidth="5"
+            opacity=".25"
+            filter={`url(#${id}-contact)`}
+          >
+            {outfit.tops >= 0 && character === "iris" && (
+              <path d="M218 335Q274 343 331 335" />
+            )}
+            {outfit.bottoms >= 0 && (
+              <path
+                d="M158 473Q273 510 371 474"
+                transform={
+                  character === "june"
+                    ? "translate(851 76) scale(1 .84)"
+                    : undefined
+                }
+              />
+            )}
+            {outfit.shoes >= 0 && (
+              <path
+                d="M176 614Q207 623 241 614M246 613Q274 622 301 613"
+                transform={`translate(${femaleOffset} 0)`}
+              />
+            )}
+          </g>
+        )}
+        {(["bottoms", "shoes", "tops"] as const)
+          .filter((category) => outfit[category] >= 0)
+          .map((category) => (
+            <FittedGarment
+              key={category}
+              characterId={character}
+              category={category}
+              variant={outfit[category]}
+            />
+          ))}
+        {(outfit.tops >= 0 || outfit.bottoms >= 0) && (
+          <image
+            data-layer="hands"
+            href={BASE_BODY_ASSET}
+            width={ATLAS_WIDTH}
+            height={ATLAS_HEIGHT}
+            clipPath={`url(#${id}-hands)`}
+            filter={`url(#${id}-alpha)`}
+          />
+        )}
+        {outfit.hair >= 0 && (
+          <image
+            data-layer="wig-front"
+            href={WIG_ASSET}
+            width={ATLAS_WIDTH}
+            height={ATLAS_HEIGHT}
+            clipPath={`url(#${id}-hair-front)`}
+            filter={`url(#${id}-alpha)`}
+          />
+        )}
+      </g>
+    </svg>
+  );
+}
+
+export function GarmentThumbnail({
+  characterId,
+  category,
+  variant,
+}: {
+  characterId: string;
+  category: ClothingCategory;
+  variant: number;
+}) {
+  const clipId = useId();
+  const index = characterIndex(characterId);
+  const regions = REGIONS[characterId] ?? REGIONS.iris;
+  let [x, y, width, height] =
+    category === "hair"
+      ? [
+          index * CELL_WIDTH + 40,
+          0,
+          CELL_WIDTH - 80,
+          characterId === "iris" || characterId === "june" ? 620 : 195,
+        ]
+      : regions[category].crop;
+  if (category === "tops" && characterId === "iris")
+    [x, y, width, height] = [186, 183, 154, 161];
+  if (category === "bottoms" && characterId === "iris")
+    [x, y, width, height] = [151, 345, 226, 158];
+  if (category === "tops" && characterId === "june")
+    [x, y, width, height] = [970, 182, 285, 290];
+  if (
+    category === "shoes" &&
+    (characterId === "iris" || characterId === "june")
+  )
+    [x, y, width, height] = [
+      130 + (characterId === "june" ? 851 : 0),
+      607,
+      213,
+      280,
+    ];
+  return (
+    <svg
+      className="garment-thumbnail"
+      viewBox={`${x} ${y} ${width} ${height}`}
+      aria-hidden="true"
+    >
+      {category === "hair" ? (
+        <>
+          <defs>
+            <clipPath id={clipId}>
+              <rect
+                x={index * CELL_WIDTH}
+                width={CELL_WIDTH}
+                height={ATLAS_HEIGHT}
+              />
+            </clipPath>
+          </defs>
+          <image
+            data-layer="wig-only"
+            href={WIG_ASSET}
+            width={ATLAS_WIDTH}
+            height={ATLAS_HEIGHT}
+            clipPath={`url(#${clipId})`}
+          />
+        </>
+      ) : (
+        <FittedGarment
+          characterId={characterId}
+          category={category}
+          variant={variant}
+        />
+      )}
+    </svg>
+  );
+}

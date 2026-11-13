@@ -1,0 +1,88 @@
+{
+  "body": "fashion-user-hands-v2",
+  "canvas": [
+    887,
+    1774
+  ],
+  "sources": {
+    "pink": "4b82eaab-57fb-4c83-82b7-00f5790b02cd",
+    "snow": "8ddec7cd-0b47-45b4-81f1-b71221f8dc06",
+    "ivory": "7cce2045-5bb7-4a56-a816-b0ade5ccf39c",
+    "ribbon": "235c1b03-3886-42be-93bf-6788b354540f",
+    "pink-clothes": "6b1b3906-9493-439d-9478-98c833f33738",
+    "snow-clothes": "442622c0-ecdb-4f65-bef5-9620513e83a4",
+    "ivory-clothes": "9b1974af-1984-4b5e-9485-9c9116689973",
+    "ribbon-clothes": "4b938fe4-4c89-4d10-9966-9eb0dc9bf595",
+    "camisole": "7d87cedc-b584-4b88-9134-a55954411e86",
+    "pink-heart": "722b46b8-627e-4984-be2e-8631a5ddcb02",
+    "pink-hip": "711cb370-819b-4e18-a5cb-69a87b719f39",
+    "snow-heart": "535e9849-b448-4bc1-9c91-a232c8ff09ab",
+    "snow-hip": "b56e5550-f8e8-4b6d-8323-b4b1564fd70b",
+    "ivory-heart": "f1a7d810-974f-4b9a-af5b-fd2d15ecc0ea",
+    "ivory-hip": "2802fc01-4a2a-465a-b62b-096042b33f2b",
+    "ribbon-heart": "d0ba8918-962e-4976-b770-5cb55ec0a15a",
+    "ribbon-hip": "6bf1386a-510a-4a0a-9bcf-59300e040068",
+    "pink-hair": "90dcf39d-f0d8-4553-9bbc-a419c96d2764",
+    "snow-hair": "72b43930-f4a8-4069-8563-804ce316519d",
+    "ivory-hair": "2278b129-5eba-4441-8ba5-68223ccdcdbb",
+    "ribbon-hair": "3b2c2478-9039-407c-ba8a-14dcead77099",
+    "pink-bag": "c8777e92-427c-413b-b4f8-dfd484252d58",
+    "snow-bag": "a08fa3f0-958f-4497-847f-a6e15daf1c2a",
+    "ivory-bag": "8f2e8870-7fbb-4199-97cd-db958462be35",
+    "ivory-grip": "cf8eaada-1ffb-4b18-9beb-18a1efce3049",
+    "snow-belt": "942b61e8-406b-4279-8574-a57058e42d84"
+  },
+  "hairFit": {
+    "pink": {
+      "sx": 0.55,
+      "sy": 0.5,
+      "tx": 181,
+      "ty": 10
+    },
+    "snow": {
+      "sx": 0.66,
+      "sy": 0.5,
+      "tx": 128,
+      "ty": 5
+    },
+    "ivory": {
+      "sx": 1,
+      "sy": 0.82,
+      "tx": 0,
+      "ty": 4
+    },
+    "ribbon": {
+      "sx": 1,
+      "sy": 0.8,
+      "tx": 0,
+      "ty": 4
+    }
+  },
+  "bagFit": {
+    "pink": [
+      480,
+      790,
+      1000,
+      0.5,
+      610,
+      680
+    ],
+    "snow": [
+      470,
+      945,
+      1140,
+      0.55,
+      605,
+      575
+    ],
+    "ivory": [
+      440,
+      900,
+      1140,
+      0.5,
+      725,
+      725
+    ]
+  },
+  "method": "Built-in imagegen; source-preserving extraction, native material masks and anatomical anchor registration"
+}

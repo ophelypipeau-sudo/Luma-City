@@ -1,0 +1,34 @@
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { Resvg } from "@resvg/resvg-js";
+import { mkdir, writeFile } from "node:fs/promises";
+import { FittedGarment } from "../apps/web/src/shop/FittedGarment";
+
+// Native artwork export for the registered texture-painting guide. No bitmap edits.
+const svg = renderToStaticMarkup(
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1774"
+    height="887"
+    viewBox="0 0 1774 887"
+  >
+    {["iris", "milo", "june", "noa"].flatMap((characterId) =>
+      (["bottoms", "shoes", "tops"] as const).map((category) => (
+        <FittedGarment
+          key={`${characterId}-${category}`}
+          characterId={characterId}
+          category={category}
+          variant={0}
+          painted={false}
+        />
+      )),
+    )}
+  </svg>,
+);
+await mkdir(".data/references", { recursive: true });
+await writeFile(".data/references/garment-guide-v5.svg", svg);
+await writeFile(
+  ".data/references/garment-guide-v5.png",
+  new Resvg(svg).render().asPng(),
+);
+console.log("Exported .data/references/garment-guide-v5.png (1774 × 887)");

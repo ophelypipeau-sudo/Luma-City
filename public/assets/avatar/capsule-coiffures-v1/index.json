@@ -1,0 +1,126 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "sienne",
+      "name": "Sienne",
+      "price": 850,
+      "base": "#684031",
+      "back": "M350 179Q443 199 537 172V345H350Z",
+      "crop": [
+        262,
+        9,
+        308,
+        334
+      ],
+      "tone": {
+        "shadow": 13,
+        "middle": 45,
+        "highlight": 106,
+        "depth": 0.34,
+        "sheen": 0.13
+      }
+    },
+    {
+      "id": "nuage",
+      "name": "Nuage",
+      "price": 850,
+      "base": "#543125",
+      "back": "M395 257Q444 278 490 254L492 320Q493 340 514 385H372Q392 342 395 316Z M494 183Q516 177 542 185Q536 230 514 270L496 320H468Z",
+      "crop": [
+        225,
+        4,
+        419,
+        385
+      ],
+      "tone": {
+        "shadow": 11,
+        "middle": 38,
+        "highlight": 98,
+        "depth": 0.28,
+        "sheen": 0.1
+      }
+    },
+    {
+      "id": "rubis",
+      "name": "Rubis",
+      "price": 850,
+      "base": "#641f32",
+      "back": "M467 164H887V650H467Z",
+      "crop": [
+        339,
+        0,
+        312,
+        528
+      ],
+      "tone": {
+        "shadow": 13,
+        "middle": 36,
+        "highlight": 96,
+        "depth": 0.34,
+        "sheen": 0.13
+      }
+    },
+    {
+      "id": "nacre",
+      "name": "Nacre",
+      "price": 850,
+      "base": "#b58b68",
+      "back": "M392 249Q444 274 497 249L485 306H404Z",
+      "crop": [
+        222,
+        14,
+        414,
+        514
+      ],
+      "tone": {
+        "shadow": 49,
+        "middle": 134,
+        "highlight": 194,
+        "depth": 0.34,
+        "sheen": 0.13
+      }
+    },
+    {
+      "id": "ebene",
+      "name": "Ébène",
+      "price": 850,
+      "base": "#443030",
+      "back": "M395 257Q444 278 490 254L508 352H374Z M494 183Q516 177 542 185Q536 230 514 270L496 320H468Z",
+      "crop": [
+        257,
+        22,
+        369,
+        528
+      ],
+      "tone": {
+        "shadow": 8,
+        "middle": 33,
+        "highlight": 93,
+        "depth": 0.34,
+        "sheen": 0.13
+      }
+    },
+    {
+      "id": "moka",
+      "name": "Moka",
+      "price": 850,
+      "base": "#694331",
+      "back": "M487 185Q518 174 542 183Q529 232 523 260L537 285V350H467Z",
+      "crop": [
+        324,
+        18,
+        251,
+        331
+      ],
+      "tone": {
+        "shadow": 22,
+        "middle": 46,
+        "highlight": 112,
+        "depth": 0.34,
+        "sheen": 0.13
+      }
+    }
+  ]
+}

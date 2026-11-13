@@ -1,0 +1,235 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "canvas": [
+    887,
+    1774
+  ],
+  "pieces": [
+    {
+      "id": "01-velvet",
+      "sourceSha256": "41f5ce1df48879cd01625e1b815ecdf47fcc6f3c537cb9723b417aba1404815e",
+      "mainBase": "#40213d",
+      "mainTone": {
+        "shadow": 10,
+        "middle": 30,
+        "highlight": 104,
+        "depth": 0.26,
+        "sheen": 0.29
+      },
+      "poses": {
+        "front": {
+          "art": "01-velvet/front.png",
+          "main": "01-velvet/front-tissu.png",
+          "protected": "01-velvet/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "01-velvet/hand-on-hip.png",
+          "main": "01-velvet/hand-on-hip-tissu.png",
+          "protected": "01-velvet/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "02-venus",
+      "sourceSha256": "0588f190fe8ab623091d1c37326f82f3999988886a2b23a9b15875123637c28d",
+      "mainBase": "#ad7080",
+      "mainTone": {
+        "shadow": 44,
+        "middle": 123,
+        "highlight": 214,
+        "depth": 0.32,
+        "sheen": 0.27
+      },
+      "poses": {
+        "front": {
+          "art": "02-venus/front.png",
+          "main": "02-venus/front-tissu.png",
+          "protected": "02-venus/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "02-venus/hand-on-hip.png",
+          "main": "02-venus/hand-on-hip-tissu.png",
+          "protected": "02-venus/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "03-eclat",
+      "sourceSha256": "9543dce176891f1f73175255b729f327a62817dc9b039eb4410121c65ffbea82",
+      "mainBase": "#175365",
+      "mainTone": {
+        "shadow": 9,
+        "middle": 53,
+        "highlight": 132,
+        "depth": 0.31,
+        "sheen": 0.31
+      },
+      "poses": {
+        "front": {
+          "art": "03-eclat/front.png",
+          "main": "03-eclat/front-tissu.png",
+          "protected": "03-eclat/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "03-eclat/hand-on-hip.png",
+          "main": "03-eclat/hand-on-hip-tissu.png",
+          "protected": "03-eclat/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "04-minuit",
+      "sourceSha256": "8f00b9ec4bb96a32e01997b42a56025e8fc9247dd74d234a6351f72bd37758b5",
+      "mainBase": "#28262a",
+      "mainTone": {
+        "shadow": 12,
+        "middle": 42,
+        "highlight": 92,
+        "depth": 0.29,
+        "sheen": 0.18
+      },
+      "poses": {
+        "front": {
+          "art": "04-minuit/front.png",
+          "main": "04-minuit/front-tissu.png",
+          "protected": "04-minuit/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "04-minuit/hand-on-hip.png",
+          "main": "04-minuit/hand-on-hip-tissu.png",
+          "protected": "04-minuit/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "05-rosalie",
+      "sourceSha256": "1c3733b96c0bcab2d01bafdb018c192a5f7ed8bab56762d47724568ea0f21388",
+      "mainBase": "#895863",
+      "mainTone": {
+        "shadow": 39,
+        "middle": 104,
+        "highlight": 183,
+        "depth": 0.3,
+        "sheen": 0.22
+      },
+      "poses": {
+        "front": {
+          "art": "05-rosalie/front.png",
+          "main": "05-rosalie/front-tissu.png",
+          "protected": "05-rosalie/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "05-rosalie/hand-on-hip.png",
+          "main": "05-rosalie/hand-on-hip-tissu.png",
+          "protected": "05-rosalie/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "06-nova",
+      "sourceSha256": "9952eb6bca35b9f392f3a6111cc554cc1a6060b6826740db7230716d0d473cd9",
+      "mainBase": "#8494b4",
+      "mainTone": {
+        "shadow": 34,
+        "middle": 119,
+        "highlight": 218,
+        "depth": 0.3,
+        "sheen": 0.29
+      },
+      "poses": {
+        "front": {
+          "art": "06-nova/front.png",
+          "main": "06-nova/front-tissu.png",
+          "protected": "06-nova/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "06-nova/hand-on-hip.png",
+          "main": "06-nova/hand-on-hip-tissu.png",
+          "protected": "06-nova/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "07-ambre",
+      "sourceSha256": "9538292c553538f38b2bb6567483efbea91e9d7ed60ee1bc4bae95036d1bc32f",
+      "mainBase": "#b37b2e",
+      "mainTone": {
+        "shadow": 45,
+        "middle": 124,
+        "highlight": 195,
+        "depth": 0.32,
+        "sheen": 0.2
+      },
+      "poses": {
+        "front": {
+          "art": "07-ambre/front.png",
+          "main": "07-ambre/front-tissu.png",
+          "protected": "07-ambre/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "07-ambre/hand-on-hip.png",
+          "main": "07-ambre/hand-on-hip-tissu.png",
+          "protected": "07-ambre/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "08-seraphine",
+      "sourceSha256": "42eeb7ce4fdcb28ebcdbbeb2fd1ccf0b9c64ef168fca44e2c1c604c6b8110663",
+      "mainBase": "#641a29",
+      "mainTone": {
+        "shadow": 9,
+        "middle": 42,
+        "highlight": 108,
+        "depth": 0.29,
+        "sheen": 0.28
+      },
+      "poses": {
+        "front": {
+          "art": "08-seraphine/front.png",
+          "main": "08-seraphine/front-tissu.png",
+          "protected": "08-seraphine/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "08-seraphine/hand-on-hip.png",
+          "main": "08-seraphine/hand-on-hip-tissu.png",
+          "protected": "08-seraphine/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    },
+    {
+      "id": "10-alba",
+      "sourceSha256": "0360f845b87cdd68f36bfcb158df2a41bae7a2d959eaf266a75e0646717d8061",
+      "mainBase": "#d6c9ad",
+      "mainTone": {
+        "shadow": 66,
+        "middle": 172,
+        "highlight": 236,
+        "depth": 0.31,
+        "sheen": 0.14
+      },
+      "poses": {
+        "front": {
+          "art": "10-alba/front.png",
+          "main": "10-alba/front-tissu.png",
+          "protected": "10-alba/front-protections.png"
+        },
+        "hand-on-hip": {
+          "art": "10-alba/hand-on-hip.png",
+          "main": "10-alba/hand-on-hip-tissu.png",
+          "protected": "10-alba/hand-on-hip-protections.png"
+        }
+      },
+      "status": "atelier"
+    }
+  ]
+}

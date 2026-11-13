@@ -1,0 +1,15 @@
+{
+  "canvas": [
+    887,
+    1774
+  ],
+  "bounds": [
+    127,
+    382,
+    757,
+    858
+  ],
+  "bodyHash": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "transform": "identity",
+  "method": "on-body redraw; pigment isolation; no body pixels"
+}

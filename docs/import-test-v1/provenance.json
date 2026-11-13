@@ -1,0 +1,27 @@
+{
+  "method": "built-in imagegen adaptation; source and prompts preserved; runtime garment-only registration",
+  "files": [
+    {
+      "path": "docs/import-test-v1/source.png",
+      "sha256": "8830417c566db123bdf081dd2979d7752dd97f67f913dd03de8555b8f33535bc"
+    },
+    {
+      "path": "public/assets/avatar/body/base.png",
+      "sha256": "0f59e2227bf5a820445191cd7974f0902110b14f5225b7be1ae7f45f74bd6da5"
+    },
+    {
+      "path": "public/assets/avatar/clothes/import-test-v1/polo.png",
+      "sha256": "3aa6faec0105bb36d672b51fedb3c99b9a2e04a079ce45eb86d5bea4f0aedce5"
+    },
+    {
+      "path": "public/assets/avatar/clothes/import-test-v1/camisole.png",
+      "sha256": "cac323f14e2c938bedf6f4ea86c35fe0bced54da7382a18c24a2b1222cff8ade"
+    },
+    {
+      "path": "public/assets/avatar/clothes/import-test-v1/pants.png",
+      "sha256": "febe68849b677768a1fe5305d69c01c5514561f591a249af0fbe443f95e042d4"
+    }
+  ],
+  "calibrationSource": "apps/web/src/avatar/catalog.ts",
+  "bodyUnchanged": true
+}

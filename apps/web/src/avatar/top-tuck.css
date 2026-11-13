@@ -1,0 +1,41 @@
+.top-tuck-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  border: 1px solid #f0cee7;
+  border-radius: .5rem;
+  padding: .35rem .55rem;
+  background: #4d2c57ee;
+  color: #fff6fc;
+  font-size: .8rem;
+  font-weight: 700;
+}
+.top-tuck-button[aria-expanded="true"] { background: #f6d5e9; color: #502953; }
+.outfit-layers { display: grid; justify-items: start; gap: .28rem; }
+.blush-figure > .outfit-layers, .profile-wardrobe-preview .profile-avatar > .outfit-layers { position: absolute; z-index: 2; top: .4rem; left: .4rem; }
+.profile-wardrobe-preview .profile-avatar { position: relative; }
+.profile-wardrobe-preview .profile-avatar svg.full-body { cursor: pointer; }
+.blush-figure .top-tuck-button { font-size: .69rem; padding: .32rem .4rem; }
+.outfit-layer-panel {
+  max-height: min(350px, 42dvh); overflow-y: auto; scrollbar-width: thin;
+  display: grid; justify-items: stretch; gap: .25rem; padding: .32rem; min-width: 3.3rem;
+  border: 1px solid #d9a2ca; border-radius: .65rem; background: #4d2c57f5; color: #fff6fc;
+}
+.outfit-layer-panel .outfit-layer-item {
+  position: relative; display: grid; justify-items: center; padding: .13rem;
+  border: 1px solid transparent; border-radius: .32rem; background: #744c7a; color: inherit;
+  cursor: grab; touch-action: none; user-select: none;
+}
+.outfit-layer-item:hover { border-color: #f4bddf; }
+.outfit-layer-panel .outfit-layer-item[data-dragging] {
+  z-index: 1; cursor: grabbing; background: #a46d94; border-color: #ffd5ee; box-shadow: 0 6px 15px #27192ca0;
+}
+.outfit-layer-item[data-drop]::after {
+  content: ""; position: absolute; inset-inline: -.2rem; height: .17rem; background: #ffd991;
+  border-radius: 1rem; pointer-events: none;
+}
+.outfit-layer-item[data-drop="before"]::after { top: -.24rem; }
+.outfit-layer-item[data-drop="after"]::after { bottom: -.24rem; }
+.outfit-layer-item .garment-thumbnail { width: 2.25rem; height: 2rem; }
+.outfit-layer-item span { font-size: .55rem; }

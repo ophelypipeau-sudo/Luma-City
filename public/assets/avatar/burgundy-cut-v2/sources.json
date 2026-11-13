@@ -1,0 +1,14 @@
+{
+  "front": {
+    "source": "/assets/avatar/redrawn-v1/sources/burgundy-front.png",
+    "sourceSha256": "b1536c9c487a193d38a31e4b0525935e3e9ee21ffdc2402dbd046fbd4e187aad"
+  },
+  "hand-on-hip": {
+    "source": "/assets/avatar/redrawn-v1/sources/burgundy-hand-on-hip-front.png",
+    "sourceSha256": "8bd1997371aa115a930b9c969caa57a16fa76d8d7a1fa08f7656d97b988a6dcd"
+  },
+  "heart-hands": {
+    "source": "/assets/avatar/redrawn-v1/sources/burgundy-heart-hands-front.png",
+    "sourceSha256": "9868c097e4201b7383c595651c7bdeecea1677c84d2fb52bffa45dbc622eca2f"
+  }
+}

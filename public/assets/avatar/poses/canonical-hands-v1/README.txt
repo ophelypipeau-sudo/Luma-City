@@ -1,0 +1,1 @@
+Approved heart palms/fingers from poses/redraw-v4/heart-hands.png. Two obsolete forearm wedges removed by the wrist contour in scripts/prepare-burgundy-cut-v2.ts. No finger/palm geometry or colours changed. Clothing is independent.

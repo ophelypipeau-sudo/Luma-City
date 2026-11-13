@@ -1,0 +1,308 @@
+.morphology-pilot,
+.layered-dressing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  color: #fff1ff;
+  background: linear-gradient(135deg, #493057, #2f203e);
+}
+.pilot-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 22px;
+  border-bottom: 1px solid #bea0d32b;
+  flex-shrink: 0;
+}
+.pilot-header h2 {
+  font-size: 22px;
+  margin: 3px 0;
+}
+.pilot-header button {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.pilot-header .eyebrow,
+.pilot-caption .eyebrow {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c7a3d3;
+}
+.pilot-body {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(260px, 1.1fr);
+  gap: 22px;
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+}
+.pilot-controls {
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pilot-morphologies {
+  border: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  flex-shrink: 0;
+}
+.pilot-morphologies legend {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #f9dbb0;
+}
+.pilot-morphologies button {
+  border: 1px solid #bc99cb70;
+  border-radius: 12px;
+  min-height: 55px;
+  color: #f6e2ff;
+  background: #a47cc51c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px;
+}
+.pilot-morphologies button[aria-pressed="true"] {
+  background: #aa7db748;
+  border-color: #e4bfdf;
+  box-shadow: 0 0 12px #d29de018;
+}
+.pilot-morphologies strong {
+  font-size: 19px;
+  color: #ffdfaa;
+}
+.pilot-morphologies span {
+  font-size: 10px;
+  line-height: 1.3;
+  text-align: left;
+}
+.pilot-pieces {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.pilot-pieces button {
+  border: 1px solid #bc99cb50;
+  border-radius: 13px;
+  background: #e8c6ff09;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fbeeff;
+  padding: 11px 6px;
+  min-width: 0;
+}
+.pilot-pieces button.selected {
+  border-color: #dfbce4;
+  background: #bb8bd421;
+}
+.pilot-pieces svg {
+  width: 100%;
+  height: 155px;
+  max-height: 21vh;
+  display: block;
+  filter: drop-shadow(0 8px 8px #170c2330);
+}
+.pilot-pieces span {
+  font-size: 11px;
+  margin-top: 10px;
+}
+.pilot-pieces small {
+  font-size: 9px;
+  margin-top: 6px;
+  color: #dac0e5;
+}
+.pilot-reset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.pilot-reflection {
+  min-height: 0;
+  position: relative;
+  border: 1px solid #c0a0cd70;
+  border-radius: 22px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at 50% 50%, #c292dc20, #3c294b 75%);
+  overflow: hidden;
+}
+.pilot-caption {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+.pilot-caption h3 {
+  font-size: 24px;
+  margin: 7px 0;
+}
+.pilot-caption h3 span {
+  font-size: 14px;
+  color: #f9dbb0;
+}
+.pilot-caption p {
+  font-size: 11px;
+  color: #dbc0e5;
+  margin: 0;
+}
+.pilot-figure {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  padding-top: 3px;
+}
+.pilot-figure svg {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.pilot-reflection > button {
+  flex-shrink: 0;
+  font-size: 11px;
+}
+@media (max-width: 700px) {
+  .pilot-header {
+    gap: 8px;
+    padding: 9px;
+  }
+  .pilot-header h2 {
+    font-size: 15px;
+  }
+  .pilot-header button {
+    font-size: 9px;
+    padding: 7px;
+  }
+  .pilot-header .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .pilot-body {
+    grid-template-columns: minmax(120px, 0.85fr) minmax(155px, 1.15fr);
+    padding: 8px;
+    gap: 8px;
+  }
+  .pilot-controls {
+    gap: 12px;
+  }
+  .pilot-morphologies {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+  .pilot-morphologies button {
+    min-height: 47px;
+    padding: 5px;
+    gap: 4px;
+  }
+  .pilot-morphologies strong {
+    font-size: 15px;
+  }
+  .pilot-morphologies span {
+    font-size: 8px;
+  }
+  .pilot-morphologies legend {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .pilot-pieces {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+  .pilot-pieces button {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    align-items: center;
+    text-align: left;
+    padding: 5px;
+  }
+  .pilot-pieces svg {
+    grid-row: span 2;
+    height: 80px;
+    max-height: 80px;
+  }
+  .pilot-pieces span {
+    font-size: 10px;
+    margin: 0;
+  }
+  .pilot-pieces small {
+    font-size: 8px;
+    margin: 0;
+  }
+  .pilot-reset {
+    font-size: 9px;
+    padding: 7px;
+  }
+  .pilot-caption {
+    top: 11px;
+    left: 10px;
+  }
+  .pilot-caption h3 {
+    font-size: 18px;
+  }
+  .pilot-caption .eyebrow {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .pilot-caption p {
+    font-size: 9px;
+  }
+  .pilot-reflection {
+    border-radius: 15px;
+    padding: 7px;
+  }
+  .pilot-figure {
+    padding-top: 20px;
+  }
+  .pilot-reflection > button {
+    font-size: 9px;
+  }
+}
+.shop-pilot-launch {
+  order: 4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  line-height: 1.3;
+  max-width: 150px;
+  min-height: 37px;
+}
+@media (max-width: 700px) {
+  .shop-pilot-launch {
+    order: 5;
+    flex: 1 0 100%;
+    max-width: none;
+    justify-content: center;
+    min-height: 26px;
+    padding: 5px;
+  }
+}
+
+.dressing-intro {
+  padding: 14px 2px;
+}
+.dressing-intro h3 {
+  font-size: 23px;
+  margin: 8px 0;
+  color: #ffe4ba;
+}
+.dressing-intro p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #dbc0e5;
+}
+.layered-dressing .pilot-header > button:last-child {
+  margin-left: auto;
+  font-size: 10px;
+}

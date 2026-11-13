@@ -1,0 +1,378 @@
+.game-fullscreen .marked-map {
+  overflow: hidden;
+}
+.map-viewport {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  container-type: size;
+}
+.map-viewport,
+.game-fullscreen .room-viewport {
+  overflow: clip;
+  isolation: isolate;
+  background-position: center;
+  background-size: cover;
+}
+.map-viewport::before,
+.game-fullscreen .room-viewport::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+  filter: blur(18px) brightness(0.73);
+}
+.map-viewport::before {
+  inset: -24px;
+  filter: blur(22px) brightness(0.8);
+}
+.map-artwork {
+  position: relative;
+  width: min(100cqw, 150cqh);
+  aspect-ratio: 3 / 2;
+}
+.map-artwork > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.place-marker {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+.map-quest-gift {
+  position: absolute;
+  z-index: 2;
+  translate: -50% -50%;
+  width: clamp(31px, 6%, 62px);
+  aspect-ratio: 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.map-quest-gift img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 3px #30143d88);
+}
+.map-quest-gift:hover img { transform: scale(1.12); }
+.place-marker:hover,
+.place-marker:focus-within,
+.place-marker.is-open {
+  z-index: 5;
+}
+.place-dot {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: var(--pin-dark, #4b2563);
+  border: 1px solid #fff7e8;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff9ec, #ecdac9);
+  box-shadow:
+    0 4px 13px #271734b8,
+    inset 0 0 0 3px #fff7ed90,
+    0 0 0 2px var(--pin-light, #79558b);
+  padding: 0;
+  transition:
+    transform 0.16s,
+    box-shadow 0.16s;
+}
+.place-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.place-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 125%;
+  height: auto;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  pointer-events: none;
+}
+.marker-home { --pin-light: #a9583d; --pin-dark: #703327; }
+.marker-shop { --pin-light: #ab457c; --pin-dark: #742655; }
+.marker-salon { --pin-light: #b15f87; --pin-dark: #7e3b64; }
+.marker-arcade { --pin-light: #8e52ad; --pin-dark: #4b2563; }
+.marker-pets { --pin-light: #9f662e; --pin-dark: #70471d; }
+.marker-chat { --pin-light: #397b63; --pin-dark: #235544; }
+.marker-fountain { --pin-light: #386d9f; --pin-dark: #27446d; }
+.marker-terrace { --pin-light: #a45b67; --pin-dark: #713344; }
+.place-name {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  translate: -50% 0;
+  padding: 2px 7px;
+  border: 1px solid #fff3dba0;
+  border-radius: 7px;
+  background: #2c1c3a;
+  color: #fff6ed;
+  box-shadow: 0 2px 5px #23162b87;
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.place-dot:disabled { opacity: 1; cursor: default; }
+.marker-home .place-name { text-align: center; }
+.marker-home .place-name small { display: block; color: #ffdb9f; font-size: .8em; }
+.place-marker:hover .place-dot:not(:disabled),
+.place-marker:focus-within .place-dot:not(:disabled),
+.place-marker.is-open .place-dot:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow:
+    0 4px 15px #25113088,
+    inset 0 1px 3px #ffe8ff75,
+    0 0 0 5px #e2c1eb37;
+}
+.place-tooltip {
+  position: absolute;
+  bottom: calc(100% + 13px);
+  left: 50%;
+  transform: translate(calc(-50% + var(--tooltip-shift, 0px)), 5px);
+  display: block;
+  min-width: 140px;
+  padding: 10px 14px;
+  border: 1px solid #dbc0eb;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #76508ff2, #40264ff5);
+  box-shadow:
+    0 5px 17px #25102f70,
+    inset 0 1px #ffebff33;
+  color: #f9eacb;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s,
+    transform 0.15s,
+    visibility 0.15s;
+}
+.place-tooltip:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: calc(50% - 4px - var(--tooltip-shift, 0px));
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: #472c59;
+  border-bottom: 1px solid #dbc0eb;
+  border-right: 1px solid #dbc0eb;
+}
+.place-tooltip strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.place-tooltip small {
+  display: block;
+  font-size: 8px;
+  color: #dcc5e8;
+  margin-top: 4px;
+}
+.place-marker:hover .place-tooltip,
+.place-marker:focus-within .place-tooltip,
+.place-marker.is-open .place-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(calc(-50% + var(--tooltip-shift, 0px)), 0);
+}
+.game-fullscreen .marked-map:after {
+  pointer-events: none;
+}
+.game-fullscreen .sidebar-palette {
+  bottom: 9.3%;
+}
+.game-fullscreen .switch-character {
+  top: 86%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.vip-background {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 37px;
+}
+.vip-background > label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #dfc5eb;
+  font-size: 7px;
+  margin-bottom: 5px;
+  cursor: default;
+}
+.vip-background > label > svg {
+  color: #edd098;
+}
+.vip-background b {
+  font-size: 6px;
+  color: #f8dfad;
+  border: 1px solid #c3a16d88;
+  padding: 1px 3px;
+  border-radius: 4px;
+  margin-left: auto;
+  background: #9b6e3940;
+}
+.vip-hex-row {
+  display: flex;
+  height: 24px;
+  gap: 6px;
+  align-items: center;
+  padding: 0 5px;
+  border: 1px solid #be99cf6e;
+  border-radius: 6px;
+  background: #2d183f66;
+}
+.vip-color-chip {
+  height: 12px;
+  width: 12px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #be94d5, #775199);
+  flex-shrink: 0;
+  border: 1px solid #e5c6f67a;
+}
+.vip-hex-row input {
+  width: 100%;
+  min-width: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  color: #f5e6ff;
+  font-size: 9px;
+  font-family: monospace;
+  letter-spacing: 1px;
+  padding: 0;
+}
+.vip-hex-row input::placeholder {
+  color: #ba9acb;
+}
+.vip-hex-row input:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+.vip-hex-row button {
+  padding: 0;
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  color: #e8cee7;
+  flex-shrink: 0;
+}
+.game-fullscreen[data-vip-background="true"] {
+  background:
+    radial-gradient(
+      ellipse at 5% 72%,
+      color-mix(in srgb, var(--vip-background) 70%, transparent),
+      transparent 37%
+    ),
+    radial-gradient(ellipse at 69% 110%, #56b4af70, transparent 48%),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--vip-background) 40%, #120c20),
+      var(--vip-background)
+    );
+}
+@media (max-width: 1000px) {
+  .vip-background {
+    left: 10px;
+    right: 10px;
+    bottom: 34px;
+  }
+  .game-fullscreen .sidebar-palette {
+    bottom: 9.3%;
+  }
+}
+@media (max-width: 700px) {
+  .place-dot {
+    height: 40px;
+    width: 40px;
+  }
+  .place-icon { width: 27px; height: 27px; }
+  .place-name { font-size: 9px; padding-inline: 4px; }
+  .place-tooltip {
+    min-width: 125px;
+    padding: 9px 11px;
+  }
+  .place-tooltip strong {
+    font-size: 11px;
+  }
+  .game-fullscreen .sidebar-palette {
+    bottom: 12.1%;
+  }
+  .vip-background {
+    left: 6px;
+    right: 6px;
+    bottom: 43px;
+  }
+  .vip-background > label {
+    font-size: 5.5px;
+    gap: 2px;
+  }
+  .vip-background > label > svg {
+    width: 8px;
+  }
+  .vip-background b {
+    font-size: 5px;
+    padding: 1px 2px;
+  }
+  .vip-hex-row {
+    height: 22px;
+    gap: 3px;
+    padding: 0 4px;
+  }
+  .vip-hex-row input {
+    font-size: 8px;
+    letter-spacing: 0.3px;
+  }
+  .vip-color-chip {
+    width: 9px;
+    height: 9px;
+  }
+  .vip-hex-row button {
+    width: 13px;
+  }
+  .game-fullscreen .rail-bottom {
+    bottom: 5px;
+  }
+  .game-fullscreen .switch-character {
+    top: 80.5%;
+  }
+  .game-fullscreen .character-stage {
+    height: 42%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .place-dot,
+  .place-tooltip {
+    transition: none;
+  }
+}
+@media (max-height: 650px) and (min-width: 701px) {
+  .game-fullscreen .character-stage {
+    height: 48%;
+  }
+  .game-fullscreen .switch-character {
+    top: 79%;
+  }
+  .game-fullscreen .sidebar-palette {
+    bottom: 14%;
+  }
+}

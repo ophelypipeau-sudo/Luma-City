@@ -1,0 +1,21 @@
+{
+  "id": "231207d3-3715-4097-91ec-f6eec37a83b3",
+  "status": "review",
+  "report": [
+    {
+      "label": "Sous-vêtements du torse couverts",
+      "ok": true,
+      "blocking": true
+    },
+    {
+      "label": "Visage libre",
+      "ok": true,
+      "blocking": true
+    },
+    {
+      "label": "Mains libres",
+      "ok": true,
+      "blocking": true
+    }
+  ]
+}

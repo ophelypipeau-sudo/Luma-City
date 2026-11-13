@@ -1,0 +1,17 @@
+{
+  "method": "built-in imagegen; visual proposal only",
+  "referenceImages": [
+    "public/assets/avatar/body/base.png"
+  ],
+  "activeBodyPreserved": true,
+  "files": [
+    {
+      "path": "public/assets/avatar/body/base.png",
+      "sha256": "0f59e2227bf5a820445191cd7974f0902110b14f5225b7be1ae7f45f74bd6da5"
+    },
+    {
+      "path": "docs/proposals/adult-base-v1/body-proposal.png",
+      "sha256": "e4afe0781a5ea34714891279b54477c7379c8a80480047b15fb0e34d1b42aa35"
+    }
+  ]
+}

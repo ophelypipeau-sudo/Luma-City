@@ -1,0 +1,1 @@
+ALTER TABLE arcade_rounds ADD COLUMN IF NOT EXISTS score INTEGER CHECK (score >= 0);

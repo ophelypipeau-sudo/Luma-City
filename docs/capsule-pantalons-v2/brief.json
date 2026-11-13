@@ -1,0 +1,77 @@
+{
+  "mode": "ImageGen intégré · édition du visuel Prune fumée · fond opaque",
+  "reference": "public/assets/avatar/prune-fumee-v1/source.png",
+  "prompt": "Edit the provided Prune fumée source illustration for a front-facing fashion video game fitting preview. Output the same complete 887 × 1774 composition. Preserve Iris exactly: existing cartoon face, expression, bald head, skin, outer body proportions, legs and stance, arm and hand silhouettes and positions, original shoes, background, and full framing. Only replace her clothes as instructed. Replace the long vest with a very simple fitted matte warm off-white sleeveless square-neck cropped camisole ending under the bust, clear of the natural waist. This plain top is just a neutral fitting prop, keep it visually secondary and show the complete trouser waistband. Create these new trousers: [DESIGN] Pants must visibly wrap around Iris's same body; for baggys create extra cloth beyond the body's leg contours without making the body wider or moving the stance. Shoes and hems are separate, do not fuse them. Illustrate natural shadows, very fine seams and texture, carefully drawn cloth folds, restrained premium fashion illustration with the reference's line art and shading; no vector, no photorealism, no logo, no text. One front-facing Iris only.",
+  "items": [
+    {
+      "id": "01-dalle",
+      "name": "Dalle",
+      "style": "Baggy skate",
+      "details": "Jean bleu glacier, jambe très ample et ourlet qui casse sur la chaussure.",
+      "design": "A very wide oversized classic skater baggy in ice-blue stonewashed heavy denim, mid-rise waist with five-pocket construction, authentic lived-in wash, small copper rivets and puddle hems, broad from hip to hem. Not flared."
+    },
+    {
+      "id": "02-rocade",
+      "name": "Rocade",
+      "style": "Cargo parachute",
+      "details": "Nylon olive, poches à soufflet et chevilles resserrées.",
+      "design": "A modern olive green parachute cargo baggy, very ample thigh and gathered cinched ankles, lightweight matte technical nylon, rectangular bellows pockets with restrained snaps, waistband with visible drawcord and cordlock. Dramatic bloused lower leg."
+    },
+    {
+      "id": "03-granit",
+      "name": "Granit",
+      "style": "Baggy charpentier",
+      "details": "Denim gris délavé, genoux renforcés et boucle marteau.",
+      "design": "A mid-rise faded black grey relaxed carpenter baggy, wide straight slightly cropped legs ending right at ankle, double-knee workwear panels, tonal carpenter seams, one hammer loop on outer thigh, blackened antique brass button. Charcoal wash, no distress holes."
+    },
+    {
+      "id": "04-ruban",
+      "name": "Ruban",
+      "style": "Jogger large",
+      "details": "Jersey bordeaux, bandes crème et jambe droite ample.",
+      "design": "A burgundy vintage track baggy, waist sits slightly low, straight extra wide full length legs with a slight floor break, premium brushed track jersey, a slim pair of cream side stripes running unbroken to the hem, narrow drawcord and subtle slit pockets; loose track pants without ribbed cuffs, no branding."
+    },
+    {
+      "id": "05-sablon",
+      "name": "Sablon",
+      "style": "Baggy à plis",
+      "details": "Gabardine sable, deux plis profonds et volume arrondi.",
+      "design": "An intentionally oversized modern sand gabardine barrel baggy, high fitted paperbag-free waistband, double deep forward pleats, voluminous rounded thighs and knees, dramatic taper at the ankle, hidden hook and extended tab, subtle softly brushed fabric. Clear structural difference from a straight leg."
+    },
+    {
+      "id": "06-ligne",
+      "name": "Ligne",
+      "style": "Tailleur droit",
+      "details": "Laine bleu nuit, pli net et fermeture discrète.",
+      "design": "A timeless full-length navy straight leg tailored trouser in fine wool, flat mid-rise waistband, discreet extended tab and hidden closure, narrow but not skinny, pressed creases front and slight break on shoes, classic diagonal welt pockets. Luxurious subtle twill."
+    },
+    {
+      "id": "07-indigo",
+      "name": "Indigo",
+      "style": "Jean droit",
+      "details": "Denim brut, cinq poches et surpiqûres tabac.",
+      "design": "A classic high-rise raw dark indigo straight five-pocket jean, fitted on hip with a straight leg from knee to ankle, slim vintage outline, fine tobacco topstitch, little copper rivets and button, traditional short flat hem ending at ankle."
+    },
+    {
+      "id": "08-calcaire",
+      "name": "Calcaire",
+      "style": "Chino droit",
+      "details": "Sergé écru, poches obliques et petit revers.",
+      "design": "A classic ivory ecru cotton twill chino, flat mid-rise waist with small matte horn button, slash pockets, relaxed but narrow straight legs tapering to small fixed turn-up cuffs above ankle. Cream textured cotton, no pleats, no embellishment."
+    },
+    {
+      "id": "09-sillon",
+      "name": "Sillon",
+      "style": "Tailleur à pinces",
+      "details": "Laine gris chiné, taille haute et jambes longues.",
+      "design": "A classic high-waisted women's softly tailored light heather grey wide leg trouser with double shallow pleats at the waist, long straight and flowing legs, elegant pressed front creases, discreet belt loops, soft light wool flannel, luxurious, restrained and timeless. Less oversized than streetwear."
+    },
+    {
+      "id": "10-fuseau",
+      "name": "Fuseau",
+      "style": "Pantalon cigarette",
+      "details": "Crêpe noir, jambe fuselée et fente à la cheville.",
+      "design": "A timeless elegant fitted black crepe cigarette trouser, high clean narrow waistband without belt loops, sharply tapered at ankle, cropped above ankle with tiny hem side vents, subtle seam lines and no pinstripes. Different from skinny denim: matte fine grain, clean single front crease, minimal tailoring."
+    }
+  ]
+}

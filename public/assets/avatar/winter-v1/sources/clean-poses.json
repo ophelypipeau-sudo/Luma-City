@@ -1,0 +1,19 @@
+{
+  "sources": {
+    "ivory-heart": "638aff0d-12d4-46d7-84c1-9b8c4b764f8b",
+    "ivory-hip": "496b8e31-c524-405a-9f64-640a2be2d2d0",
+    "ribbon-heart": "4bccaec5-d42b-41aa-bc8c-a72fd539c8fd",
+    "ribbon-hip": "468c8ca7-0c5a-4291-8844-c06dde352155",
+    "pink-heart": "67432171-c875-4794-aa0b-ea8d0bc3bf84",
+    "pink-hip": "a8b5c10d-de03-439f-ac4b-fcb05caa2592",
+    "snow-hip": "d1586d2d-6e24-4af6-b0d9-083cd9cbcb9b"
+  },
+  "skirt": {
+    "source": "exec-caa7e70a-0603-42ba-8e3e-553d2fbb3792.png",
+    "waistWidth": 306,
+    "hemWidth": 540,
+    "waistY": 700,
+    "hemY": 1010
+  },
+  "snowHeart": "Registered original, no oversized/halo extraction used"
+}

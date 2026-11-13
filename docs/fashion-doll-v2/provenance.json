@@ -1,0 +1,25 @@
+{
+  "activeBodySource": "codex-clipboard-f85faa50-3530-4981-ab9a-06c980afa776.png supplied by user",
+  "bodyCopiedWithoutModification": true,
+  "hands": "Only the user-drawn hands in body-user.png are active. Generated hand attempts and body-five-fingers.svg are not used.",
+  "clothingMethod": "Built-in imagegen with original fashion concept and fixed body as references. No new clothing regeneration after user hand correction.",
+  "files": [
+    {
+      "path": "public/assets/avatar/fashion-v2/body-user.png",
+      "sha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4"
+    },
+    {
+      "path": "public/assets/avatar/fashion-v2/top.png",
+      "sha256": "be9bac887f7c9c36a544fc89cc575a26bd2aa3df1096320658533e0e898aa20d"
+    },
+    {
+      "path": "public/assets/avatar/fashion-v2/jeans.png",
+      "sha256": "d1591ebec940410d241730cdb8fe0689db2c809dca8d8a1d925722b57a5dbd2d"
+    },
+    {
+      "path": "public/assets/avatar/fashion-v2/boots.png",
+      "sha256": "874011ade7259d5580308d6368a5109c8967fbd8e6c6f3292486f100ef642b37"
+    }
+  ],
+  "calibrationSource": "apps/web/src/avatar/catalog.ts"
+}

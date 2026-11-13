@@ -1,0 +1,207 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "dalle",
+      "name": "Dalle",
+      "source": "docs/capsule-pantalons-v2/sources/01-dalle.png",
+      "retouch": "docs/capsule-pantalons-v4/dalle-poches-imagegen.png",
+      "price": 850,
+      "base": "#70869a",
+      "crop": [
+        158,
+        673,
+        555,
+        1028
+      ],
+      "tone": {
+        "shadow": 80,
+        "middle": 128,
+        "highlight": 183,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "rocade",
+      "name": "Rocade",
+      "source": "docs/capsule-pantalons-v3/retouches/02-rocade-r2.png",
+      "price": 900,
+      "base": "#565435",
+      "crop": [
+        162,
+        655,
+        558,
+        984
+      ],
+      "tone": {
+        "shadow": 46,
+        "middle": 76,
+        "highlight": 104,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "granit",
+      "name": "Granit",
+      "source": "docs/capsule-pantalons-v3/retouches/03-granit-r2.png",
+      "price": 850,
+      "base": "#454241",
+      "crop": [
+        213,
+        667,
+        447,
+        1014
+      ],
+      "tone": {
+        "shadow": 33,
+        "middle": 53,
+        "highlight": 88,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "ruban",
+      "name": "Ruban",
+      "source": "docs/capsule-pantalons-v2/sources/04-ruban.png",
+      "price": 850,
+      "base": "#571e30",
+      "crop": [
+        204,
+        689,
+        474,
+        1019
+      ],
+      "tone": {
+        "shadow": 24,
+        "middle": 33,
+        "highlight": 56,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "velin",
+      "name": "Vélin",
+      "source": "docs/capsule-pantalons-v3/retouches/05-velin.png",
+      "price": 900,
+      "base": "#66381d",
+      "crop": [
+        202,
+        643,
+        464,
+        1044
+      ],
+      "tone": {
+        "shadow": 26,
+        "middle": 39,
+        "highlight": 73,
+        "depth": 0.36,
+        "sheen": 0.25
+      }
+    },
+    {
+      "id": "ligne",
+      "name": "Ligne",
+      "source": "docs/capsule-pantalons-v2/sources/06-ligne.png",
+      "price": 850,
+      "base": "#1a2439",
+      "crop": [
+        254,
+        664,
+        375,
+        1038
+      ],
+      "tone": {
+        "shadow": 20,
+        "middle": 30,
+        "highlight": 46,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "indigo",
+      "name": "Indigo",
+      "source": "docs/capsule-pantalons-v2/sources/07-indigo.png",
+      "price": 800,
+      "base": "#242837",
+      "crop": [
+        258,
+        623,
+        367,
+        1063
+      ],
+      "tone": {
+        "shadow": 21,
+        "middle": 32,
+        "highlight": 59,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "calcaire",
+      "name": "Calcaire",
+      "source": "docs/capsule-pantalons-v2/sources/08-calcaire.png",
+      "price": 800,
+      "base": "#dfc8a1",
+      "crop": [
+        258,
+        671,
+        370,
+        977
+      ],
+      "tone": {
+        "shadow": 170,
+        "middle": 206,
+        "highlight": 229,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "sillon",
+      "name": "Sillon",
+      "source": "docs/capsule-pantalons-v2/sources/09-sillon.png",
+      "price": 900,
+      "base": "#969394",
+      "crop": [
+        246,
+        630,
+        390,
+        1071
+      ],
+      "tone": {
+        "shadow": 102,
+        "middle": 137,
+        "highlight": 169,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "fuseau",
+      "name": "Fuseau",
+      "source": "docs/capsule-pantalons-v2/sources/10-fuseau.png",
+      "price": 800,
+      "base": "#252326",
+      "crop": [
+        257,
+        629,
+        370,
+        895
+      ],
+      "tone": {
+        "shadow": 16,
+        "middle": 25,
+        "highlight": 37,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

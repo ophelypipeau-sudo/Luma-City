@@ -1,0 +1,30 @@
+{
+  "mode": "ImageGen intégré · édition du visuel d’essayage frontal",
+  "approved": [
+    "01-dalle",
+    "04-ruban",
+    "06-ligne",
+    "07-indigo",
+    "08-calcaire",
+    "09-sillon",
+    "10-fuseau"
+  ],
+  "pending": [
+    {
+      "image": "retouches/02-rocade-r2.png",
+      "reference": "../capsule-pantalons-v2/sources/02-rocade.png",
+      "prompt": "Precise localized raster edit on the existing 887 x 1774 Iris illustration. Edit ONLY the two ankle cuff areas in the bottom 13 percent. The current elastic cuffs sit too low and bunch over the tops of the pumps; lift both slim gathered elastic cuffs up onto the actual ankles, leaving a visible slim band of bare warm skin about 35-45 pixels high between the cuff bottom and the opening of each original dark brown pump. Keep both entire shoes in exactly the same place, preserve their style, and paint in the small missing area of ankle skin naturally as it tapers into the shoes. The trousers stay generously loose down to the lower calves; transition their last few folds into each raised cuff. Keep cuff color olive matching the original matte nylon, no added trims. Both ankles must be fully separated from shoe uppers by skin. Do not change any pixels elsewhere. The face, arms, caraco, pose, stance, waist, pockets and all original trouser shape above the lowest calf remain identical. Same neutral background, same canvas and framing."
+    },
+    {
+      "image": "retouches/03-granit-r2.png",
+      "reference": "../capsule-pantalons-v2/sources/03-granit.png",
+      "prompt": "Precise extremely local raster edit of the existing 887 x 1774 front Iris fitting illustration. REMOVE only the small protruding horizontal gray hammer loop or tab on the OUTSIDE of the upper thigh on the viewer's RIGHT, beside the model's hanging hand. The protrusion sticks out from the outer seam slightly below the diagonal front pocket, on the viewer-right edge of the image (around x=630, y=910). Repair the resulting tiny region with continuous smooth silhouette of the original faded charcoal denim seam and plain original gray background. No dangling loop, tab, bulge, pocket or exposed accessory there. Do not change anything else whatsoever. Keep the hand and its gap to the pants, exact pants silhouette except the tiny removed loop, charcoal denim grain, double knee panels, waistband, seams and shoes, caraco and mannequin precisely as shown. Same complete framing."
+    },
+    {
+      "image": "retouches/05-velin.png",
+      "reference": "../capsule-pantalons-v2/sources/05-sablon.png",
+      "prompt": "Create a completely new original trouser design by replacing ONLY the trousers of the supplied 887 x 1774 Iris front view. Keep the same head, skin, exact pose, neutral short camisole, hands, original shoes, background and full framing. Remove the original sand balloon pleated trousers entirely. NEW DESIGN Vélin: deep rich chocolate brown wide straight-leg baggy in refined fine wale corduroy. Flat medium-low rise contoured waistband with brushed old-gold shank button and clean slanted front pockets, subtle dense vertical corduroy ribs, long parallel legs with modern generous width from hip to hem, little taper, one broad structured turned-up hem on each leg, natural long folds that reveal the matte corduroy grain. No pleats at the waist, no balloon shape, no ankle gathering, no belt, no external hardware or dangling details. Show separate brown pumps below the flat hems. Premium nuanced illustration in the style of the original, not vector and not photoreal. Same canvas and proportions."
+    }
+  ],
+  "replaced": "05-sablon"
+}

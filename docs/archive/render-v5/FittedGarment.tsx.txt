@@ -1,0 +1,970 @@
+import { useId } from "react";
+import type { ClothingCategory } from "./catalog";
+
+type Material = {
+  light: string;
+  main: string;
+  shade: string;
+  edge: string;
+  stitch: string;
+};
+const materials: Record<string, Material> = {
+  ivory: {
+    light: "#fff7e7",
+    main: "#e3d4ba",
+    shade: "#ad967b",
+    edge: "#806752",
+    stitch: "#fff6df",
+  },
+  lilac: {
+    light: "#ead5ef",
+    main: "#b794c6",
+    shade: "#785b91",
+    edge: "#5d466d",
+    stitch: "#eddcf2",
+  },
+  rose: {
+    light: "#f1cad0",
+    main: "#c68c9a",
+    shade: "#8f556b",
+    edge: "#714350",
+    stitch: "#ffe1e5",
+  },
+  denim: {
+    light: "#a1b9d2",
+    main: "#5e7fa1",
+    shade: "#344c70",
+    edge: "#293e5a",
+    stitch: "#c6d0d7",
+  },
+  night: {
+    light: "#625965",
+    main: "#37313d",
+    shade: "#211d28",
+    edge: "#17131b",
+    stitch: "#a495a6",
+  },
+  sage: {
+    light: "#c1cdb5",
+    main: "#8b9b80",
+    shade: "#53634d",
+    edge: "#3e4d38",
+    stitch: "#d6dec9",
+  },
+  cocoa: {
+    light: "#b9907d",
+    main: "#805e51",
+    shade: "#4c342e",
+    edge: "#35231f",
+    stitch: "#dbc1aa",
+  },
+};
+const styles: Record<
+  string,
+  Record<Exclude<ClothingCategory, "hair">, string[]>
+> = {
+  iris: {
+    tops: ["ivory", "lilac", "rose"],
+    bottoms: ["denim", "ivory", "night"],
+    shoes: ["ivory", "night", "rose"],
+  },
+  june: {
+    tops: ["rose", "lilac", "ivory"],
+    bottoms: ["ivory", "denim", "night"],
+    shoes: ["cocoa", "ivory", "rose"],
+  },
+  milo: {
+    tops: ["sage", "lilac", "denim"],
+    bottoms: ["night", "ivory", "denim"],
+    shoes: ["ivory", "night", "rose"],
+  },
+  noa: {
+    tops: ["lilac", "sage", "rose"],
+    bottoms: ["night", "ivory", "denim"],
+    shoes: ["ivory", "night", "lilac"],
+  },
+};
+
+const corset =
+  "M195 248Q208 229 232 239L261 251Q276 252 292 239Q313 228 329 247Q334 270 323 295L331 333Q274 341 218 332L207 296Q197 275 195 248Z";
+const skirt =
+  "M216 351Q275 362 338 350L343 379Q352 424 371 471Q273 507 158 470Q182 423 207 379Z";
+const leftBoot =
+  "M171 636Q204 649 241 632C230 681 218 709 202 746L184 796Q180 814 197 828L219 844Q231 855 228 869Q223 880 208 882L163 880Q145 875 139 865L137 843Q141 816 146 786L151 722Q155 675 171 636Z";
+const rightBoot =
+  "M241 636Q272 647 301 635C296 681 289 737 287 783L289 813Q300 830 319 840Q337 849 337 864L334 877Q314 886 282 882L251 879Q232 875 229 863L228 843L235 807L236 773Q231 710 241 636Z";
+const trousers =
+  "M599 380Q668 393 738 381L747 449L741 526L716 652L739 820L766 852L763 866Q724 880 692 867L648 709L624 851L618 868Q574 881 525 867L517 854L540 762L548 682L566 564L579 475Z";
+const jacket =
+  "M611 149L580 161Q554 171 544 195L525 244Q504 286 501 325Q511 355 548 379L583 406Q604 416 621 395L637 378L647 394Q701 412 746 412L753 447L790 439L784 350L774 246Q765 192 737 175L691 152Q650 171 611 149Z";
+const cardigan =
+  "M189 191Q202 184 217 198L240 214Q268 229 296 199L313 203Q332 232 332 275L326 307L334 366Q280 382 224 368L215 330L204 283L193 332L183 399L174 455Q147 467 126 449L143 397L153 327L164 248Q166 211 189 191Z M311 205Q337 213 345 251L356 323L369 397L396 453Q375 468 346 460L329 407L318 341L307 279Z";
+const sneakers =
+  "M538 820Q556 826 580 819L595 837Q615 840 625 855L624 871Q581 885 535 874L521 866L519 852Q523 835 538 820Z M659 820Q678 826 695 819L716 836Q740 838 758 851Q770 858 766 873L719 882L665 873L648 861L648 841Z";
+const bootCuffs =
+  "M176 614Q207 623 241 614L242 644Q201 658 166 644Z M246 613Q274 622 301 613L306 643Q274 657 238 643Z";
+
+/** Actual clothing art drawn in the same coordinate system as the body.
+ * This exact component is used in the catalogue, fitting room and history.
+ * No body pixels, empty mannequin interiors or independently resized textures.
+ */
+export function FittedGarment({
+  characterId,
+  category,
+  variant,
+  painted = true,
+}: {
+  characterId: string;
+  category: Exclude<ClothingCategory, "hair">;
+  variant: number;
+  painted?: boolean;
+}) {
+  const id = useId();
+  const style =
+    (styles[characterId] ?? styles.iris)[category][variant] ?? "ivory";
+  const m = materials[style];
+  const female = characterId === "iris" || characterId === "june";
+  const offset = characterId === "june" ? 851 : characterId === "noa" ? 885 : 0;
+  const shape =
+    category === "tops"
+      ? female
+        ? characterId === "iris"
+          ? corset
+          : cardigan
+        : jacket
+      : category === "bottoms"
+        ? female
+          ? skirt
+          : trousers
+        : female
+          ? `${leftBoot} ${rightBoot} ${bootCuffs}`
+          : sneakers;
+  const fill = `url(#${id}-cloth)`,
+    shade = `url(#${id}-shade)`,
+    shine = `url(#${id}-shine)`;
+  const common = {
+    stroke: m.edge,
+    strokeWidth: 1.3,
+    strokeLinejoin: "round" as const,
+  };
+  return (
+    <g
+      data-category={category}
+      data-variant={variant}
+      data-art="fitted-vector-v5"
+      style={{ isolation: "isolate" }}
+      transform={`translate(${offset} 0)`}
+    >
+      <defs>
+        <linearGradient id={`${id}-cloth`} x1="0" x2="1" y1="0" y2=".25">
+          <stop stopColor={m.shade} />
+          <stop offset=".24" stopColor={m.main} />
+          <stop offset=".52" stopColor={m.light} />
+          <stop offset=".76" stopColor={m.main} />
+          <stop offset="1" stopColor={m.shade} />
+        </linearGradient>
+        <linearGradient id={`${id}-shade`} x1="0" x2="1">
+          <stop stopColor={m.edge} />
+          <stop offset="1" stopColor={m.main} />
+        </linearGradient>
+        <linearGradient id={`${id}-shine`} x1="0" x2="1">
+          <stop stopColor={m.light} stopOpacity=".06" />
+          <stop offset=".5" stopColor={m.light} stopOpacity=".7" />
+          <stop offset="1" stopColor={m.light} stopOpacity=".08" />
+        </linearGradient>
+        <linearGradient id={`${id}-metal`} x2=".8" y2="1">
+          <stop stopColor="#fff7d5" />
+          <stop offset=".5" stopColor="#a89271" />
+          <stop offset=".8" stopColor="#e8d6ad" />
+          <stop offset="1" stopColor="#78634d" />
+        </linearGradient>
+        <pattern
+          id={`${id}-weave`}
+          width="5"
+          height="5"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M0 0L5 5M-2 3L2 7M3-2L7 2"
+            stroke={m.light}
+            strokeWidth=".5"
+            opacity=".16"
+          />
+        </pattern>
+        <clipPath id={`${id}-shape`}>
+          <path d={shape} />
+        </clipPath>
+        <clipPath id={`${id}-paint-shape`}>
+          <path
+            d={shape}
+            transform={
+              characterId === "june" && category === "bottoms"
+                ? "translate(0 76) scale(1 .84)"
+                : undefined
+            }
+          />
+        </clipPath>
+        <filter id={`${id}-material`} colorInterpolationFilters="sRGB">
+          <feColorMatrix type="saturate" values="0" />
+          <feComponentTransfer>
+            <feFuncR type="linear" slope=".8" intercept=".2" />
+            <feFuncG type="linear" slope=".8" intercept=".2" />
+            <feFuncB type="linear" slope=".8" intercept=".2" />
+          </feComponentTransfer>
+        </filter>
+        <linearGradient
+          id={`${id}-paint-fade`}
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          x2="0"
+          y1="410"
+          y2="835"
+        >
+          <stop stopColor="black" />
+          <stop offset=".1" stopColor="white" />
+          <stop offset=".9" stopColor="white" />
+          <stop offset="1" stopColor="black" />
+        </linearGradient>
+        <mask
+          id={`${id}-paint-region`}
+          maskUnits="userSpaceOnUse"
+          x="-900"
+          y="0"
+          width="2600"
+          height="887"
+        >
+          <rect x="-900" width="2600" height="887" fill="white" />
+          {category === "bottoms" && !female && (
+            <>
+              <rect x="0" width="1774" height="887" fill="black" />
+              <rect
+                x="0"
+                y="410"
+                width="1774"
+                height="425"
+                fill={`url(#${id}-paint-fade)`}
+              />
+            </>
+          )}
+          {category === "bottoms" && characterId === "june" && (
+            <path d={cardigan} fill="black" />
+          )}
+        </mask>
+      </defs>
+      {painted && (
+        <PaintedBase
+          characterId={characterId}
+          category={category}
+          material={m}
+          fill={fill}
+          shade={shade}
+          metal={`url(#${id}-metal)`}
+        />
+      )}
+      {!painted && (
+        <>
+          {category === "tops" && characterId === "iris" && (
+            <>
+              <g fill={fill} {...common}>
+                <path d="M205 190Q224 207 233 242L227 247Q217 214 201 196Z" />
+                <path d="M298 188Q315 201 321 238L315 242Q309 211 294 193Z" />
+                <path d={corset} />
+              </g>
+              <g clipPath={`url(#${id}-shape)`} fill="none">
+                <path
+                  d="M199 255Q225 272 258 260M269 262Q299 271 329 251"
+                  stroke={m.edge}
+                  strokeOpacity=".4"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M210 254Q216 288 230 333M240 263Q244 298 248 338M280 264Q283 297 286 338M312 257Q304 292 308 337"
+                  stroke={m.shade}
+                  strokeWidth="2.5"
+                  opacity=".65"
+                />
+                <path
+                  d="M213 255Q219 288 233 332M243 264L251 338M283 264L289 338M315 256Q308 292 311 335"
+                  stroke={m.light}
+                  strokeWidth="1.5"
+                  opacity=".8"
+                />
+                <path
+                  d="M215 282L257 274L231 294L270 286L239 307L276 298L245 321L295 310M289 275L319 285L293 292L319 304L294 313"
+                  stroke={m.light}
+                  strokeWidth="2.5"
+                  opacity=".45"
+                />
+              </g>
+              <path
+                d="M196 248Q208 229 232 239L261 251Q276 252 292 239Q313 228 329 247"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeDasharray=".8 4"
+              />
+              <path
+                d="M220 331Q274 338 330 332"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="1.8"
+              />
+              <g
+                transform="translate(271 259)"
+                fill={m.stitch}
+                stroke={m.shade}
+                strokeWidth=".7"
+              >
+                <path d="M0 0C-21-18-22 10-1 4C-7 16-3 25 2 29L5 7C23 17 25-8 5 0L1 22" />
+                <ellipse cx="2" cy="2" rx="3.5" ry="4.5" />
+              </g>
+            </>
+          )}
+          {category === "bottoms" && female && (
+            <g
+              transform={
+                characterId === "june"
+                  ? "translate(0 76) scale(1 .84)"
+                  : undefined
+              }
+            >
+              <path d={skirt} fill={fill} {...common} />
+              <g clipPath={`url(#${id}-shape)`}>
+                {[
+                  [207, 378, 158, 470, 193, 483, 230, 382],
+                  [230, 382, 193, 483, 229, 491, 255, 386],
+                  [255, 386, 229, 491, 269, 496, 279, 387],
+                  [279, 387, 269, 496, 307, 492, 303, 386],
+                  [303, 386, 307, 492, 340, 482, 325, 382],
+                  [325, 382, 340, 482, 371, 471, 343, 379],
+                ].map((p, i) => (
+                  <path
+                    key={i}
+                    d={`M${p[0]} ${p[1]}L${p[2]} ${p[3]}L${p[4]} ${p[5]}L${p[6]} ${p[7]}Z`}
+                    fill={i % 2 ? shade : fill}
+                    stroke={m.edge}
+                    strokeWidth="1.3"
+                  />
+                ))}
+                <path
+                  d="M222 383L189 472M249 388L224 482M275 391L270 488M303 389L312 482M329 385L347 473"
+                  fill="none"
+                  stroke={m.light}
+                  strokeWidth="2"
+                  opacity=".65"
+                />
+                {style === "denim" && (
+                  <path d={skirt} fill={`url(#${id}-weave)`} />
+                )}
+              </g>
+              <path
+                d="M216 351Q275 362 338 350L343 379Q278 391 207 379Z"
+                fill={fill}
+                {...common}
+              />
+              <path
+                d="M218 354Q274 365 336 354M210 376Q276 388 340 377"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="1"
+                strokeDasharray={style === "denim" ? "2 2" : undefined}
+              />
+              {[229, 261, 316].map((x, i) => (
+                <path
+                  key={x}
+                  d={`M${x} ${i === 1 ? 359 : 355}l-2 24h5l2-24Z`}
+                  fill={m.main}
+                  stroke={m.edge}
+                  strokeWidth=".8"
+                />
+              ))}
+              <path
+                d="M296 360L292 383M303 383L298 408"
+                fill="none"
+                stroke={m.edge}
+                strokeWidth="1.5"
+              />
+              <circle
+                cx="308"
+                cy="368"
+                r="4"
+                fill={`url(#${id}-metal)`}
+                stroke={m.edge}
+                strokeWidth=".8"
+              />
+              <path
+                d="M162 468Q271 503 369 470"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="1.5"
+                opacity=".7"
+              />
+            </g>
+          )}
+          {category === "shoes" && female && (
+            <>
+              <g fill={fill} {...common}>
+                <path d={leftBoot} />
+                <path d={rightBoot} />
+              </g>
+              <g clipPath={`url(#${id}-shape)`}>
+                <path
+                  d="M184 656Q160 733 159 791Q154 821 181 835L212 853"
+                  fill="none"
+                  stroke={m.light}
+                  strokeWidth="12"
+                  opacity=".23"
+                />
+                <path
+                  d="M255 653Q246 737 253 792Q251 824 283 844L320 857"
+                  fill="none"
+                  stroke={m.light}
+                  strokeWidth="11"
+                  opacity=".3"
+                />
+                <path
+                  d="M155 793Q170 807 185 804M150 811L185 817M237 799L286 803M235 818Q267 834 291 821"
+                  fill="none"
+                  stroke={m.shade}
+                  strokeWidth="2"
+                  opacity=".65"
+                />
+              </g>
+              <path
+                d="M138 849Q162 872 226 861L228 872Q196 890 163 882L140 871Z M229 851Q257 875 336 864L334 878Q291 890 251 880L230 868Z"
+                fill={m.shade}
+                {...common}
+              />
+              <path
+                d="M141 857Q176 882 227 868M233 860Q276 885 334 871"
+                fill="none"
+                stroke={m.light}
+                strokeWidth="2"
+                opacity=".65"
+              />
+              <path
+                d="M140 850L153 858L154 879L143 874Z M230 852L246 861L246 881L233 875Z"
+                fill={shade}
+                stroke={m.edge}
+              />
+              {characterId === "iris" ? (
+                <>
+                  <g fill={fill} {...common}>
+                    <path d="M176 614Q207 623 241 614L242 644Q201 658 166 644Z" />
+                    <path d="M246 613Q274 622 301 613L306 643Q274 657 238 643Z" />
+                  </g>
+                  {Array.from({ length: 15 }, (_, i) => (
+                    <g
+                      key={i}
+                      fill="none"
+                      stroke={i % 2 ? m.light : m.shade}
+                      strokeWidth="1.1"
+                      opacity=".65"
+                    >
+                      <path
+                        d={`M${174 + i * 4.4} ${620 + (i % 3)}q${-4 + (i % 4)} 8 -5 17l3 5`}
+                      />
+                      <path
+                        d={`M${244 + i * 3.9} ${620 + (i % 3)}q${-3 + (i % 4)} 8 -3 17l3 5`}
+                      />
+                    </g>
+                  ))}
+                  <path
+                    d="M175 617Q207 628 240 617M245 617Q274 628 300 617"
+                    fill="none"
+                    stroke={m.shade}
+                    strokeWidth="2"
+                    opacity=".55"
+                  />
+                  <BootLaces
+                    centers={[
+                      [202, 665],
+                      [193, 690],
+                      [181, 717],
+                      [172, 744],
+                      [166, 770],
+                      [166, 795],
+                      [179, 821],
+                      [202, 843],
+                    ]}
+                    color={m.stitch}
+                    edge={m.edge}
+                  />
+                  <BootLaces
+                    centers={[
+                      [271, 665],
+                      [267, 690],
+                      [264, 717],
+                      [261, 744],
+                      [260, 770],
+                      [263, 795],
+                      [281, 823],
+                      [307, 845],
+                    ]}
+                    color={m.stitch}
+                    edge={m.edge}
+                  />
+                </>
+              ) : (
+                <>
+                  <path
+                    d="M176 615Q207 624 241 615L239 640Q203 651 168 640Z M246 615Q274 624 301 615L302 640Q273 650 240 640Z"
+                    fill={fill}
+                    {...common}
+                  />
+                  <path
+                    d="M176 621Q203 631 238 622M246 621Q273 631 300 622M179 650Q156 719 156 790M245 650Q240 720 247 791"
+                    fill="none"
+                    stroke={m.stitch}
+                    strokeWidth="1.1"
+                    opacity=".7"
+                  />
+                  <g
+                    fill={`url(#${id}-metal)`}
+                    stroke={m.edge}
+                    strokeWidth="1.3"
+                  >
+                    <rect x="181" y="632" width="18" height="15" rx="2" />
+                    <rect x="253" y="632" width="18" height="15" rx="2" />
+                  </g>
+                  <path
+                    d="M184 636h12v7h-12Z M256 636h12v7h-12Z"
+                    fill={m.shade}
+                  />
+                </>
+              )}
+            </>
+          )}
+          {category === "tops" && characterId === "june" && (
+            <>
+              <path d={cardigan} fill={fill} {...common} />
+              <g clipPath={`url(#${id}-shape)`}>
+                <path d={cardigan} fill={`url(#${id}-weave)`} />
+                <path
+                  d="M180 211L152 442M196 229L169 443M321 221L373 448"
+                  fill="none"
+                  stroke={m.light}
+                  strokeWidth="6"
+                  opacity=".2"
+                />
+              </g>
+              <path
+                d="M217 198Q268 244 296 199L306 213Q282 247 270 247Q241 238 213 210Z"
+                fill={m.light}
+                {...common}
+              />
+              <path
+                d="M296 225Q304 286 314 368"
+                fill="none"
+                stroke={m.shade}
+                strokeWidth="7"
+              />
+              <path
+                d="M298 225Q306 286 316 368"
+                fill="none"
+                stroke={m.light}
+                strokeWidth="1.5"
+              />
+              {[252, 277, 302, 327, 352].map((y, i) => (
+                <g key={y}>
+                  <circle
+                    cx={301 + i * 3}
+                    cy={y}
+                    r="3.6"
+                    fill={`url(#${id}-metal)`}
+                    stroke={m.edge}
+                    strokeWidth=".8"
+                  />
+                  <circle cx={301 + i * 3} cy={y} r=".7" fill={m.edge} />
+                </g>
+              ))}
+              <path
+                d="M129 443Q150 459 175 449L174 459Q147 472 125 454Z M345 451Q375 463 393 448L398 456Q375 474 346 463Z"
+                fill={shade}
+                {...common}
+              />
+              <path
+                d="M225 363Q282 377 332 362"
+                fill="none"
+                stroke={m.light}
+                strokeWidth="3"
+                opacity=".6"
+              />
+              <path
+                d="M218 274Q228 309 225 343M324 278L324 337M155 372L178 379M350 383L365 381"
+                fill="none"
+                stroke={m.shade}
+                strokeWidth="1.5"
+              />
+            </>
+          )}
+          {category === "bottoms" && !female && (
+            <>
+              <path d={trousers} fill={fill} {...common} />
+              <g clipPath={`url(#${id}-shape)`}>
+                <path
+                  d="M674 426Q670 540 648 709L625 858L601 865Q614 728 623 661L643 501Z M691 542Q684 637 705 787L729 864L697 870L648 708Z"
+                  fill={m.shade}
+                  opacity=".65"
+                />
+                <path
+                  d="M600 469Q565 599 559 728L541 841M722 473Q691 596 711 787L735 848"
+                  fill="none"
+                  stroke={m.light}
+                  strokeWidth="6"
+                  opacity=".25"
+                />
+                {style === "denim" && (
+                  <path d={trousers} fill={`url(#${id}-weave)`} />
+                )}
+              </g>
+              <path
+                d="M600 380Q670 395 738 381L741 398Q668 410 595 397Z"
+                fill={shade}
+                {...common}
+              />
+              <path
+                d="M675 403L671 453L656 469M598 404Q590 441 575 455M729 405Q731 441 741 454M542 762L582 779M689 778L727 766"
+                fill="none"
+                stroke={m.stitch}
+                strokeOpacity=".65"
+                strokeWidth="1.3"
+              />
+              <path
+                d="M522 851Q572 870 622 854M693 854Q729 870 763 853"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="2"
+                opacity=".65"
+              />
+              <circle cx="691" cy="394" r="3.6" fill={`url(#${id}-metal)`} />
+            </>
+          )}
+          {category === "tops" && !female && (
+            <>
+              <path
+                d="M611 157Q648 180 689 159L715 178L748 388Q695 411 616 390L594 308L590 201Z"
+                fill="#eee9df"
+                stroke="#a69b8e"
+                strokeWidth="1.2"
+              />
+              <path d={jacket} fill={fill} {...common} />
+              <path
+                d="M636 177Q655 191 681 171L686 205L679 399Q655 402 636 393L626 215Z"
+                fill="#e9e6dd"
+                stroke="#a99b8b"
+                strokeWidth="1.2"
+              />
+              <path
+                d="M644 182Q661 192 677 180"
+                fill="none"
+                stroke="#b8ad9b"
+                strokeWidth="4"
+              />
+              {characterId === "milo" ? (
+                <>
+                  <path
+                    d="M610 153L638 178L649 196L629 220L605 184L595 162Z M681 168L701 153L724 176L704 208L687 187Z"
+                    fill={fill}
+                    {...common}
+                  />
+                  <path
+                    d="M637 211L641 389M691 209L685 396M548 205Q568 225 566 265M748 219Q733 248 746 303M526 314L569 328M757 336L780 348"
+                    fill="none"
+                    stroke={m.edge}
+                    strokeWidth="1.8"
+                    opacity=".6"
+                  />
+                  <path
+                    d="M562 231L621 233L619 268L562 267Z M700 235L741 241L742 272L699 267Z"
+                    fill={fill}
+                    {...common}
+                  />
+                  <path
+                    d="M562 231L593 246L621 233M700 235L720 252L741 241"
+                    fill="none"
+                    stroke={m.shade}
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="593"
+                    cy="244"
+                    r="2.5"
+                    fill={`url(#${id}-metal)`}
+                  />
+                  <circle
+                    cx="720"
+                    cy="250"
+                    r="2.5"
+                    fill={`url(#${id}-metal)`}
+                  />
+                </>
+              ) : (
+                <>
+                  <path
+                    d="M579 166Q548 182 537 218L520 264Q503 299 502 326Q511 356 548 380L583 407L609 386L559 339Q551 328 560 309L589 235L608 185Z M722 171Q757 185 768 222L783 338L791 434L757 441L745 342L725 244L707 197Z"
+                    fill="#e8dfce"
+                    {...common}
+                  />
+                  <path
+                    d="M610 152Q644 183 683 159L698 169Q654 201 604 170Z"
+                    fill={m.shade}
+                    {...common}
+                  />
+                  <path
+                    d="M609 158Q653 189 692 165M609 165Q652 195 695 171"
+                    fill="none"
+                    stroke="#e8dfce"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M629 207L635 390M690 208L682 397"
+                    fill="none"
+                    stroke={m.shade}
+                    strokeWidth="5"
+                  />
+                  <path
+                    d="M578 316L601 331M711 321L735 309"
+                    stroke="#ede3cf"
+                    strokeWidth="8"
+                  />
+                  <path
+                    d="M580 314L603 329M711 319L735 307"
+                    stroke={m.edge}
+                    strokeWidth="1.5"
+                  />
+                </>
+              )}
+              <path
+                d="M578 367L604 349L632 375L609 407L581 392Z M751 417L786 410L793 439L758 448Z"
+                fill={shade}
+                {...common}
+              />
+              <path
+                d="M583 374L612 397M758 425L788 420M759 434L790 429"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth={characterId === "noa" ? 3 : 1.2}
+              />
+              <path
+                d="M640 384Q668 397 692 388M699 398L746 401"
+                fill="none"
+                stroke={m.light}
+                strokeWidth="2"
+                opacity=".7"
+              />
+              {[226, 265, 304, 343, 380].map((y, i) => (
+                <circle
+                  key={y}
+                  cx={690 - i * 1.4}
+                  cy={y}
+                  r="2.4"
+                  fill={`url(#${id}-metal)`}
+                  stroke={m.edge}
+                  strokeWidth=".8"
+                />
+              ))}
+            </>
+          )}
+          {category === "shoes" && !female && (
+            <>
+              <g fill={fill} {...common}>
+                <path d="M538 820Q556 826 580 819L595 837Q615 840 625 855L624 871Q581 885 535 874L521 866L519 852Q523 835 538 820Z" />
+                <path d="M659 820Q678 826 695 819L716 836Q740 838 758 851Q770 858 766 873L719 882L665 873L648 861L648 841Z" />
+              </g>
+              <path
+                d="M520 852Q554 873 625 856L624 871Q579 885 535 874L521 866Z M648 851Q689 874 767 859L766 873L720 882L665 873L648 862Z"
+                fill={style === "night" ? "#817b83" : "#f0e9db"}
+                {...common}
+              />
+              <path
+                d="M524 860Q570 879 622 863M652 859Q705 880 764 866"
+                fill="none"
+                stroke={m.shade}
+                strokeWidth="1.5"
+              />
+              <path
+                d="M535 824L537 849L557 857M659 825L661 849L681 858M583 838Q595 836 610 848M698 837Q723 835 744 849"
+                fill="none"
+                stroke={m.light}
+                strokeWidth="3"
+              />
+              <path
+                d="M546 835L579 842M542 842L584 849M669 835L705 843M666 843L712 850"
+                fill="none"
+                stroke={m.stitch}
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+            </>
+          )}
+        </>
+      )}
+      {painted && (
+        <g
+          clipPath={`url(#${id}-paint-shape)`}
+          mask={`url(#${id}-paint-region)`}
+          style={{ mixBlendMode: "multiply" }}
+        >
+          <image
+            data-layer="fabric-detail"
+            href="/assets/garment-materials-v5.png"
+            x={-offset}
+            width="1774"
+            height="887"
+            filter={`url(#${id}-material)`}
+            opacity=".88"
+          />
+        </g>
+      )}
+    </g>
+  );
+}
+
+function PaintedBase({
+  characterId,
+  category,
+  material: m,
+  fill,
+  shade,
+  metal,
+}: {
+  characterId: string;
+  category: Exclude<ClothingCategory, "hair">;
+  material: Material;
+  fill: string;
+  shade: string;
+  metal: string;
+}) {
+  const female = characterId === "iris" || characterId === "june";
+  const outline = {
+    stroke: m.edge,
+    strokeWidth: 0.85,
+    strokeLinejoin: "round" as const,
+  };
+  if (category === "tops" && characterId === "iris")
+    return (
+      <g fill={fill} {...outline}>
+        <path d="M205 190Q224 207 233 242L227 247Q217 214 201 196Z M298 188Q315 201 321 238L315 242Q309 211 294 193Z" />
+        <path d={corset} />
+      </g>
+    );
+  if (category === "tops" && characterId === "june")
+    return <path d={cardigan} fill={fill} {...outline} />;
+  if (category === "bottoms")
+    return (
+      <g
+        transform={
+          characterId === "june" ? "translate(0 76) scale(1 .84)" : undefined
+        }
+      >
+        <path d={female ? skirt : trousers} fill={fill} {...outline} />
+        {female ? (
+          <>
+            <path
+              d="M216 351Q275 362 338 350L343 379Q278 391 207 379Z"
+              fill={fill}
+              {...outline}
+            />
+            <circle cx="308" cy="368" r="3.7" fill={metal} />
+          </>
+        ) : (
+          <path
+            d="M600 380Q670 395 738 381L741 398Q668 410 595 397Z"
+            fill={shade}
+            {...outline}
+          />
+        )}
+      </g>
+    );
+  if (category === "shoes" && female)
+    return (
+      <>
+        <g fill={fill} {...outline}>
+          <path d={leftBoot} />
+          <path d={rightBoot} />
+          <path d={bootCuffs} />
+        </g>
+        <path
+          d="M138 849Q162 872 226 861L228 872Q196 890 163 882L140 871Z M229 851Q257 875 336 864L334 878Q291 890 251 880L230 868Z"
+          fill={m.shade}
+          {...outline}
+        />
+        <path
+          d="M175 617Q207 628 240 617M245 617Q274 628 300 617"
+          fill="none"
+          stroke={m.shade}
+          strokeWidth="1.2"
+          opacity=".5"
+        />
+      </>
+    );
+  if (category === "shoes")
+    return (
+      <>
+        <path d={sneakers} fill={fill} {...outline} />
+        <path
+          d="M520 852Q554 873 625 856L624 871Q579 885 535 874L521 866Z M648 851Q689 874 767 859L766 873L720 882L665 873L648 862Z"
+          fill="#ddd7cc"
+          {...outline}
+        />
+      </>
+    );
+  return (
+    <>
+      <path d={jacket} fill={fill} {...outline} />
+      <path
+        d="M636 177Q655 191 681 171L686 205L679 399Q655 402 636 393L626 215Z"
+        fill="#eee9df"
+        {...outline}
+      />
+      {characterId === "noa" && (
+        <path
+          d="M579 166Q548 182 537 218L520 264Q503 299 502 326Q511 356 548 380L583 407L609 386L559 339Q551 328 560 309L589 235L608 185Z M722 171Q757 185 768 222L783 338L791 434L757 441L745 342L725 244L707 197Z"
+          fill="#e5dccb"
+          {...outline}
+        />
+      )}
+    </>
+  );
+}
+
+function BootLaces({
+  centers,
+  color,
+  edge,
+}: {
+  centers: [number, number][];
+  color: string;
+  edge: string;
+}) {
+  return (
+    <g fill="none" strokeLinecap="round">
+      {centers.map(([x, y], i) => {
+        const half = i < 4 ? 12 : i < 6 ? 9 : 10;
+        const next = centers[i + 1];
+        return (
+          <g key={i}>
+            <circle cx={x - half} cy={y} r="2.3" stroke={edge} fill={color} />
+            <circle cx={x + half} cy={y} r="2.3" stroke={edge} fill={color} />
+            {next && (
+              <>
+                <path
+                  d={`M${x - half} ${y}L${next[0] + half} ${next[1]}M${x + half} ${y}L${next[0] - half} ${next[1]}`}
+                  stroke={edge}
+                  strokeWidth="2.5"
+                />
+                <path
+                  d={`M${x - half} ${y}L${next[0] + half} ${next[1]}M${x + half} ${y}L${next[0] - half} ${next[1]}`}
+                  stroke={color}
+                  strokeWidth="1.5"
+                />
+              </>
+            )}
+          </g>
+        );
+      })}
+    </g>
+  );
+}

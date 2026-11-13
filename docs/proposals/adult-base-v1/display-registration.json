@@ -1,0 +1,18 @@
+[
+  {
+    "path": "public/assets/avatar/body/base.png",
+    "w": 887,
+    "h": 1774,
+    "top": 72,
+    "bottom": 1722,
+    "scale": 0.4727272727272727
+  },
+  {
+    "path": "docs/proposals/adult-base-v1/body-proposal.png",
+    "w": 953,
+    "h": 1651,
+    "top": 70,
+    "bottom": 1590,
+    "scale": 0.5131578947368421
+  }
+]

@@ -1,0 +1,77 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import {
+  IRIS_BOOT_FIT,
+  IRIS_TOP_FIT,
+  IRIS_SKIRT_FIT,
+  JUNE_BOOT_FIT,
+  stripTriangles,
+  triangleMatrix,
+  type Point,
+  type Triangle,
+} from "../apps/web/src/shop/paperDollRig";
+
+function transform(matrix: string, [x, y]: Point): Point {
+  const [a, b, c, d, e, f] = matrix.slice(7, -1).split(" ").map(Number);
+  return [a * x + c * y + e, b * x + d * y + f];
+}
+function close(actual: Point, expected: Point) {
+  assert.ok(
+    Math.hypot(actual[0] - expected[0], actual[1] - expected[1]) < 1e-8,
+    `${actual} differs from ${expected}`,
+  );
+}
+
+test("garment mesh preserves every measured body landmark", () => {
+  for (const fit of [
+    ...IRIS_BOOT_FIT,
+    IRIS_TOP_FIT,
+    IRIS_SKIRT_FIT,
+    ...JUNE_BOOT_FIT,
+  ]) {
+    for (const { source, target } of stripTriangles(fit)) {
+      const matrix = triangleMatrix(source, target);
+      source.forEach((point, i) => close(transform(matrix, point), target[i]));
+    }
+  }
+});
+
+test("shared triangle edges stay continuous through the bend of a boot", () => {
+  for (const fit of [...IRIS_BOOT_FIT, ...JUNE_BOOT_FIT]) {
+    const triangles = stripTriangles(fit);
+    for (let i = 0; i < triangles.length; i += 2) {
+      const first = triangles[i],
+        second = triangles[i + 1];
+      const midpoint: Point = [
+        (first.source[0][0] + first.source[2][0]) / 2,
+        (first.source[0][1] + first.source[2][1]) / 2,
+      ];
+      close(
+        transform(triangleMatrix(first.source, first.target), midpoint),
+        transform(triangleMatrix(second.source, second.target), midpoint),
+      );
+    }
+    assert.equal(
+      fit.rows.at(-1)?.targetY,
+      887,
+      "sole must remain on the atlas baseline",
+    );
+  }
+});
+
+test("invalid source geometry is rejected instead of drawing a corrupt sprite", () => {
+  const collapsed: Triangle = [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+  ];
+  assert.throws(
+    () =>
+      triangleMatrix(collapsed, [
+        [0, 0],
+        [1, 0],
+        [0, 1],
+      ]),
+    /Degenerate/,
+  );
+});

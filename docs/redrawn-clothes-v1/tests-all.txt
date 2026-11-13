@@ -1,0 +1,243 @@
+
+> test
+> tsx --test tests/*.test.ts
+
+✔ iris: all current colours, wigs, accessory combinations and empty slots survive the legacy bridge (12.9327ms)
+✔ iris: changing between all six body types preserves identity, exact pieces and saved looks (1.3675ms)
+✔ milo: all current colours, wigs, accessory combinations and empty slots survive the legacy bridge (8.7564ms)
+✔ milo: changing between all six body types preserves identity, exact pieces and saved looks (0.8694ms)
+✔ june: all current colours, wigs, accessory combinations and empty slots survive the legacy bridge (7.7694ms)
+✔ june: changing between all six body types preserves identity, exact pieces and saved looks (0.3542ms)
+✔ noa: all current colours, wigs, accessory combinations and empty slots survive the legacy bridge (7.7922ms)
+✔ noa: changing between all six body types preserves identity, exact pieces and saved looks (0.3207ms)
+✔ a piece has the same identity even when the legacy colour index differs between wearers (0.281ms)
+✔ current catalogue entries and history aliases stay compatible; shared ids never mix categories (0.5195ms)
+✔ missing or future fits report an error without deleting equipment or silently rendering another silhouette (0.6284ms)
+✔ saving and updating a look keeps separate snapshots and applying it never changes the body (0.3711ms)
+✔ all three reusable patterns cover the canonical underwear without covering face or hands (4680.862ms)
+✔ drafts are private, photos cannot be published as clothes, checks block incomplete imports and publications persist immutably (3384.9244ms)
+✔ actual alpha checks detect uncovered bra, head or hands, and source validation rejects disguised files (2725.1863ms)
+✔ explicit material masks recolor only painted regions and preserve alpha and protected prints (1.1592ms)
+✔ photo jobs use the configured provider, preserve sources, handle failures and recover interrupted work (1971.5147ms)
+✔ atelier endpoints require login and the creator account; key status never exposes credentials (2073.7468ms)
+✔ local-only routes reject external processing even with an injected provider (1344.219ms)
+✔ OpenAI image preparation sends the immutable mannequin and pattern as separate references (213.0942ms)
+✔ production poses are static, including a legacy breathing flag, while fitting remains frontal (43.8168ms)
+✔ experimental breathing no longer bends either elbow, shoulder or hand (4.1724ms)
+✔ imported pieces replace the active starter catalogue and tops switch independently of trousers (1.6989ms)
+✔ both imported tops and trousers erase underwear while leaving face, hands and bare toes intact (24556.7951ms)
+✔ jogging front waistband follows the narrow waist instead of keeping hip width (9646.7618ms)
+✔ removing the imported polo restores the torso without removing trouser coverage (9973.9977ms)
+✔ single-base slots are independent, validate ids and reject mismatched pieces (1.5886ms)
+✔ all eight equipment combinations actually cut only their covered body regions (6980.7116ms)
+✔ thumbnail drawings contain only garments, and the approved body is unchanged (21.8965ms)
+✔ one canonical body pattern binds every published article; a canvas alone cannot approve a future import (2.3385ms)
+✔ archived pattern pipeline retains its frontal waist texture and dye regions (10811.8823ms)
+✔ archived pattern cuffs cover wrists while leaving palms and fingers free (1984.4472ms)
+✔ all arm poses share the same UV cage with finite smooth frames and registered wrist endpoints (9.0895ms)
+✔ slit panels remain part of the dress and open-front hems do not become sleeve streaks (485.2245ms)
+✔ rig neutral pose preserves the complete approved coordinate system, on every surface (18.91ms)
+✔ parent and child share their articulation even during combined rotations (0.7408ms)
+✔ head and hands are rigid, belt follows pelvis, transition has no jump and takes the shortest arc (1.3555ms)
+✔ builder removal is persistent and reversible; purchases, variants and source outfit survive (1.5801ms)
+✔ iris: clothes actually erase torso, covered legs and original feet, preserving exposed skin (582.4765ms)
+✔ june: clothes actually erase torso, covered legs and original feet, preserving exposed skin (776.7657ms)
+✔ milo: clothes actually erase torso, covered legs and original feet, preserving exposed skin (691.9631ms)
+✔ noa: clothes actually erase torso, covered legs and original feet, preserving exposed skin (758.1497ms)
+✔ Each slot cuts only its covered body region (1066.6581ms)
+✔ redrawn sweater covers the opaque bra while preserving head and hands (741.6794ms)
+✔ knit shoulders and waist follow the actual mannequin within garment ease (3580.5804ms)
+✔ skirt calibration uses pelvis and thighs, never the adjacent hands (344.0123ms)
+✔ platform soles remain whole below the original toes (301.4204ms)
+✔ buy all debits only new variants, stores both colours and equips the outfit atomically (3.1231ms)
+✔ single purchase equips only that article; insufficient funds do not mutate the account (0.9723ms)
+✔ existing accepted clothes are retained; account balances and dressing owners are separate (0.4541ms)
+✔ the supplied mannequin and hand drawing are preserved byte for byte (4.0133ms)
+✔ the fashion outfit masks underwear and feet, preserves user hands and puts jeans over boot shafts (4694.9994ms)
+<clipPath /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<clipPath /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<clipPath /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+✔ heart pose removes the resting hands while preserving the original face, torso and legs (2174.2812ms)
+✔ fur belongs to the trousers and stays independent of footwear (897.5696ms)
+✔ underwear variants preserve anatomy, all alpha, face, hands and original body file (1574.0846ms)
+✔ leopard pieces equip independently and actual shoe coverage hides original toes (1553.8024ms)
+✔ local background fill preserves enclosed matching details and original RGB (1.9761ms)
+✔ transparent PNG borders cannot eat a dark garment (0.2582ms)
+✔ tolerance and connectivity control the background without adding patterns (0.2318ms)
+✔ all shop materials recolor while protected seams, prints and every alpha byte stay unchanged (35645.2573ms)
+✔ cargo fur roots and tips are recolorable, independently of the pants and metal seams (729.2392ms)
+✔ SVG fallback also recolors material while retaining silhouette and protected detail (630.6902ms)
+✔ one pilot outfit and saved looks keep exact piece ids through all body changes, including partially undressed states (3.048ms)
+✔ X: fitted masks erase underwear and original feet without erasing visible hands, face or knees (986.9534ms)
+✔ A: fitted masks erase underwear and original feet without erasing visible hands, face or knees (887.3973ms)
+✔ O: fitted masks erase underwear and original feet without erasing visible hands, face or knees (960.482ms)
+✔ H: fitted masks erase underwear and original feet without erasing visible hands, face or knees (921.0997ms)
+✔ V: fitted masks erase underwear and original feet without erasing visible hands, face or knees (743.1722ms)
+✔ 8: fitted masks erase underwear and original feet without erasing visible hands, face or knees (606.3019ms)
+✔ foreground forearms stay in front of the skirt on rounded bodies without restoring underwear (3529.2008ms)
+✔ the six proposed bodies reuse exactly the same rendered face, hands and feet (7.8818ms)
+✔ X: opaque underwear and visible skin are actual rendered pixels (0.3041ms)
+✔ A: opaque underwear and visible skin are actual rendered pixels (0.1615ms)
+✔ O: opaque underwear and visible skin are actual rendered pixels (0.1968ms)
+✔ H: opaque underwear and visible skin are actual rendered pixels (0.2955ms)
+✔ V: opaque underwear and visible skin are actual rendered pixels (0.2138ms)
+✔ 8: opaque underwear and visible skin are actual rendered pixels (0.1248ms)
+✔ every morphology has its own contours and body anchors, without moving the extremities (1.4327ms)
+✔ all shop pieces have complete pose calibration; equipped identities and colors survive rendering (1102.5844ms)
+✔ future imports require complete pose profiles before any publication mutation (4.9024ms)
+✔ unreviewed historical imports keep their IDs and frontal view without pretending to support other poses (1.4767ms)
+▶ P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnexion
+  ✔ personnages et accès privés isolés (9.5706ms)
+  ✔ message hors ligne, retry idempotent et reçu de lecture autorisé (50.9015ms)
+  ✔ déplacements réellement diffusés, coordonnées refusées (141.7592ms)
+  ✔ blocage bilatéral sans suppression, signalement persistant et privé (45.627ms)
+  ✔ activation concurrente : une génération et un personnage actifs (41.4125ms)
+✔ P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnexion (3336.2749ms)
+✔ admission concurrente : la seizième connexion est refusée (1926.1593ms)
+✔ les messages survivent à la fermeture et à la réouverture de PostgreSQL embarqué (3310.3111ms)
+✔ only an explicitly posed full-body rail portrait uses the hip pose; fitting stays frontal (53.1647ms)
+✔ the hand rests on the hip at preview coordinates and the pose mask preserves the rest of the mannequin (781.9508ms)
+✔ every shop top and the underwear base keep the hip pose, belt and original hand; fitting remains frontal (149.3237ms)
+✔ the posed sleeveless avatar actually erases the old arm and keeps its approved palm on the hip (2692.4585ms)
+✔ all 27 replacement clothes use native independent layers on the immutable body, without any deformation mapping (11419.0993ms)
+✔ black skirts contain no pink or burgundy sleeve fragments; hand and face regions are absent from thumbnails (2383.1692ms)
+✔ rose outfit pieces replace individual slots while preserving the other garments (1.1672ms)
+✔ rose clothes hide opaque underwear and feet while preserving bare arms and user hands (2593.1159ms)
+✔ palette colors keep garment identity, survive slot changes and are included in the cart (1.1223ms)
+✔ sneaker tongues cover the instep without rectangular leg overlays; pink cloth retains black trim (4767.3121ms)
+✔ all six articles recolor without changing silhouettes, transparency or dark printed details (7364.5324ms)
+✔ two color zones remain independent through equipment changes and the cart (1.2749ms)
+✔ recoloring the second zone changes the straps while leaving the main fabric and body alone (3662.3479ms)
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFlood /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncA /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feColorMatrix /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComponentTransfer /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncR /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncG /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feFuncB /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feImage /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+<feComposite /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+✔ belt has an independent accessory slot, cart entry and foreground pass (15.6603ms)
+✔ belt extraction preserves all original lower trouser pixels and leaves no belt on pants (1791.352ms)
+✔ every shop bottom keeps the same belt and colour with a calibrated waistband attachment (950.1092ms)
+✔ pose preferences remain independent per character and ignore damaged or obsolete values (1.891ms)
+✔ heart rest mask removes both old shoulder caps completely, including their upper edges (618.228ms)
+✔ jewellery, glasses and bag combine; removing glasses preserves the outfit and other accessories (1.1224ms)
+✔ retrying an accessory is idempotent; toggling the last one off restores the empty slot (0.2678ms)
+✔ four outfits provide thirty independently equipable pieces and keep the canonical body immutable (3.8317ms)
+✔ hair, headwear, jewelry, bag, hosiery and outerwear survive colours, purchases and local reload independently (3.0627ms)
+✔ every wig has complementary visible passes and no empty or shared-buffer alpha split (2701.9598ms)
+✔ every new article really changes material colour, preserves alpha, and leaves protected belt hardware intact (16717.5886ms)
+✔ hand-held bag closes the free hand, uses a shoulder version for heart hands, and keeps the chosen pose (24.1107ms)
+✔ removing resting arms never clips the wide skirt in a different pose (1527.7157ms)
+✔ accepted outfit preserves all slots and both colour regions, independently from future try-ons (2.4535ms)
+✔ left portrait uses validated belt and garment IDs, and malformed local saves do not crash (17.9804ms)
+ℹ tests 117
+ℹ suites 0
+ℹ pass 117
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44765.0942

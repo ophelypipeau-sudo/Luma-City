@@ -1,0 +1,216 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "sillage",
+      "name": "Sillage",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/01.png",
+      "lowRise": true,
+      "crop": [
+        251,
+        627,
+        385,
+        415
+      ],
+      "tuckedTopRegion": "M0 0L0 631.01L344.93 634.01 Q443.05 663.55 542.22 634.01L887 631.01V0Z",
+      "tone": {
+        "shadow": 25,
+        "middle": 41,
+        "highlight": 66,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "pixel",
+      "name": "Pixel",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/02.png",
+      "lowRise": true,
+      "crop": [
+        250,
+        682,
+        390,
+        196
+      ],
+      "tuckedTopRegion": "M0 0L0 686.4L317.19 689.40 C359.83 723.72 428.47 727.88 490.87 720.60 C526.23 716.44 554.31 706.04 574.07 689.40L887 686.4V0Z",
+      "tone": {
+        "shadow": 31,
+        "middle": 64,
+        "highlight": 99,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "indigo",
+      "name": "Indigo",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/03.png",
+      "lowRise": false,
+      "crop": [
+        249,
+        666,
+        389,
+        276
+      ],
+      "tuckedTopRegion": "M0 0L0 670.14L338.56 673.14 C383.07 702.12 498.99 703.16 548.67 673.14L887 670.14V0Z",
+      "tone": {
+        "shadow": 19,
+        "middle": 44,
+        "highlight": 77,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/04.png",
+      "lowRise": false,
+      "crop": [
+        247,
+        668,
+        395,
+        385
+      ],
+      "tuckedTopRegion": "M0 0L0 672.1800000000001L332.34 675.18 C395.04 698.17 490.14 701.31 551.79 675.18L887 672.1800000000001V0Z",
+      "tone": {
+        "shadow": 54,
+        "middle": 94,
+        "highlight": 122,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "onyx",
+      "name": "Onyx",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/05.png",
+      "lowRise": false,
+      "crop": [
+        248,
+        656,
+        390,
+        262
+      ],
+      "tuckedTopRegion": "M0 0L0 661.04L333.00 664.04 C395.83 697.00 484.41 691.85 555.48 663.01L887 660.01V0Z",
+      "tone": {
+        "shadow": 18,
+        "middle": 42,
+        "highlight": 94,
+        "depth": 0.36,
+        "sheen": 0.34
+      }
+    },
+    {
+      "id": "nacre",
+      "name": "Nacre",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/06.png",
+      "lowRise": false,
+      "crop": [
+        217,
+        657,
+        448,
+        291
+      ],
+      "tuckedTopRegion": "M0 0L0 662.7L332.88 665.70 C384.83 686.90 490.83 691.14 548.07 664.64L887 661.64V0Z",
+      "tone": {
+        "shadow": 134,
+        "middle": 187,
+        "highlight": 248,
+        "depth": 0.36,
+        "sheen": 0.54
+      }
+    },
+    {
+      "id": "rive",
+      "name": "Rive",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/07.png",
+      "lowRise": true,
+      "crop": [
+        235,
+        595,
+        416,
+        437
+      ],
+      "tuckedTopRegion": "M0 0L0 610.855L322.69 613.86 C325.89 605.34 340.80 600.01 351.45 603.21 L353.58 607.47 C358.90 607.47 363.16 610.66 358.90 615.99 C377.01 614.92 389.79 609.60 391.92 622.38 C406.83 622.38 424.93 617.05 431.32 625.57 C433.45 629.83 444.10 630.89 454.75 629.83 C451.56 622.38 479.25 618.12 496.29 622.38 C494.16 611.73 517.59 610.66 534.63 614.92 C530.37 609.60 532.50 606.40 538.89 605.34 C550.60 600.01 562.32 604.27 564.45 613.86L887 610.855V0Z",
+      "tone": {
+        "shadow": 143,
+        "middle": 206,
+        "highlight": 227,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "minuit",
+      "name": "Minuit",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/08.png",
+      "lowRise": false,
+      "crop": [
+        255,
+        655,
+        376,
+        269
+      ],
+      "tuckedTopRegion": "M0 0L0 658.9250000000001L337.50 661.93 C387.72 689.60 491.25 689.60 549.67 661.93L887 658.9250000000001V0Z",
+      "tone": {
+        "shadow": 14,
+        "middle": 24,
+        "highlight": 71,
+        "depth": 0.36,
+        "sheen": 0.28
+      }
+    },
+    {
+      "id": "retro",
+      "name": "Rétro",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/09.png",
+      "lowRise": false,
+      "crop": [
+        249,
+        677,
+        385,
+        296
+      ],
+      "tuckedTopRegion": "M0 0L0 682.25L325.89 685.25 C394.69 709.98 481.76 713.20 555.94 684.17L887 681.175V0Z",
+      "tone": {
+        "shadow": 71,
+        "middle": 128,
+        "highlight": 199,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "prisme",
+      "name": "Prisme",
+      "price": 750,
+      "source": "docs/capsule-shorts-iris-v1/sources/10.png",
+      "lowRise": false,
+      "crop": [
+        246,
+        655,
+        389,
+        342
+      ],
+      "tuckedTopRegion": "M0 0L0 659.1850000000001L337.73 662.19 C392.59 687.51 490.70 693.84 552.95 665.35L887 662.35V0Z",
+      "tone": {
+        "shadow": 33,
+        "middle": 59,
+        "highlight": 82,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

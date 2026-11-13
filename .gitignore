@@ -1,0 +1,9 @@
+node_modules/
+.cache/
+dist/
+.data/
+.env
+.env.local
+.neon/
+*.log
+.neon

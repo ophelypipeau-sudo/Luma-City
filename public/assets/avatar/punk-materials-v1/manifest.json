@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "canvas": [
+    887,
+    1774
+  ],
+  "colorSpace": "premultiplied-srgb",
+  "composition": "RGB = finish + alpha(main) * main + alpha(detail) * detail. Alpha = reference alpha.",
+  "pieces": [
+    {
+      "id": "fashion.textile-punk-polo",
+      "pass": "front",
+      "reference": "punk-polo-front-reference.png",
+      "finish": "punk-polo-front-finish.png",
+      "main": {
+        "color": "#191a20",
+        "mask": "punk-polo-front-main.png"
+      },
+      "detail": {
+        "color": "#d55a9e",
+        "mask": "punk-polo-front-detail.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-skirt",
+      "pass": "front",
+      "reference": "punk-skirt-front-reference.png",
+      "finish": "punk-skirt-front-finish.png",
+      "main": {
+        "color": "#c25391",
+        "mask": "punk-skirt-front-main.png"
+      },
+      "detail": {
+        "color": "#242027",
+        "mask": "punk-skirt-front-detail.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-tie",
+      "pass": "front",
+      "reference": "punk-tie-front-reference.png",
+      "finish": "punk-tie-front-finish.png",
+      "main": {
+        "color": "#d269aa",
+        "mask": "punk-tie-front-main.png"
+      },
+      "detail": {
+        "color": "#302533",
+        "mask": "punk-tie-front-detail.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-belt",
+      "pass": "front",
+      "reference": "punk-belt-front-reference.png",
+      "finish": "punk-belt-front-finish.png",
+      "main": {
+        "color": "#202024",
+        "mask": "punk-belt-front-main.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-choker",
+      "pass": "front",
+      "reference": "punk-choker-front-reference.png",
+      "finish": "punk-choker-front-finish.png",
+      "main": {
+        "color": "#1c1b20",
+        "mask": "punk-choker-front-main.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-hoops",
+      "pass": "front",
+      "reference": "punk-hoops-front-reference.png",
+      "finish": "punk-hoops-front-finish.png",
+      "main": {
+        "color": "#c1c4ce",
+        "mask": "punk-hoops-front-main.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-waves",
+      "pass": "front",
+      "reference": "punk-waves-front-reference.png",
+      "finish": "punk-waves-front-finish.png",
+      "main": {
+        "color": "#202027",
+        "mask": "punk-waves-front-main.png"
+      },
+      "detail": {
+        "color": "#c54b8b",
+        "mask": "punk-waves-front-detail.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-waves",
+      "pass": "back",
+      "reference": "punk-waves-back-reference.png",
+      "finish": "punk-waves-back-finish.png",
+      "main": {
+        "color": "#202027",
+        "mask": "punk-waves-back-main.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-fishnets",
+      "pass": "front",
+      "reference": "punk-fishnets-front-reference.png",
+      "finish": "punk-fishnets-front-finish.png",
+      "main": {
+        "color": "#252128",
+        "mask": "punk-fishnets-front-main.png"
+      }
+    },
+    {
+      "id": "fashion.textile-punk-boots",
+      "pass": "front",
+      "reference": "punk-boots-front-reference.png",
+      "finish": "punk-boots-front-finish.png",
+      "main": {
+        "color": "#202027",
+        "mask": "punk-boots-front-main.png"
+      }
+    }
+  ]
+}

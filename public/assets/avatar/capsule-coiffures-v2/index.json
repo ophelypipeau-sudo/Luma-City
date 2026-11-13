@@ -1,0 +1,86 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "01-aureole",
+      "name": "Auréole",
+      "style": "Butterfly blowout",
+      "base": "#76422b",
+      "mainTone": {
+        "shadow": 33,
+        "middle": 62,
+        "highlight": 145,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "02-trait",
+      "name": "Trait",
+      "style": "Sleek high ponytail",
+      "base": "#472a29",
+      "mainTone": {
+        "shadow": 22,
+        "middle": 42,
+        "highlight": 102,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "offsetY": -42
+    },
+    {
+      "id": "03-sillage",
+      "name": "Brise",
+      "style": "Boho knotless braids",
+      "base": "#4c2e21",
+      "mainTone": {
+        "shadow": 7,
+        "middle": 31,
+        "highlight": 103,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "04-orbite",
+      "name": "Frange fauve",
+      "style": "Wolf cut",
+      "base": "#47263a",
+      "mainTone": {
+        "shadow": 17,
+        "middle": 34,
+        "highlight": 66,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "05-azur",
+      "name": "Ondes pop",
+      "style": "Half-up Y2K",
+      "base": "#633823",
+      "mainTone": {
+        "shadow": 23,
+        "middle": 41,
+        "highlight": 89,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "offsetY": -42
+    },
+    {
+      "id": "06-nocturne",
+      "name": "Éclipse satinée",
+      "style": "Glam waves",
+      "base": "#692e22",
+      "mainTone": {
+        "shadow": 15,
+        "middle": 33,
+        "highlight": 87,
+        "depth": 0.28,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+/** Pixel coordinates in the original 1774 × 887 art space. Never viewport pixels. */
+export type Point = readonly [number, number];
+export type FitRow = {
+  sourceY: number;
+  targetY: number;
+  left: number;
+  right: number;
+};
+export type FitStrip = {
+  sourceLeft: number;
+  sourceRight: number;
+  rows: FitRow[];
+};
+export type Triangle = readonly [Point, Point, Point];
+
+/** An affine map for a single triangle of the garment's registered mesh. */
+export function triangleMatrix(source: Triangle, target: Triangle) {
+  const [[x0, y0], [x1, y1], [x2, y2]] = source;
+  const [[u0, v0], [u1, v1], [u2, v2]] = target;
+  const determinant = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+  if (Math.abs(determinant) < 0.00001)
+    throw new Error("Degenerate garment triangle");
+  const a = ((u1 - u0) * (y2 - y0) - (u2 - u0) * (y1 - y0)) / determinant;
+  const c = ((x1 - x0) * (u2 - u0) - (x2 - x0) * (u1 - u0)) / determinant;
+  const b = ((v1 - v0) * (y2 - y0) - (v2 - v0) * (y1 - y0)) / determinant;
+  const d = ((x1 - x0) * (v2 - v0) - (x2 - x0) * (v1 - v0)) / determinant;
+  return `matrix(${a} ${b} ${c} ${d} ${u0 - a * x0 - c * y0} ${v0 - b * x0 - d * y0})`;
+}
+
+export function stripTriangles(strip: FitStrip) {
+  return strip.rows.slice(1).flatMap((bottom, index) => {
+    const top = strip.rows[index];
+    const source: readonly Point[] = [
+      [strip.sourceLeft, top.sourceY],
+      [strip.sourceRight, top.sourceY],
+      [strip.sourceRight, bottom.sourceY],
+      [strip.sourceLeft, bottom.sourceY],
+    ];
+    const target: readonly Point[] = [
+      [top.left, top.targetY],
+      [top.right, top.targetY],
+      [bottom.right, bottom.targetY],
+      [bottom.left, bottom.targetY],
+    ];
+    return [
+      [0, 1, 2],
+      [0, 2, 3],
+    ].map((vertices) => ({
+      source: vertices.map((v) => source[v]) as unknown as Triangle,
+      target: vertices.map((v) => target[v]) as unknown as Triangle,
+    }));
+  });
+}
+
+// These are fittings for these specific illustrated assets, not automatic image fitting.
+// Knee, calf, ankle and sole are independent rows so a boot follows the leg's bend.
+export const IRIS_BOOT_FIT: FitStrip[] = [
+  {
+    sourceLeft: 105,
+    sourceRight: 229,
+    rows: [
+      { sourceY: 620, targetY: 606, left: 140, right: 254 },
+      { sourceY: 660, targetY: 647, left: 132, right: 246 },
+      { sourceY: 710, targetY: 703, left: 113, right: 231 },
+      { sourceY: 780, targetY: 780, left: 106, right: 222 },
+      { sourceY: 830, targetY: 831, left: 109, right: 232 },
+      { sourceY: 887, targetY: 887, left: 116, right: 244 },
+    ],
+  },
+  {
+    sourceLeft: 229,
+    sourceRight: 350,
+    rows: [
+      { sourceY: 620, targetY: 608, left: 225, right: 339 },
+      { sourceY: 660, targetY: 650, left: 220, right: 334 },
+      { sourceY: 710, targetY: 704, left: 218, right: 332 },
+      { sourceY: 780, targetY: 780, left: 217, right: 331 },
+      { sourceY: 830, targetY: 831, left: 222, right: 342 },
+      { sourceY: 887, targetY: 887, left: 226, right: 349 },
+    ],
+  },
+];
+
+export const IRIS_TOP_FIT: FitStrip = {
+  sourceLeft: 168,
+  sourceRight: 342,
+  rows: [
+    { sourceY: 170, targetY: 181, left: 180, right: 330 },
+    { sourceY: 225, targetY: 229, left: 172, right: 336 },
+    { sourceY: 275, targetY: 275, left: 166, right: 340 },
+    { sourceY: 340, targetY: 331, left: 155, right: 359 },
+  ],
+};
+
+export const IRIS_SKIRT_FIT: FitStrip = {
+  sourceLeft: 140,
+  sourceRight: 390,
+  rows: [
+    { sourceY: 350, targetY: 350, left: 137, right: 405 },
+    { sourceY: 390, targetY: 390, left: 141, right: 399 },
+    { sourceY: 500, targetY: 494, left: 148, right: 390 },
+  ],
+};
+
+export const JUNE_BOOT_FIT: FitStrip[] = [
+  {
+    sourceLeft: 970,
+    sourceRight: 1081,
+    rows: [
+      { sourceY: 620, targetY: 620, left: 971, right: 1082 },
+      { sourceY: 700, targetY: 700, left: 971, right: 1082 },
+      { sourceY: 780, targetY: 780, left: 970, right: 1081 },
+      { sourceY: 887, targetY: 887, left: 970, right: 1081 },
+    ],
+  },
+  {
+    sourceLeft: 1081,
+    sourceRight: 1200,
+    rows: [
+      { sourceY: 620, targetY: 620, left: 1084, right: 1203 },
+      { sourceY: 700, targetY: 700, left: 1083, right: 1202 },
+      { sourceY: 780, targetY: 780, left: 1082, right: 1201 },
+      { sourceY: 830, targetY: 830, left: 1088, right: 1207 },
+      { sourceY: 887, targetY: 887, left: 1092, right: 1211 },
+    ],
+  },
+];

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "X",
+    "status": "user-approved",
+    "source": "docs/proposals/hourglass-v2/hourglass-illustration-v2.png",
+    "asset": "public/assets/morphology-v6/X.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "0f59e2227bf5a820445191cd7974f0902110b14f5225b7be1ae7f45f74bd6da5"
+  },
+  {
+    "id": "A",
+    "status": "user-approved",
+    "source": "docs/proposals/morphologies-illustrated-v2/body-A.png",
+    "asset": "public/assets/morphology-v6/A.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "a2db65dbe518d2205b09004be9d748bea873b888a461290827bffa0c697a0fba"
+  },
+  {
+    "id": "O",
+    "status": "user-approved",
+    "source": "docs/proposals/morphologies-illustrated-v2/body-O.png",
+    "asset": "public/assets/morphology-v6/O.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "90948371ebf050d65a1306355d7ae11f5002b16080dba65a910517953140e59a"
+  },
+  {
+    "id": "H",
+    "status": "user-approved",
+    "source": "docs/proposals/morphologies-illustrated-v2/body-H.png",
+    "asset": "public/assets/morphology-v6/H.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "248825dd6f384f0d3fb6e4c718f462a95a52e740a730623d77274c183702b79b"
+  },
+  {
+    "id": "V",
+    "status": "user-approved",
+    "source": "docs/proposals/morphologies-illustrated-v2/body-V.png",
+    "asset": "public/assets/morphology-v6/V.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "74583128342859fe70a835ef03fcea171269c3e17506b78be60661ad7cd4710c"
+  },
+  {
+    "id": "8",
+    "status": "user-approved",
+    "source": "docs/proposals/morphologies-illustrated-v2/body-8-r2.png",
+    "asset": "public/assets/morphology-v6/8.png",
+    "width": 887,
+    "height": 1774,
+    "sha256": "02c306fbd2e87724189a4aaea60154e0ae3c2aba5f8bfdc403f582d5817366fe"
+  }
+]

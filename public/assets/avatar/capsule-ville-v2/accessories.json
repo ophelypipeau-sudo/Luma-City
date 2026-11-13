@@ -1,0 +1,164 @@
+[
+  {
+    "id": "accessory-01",
+    "name": "Épure",
+    "slot": "earrings",
+    "price": 450,
+    "crop": [
+      342,
+      201,
+      207,
+      80
+    ]
+  },
+  {
+    "id": "accessory-02",
+    "name": "Averse",
+    "slot": "earrings",
+    "price": 450,
+    "crop": [
+      333,
+      195,
+      220,
+      96
+    ]
+  },
+  {
+    "id": "accessory-03",
+    "name": "Orage",
+    "slot": "necklace",
+    "price": 450,
+    "crop": [
+      346,
+      331,
+      194,
+      130
+    ]
+  },
+  {
+    "id": "accessory-04",
+    "name": "Braise",
+    "slot": "necklace",
+    "price": 450,
+    "crop": [
+      369,
+      324,
+      96,
+      153
+    ]
+  },
+  {
+    "id": "accessory-05",
+    "name": "Féline",
+    "slot": "glasses",
+    "price": 450,
+    "crop": [
+      345,
+      144,
+      195,
+      65
+    ],
+    "tone": {
+      "shadow": 25,
+      "middle": 51,
+      "highlight": 100,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  },
+  {
+    "id": "accessory-06",
+    "name": "Écaille ambrée",
+    "slot": "glasses",
+    "price": 450,
+    "crop": [
+      347,
+      144,
+      197,
+      68
+    ],
+    "tone": {
+      "shadow": 27,
+      "middle": 58,
+      "highlight": 96,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  },
+  {
+    "id": "accessory-07",
+    "name": "Cassis",
+    "slot": "bag",
+    "price": 450,
+    "crop": [
+      78,
+      928,
+      166,
+      187
+    ],
+    "tone": {
+      "shadow": 15,
+      "middle": 44,
+      "highlight": 74,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  },
+  {
+    "id": "accessory-08",
+    "name": "Lune",
+    "slot": "bag",
+    "price": 450,
+    "crop": [
+      234,
+      336,
+      145,
+      369
+    ],
+    "tone": {
+      "shadow": 122,
+      "middle": 200,
+      "highlight": 211,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  },
+  {
+    "id": "accessory-09",
+    "name": "Ceinture Ligne",
+    "slot": "belt",
+    "price": 450,
+    "crop": [
+      304,
+      665,
+      291,
+      84
+    ],
+    "tone": {
+      "shadow": 18,
+      "middle": 38,
+      "highlight": 76,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  },
+  {
+    "id": "accessory-10",
+    "name": "Ceinture Tresse",
+    "slot": "belt",
+    "price": 450,
+    "crop": [
+      300,
+      661,
+      290,
+      81
+    ],
+    "tone": {
+      "shadow": 15,
+      "middle": 44,
+      "highlight": 89,
+      "depth": 0.28,
+      "sheen": 0.18
+    }
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "piste",
+      "name": "Piste",
+      "file": "docs/capsule-chaussures-v1/sources/01-piste.png",
+      "price": 650,
+      "base": "#76a5b5",
+      "crop": [
+        272,
+        1591,
+        342,
+        166
+      ],
+      "tone": {
+        "shadow": 128,
+        "middle": 168,
+        "highlight": 195,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "rafale",
+      "name": "Rafale",
+      "file": "docs/capsule-chaussures-v1/sources/02-rafale.png",
+      "price": 750,
+      "base": "#a5a0a1",
+      "crop": [
+        268,
+        1563,
+        351,
+        189
+      ],
+      "tone": {
+        "shadow": 50,
+        "middle": 153,
+        "highlight": 226,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "releve",
+      "name": "Relevé",
+      "file": "docs/capsule-chaussures-v1/sources/03-releve.png",
+      "price": 650,
+      "base": "#cc8c7e",
+      "crop": [
+        280,
+        1580,
+        326,
+        174
+      ],
+      "tone": {
+        "shadow": 110,
+        "middle": 170,
+        "highlight": 201,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "campus",
+      "name": "Campus",
+      "file": "docs/capsule-chaussures-v1/sources/04-campus.png",
+      "price": 700,
+      "base": "#435040",
+      "crop": [
+        275,
+        1560,
+        337,
+        194
+      ],
+      "tone": {
+        "shadow": 45,
+        "middle": 144,
+        "highlight": 241,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "silex",
+      "name": "Silex",
+      "file": "docs/capsule-chaussures-v1/sources/05-silex.png",
+      "price": 850,
+      "base": "#252529",
+      "crop": [
+        277,
+        1507,
+        332,
+        232
+      ],
+      "tone": {
+        "shadow": 17,
+        "middle": 35,
+        "highlight": 95,
+        "depth": 0.35,
+        "sheen": 0.21
+      }
+    },
+    {
+      "id": "dune",
+      "name": "Dune",
+      "file": "docs/capsule-chaussures-v2/retouches/06-dune.png",
+      "price": 850,
+      "base": "#90796b",
+      "crop": [
+        281,
+        1500,
+        320,
+        249
+      ],
+      "tone": {
+        "shadow": 79,
+        "middle": 113,
+        "highlight": 150,
+        "depth": 0.35,
+        "sheen": 0.21
+      }
+    },
+    {
+      "id": "etrier",
+      "name": "Étrier",
+      "file": "docs/capsule-chaussures-v2/retouches/07-etrier.png",
+      "price": 900,
+      "base": "#4c4731",
+      "crop": [
+        285,
+        1503,
+        315,
+        249
+      ],
+      "tone": {
+        "shadow": 28,
+        "middle": 54,
+        "highlight": 138,
+        "depth": 0.35,
+        "sheen": 0.21
+      }
+    },
+    {
+      "id": "virgule",
+      "name": "Virgule",
+      "file": "docs/capsule-chaussures-v1/sources/08-virgule.png",
+      "price": 750,
+      "base": "#731b32",
+      "crop": [
+        285,
+        1579,
+        314,
+        179
+      ],
+      "tone": {
+        "shadow": 14,
+        "middle": 33,
+        "highlight": 136,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "opaline",
+      "name": "Opaline",
+      "file": "docs/capsule-chaussures-v1/sources/09-opaline.png",
+      "price": 750,
+      "base": "#e6c8a1",
+      "crop": [
+        282,
+        1580,
+        322,
+        173
+      ],
+      "tone": {
+        "shadow": 26,
+        "middle": 114,
+        "highlight": 247,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "agrafe",
+      "name": "Agrafe",
+      "file": "docs/capsule-chaussures-v1/sources/10-agrafe.png",
+      "price": 800,
+      "base": "#262528",
+      "crop": [
+        283,
+        1596,
+        320,
+        160
+      ],
+      "tone": {
+        "shadow": 19,
+        "middle": 35,
+        "highlight": 135,
+        "depth": 0.35,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

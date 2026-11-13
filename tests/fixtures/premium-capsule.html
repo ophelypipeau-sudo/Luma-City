@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capsule premium · Contrôle atelier</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font:
+        16px system-ui,
+        sans-serif;
+      margin: 0;
+      background: #35283d;
+      color: #faf2f8;
+    }
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0 0 8px;
+    }
+    header p {
+      margin: 0 0 18px;
+    }
+    fieldset {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.7rem;
+      border: 1px solid #a889a8;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    button,
+    select,
+    input {
+      font: inherit;
+      color: #f9eff7;
+      background: #4e3557;
+      border: 1px solid #aa90a9;
+      border-radius: 7px;
+      padding: 6px;
+    }
+    input[type="color"] {
+      height: 38px;
+      width: 49px;
+    }
+    .poses {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    figure {
+      margin: 15px 0 0;
+      background: #46364f;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    figcaption {
+      padding: 8px;
+      text-align: center;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 720 / 950;
+    }
+    small {
+      display: block;
+      margin-top: 12px;
+    }
+    @media (max-width: 650px) {
+      .poses { grid-template-columns: 1fr; }
+    }
+  </style>
+  <main>
+    <header>
+      <h1>Capsule premium · Atelier</h1>
+      <p>Les neuf hauts sur Iris, dans les trois poses. La pose mains en cœur est en aperçu.</p>
+    </header>
+    <fieldset>
+      <legend>Essayage</legend>
+      <label for="modele">Haut</label
+      ><select id="modele"></select>
+      <button data-dye="">Original</button
+      ><button data-dye="#487c72">Sauge</button>
+      <button data-dye="#f2e8d8">Ivoire</button
+      ><button data-dye="#462c55">Prune</button>
+      <label for="couleur">Couleur libre</label
+      ><input id="couleur" type="color" value="#487c72" />
+    </fieldset>
+    <div class="poses">
+      <figure>
+        <figcaption>Face</figcaption>
+        <canvas width="720" height="950"></canvas>
+      </figure>
+      <figure>
+        <figcaption>Main sur la hanche</figcaption>
+        <canvas width="720" height="950"></canvas>
+      </figure>
+      <figure>
+        <figcaption>Mains en cœur</figcaption>
+        <canvas width="720" height="950"></canvas>
+      </figure>
+    </div>
+    <small id="status" role="status"></small>
+  </main>
+  <script type="module" src="./premium-capsule.ts"></script>
+</html>

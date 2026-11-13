@@ -1,0 +1,138 @@
+:root {
+  font:
+    14px "DM Sans",
+    sans-serif;
+  color: #301e2e;
+  background: #f6eee9;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.capsule {
+  max-width: 1320px;
+  margin: auto;
+  padding: 25px clamp(14px, 3vw, 40px);
+}
+.capsule header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 19px;
+}
+.capsule header a {
+  color: #663955;
+}
+.capsule h1,
+.capsule h2 {
+  font-family: Outfit, sans-serif;
+  font-weight: 500;
+}
+.capsule h1 {
+  font-size: clamp(30px, 5vw, 55px);
+  line-height: 0.96;
+  margin: 6px 0 9px;
+}
+.capsule p {
+  margin: 0;
+}
+.controls {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.controls fieldset {
+  padding: 4px 0 0;
+  margin: 0;
+  border: 0;
+}
+.controls legend {
+  font-size: 12px;
+  color: #594250;
+  padding: 0;
+}
+.swatches {
+  display: flex;
+  gap: 6px;
+}
+.swatches button {
+  background: #f6eee9;
+  border: 1px solid #ac91a2;
+  border-radius: 50%;
+  padding: 3px;
+  cursor: pointer;
+}
+.swatches button[aria-pressed="true"] {
+  border: 2px solid #663955;
+  padding: 2px;
+}
+.swatches span {
+  display: block;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+}
+.detail {
+  border: 1px solid #7d536e;
+  border-radius: 16px;
+  padding: 6px 11px;
+  background: #fff8f4;
+  color: #512a45;
+  cursor: pointer;
+}
+.looks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.looks figure {
+  margin: 0;
+  border: 1px solid #d6c2cd;
+  border-radius: 13px;
+  background: #fff9f6;
+  overflow: hidden;
+}
+.fitting {
+  display: block;
+  width: 100%;
+  height: clamp(245px, 27vw, 380px);
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    #fff9f5 4%,
+    color-mix(in srgb, var(--item-color) 23%, #eddfdc) 100%
+  );
+}
+figcaption {
+  border-top: 1px solid #e8d8df;
+  padding: 9px 12px 12px;
+}
+figcaption span {
+  color: #754361;
+  font-size: 11px;
+}
+figcaption h2 {
+  font-size: 21px;
+  margin: 0 0 2px;
+}
+figcaption p {
+  color: #503846;
+  font-size: 12px;
+}
+@media (max-width: 740px) {
+  .capsule header {
+    display: block;
+  }
+  .controls {
+    margin-top: 12px;
+  }
+  .looks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fitting {
+    height: clamp(205px, 47vw, 330px);
+  }
+}

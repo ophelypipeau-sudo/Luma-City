@@ -1,0 +1,13 @@
+# Pull bordeaux redessiné sur Iris
+
+Le corps canonique `public/assets/avatar/fashion-v2/body-user.png` est inchangé (SHA-256 dans `registration.json`). Son visage, ses mains, sa pose et son échelle sont conservés. Seul le pull du catalogue utilise désormais `public/assets/avatar/burgundy-v3/sweater.png` et son masque de recoloration. Identifiant, prix, jupe et chaussures conservés.
+
+Le dessin a été réalisé sur la base par l’outil intégré image_gen, puis le pigment du vêtement a été isolé. Aucun pixel du personnage généré n’est affiché en jeu. Le corps visible est toujours le PNG original. La coupe des manches, les plis et le buste sont peints dans la pose du mannequin ; aucune adaptation ligne par ligne de l’ancien pull n’est utilisée. Le revers d’encolure a ensuite été ajusté sur les repères des bretelles de la base, avec son dessin éditable dans `collar.svg`. Son contour est volontairement un col bateau couvrant les sous-vêtements opaques.
+
+Préparation reproductible : `npx tsx scripts/prepare-burgundy-redraw.ts`. Source conservée : `painted-source.png`. Le calque utilise le canevas natif 887 × 1774 avec transformation identité. La vignette et la cabine utilisent le même PNG et le masque corporel dérive de son alpha. La recoloration reste disponible via le masque indépendant.
+
+Vérifications : compilation ; tests existants des calques et du calibrage ; contrôle supplémentaire de la couverture des sous-vêtements et du dégagement du visage/des mains. Les tests de calibrage v2 restent conservés pour les sources historiques. Contrôle visuel via `tests/fixtures/fitting.html`, boutique réelle et écran 390 × 844. Captures `fitting.jpg`, `boutique.jpg`, `mobile.jpg`. Ces contrôles ne remplacent pas le jugement artistique de l’utilisateur.
+
+## Prompt final — outil intégré image_gen
+
+Precise-object-edit. Image1 sweater is excellent. Change ONLY the TOP EDGE OF THE FOLDED BURGUNDY COLLAR: raise it from source y385 to y343 at the sides x350 and x535, and y360 at center. This makes a WIDE BOAT NECK folded sweater that covers all purple bra straps of canonical body in image2. Cloth begins at base of neck/inner shoulders, not off-shoulder bare upper arms. Preserve ribbed folded band ending y450 and beautiful bust shading, sleeves, cuffs, waist, hem exactly. Preserve entire canvas887x1774 aspect, doll size, face, body silhouette, hands and feet positions, no zoom or reframing. Must cover purple bra straps at x350,y345 and x533,y345, neckline is a shallow wide smooth scoop between those two points. Full body transparent background, no added accessories/text. Body stays exact reference. No changes to rest of sweater.

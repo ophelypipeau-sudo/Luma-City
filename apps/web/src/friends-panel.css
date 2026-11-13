@@ -1,0 +1,124 @@
+.friends-panel {
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(12px, 3vh, 30px);
+  padding: clamp(12px, 2.5vw, 30px);
+  overflow: auto;
+  background: linear-gradient(#402139, #753774);
+  color: #fff6ff;
+}
+.friends-toolbar {
+  display: grid;
+  grid-template-columns: auto auto minmax(110px, 1fr) auto;
+  gap: clamp(6px, 2vw, 28px);
+  align-items: center;
+}
+.friends-toolbar > button, .friends-pagination button {
+  border: 0;
+  border-radius: 10px;
+  background: #e9e3eb;
+  color: #281b2c;
+  padding: .7em 1em;
+  font-weight: 700;
+}
+.friends-toolbar > [aria-pressed="true"] {
+  background: #fff5ff;
+  box-shadow: inset 0 0 0 2px #d097dc;
+}
+.friends-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #eee7ef;
+  color: #321e36;
+  border-radius: 999px;
+  padding: 5px 7px 5px 12px;
+}
+.friends-search input {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  min-width: 0;
+  flex: 1;
+}
+.friends-search button, .friends-toolbar .friends-close {
+  display: grid;
+  place-items: center;
+  padding: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: #713572;
+  color: white;
+}
+.friends-content { align-self: center; }
+.friends-empty { text-align: center; }
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 2.6vh, 24px) clamp(12px, 4vw, 56px);
+  max-width: 900px;
+  padding: 0;
+  margin: auto;
+  list-style: none;
+}
+.friends-item {
+  display: flex;
+  align-items: center;
+  background: #e9e3eb;
+  color: #251827;
+  border-radius: 20px;
+  padding: 9px 12px;
+}
+.friends-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+}
+.friends-avatar {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(42px, 6vw, 84px);
+  aspect-ratio: 1;
+  background: #e8bbd8;
+  border-radius: 50%;
+}
+.friends-avatar > :first-child {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.friends-online, .friends-offline {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  aspect-ratio: 1;
+  border: 1px solid #302137;
+  border-radius: 50%;
+}
+.friends-online { background: #a3d61d; }
+.friends-offline { background: #929695; }
+.friends-identity { display: grid; min-width: 0; gap: 2px; }
+.friends-identity strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.friends-identity small { color: #594860; }
+.friends-actions { display: flex; align-self: end; color: #087843; }
+.friends-actions button { padding: 5px; border: 0; background: transparent; color: inherit; }
+.friends-actions button + button { color: #bd2042; }
+.friends-pagination { display: flex; justify-content: center; gap: 24px; }
+.friends-pagination button { display: grid; place-items: center; border-radius: 50%; padding: 7px; }
+.friends-pagination button:disabled { opacity: .45; }
+@media (max-width: 760px) {
+  .friends-toolbar { grid-template-columns: 1fr 1fr auto; }
+  .friends-search { grid-column: 1 / -1; grid-row: 2; }
+  .friends-grid { grid-template-columns: 1fr; }
+}

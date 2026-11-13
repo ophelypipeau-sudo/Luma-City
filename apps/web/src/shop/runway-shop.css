@@ -1,0 +1,1001 @@
+/* Boutique de jeu : catalogue ouvert, cabine visible et couleurs par matière. */
+.fashion-shop.runway-boutique {
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.runway-boutique .blush-fitting {
+  overflow: hidden;
+}
+.runway-boutique .blush-catalog-footer .blush-atelier {
+  background: #321339 !important;
+  color: #dfbfdf !important;
+  border: 1px solid #79517b !important;
+}
+.runway-receipt {
+  position: absolute;
+  z-index: 5;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: #fff2c5;
+  text-shadow: 0 2px 4px #190525;
+  animation: runway-receipt 3s ease both;
+}
+.runway-receipt > span {
+  font-size: 29px;
+  color: #ffd77c;
+  letter-spacing: 12px;
+}
+.runway-receipt strong {
+  font-size: 14px;
+  background: #4a1b71db;
+  padding: 6px 12px;
+  border-radius: 15px;
+  border: 1px solid #efc1e8;
+}
+.runway-receipt b {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 22px;
+  color: #ffdf7d;
+}
+@keyframes runway-receipt {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.9);
+  }
+  15%,
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runway-receipt {
+    animation: none;
+  }
+  .runway-boutique * {
+    transition: none !important;
+  }
+}
+.runway-boutique .fashion-checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.runway-boutique .blush-figure .fitting-avatar {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+}
+.fashion-shop.runway-boutique {
+  grid-template-columns: minmax(0, 1.95fr) minmax(245px, 1fr);
+  gap: 12px;
+  padding: 12px;
+  background: #493543;
+  color: #fff0fa;
+  border: 3px solid #150c20;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px #d08ad1;
+  position: relative;
+}
+.runway-boutique::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: -14px;
+  background: url("/assets/boutique-user-interior-v2.png") center / cover
+    no-repeat;
+  filter: blur(5px) brightness(0.9) saturate(0.9);
+  z-index: -2;
+  pointer-events: none;
+}
+.runway-boutique::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, #21112848, #33203318 65%, #26132e18);
+  z-index: -1;
+  pointer-events: none;
+}
+.runway-boutique button:focus-visible {
+  outline: 2px solid #ffe5a0;
+  outline-offset: 2px;
+}
+.runway-boutique .blush-heading {
+  background: linear-gradient(#d956aa, #852262 60%, #39102e);
+  border-radius: 7px 7px 0 0;
+  border-bottom: 2px solid #df87c4;
+  padding: 8px 12px;
+}
+.runway-boutique .blush-tabs {
+  gap: 5px;
+  justify-content: space-around;
+}
+.runway-boutique .blush-tabs button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 7px;
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: #fff1ff;
+  border-radius: 7px;
+}
+.runway-boutique .blush-tabs button[aria-pressed="true"] {
+  color: #ffec9d;
+  background: #240c357d;
+  box-shadow: inset 0 -2px #ffd87a;
+}
+.runway-boutique .blush-tabs svg {
+  filter: drop-shadow(0 2px 1px #3a1339);
+}
+.runway-tools {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 0 4px;
+  font-size: 10px;
+  min-width: 0;
+}
+.runway-search {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background: #fff2fa;
+  color: #7d4074;
+  border: 1px solid #e387c9;
+  border-radius: 20px;
+  padding: 5px 8px;
+  min-width: 0;
+  flex: 1;
+}
+.runway-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: #42233e;
+  font: inherit;
+}
+
+.runway-boutique .blush-categories {
+  position: static;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 9px 0 3px;
+  gap: 3px;
+  z-index: 2;
+}
+.runway-boutique .blush-categories button {
+  color: #e9c4e6;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+.runway-boutique .blush-categories button > span {
+  width: 42px;
+  height: 42px;
+  color: #35243b;
+  background: #fff9f4;
+  border: 1px solid #ffefe7;
+  border-radius: 50%;
+  box-shadow: 0 2px 3px #0007;
+}
+.runway-boutique .blush-categories button[aria-pressed="true"] > span {
+  background: #f7d4e6;
+  border-color: #fff3fb;
+  box-shadow: 0 0 0 2px #c05497;
+}
+.runway-boutique .blush-categories small {
+  font-size: 8px;
+  text-shadow: none;
+}
+.runway-boutique .blush-categories svg {
+  width: 26px;
+  height: 26px;
+}
+.runway-boutique .blush-section-title {
+  padding: 4px 2px 7px;
+  align-items: center;
+}
+.runway-boutique .blush-section-title > div > span {
+  display: none;
+}
+.runway-boutique .blush-section-title h2 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-shadow: none;
+  margin: 0;
+  color: #f3c4e7;
+}
+.runway-boutique .blush-section-title > span {
+  font-size: 10px;
+  color: #cba6d6;
+}
+.runway-boutique .blush-items {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(124px, 1fr);
+  gap: 13px 6px;
+  padding: 2px 3px 8px;
+  scrollbar-color: #8d548e #190d24;
+}
+.runway-item {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  min-height: 0;
+}
+.runway-item > .blush-item {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+}
+.runway-boutique .blush-item-art {
+  width: 100%;
+  background: radial-gradient(ellipse at 50% 100%, #9f4a9c18, transparent 70%);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  min-height: 78px;
+}
+.runway-boutique .blush-item:hover .blush-item-art {
+  background: radial-gradient(ellipse at 50% 100%, #ac4aab55, transparent 70%);
+  box-shadow: none;
+  transform: none;
+}
+.runway-boutique .blush-item.selected .blush-item-art {
+  border: 0;
+  box-shadow: none;
+  background: radial-gradient(ellipse at bottom, #9b5c9e65, transparent 70%);
+}
+.runway-boutique .blush-item .garment-thumbnail {
+  height: 100%;
+  width: 88%;
+  max-height: 143px;
+  filter: drop-shadow(0 4px 3px #0007);
+}
+.runway-boutique .blush-item-price {
+  justify-content: center;
+  background: linear-gradient(#c553a0, #93256e);
+  border: 1px solid #f29ecf;
+  box-shadow: inset 0 0 0 1px #62275d;
+  border-radius: 5px;
+  color: #fff2d3;
+  padding: 3px 5px;
+  font-size: 14px;
+  line-height: 1.1;
+  gap: 5px;
+  min-height: 25px;
+  align-self: center;
+  min-width: 74px;
+}
+.runway-boutique .blush-item-price svg {
+  color: #ffe482;
+  filter: drop-shadow(0 1px 1px #835400);
+}
+.runway-boutique .blush-check {
+  width: 16px;
+  height: 16px;
+  top: 7px;
+  right: 8px;
+  color: #fff;
+  background: #7d4382;
+}
+.runway-favorite {
+  position: absolute;
+  right: 3px;
+  top: 1px;
+  background: none;
+  border: 0;
+  padding: 3px;
+  color: #8b427e;
+}
+.runway-favorite[aria-pressed="true"] {
+  color: #ee77c5;
+}
+.runway-item-colors {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  gap: 3px;
+  align-items: center;
+}
+.runway-item-colors button {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  background: #361d40;
+  border: 1px solid #805780;
+  border-radius: 4px;
+  padding: 2px;
+  color: #efd5f1;
+}
+.runway-item-colors i {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #ffeafa88;
+  border-radius: 2px;
+}
+.runway-boutique .blush-empty {
+  color: #dfc5e1;
+  font-size: 12px;
+  grid-column: 1/-1;
+}
+.runway-boutique .blush-catalog-footer {
+  padding-top: 6px;
+  gap: 5px;
+}
+.runway-boutique .blush-legacy,
+.runway-boutique .blush-atelier {
+  background: #321339;
+  color: #dfbfdf;
+  border: 1px solid #79517b;
+  font-size: 9px;
+  padding: 4px 8px;
+}
+.runway-boutique .blush-pagination {
+  margin-left: auto;
+  color: #e6c6ec;
+  font-size: 11px;
+}
+.runway-boutique .blush-pagination button {
+  background: linear-gradient(#b744a0, #64235f);
+  border: 1px solid #a65c9c;
+  color: white;
+  width: 25px;
+  height: 25px;
+}
+.runway-boutique .blush-fitting {
+  margin-top: 0;
+  padding: 12px 10px 9px;
+  border: 2px solid #1c0d28;
+  border-radius: 5px;
+  background: #2c17392e;
+  backdrop-filter: none;
+  box-shadow: inset 0 0 0 1px #8e53ad;
+  min-width: 0;
+}
+.runway-boutique .blush-fitting-heading {
+  padding: 0 4px;
+  color: #f2d7f4;
+}
+.runway-boutique .blush-fitting-heading > div > span {
+  font-size: 8px;
+  color: #d3a6dc;
+}
+.runway-boutique .blush-fitting-heading h3 {
+  color: #fff3fa;
+  font-size: 20px;
+}
+.runway-boutique .blush-fitting-heading button {
+  background: #6b357e;
+  color: #efd5ed;
+  border-color: #b47cae;
+}
+.runway-boutique .blush-figure {
+  background: none;
+  min-height: 0;
+}
+.runway-boutique .blush-color-slots .blush-color-button {
+  background: #4c2864;
+  border-color: #a66ca5;
+  color: #f4d9ec;
+  font-size: 8px !important;
+  padding: 3px;
+  gap: 2px;
+}
+.runway-boutique .blush-color-slots .blush-color-button > svg {
+  display: none;
+}
+.runway-boutique .blush-color-button i {
+  width: 9px;
+  height: 9px;
+}
+.runway-boutique .blush-compare {
+  background: linear-gradient(#fa90d6, #d344a5 40%, #9a287e);
+  color: #fff;
+  border: 1px solid #fac7e8;
+  border-radius: 12px;
+  height: 44px;
+  font-size: 19px;
+  box-shadow:
+    0 0 8px #ea8be36b,
+    inset 0 1px white;
+}
+.runway-boutique .blush-compare b {
+  background: #60236f;
+  color: #fff;
+}
+.runway-cart-sum {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  font-size: 12px;
+  color: #fff1b5;
+}
+.runway-balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: #ecd0e6 !important;
+  margin: 5px 0;
+}
+.runway-wear {
+  border: 0;
+  background: none;
+  color: #ffe8a1;
+  text-decoration: underline;
+  font-size: 10px;
+  padding: 2px;
+}
+.runway-boutique .blush-close {
+  background: #a3366b;
+  border-color: #e48bb2;
+  color: white;
+  right: 2px;
+  top: 1px;
+  width: 21px;
+  height: 21px;
+  z-index: 4;
+}
+.runway-cart {
+  position: absolute;
+  z-index: 10;
+  left: 20px;
+  top: 90px;
+  width: calc(65% - 22px);
+  max-height: calc(100% - 105px);
+  overflow: auto;
+  padding: 13px;
+  border: 2px solid #a17bd0;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #8257ad, #41127c 60%, #280557);
+  box-shadow: 0 15px 60px #000b;
+  color: #fff;
+}
+.runway-cart > header,
+.runway-palette > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6c4f1;
+  padding: 0 0 8px;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+.runway-cart h2 {
+  font-size: 17px;
+  text-align: center;
+  flex: 1;
+  margin: 0;
+}
+.runway-cart > header > button,
+.runway-palette > header > button {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #ffb1d9;
+  background: #a02565;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.runway-cart .fashion-cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.runway-cart .fashion-cart-row {
+  grid-template-columns: 62px minmax(0, 1fr) auto 22px;
+  gap: 8px;
+  background: linear-gradient(100deg, #ffffff28, #ffffff10);
+  border: 1px solid #bf8bd045;
+  border-radius: 5px;
+  padding: 9px 7px;
+  align-items: center;
+}
+.runway-cart .fashion-cart-row > svg {
+  height: 78px;
+  width: 60px;
+}
+.runway-cart .fashion-cart-row strong {
+  font-size: 12px;
+  color: white;
+  display: block;
+}
+.runway-cart .fashion-cart-row small {
+  font-size: 8px;
+  color: #e4c4eb;
+}
+.runway-cart .fashion-cart-row > button {
+  background: #a1326f;
+  color: white;
+  border: 1px solid #e794bf;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  padding: 1px;
+}
+.runway-cart .blush-item-price {
+  border: 0;
+  box-shadow: none;
+  background: none;
+  font-size: 16px;
+  padding: 0;
+  min-width: 42px;
+}
+.runway-cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+.runway-cart-actions button {
+  border: 0;
+  background: none;
+  color: #f4e9fa;
+  padding: 2px;
+}
+.runway-cart-actions .runway-buy-one,
+.runway-boutique .fashion-checkout {
+  border: 1px solid #f9b7df;
+  background: linear-gradient(#ef8ed1, #bb348f);
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-weight: 600;
+  font-size: 12px;
+}
+.runway-cart .fashion-cart-total {
+  border-top: 1px solid #dfbde8;
+  color: white;
+  margin-top: 12px;
+  padding-top: 10px;
+}
+.runway-cart-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 8px;
+}
+.runway-cart-footer > button:first-child {
+  background: none;
+  color: #eac9ed;
+  border: 0;
+  font-size: 10px;
+  padding: 4px;
+}
+.runway-cart-footer .fashion-checkout {
+  width: auto;
+}
+.runway-cart .fashion-cart-note,
+.runway-empty-cart {
+  color: #e1c4e9;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.runway-purchase-error {
+  font-size: 12px;
+  color: #ffdc96;
+}
+.runway-palette {
+  position: absolute;
+  z-index: 20;
+  left: clamp(12px, 20%, 240px);
+  top: 110px;
+  width: 340px;
+  max-width: calc(100% - 28px);
+  max-height: calc(100% - 125px);
+  overflow: auto;
+  background: linear-gradient(#43304f, #23162e);
+  border: 2px solid #b582b8;
+  border-radius: 8px;
+  box-shadow: 0 10px 45px #000a;
+  padding: 10px;
+  color: #f2e0f1;
+}
+.runway-palette > header {
+  font-size: 12px;
+  border-color: #7a597e;
+  padding-bottom: 6px;
+}
+.runway-palette .palette-preview {
+  height: 56px;
+  margin: 0;
+  float: left;
+  width: 54px;
+}
+.runway-palette .palette-preview svg {
+  height: 54px;
+  width: 50px;
+}
+.runway-palette .garment-color-zones {
+  margin: 3px 0 8px;
+  gap: 4px;
+  min-height: 55px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.runway-palette .garment-color-zones button {
+  background: #23152f;
+  border-color: #96739e;
+  color: #f0dced;
+  padding: 5px;
+  font-size: 9px;
+  flex: 1;
+  justify-content: center;
+}
+.runway-palette .garment-color-zones button[aria-pressed="true"] {
+  background: #754678;
+  border-color: #e0aadd;
+}
+.runway-palette .garment-color-zones i {
+  width: 14px;
+  height: 14px;
+}
+.runway-palette .palette-help {
+  clear: both;
+  font-size: 9px;
+  line-height: 1.4;
+  margin: 6px 0;
+  color: #d9c1dd;
+}
+.palette-tabs {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+.palette-tabs button {
+  flex: 1;
+  background: #201226;
+  color: #e5c4e8;
+  border: 1px solid #704775;
+  border-radius: 3px;
+  padding: 5px 3px;
+  font-size: 10px;
+}
+.palette-tabs button[aria-pressed="true"] {
+  background: #855184;
+  color: #fff;
+}
+.runway-palette .garment-original {
+  background: #412c45;
+  border-color: #785a7b;
+  color: #f1d8ed;
+  font-size: 9px;
+  padding: 3px 6px;
+  margin-bottom: 6px;
+}
+.runway-palette .color-table {
+  display: grid;
+  grid-template-columns: repeat(21, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid #967199;
+  clear: both;
+}
+.runway-palette .rgb-palette button {
+  border: 0;
+  border-radius: 0;
+  min-width: 0;
+  width: 100%;
+  height: 14px;
+  padding: 0;
+  box-shadow: none;
+}
+.runway-palette .rgb-palette button:hover {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  z-index: 1;
+}
+.runway-palette .rgb-palette button[aria-pressed="true"] {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px #222;
+}
+.runway-palette .recent-colors {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
+}
+.runway-palette .recent-colors button {
+  height: 25px;
+}
+.runway-palette .capsule-swatches {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 8px;
+}
+.runway-palette .capsule-swatches button {
+  border: 1px solid #d9b9dd;
+  border-radius: 4px;
+}
+
+.runway-palette .vip-garment-color {
+  color: #edcfeb;
+  border-color: #8d6094;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 9px;
+  font-size: 10px;
+}
+.runway-palette .vip-garment-color input {
+  max-width: 110px;
+}
+.runway-palette .vip-garment-color input[type="color"] {
+  width: 90px;
+  height: 40px;
+}
+.runway-palette .vip-garment-color label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+@media (max-width: 1000px) {
+  .fashion-shop.runway-boutique {
+    grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr);
+  }
+  .runway-boutique .blush-categories {
+    width: 100%;
+  }
+  .runway-boutique .blush-items {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .runway-cart {
+    width: calc(61% - 18px);
+  }
+}
+@media (max-width: 600px) {
+  .runway-boutique .blush-catalog-footer .blush-atelier,
+  .runway-boutique .blush-catalog-footer .blush-legacy {
+    display: none;
+  }
+  .fashion-shop.runway-boutique {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 7px;
+    gap: 6px;
+  }
+  .runway-boutique .blush-heading {
+    padding: 4px;
+  }
+  .runway-boutique .blush-tabs {
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .runway-boutique .blush-tabs button {
+    font-size: 7px;
+    padding: 3px;
+    flex: 1 1 40%;
+  }
+  .runway-boutique .blush-tabs svg {
+    width: 18px;
+    height: 18px;
+  }
+  .runway-tools {
+    flex-wrap: wrap;
+    font-size: 8px;
+    padding-top: 6px;
+    gap: 3px;
+  }
+  .runway-search {
+    flex-basis: 100%;
+    padding: 4px;
+  }
+
+  .runway-boutique .blush-categories {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+  }
+  .runway-boutique .blush-categories button {
+    flex: 1 1 0;
+  }
+  .runway-boutique .blush-categories button > span {
+    width: 29px;
+    height: 29px;
+  }
+  .runway-boutique .blush-categories small {
+    font-size: 6px;
+  }
+  .runway-boutique .blush-categories svg {
+    width: 17px;
+    height: 17px;
+  }
+  .runway-boutique .blush-section-title h2 {
+    font-size: 11px;
+  }
+  .runway-boutique .blush-section-title > span {
+    font-size: 7px;
+  }
+  .runway-boutique .blush-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 140px;
+    gap: 8px 3px;
+  }
+  .runway-item {
+    padding-bottom: 20px;
+  }
+  .runway-boutique .blush-item-price {
+    font-size: 10px;
+    min-width: 45px;
+    min-height: 19px;
+    padding: 2px;
+  }
+  .runway-boutique .blush-item-price svg {
+    width: 12px;
+  }
+  .runway-boutique .blush-item .garment-thumbnail {
+    max-height: 92px;
+  }
+  .runway-favorite svg {
+    width: 12px;
+  }
+  .runway-item-colors i {
+    width: 8px;
+    height: 8px;
+  }
+  .runway-item-colors button {
+    padding: 1px;
+  }
+  .runway-item-colors svg {
+    width: 10px;
+  }
+  .runway-boutique .blush-fitting {
+    margin-top: 0;
+    padding: 7px 4px;
+  }
+  .runway-boutique .blush-fitting-heading h3 {
+    font-size: 15px;
+  }
+  .runway-boutique .blush-compare {
+    height: 38px;
+    font-size: 13px;
+    gap: 3px;
+  }
+  .runway-boutique .blush-compare > svg {
+    width: 14px;
+  }
+  .runway-cart-sum {
+    font-size: 9px;
+  }
+  .runway-balance {
+    font-size: 8px !important;
+  }
+  .runway-boutique .blush-color-slots .blush-color-button {
+    font-size: 6px !important;
+  }
+  .runway-boutique .blush-color-slots .blush-color-label {
+    display: none;
+  }
+  .runway-boutique .blush-legacy,
+  .runway-boutique .blush-atelier {
+    font-size: 7px;
+  }
+  .runway-cart {
+    left: 7px;
+    top: 95px;
+    width: calc(100% - 14px);
+    padding: 10px;
+    max-height: calc(100% - 110px);
+  }
+  .runway-cart .fashion-cart-row {
+    grid-template-columns: 45px minmax(0, 1fr) 36px 20px;
+    gap: 4px;
+  }
+  .runway-cart .fashion-cart-row > svg {
+    height: 55px;
+    width: 42px;
+  }
+  .runway-cart .fashion-cart-row strong {
+    font-size: 10px;
+  }
+  .runway-cart .blush-item-price {
+    font-size: 12px;
+  }
+  .runway-palette {
+    left: 9px;
+    top: 90px;
+    width: calc(100% - 18px);
+    max-width: none;
+    padding: 8px;
+  }
+  .runway-palette .rgb-palette button {
+    height: 13px;
+  }
+}
+/* Builder-only, reversible article removal; the heart keeps its own target. */
+.runway-delete {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #c38fba66;
+  border-radius: 50%;
+  color: #efcfe5;
+  background: #31112b99;
+  opacity: 0.55;
+}
+.runway-item:hover .runway-delete,
+.runway-delete:focus-visible {
+  opacity: 1;
+}
+.runway-trash-link {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #b98db766;
+  border-radius: 14px;
+  background: #30102e66;
+  color: #f4d9ef;
+  font-size: 11px;
+}
+.runway-trash-row {
+  display: grid;
+  grid-template-columns: 55px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #aa77bb55;
+}
+.runway-trash-row svg.garment-thumbnail {
+  width: 55px;
+  height: 75px;
+}
+.runway-trash-row button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  background: #763483;
+  border: 1px solid #d8afd6;
+  border-radius: 8px;
+  padding: 8px;
+}
+.runway-delete-error {
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  background: #571a32;
+  color: white;
+  padding: 10px;
+  z-index: 50;
+}

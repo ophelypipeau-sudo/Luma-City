@@ -1,0 +1,52 @@
+import { useId } from "react";
+import { stripTriangles, triangleMatrix, type FitStrip } from "./paperDollRig";
+
+/** Deforms the art to body landmarks; the source itself stays intact. */
+export function RegisteredSprite({
+  source,
+  fit,
+  clip,
+  mask,
+}: {
+  source: string;
+  fit: FitStrip;
+  clip?: string;
+  mask?: string;
+}) {
+  const id = useId();
+  const triangles = stripTriangles(fit);
+  return (
+    <g data-registration="body-landmarks">
+      <defs>
+        {triangles.map(({ target }, i) => (
+          <clipPath key={i} id={`${id}-${i}`}>
+            <path
+              d={`M${target
+                .map(([x, y]) => {
+                  const cx = target.reduce((n, p) => n + p[0], 0) / 3,
+                    cy = target.reduce((n, p) => n + p[1], 0) / 3;
+                  const distance = Math.hypot(x - cx, y - cy);
+                  return [
+                    x + ((x - cx) * 0.75) / distance,
+                    y + ((y - cy) * 0.75) / distance,
+                  ].join(" ");
+                })
+                .join("L")}Z`}
+            />
+          </clipPath>
+        ))}
+      </defs>
+      {triangles.map(({ source: from, target }, i) => (
+        <g key={i} clipPath={`url(#${id}-${i})`}>
+          <g transform={triangleMatrix(from, target)}>
+            <use
+              href={`#${source}`}
+              clipPath={clip ? `url(#${clip})` : undefined}
+              mask={mask ? `url(#${mask})` : undefined}
+            />
+          </g>
+        </g>
+      ))}
+    </g>
+  );
+}

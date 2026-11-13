@@ -1,0 +1,17 @@
+✔ the supplied mannequin and hand drawing are preserved byte for byte (2.5553ms)
+✔ the fashion outfit masks underwear and feet, preserves user hands and puts jeans over boot shafts (2594.5613ms)
+✔ rose outfit pieces replace individual slots while preserving the other garments (1.0897ms)
+✔ rose clothes hide opaque underwear and feet while preserving bare arms and user hands (1296.6281ms)
+✔ palette colors keep garment identity, survive slot changes and are included in the cart (0.5603ms)
+✔ sneaker tongues cover the instep without rectangular leg overlays; pink cloth retains black trim (3516.3743ms)
+✔ all six articles recolor without changing silhouettes, transparency or dark printed details (4789.2096ms)
+✔ two color zones remain independent through equipment changes and the cart (0.5036ms)
+✔ recoloring the second zone changes the straps while leaving the main fabric and body alone (3135.8705ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13131.8092

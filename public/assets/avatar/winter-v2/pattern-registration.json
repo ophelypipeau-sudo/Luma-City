@@ -1,0 +1,456 @@
+{
+  "pattern": {
+    "id": "iris-canonical-pattern-v1",
+    "canvas": [
+      887,
+      1774
+    ],
+    "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+    "torso": [
+      [
+        345,
+        323,
+        559
+      ],
+      [
+        400,
+        328,
+        557
+      ],
+      [
+        480,
+        325,
+        564
+      ],
+      [
+        520,
+        333,
+        556
+      ],
+      [
+        550,
+        347,
+        539
+      ],
+      [
+        600,
+        362,
+        524
+      ],
+      [
+        650,
+        345,
+        542
+      ],
+      [
+        690,
+        319,
+        569
+      ],
+      [
+        750,
+        288,
+        600
+      ],
+      [
+        800,
+        270,
+        617
+      ],
+      [
+        850,
+        261,
+        625
+      ],
+      [
+        970,
+        270,
+        617
+      ]
+    ],
+    "armSeam": [
+      [
+        300,
+        330
+      ],
+      [
+        480,
+        330
+      ],
+      [
+        520,
+        329
+      ],
+      [
+        550,
+        330
+      ],
+      [
+        600,
+        329
+      ],
+      [
+        650,
+        314
+      ],
+      [
+        690,
+        294
+      ],
+      [
+        750,
+        258
+      ],
+      [
+        800,
+        260
+      ],
+      [
+        880,
+        250
+      ]
+    ],
+    "arms": {
+      "front": [
+        [
+          310,
+          345
+        ],
+        [
+          285,
+          500
+        ],
+        [
+          262,
+          600
+        ],
+        [
+          220,
+          710
+        ],
+        [
+          170,
+          815
+        ]
+      ],
+      "hand-on-hip": [
+        [
+          577,
+          345
+        ],
+        [
+          638,
+          435
+        ],
+        [
+          714,
+          550
+        ],
+        [
+          687,
+          615
+        ],
+        [
+          625,
+          684
+        ]
+      ],
+      "heart-hands": [
+        [
+          310,
+          345
+        ],
+        [
+          276,
+          475
+        ],
+        [
+          245,
+          600
+        ],
+        [
+          295,
+          520
+        ],
+        [
+          348,
+          442
+        ]
+      ]
+    },
+    "waistY": 690,
+    "ankles": [
+      [
+        333.5,
+        1600
+      ],
+      [
+        550,
+        1600
+      ]
+    ],
+    "floorY": 1760
+  },
+  "reports": [
+    {
+      "name": "pink-jacket",
+      "kind": "pink",
+      "neck": [
+        282,
+        335
+      ],
+      "cuff": 855,
+      "hem": 640,
+      "ease": 5,
+      "sourceHem": 639,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "snow-top",
+      "kind": "snow",
+      "neck": [
+        388,
+        388
+      ],
+      "cuff": 853,
+      "hem": 690,
+      "ease": 4,
+      "sourceHem": 695,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "ivory-dress",
+      "kind": "ivory",
+      "neck": [
+        283,
+        300
+      ],
+      "shoulder": [
+        358,
+        345
+      ],
+      "cuff": 867,
+      "hem": 970,
+      "ease": 8,
+      "sourceHem": 970,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "ribbon-cardigan",
+      "kind": "ribbon",
+      "neck": [
+        323,
+        345
+      ],
+      "cuff": 859,
+      "hem": 630,
+      "ease": 8,
+      "sourceHem": 641,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "ribbon-camisole",
+      "kind": "ribbon-camisole",
+      "neck": [
+        0,
+        0
+      ],
+      "cuff": 815,
+      "hem": 735,
+      "ease": 3,
+      "static": true,
+      "sourceHem": 728,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "legacy-lilac",
+      "kind": "legacy-lilac",
+      "neck": [
+        0,
+        0
+      ],
+      "cuff": 825,
+      "hem": 648,
+      "ease": 5,
+      "input": "public/assets/avatar/winter-v2",
+      "sourceHem": 649,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "legacy-burgundy",
+      "kind": "legacy-burgundy",
+      "neck": [
+        0,
+        0
+      ],
+      "cuff": 857,
+      "hem": 760,
+      "ease": 5,
+      "input": "public/assets/avatar/winter-v2",
+      "sourceHem": 763,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "torsoShared": true
+    },
+    {
+      "name": "pink-skirt",
+      "role": "skirt",
+      "ease": 12,
+      "sourceWaist": 702,
+      "waist": 690,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "snow-shorts",
+      "role": "shorts",
+      "ease": 8,
+      "sourceWaist": 705,
+      "waist": 690,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "ribbon-skirt",
+      "role": "skirt",
+      "ease": 16,
+      "sourceWaist": 700,
+      "waist": 690,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "pink-warmers",
+      "role": "legwear",
+      "ease": 70,
+      "sourceWaist": 1187,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "snow-warmers",
+      "role": "legwear",
+      "ease": 18,
+      "sourceWaist": 1351,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "ivory-boots",
+      "role": "shoes",
+      "ease": 18,
+      "sourceWaist": 1226,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "pink-pumps",
+      "role": "pumps",
+      "ease": 10,
+      "sourceWaist": 1654,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "snow-pumps",
+      "role": "pumps",
+      "ease": 10,
+      "sourceWaist": 1635,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    },
+    {
+      "name": "ribbon-loafers",
+      "role": "pumps",
+      "ease": 12,
+      "sourceWaist": 1602,
+      "pattern": "iris-canonical-pattern-v1",
+      "poses": [
+        "front",
+        "hand-on-hip",
+        "heart-hands"
+      ],
+      "sharedLegs": true
+    }
+  ]
+}

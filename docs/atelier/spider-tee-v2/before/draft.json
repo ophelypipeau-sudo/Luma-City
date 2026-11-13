@@ -1,0 +1,35 @@
+{
+  "mime": "image/png",
+  "publications": [],
+  "draft": {
+    "name": "Mon nouveau haut",
+    "pattern": "tee",
+    "notes": "",
+    "price": 350,
+    "placement": {
+      "x": -3,
+      "y": 0,
+      "scaleX": 1.12,
+      "scaleY": 1.13
+    },
+    "checks": [],
+    "mainColor": "#ffffff",
+    "detailColor": "#6b6be1",
+    "detailLabel": "Détails",
+    "hasDetail": true,
+    "id": "083b872c-8a0c-497b-addb-51b04821a9ab",
+    "owner": "aurore",
+    "revision": 5,
+    "status": "review",
+    "createdAt": "2026-11-09T18:13:36.129Z",
+    "updatedAt": "2026-11-09T18:20:47.381Z",
+    "sourceUrl": "/api/atelier/assets/083b872c-8a0c-497b-addb-51b04821a9ab/source",
+    "warnings": [
+      "Masques de couleur proposés automatiquement : vérifier les matières et protéger les imprimés avec le pinceau.",
+      "Les contrôles géométriques ne valident pas la qualité du dessin."
+    ],
+    "preparedUrl": "/api/atelier/assets/083b872c-8a0c-497b-addb-51b04821a9ab/front?v=3",
+    "mask1Url": "/api/atelier/assets/083b872c-8a0c-497b-addb-51b04821a9ab/mask1?v=3",
+    "mask2Url": "/api/atelier/assets/083b872c-8a0c-497b-addb-51b04821a9ab/mask2?v=3"
+  }
+}

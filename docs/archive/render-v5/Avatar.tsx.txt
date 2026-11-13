@@ -1,0 +1,83 @@
+import { useId } from "react";
+const SPRITES = "/assets/avatars-three-quarter-v1.png";
+const WIDTH = 1774;
+const HEIGHT = 887;
+const CELL = WIDTH / 4;
+type AvatarProps = {
+  id?: string;
+  color?: string;
+  hair?: string;
+  variant?: number;
+};
+function indexOf({ id, color, variant = 0 }: AvatarProps) {
+  const identities: Record<string, number> = {
+    iris: 0,
+    milo: 1,
+    june: 2,
+    noa: 3,
+  };
+  if (id && identities[id] !== undefined) return identities[id];
+  return color === "#db9574"
+    ? 2
+    : color === "#6487ba"
+      ? 3
+      : color === "#518b81"
+        ? 1
+        : variant % 2;
+}
+/** One atlas, four independent viewports: the original transparent asset stays intact. */
+export function Avatar(props: AvatarProps) {
+  const index = indexOf(props);
+  return (
+    <g>
+      <ellipse cx="0" cy="2" rx="23" ry="6" fill="#40344a" opacity=".13" />
+      <svg
+        x="-44"
+        y="-172"
+        width="88"
+        height="176"
+        viewBox={`${index * CELL} 0 ${CELL} ${HEIGHT}`}
+        overflow="hidden"
+        aria-hidden="true"
+      >
+        <image href={SPRITES} width={WIDTH} height={HEIGHT} />
+      </svg>
+    </g>
+  );
+}
+export function Portrait({
+  fullBody = false,
+  ...props
+}: AvatarProps & { fullBody?: boolean }) {
+  const index = indexOf(props);
+  const clip = useId();
+  return (
+    <svg
+      className={
+        fullBody
+          ? "avatar-illustration full-body"
+          : "avatar-illustration face-crop"
+      }
+      viewBox={`${index * CELL + (fullBody ? 0 : 70)} 0 ${fullBody ? CELL : CELL - 140} ${fullBody ? HEIGHT : 320}`}
+      preserveAspectRatio={fullBody ? "xMidYMax meet" : "xMidYMid meet"}
+      aria-hidden="true"
+    >
+      <defs>
+        <clipPath id={clip}>
+          <rect
+            x={index * CELL + (fullBody ? 0 : 70)}
+            y="0"
+            width={fullBody ? CELL : CELL - 140}
+            height={fullBody ? HEIGHT : 320}
+          />
+        </clipPath>
+      </defs>
+      <image
+        href={SPRITES}
+        width={WIDTH}
+        height={HEIGHT}
+        clipPath={`url(#${clip})`}
+      />
+    </svg>
+  );
+}

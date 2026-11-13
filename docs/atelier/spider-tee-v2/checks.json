@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Pièce entière dans le canevas",
+    "ok": true,
+    "blocking": true
+  },
+  {
+    "label": "Sous-vêtements du torse couverts",
+    "ok": true,
+    "blocking": true
+  },
+  {
+    "label": "Visage libre",
+    "ok": true,
+    "blocking": true
+  },
+  {
+    "label": "Mains libres",
+    "ok": true,
+    "blocking": true
+  }
+]

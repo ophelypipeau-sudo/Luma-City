@@ -1,0 +1,78 @@
+{
+  "mode": "ImageGen intégré · édition d’un essayage frontal · fond opaque",
+  "reference": "docs/capsule-pantalons-v2/sources/10-fuseau.png",
+  "qualityReference": "public/assets/avatar/prune-fumee-v1/source.png",
+  "prompt": "Use the supplied Un petit monde illustration as the exact native 887 × 1774 canvas. Edit only the existing shoes and the pixels that they cover. Create a matching pair of original shoes worn by Iris: [DESIGN] Keep Iris exactly the same front-facing mannequin: head, expression, identity, caraco, trousers, body proportions, leg spacing, feet centers and front-view silhouette. Do not change the pose to show the side, do not make her pigeon-toed, do not alter leg length or floor height, and preserve the plain cool grey background and full head-to-toe crop. For sneakers, allow the natural low toe silhouette to replace the high-heel pointed toe, with the soles on the same ground. Fit both shoes symmetrically to the two existing feet, no cut off soles or toes, no toe or skin spilling through closed shoes, and no socks. Ankle boots may overlap the visible ankle up to the existing trouser hems without altering trousers. Keep true front view even if the heel itself is partially hidden. Draw clean hand-painted fashion game linework and subtle material shading, fine leather, suede and textile grain as appropriate; premium Prune fumée reference level, no photorealism or vector. No labels, logos, additional views or objects.",
+  "items": [
+    {
+      "id": "01-piste",
+      "name": "Piste",
+      "style": "Basket rétro basse",
+      "details": "Daim bleu glacier, lacets crème et semelle fine couleur miel.",
+      "design": "Slim low-profile 1970s track sneaker, ice blue brushed suede, fine cream laces, short rounded toe with wraparound T-toe stitch and thin honey gum sole. No stripes or trademarks."
+    },
+    {
+      "id": "02-rafale",
+      "name": "Rafale",
+      "style": "Running Y2K",
+      "details": "Mesh gris perle, renforts argentés et semelle sculptée.",
+      "design": "Pearl grey ventilated mesh tech runner with restrained satin-silver curved overlays, white round laces and a sculpted white-and-charcoal segmented running sole. Athletic but fitted with a clear toe box, no brand insignia."
+    },
+    {
+      "id": "03-releve",
+      "name": "Relevé",
+      "style": "Basket ballerine",
+      "details": "Satin rose poudré, brides élastiques croisées et semelle souple.",
+      "design": "Ballet-sneaker hybrid in dusty ballet pink matte satin with crossed narrow elastic straps over the instep, low-cut rounded ballet toe with piping, and a thin blush rubber athletic outsole. No laces, no decorative bow."
+    },
+    {
+      "id": "04-campus",
+      "name": "Campus",
+      "style": "Basket de court",
+      "details": "Cuir écru, empiècements vert sapin et semelle cousue.",
+      "design": "Classic low-top tennis court sneaker in cream grained leather, forest-green suede toe bumper and eyelet stay, off-white cupsole with precise stitch line and discreet toe perforations; a clearly original panel design. No trademark."
+    },
+    {
+      "id": "05-silex",
+      "name": "Silex",
+      "style": "Chelsea crantée",
+      "details": "Cuir noir mat, élastiques ton sur ton et semelle crantée.",
+      "design": "Black matte leather Chelsea ankle boot with a rounded toe, low stacked heel, defined compact lug sole and a glimpse of tonal elastic side gusset. Shaft reaches the trouser cuff, no laces, no hardware."
+    },
+    {
+      "id": "06-cavalcade",
+      "name": "Cavalcade",
+      "style": "Bottine western",
+      "details": "Cuir cognac, bout en amande et surpiqûres en V.",
+      "design": "Cognac polished leather modern western ankle boot, almond-pointed toe with reinforced stitching, embroidered tonal slim V-shaped vamp seams, slightly angled dark stacked heel, shaft meeting the trouser cuff. No buckle, no fringe."
+    },
+    {
+      "id": "07-sillage-court",
+      "name": "Encrier",
+      "style": "Bottine à lacets",
+      "details": "Cuir aubergine, œillets graphite et petit talon carré.",
+      "design": "A sophisticated deep aubergine leather lace-up ankle boot, squared toe, visible clean vertical lacing through six small gunmetal eyelets, slim leather welt and low block heel, shaft meeting trouser cuff, not a combat platform."
+    },
+    {
+      "id": "08-virgule",
+      "name": "Virgule",
+      "style": "Escarpin classique",
+      "details": "Cuir grenat, bout pointu et décolleté en V.",
+      "design": "Garnet red classic point-toe leather pump with a clean V-shaped vamp and restrained patent sheen, medium-high thin heel. Bare instep, no strap, no hardware, elegantly close fitting."
+    },
+    {
+      "id": "09-opaline",
+      "name": "Opaline",
+      "style": "Slingback",
+      "details": "Cuir ivoire, bout noir et bride arrière fine.",
+      "design": "Refined ivory slingback low kitten heel with a crisp black cap toe in soft almond shape, narrow ivory back strap visible where the design allows around the sides of the foot, no ankle strap, smooth matte leather and one subtle side buckle only if visible from the actual front."
+    },
+    {
+      "id": "10-agrafe",
+      "name": "Agrafe",
+      "style": "Babies à talon bloc",
+      "details": "Cuir noir verni, bout rond et fine bride à boucle dorée.",
+      "design": "Timeless polished black leather Mary Jane pump with a rounded-square toe, one thin instep strap with a small brushed brass buckle on the outer side and a low rectangular block heel. Plain black leather, no platform."
+    }
+  ]
+}

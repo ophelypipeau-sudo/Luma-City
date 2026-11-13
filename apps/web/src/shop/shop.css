@@ -1,0 +1,966 @@
+.fashion-shop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background:
+    radial-gradient(ellipse at 80% 30%, #9461a533, transparent 60%),
+    linear-gradient(145deg, #492b5e, #2c1c3b);
+  color: #f3e2fa;
+}
+.shop-header {
+  display: flex;
+  align-items: center;
+  padding: 17px 23px;
+  gap: 13px;
+  border-bottom: 1px solid #b88fc331;
+  flex-shrink: 0;
+  min-height: 76px;
+  background: linear-gradient(120deg, #71467a28, #39274660);
+}
+.shop-back {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  color: #e5c6ee;
+  border: 1px solid #bd92d34d;
+  border-radius: 9px;
+  background: #b37bcb14;
+}
+.shop-title > span {
+  font-size: 7px;
+  letter-spacing: 1.7px;
+  color: #c39bd4;
+}
+.shop-title h1 {
+  font:
+    400 28px/1 Outfit,
+    sans-serif;
+  margin: 7px 0 0;
+  letter-spacing: -0.6px;
+  color: #f6e7f8;
+}
+.shop-title h1 > span {
+  color: #dab87f;
+  font-size: 25px;
+  margin-left: 10px;
+}
+.shop-label {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  color: #d1b2df;
+}
+.shop-label > svg {
+  color: #dcb3ec;
+}
+.shop-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 37%);
+}
+.shop-catalog {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid #b48ac235;
+}
+.catalog-tools {
+  padding: 20px 22px 0;
+  flex-shrink: 0;
+}
+.catalog-tools nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.catalog-tools nav button {
+  font-size: 9px;
+  color: #b797c7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 0 4px;
+}
+.catalog-tools nav button > span {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  width: 34px;
+  border: 1px solid #bd92d146;
+  border-radius: 50%;
+  background: #ffffff05;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.catalog-tools nav button.selected {
+  color: #ffe5bd;
+}
+.catalog-tools nav button.selected > span {
+  background: linear-gradient(140deg, #b28abc88, #79558e88);
+  border-color: #e1b9e1;
+  box-shadow: 0 0 0 3px #e7c3f00a;
+  color: #ffe6c1;
+}
+.shop-search {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #b48ac232;
+  background: #25133239;
+  border-radius: 8px;
+  padding: 9px 11px;
+  color: #bd9acd;
+}
+.shop-search input {
+  min-width: 0;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: 0;
+  color: #f0ddf6;
+  font-size: 10px;
+}
+.shop-search input::placeholder {
+  color: #b392c3;
+}
+.shop-search:focus-within {
+  border-color: #ddb5e4;
+}
+.catalog-heading {
+  flex-shrink: 0;
+  padding: 20px 22px 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+.catalog-heading > div > span {
+  font-size: 6px;
+  color: #b18dc2;
+  letter-spacing: 1.5px;
+}
+.catalog-heading h2 {
+  font:
+    400 20px/1.1 Outfit,
+    sans-serif;
+  color: #eedbf7;
+  margin: 7px 0 0;
+  letter-spacing: -0.3px;
+}
+.catalog-heading > span {
+  color: #af89bf;
+  font-size: 8px;
+  white-space: nowrap;
+}
+.catalog-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 22px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: #a17bb35c transparent;
+}
+.clothes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.clothing-card {
+  text-align: left;
+  min-width: 0;
+  padding: 0 0 10px;
+  border: 1px solid #b289c531;
+  border-radius: 10px;
+  background: linear-gradient(140deg, #ac7ab513, #9c69ba05);
+  overflow: hidden;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.clothing-card.selected {
+  border-color: #d4adc7bd;
+  background: linear-gradient(145deg, #b178ac30, #a070b210);
+}
+.clothing-card:hover:not(:disabled) {
+  filter: none;
+  border-color: #d3a8debb;
+  background: #b77bc029;
+}
+.clothing-art {
+  height: 140px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 10px;
+  background: radial-gradient(ellipse at 50% 40%, #c49ec22a, transparent 80%);
+  padding: 14px 8px 24px;
+}
+.clothing-art > .garment-thumbnail {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 5px 4px #1d0b294d);
+}
+.item-category {
+  position: absolute;
+  bottom: 7px;
+  left: 9px;
+  color: #bb9ac7;
+  font-size: 6px;
+  letter-spacing: 0.5px;
+}
+.item-check {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  background: #a67dad;
+  border: 1px solid #efd0e9bb;
+  border-radius: 50%;
+  color: #fff3e0;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+}
+.clothing-card > strong {
+  display: block;
+  padding: 0 9px;
+  font-size: 9px;
+  font-weight: 600;
+  color: #f0dbf7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.clothing-card > small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 9px;
+  font-size: 7px;
+  color: #b08dc0;
+  margin: 6px 0 10px;
+}
+.item-swatch {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #f2d0ef55;
+}
+.item-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 9px;
+  font-size: 7px;
+  color: #d6b3df;
+}
+.look-card .clothing-art {
+  height: 210px;
+  padding: 9px 5px 0;
+}
+.look-card .fitting-avatar {
+  width: 100%;
+  height: 100%;
+}
+.look-card > strong {
+  white-space: normal;
+  min-height: 22px;
+}
+.catalog-disclaimer {
+  flex-shrink: 0;
+  padding: 11px 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid #ac82b51a;
+  background: #271a3233;
+  font-size: 8px;
+  color: #ba99c6;
+}
+.catalog-disclaimer > svg {
+  color: #c4a47f;
+  flex-shrink: 0;
+}
+.fitting-room {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 19px 20px 13px;
+  background: linear-gradient(165deg, #9c79ad20, #bc87b50f 58%, #54356233);
+  overflow: hidden;
+}
+.fitting-heading {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.fitting-heading > span {
+  font-size: 6px;
+  letter-spacing: 1.7px;
+  color: #b893c8;
+}
+.fitting-heading h2 {
+  font:
+    400 27px/1 Outfit,
+    sans-serif;
+  margin: 8px 0 7px;
+  color: #f2e0fa;
+}
+.fitting-heading h2 > span {
+  color: #d8b37d;
+  font-size: 14px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.fitting-heading p {
+  margin: 0;
+  font-size: 9px;
+  color: #bfa0cd;
+}
+.fitting-stage {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 150px;
+  max-height: 620px;
+  margin: 10px 0 9px;
+  isolation: isolate;
+}
+.fitting-arch {
+  position: absolute;
+  inset: 0 5px 14px;
+  border: 1px solid #cfa4d735;
+  border-radius: 150px 150px 20px 20px;
+  background: radial-gradient(ellipse at 50% 30%, #bd97cc16, transparent 70%);
+  z-index: -1;
+}
+.fitting-arch:after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #c29bce16;
+  border-radius: inherit;
+}
+.fitting-stage > .fitting-avatar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 5px 5px #25102f4d);
+}
+.fitting-spark {
+  position: absolute;
+  right: 7px;
+  top: 23%;
+  color: #ddc7a6;
+  font-size: 25px;
+}
+.fitting-platform {
+  position: absolute;
+  bottom: -1px;
+  left: 10%;
+  width: 80%;
+  height: 17px;
+  border: 1px solid #caa3cf4d;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #c29ac52b, transparent 72%);
+  z-index: -1;
+}
+.outfit-selection {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 9px 0 5px;
+  border-top: 1px solid #b38bb92b;
+}
+.outfit-selection > div {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 20px;
+  font-size: 8px;
+}
+.outfit-selection > div > span {
+  width: 53px;
+  color: #ab87bb;
+  font-size: 7px;
+}
+.outfit-selection strong {
+  font-weight: 400;
+  color: #d6bce3;
+  font-size: 8px;
+  flex: 1;
+}
+.outfit-selection button {
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  color: #c19dcf;
+}
+.fitting-actions {
+  width: 100%;
+  display: flex;
+  gap: 7px;
+  margin: 8px 0;
+  flex-shrink: 0;
+}
+.compare-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 8px;
+  flex: 1;
+  border: 1px solid #c399cb60;
+  border-radius: 7px;
+  color: #e7cbee;
+  font-size: 8px;
+  background: #ae7fbc17;
+}
+.compare-button.selected {
+  color: #ffe3b3;
+  background: #bf93aa40;
+  border-color: #dfb6bf;
+}
+.reset-outfit {
+  width: 33px;
+  border: 1px solid #c399cb60;
+  border-radius: 7px;
+  color: #dfbde6;
+  background: #ae7fbc17;
+  display: grid;
+  place-items: center;
+}
+.shop-purchase {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #c09cc15e;
+  background: linear-gradient(#ac80b333, #7d528c33);
+  border-radius: 7px;
+  padding: 11px 7px;
+  font-size: 9px;
+  color: #dcc2de;
+}
+.shop-purchase:disabled {
+  opacity: 0.65;
+}
+.fitting-note {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 6px;
+  color: #a781b8;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.shop-empty {
+  display: grid;
+  place-items: center;
+  padding: 45px 10px;
+  color: #ba97cd;
+  text-align: center;
+}
+.shop-empty h3 {
+  font:
+    400 18px Outfit,
+    sans-serif;
+  margin: 15px 0 7px;
+  color: #e6c9ef;
+}
+.shop-empty p {
+  font-size: 10px;
+}
+.shop-empty button {
+  font-size: 10px;
+  color: #e0b9ec;
+  text-decoration: underline;
+  padding: 8px;
+}
+.fitting-room > .fitting-heading {
+  position: absolute;
+  top: 19px;
+  left: 20px;
+  text-align: left;
+}
+.fitting-room > .fitting-stage {
+  margin-top: 0;
+}
+.outfit-selection {
+  display: flex;
+  gap: 6px;
+  padding-top: 8px;
+  padding-bottom: 2px;
+}
+.outfit-selection > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+  gap: 4px;
+  min-height: 35px;
+  padding-right: 10px;
+  position: relative;
+}
+.outfit-selection > div > span {
+  width: auto;
+  font-size: 6px;
+}
+.outfit-selection strong {
+  display: block;
+  max-width: 100%;
+  flex: none;
+  font-size: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.outfit-selection button {
+  position: absolute;
+  right: -1px;
+  top: 12px;
+}
+@media (min-width: 1500px) {
+  .clothes-grid {
+    gap: 17px;
+  }
+  .clothing-art {
+    height: 180px;
+  }
+  .clothing-card > strong {
+    font-size: 11px;
+  }
+  .clothing-card > small,
+  .item-action {
+    font-size: 9px;
+  }
+  .item-category {
+    font-size: 8px;
+  }
+  .catalog-heading h2 {
+    font-size: 24px;
+  }
+  .catalog-tools nav button {
+    font-size: 10px;
+  }
+  .catalog-tools nav button > span {
+    height: 40px;
+    width: 40px;
+  }
+  .shop-header {
+    min-height: 85px;
+  }
+  .fitting-note {
+    font-size: 8px;
+  }
+  .outfit-selection > div {
+    min-height: 25px;
+  }
+  .outfit-selection strong {
+    font-size: 10px;
+  }
+  .fitting-actions .compare-button {
+    font-size: 10px;
+  }
+  .shop-purchase {
+    font-size: 11px;
+  }
+}
+@media (max-width: 1050px) {
+  .shop-header {
+    padding: 13px 16px;
+    min-height: 70px;
+  }
+  .shop-title h1 {
+    font-size: 25px;
+  }
+  .shop-label {
+    font-size: 8px;
+  }
+  .shop-body {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 39%);
+  }
+  .catalog-tools {
+    padding: 15px 14px 0;
+  }
+  .catalog-tools nav {
+    gap: 3px;
+  }
+  .catalog-tools nav button {
+    font-size: 8px;
+    padding: 0;
+  }
+  .catalog-tools nav button > span {
+    width: 30px;
+    height: 30px;
+  }
+  .catalog-tools nav button svg {
+    width: 16px;
+  }
+  .catalog-heading {
+    padding: 16px 14px 12px;
+  }
+  .catalog-heading h2 {
+    font-size: 18px;
+  }
+  .catalog-scroll {
+    padding: 0 14px 14px;
+  }
+  .clothes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .clothing-art {
+    height: 125px;
+  }
+  .fitting-room {
+    padding: 18px 13px 12px;
+  }
+  .fitting-heading h2 {
+    font-size: 25px;
+  }
+  .catalog-disclaimer {
+    padding: 10px 14px;
+    font-size: 7px;
+  }
+}
+@media (max-width: 700px) {
+  .fitting-room > .fitting-heading {
+    top: 15px;
+    left: 9px;
+  }
+  .game-fullscreen.is-shopping .workspace {
+    left: 0;
+  }
+  .game-fullscreen.is-shopping main {
+    left: 8px;
+    right: 8px;
+  }
+  .game-fullscreen.is-shopping .rail {
+    z-index: 2;
+    pointer-events: none;
+  }
+  .game-fullscreen.is-shopping .rail .sidebar-brand {
+    pointer-events: auto;
+  }
+  .game-fullscreen.is-shopping .rail > *:not(.sidebar-brand) {
+    display: none;
+  }
+  .game-fullscreen.is-shopping .world-dock {
+    padding-left: 4px;
+  }
+  .shop-header {
+    padding: 10px 12px;
+    min-height: 62px;
+    gap: 9px;
+  }
+  .shop-back {
+    width: 28px;
+    height: 28px;
+  }
+  .shop-title > span {
+    font-size: 6px;
+  }
+  .shop-title h1 {
+    font-size: 23px;
+    margin-top: 5px;
+  }
+  .shop-title h1 > span {
+    font-size: 22px;
+  }
+  .shop-label {
+    font-size: 7px;
+    max-width: 90px;
+    gap: 5px;
+  }
+  .shop-body {
+    grid-template-columns: minmax(0, 56%) minmax(0, 44%);
+  }
+  .catalog-tools {
+    padding: 13px 8px 0;
+  }
+  .catalog-tools nav {
+    gap: 3px;
+  }
+  .catalog-tools nav button {
+    font-size: 6px;
+    gap: 4px;
+    min-width: 0;
+  }
+  .catalog-tools nav button > span {
+    width: 27px;
+    height: 27px;
+  }
+  .catalog-tools nav button svg {
+    width: 13px;
+    height: 13px;
+  }
+  .shop-search {
+    margin-top: 13px;
+    padding: 7px;
+    gap: 4px;
+    border-radius: 6px;
+  }
+  .shop-search svg {
+    width: 12px;
+    flex-shrink: 0;
+  }
+  .shop-search input {
+    font-size: 8px;
+  }
+  .catalog-heading {
+    padding: 13px 8px 10px;
+    gap: 4px;
+  }
+  .catalog-heading > div > span {
+    font-size: 5px;
+    letter-spacing: 1px;
+  }
+  .catalog-heading h2 {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+  .catalog-heading > span {
+    font-size: 6px;
+  }
+  .catalog-scroll {
+    padding: 0 8px 10px;
+  }
+  .clothes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .clothing-art {
+    height: 94px;
+    padding: 9px 4px 19px;
+    margin-bottom: 7px;
+  }
+  .clothing-card {
+    border-radius: 7px;
+    padding-bottom: 8px;
+  }
+  .clothing-card > strong {
+    font-size: 7px;
+    padding: 0 6px;
+    white-space: normal;
+    min-height: 19px;
+  }
+  .clothing-card > small {
+    font-size: 5px;
+    gap: 3px;
+    padding: 0 6px;
+    margin: 4px 0 7px;
+  }
+  .item-swatch {
+    width: 5px;
+    height: 5px;
+  }
+  .item-action {
+    font-size: 6px;
+    padding: 0 6px;
+  }
+  .item-action svg {
+    width: 9px;
+    height: 9px;
+  }
+  .item-category {
+    font-size: 5px;
+    left: 6px;
+    bottom: 5px;
+  }
+  .item-check {
+    width: 14px;
+    height: 14px;
+    top: 5px;
+    right: 5px;
+  }
+  .item-check svg {
+    width: 9px;
+    height: 9px;
+  }
+  .look-card .clothing-art {
+    height: 145px;
+  }
+  .look-card > strong {
+    min-height: 20px;
+  }
+  .catalog-disclaimer {
+    padding: 8px;
+    gap: 4px;
+    font-size: 6px;
+    line-height: 1.6;
+  }
+  .catalog-disclaimer svg {
+    width: 10px;
+  }
+  .fitting-room {
+    padding: 15px 9px 10px;
+  }
+  .fitting-heading > span {
+    font-size: 5px;
+    letter-spacing: 1.1px;
+  }
+  .fitting-heading h2 {
+    font-size: 24px;
+    margin-top: 7px;
+  }
+  .fitting-heading h2 > span {
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .fitting-heading p {
+    font-size: 7px;
+    line-height: 1.5;
+  }
+  .fitting-stage {
+    min-height: 120px;
+    margin: 9px 0 4px;
+  }
+  .fitting-arch {
+    left: 1px;
+    right: 1px;
+    border-radius: 100px 100px 15px 15px;
+  }
+  .fitting-spark {
+    font-size: 17px;
+    right: 0;
+  }
+  .fitting-platform {
+    height: 11px;
+  }
+  .outfit-selection {
+    padding-top: 7px;
+  }
+  .outfit-selection > div {
+    min-height: 27px;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 0;
+    padding-right: 11px;
+  }
+  .outfit-selection > div > span {
+    width: 100%;
+    font-size: 5px;
+    margin-bottom: 1px;
+  }
+  .outfit-selection strong {
+    font-size: 6px;
+    line-height: 1.4;
+  }
+  .outfit-selection button {
+    position: absolute;
+    right: 0;
+    top: 11px;
+    padding: 0;
+  }
+  .fitting-actions {
+    gap: 4px;
+    margin: 7px 0;
+  }
+  .compare-button {
+    padding: 7px 4px;
+    font-size: 6px;
+    gap: 4px;
+    line-height: 1.3;
+  }
+  .compare-button svg {
+    width: 11px;
+    flex-shrink: 0;
+  }
+  .reset-outfit {
+    width: 23px;
+  }
+  .reset-outfit svg {
+    width: 12px;
+  }
+  .shop-purchase {
+    font-size: 6px;
+    line-height: 1.4;
+    padding: 8px 4px;
+    gap: 4px;
+  }
+  .shop-purchase svg {
+    width: 11px;
+    flex-shrink: 0;
+  }
+  .fitting-note {
+    font-size: 5px;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+  .shop-empty {
+    padding: 30px 4px;
+  }
+  .shop-empty h3 {
+    font-size: 14px;
+  }
+  .shop-empty p,
+  .shop-empty button {
+    font-size: 8px;
+  }
+}
+@media (max-height: 650px) and (min-width: 701px) {
+  .shop-header {
+    min-height: 62px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .catalog-tools {
+    padding-top: 11px;
+  }
+  .catalog-tools nav button > span {
+    width: 27px;
+    height: 27px;
+  }
+  .shop-search {
+    margin-top: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .catalog-heading {
+    padding-top: 12px;
+    padding-bottom: 11px;
+  }
+  .fitting-room {
+    padding-top: 12px;
+  }
+  .fitting-heading h2 {
+    font-size: 23px;
+    margin: 5px 0;
+  }
+  .fitting-stage {
+    min-height: 120px;
+    margin: 5px 0;
+  }
+  .outfit-selection {
+    display: none;
+  }
+  .fitting-actions {
+    margin: 5px 0;
+  }
+  .fitting-note {
+    display: none;
+  }
+  .shop-purchase {
+    padding: 8px;
+  }
+  .fitting-heading > span {
+    font-size: 5px;
+  }
+}

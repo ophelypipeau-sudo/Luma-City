@@ -1,0 +1,29 @@
+{
+  "base": "Create ONE premium hand-illustrated 2D video game hair sprite. The supplied square image is the actual Iris game mannequin and mandatory registration template; use its exact zoom and center. Use it as a temporary underlay while drawing, then REMOVE the whole person, skin, ears, neck, face, eyes, clothes and gray background from the output. Output just the hairstyle cutout on completely flat vivid green #00FF00, even inside the head/neck/ear hole and between strands. Keep the cutout exactly overlaid on the square reference; head center x512; actual scalp top y158, temples at x370 and x650 around y301, outer ears at x346 and x677 around y389, chin x510 y543, neck at x450–574 around y568. Hair fits the skull closely. Cover the scalp around its contour and leave the facial area open, brow and eyes fully visible. Avoid overlarge cap. Add anatomically credible roots, tapered fine strokes, irregular strand groups and soft small highlights that follow forms. Match stylized illustration, clarity and finish of the reference, subtly dimensional, no photo or synthetic shiny wig look. Graphic contour and color delineated for dye masks. Use one single head-on hair object, no disconnected sample layers, no lettering, no ground shadows, no border, no opaque pixels of skin even at scalp parts (leave those pure green). Keep all strands and ends within the canvas. Make original designs, reference is anatomy and finish. Style brief: ",
+  "briefs": [
+    [
+      "01-aureole",
+      "A polished contemporary butterfly blowout in honeyed chestnut. Center part with believable tapered roots; airy curtain pieces flare OUTWARD at cheekbone height, second broad tier flips at the collarbones, long feathered ends reach the lower chest. Clear distinct successive tiers and subtle caramel ribbons. Two side lengths, approximate silhouette about twice the cheek width at shoulder. Expensive salon bounce, no uniform wavy curtain."
+    ],
+    [
+      "02-trait",
+      "A slick high fashion ponytail in cool espresso with a slender silver hair cuff at the top. Face-facing slick sides with fine directional texture, two short finely laid baby hairs at the temples and TWO thin face framing locks in front of the ears, following the cheek contour. The high ponytail is visible above the crown and the long smooth length drops behind the right shoulder of the image, with a clean long tapered hook. The left shoulder is visually free. Smooth sheen restrained."
+    ],
+    [
+      "03-sillage",
+      "Long medium-fine knotless boho braids with curled ends, dark brown with a few caramel spirals. Delicate organized feed-in root sections and natural parting following the actual cranium. Braid sizes staggered; several loose curls interleave and the ends unfurl into distinct bouncy ringlets. Some uneven long braids forward over both shoulders and others behind. Two very small warm gold cuffs, spaced. Avoid making a single uniform woven mass."
+    ],
+    [
+      "04-orbite",
+      "An edgy short modern wolf cut/shag in plum-black with cool burgundy reflected highlights. Short wispy broken curtain fringe around the brow, textured lifted crown, feather-cut shingle-like pieces around temple and ears, jagged layered nape that just brushes the collarbones. Narrow at neck, intentionally short rocker shape with little flicks, distinct from long blowout and waves. Subtle muted copper two thin peekaboo locks inside the left nape, no thick stripes."
+    ],
+    [
+      "05-azur",
+      "Y2K half-up, half-down in warm chocolate. Two narrow temple sections lifted and pinned at the upper back with two little cool silver butterfly clips, a visible lifted half-pony knot directly above the crown, while the larger lower half falls loose in playful broken waves below the shoulders. Two narrow soft face-framing tendrils. A thin muted rose accent lock on one side, with a clear edge for a separate dye zone. Youthful sleek-to-wavy contrast; clearly much fuller underneath than the high ponytail."
+    ],
+    [
+      "06-nocturne",
+      "Long editorial Hollywood glam waves in rich dark auburn, deep side part on viewer left, narrow slick side tucked behind the ear with two small pearl pins, long luxurious S waves sweeping over the viewer-right shoulder and down to lower chest, one strong asymmetric silhouette. Broad directional highlights integrated into a few sculptural S-curves, brushy taper and fine supporting strands. Dramatic side-sweep, entirely different from center-part feathered blowout."
+    ]
+  ]
+}

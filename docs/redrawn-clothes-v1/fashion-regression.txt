@@ -1,0 +1,10 @@
+✔ the supplied mannequin and hand drawing are preserved byte for byte (2.6015ms)
+✔ the fashion outfit masks underwear and feet, preserves user hands and puts jeans over boot shafts (3322.545ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3634.3336

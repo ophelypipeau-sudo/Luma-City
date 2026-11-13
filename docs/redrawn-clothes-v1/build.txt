@@ -1,0 +1,36 @@
+
+> build
+> npm run check:poses && tsc --noEmit && vite build
+
+
+> check:poses
+> tsx scripts/check-pose-wardrobe.ts
+
+Dressing : 43 pièces contrôlées sur les 3 poses · 143 calques/masques calibrés.
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1753 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                            0.42 kB │ gzip:   0.30 kB
+dist/assets/outfit-latin-ext-500-normal-zeox_O30.woff2     6.24 kB
+dist/assets/outfit-latin-ext-400-normal-5tcqmc2S.woff2     6.38 kB
+dist/assets/dm-sans-latin-ext-400-normal-BtiwyxMk.woff2    7.36 kB
+dist/assets/dm-sans-latin-ext-600-normal-4vooXBpG.woff2    7.42 kB
+dist/assets/outfit-latin-ext-500-normal-DrCvqoFD.woff      8.49 kB
+dist/assets/outfit-latin-ext-400-normal-DHm7mdGe.woff      8.64 kB
+dist/assets/dm-sans-latin-ext-400-normal-BjWJ59Pq.woff     9.98 kB
+dist/assets/dm-sans-latin-ext-600-normal-DRtaDpgU.woff    10.02 kB
+dist/assets/outfit-latin-500-normal-DKnIMDSk.woff2        13.53 kB
+dist/assets/outfit-latin-400-normal-BGsTXAXT.woff2        14.03 kB
+dist/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2       14.14 kB
+dist/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2       14.20 kB
+dist/assets/outfit-latin-500-normal-ClnHRwRh.woff         17.69 kB
+dist/assets/outfit-latin-400-normal-DMwTpYkH.woff         18.23 kB
+dist/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff        18.32 kB
+dist/assets/dm-sans-latin-400-normal-BwCSEQnW.woff        18.36 kB
+dist/assets/RigLab-CxJaiCOk.css                            1.88 kB │ gzip:   0.82 kB
+dist/assets/index-B0vo3KHy.css                           141.27 kB │ gzip:  29.34 kB
+dist/assets/RigLab-BGedzSaQ.js                            11.10 kB │ gzip:   4.90 kB
+dist/assets/index--zu4qJLC.js                            516.03 kB │ gzip: 159.50 kB
+✓ built in 4.26s

@@ -1,0 +1,114 @@
+.server-ranking {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 100%;
+  color: #fff7fd;
+  background: linear-gradient(180deg, #3b233c, #733774);
+}
+.server-ranking .server-ranking-close {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: .6rem;
+  inset-inline-end: .65rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #e1afd1;
+  border-radius: 50%;
+  background: #8b4275;
+}
+.server-ranking .server-ranking-close:hover { background: #a64d8b; }
+.server-ranking-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(12rem, 1fr) auto;
+  align-content: start;
+  padding: clamp(.65rem, 2vw, 1.55rem);
+}
+.server-ranking-column > * { grid-column: 1; }
+.server-ranking-column + .server-ranking-column { border-inline-start: 3px solid #f7ebf6; }
+.server-ranking-column h2 { grid-row: 1; margin: 0 0 1rem; font-size: clamp(1rem, 2vw, 1.55rem); }
+.server-ranking-categories {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.2rem, 1.4vw, .9rem);
+  margin-bottom: 1.1rem;
+}
+.server-ranking button { color: inherit; font: inherit; cursor: pointer; }
+.server-ranking-categories button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: .18rem;
+  min-height: 3.6rem;
+  border-radius: .38rem;
+  border: 1px solid transparent;
+  background: #cdb6ca5e;
+  font-size: clamp(.63rem, 1vw, .92rem);
+  font-weight: 700;
+}
+.server-ranking-categories button[aria-pressed="true"] {
+  background: #e7cce495;
+  border-color: #ffdff7;
+}
+.server-ranking-categories svg { width: 1.55rem; height: 1.55rem; }
+.server-ranking-categories button:first-child svg { fill: #c796ed; }
+.server-ranking-categories button:nth-child(2) svg { fill: #f06c8b; }
+.server-ranking-rows { grid-row: 3; display: grid; align-content: start; gap: .55rem; padding: 0; margin: 0; list-style: none; }
+.server-ranking-rows button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  text-align: start;
+  gap: clamp(.3rem, 1.25vw, .95rem);
+  width: 100%;
+  min-height: 3.1rem;
+  padding: .28rem .72rem;
+  border-radius: 1rem;
+  border: 1px solid #e9c9e52f;
+  background: #dbc7d873;
+  font-size: clamp(.78rem, 1.25vw, 1.14rem);
+  font-weight: 700;
+}
+.server-ranking-rows strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.portrait-circle {
+  display: grid;
+  place-items: center;
+  width: var(--portrait-circle-size, 2.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #d999bb;
+}
+.portrait-circle svg { width: 100%; height: 100%; display: block; }
+.server-ranking-medal {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: #c18937;
+  border: 2px double #ffdf86;
+}
+.server-ranking-column p { align-self: start; margin: 0 0 1rem; grid-row: 3; }
+.server-ranking-pages { grid-row: 4; display: flex; align-items: center; justify-content: center; gap: .55rem; padding-top: .85rem; font-size: .8rem; }
+.server-ranking-pages button {
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: #eadbea;
+  color: #472440;
+}
+.server-ranking-pages button:disabled { opacity: .42; cursor: default; }
+@media (max-width: 680px) {
+  .server-ranking { grid-template-columns: 1fr; }
+  .server-ranking-column + .server-ranking-column { border-inline-start: 0; border-block-start: 2px solid #f7ebf6; }
+}

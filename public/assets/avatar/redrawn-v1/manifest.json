@@ -1,0 +1,431 @@
+{
+  "lilac": {
+    "crop": [
+      130,
+      288,
+      625,
+      560
+    ],
+    "mainBase": "#bc9cc7",
+    "detailBase": "#eee5cf",
+    "detail": true
+  },
+  "lilac-hand-on-hip": {
+    "crop": [
+      129,
+      286,
+      635,
+      563
+    ],
+    "mainBase": "#bc9cc7",
+    "detailBase": "#eee5cf",
+    "detail": true
+  },
+  "lilac-heart-hands": {
+    "crop": [
+      203,
+      287,
+      477,
+      369
+    ],
+    "mainBase": "#bc9cc7",
+    "detailBase": "#eee5cf",
+    "detail": true
+  },
+  "burgundy": {
+    "crop": [
+      131,
+      388,
+      622,
+      460
+    ],
+    "mainBase": "#6d2534",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "burgundy-hand-on-hip": {
+    "crop": [
+      129,
+      380,
+      634,
+      469
+    ],
+    "mainBase": "#6d2534",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "burgundy-heart-hands": {
+    "crop": [
+      197,
+      376,
+      490,
+      401
+    ],
+    "mainBase": "#6d2534",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "pink-jacket": {
+    "crop": [
+      95,
+      278,
+      695,
+      606
+    ],
+    "mainBase": "#e8e0e0",
+    "detailBase": "#e8aac9",
+    "detail": true
+  },
+  "pink-jacket-hand-on-hip": {
+    "crop": [
+      86,
+      260,
+      681,
+      634
+    ],
+    "mainBase": "#e8e0e0",
+    "detailBase": "#e8aac9",
+    "detail": true
+  },
+  "pink-jacket-heart-hands": {
+    "crop": [
+      198,
+      264,
+      488,
+      367
+    ],
+    "mainBase": "#e8e0e0",
+    "detailBase": "#e8aac9",
+    "detail": true
+  },
+  "snow-top": {
+    "crop": [
+      127,
+      378,
+      631,
+      477
+    ],
+    "mainBase": "#e4e4e7",
+    "detailBase": "#f0f0f2",
+    "detail": true
+  },
+  "snow-top-hand-on-hip": {
+    "crop": [
+      125,
+      370,
+      633,
+      481
+    ],
+    "mainBase": "#e4e4e7",
+    "detailBase": "#f0f0f2",
+    "detail": true
+  },
+  "snow-top-heart-hands": {
+    "crop": [
+      197,
+      370,
+      491,
+      374
+    ],
+    "mainBase": "#e4e4e7",
+    "detailBase": "#f0f0f2",
+    "detail": true
+  },
+  "ivory-dress": {
+    "crop": [
+      137,
+      277,
+      605,
+      638
+    ],
+    "mainBase": "#e5d8c5",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ivory-dress-hand-on-hip": {
+    "crop": [
+      130,
+      273,
+      631,
+      644
+    ],
+    "mainBase": "#e5d8c5",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ivory-dress-heart-hands": {
+    "crop": [
+      186,
+      274,
+      510,
+      645
+    ],
+    "mainBase": "#e5d8c5",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-cardigan": {
+    "crop": [
+      137,
+      325,
+      613,
+      521
+    ],
+    "mainBase": "#e2a2b0",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-cardigan-hand-on-hip": {
+    "crop": [
+      137,
+      328,
+      625,
+      515
+    ],
+    "mainBase": "#e2a2b0",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-cardigan-heart-hands": {
+    "crop": [
+      205,
+      327,
+      475,
+      321
+    ],
+    "mainBase": "#e2a2b0",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "leopard": {
+    "crop": [
+      306,
+      305,
+      271,
+      432
+    ],
+    "mainBase": "#a7754d",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "rose-camisole": {
+    "crop": [
+      312,
+      328,
+      263,
+      291
+    ],
+    "mainBase": "#e5e1e6",
+    "detailBase": "#29262a",
+    "detail": true
+  },
+  "ribbon-camisole": {
+    "crop": [
+      293,
+      357,
+      301,
+      363
+    ],
+    "mainBase": "#e7ddc9",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "pink-skirt": {
+    "crop": [
+      250,
+      674,
+      410,
+      225
+    ],
+    "mainBase": "#9eafc1",
+    "detailBase": "#dd95b9",
+    "detail": true
+  },
+  "snow-shorts": {
+    "crop": [
+      254,
+      701,
+      377,
+      170
+    ],
+    "mainBase": "#e7e7ea",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "burgundy-skirt": {
+    "crop": [
+      212,
+      753,
+      461,
+      187
+    ],
+    "mainBase": "#29282b",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-skirt": {
+    "crop": [
+      214,
+      617,
+      456,
+      326
+    ],
+    "mainBase": "#29282b",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "jeans": {
+    "crop": [
+      216,
+      682,
+      455,
+      960
+    ],
+    "mainBase": "#252d42",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "cargo": {
+    "crop": [
+      193,
+      674,
+      500,
+      1036
+    ],
+    "mainBase": "#d494b4",
+    "detailBase": "#29262c",
+    "detail": true
+  },
+  "fur-pants": {
+    "crop": [
+      184,
+      681,
+      521,
+      999
+    ],
+    "mainBase": "#3d3732",
+    "detailBase": "#9d683d",
+    "detail": true
+  },
+  "pink-warmers": {
+    "crop": [
+      230,
+      1193,
+      420,
+      492
+    ],
+    "mainBase": "#edb0d1",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "snow-warmers": {
+    "crop": [
+      266,
+      1352,
+      351,
+      307
+    ],
+    "mainBase": "#e5e3e4",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "pumps": {
+    "crop": [
+      279,
+      1600,
+      328,
+      170
+    ],
+    "mainBase": "#e8e7e8",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "gold-sneakers": {
+    "crop": [
+      264,
+      1560,
+      359,
+      208
+    ],
+    "mainBase": "#322b26",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "white-sneakers": {
+    "crop": [
+      266,
+      1559,
+      354,
+      201
+    ],
+    "mainBase": "#e4e4e8",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ivory-boots": {
+    "crop": [
+      273,
+      1239,
+      336,
+      519
+    ],
+    "mainBase": "#deceba",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ankle-boots": {
+    "crop": [
+      266,
+      1522,
+      355,
+      234
+    ],
+    "mainBase": "#e3d7c2",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "socks-loafers": {
+    "crop": [
+      277,
+      1413,
+      331,
+      354
+    ],
+    "mainBase": "#292629",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-loafers": {
+    "crop": [
+      273,
+      1595,
+      339,
+      169
+    ],
+    "mainBase": "#292629",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "ribbon-stockings": {
+    "crop": [
+      240,
+      940,
+      410,
+      720
+    ],
+    "mainBase": "#29262b",
+    "detailBase": "#333333",
+    "detail": false
+  },
+  "pink-pumps": {
+    "crop": [
+      279,
+      1600,
+      328,
+      170
+    ],
+    "mainBase": "#df92bb",
+    "detailBase": "#333333",
+    "detail": false
+  }
+}

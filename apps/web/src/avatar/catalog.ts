@@ -16,6 +16,7 @@ import { SHOES_CAPSULE_GARMENTS } from "./shoes-capsule";
 import { HAIR_CAPSULE_GARMENTS } from "./hair-capsule";
 import { HAIR_CAPSULE_V2_GARMENTS } from "./hair-capsule-v2";
 import { HAIR_CAPSULE_V3_GARMENTS } from "./hair-capsule-v3";
+import { HAIR_CAPSULE_V4_GARMENTS } from "./hair-capsule-v4";
 import { TSHIRT_GARMENTS } from "./tshirts";
 import { POLAR_GARMENTS } from "./minuit-polaire";
 import { ROSE_GARMENTS } from "./rose";
@@ -312,6 +313,7 @@ const byId = new Map(
     ...HAIR_CAPSULE_GARMENTS,
     ...HAIR_CAPSULE_V2_GARMENTS,
     ...HAIR_CAPSULE_V3_GARMENTS,
+    ...HAIR_CAPSULE_V4_GARMENTS,
     ...PREMIUM_CAPSULE_GARMENTS,
     ...CAPSULE_MODE_GARMENTS,
     ...TSHIRT_GARMENTS,
@@ -337,6 +339,7 @@ const shopGarments = [
   ...CITY_CAPSULE_GARMENTS,
   ...BOTTOMS_CAPSULE_GARMENTS,
   ...HAIR_CAPSULE_V3_GARMENTS,
+  ...HAIR_CAPSULE_V4_GARMENTS,
   ...HAIR_CAPSULE_V2_GARMENTS,
   ...HAIR_CAPSULE_GARMENTS,
   ...IRIS_SKIRTS_GARMENTS,

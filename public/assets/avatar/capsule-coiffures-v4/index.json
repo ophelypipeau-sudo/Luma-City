@@ -1,0 +1,366 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "01",
+      "name": "Gravure",
+      "crop": [
+        344,
+        34,
+        199,
+        146
+      ],
+      "mainTone": {
+        "shadow": 26,
+        "middle": 52,
+        "highlight": 109,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "02",
+      "name": "Sillons",
+      "crop": [
+        341,
+        24,
+        206,
+        156
+      ],
+      "mainTone": {
+        "shadow": 18,
+        "middle": 62,
+        "highlight": 143,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "03",
+      "name": "Constellation",
+      "crop": [
+        308,
+        11,
+        273,
+        189
+      ],
+      "mainTone": {
+        "shadow": 15,
+        "middle": 40,
+        "highlight": 126,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "04",
+      "name": "Cinéma",
+      "crop": [
+        329,
+        26,
+        228,
+        199
+      ],
+      "mainTone": {
+        "shadow": 23,
+        "middle": 46,
+        "highlight": 119,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "05",
+      "name": "Aileron",
+      "crop": [
+        362,
+        -61,
+        161,
+        184
+      ],
+      "mainTone": {
+        "shadow": 28,
+        "middle": 45,
+        "highlight": 107,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "06",
+      "name": "Azimut",
+      "crop": [
+        263,
+        5,
+        361,
+        799
+      ],
+      "mainTone": {
+        "shadow": 16,
+        "middle": 34,
+        "highlight": 71,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": true
+    },
+    {
+      "id": "07",
+      "name": "Méduse",
+      "crop": [
+        296,
+        -5,
+        295,
+        490
+      ],
+      "mainTone": {
+        "shadow": 17,
+        "middle": 50,
+        "highlight": 121,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "08",
+      "name": "Mistral",
+      "crop": [
+        305,
+        -31,
+        277,
+        233
+      ],
+      "mainTone": {
+        "shadow": 15,
+        "middle": 37,
+        "highlight": 104,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "09",
+      "name": "Toupie",
+      "crop": [
+        268,
+        -53,
+        350,
+        257
+      ],
+      "mainTone": {
+        "shadow": 17,
+        "middle": 42,
+        "highlight": 112,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "10",
+      "name": "Rocaille",
+      "crop": [
+        334,
+        -12,
+        219,
+        182
+      ],
+      "mainTone": {
+        "shadow": 12,
+        "middle": 37,
+        "highlight": 112,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "11",
+      "name": "Cerf-volant",
+      "crop": [
+        291,
+        38,
+        305,
+        477
+      ],
+      "mainTone": {
+        "shadow": 29,
+        "middle": 52,
+        "highlight": 120,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "12",
+      "name": "Épi de mer",
+      "crop": [
+        326,
+        8,
+        225,
+        579
+      ],
+      "mainTone": {
+        "shadow": 19,
+        "middle": 46,
+        "highlight": 108,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": true
+    },
+    {
+      "id": "13",
+      "name": "Soufflet",
+      "crop": [
+        161,
+        30,
+        566,
+        428
+      ],
+      "mainTone": {
+        "shadow": 22,
+        "middle": 39,
+        "highlight": 117,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "14",
+      "name": "Volute",
+      "crop": [
+        325,
+        -97,
+        238,
+        260
+      ],
+      "mainTone": {
+        "shadow": 28,
+        "middle": 48,
+        "highlight": 108,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "15",
+      "name": "Éventail",
+      "crop": [
+        189,
+        -94,
+        512,
+        288
+      ],
+      "mainTone": {
+        "shadow": 21,
+        "middle": 45,
+        "highlight": 134,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "16",
+      "name": "Néon",
+      "crop": [
+        331,
+        22,
+        226,
+        576
+      ],
+      "mainTone": {
+        "shadow": 23,
+        "middle": 54,
+        "highlight": 125,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "17",
+      "name": "Lacet",
+      "crop": [
+        167,
+        -53,
+        553,
+        258
+      ],
+      "mainTone": {
+        "shadow": 24,
+        "middle": 41,
+        "highlight": 108,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "18",
+      "name": "Rosace",
+      "crop": [
+        239,
+        -81,
+        411,
+        285
+      ],
+      "mainTone": {
+        "shadow": 22,
+        "middle": 57,
+        "highlight": 127,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "19",
+      "name": "Mosaïque",
+      "crop": [
+        339,
+        -38,
+        210,
+        192
+      ],
+      "mainTone": {
+        "shadow": 21,
+        "middle": 46,
+        "highlight": 117,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": false
+    },
+    {
+      "id": "20",
+      "name": "Équerre",
+      "crop": [
+        338,
+        10,
+        195,
+        414
+      ],
+      "mainTone": {
+        "shadow": 25,
+        "middle": 45,
+        "highlight": 117,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "back": true
+    }
+  ]
+}

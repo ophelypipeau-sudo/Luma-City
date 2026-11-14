@@ -11,6 +11,7 @@ import { MorphologyComparison } from "../../apps/web/src/cartoon/MorphologyCompa
 import { PilotFitFixture } from "./PilotFitFixture";
 import { IRIS_SKIRTS_GARMENTS } from "../../apps/web/src/avatar/iris-skirts";
 import { IRIS_DRESSES_GARMENTS } from "../../apps/web/src/avatar/iris-dresses";
+import { HAIR_CAPSULE_V4_GARMENTS } from "../../apps/web/src/avatar/hair-capsule-v4";
 import { IRIS_SHORTS_GARMENTS } from "../../apps/web/src/avatar/iris-shorts";
 
 function Fixture() {
@@ -126,7 +127,7 @@ function Fixture() {
   );
 }
 function BottomsFit({ group, dye, tucked, velvet, variant }: { group: string; dye?: string; tucked: boolean; velvet: boolean; variant: boolean }) {
-  const pieces = group === "dresses-iris" ? IRIS_DRESSES_GARMENTS : group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
+  const pieces = group === "hair-iris-v4" ? HAIR_CAPSULE_V4_GARMENTS : group === "dresses-iris" ? IRIS_DRESSES_GARMENTS : group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
     ? PANTS_CAPSULE_GARMENTS
     : (group.startsWith("ville-") ? CITY_CAPSULE_GARMENTS : BOTTOMS_CAPSULE_GARMENTS).filter(piece => piece.id.startsWith(group.startsWith("ville-") ? "fashion." + group : "fashion.capsule-" + group));
   return (
@@ -137,12 +138,12 @@ function BottomsFit({ group, dye, tucked, velvet, variant }: { group: string; dy
             <FittingAvatar characterId="iris" outfit={BARE_OUTFIT} layers={{
               ...plumLook,
               ...(piece.isDress && variant && {
-                hair: "fashion.hair-v3-01-carre",
                 shoes: "fashion.shoes-campus",
               }),
-              top: piece.isDress ? piece.id : velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
+              top: piece.isDress ? piece.id : piece.slot === "hair" ? plumLook.top : velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
               topTucked: tucked,
-              bottom: piece.isDress ? null : piece.id,
+              bottom: piece.slot === "hair" ? plumLook.bottom : piece.isDress ? null : piece.id,
+              hair: piece.slot === "hair" ? piece.id : piece.isDress && variant ? "fashion.hair-v3-01-carre" : plumLook.hair,
               colors: dye ? { [piece.id]: dye } : undefined,
             }} />
           </div>

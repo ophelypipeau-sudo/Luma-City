@@ -1,0 +1,485 @@
+/*
+ * Quartier redesign: character on the left, scene in a frame, people at the bottom.
+ * Desktop only (≥1001px); the colourful starry background of .game-fullscreen is kept.
+ */
+.today-panel,
+.today-reopen {
+  --today-ink: #f7f2ff;
+  --today-muted: #cdbfe6;
+  --today-surface: rgba(27, 19, 40, 0.94);
+  --today-row: #2a1f3d;
+  --today-track: #3b2d52;
+  position: absolute;
+  z-index: 6;
+  top: 14px;
+  right: 14px;
+  color: var(--today-ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+.today-panel {
+  width: min(292px, calc(100% - 28px));
+  box-sizing: border-box;
+  padding: 14px;
+  border-radius: 22px;
+  background: var(--today-surface);
+  box-shadow: 0 10px 28px rgba(20, 10, 32, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.today-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.today-head h2 {
+  margin: 0;
+  font: 600 18px Outfit, sans-serif;
+}
+.today-head span {
+  font-size: 12px;
+  color: var(--today-muted);
+}
+.today-close {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--today-row);
+  color: var(--today-ink);
+  cursor: pointer;
+}
+.today-close:hover { background: var(--today-track); }
+.today-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--today-row);
+}
+.today-icon { flex: none; }
+.today-icon.is-pink { color: #f4a9d8; }
+.today-icon.is-gold { color: #f7c75c; }
+.today-icon.is-green { color: #9fe3c1; }
+.today-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.today-text strong { font-size: 14px; }
+.today-text small {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--today-muted);
+}
+.today-track {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--today-track);
+  overflow: hidden;
+}
+.today-track > span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #f4a9d8;
+}
+.today-action {
+  flex: none;
+  height: 40px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  color: #2a1530;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.today-action.is-pink { background: #f4a9d8; }
+.today-action.is-gold { background: #f7c75c; }
+.today-action.is-green { background: #9fe3c1; color: #1b1328; }
+.today-action:disabled { opacity: 0.6; cursor: default; }
+.today-reopen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 16px 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--today-surface);
+  box-shadow: 0 8px 22px rgba(20, 10, 32, 0.4);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.today-reopen > svg { color: #f4a9d8; }
+.today-reopen b {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border-radius: 99px;
+  background: #f4a9d8;
+  color: #2a1530;
+  font-size: 12px;
+}
+
+/* Map places: live counts and "Bientôt" instead of work-in-progress banners. */
+.place-name .place-count { color: #9fe3c1; font-weight: 600; margin-left: 4px; }
+.place-name .place-soon { color: #cdbfe6; font-weight: 500; margin-left: 4px; }
+.place-marker.is-soon .place-dot { filter: grayscale(0.6); opacity: 0.8; }
+.marker-home .place-name small { display: inline; color: #cdbfe6; font-size: 1em; }
+
+@media (min-width: 1001px) {
+  :root {
+    --character-width: clamp(240px, 19vw, 300px);
+  }
+
+  /* Left column: my character, always visible. */
+  .game-fullscreen .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    box-sizing: border-box;
+    padding: 16px 0 12px 20px;
+  }
+  .game-fullscreen .sidebar-brand {
+    position: static;
+    width: auto;
+    align-self: flex-start;
+  }
+  .game-fullscreen .luma-brand {
+    width: 100px;
+    height: 64px;
+  }
+  .game-fullscreen .rail > .character-motto {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    transform: none;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1.5px dashed rgba(247, 242, 255, 0.35);
+    border-radius: 16px;
+    background: rgba(27, 19, 40, 0.42);
+    color: #f7f2ff;
+    font-size: 14px;
+    text-align: left;
+  }
+  .game-fullscreen .rail > .character-motto svg { width: 16px; height: 16px; }
+  .game-fullscreen .character-stage {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    flex: 1;
+    min-height: 0;
+    border-radius: 26px;
+    background: rgba(27, 19, 40, 0.42);
+    box-shadow: inset 0 0 0 1px rgba(247, 242, 255, 0.1);
+  }
+  .game-fullscreen .character-stage > .full-body {
+    top: 14px;
+    bottom: auto;
+    height: calc(100% - 96px);
+  }
+  .game-fullscreen .avatar-pedestal { bottom: 70px; }
+  .game-fullscreen .stage-caption {
+    bottom: 14px;
+    font-size: 24px;
+    color: #f7f2ff;
+  }
+  .game-fullscreen .stage-caption span {
+    font-size: 14px;
+    color: #e3d7f5;
+    margin-top: 2px;
+  }
+  .game-fullscreen .avatar-spark { display: none; }
+  .rail-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .rail-actions button {
+    height: 44px;
+    border: 1.5px solid rgba(247, 242, 255, 0.28);
+    border-radius: 14px;
+    background: rgba(27, 19, 40, 0.42);
+    color: #f7f2ff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .rail-actions .rail-primary {
+    border-color: transparent;
+    background: #f4a9d8;
+    color: #2a1530;
+    font-weight: 700;
+  }
+  .game-fullscreen .rail-bottom {
+    position: static;
+    width: auto;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .game-fullscreen .rail-bottom .rail-button {
+    width: auto;
+    height: 40px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e3d7f5;
+    border-radius: 12px;
+  }
+  .game-fullscreen .rail-bottom .rail-button > span {
+    display: inline;
+    font-size: 13px;
+  }
+  .game-fullscreen .rail-bottom .rail-button:hover { background: rgba(27, 19, 40, 0.42); }
+
+  /* Top bar: one labelled navigation, wallet on the right. */
+  .game-fullscreen .workspace { left: calc(var(--character-width) + 20px); }
+  .game-fullscreen .topbar {
+    left: 0;
+    right: 20px;
+    height: 88px;
+    padding: 0;
+    gap: 16px;
+  }
+  .game-fullscreen .wordmark { display: none; }
+  .game-fullscreen .world-nav {
+    order: 1;
+    flex: 0 1 auto;
+    height: auto;
+    padding: 0;
+    gap: 4px;
+  }
+  .game-fullscreen .world-nav button {
+    position: relative;
+    width: 80px;
+    height: 62px;
+    gap: 4px;
+    border-radius: 16px;
+    color: #f7f2ff;
+    font-size: 13px;
+    font-weight: 700;
+    text-shadow: none;
+  }
+  .game-fullscreen .world-nav button > svg:not(.avatar-illustration) {
+    width: 22px;
+    height: 22px;
+    color: currentColor;
+    stroke-width: 2;
+    filter: none;
+  }
+  .game-fullscreen .world-nav button.selected {
+    background: #f4a9d8;
+    color: #2a1530;
+  }
+  .game-fullscreen .world-nav button.selected:after { display: none; }
+  .game-fullscreen .world-nav button:hover:not(:disabled):not(.selected) {
+    transform: none;
+    filter: none;
+    background: rgba(27, 19, 40, 0.42);
+  }
+  .game-fullscreen .world-nav button:disabled { opacity: 0.55; }
+  .game-fullscreen .nav-unread {
+    top: 4px;
+    right: 14px;
+    min-width: 20px;
+    height: 20px;
+    font-size: 12px;
+    background: #f4a9d8;
+    color: #2a1530;
+  }
+  .game-fullscreen .game-wallet {
+    order: 2;
+    margin-left: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .game-fullscreen .wallet-counters {
+    display: flex;
+    gap: 8px;
+  }
+  .game-fullscreen .money-counter > button {
+    width: auto;
+    height: 46px;
+    display: flex;
+    gap: 8px;
+    padding: 0 14px 0 10px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(27, 19, 40, 0.6);
+    box-shadow: none;
+    color: #f7f2ff;
+  }
+  .game-fullscreen .money-medal { width: 24px; height: 24px; }
+  .game-fullscreen .money-counter button > span {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .game-fullscreen .money-counter b,
+  .game-fullscreen .diamants b {
+    color: #f7f2ff;
+    font-size: 16px;
+  }
+  .game-fullscreen .money-counter small {
+    font-size: 13px;
+    color: #cdbfe6;
+  }
+  .game-fullscreen .fame-meter {
+    height: 46px;
+    box-sizing: border-box;
+    padding: 0 8px 0 14px;
+    gap: 10px;
+    border-radius: 999px;
+    background: rgba(27, 19, 40, 0.6);
+    color: #f7c75c;
+    font: 600 15px Outfit, sans-serif;
+  }
+  .game-fullscreen .fame-meter > svg { display: none; }
+  .game-fullscreen .fame-track {
+    flex: none;
+    width: 90px;
+    height: 8px;
+    padding: 0;
+    background: #3b2d52;
+    overflow: hidden;
+  }
+  .game-fullscreen .fame-meter .fame-track > span {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: #f7c75c;
+  }
+  .game-fullscreen .fame-progress {
+    /* The exact XP stays in the tooltip and in the progress bar's text alternative. */
+    display: none;
+  }
+  .game-fullscreen .level-wheel {
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font: 700 13px "DM Sans", sans-serif;
+  }
+
+  /* Scene frame and people strip. */
+  .game-fullscreen main {
+    top: 92px;
+    bottom: 152px;
+    left: 0;
+    right: 20px;
+  }
+  .game-fullscreen .room-card {
+    border: 1px solid rgba(247, 242, 255, 0.16);
+    border-radius: 26px;
+    box-shadow: 0 12px 36px rgba(20, 10, 32, 0.35);
+  }
+  .game-fullscreen .map-artwork { width: max(100cqw, 150cqh); }
+  .game-fullscreen .place-dot { width: 56px; height: 56px; }
+  .game-fullscreen .place-icon { width: 36px; height: 36px; }
+  .game-fullscreen .place-name {
+    top: calc(100% + 5px);
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(27, 19, 40, 0.9);
+    font-size: 13px;
+  }
+  .game-fullscreen .bottom-note {
+    top: calc(100% + 16px);
+    height: 120px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    border-radius: 24px;
+    background: rgba(27, 19, 40, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(247, 242, 255, 0.1);
+    color: #f7f2ff;
+  }
+  .game-fullscreen .world-dock {
+    height: 100%;
+    gap: 24px;
+  }
+  .dock-heading {
+    width: 170px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dock-heading h2 {
+    margin: 0;
+    font: 600 18px Outfit, sans-serif;
+    color: #f7f2ff;
+  }
+  .dock-heading span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #e3d7f5;
+  }
+  .dock-heading i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9fe3c1;
+  }
+  .game-fullscreen .dock-avatars {
+    height: 100%;
+    gap: 14px;
+  }
+  .game-fullscreen .dock-avatars button { width: 76px; }
+  .game-fullscreen .dock-avatars .dock-avatar-picture { --portrait-circle-size: 58px; }
+  .game-fullscreen .dock-avatars button > span:last-child {
+    margin-top: 6px;
+    color: #f7f2ff;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1399px) {
+  .game-fullscreen .world-nav button { width: 68px; font-size: 12px; }
+  .game-fullscreen .money-counter small { display: none; }
+  .game-fullscreen .fame-track { width: 56px; }
+  .today-panel { width: min(264px, calc(100% - 28px)); }
+}
+
+@media (min-width: 1001px) and (max-width: 1199px) {
+  .game-fullscreen .fame-track { display: none; }
+  .game-fullscreen .money-counter > button { padding: 0 12px 0 8px; }
+}
+
+@media (max-width: 1000px) {
+  .rail-actions,
+  .dock-heading { display: none; }
+  .today-panel { max-height: calc(100% - 28px); overflow-y: auto; }
+}

@@ -15,14 +15,14 @@ export function WalletCounter({
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
-  const name = kind === "monnaie" ? "Monnaie" : "Diamants";
   const exact = exactFormat.format(amount);
+  const unit = kind === "monnaie" ? (amount > 1 ? "pièces" : "pièce") : amount > 1 ? "diamants" : "diamant";
   const display = amount >= 100_000 ? compactFormat.format(amount) : exact;
   return (
     <div className={`money-counter ${kind}`} data-revealed={open}>
       <button
         type="button"
-        aria-label={name}
+        aria-label={`${exact} ${unit}`}
         aria-describedby={id}
         onClick={() => setOpen(!open)}
         onBlur={() => setOpen(false)}
@@ -39,17 +39,12 @@ export function WalletCounter({
           alt=""
         />
         <span>
-          <small>{name}</small>
           <b aria-hidden="true">{display}</b>
+          <small aria-hidden="true">{unit}</small>
         </span>
       </button>
       <span id={id} className="wallet-exact" role="tooltip" aria-live="polite">
-        {exact}{" "}
-        {kind === "monnaie"
-          ? "en monnaie"
-          : amount === 1
-            ? "diamant"
-            : "diamants"}
+        {exact} {unit}
       </span>
     </div>
   );

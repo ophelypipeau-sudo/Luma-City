@@ -8,6 +8,7 @@ import {
   DoorOpen,
   Flag,
   Flower2,
+  Gamepad2,
   Info,
   LogOut,
   MessageCircle,
@@ -16,7 +17,10 @@ import {
   Pencil,
   Send,
   Shield,
+  Shirt,
+  Sparkles,
   Star,
+  Trophy,
   Users,
   X,
 } from "lucide-react";
@@ -32,6 +36,7 @@ import { ProfileCard, type ProfileAction } from "./ProfileCard";
 import { Guestbook } from "./Guestbook";
 import { FriendsPanel } from "./FriendsPanel";
 import { WorldPanel } from "./WorldPanel";
+import { TodayPanel } from "./TodayPanel";
 import { ServerRanking } from "./ServerRanking";
 import { Arcade, PrizeWheel } from "./Arcade";
 import { FloatingRewards, walletPickups, type Collectible } from "./FloatingRewards";
@@ -70,6 +75,7 @@ import "./world.css";
 import "./game-shell.css";
 import "./map-markers.css";
 import "./profile.css";
+import "./quartier.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
 import "@fontsource/outfit/400.css";
@@ -827,6 +833,10 @@ function App() {
             <span>Un style, une personnalité.</span>
           </div>
         </div>
+        {state?.character && <div className="rail-actions">
+          <button type="button" className="rail-primary" onClick={() => setProfileId(state.character!.id)}>Mon profil</button>
+          <button type="button" onClick={() => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }}>Ma tenue</button>
+        </div>}
         <div className="rail-bottom">
           <BackgroundPicker theme={theme} custom={vipBackground} vip={canCustomizeBackground}
             onTheme={(next) => {
@@ -849,6 +859,7 @@ function App() {
             }}
           >
             <Info />
+            <span>Aide</span>
           </button>
           {state && (
             <button
@@ -904,63 +915,29 @@ function App() {
             <span>PRENDS TA PLACE, ÉCRIS TON HISTOIRE</span>
           </div>
           <nav className="world-nav" aria-label="Navigation principale">
-            <div className="magazine-nav" ref={magazineNav}>
-            <button
-              className={magazineMenu || worldPanel ? "selected" : ""}
-              aria-expanded={magazineMenu && Boolean(activeId)}
-              onClick={() => setMagazineMenu(open => !open)}
-              disabled={!activeId}
-            >
-              <img className="world-nav-icon" src="/assets/navigation/magazine.png" alt="" />
-              <span>Magazine</span>
-              {pendingXp > 0 && <b className="nav-unread" aria-label={`${pendingXp} XP à récolter`}>{pendingXp}</b>}
-            </button>
-            {magazineMenu && activeId && <div className="magazine-shortcuts">
-              <button type="button" aria-label="Quêtes" title="Quêtes" onClick={() => {
-                setMagazineMenu(false);
-                openMap();
-                setWorldPanel("quests");
-              }}><img src="/assets/navigation/quests.png" alt="" /></button>
-              <button type="button" aria-label="Magazine d’XP" title="Magazine d’XP" onClick={openMagazine}>
-                <img src="/assets/navigation/magazine.png" alt="" />
-              </button>
-            </div>}
-            </div>
-            <button type="button" disabled aria-label="Mon livre d’or · En cours de développement">
-              <Portrait {...(state?.character ?? { id: "iris" })} layers={wornLayers} />
-              <img className="world-nav-progress" src="/assets/navigation/work-in-progress.png" alt="" />
-              <span>Mon livre d’or</span>
-            </button>
-            <button
-              className={view === "friends" ? "selected" : ""}
-              disabled={!activeId}
-              onClick={() => {
-                setGuestbookId(null);
-                setSocialOpen(false);
-                setView("friends");
-              }}
-            >
-              <img className="world-nav-icon" src="/assets/navigation/friends.png" alt="" />
-              <span>Mes amis</span>
-              {requestCount > 0 && <b className="nav-unread" aria-label={`${requestCount} demandes reçues`}>{requestCount}</b>}
-            </button>
-            <button
-              className={privateChatOpen ? "selected" : ""}
-              disabled={!activeId}
-              onClick={() => {
-                setPanel("chat");
-                setSocialOpen(true);
-              }}
-            >
-              <img className="world-nav-icon" src="/assets/navigation/messages.png" alt="" />
-              <span>Messages privés</span>
-              {unread > 0 && <b className="nav-unread" aria-label={`${unread} messages non lus`}>{unread}</b>}
-            </button>
-            <button className={view === "ranking" ? "selected" : ""}
-              onClick={openRanking} disabled={!activeId}>
-              <img className="world-nav-icon" src="/assets/navigation/ranking.png" alt="" />
-              <span>Top serveurs</span>
-            </button>
+            {([
+              ["Quartier", Map, view === "explore" && !socialOpen && !guestbook, () => openMap()],
+              ["Dressing", Shirt, view === "shop", () => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }],
+              ["Salon", Sparkles, view === "salon", () => { setGuestbookId(null); setView("salon"); setSocialOpen(false); }],
+              ["Jeux", Gamepad2, view === "arcade", () => { setGuestbookId(null); setView("arcade"); setSocialOpen(false); }],
+              ["Amis", Users, view === "friends", () => { setGuestbookId(null); setSocialOpen(false); setView("friends"); }],
+              ["Messages", MessageCircle, privateChatOpen, () => { setPanel("chat"); setSocialOpen(true); }],
+              ["Classement", Trophy, view === "ranking", openRanking],
+            ] as const).map(([label, Icon, selected, open]) => {
+              const badge = label === "Amis" ? requestCount : label === "Messages" ? unread : 0;
+              // Private messages open over the current view: only their entry is highlighted then.
+              const current = label === "Messages" ? selected : selected && !privateChatOpen;
+              return (
+                <button key={label} type="button" className={current ? "selected" : ""}
+                  aria-current={current ? "page" : undefined} disabled={!activeId} onClick={open}>
+                  <Icon aria-hidden="true" />
+                  <span>{label}</span>
+                  {badge > 0 && <b className="nav-unread" aria-label={label === "Amis"
+                    ? `${badge} demande${badge > 1 ? "s" : ""} reçue${badge > 1 ? "s" : ""}`
+                    : `${badge} message${badge > 1 ? "s" : ""} non lu${badge > 1 ? "s" : ""}`}>{badge}</b>}
+                </button>
+              );
+            })}
           </nav>
           <div className="top-actions">
             <span className="local-tag">
@@ -1244,6 +1221,18 @@ function App() {
                     onEnter={enterRoom}
                     onArcade={() => { setView("arcade"); setSocialOpen(false); }}
                   />
+                  {activeId && <TodayPanel key={activeId}
+                    homeGifts={state?.homeGifts}
+                    pendingXp={pendingXp}
+                    wheelTickets={state?.rewardWheel?.tickets ?? 0}
+                    busy={busy}
+                    loadScratch={loadScratchTicket}
+                    onAcceptQuest={() => void action(async () => {
+                      setState(await api("home-gifts", { generation: state?.generation }));
+                    })}
+                    onOpenMagazine={openMagazine}
+                    onScratch={() => { setView("arcade"); setSocialOpen(false); }}
+                    onWheel={() => setWheelOpen(true)} />}
                   <div className="map-bottom">
                     <span>
                       <span className="live-dot" /> Le jardin est ouvert
@@ -1461,6 +1450,12 @@ function App() {
           </div>
           <footer className="bottom-note">
             <div className="world-dock">
+              <div className="dock-heading">
+                <h2>{view === "garden" ? scene.name : "En ligne"}</h2>
+                <span><i aria-hidden="true" />{view === "garden"
+                  ? `${players.length} / 15 dans la salle`
+                  : `${onlinePeople.length} joueur${onlinePeople.length > 1 ? "s" : ""} connecté${onlinePeople.length > 1 ? "s" : ""}`}</span>
+              </div>
               <div className="dock-avatars" role="group" aria-label="Personnes en ligne">
                 {onlinePeople.map((p) => (
                   <button

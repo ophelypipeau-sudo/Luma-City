@@ -121,7 +121,7 @@ export function NeighborhoodMap({
           {places.map(({ id, name, label, x, y, roomId }) => (
             <div
               key={id}
-              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""}`}
+              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""} ${id === "home" || id === "pets" ? "is-soon" : ""}`}
               style={
                 {
                   left: `${x * 100}%`,
@@ -134,7 +134,7 @@ export function NeighborhoodMap({
                 className="place-dot"
                 type="button"
                 disabled={id === "home"}
-                aria-label={id === "home" ? "Ma maison · Prochainement" : name}
+                aria-label={id === "home" ? "Ma maison · Bientôt" : name}
                 aria-describedby={id === "home" ? undefined : `${tooltipPrefix}-${id}`}
                 onPointerEnter={() => fitTooltip(id)}
                 onFocus={() => requestAnimationFrame(() => fitTooltip(id))}
@@ -150,10 +150,9 @@ export function NeighborhoodMap({
                 onBlur={() => setSelected(null)}
               >
                 <img className="place-icon" src={`/assets/map-icons/${placeIcons[id]}.png`} alt="" draggable={false} />
-                {(id === "home" || id === "pets") && <img className="place-progress"
-                  src="/assets/navigation/work-in-progress.png" alt="" draggable={false} />}
                 <span className="place-name" aria-hidden="true">{label ?? name}
-                  {id === "home" && <small>Prochainement</small>}
+                  {roomId && <small className="place-count">{`· ${roomCounts[roomId] ?? 0}`}</small>}
+                  {(id === "home" || id === "pets") && <small className="place-soon">· Bientôt</small>}
                 </span>
               </button>
               {id !== "home" && <span

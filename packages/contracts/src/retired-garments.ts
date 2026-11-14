@@ -26,4 +26,6 @@ export const retiredGarments: ReadonlySet<string> = new Set([
     "midnight-loafers-socks", "cardigan-lilac", "jeans-indigo", "boots-ivory", "rose-bow-camisole",
     "rose-dragon-cargo", "white-platform-sneakers",
   ].map((id) => "fashion." + id),
+  // Fitted tops briefly sold on 14 November 2026, then withdrawn.
+  ...["brassiere", "debardeur", "tee", "seconde-peau"].map((id) => "fashion.fitted-" + id),
 ]);

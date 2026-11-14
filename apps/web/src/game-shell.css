@@ -1123,7 +1123,7 @@ body {
   --portrait-circle-size: 39px;
   margin-inline: auto;
 }
-.dock-avatars button > span:last-child {
+.dock-avatars button > span:last-of-type {
   display: block;
   color: #e9c7f3;
   font-size: 8px;
@@ -1558,7 +1558,7 @@ body {
   .dock-avatars .dock-avatar-picture {
     --portrait-circle-size: 28px;
   }
-  .dock-avatars button > span:last-child {
+  .dock-avatars button > span:last-of-type {
     font-size: 6px;
   }
   .game-fullscreen .social-card {

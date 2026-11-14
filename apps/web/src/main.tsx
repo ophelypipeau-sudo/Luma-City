@@ -28,6 +28,7 @@ import {
 import { Room } from "./Room";
 import { WalletCounter } from "./WalletCounter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
+import { RoomDrawer } from "./RoomDrawer";
 import { Portrait } from "./Avatar";
 import { NeighborhoodMap } from "./NeighborhoodMap";
 import { BeautySalon } from "./BeautySalon";
@@ -744,6 +745,7 @@ function App() {
   const currentChatPage = Math.min(chatPage, lastChatPage);
   const onlineContacts =
     state?.contacts.filter((c) => presence?.onlineIds.includes(c.id)) ?? [];
+  const roomPeople = status === "online" && presence?.roomId === roomId ? players : [];
   const onlinePeople = status === "online" && presence
     ? [...players, ...onlineContacts.filter((person) => !players.some((player) => player.id === person.id))]
     : [];
@@ -923,7 +925,7 @@ function App() {
           </div>
           <nav className="world-nav" aria-label="Navigation principale">
             {([
-              ["Quartier", Map, view === "explore" && !socialOpen && !guestbook, () => openMap()],
+              ["Quartier", Map, (view === "explore" || view === "garden") && !socialOpen && !guestbook, () => openMap()],
               ["Boutique", ShoppingBag, view === "shop", () => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }],
               ["Dressing", Shirt, view === "dressing", openDressing],
               ["Salon", Sparkles, view === "salon", () => { setGuestbookId(null); setView("salon"); setSocialOpen(false); }],
@@ -1290,76 +1292,98 @@ function App() {
                   onClose={() => setView("explore")}
                 />
               ) : (
-                <>
-                  <div className="room-label">
-                    <button
-                      type="button"
-                      className="room-icon room-back"
-                      aria-label="Retour au quartier"
-                      title="Retour au quartier"
-                      onClick={() => {
-                        if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
-                        setView("explore");
-                        setSocialOpen(false);
-                      }}
-                    >
-                      <ArrowLeft size={20} />
-                    </button>
-                    <div>
-                      <strong>{scene.name}</strong>
-                      <span>{presence?.counts[roomId] ?? 0} / 15 · Salle de chat</span>
+                <div className="room-layout">
+                  <div className="room-stage">
+                    <div className="room-label">
+                      <button
+                        type="button"
+                        className="room-icon room-back"
+                        aria-label="Retour au quartier"
+                        title="Retour au quartier"
+                        onClick={() => {
+                          if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
+                          setView("explore");
+                          setSocialOpen(false);
+                        }}
+                      >
+                        <ArrowLeft size={20} />
+                      </button>
+                      <div>
+                        <strong>{scene.name}</strong>
+                        <span>{presence?.counts[roomId] ?? 0} / 15 · Salle de chat</span>
+                      </div>
+                      <span className={"connection " + status}>
+                        <i />
+                        {status === "online"
+                          ? "En direct"
+                          : status === "connecting"
+                            ? "Connexion…"
+                            : "Hors ligne"}
+                      </span>
                     </div>
-                    <span className={"connection " + status}>
-                      <i />
-                      {status === "online"
-                        ? "En direct"
-                        : status === "connecting"
-                          ? "Connexion…"
-                          : "Hors ligne"}
-                    </span>
+                    <div className="scene-wrap">
+                      <Room
+                        roomId={roomId}
+                        scene={scene}
+                        players={presence?.roomId === roomId ? players : []}
+                        me={state?.character?.id}
+                        wornLayers={wornLayers}
+                        messages={roomChat?.roomId === roomId ? roomChat.messages : undefined}
+                        onMove={move}
+                        onSelect={setProfileId}
+                      />
+                    </div>
+                    <div className="room-footer">
+                      <span>
+                        <MousePointer2 size={15} /> Clique au sol pour te déplacer
+                      </span>
+                      <span className="keyboard-hint">
+                        ou utilise les touches <kbd>←</kbd>
+                        <kbd>↑</kbd>
+                        <kbd>↓</kbd>
+                        <kbd>→</kbd>
+                      </span>
+                    </div>
                   </div>
-                  <div className="scene-wrap">
-                    <Room
-                      roomId={roomId}
-                      scene={scene}
-                      players={presence?.roomId === roomId ? players : []}
-                      me={state?.character?.id}
-                      wornLayers={wornLayers}
-                      onMove={move}
-                      onSelect={setProfileId}
-                    />
-                  </div>
-                  <RoomChat
+                  <RoomDrawer
                     key={roomId}
-                    messages={roomChat?.roomId === roomId ? roomChat.messages : []}
-                    receipt={roomReceipt}
-                    enabled={status === "online" && presence?.roomId === roomId}
-                    onSend={(body, commandId) => {
-                      if (socket.current?.readyState === WebSocket.OPEN) {
-                        socket.current.send(JSON.stringify({
-                          type: "room-chat",
-                          generation: state?.generation,
-                          roomId,
-                          body,
-                          commandId,
-                        }));
-                      } else {
-                        setRoomReceipt({ commandId, error: "Connexion à la salle interrompue." });
-                      }
-                    }}
+                    chat={
+                      <RoomChat
+                        key={roomId}
+                        messages={roomChat?.roomId === roomId ? roomChat.messages : []}
+                        receipt={roomReceipt}
+                        enabled={status === "online" && presence?.roomId === roomId}
+                        me={activeId}
+                        avatarFor={(sender) => {
+                          const who = players.find((p) => p.id === sender) ?? knownCharacters.find((c) => c.id === sender);
+                          return who ? <Portrait {...who} layers={ownLayers(sender)} /> : null;
+                        }}
+                        onSend={(body, commandId) => {
+                          if (socket.current?.readyState === WebSocket.OPEN) {
+                            socket.current.send(JSON.stringify({
+                              type: "room-chat",
+                              generation: state?.generation,
+                              roomId,
+                              body,
+                              commandId,
+                            }));
+                          } else {
+                            setRoomReceipt({ commandId, error: "Connexion à la salle interrompue." });
+                          }
+                        }}
+                      />
+                    }
+                    chatLatest={roomChat?.roomId === roomId ? roomChat.messages.at(-1)?.id : undefined}
+                    contacts={chatContacts}
+                    presentIds={presence?.roomId === roomId ? players.map((p) => p.id) : []}
+                    onlineIds={presence?.onlineIds ?? []}
+                    portrait={(person) => <Portrait {...person} />}
+                    onOpenChat={choosePeer}
+                    onOpenProfile={setProfileId}
+                    onAllMessages={() => { setPanel("chat"); setSocialOpen(true); }}
+                    onAllFriends={() => { setGuestbookId(null); setSocialOpen(false); setView("friends"); }}
                   />
-                  <div className="room-footer">
-                    <span>
-                      <MousePointer2 size={15} /> Clique au sol pour te déplacer
-                    </span>
-                    <span className="keyboard-hint">
-                      ou utilise les touches <kbd>←</kbd>
-                      <kbd>↑</kbd>
-                      <kbd>↓</kbd>
-                      <kbd>→</kbd>
-                    </span>
-                  </div>
-                </>
+                </div>
               )}
             </section>
             <aside
@@ -1475,26 +1499,35 @@ function App() {
             </aside>
           </div>
           <footer className="bottom-note">
-            <div className="world-dock">
+            <div className={view === "garden" ? "world-dock in-room" : "world-dock"}>
               <div className="dock-heading">
-                <h2>{view === "garden" ? scene.name : "En ligne"}</h2>
+                <h2>{view === "garden" ? `Dans ${scene.name}` : "En ligne"}</h2>
                 <span><i aria-hidden="true" />{view === "garden"
-                  ? `${players.length} / 15 dans la salle`
+                  ? `${roomPeople.length} présent${roomPeople.length > 1 ? "s" : ""} · 15 max`
                   : `${onlinePeople.length} joueur${onlinePeople.length > 1 ? "s" : ""} connecté${onlinePeople.length > 1 ? "s" : ""}`}</span>
               </div>
-              <div className="dock-avatars" role="group" aria-label="Personnes en ligne">
-                {onlinePeople.map((p) => (
-                  <button
-                    key={p.id}
-                    title={p.name}
-                    aria-label={`Voir le profil de ${p.name}`}
-                    onClick={() => setProfileId(p.id)}
-                  >
-                    <span className="portrait-circle dock-avatar-picture"><Portrait {...p} layers={ownLayers(p.id)} /></span>
-                    <span>{p.name}</span>
-                  </button>
-                ))}
+              <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Personnes en ligne"}>
+                {(view === "garden" ? roomPeople : onlinePeople).map((p) => {
+                  const contact = state?.contacts.find((c) => c.id === p.id);
+                  const mine = p.id === activeId;
+                  const tag = view !== "garden" ? null : mine ? "toi" : contact?.friend ? "ami·e"
+                    : contact?.friendRequest ? "veut être ami·e" : null;
+                  return (
+                    <button
+                      key={p.id}
+                      title={p.name}
+                      aria-label={mine ? "Voir mon profil" : `Voir le profil de ${p.name}`}
+                      className={contact?.friend ? "is-friend" : mine ? "is-me" : undefined}
+                      onClick={() => setProfileId(p.id)}
+                    >
+                      <span className="portrait-circle dock-avatar-picture"><Portrait {...p} layers={ownLayers(p.id)} /></span>
+                      <span>{p.name}</span>
+                      {tag && <small>{tag}</small>}
+                    </button>
+                  );
+                })}
               </div>
+              {view === "garden" && <p className="dock-hint">Clique sur un joueur pour voir son profil, l’ajouter en ami ou lui écrire.</p>}
             </div>
             <span>
               <span className="tiny-flower">✳</span> Un monde en construction, à

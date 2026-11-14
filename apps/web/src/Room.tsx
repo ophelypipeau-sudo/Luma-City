@@ -1,10 +1,11 @@
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Avatar } from "./Avatar";
 import type { AvatarLayers } from "./avatar/model";
 import {
   roomFloor,
   type Presence,
   type RoomId,
+  type RoomMessage,
 } from "../../../packages/contracts/src/index";
 
 export function Room({
@@ -13,6 +14,7 @@ export function Room({
   players,
   me,
   wornLayers,
+  messages,
   onMove,
   onSelect,
 }: {
@@ -21,11 +23,14 @@ export function Room({
   players: Presence[];
   me?: string;
   wornLayers?: AvatarLayers;
+  /** Room chat; undefined until the history has arrived. New lines show as speech bubbles. */
+  messages?: RoomMessage[];
   onMove: (x: number, y: number) => void;
   onSelect: (id: string) => void;
 }) {
   const ref = useRef<SVGSVGElement>(null);
   const floor = roomFloor(roomId);
+  const bubbles = useSpeechBubbles(messages);
   return (
     <div
       className={
@@ -150,7 +155,47 @@ export function Room({
               </text>
             </g>
           ))}
+        {/* Drawn after every player so a bubble is never hidden behind someone. */}
+        {players.filter((p) => bubbles[p.id]).map((p) => (
+          <foreignObject key={bubbles[p.id].id} x={p.x * 10 - 110} y={p.y * 6.8 - 262}
+            width="220" height="74" className="speech-bubble-slot" aria-hidden="true">
+            <div className="speech-bubble-wrap"><div className="speech-bubble">{bubbles[p.id].body}</div></div>
+          </foreignObject>
+        ))}
       </svg>
     </div>
   );
+}
+
+const BUBBLE_MS = 6000;
+
+/** The latest line of each speaker, kept a few seconds; the history present on arrival is ignored. */
+function useSpeechBubbles(messages: RoomMessage[] | undefined) {
+  const [bubbles, setBubbles] = useState<Record<string, RoomMessage>>({});
+  const seen = useRef<string | null | undefined>(undefined);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const mountedAt = useRef(Date.now());
+  const latest = messages?.at(-1)?.id ?? null;
+  useEffect(() => {
+    if (!messages) return;
+    // The history sent when joining is not news; a first line long after arriving is.
+    if (seen.current === undefined) {
+      seen.current = Date.now() - mountedAt.current < 2000 ? latest : null;
+      if (seen.current === latest) return;
+    }
+    if (latest === seen.current) return;
+    const fresh = messages.slice(messages.findIndex((m) => m.id === seen.current) + 1);
+    seen.current = latest;
+    if (!fresh.length) return;
+    setBubbles((current) => {
+      const next = { ...current };
+      for (const message of fresh) next[message.sender] = message;
+      return next;
+    });
+    const ids = new Set(fresh.map((m) => m.id));
+    timers.current.push(setTimeout(() => setBubbles((current) =>
+      Object.fromEntries(Object.entries(current).filter(([, m]) => !ids.has(m.id)))), BUBBLE_MS));
+  }, [latest, messages]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  return bubbles;
 }

@@ -276,7 +276,7 @@
   }
   .game-fullscreen .world-nav button {
     position: relative;
-    width: 80px;
+    width: 74px;
     height: 62px;
     gap: 4px;
     border-radius: 16px;
@@ -399,7 +399,8 @@
     border-radius: 26px;
     box-shadow: 0 12px 36px rgba(20, 10, 32, 0.35);
   }
-  .game-fullscreen .map-artwork { width: max(100cqw, 150cqh); }
+  /* The whole map stays visible; the blurred copy of the art fills the margins. */
+  .game-fullscreen .map-artwork { width: min(100cqw, 150cqh); }
   .game-fullscreen .place-dot { width: 56px; height: 56px; }
   .game-fullscreen .place-icon { width: 36px; height: 36px; }
   .game-fullscreen .place-name {
@@ -466,14 +467,68 @@
   }
 }
 
+/* The player's own wardrobe, shown in the scene frame. */
+.dressing-view {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(140deg, #482440, #241833);
+  color: #fbe5f6;
+}
+.dressing-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 16px 20px 0;
+}
+.dressing-heading h2 {
+  margin: 0;
+  font: 600 22px Outfit, sans-serif;
+}
+.dressing-heading span {
+  font-size: 13px;
+  color: #e3cfe8;
+}
+.dressing-view .profile-wardrobe {
+  flex: 1;
+  min-height: 0;
+  padding: 14px 20px 20px;
+  background: none;
+}
+.dressing-view .profile-wardrobe-catalog {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.dressing-view .profile-wardrobe-items {
+  flex: 1;
+  max-height: none;
+}
+.dressing-view .profile-wardrobe-preview .profile-avatar {
+  height: calc(100% - 52px);
+  min-height: 0;
+  border-radius: 18px;
+}
+.dressing-view .profile-wardrobe-preview {
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 0;
+}
+.dressing-view .profile-wardrobe-preview > button {
+  height: 44px;
+  font-size: 14px;
+}
+
 @media (min-width: 1001px) and (max-width: 1399px) {
-  .game-fullscreen .world-nav button { width: 68px; font-size: 12px; }
+  .game-fullscreen .world-nav button { width: 66px; font-size: 12px; }
   .game-fullscreen .money-counter small { display: none; }
   .game-fullscreen .fame-track { width: 56px; }
   .today-panel { width: min(264px, calc(100% - 28px)); }
 }
 
 @media (min-width: 1001px) and (max-width: 1199px) {
+  .game-fullscreen .world-nav { gap: 2px; }
+  .game-fullscreen .world-nav button { width: 60px; font-size: 11px; }
   .game-fullscreen .fame-track { display: none; }
   .game-fullscreen .money-counter > button { padding: 0 12px 0 8px; }
 }
@@ -482,4 +537,8 @@
   .rail-actions,
   .dock-heading { display: none; }
   .today-panel { max-height: calc(100% - 28px); overflow-y: auto; }
+}
+
+@media (min-width: 1001px) {
+  .rail-actions button[aria-pressed="true"] { border-color: #f4a9d8; color: #ffd3ee; }
 }

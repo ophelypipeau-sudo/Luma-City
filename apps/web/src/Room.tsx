@@ -49,6 +49,8 @@ export function Room({
         ref={ref}
         className="room-svg"
         viewBox="0 0 1000 680"
+        // A room fills its frame, without blurred bands; a player home keeps its proportions.
+        preserveAspectRatio={scene.background ? "xMidYMid slice" : undefined}
         role="application"
         aria-label={`${scene.name}. Clique au sol ou utilise les flèches pour te déplacer.`}
         tabIndex={0}

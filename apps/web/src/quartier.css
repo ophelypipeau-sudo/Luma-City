@@ -453,7 +453,15 @@
   .game-fullscreen .dock-avatars {
     height: 100%;
     gap: 14px;
+    /* Same strip in the quartier and in a room: never a visible scrollbar.
+       The padding leaves room for the rings around the avatars. */
+    box-sizing: border-box;
+    padding: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
   }
+  .game-fullscreen .dock-avatars::-webkit-scrollbar { display: none; }
   .game-fullscreen .dock-avatars button { width: 76px; }
   .game-fullscreen .dock-avatars .dock-avatar-picture { --portrait-circle-size: 58px; }
   .game-fullscreen .dock-avatars button > span:last-of-type {
@@ -729,9 +737,11 @@
   color: var(--drawer-ink);
   font: 15px "DM Sans", sans-serif;
 }
+/* The focus ring is the border itself, so the drawer's scroll area never clips it. */
 .room-drawer .room-chat input:focus-visible {
-  outline: 2px solid var(--drawer-accent);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--drawer-accent);
+  box-shadow: inset 0 0 0 1px var(--drawer-accent);
 }
 .room-drawer .room-chat input::placeholder { color: var(--drawer-faint); }
 .room-drawer .room-chat form button {
@@ -957,13 +967,17 @@
   /* People strip in a room: friends get a pink ring, the hint sits on the right. */
   .game-fullscreen .world-dock.in-room .dock-avatars button > small {
     display: block;
-    margin-top: 1px;
+    margin-top: -1px;
+    line-height: 1.2;
     color: #cdbfe6;
     font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /* A second line (toi, ami·e) fits without growing the strip. */
+  .game-fullscreen .world-dock.in-room .dock-avatars .dock-avatar-picture { --portrait-circle-size: 52px; }
+  .game-fullscreen .world-dock.in-room .dock-avatars button > span:last-of-type { margin-top: 4px; }
   .game-fullscreen .world-dock.in-room .is-friend .dock-avatar-picture { box-shadow: 0 0 0 3px #f4a9d8; }
   .game-fullscreen .world-dock.in-room .is-me .dock-avatar-picture { box-shadow: 0 0 0 3px #9fe3c1; }
   .dock-hint {

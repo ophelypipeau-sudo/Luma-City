@@ -14,6 +14,7 @@ export const IRIS_DRESSES_GARMENTS: readonly Garment[] = manifest.pieces.map(
       underwearCut: "strapless",
       crop: [x, y, width, height],
       coverage: [],
+      fittingBody: id === "comete" ? { front: `${stem}-fitting.png` } : undefined,
       bodyMask: `${stem}-coverage.png`,
 
       colorable: true,

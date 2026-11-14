@@ -51,7 +51,7 @@
       "tone": {
         "shadow": 35,
         "middle": 53,
-        "highlight": 124,
+        "highlight": 120,
         "depth": 0.36,
         "sheen": 0.55
       }
@@ -69,7 +69,7 @@
       "tone": {
         "shadow": 4,
         "middle": 10,
-        "highlight": 55,
+        "highlight": 54,
         "depth": 0.36,
         "sheen": 0.29
       }
@@ -98,12 +98,12 @@
       "price": 950,
       "crop": [
         237,
-        425,
+        427,
         412,
-        561
+        559
       ],
       "tone": {
-        "shadow": 69,
+        "shadow": 68,
         "middle": 119,
         "highlight": 155,
         "depth": 0.36,

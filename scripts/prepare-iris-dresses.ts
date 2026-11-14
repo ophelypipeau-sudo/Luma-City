@@ -14,6 +14,37 @@ const base = readFileSync("public/assets/avatar/fashion-v2/body-user.png");
 if (createHash("sha256").update(base).digest("hex") !== DOLL_PATTERN.bodySha256)
   throw new Error("Le mannequin ne correspond pas au patron d’Iris.");
 const { pixels: body } = nativeRgba(base);
+const { pixels: strapless } = nativeRgba(
+  readFileSync("public/assets/avatar/leopard-v1/underwear-strapless.png"),
+);
+const dressIds = new Set(["rivoli", "maree", "belladone", "grand-soir", "armature", "aubepine", "terrasse"]);
+
+function coverBra(art: Uint8Array, material: Uint8Array, coverage: Uint8Array) {
+  const original = art.slice();
+  const at = (x: number, y: number) => (y * width + x) * 4;
+  for (let y = 405; y <= 550; y++) {
+    for (let x = 310; x <= 580; x++) {
+      const i = at(x, y);
+      const [r, g, b, alpha] = strapless.subarray(i, i + 4);
+      if (alpha < 150 || b < g + 9 || b < r - 15 || original[i + 3] >= 250) continue;
+      // Match the closest opaque cloth, with a small inset to avoid sampling its ink edge.
+      let donor = -1;
+      for (let d = 1; d <= 50 && donor < 0; d++) {
+        const inward = x < 443 ? d : -d;
+        for (const k of [at(x + inward, y), at(x, y + d), at(x, y - d)]) {
+          if (original[k + 3] < 250 || material[k + 3] < 250) continue;
+          donor = k;
+          break;
+        }
+      }
+      if (donor < 0) continue;
+      art.set(original.subarray(donor, donor + 3), i);
+      art[i + 3] = 255;
+      material.fill(255, i, i + 4);
+      coverage[i + 3] = 255;
+    }
+  }
+}
 
 // Paint extra cloth into the side seams using the local fabric grain.
 // Keep the existing print, folds and placement of the center panel.
@@ -23,9 +54,7 @@ function fitSideSeams(
   coverage: Uint8Array,
   lastRow: number,
   firstRow = 730,
-  skirtGuide?: string,
 ) {
-  const guide = skirtGuide && render(`<path d="${skirtGuide}" fill="white"/>`);
   for (let y = firstRow; y <= lastRow; y++) {
     const row = y * width * 4;
     for (const side of [-1, 1]) {
@@ -39,11 +68,6 @@ function fitSideSeams(
         x += side
       )
         boundary = x;
-      if (guide) {
-        let guideEdge = 443;
-        while (guide[row + (guideEdge + side) * 4 + 3] > 128) guideEdge += side;
-        if (side * (guideEdge - boundary) > 0) boundary = guideEdge;
-      }
       if (boundary === edge) continue;
       for (let x = edge; x !== boundary + side; x += side) {
         const distance = Math.abs(x - edge);
@@ -56,6 +80,119 @@ function fitSideSeams(
       }
     }
   }
+}
+
+// Guide the side seams outside Iris's hips and thighs, preserving the center folds.
+function smoothTerrasseSkirt(art: Uint8Array, material: Uint8Array, coverage: Uint8Array) {
+  const original = art.slice();
+  const guide = render('<path fill="white" d="M360 602C363 635 335 665 305 714C272 768 253 816 251 872C247 994 222 1145 190 1350H696C664 1145 639 994 635 872C633 816 614 768 581 714C551 665 523 635 526 602Z"/>');
+  for (let y = 603; y < 1350; y++) {
+    const row = y * width * 4;
+    for (const side of [-1, 1]) {
+      let edge = 443;
+      while (original[row + (edge + side) * 4 + 3] > 96) edge += side;
+      let target = 443;
+      while (guide[row + (target + side) * 4 + 3] > 128) target += side;
+      if ((target - edge) * side <= 0) continue;
+      const inset = edge - side * 72;
+      for (let x = inset; x !== target + side; x += side) {
+        const i = row + x * 4;
+        const sourceX = inset + (x - inset) * (edge - side * 2 - inset) / (target - inset);
+        const donor = row + Math.round(sourceX) * 4;
+        art.set(original.subarray(donor, donor + 3), i);
+        art[i + 3] = 255;
+        material.fill(255, i, i + 4);
+        coverage[i + 3] = 255;
+      }
+    }
+  }
+}
+
+// Repaint the satin side panels to the measured bust and hip contours.
+function fitCometePanels(art: Uint8Array, material: Uint8Array, coverage: Uint8Array) {
+  const original = art.slice();
+  const guides = [
+    { from: 430, to: 568, path: "M339 430C324 449 315 475 320 498C328 528 344 551 358 568H528C542 551 558 528 566 498C571 475 562 449 547 430Z" },
+    { from: 821, to: 909, path: "M266 821C261 849 258 880 259 906Q443 912 627 906C628 880 625 849 620 821Z" },
+  ];
+  for (const { from, to, path } of guides) {
+    const panel = render(`<path d="${path}" fill="white"/>`);
+    for (let y = from; y <= to; y++) {
+      const row = y * width * 4;
+      for (const side of [-1, 1]) {
+        const seed = y < 474 ? 443 + side * 75 : 443;
+        if (original[row + seed * 4 + 3] < 128 && y < 821) continue;
+        let edge = seed;
+        while (original[row + (edge + side) * 4 + 3] > 160) edge += side;
+        let target = seed;
+        while (panel[row + (target + side) * 4 + 3] > 32) target += side;
+        if ((target - edge) * side < 1 && y < 821) continue;
+        const inset = y >= 821 ? 443 : edge - side * 23;
+        for (let x = inset; (target - x) * side >= 0; x += side) {
+          const i = row + x * 4;
+          const alpha = panel[i + 3];
+          if (!alpha || (art[i + 3] >= alpha && Math.abs(x - edge) > 23)) continue;
+          const sourceX = inset + (x - inset) * Math.max(0, Math.abs(edge - inset) - 3) / Math.max(1, Math.abs(target - inset));
+          let donor = row + Math.round(sourceX) * 4;
+          if (original[donor + 3] < 230) {
+            const donorY = y - 10;
+            const donorX = Math.round(sourceX) - side * 9;
+            donor = (donorY * width + donorX) * 4;
+          }
+          if (original[donor + 3] < 200) continue;
+          art.set(original.subarray(donor, donor + 3), i);
+          art[i + 3] = Math.max(art[i + 3], alpha);
+          material.fill(255, i, i + 4);
+          coverage[i + 3] = art[i + 3] > 246 ? 255 : 0;
+        }
+      }
+    }
+  }
+}
+
+function writeCometeFittingBody() {
+  const fitted = strapless.slice();
+  const at = (x: number, y: number) => (y * width + x) * 4;
+  for (let x = 305; x <= 585; x++) {
+    let first = 555;
+    let last = 410;
+    for (let y = 410; y <= 555; y++) {
+      const [r, g, b, a] = strapless.subarray(at(x, y), at(x, y) + 4);
+      if (a < 170 || b < g + 8 || b < r - 15) continue;
+      first = Math.min(first, y);
+      last = Math.max(last, y);
+    }
+    if (first > last) continue;
+    const top = first - 15;
+    const bottom = last + 17;
+    const upper = at(x, top);
+    const lower = at(x, bottom);
+    const skinSample = (index: number, y: number) => {
+      const outward = x < 443 ? -1 : 1;
+      for (let d = 0; d < 42; d++) {
+        const k = at(x + outward * d, y);
+        if (strapless[k + 3] > 180 && strapless[k] > strapless[k + 2] + 35) return k;
+      }
+      return index;
+    };
+    const topSkin = skinSample(upper, top);
+    const bottomSkin = skinSample(lower, bottom);
+    for (let y = top; y <= bottom; y++) {
+      const pixel = at(x, y);
+      const t = (y - top) / (bottom - top);
+      const r = strapless[pixel], b = strapless[pixel + 2];
+      // Preserve existing skin and ink at the armhole where they are already clean.
+      const neckline = Math.min(1, Math.max(0, (100 - Math.abs(x - 443)) / 25));
+      const edgeBlend = Math.min(1, Math.max(0, (b - r + 42) / 28))
+        * Math.min(1, (y - top) / 7, (bottom - y) / 7);
+      const amount = neckline + (1 - neckline) * edgeBlend;
+      for (let c = 0; c < 3; c++) {
+        const skin = strapless[topSkin + c] * (1 - t) + strapless[bottomSkin + c] * t;
+        fitted[pixel + c] = Math.round(strapless[pixel + c] * (1 - amount) + skin * amount);
+      }
+    }
+  }
+  writeFileSync(`${output}/comete-fitting.png`, rgbaPng(width, height, fitted));
 }
 
 type Dress = {
@@ -155,6 +292,7 @@ function render(content: string) {
 }
 
 mkdirSync(output, { recursive: true });
+writeCometeFittingBody();
 const pieces = dresses.map((dress, index) => {
   const file = `${docs}/sources/${String(index + 1).padStart(2, "0")}.png`;
   const source = readFileSync(file);
@@ -191,7 +329,10 @@ const pieces = dresses.map((dress, index) => {
     const isSkinZone =
       (dress.id === "comete" && (py < 685 && !cometeRing)) ||
       (dress.id === "rivoli" && (py < 455 || py > 948)) ||
-      (dress.id === "oblique" && (py < 470 || (px < 240 && py > 770) || py > 1210));
+      (dress.id === "oblique" && (py < 470 || (px < 240 && py > 770) || py > 1210)) ||
+      (dress.id === "maree" && (py < 490 || py > 1325)) ||
+      (dress.id === "armature" && (py < 490 || py > 910)) ||
+      (dress.id === "belladone" && ((py < 480 && px > 405 && px < 480) || py > 1350));
     if (skin && isSkinZone) continue;
     if (dress.id === "comete" && cometeRing) {
       const opening = Math.hypot((px - 444) / 13.7, (py - 607) / 13.5);
@@ -201,8 +342,13 @@ const pieces = dresses.map((dress, index) => {
     const green = g - Math.max(r, b);
     if (green > 86 && g > 173) continue;
     const spill = green > 63 && g > 140;
-    const edgeGreen = dress.id === "rivoli" && green > 4;
-    art.set([r, edgeGreen ? Math.max(r, b) : spill ? Math.max(r, b) + 35 : g, b, alpha], i);
+    const edgeGreen = ["rivoli", "grand-soir", "terrasse"].includes(dress.id) && green > 4;
+    if (dress.id === "terrasse" && g > r * 0.88 && g > b + 5) {
+      // The oatmeal knit is warm throughout; restore its red/green balance at the keyed edge.
+      art.set([r, Math.max(0, Math.round(0.81 * r + 2)), Math.min(b, Math.round(0.63 * r)), alpha], i);
+    } else {
+      art.set([r, edgeGreen ? Math.max(r, b) : spill ? Math.max(r, b) + 35 : g, b, alpha], i);
+    }
     if (alpha > 246) coverage[i + 3] = 255;
     const protectedDetail =
       detail && detail[i + 3] > 120 && (dress.id !== "terrasse" || g < 133);
@@ -216,17 +362,14 @@ const pieces = dresses.map((dress, index) => {
   if (!tone || right - left < 290 || bottom - top < 500)
     throw new Error(`Détourage incomplet : ${dress.name}`);
   const cleaned = removeOpaqueWhiteMatte(width, height, art).pixels;
-  if (dress.id === "terrasse" || dress.id === "origami")
-    fitSideSeams(
-      cleaned,
-      material,
-      coverage,
-      dress.id === "terrasse" ? 1000 : 1397,
-      dress.id === "terrasse" ? 668 : 730,
-      dress.id === "terrasse"
-        ? "M331 668C301 713 276 765 266 818C255 873 254 948 243 1000H635C626 949 634 875 624 817C614 751 580 704 550 668Z"
-        : undefined,
-    );
+  if (dressIds.has(dress.id)) coverBra(cleaned, material, coverage);
+  if (dress.id === "comete") {
+    fitSideSeams(cleaned, material, coverage, 906, 755);
+    fitCometePanels(cleaned, material, coverage);
+  }
+  if (dress.id === "belladone") fitSideSeams(cleaned, material, coverage, 1418, 1190);
+  if (dress.id === "terrasse") smoothTerrasseSkirt(cleaned, material, coverage);
+  if (dress.id === "origami") fitSideSeams(cleaned, material, coverage, 1397);
   for (const [suffix, layer] of [
     ["", cleaned],
     ["-mask", material],

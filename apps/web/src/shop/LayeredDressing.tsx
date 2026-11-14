@@ -372,7 +372,7 @@ export function LayeredDressing({
                     </div>
                     <span className="boutique-item-name">{piece.name}</span>
                     {ownedItems.some((item) => item.pieceId === piece.id) ? (
-                      <span className="boutique-owned"><Check size={14} aria-hidden="true" /> Possédé</span>
+                      <span className="boutique-price-spacer" aria-hidden="true" />
                     ) : (
                       <span className="blush-item-price">
                         <Coins size={15} aria-hidden="true" />
@@ -594,7 +594,7 @@ export function LayeredDressing({
           })}
         </section>
       )}
-      {paletteId && palettePiece && layers[palettePiece.slot] === paletteId && (
+      {paletteId && palettePiece && wornSlot(layers, paletteId) != null && (
         <section
           className="runway-palette"
           role="dialog"

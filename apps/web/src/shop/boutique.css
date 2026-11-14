@@ -150,10 +150,10 @@
 }
 .fashion-shop.runway-boutique .blush-item:hover .garment-thumbnail {
   transform: translateY(-3px) scale(1.03);
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75)) drop-shadow(0 8px 8px rgba(20, 10, 32, 0.4));
+  filter: drop-shadow(0 8px 8px rgba(20, 10, 32, 0.4));
 }
 .fashion-shop.runway-boutique .blush-item.selected .garment-thumbnail {
-  filter: drop-shadow(0 0 3px #f4a9d8) drop-shadow(0 0 12px rgba(244, 169, 216, 0.9));
+  filter: drop-shadow(0 8px 8px rgba(20, 10, 32, 0.4));
 }
 .boutique-tag {
   position: absolute;

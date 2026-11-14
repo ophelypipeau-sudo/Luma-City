@@ -722,3 +722,10 @@
 }
 .fashion-shop.runway-boutique .boutique-secondary,
 .fashion-shop.runway-boutique .fashion-checkout { white-space: nowrap; }
+
+/* Colour and favourite buttons sit above the garment art, so a click on them
+   never reaches the garment (which would take it off). */
+.fashion-shop.runway-boutique .runway-item-colors,
+.fashion-shop.runway-boutique .runway-favorite,
+.fashion-shop.runway-boutique .runway-delete { z-index: 3; }
+.boutique-price-spacer { min-height: 24px; }

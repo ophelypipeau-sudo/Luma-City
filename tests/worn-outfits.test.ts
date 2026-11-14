@@ -21,6 +21,22 @@ const LIVE_LAYERS = {
 import { Portrait } from "../apps/web/src/Avatar";
 import { Room } from "../apps/web/src/Room";
 import { clothingLayerOrder, equipLayer, moveClothingLayer, moveOutfitPiece, orderedOutfitPieces, removeGarment, wearGarment, DEFAULT_LAYERS } from "../apps/web/src/avatar/model";
+
+test("a dress replaces tops and bottoms and leaves footwear and hair equipped", () => {
+  const dress = "fashion.iris-dresses-rivoli";
+  const dressed = wearGarment({
+    ...LIVE_LAYERS,
+    top2: "fashion.capsule-mode-cerise",
+    extraPieces: ["fashion.iris-skirts-encre"],
+  }, dress);
+  assert.equal(dressed.top, dress);
+  assert.equal(dressed.top2, null);
+  assert.equal(dressed.bottom, null);
+  assert.deepEqual(dressed.extraPieces, []);
+  assert.equal(dressed.shoes, LIVE_LAYERS.shoes);
+  assert.equal(dressed.hair, LIVE_LAYERS.hair);
+  assert.equal(wearGarment(dressed, LIVE_LAYERS.bottom).top, null);
+});
 import { wornOutfitSchema } from "../packages/contracts/src/index";
 import { LayeredDoll } from "../apps/web/src/avatar/LayeredDoll";
 test("accepted outfit preserves all slots and both colour regions, independently from future try-ons", () => {

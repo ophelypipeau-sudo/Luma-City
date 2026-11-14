@@ -12,7 +12,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { Resvg } from "@resvg/resvg-js";
 import { Portrait } from "../apps/web/src/Avatar";
 import { avatarGarment } from "../apps/web/src/avatar/catalog";
-import { DEFAULT_LAYERS } from "../apps/web/src/avatar/model";
+import { DEFAULT_LAYERS, equipLayer } from "../apps/web/src/avatar/model";
 
 const [out, ...ids] = process.argv.slice(2);
 if (!out || !ids.length) throw new Error("Usage : preview-looks.tsx <out.png> <garment-id> …");
@@ -26,7 +26,7 @@ ids.forEach((id, col) => {
   const piece = avatarGarment(id);
   [undefined, DYE].forEach((dye, row) => {
     // The piece replaces the default one in its slot (no stacking).
-    const layers = { ...DEFAULT_LAYERS, [piece.slot]: id, colors: dye ? { [id]: dye } : {} };
+    const layers = { ...equipLayer(DEFAULT_LAYERS, piece.slot, id), colors: dye ? { [id]: dye } : {} };
     // Each render reuses React's ids (masks, filters): make them unique per cell.
     const doll = renderToStaticMarkup(React.createElement(Portrait, { id: "iris", fullBody: true, layers }))
       .replaceAll("_R_", `_c${col}r${row}_`)

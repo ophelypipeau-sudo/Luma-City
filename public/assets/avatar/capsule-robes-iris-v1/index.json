@@ -1,0 +1,186 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "rivoli",
+      "name": "Rivoli",
+      "price": 950,
+      "crop": [
+        260,
+        334,
+        368,
+        645
+      ],
+      "tone": {
+        "shadow": 22,
+        "middle": 40,
+        "highlight": 87,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "comete",
+      "name": "Comète",
+      "price": 950,
+      "crop": [
+        262,
+        313,
+        363,
+        604
+      ],
+      "tone": {
+        "shadow": 24,
+        "middle": 38,
+        "highlight": 134,
+        "depth": 0.36,
+        "sheen": 0.46
+      }
+    },
+    {
+      "id": "maree",
+      "name": "Marée",
+      "price": 950,
+      "crop": [
+        232,
+        329,
+        419,
+        1167
+      ],
+      "tone": {
+        "shadow": 35,
+        "middle": 53,
+        "highlight": 124,
+        "depth": 0.36,
+        "sheen": 0.55
+      }
+    },
+    {
+      "id": "belladone",
+      "name": "Belladone",
+      "price": 950,
+      "crop": [
+        134,
+        288,
+        618,
+        1153
+      ],
+      "tone": {
+        "shadow": 4,
+        "middle": 10,
+        "highlight": 55,
+        "depth": 0.36,
+        "sheen": 0.29
+      }
+    },
+    {
+      "id": "grand-soir",
+      "name": "Grand Soir",
+      "price": 950,
+      "crop": [
+        162,
+        404,
+        553,
+        1353
+      ],
+      "tone": {
+        "shadow": 45,
+        "middle": 75,
+        "highlight": 166,
+        "depth": 0.36,
+        "sheen": 0.45
+      }
+    },
+    {
+      "id": "armature",
+      "name": "Armature",
+      "price": 950,
+      "crop": [
+        237,
+        425,
+        412,
+        561
+      ],
+      "tone": {
+        "shadow": 69,
+        "middle": 119,
+        "highlight": 155,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "aubepine",
+      "name": "Aubépine",
+      "price": 950,
+      "crop": [
+        139,
+        327,
+        610,
+        1077
+      ],
+      "tone": {
+        "shadow": 62,
+        "middle": 95,
+        "highlight": 158,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "oblique",
+      "name": "Oblique",
+      "price": 950,
+      "crop": [
+        133,
+        327,
+        496,
+        1152
+      ],
+      "tone": {
+        "shadow": 19,
+        "middle": 32,
+        "highlight": 62,
+        "depth": 0.36,
+        "sheen": 0.35
+      }
+    },
+    {
+      "id": "terrasse",
+      "name": "Terrasse",
+      "price": 950,
+      "crop": [
+        182,
+        306,
+        520,
+        1119
+      ],
+      "tone": {
+        "shadow": 134,
+        "middle": 172,
+        "highlight": 200,
+        "depth": 0.36,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "origami",
+      "name": "Origami",
+      "price": 950,
+      "crop": [
+        243,
+        334,
+        393,
+        1087
+      ],
+      "tone": {
+        "shadow": 32,
+        "middle": 59,
+        "highlight": 102,
+        "depth": 0.36,
+        "sheen": 0.28
+      }
+    }
+  ]
+}

@@ -92,6 +92,10 @@ export function wearGarment(layers: AvatarLayers, id: string) {
   if (retiredGarments.has(id)) return layers;
   if (wornSlot(layers, id)) return layers;
   const piece = avatarGarment(id);
+  if (piece.isDress) return equipLayer(layers, "top", id);
+  if ((piece.slot === "top" || piece.slot === "bottom") &&
+      equippedPieces(layers).some((worn) => worn.isDress))
+    return equipLayer(layers, piece.slot, id);
   if (!layers[piece.slot])
     return equipLayer(layers, piece.slot, id);
   if (piece.slot === "top" && !piece.isDress && !layers.top2)
@@ -201,6 +205,16 @@ export function equipLayer(
 ): AvatarLayers {
   if (id != null && !garmentFitsSlot(id, slot))
     throw new Error(`Garment ${id} cannot be equipped in ${slot}`);
+  if (id && avatarGarment(id).isDress) {
+    for (const piece of equippedPieces(layers)) {
+      if (["top", "top2", "bottom"].includes(piece.slot))
+        layers = removeGarment(layers, piece.id);
+    }
+  } else if (id && (slot === "top" || slot === "top2" || slot === "bottom")) {
+    for (const piece of equippedPieces(layers)) {
+      if (piece.isDress) layers = removeGarment(layers, piece.id);
+    }
+  }
   const previous = id != null ? AVATAR_SLOTS.find((other) => other !== slot && layers[other] === id) : undefined;
   return {
     ...(id && layers.extraPieces?.includes(id) ? removeGarment(layers, id) : layers),

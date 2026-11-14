@@ -10,6 +10,7 @@ import { ORIGINAL_OUTFIT, BARE_OUTFIT } from "../../apps/web/src/shop/catalog";
 import { MorphologyComparison } from "../../apps/web/src/cartoon/MorphologyComparison";
 import { PilotFitFixture } from "./PilotFitFixture";
 import { IRIS_SKIRTS_GARMENTS } from "../../apps/web/src/avatar/iris-skirts";
+import { IRIS_DRESSES_GARMENTS } from "../../apps/web/src/avatar/iris-dresses";
 import { IRIS_SHORTS_GARMENTS } from "../../apps/web/src/avatar/iris-shorts";
 
 function Fixture() {
@@ -124,8 +125,8 @@ function Fixture() {
     </main>
   );
 }
-function BottomsFit({ group, dye, tucked, velvet }: { group: string; dye?: string; tucked: boolean; velvet: boolean }) {
-  const pieces = group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
+function BottomsFit({ group, dye, tucked, velvet, variant }: { group: string; dye?: string; tucked: boolean; velvet: boolean; variant: boolean }) {
+  const pieces = group === "dresses-iris" ? IRIS_DRESSES_GARMENTS : group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
     ? PANTS_CAPSULE_GARMENTS
     : (group.startsWith("ville-") ? CITY_CAPSULE_GARMENTS : BOTTOMS_CAPSULE_GARMENTS).filter(piece => piece.id.startsWith(group.startsWith("ville-") ? "fashion." + group : "fashion.capsule-" + group));
   return (
@@ -135,9 +136,13 @@ function BottomsFit({ group, dye, tucked, velvet }: { group: string; dye?: strin
           <div style={{ height: 405, background: ["#e9d9d6", "#27202d", "#4c6664"][index % 3] }}>
             <FittingAvatar characterId="iris" outfit={BARE_OUTFIT} layers={{
               ...plumLook,
-              top: velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
+              ...(piece.isDress && variant && {
+                hair: "fashion.hair-v3-01-carre",
+                shoes: "fashion.shoes-campus",
+              }),
+              top: piece.isDress ? piece.id : velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
               topTucked: tucked,
-              bottom: piece.id,
+              bottom: piece.isDress ? null : piece.id,
               colors: dye ? { [piece.id]: dye } : undefined,
             }} />
           </div>
@@ -152,5 +157,5 @@ function BottomsFit({ group, dye, tucked, velvet }: { group: string; dye?: strin
 const params = new URLSearchParams(location.search);
 const group = params.get("bottoms");
 createRoot(document.getElementById("fixture")!).render(
-  group ? <BottomsFit group={group} dye={params.get("dye") ?? undefined} tucked={params.has("tucked")} velvet={params.get("top") === "velvet"} /> : <Fixture />,
+  group ? <BottomsFit group={group} dye={params.get("dye") ?? undefined} tucked={params.has("tucked")} velvet={params.get("top") === "velvet"} variant={params.has("variant")} /> : <Fixture />,
 );

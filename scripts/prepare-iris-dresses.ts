@@ -22,8 +22,11 @@ function fitSideSeams(
   material: Uint8Array,
   coverage: Uint8Array,
   lastRow: number,
+  firstRow = 730,
+  skirtGuide?: string,
 ) {
-  for (let y = 730; y <= lastRow; y++) {
+  const guide = skirtGuide && render(`<path d="${skirtGuide}" fill="white"/>`);
+  for (let y = firstRow; y <= lastRow; y++) {
     const row = y * width * 4;
     for (const side of [-1, 1]) {
       let edge = Math.floor(width / 2);
@@ -36,6 +39,11 @@ function fitSideSeams(
         x += side
       )
         boundary = x;
+      if (guide) {
+        let guideEdge = 443;
+        while (guide[row + (guideEdge + side) * 4 + 3] > 128) guideEdge += side;
+        if (side * (guideEdge - boundary) > 0) boundary = guideEdge;
+      }
       if (boundary === edge) continue;
       for (let x = edge; x !== boundary + side; x += side) {
         const distance = Math.abs(x - edge);
@@ -170,22 +178,35 @@ const pieces = dresses.map((dress, index) => {
     top = height,
     bottom = 0;
   for (let i = 0; i < pixels.length; i += 4) {
-    const alpha = pixels[i + 3];
+    let alpha = pixels[i + 3];
     if (alpha < 8) continue;
     const [r, g, b] = [pixels[i], pixels[i + 1], pixels[i + 2]].map((v) =>
       Math.min(255, Math.round((v * 255) / alpha)),
     );
     // Studio key can be captured in opaque pixels at the edge of the trace.
+    const px = (i / 4) % width;
+    const py = Math.floor(i / 4 / width);
+    const cometeRing = ((px - 444) / 25) ** 2 + ((py - 611) / 24) ** 2 < 1;
+    const skin = r > 90 && r - g > 15 && g - b > 7 && g > r * 0.43;
+    const isSkinZone =
+      (dress.id === "comete" && (py < 685 && !cometeRing)) ||
+      (dress.id === "rivoli" && (py < 455 || py > 948)) ||
+      (dress.id === "oblique" && (py < 470 || (px < 240 && py > 770) || py > 1210));
+    if (skin && isSkinZone) continue;
+    if (dress.id === "comete" && cometeRing) {
+      const opening = Math.hypot((px - 444) / 13.7, (py - 607) / 13.5);
+      alpha = Math.round(alpha * Math.max(0, Math.min(1, (opening - 1) * 13)));
+      if (alpha < 8) continue;
+    }
     const green = g - Math.max(r, b);
     if (green > 86 && g > 173) continue;
     const spill = green > 63 && g > 140;
-    art.set([r, spill ? Math.max(r, b) + 35 : g, b, alpha], i);
+    const edgeGreen = dress.id === "rivoli" && green > 4;
+    art.set([r, edgeGreen ? Math.max(r, b) : spill ? Math.max(r, b) + 35 : g, b, alpha], i);
     if (alpha > 246) coverage[i + 3] = 255;
     const protectedDetail =
       detail && detail[i + 3] > 120 && (dress.id !== "terrasse" || g < 133);
     (protectedDetail ? fixed : material).fill(255, i, i + 4);
-    const px = (i / 4) % width;
-    const py = Math.floor(i / 4 / width);
     left = Math.min(left, px);
     right = Math.max(right, px);
     top = Math.min(top, py);
@@ -200,7 +221,11 @@ const pieces = dresses.map((dress, index) => {
       cleaned,
       material,
       coverage,
-      dress.id === "terrasse" ? 925 : 1397,
+      dress.id === "terrasse" ? 1000 : 1397,
+      dress.id === "terrasse" ? 668 : 730,
+      dress.id === "terrasse"
+        ? "M331 668C301 713 276 765 266 818C255 873 254 948 243 1000H635C626 949 634 875 624 817C614 751 580 704 550 668Z"
+        : undefined,
     );
   for (const [suffix, layer] of [
     ["", cleaned],

@@ -18,6 +18,7 @@ import {
   Send,
   Shield,
   Shirt,
+  ShoppingBag,
   Sparkles,
   Star,
   Trophy,
@@ -37,6 +38,7 @@ import { Guestbook } from "./Guestbook";
 import { FriendsPanel } from "./FriendsPanel";
 import { WorldPanel } from "./WorldPanel";
 import { TodayPanel } from "./TodayPanel";
+import { ProfileWardrobe } from "./ProfileWardrobe";
 import { ServerRanking } from "./ServerRanking";
 import { Arcade, PrizeWheel } from "./Arcade";
 import { FloatingRewards, walletPickups, type Collectible } from "./FloatingRewards";
@@ -163,7 +165,7 @@ function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("interface-theme") ?? "lavender",
   );
-  const [view, setView] = useState<"explore" | "garden" | "shop" | "salon" | "arcade" | "ranking" | "friends">("explore");
+  const [view, setView] = useState<"explore" | "garden" | "shop" | "dressing" | "salon" | "arcade" | "ranking" | "friends">("explore");
   const [worldPanel, setWorldPanel] = useState<"magazine" | "quests" | null>(null);
   const [magazineMenu, setMagazineMenu] = useState(false);
   const magazineNav = useRef<HTMLDivElement>(null);
@@ -317,6 +319,11 @@ function App() {
     setWorldPanel("magazine");
     setFeatureStatus("");
     setSocialOpen(false);
+  }
+  function openDressing() {
+    setGuestbookId(null);
+    setSocialOpen(false);
+    setView("dressing");
   }
   function openRanking() {
     setGuestbookId(null);
@@ -835,7 +842,7 @@ function App() {
         </div>
         {state?.character && <div className="rail-actions">
           <button type="button" className="rail-primary" onClick={() => setProfileId(state.character!.id)}>Mon profil</button>
-          <button type="button" onClick={() => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }}>Ma tenue</button>
+          <button type="button" aria-pressed={view === "dressing"} onClick={openDressing}>Ma tenue</button>
         </div>}
         <div className="rail-bottom">
           <BackgroundPicker theme={theme} custom={vipBackground} vip={canCustomizeBackground}
@@ -917,7 +924,8 @@ function App() {
           <nav className="world-nav" aria-label="Navigation principale">
             {([
               ["Quartier", Map, view === "explore" && !socialOpen && !guestbook, () => openMap()],
-              ["Dressing", Shirt, view === "shop", () => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }],
+              ["Boutique", ShoppingBag, view === "shop", () => { setGuestbookId(null); setView("shop"); setSocialOpen(false); }],
+              ["Dressing", Shirt, view === "dressing", openDressing],
               ["Salon", Sparkles, view === "salon", () => { setGuestbookId(null); setView("salon"); setSocialOpen(false); }],
               ["Jeux", Gamepad2, view === "arcade", () => { setGuestbookId(null); setView("arcade"); setSocialOpen(false); }],
               ["Amis", Users, view === "friends", () => { setGuestbookId(null); setSocialOpen(false); setView("friends"); }],
@@ -1008,6 +1016,7 @@ function App() {
                   ? "Carte du quartier"
                   : view === "shop"
                     ? "Boutique de vêtements"
+                    : view === "dressing" ? "Mon dressing"
                     : view === "friends" ? "Mes amis" : view === "salon" ? "Salon d’esthétique" : view === "arcade" ? "Coin détente" : view === "ranking" ? "Classements" : scene.name
               }
             >
@@ -1184,6 +1193,23 @@ function App() {
                     : undefined}
                   onWearGift={wearGift}
                   onBack={() => setGuestbookId(null)} />
+              ) : view === "dressing" && state?.character ? (
+                <div className="dressing-view">
+                  <div className="dressing-heading">
+                    <h2>Mon dressing</h2>
+                    <span>Tes vêtements achetés, reçus et de départ. Compose ta tenue puis enregistre-la.</span>
+                  </div>
+                  <ProfileWardrobe
+                    key={`${state.character.id}:${JSON.stringify(state.character.outfit ?? null)}`}
+                    character={state.character}
+                    equipped={wornLayers}
+                    items={wardrobe.items.filter((item) => !archived.includes(item.pieceId) &&
+                      avatarCatalogSnapshot().some((piece) => piece.id === item.pieceId))}
+                    onSave={(outfit) => {
+                      saveEquippedOutfit(outfit);
+                      setNotice("Tenue enregistrée.");
+                    }} />
+                </div>
               ) : view === "ranking" ? (
                 <ServerRanking entries={ranking} status={rankingStatus} onSelect={setProfileId}
                   onClose={() => setView("explore")} />

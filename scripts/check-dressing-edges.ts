@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { avatarCatalogSnapshot } from "../apps/web/src/avatar/catalog";
 import { nativeRgba } from "./lib/png-native";
-import { removeWhiteMatte } from "./lib/asset-edges";
+import { removeOpaqueWhiteMatte, removeWhiteMatte } from "./lib/asset-edges";
 import { rgbaPng } from "./lib/png-rgba";
 
 const apply = process.argv.includes("--apply");
@@ -25,8 +25,9 @@ for (const [url, { name, crop, slot, source }] of assets) {
   let corrected = 0;
   if (slot !== "hair" && bytes[24] === 8 && bytes[25] === 6 && bytes[28] === 0) {
     const { width, height, pixels } = nativeRgba(bytes);
-    const result = removeWhiteMatte(width, height, pixels);
-    corrected = result.corrected;
+    const opaque = removeOpaqueWhiteMatte(width, height, pixels);
+    const result = removeWhiteMatte(width, height, opaque.pixels);
+    corrected = opaque.corrected + result.corrected;
     if (apply && selectedPaths.includes(url) && corrected > 0)
       writeFileSync(path, rgbaPng(width, height, result.pixels));
   }

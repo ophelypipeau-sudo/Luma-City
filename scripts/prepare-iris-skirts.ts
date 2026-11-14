@@ -4,6 +4,7 @@ import { Resvg } from "@resvg/resvg-js";
 import { measureFabricTone } from "../packages/domain/src/atelier-color";
 import { DOLL_PATTERN } from "../packages/domain/src/avatar-pattern";
 import { rgbaPng } from "./lib/png-rgba";
+import { removeOpaqueWhiteMatte, removeWhiteMatte } from "./lib/asset-edges";
 
 const docs = "docs/capsule-jupes-iris-v1";
 const output = "public/assets/avatar/capsule-jupes-iris-v1";
@@ -208,8 +209,10 @@ const pieces = skirts.map((skirt, index) => {
   if (!tone || right - left < 300)
     throw new Error(`Détourage incomplet : ${skirt.name}`);
 
+  const edges = removeOpaqueWhiteMatte(width, height, art);
+  const cleaned = removeWhiteMatte(width, height, edges.pixels).pixels;
   for (const [suffix, layer] of [
-    ["", art],
+    ["", cleaned],
     ["-mask", material],
     ["-protected", fixed],
     ["-coverage", coverage],

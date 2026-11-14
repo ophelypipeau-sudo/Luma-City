@@ -456,7 +456,7 @@
   }
   .game-fullscreen .dock-avatars button { width: 76px; }
   .game-fullscreen .dock-avatars .dock-avatar-picture { --portrait-circle-size: 58px; }
-  .game-fullscreen .dock-avatars button > span:last-child {
+  .game-fullscreen .dock-avatars button > span:last-of-type {
     margin-top: 6px;
     color: #f7f2ff;
     font-size: 13px;
@@ -541,4 +541,452 @@
 
 @media (min-width: 1001px) {
   .rail-actions button[aria-pressed="true"] { border-color: #f4a9d8; color: #ffd3ee; }
+}
+
+/*
+ * Room: scene on the left of the frame, social drawer on the right
+ * (room chat, private conversations, friends).
+ */
+.room-layout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+.room-stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.room-drawer {
+  --drawer-ink: #f7f2ff;
+  --drawer-muted: #cdbfe6;
+  --drawer-faint: #a897c4;
+  --drawer-row: #2a1f3d;
+  --drawer-line: #3b2d52;
+  --drawer-accent: #f4a9d8;
+  --drawer-on-accent: #2a1530;
+  width: 340px;
+  flex: none;
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #1e1630;
+  border-left: 1px solid var(--drawer-line);
+  color: var(--drawer-ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+.drawer-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 16px;
+  background: var(--drawer-row);
+}
+.drawer-tabs button {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--drawer-ink);
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.drawer-tabs button:hover { background: rgba(247, 242, 255, 0.08); }
+.drawer-tabs button[aria-selected="true"] {
+  background: var(--drawer-accent);
+  color: var(--drawer-on-accent);
+}
+.drawer-tabs b {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border-radius: 99px;
+  background: var(--drawer-accent);
+  color: var(--drawer-on-accent);
+  font-size: 12px;
+}
+.drawer-tabs button[aria-selected="true"] b {
+  background: var(--drawer-on-accent);
+  color: var(--drawer-accent);
+}
+.drawer-news {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--drawer-accent);
+}
+.drawer-panel {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Room chat, full height in the drawer. */
+.room-drawer .room-chat {
+  position: static;
+  width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: inherit;
+  font-size: inherit;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.room-drawer .room-chat-log {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  color: inherit;
+  margin: 0;
+  padding: 0 2px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+/* Messages sit at the bottom, close to the input, like a conversation. */
+.room-drawer .room-chat-log > :first-child { margin-top: auto; }
+.room-drawer .room-chat-log li {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.room-chat-empty {
+  color: var(--drawer-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.room-chat-avatar,
+.drawer-avatar {
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff1fa;
+}
+.room-chat-avatar > svg,
+.drawer-avatar > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  clip-path: circle(50%);
+}
+.room-chat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.room-chat-text strong {
+  font-size: 13px;
+  color: var(--drawer-ink);
+}
+.room-chat-log li.is-mine .room-chat-text strong { color: var(--drawer-accent); }
+.room-drawer .room-chat form {
+  display: flex;
+  gap: 8px;
+}
+.room-drawer .room-chat input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 14px;
+  border: 1.5px solid var(--drawer-line);
+  border-radius: 14px;
+  background: var(--drawer-row);
+  color: var(--drawer-ink);
+  font: 15px "DM Sans", sans-serif;
+}
+.room-drawer .room-chat input:focus-visible {
+  outline: 2px solid var(--drawer-accent);
+  outline-offset: 1px;
+}
+.room-drawer .room-chat input::placeholder { color: var(--drawer-faint); }
+.room-drawer .room-chat form button {
+  width: 48px;
+  height: 48px;
+  min-width: 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--drawer-accent);
+  color: var(--drawer-on-accent);
+  cursor: pointer;
+}
+.room-drawer .room-chat form button:disabled { opacity: 0.45; cursor: default; }
+.room-drawer .room-chat-error {
+  margin: 0;
+  color: #ffd3d7;
+  font-size: 13px;
+}
+
+/* Conversations and friends. */
+.drawer-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.drawer-conversation,
+.drawer-person-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  color: var(--drawer-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.drawer-conversation { width: 100%; color: var(--drawer-faint); }
+.drawer-conversation:hover,
+.drawer-person-main:hover { background: var(--drawer-row); }
+.drawer-conversation .drawer-avatar,
+.drawer-person .drawer-avatar { width: 42px; height: 42px; }
+.drawer-avatar > i {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #1e1630;
+  border-radius: 50%;
+  background: #9fe3c1;
+}
+.drawer-person-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.drawer-person-text strong {
+  font-size: 15px;
+  color: var(--drawer-ink);
+}
+.drawer-person-text small {
+  font-size: 13px;
+  color: var(--drawer-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drawer-unread {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--drawer-accent);
+}
+.drawer-person {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.drawer-requests .drawer-person {
+  padding-right: 8px;
+  border-radius: 16px;
+  background: var(--drawer-row);
+}
+.drawer-accept {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--drawer-accent);
+  color: var(--drawer-on-accent);
+  font: 700 13px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.drawer-write {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--drawer-line);
+  border-radius: 12px;
+  background: none;
+  color: var(--drawer-ink);
+  cursor: pointer;
+}
+.drawer-write:hover { border-color: var(--drawer-accent); color: var(--drawer-accent); }
+.drawer-heading {
+  margin: 4px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 12px "DM Sans", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--drawer-muted);
+}
+.drawer-heading span {
+  padding: 1px 8px;
+  border-radius: 99px;
+  background: var(--drawer-row);
+  letter-spacing: 0;
+}
+.drawer-empty {
+  margin: 0;
+  color: var(--drawer-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.drawer-link {
+  align-self: flex-start;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--drawer-accent);
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.drawer-link:hover { color: #ffd3ee; }
+
+/* Speech bubbles above the players for a few seconds. */
+.speech-bubble-slot {
+  overflow: visible;
+  pointer-events: none;
+}
+.speech-bubble-wrap {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.speech-bubble {
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 7px 11px;
+  border-radius: 14px;
+  background: #fff;
+  color: #2a1530;
+  font: 500 13px/1.3 "DM Sans", sans-serif;
+  box-shadow: 0 6px 18px rgba(27, 19, 40, 0.3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  animation: speech-pop 0.18s ease-out;
+}
+@keyframes speech-pop {
+  from { opacity: 0; transform: translateY(6px) scale(0.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .speech-bubble { animation: none; }
+}
+
+@media (min-width: 1001px) {
+  .game-fullscreen .room-stage .room-label {
+    top: 16px;
+    left: 16px;
+    height: auto;
+    padding: 6px 16px 6px 6px;
+    border: 0;
+    border-radius: 20px;
+    background: rgba(27, 19, 40, 0.9);
+  }
+  .game-fullscreen .room-stage .room-label .room-icon {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 14px;
+    background: #2a1f3d;
+    color: #f7f2ff;
+  }
+  .game-fullscreen .room-stage .room-label strong { font: 600 17px Outfit, sans-serif; }
+  .game-fullscreen .room-stage .room-label > div > span { font-size: 12px; color: #cdbfe6; }
+  .game-fullscreen .room-stage .connection { font-size: 12px; }
+  .game-fullscreen .room-stage .room-footer {
+    left: 16px;
+    right: auto;
+    bottom: 14px;
+    height: 36px;
+    padding: 0 14px;
+    gap: 14px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(27, 19, 40, 0.82);
+    color: #e3d7f5;
+    font-size: 12px;
+  }
+
+  /* People strip in a room: friends get a pink ring, the hint sits on the right. */
+  .game-fullscreen .world-dock.in-room .dock-avatars button > small {
+    display: block;
+    margin-top: 1px;
+    color: #cdbfe6;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .game-fullscreen .world-dock.in-room .is-friend .dock-avatar-picture { box-shadow: 0 0 0 3px #f4a9d8; }
+  .game-fullscreen .world-dock.in-room .is-me .dock-avatar-picture { box-shadow: 0 0 0 3px #9fe3c1; }
+  .dock-hint {
+    max-width: 240px;
+    margin: 0;
+    color: #e3d7f5;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1299px) {
+  .room-drawer { width: 300px; padding: 12px; }
+  .dock-hint { display: none; }
+}
+
+@media (max-width: 1000px) {
+  .room-layout { flex-direction: column; }
+  .room-drawer {
+    width: auto;
+    height: 42%;
+    border-left: 0;
+    border-top: 1px solid #3b2d52;
+  }
+  .dock-hint { display: none; }
 }

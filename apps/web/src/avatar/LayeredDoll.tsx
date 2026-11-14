@@ -10,6 +10,9 @@ import { AVATAR_BASE, FASHION_BASE, type AvatarBodyBase } from "./base";
 import { type AvatarSlot, type Garment, type GarmentPass } from "./catalog";
 import { equippedPieces, orderedOutfitPieces, validateLayers, type AvatarLayers } from "./model";
 
+/** Room kept above the native canvas for hair that rises above it (source px). */
+const HAIR_RISE = 400;
+
 export type LayerInspection = "normal" | "body-cutaway" | "garments";
 
 /** This same drawing powers item-only thumbnails and equipped layers. */
@@ -215,9 +218,11 @@ export function LayeredDoll({
           </filter>
         )}
         {[...hairMasks.values()].map(({ id: maskId, covers }) => (
+          // Voluminous hair rises above the canvas (negative y): the mask must
+          // start above it, or the top of an afro is cut off under a high collar.
           <mask key={maskId} id={maskId} maskUnits="userSpaceOnUse"
-            x={0} y={0} width={base.width} height={base.height}>
-            <rect width={base.width} height={base.height} fill="white" />
+            x={0} y={-HAIR_RISE} width={base.width} height={base.height + HAIR_RISE}>
+            <rect y={-HAIR_RISE} width={base.width} height={base.height + HAIR_RISE} fill="white" />
             {covers.map((cover) => (
               <g key={cover.id} clipPath={tuckClip(cover.id)} filter={`url(#${id}-hair-coverage)`}>
                 <AvatarGarment piece={cover} pass="front" />

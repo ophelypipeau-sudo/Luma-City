@@ -1,0 +1,724 @@
+/*
+ * Boutique refresh: the shop interior stays as the background, garments float on
+ * it without tiles, and the fitting room with the basket stays on the right.
+ * Colours follow the quartier (dark plum surfaces, pink accent).
+ */
+.fashion-shop.runway-boutique {
+  --boutique-ink: #f7f2ff;
+  --boutique-muted: #cdbfe6;
+  --boutique-faint: #a897c4;
+  --boutique-surface: rgba(27, 19, 40, 0.82);
+  --boutique-row: #2a1f3d;
+  --boutique-line: #3b2d52;
+  --boutique-accent: #f4a9d8;
+  --boutique-on-accent: #2a1530;
+  --boutique-halo: 0 1px 2px rgba(20, 10, 32, 0.95), 0 0 10px rgba(20, 10, 32, 0.7);
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+/* Heading: title, segmented tabs and search on one line. */
+.fashion-shop.runway-boutique .boutique-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px 10px 18px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--boutique-surface);
+  box-shadow: 0 8px 24px rgba(20, 10, 32, 0.28);
+}
+.boutique-head h2 {
+  margin: 0;
+  font: 600 22px Outfit, sans-serif;
+  color: var(--boutique-ink);
+}
+.fashion-shop.runway-boutique .boutique-head .blush-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--boutique-row);
+}
+.fashion-shop.runway-boutique .boutique-head .blush-tabs button {
+  height: 36px;
+  flex-direction: row;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: 10px;
+  color: var(--boutique-ink);
+  font: 700 14px "DM Sans", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .boutique-head .blush-tabs button:hover { background: rgba(247, 242, 255, 0.08); }
+.fashion-shop.runway-boutique .boutique-head .blush-tabs button[aria-pressed="true"] {
+  background: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+  box-shadow: none;
+}
+.fashion-shop.runway-boutique .boutique-head .blush-tabs svg { filter: none; }
+.boutique-head .blush-tabs b {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border-radius: 99px;
+  background: var(--boutique-on-accent);
+  color: var(--boutique-accent);
+  font-size: 11px;
+}
+.fashion-shop.runway-boutique .boutique-head .runway-search {
+  flex: 0 1 260px;
+  margin-left: auto;
+  height: 40px;
+  box-sizing: border-box;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1.5px solid var(--boutique-line);
+  border-radius: 12px;
+  background: var(--boutique-row);
+  color: var(--boutique-faint);
+}
+.fashion-shop.runway-boutique .boutique-head .runway-search:focus-within { border-color: var(--boutique-accent); }
+.fashion-shop.runway-boutique .boutique-head .runway-search input {
+  color: var(--boutique-ink);
+  font: 14px "DM Sans", sans-serif;
+}
+.boutique-head .runway-search input::placeholder { color: var(--boutique-faint); }
+
+/* Categories: round icons with a readable label. */
+.fashion-shop.runway-boutique .blush-categories {
+  padding: 12px 0 6px;
+  gap: 2px;
+}
+.fashion-shop.runway-boutique .blush-categories button {
+  gap: 5px;
+  color: var(--boutique-ink);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .blush-categories button > span {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  box-shadow: 0 4px 10px rgba(20, 10, 32, 0.35);
+  transition: transform 0.15s ease;
+}
+.fashion-shop.runway-boutique .blush-categories button:hover > span { transform: translateY(-2px); }
+.fashion-shop.runway-boutique .blush-categories button[aria-pressed="true"] > span {
+  background: var(--boutique-accent);
+  box-shadow: 0 0 0 3px var(--boutique-on-accent), 0 0 0 5px var(--boutique-accent);
+}
+.fashion-shop.runway-boutique .blush-categories small {
+  max-width: 100%;
+  font: 700 11px "DM Sans", sans-serif;
+  letter-spacing: -0.01em;
+  text-shadow: var(--boutique-halo);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fashion-shop.runway-boutique .blush-categories button[aria-pressed="true"] small { color: #ffd3ee; }
+
+/* Garments float on the shop: no tile, a glow when hovered or tried on. */
+.fashion-shop.runway-boutique .blush-items {
+  /* The three rows of a page always fit; the art shrinks first. */
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 10px 8px;
+  padding: 6px 4px 8px;
+}
+.fashion-shop.runway-boutique .runway-item { padding-bottom: 0; }
+.fashion-shop.runway-boutique .runway-item > .blush-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .blush-item-art,
+.fashion-shop.runway-boutique .blush-item:hover .blush-item-art,
+.fashion-shop.runway-boutique .blush-item.selected .blush-item-art {
+  position: relative;
+  flex: 1;
+  min-height: 40px;
+  background: none;
+}
+.fashion-shop.runway-boutique .blush-item .garment-thumbnail {
+  filter: drop-shadow(0 6px 6px rgba(20, 10, 32, 0.45));
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.fashion-shop.runway-boutique .blush-item:hover .garment-thumbnail {
+  transform: translateY(-3px) scale(1.03);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.75)) drop-shadow(0 8px 8px rgba(20, 10, 32, 0.4));
+}
+.fashion-shop.runway-boutique .blush-item.selected .garment-thumbnail {
+  filter: drop-shadow(0 0 3px #f4a9d8) drop-shadow(0 0 12px rgba(244, 169, 216, 0.9));
+}
+.boutique-tag {
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font: 700 11px "DM Sans", sans-serif;
+}
+.boutique-tag.is-tried {
+  background: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+}
+.boutique-item-name {
+  max-width: 100%;
+  color: var(--boutique-ink);
+  font: 700 13px "DM Sans", sans-serif;
+  text-shadow: var(--boutique-halo);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fashion-shop.runway-boutique .blush-item-price {
+  min-width: 68px;
+  min-height: 24px;
+  border-radius: 999px;
+  font: 700 13px "DM Sans", sans-serif;
+}
+.boutique-owned {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #9fe3c1;
+  color: #183428;
+  font: 700 12px "DM Sans", sans-serif;
+}
+.fashion-shop.runway-boutique .runway-favorite {
+  top: 0;
+  right: 2px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(27, 19, 40, 0.6);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.fashion-shop.runway-boutique .runway-item:hover .runway-favorite,
+.fashion-shop.runway-boutique .runway-favorite:focus-visible,
+.fashion-shop.runway-boutique .runway-favorite[aria-pressed="true"] { opacity: 1; }
+.fashion-shop.runway-boutique .runway-favorite[aria-pressed="true"] { color: var(--boutique-accent); }
+.fashion-shop.runway-boutique .blush-empty {
+  color: var(--boutique-ink);
+  font-size: 15px;
+  text-shadow: var(--boutique-halo);
+}
+
+/* Colour buttons of a tried-on piece, on the top left of its art. */
+.fashion-shop.runway-boutique .runway-item-colors {
+  top: 26px;
+  bottom: auto;
+  left: 4px;
+  flex-direction: column;
+  gap: 4px;
+}
+.fashion-shop.runway-boutique .runway-item-colors button {
+  height: 28px;
+  gap: 5px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--boutique-surface);
+  color: var(--boutique-ink);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .runway-item-colors button:hover { background: var(--boutique-row); }
+.fashion-shop.runway-boutique .runway-item-colors i {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+}
+
+/* Pagination. */
+.fashion-shop.runway-boutique .blush-catalog-footer { align-items: center; }
+.fashion-shop.runway-boutique .blush-pagination {
+  margin-left: auto;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--boutique-surface);
+  color: var(--boutique-ink);
+  font: 700 13px "DM Sans", sans-serif;
+}
+.fashion-shop.runway-boutique .blush-pagination button {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--boutique-row);
+  color: var(--boutique-ink);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .blush-pagination button:disabled { opacity: 0.35; cursor: default; }
+.fashion-shop.runway-boutique .blush-pagination svg { width: 18px; height: 18px; }
+
+/* Fitting room: character, close button, tried-on pieces and basket. */
+.fashion-shop.runway-boutique .blush-fitting { position: relative; }
+.fashion-shop.runway-boutique .blush-close {
+  position: absolute;
+  z-index: 5;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--boutique-surface);
+  color: var(--boutique-ink);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .blush-close:hover { background: var(--boutique-accent); color: var(--boutique-on-accent); }
+.fashion-shop.runway-boutique .blush-fitting-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.boutique-cart-strip {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.boutique-cart-strip li {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 85%, rgba(244, 169, 216, 0.4), transparent 75%), rgba(27, 19, 40, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(247, 242, 255, 0.18);
+  overflow: hidden;
+}
+.boutique-cart-strip .garment-thumbnail {
+  width: 90%;
+  height: 90%;
+}
+.boutique-cart-strip .boutique-cart-more {
+  background: var(--boutique-surface);
+  color: var(--boutique-ink);
+  font: 700 13px "DM Sans", sans-serif;
+}
+.fashion-shop.runway-boutique .blush-compare {
+  min-height: 50px;
+  border-radius: 16px;
+  font: 700 17px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.boutique-balance {
+  margin: 0;
+  color: var(--boutique-ink);
+  font: 600 13px "DM Sans", sans-serif;
+  text-align: center;
+  text-shadow: var(--boutique-halo);
+}
+
+/* Basket dialog: the list scrolls, the total and the buy buttons stay visible. */
+.fashion-shop.runway-boutique .runway-cart {
+  top: 76px;
+  bottom: 12px;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  padding: 16px;
+  border: 1px solid var(--boutique-line);
+  border-radius: 20px;
+  background: rgba(27, 19, 40, 0.96);
+  box-shadow: 0 16px 48px rgba(10, 4, 18, 0.6);
+  color: var(--boutique-ink);
+}
+.fashion-shop.runway-boutique .runway-cart > header {
+  margin: 0;
+  padding: 0 0 10px;
+  border-color: var(--boutique-line);
+}
+.fashion-shop.runway-boutique .runway-cart h2 {
+  font: 600 19px Outfit, sans-serif;
+  text-align: left;
+}
+.fashion-shop.runway-boutique .runway-cart > header > button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: var(--boutique-row);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-items {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row {
+  grid-template-columns: 64px minmax(0, 1fr) auto 32px;
+  gap: 12px;
+  padding: 8px 10px 8px 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--boutique-row);
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row > svg {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 85%, rgba(244, 169, 216, 0.22), transparent 70%), #221832;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row strong { font-size: 15px; }
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row small { font-size: 12px; color: var(--boutique-muted); }
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row > button {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--boutique-line);
+  background: none;
+  color: var(--boutique-ink);
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row > button:hover { border-color: var(--boutique-accent); color: var(--boutique-accent); }
+.fashion-shop.runway-boutique .runway-cart .blush-item-price { font-size: 16px; color: var(--boutique-ink); }
+.fashion-shop.runway-boutique .runway-cart-actions button { color: var(--boutique-muted); cursor: pointer; }
+.fashion-shop.runway-boutique .runway-cart-actions .runway-buy-one,
+.fashion-shop.runway-boutique .fashion-checkout {
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+  font: 700 13px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total {
+  margin: 0;
+  padding-top: 10px;
+  border-color: var(--boutique-line);
+  font-size: 16px;
+}
+.fashion-shop.runway-boutique .runway-cart-footer { margin: 0; }
+.fashion-shop.runway-boutique .runway-cart-footer > button:first-child {
+  color: var(--boutique-muted);
+  font: 600 14px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .runway-cart-footer .fashion-checkout {
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-note,
+.fashion-shop.runway-boutique .runway-empty-cart,
+.fashion-shop.runway-boutique .runway-purchase-error {
+  margin: 0;
+  font-size: 13px;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-note,
+.fashion-shop.runway-boutique .runway-empty-cart { color: var(--boutique-muted); }
+
+@media (max-width: 1399px) {
+  .fashion-shop.runway-boutique .boutique-head { gap: 10px; padding-left: 14px; }
+  .boutique-head h2 { font-size: 19px; }
+  .fashion-shop.runway-boutique .boutique-head .blush-tabs button { padding: 0 11px; }
+  .fashion-shop.runway-boutique .boutique-head .blush-tabs svg { display: none; }
+  .fashion-shop.runway-boutique .blush-categories button > span { width: 38px; height: 38px; }
+  .fashion-shop.runway-boutique .blush-categories svg { width: 22px; height: 22px; }
+}
+
+/*
+ * Shop window: the interior stays visible but is dimmed with plum, so garments
+ * never sit on white. Each piece stands on a small lit display; the fitting
+ * room is a darker glass with a podium under the character.
+ */
+.fashion-shop.runway-boutique::before { filter: blur(4px) brightness(0.75) saturate(1.05); }
+.fashion-shop.runway-boutique::after {
+  background:
+    linear-gradient(90deg, rgba(27, 19, 40, 0.74) 0, rgba(27, 19, 40, 0.62) 62%, rgba(27, 19, 40, 0.3) 100%);
+}
+
+/* Categories: glass circles, line icons, no white disc. */
+.fashion-shop.runway-boutique .blush-categories button > span {
+  background: rgba(247, 242, 255, 0.08);
+  color: var(--boutique-ink);
+  box-shadow: inset 0 0 0 1.5px rgba(247, 242, 255, 0.18);
+}
+.fashion-shop.runway-boutique .blush-categories button:hover > span {
+  background: rgba(247, 242, 255, 0.16);
+}
+.fashion-shop.runway-boutique .blush-categories button[aria-pressed="true"] > span {
+  background: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+  box-shadow: 0 0 18px rgba(244, 169, 216, 0.55);
+}
+.fashion-shop.runway-boutique .blush-categories small { text-shadow: none; color: var(--boutique-muted); }
+.fashion-shop.runway-boutique .blush-categories button[aria-pressed="true"] small { color: #ffd3ee; }
+
+/* Displays: a soft pink pool of light under each garment. */
+.fashion-shop.runway-boutique .blush-item-art::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(244, 169, 216, 0.38), rgba(244, 169, 216, 0) 70%);
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  opacity: 0.7;
+}
+.fashion-shop.runway-boutique .blush-item:hover .blush-item-art::after,
+.fashion-shop.runway-boutique .blush-item.selected .blush-item-art::after { opacity: 1; }
+.fashion-shop.runway-boutique .blush-item .garment-thumbnail { position: relative; z-index: 1; }
+.fashion-shop.runway-boutique .boutique-tag { z-index: 2; }
+.fashion-shop.runway-boutique .blush-item:hover .garment-thumbnail {
+  filter: drop-shadow(0 0 10px rgba(244, 169, 216, 0.45)) drop-shadow(0 8px 8px rgba(10, 4, 18, 0.5));
+}
+.boutique-item-name { text-shadow: none; }
+
+/* Prices: dark glass with a gold coin; owned pieces stay green. */
+.fashion-shop.runway-boutique .blush-item-price {
+  background: rgba(27, 19, 40, 0.8);
+  border: 1px solid rgba(247, 242, 255, 0.16);
+  box-shadow: none;
+  color: var(--boutique-ink);
+}
+.fashion-shop.runway-boutique .blush-item.selected .blush-item-price {
+  background: var(--boutique-accent);
+  border-color: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+}
+.fashion-shop.runway-boutique .blush-item-price svg { color: #f7c75c; filter: none; }
+.fashion-shop.runway-boutique .blush-item.selected .blush-item-price svg { color: var(--boutique-on-accent); }
+
+/* Fitting room: dark glass, the character on a lit podium. */
+.fashion-shop.runway-boutique .blush-fitting {
+  border: 1px solid rgba(247, 242, 255, 0.14);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(27, 19, 40, 0.18), rgba(27, 19, 40, 0.62));
+  box-shadow: 0 12px 30px rgba(10, 4, 18, 0.3);
+}
+.fashion-shop.runway-boutique .blush-figure::before {
+  width: 70%;
+  left: 15%;
+  height: 34px;
+  bottom: 2px;
+  background: radial-gradient(ellipse at center, rgba(244, 169, 216, 0.5), rgba(244, 169, 216, 0.12) 55%, transparent 72%);
+  filter: none;
+}
+.fashion-shop.runway-boutique .top-tuck-button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--boutique-surface);
+  color: var(--boutique-ink);
+}
+
+/* Lighter shop window: the interior reads more, garments still never sit on white. */
+.fashion-shop.runway-boutique::before { filter: blur(4px) brightness(0.88) saturate(1.05); }
+.fashion-shop.runway-boutique::after {
+  background: linear-gradient(90deg, rgba(27, 19, 40, 0.56) 0, rgba(27, 19, 40, 0.46) 62%, rgba(27, 19, 40, 0.14) 100%);
+}
+
+/* Basket button: a solid card, the count on the bag, the total on the right. */
+.fashion-shop.runway-boutique .boutique-cart-button {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px 8px 8px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--boutique-accent);
+  color: var(--boutique-on-accent);
+  box-shadow: 0 10px 24px rgba(244, 169, 216, 0.28), inset 0 -2px rgba(42, 21, 48, 0.12);
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fashion-shop.runway-boutique .boutique-cart-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(244, 169, 216, 0.38), inset 0 -2px rgba(42, 21, 48, 0.12);
+}
+.fashion-shop.runway-boutique .boutique-cart-button:active { transform: translateY(0); }
+.boutique-cart-icon {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--boutique-on-accent);
+  color: var(--boutique-accent);
+}
+.boutique-cart-icon b {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--boutique-accent);
+  border-radius: 99px;
+  background: #fff;
+  color: var(--boutique-on-accent);
+  font: 700 12px "DM Sans", sans-serif;
+}
+.boutique-cart-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.boutique-cart-text strong { font: 700 16px "DM Sans", sans-serif; }
+.boutique-cart-text small {
+  font: 500 13px "DM Sans", sans-serif;
+  opacity: 0.78;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.boutique-cart-total {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font: 700 17px "DM Sans", sans-serif;
+}
+.boutique-cart-total svg { color: #9a6a00; }
+.boutique-cart-chevron { flex: none; opacity: 0.7; }
+
+/* Basket dialog polish. */
+.fashion-shop.runway-boutique .runway-cart h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fashion-shop.runway-boutique .runway-cart h2 > svg { color: var(--boutique-accent); }
+.boutique-cart-count {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--boutique-row);
+  color: var(--boutique-muted);
+  font: 700 12px "DM Sans", sans-serif;
+}
+.fashion-shop.runway-boutique .fashion-cart-items:empty { display: none; }
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total strong { font-size: 17px; }
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total small { font-size: 13px; color: var(--boutique-muted); }
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total .blush-item-price {
+  font-size: 20px;
+  min-width: 0;
+}
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-total .blush-item-price svg { color: #f7c75c; }
+.fashion-shop.runway-boutique .boutique-secondary,
+.fashion-shop.runway-boutique .runway-cart-footer > button.boutique-secondary {
+  height: 46px;
+  padding: 0 18px;
+  border: 1.5px solid var(--boutique-line);
+  border-radius: 14px;
+  background: none;
+  color: var(--boutique-ink);
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.fashion-shop.runway-boutique .boutique-secondary:hover { border-color: var(--boutique-accent); color: #ffd3ee; }
+.fashion-shop.runway-boutique .runway-cart-footer { gap: 10px; }
+.fashion-shop.runway-boutique .runway-cart-footer .fashion-checkout { flex: 1; justify-content: center; display: flex; align-items: center; gap: 8px; }
+
+/* Empty basket: a friendly illustration and the next steps. */
+.boutique-empty-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px 20px;
+  text-align: center;
+}
+.boutique-empty-icon {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, rgba(244, 169, 216, 0.28), rgba(244, 169, 216, 0.06) 70%);
+  box-shadow: inset 0 0 0 1.5px rgba(244, 169, 216, 0.35);
+  color: var(--boutique-accent);
+}
+.boutique-empty-icon > svg:last-child {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: #f7c75c;
+}
+.boutique-empty-cart h3 {
+  margin: 0;
+  font: 600 22px Outfit, sans-serif;
+  color: var(--boutique-ink);
+}
+.boutique-empty-cart p {
+  max-width: 340px;
+  margin: 0;
+  color: var(--boutique-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.boutique-empty-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.fashion-shop.runway-boutique .boutique-empty-actions .fashion-checkout {
+  height: 46px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+.fashion-shop.runway-boutique .fashion-checkout:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Small basket thumbnails: a lilac tile so dark garments stay readable. */
+.fashion-shop.runway-boutique .boutique-cart-strip li:not(.boutique-cart-more),
+.fashion-shop.runway-boutique .runway-cart .fashion-cart-row > svg {
+  background: radial-gradient(ellipse at 50% 80%, #ffffff, #e6d8f5 75%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.fashion-shop.runway-boutique .boutique-secondary,
+.fashion-shop.runway-boutique .fashion-checkout { white-space: nowrap; }

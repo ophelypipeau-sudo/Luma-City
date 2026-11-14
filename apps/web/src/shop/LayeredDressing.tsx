@@ -52,6 +52,7 @@ import { FASHION_PRICES, colorGarment, fittingCart } from "./fashion-options";
 import { GarmentPalette } from "./GarmentPalette";
 import { ownsVariant, type PurchasedItem } from "./commerce";
 import "./runway-shop.css";
+import "./boutique.css";
 import {
   archivedPieces,
   subscribeArchive,
@@ -287,36 +288,41 @@ export function LayeredDressing({
       }}
     >
       <div className="blush-catalog">
-        <header className="blush-heading">
-          <div className="blush-tabs" aria-label="Sélection de la boutique">
-            <button
-              aria-pressed={tab === "top"}
-              onClick={() => {
-                setTab("top");
-                setPage(0);
-              }}
-            >
-              <ShoppingBag size={23} /> Boutique
-            </button>
-            <button
-              aria-pressed={tab === "collection"}
-              onClick={() => {
-                setTab("collection");
-                setPage(0);
-              }}
-            >
-              <Sparkles size={23} /> Collection
-            </button>
-            <button
-              aria-pressed={tab === "favorites"}
-              onClick={() => {
-                setTab("favorites");
-                setPage(0);
-              }}
-            >
-              <Heart size={23} /> Favoris
-            </button>
+        <header className="blush-heading boutique-head">
+          <h2>Boutique</h2>
+          <div className="blush-tabs" role="group" aria-label="Sélection de la boutique">
+            {([
+              ["top", "Tout voir", ShoppingBag],
+              ["collection", "Collection", Sparkles],
+              ["favorites", "Favoris", Heart],
+            ] as const).map(([id, label, Icon]) => (
+              <button
+                key={id}
+                aria-pressed={tab === id}
+                onClick={() => {
+                  setTab(id);
+                  setPage(0);
+                }}
+              >
+                <Icon size={16} aria-hidden="true" /> {label}
+                {id === "favorites" && favorites.length > 0 && <b>{favorites.length}</b>}
+              </button>
+            ))}
           </div>
+          {tab !== "collection" && (
+            <label className="runway-search">
+              <Search size={17} aria-hidden="true" />
+              <input
+                aria-label="Rechercher un vêtement"
+                placeholder="Rechercher un vêtement"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(0);
+                }}
+              />
+            </label>
+          )}
         </header>
         {tab !== "collection" && (
           <>
@@ -341,20 +347,6 @@ export function LayeredDressing({
                 </button>
               ))}
             </nav>
-            <div className="runway-tools">
-              <label className="runway-search">
-                <Search size={15} />
-                <input
-                  aria-label="Rechercher un vêtement"
-                  placeholder="Chercher…"
-                  value={search}
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                    setPage(0);
-                  }}
-                />
-              </label>
-            </div>
 
             <div className="blush-items" aria-label="Vêtements indépendants">
               {shown.map((piece) => (
@@ -366,7 +358,7 @@ export function LayeredDressing({
                         : "blush-item"
                     }
                     aria-pressed={wornSlot(layers, piece.id) != null}
-                    aria-label={"Essayer " + piece.name}
+                    aria-label={(wornSlot(layers, piece.id) ? "Retirer " : "Essayer ") + piece.name}
                     onClick={() => {
                       onChange((current) => {
                         const slot = wornSlot(current, piece.id);
@@ -376,11 +368,17 @@ export function LayeredDressing({
                   >
                     <div className="blush-item-art">
                       <AvatarItemThumbnail piece={piece} />
+                      {wornSlot(layers, piece.id) && <span className="boutique-tag is-tried">Essayé</span>}
                     </div>
-                    <span className="blush-item-price">
-                      <Coins size={16} />
-                      {piece.price ?? FASHION_PRICES[piece.id]}
-                    </span>
+                    <span className="boutique-item-name">{piece.name}</span>
+                    {ownedItems.some((item) => item.pieceId === piece.id) ? (
+                      <span className="boutique-owned"><Check size={14} aria-hidden="true" /> Possédé</span>
+                    ) : (
+                      <span className="blush-item-price">
+                        <Coins size={15} aria-hidden="true" />
+                        {piece.price ?? FASHION_PRICES[piece.id]}
+                      </span>
+                    )}
                   </button>
                   <button
                     className="runway-favorite"
@@ -448,7 +446,7 @@ export function LayeredDressing({
                   <ChevronLeft size={23} />
                 </button>
                 <span>
-                  {page + 1} / {pages}
+                  Page {page + 1} / {pages}
                 </span>
                 <button
                   aria-label="Page suivante"
@@ -463,6 +461,15 @@ export function LayeredDressing({
         )}
       </div>
       <aside className="blush-fitting" aria-label="Cabine d’essayage Iris">
+        <button
+          className="blush-close"
+          ref={back}
+          onClick={onClose}
+          aria-label="Retour à la carte"
+          title="Retour à la carte"
+        >
+          <X size={18} />
+        </button>
         <div className="blush-figure">
           <OutfitLayerPanel layers={withoutArchivedPieces(layers, archived)} onChange={onChange} />
           <FittingAvatar
@@ -498,17 +505,45 @@ export function LayeredDressing({
           )}
         </div>
         <div className="blush-fitting-footer">
+          {cart.length > 0 && (
+            <ul className="boutique-cart-strip" aria-label="Articles essayés à acheter">
+              {cart.slice(0, 5).map(({ piece, color, detailColor }) => (
+                <li key={piece.id} title={piece.name}>
+                  <AvatarItemThumbnail piece={piece} color={color} detailColor={detailColor} />
+                </li>
+              ))}
+              {cart.length > 5 && <li className="boutique-cart-more">+{cart.length - 5}</li>}
+            </ul>
+          )}
           <button
-            className="blush-compare"
+            className="blush-compare boutique-cart-button"
             aria-haspopup="dialog"
+            aria-label={`Ouvrir mon panier : ${cart.length} article${cart.length > 1 ? "s" : ""}, ${total} pièces`}
             onClick={() => setCartOpen(true)}
           >
-            <ShoppingBag size={18} /> Panier <b>{cart.length}</b>
-            <span className="runway-cart-sum">
-              <Coins size={15} />
-              {total}
+            <span className="boutique-cart-icon" aria-hidden="true">
+              <ShoppingBag size={20} />
+              {cart.length > 0 && <b>{cart.length}</b>}
             </span>
+            <span className="boutique-cart-text">
+              <strong>Mon panier</strong>
+              <small>{cart.length ? `${cart.length} article${cart.length > 1 ? "s" : ""} à acheter` : "Vide pour l’instant"}</small>
+            </span>
+            {cart.length > 0 && (
+              <span className="boutique-cart-total">
+                <Coins size={16} aria-hidden="true" />
+                {total.toLocaleString("fr-FR")}
+              </span>
+            )}
+            <ChevronRight size={18} aria-hidden="true" className="boutique-cart-chevron" />
           </button>
+          <p className="boutique-balance">
+            {cart.length === 0
+              ? "Clique sur un vêtement pour l’essayer."
+              : total > balance
+                ? `Il te manque ${total - balance} pièces.`
+                : `Solde après achat : ${(balance - total).toLocaleString("fr-FR")} pièces`}
+          </p>
         </div>
       </aside>
       {deletionError && (
@@ -655,9 +690,8 @@ export function LayeredDressing({
         <section className="runway-cart" role="dialog" aria-label="Panier">
           <header>
             <h2>
-              {cart.length
-                ? cart.length + " article" + (cart.length > 1 ? "s" : "")
-                : "Ton panier est vide"}
+              <ShoppingBag size={20} aria-hidden="true" /> Mon panier
+              {cart.length > 0 && <span className="boutique-cart-count">{cart.length} article{cart.length > 1 ? "s" : ""}</span>}
             </h2>
             <button
               aria-label="Fermer le panier"
@@ -702,8 +736,8 @@ export function LayeredDressing({
                   </div>
                 </div>
                 <span className="blush-item-price">
-                  <Coins size={16} />
-                  {price}
+                  <Coins size={16} aria-hidden="true" />
+                  {price.toLocaleString("fr-FR")}
                 </span>
                 <button
                   aria-label={"Retirer " + piece.name + " du panier"}
@@ -717,64 +751,89 @@ export function LayeredDressing({
             ))}
           </div>
           {!cart.length && (
-            <p className="runway-empty-cart">
-              Essaie un nouvel article ou retrouve tes achats dans « Mon
-              dressing ».
-            </p>
+            <div className="boutique-empty-cart">
+              <span className="boutique-empty-icon" aria-hidden="true">
+                <ShoppingBag size={34} />
+                <Sparkles size={16} />
+              </span>
+              <h3>Ton panier est vide</h3>
+              <p>
+                Clique sur un vêtement pour l’essayer : il apparaît ici, prêt à
+                être acheté. Tes achats rejoignent ensuite ton Dressing.
+              </p>
+              <div className="boutique-empty-actions">
+                <button
+                  className="boutique-secondary"
+                  onClick={() => {
+                    setCartOpen(false);
+                    setPaletteId(null);
+                  }}
+                >
+                  Continuer mes essais
+                </button>
+                <button
+                  className="fashion-checkout"
+                  disabled={!onPurchase || purchasing}
+                  onClick={() => purchase()}
+                >
+                  <Check size={18} aria-hidden="true" /> Porter cette tenue
+                </button>
+              </div>
+            </div>
           )}
-          <div className="fashion-cart-total">
-            <strong>Total</strong>
-            <span className="blush-item-price">
-              <Coins size={19} />
-              {cart.reduce((sum, item) => sum + item.price, 0)}
-            </span>
-          </div>
-          <div className="runway-cart-footer">
-            <button
-              onClick={() => {
-                onChange((current) => {
-                  let next = current;
-                  for (const item of cart)
-                    next = removeGarment(next, item.piece.id);
-                  return next;
-                });
-                setPaletteId(null);
-              }}
-            >
-              Tout effacer
-            </button>
-            <button
-              className="fashion-checkout"
-              disabled={!onPurchase || purchasing || total > balance}
-              onClick={() => purchase()}
-            >
-              <Check size={18} />{" "}
-              {cart.length ? "Tout acheter" : "Porter la tenue"}
-            </button>
-          </div>
+          {cart.length > 0 && (
+            <>
+              <div className="fashion-cart-total">
+                <span>
+                  <strong>Total</strong>
+                  <small>
+                    {total > balance
+                      ? `Il te manque ${(total - balance).toLocaleString("fr-FR")} pièces`
+                      : `Solde après achat : ${(balance - total).toLocaleString("fr-FR")} pièces`}
+                  </small>
+                </span>
+                <span className="blush-item-price">
+                  <Coins size={19} aria-hidden="true" />
+                  {total.toLocaleString("fr-FR")}
+                </span>
+              </div>
+              <div className="runway-cart-footer">
+                <button
+                  className="boutique-secondary"
+                  onClick={() => {
+                    onChange((current) => {
+                      let next = current;
+                      for (const item of cart)
+                        next = removeGarment(next, item.piece.id);
+                      return next;
+                    });
+                    setPaletteId(null);
+                  }}
+                >
+                  Tout retirer
+                </button>
+                <button
+                  className="fashion-checkout"
+                  disabled={!onPurchase || purchasing || total > balance}
+                  onClick={() => purchase()}
+                >
+                  <Check size={18} aria-hidden="true" /> Tout acheter
+                </button>
+              </div>
+            </>
+          )}
           {purchaseError && (
             <p role="alert" className="runway-purchase-error">
               {purchaseError}
             </p>
           )}
-          {total > balance && (
-            <p className="runway-purchase-error">
-              Il te manque {total - balance} pièces pour cet achat.
+          {cart.length > 0 && (
+            <p className="fashion-cart-note">
+              Les achats rejoignent ton Dressing avec les couleurs choisies.
             </p>
           )}
-          <p className="fashion-cart-note">
-            Les achats rejoignent ton dressing avec les couleurs choisies.
-          </p>
         </section>
       )}
-      <button
-        className="blush-close"
-        ref={back}
-        onClick={onClose}
-        aria-label="Retour à la carte"
-      >
-        <X size={18} />
-      </button>
     </section>
   );
 }

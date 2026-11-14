@@ -11,7 +11,9 @@
     "assets:fit": "tsx scripts/prepare-redrawn-clothes.ts",
     "assets:fit:archive": "tsx scripts/calibrate-winter-patterns.ts",
     "test:avatar": "node scripts/run-tests.mjs tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts",
-    "build:fast": "tsc --noEmit && vite build"
+    "build:fast": "tsc --noEmit && vite build",
+    "garment:sheet": "tsx scripts/preview-looks.tsx",
+    "garment:fitted": "tsx scripts/prepare-legging.ts && tsx scripts/prepare-fitted-tops.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.15",

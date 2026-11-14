@@ -1,0 +1,26 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "studio",
+      "name": "Legging Studio",
+      "price": 700,
+      "source": "scripts/prepare-legging.ts",
+      "base": "#232028",
+      "crop": [
+        252,
+        668,
+        381,
+        957
+      ],
+      "tone": {
+        "shadow": 4,
+        "middle": 24,
+        "highlight": 33,
+        "depth": 0.36,
+        "sheen": 0.22
+      }
+    }
+  ]
+}

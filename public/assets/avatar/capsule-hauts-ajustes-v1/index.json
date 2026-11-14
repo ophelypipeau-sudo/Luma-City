@@ -1,0 +1,90 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "brassiere",
+      "name": "Brassière Studio",
+      "price": 550,
+      "source": "scripts/prepare-fitted-tops.ts",
+      "base": "#a98bd6",
+      "crop": [
+        318,
+        340,
+        256,
+        227
+      ],
+      "tone": {
+        "shadow": 64,
+        "middle": 148,
+        "highlight": 157,
+        "depth": 0.36,
+        "sheen": 0.22
+      },
+      "details": true
+    },
+    {
+      "id": "debardeur",
+      "name": "Débardeur côtelé",
+      "price": 450,
+      "source": "scripts/prepare-fitted-tops.ts",
+      "base": "#ece5db",
+      "crop": [
+        316,
+        329,
+        258,
+        388
+      ],
+      "tone": {
+        "shadow": 183,
+        "middle": 216,
+        "highlight": 239,
+        "depth": 0.36,
+        "sheen": 0.22
+      },
+      "details": false
+    },
+    {
+      "id": "tee",
+      "name": "Tee ajusté",
+      "price": 500,
+      "source": "scripts/prepare-fitted-tops.ts",
+      "base": "#7fa58a",
+      "crop": [
+        239,
+        333,
+        407,
+        366
+      ],
+      "tone": {
+        "shadow": 123,
+        "middle": 146,
+        "highlight": 155,
+        "depth": 0.36,
+        "sheen": 0.22
+      },
+      "details": false
+    },
+    {
+      "id": "seconde-peau",
+      "name": "Seconde peau",
+      "price": 650,
+      "source": "scripts/prepare-fitted-tops.ts",
+      "base": "#6b2a48",
+      "crop": [
+        170,
+        317,
+        546,
+        436
+      ],
+      "tone": {
+        "shadow": 44,
+        "middle": 54,
+        "highlight": 63,
+        "depth": 0.36,
+        "sheen": 0.22
+      },
+      "details": false
+    }
+  ]
+}

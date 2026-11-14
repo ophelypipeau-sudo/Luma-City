@@ -10,6 +10,8 @@ export const retiredGarments: ReadonlySet<string> = new Set([
   ...numbered("fashion.capsule-skirt-", 10),
   ...["sienne", "nuage", "rubis", "nacre", "ebene", "moka"].map((id) => "fashion.hair-" + id),
   "fashion.hair-v3-10-couronne",
+  "fashion.hair-v4-05",
+  "fashion.hair-v4-20",
   "fashion.premium-nova",
   ...["rose-poudre", "sport-prune", "cerises", "nuit-etoilee", "pistache", "peche", "espresso", "rayures", "bleu-ciel", "framboise"].map((id) => "fashion.tee-" + id),
   ...["haut", "short", "guetres", "escarpins"].map((id) => "fashion.minuit-polaire-" + id),

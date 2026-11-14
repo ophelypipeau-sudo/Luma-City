@@ -6,15 +6,15 @@
       "id": "01",
       "name": "Gravure",
       "crop": [
-        344,
-        34,
-        199,
-        146
+        347,
+        33,
+        194,
+        142
       ],
       "mainTone": {
         "shadow": 26,
-        "middle": 52,
-        "highlight": 109,
+        "middle": 51,
+        "highlight": 93,
         "depth": 0.28,
         "sheen": 0.18
       },
@@ -24,15 +24,15 @@
       "id": "02",
       "name": "Sillons",
       "crop": [
-        341,
-        24,
-        206,
-        156
+        344,
+        33,
+        200,
+        135
       ],
       "mainTone": {
-        "shadow": 18,
-        "middle": 62,
-        "highlight": 143,
+        "shadow": 35,
+        "middle": 57,
+        "highlight": 91,
         "depth": 0.28,
         "sheen": 0.18
       },
@@ -42,33 +42,33 @@
       "id": "03",
       "name": "Constellation",
       "crop": [
-        308,
-        11,
-        273,
-        189
+        313,
+        -6,
+        263,
+        180
       ],
       "mainTone": {
         "shadow": 15,
         "middle": 40,
-        "highlight": 126,
+        "highlight": 82,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "04",
       "name": "Cinéma",
       "crop": [
-        329,
-        26,
-        228,
-        199
+        335,
+        27,
+        216,
+        188
       ],
       "mainTone": {
         "shadow": 23,
         "middle": 46,
-        "highlight": 119,
+        "highlight": 118,
         "depth": 0.28,
         "sheen": 0.18
       },
@@ -79,7 +79,7 @@
       "name": "Aileron",
       "crop": [
         362,
-        -61,
+        -69,
         161,
         184
       ],
@@ -96,15 +96,15 @@
       "id": "06",
       "name": "Azimut",
       "crop": [
-        263,
-        5,
-        361,
-        799
+        307,
+        -1,
+        276,
+        586
       ],
       "mainTone": {
-        "shadow": 16,
-        "middle": 34,
-        "highlight": 71,
+        "shadow": 23,
+        "middle": 35,
+        "highlight": 67,
         "depth": 0.28,
         "sheen": 0.18
       },
@@ -114,105 +114,105 @@
       "id": "07",
       "name": "Méduse",
       "crop": [
-        296,
-        -5,
-        295,
-        490
+        309,
+        12,
+        269,
+        406
       ],
       "mainTone": {
-        "shadow": 17,
+        "shadow": 19,
         "middle": 50,
-        "highlight": 121,
+        "highlight": 124,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "08",
       "name": "Mistral",
       "crop": [
-        305,
-        -31,
-        277,
-        233
+        315,
+        -5,
+        258,
+        215
       ],
       "mainTone": {
-        "shadow": 15,
-        "middle": 37,
-        "highlight": 104,
+        "shadow": 16,
+        "middle": 40,
+        "highlight": 111,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "09",
       "name": "Toupie",
       "crop": [
-        268,
-        -53,
-        350,
-        257
+        327,
+        -9,
+        232,
+        208
       ],
       "mainTone": {
         "shadow": 17,
-        "middle": 42,
-        "highlight": 112,
+        "middle": 39,
+        "highlight": 109,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "10",
       "name": "Rocaille",
       "crop": [
-        334,
-        -12,
-        219,
-        182
+        318,
+        -9,
+        252,
+        208
       ],
       "mainTone": {
-        "shadow": 12,
-        "middle": 37,
-        "highlight": 112,
+        "shadow": 13,
+        "middle": 36,
+        "highlight": 105,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "11",
       "name": "Cerf-volant",
       "crop": [
-        291,
-        38,
-        305,
-        477
+        280,
+        23,
+        327,
+        527
       ],
       "mainTone": {
-        "shadow": 29,
-        "middle": 52,
-        "highlight": 120,
+        "shadow": 27,
+        "middle": 48,
+        "highlight": 133,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "12",
       "name": "Épi de mer",
       "crop": [
-        326,
-        8,
-        225,
-        579
+        336,
+        16,
+        253,
+        417
       ],
       "mainTone": {
-        "shadow": 19,
-        "middle": 46,
-        "highlight": 108,
+        "shadow": 18,
+        "middle": 40,
+        "highlight": 119,
         "depth": 0.28,
         "sheen": 0.18
       },
@@ -222,141 +222,141 @@
       "id": "13",
       "name": "Soufflet",
       "crop": [
-        161,
-        30,
-        566,
-        428
+        191,
+        22,
+        505,
+        397
       ],
       "mainTone": {
-        "shadow": 22,
+        "shadow": 23,
         "middle": 39,
-        "highlight": 117,
+        "highlight": 112,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "14",
       "name": "Volute",
       "crop": [
-        325,
-        -97,
-        238,
-        260
+        330,
+        -58,
+        226,
+        238
       ],
       "mainTone": {
-        "shadow": 28,
-        "middle": 48,
-        "highlight": 108,
+        "shadow": 16,
+        "middle": 42,
+        "highlight": 107,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "15",
       "name": "Éventail",
       "crop": [
-        189,
-        -94,
-        512,
-        288
+        200,
+        -101,
+        488,
+        293
       ],
       "mainTone": {
-        "shadow": 21,
-        "middle": 45,
+        "shadow": 14,
+        "middle": 42,
         "highlight": 134,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "16",
       "name": "Néon",
       "crop": [
-        331,
-        22,
-        226,
-        576
+        214,
+        19,
+        459,
+        706
       ],
       "mainTone": {
-        "shadow": 23,
-        "middle": 54,
-        "highlight": 125,
+        "shadow": 18,
+        "middle": 30,
+        "highlight": 65,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "17",
       "name": "Lacet",
       "crop": [
-        167,
-        -53,
-        553,
-        258
+        216,
+        23,
+        456,
+        310
       ],
       "mainTone": {
-        "shadow": 24,
-        "middle": 41,
-        "highlight": 108,
+        "shadow": 25,
+        "middle": 39,
+        "highlight": 112,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "18",
       "name": "Rosace",
       "crop": [
-        239,
-        -81,
-        411,
-        285
+        303,
+        -38,
+        281,
+        229
       ],
       "mainTone": {
-        "shadow": 22,
-        "middle": 57,
-        "highlight": 127,
+        "shadow": 17,
+        "middle": 47,
+        "highlight": 118,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "19",
       "name": "Mosaïque",
       "crop": [
-        339,
-        -38,
-        210,
-        192
+        331,
+        -1,
+        227,
+        205
       ],
       "mainTone": {
-        "shadow": 21,
-        "middle": 46,
-        "highlight": 117,
+        "shadow": 12,
+        "middle": 39,
+        "highlight": 118,
         "depth": 0.28,
         "sheen": 0.18
       },
-      "back": false
+      "back": true
     },
     {
       "id": "20",
       "name": "Équerre",
       "crop": [
-        338,
-        10,
-        195,
-        414
+        342,
+        29,
+        218,
+        308
       ],
       "mainTone": {
-        "shadow": 25,
-        "middle": 45,
-        "highlight": 117,
+        "shadow": 30,
+        "middle": 56,
+        "highlight": 103,
         "depth": 0.28,
         "sheen": 0.18
       },

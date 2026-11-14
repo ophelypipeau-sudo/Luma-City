@@ -1,8 +1,9 @@
+import { retiredGarments } from "../../../../packages/contracts/src/retired-garments";
 import manifest from "../../../../public/assets/avatar/capsule-coiffures-v4/index.json";
 import type { Garment } from "./catalog";
 import { stationaryPoseProfile } from "./pose-wardrobe";
 
-export const HAIR_CAPSULE_V4_GARMENTS: readonly Garment[] = manifest.pieces.map(
+export const HAIR_CAPSULE_V4_GARMENTS: readonly Garment[] = manifest.pieces.filter(({ id }) => !retiredGarments.has(`fashion.hair-v4-${id}`)).map(
   ({ id, name, crop: [x, y, width, height], mainTone, back }) => {
     const stem = `/assets/avatar/capsule-coiffures-v4/${id}`;
     return {

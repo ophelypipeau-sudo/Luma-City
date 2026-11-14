@@ -7,6 +7,7 @@ import { PLUM_GARMENTS } from "./prune-fumee";
 import { APPROVED_TOPS } from "./approved-tops";
 import { CAPSULE_MODE_GARMENTS } from "./capsule-mode";
 import { PREMIUM_CAPSULE_GARMENTS } from "./premium-capsule";
+import { IRIS_SKIRTS_GARMENTS } from "./iris-skirts";
 import { IRIS_SHORTS_GARMENTS } from "./iris-shorts";
 import { PANTS_CAPSULE_GARMENTS } from "./pants-capsule";
 import { LEGGING_GARMENTS } from "./legging";
@@ -301,6 +302,7 @@ const byId = new Map(
   [
     ...CITY_CAPSULE_GARMENTS,
     ...BOTTOMS_CAPSULE_GARMENTS,
+    ...IRIS_SKIRTS_GARMENTS,
     ...IRIS_SHORTS_GARMENTS,
     ...PANTS_CAPSULE_GARMENTS,
     ...LEGGING_GARMENTS,
@@ -335,6 +337,7 @@ const shopGarments = [
   ...HAIR_CAPSULE_V3_GARMENTS,
   ...HAIR_CAPSULE_V2_GARMENTS,
   ...HAIR_CAPSULE_GARMENTS,
+  ...IRIS_SKIRTS_GARMENTS,
   ...IRIS_SHORTS_GARMENTS,
   ...PANTS_CAPSULE_GARMENTS,
   ...LEGGING_GARMENTS,

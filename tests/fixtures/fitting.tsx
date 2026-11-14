@@ -9,6 +9,7 @@ import { FittingAvatar } from "../../apps/web/src/shop/FittingAvatar";
 import { ORIGINAL_OUTFIT, BARE_OUTFIT } from "../../apps/web/src/shop/catalog";
 import { MorphologyComparison } from "../../apps/web/src/cartoon/MorphologyComparison";
 import { PilotFitFixture } from "./PilotFitFixture";
+import { IRIS_SKIRTS_GARMENTS } from "../../apps/web/src/avatar/iris-skirts";
 import { IRIS_SHORTS_GARMENTS } from "../../apps/web/src/avatar/iris-shorts";
 
 function Fixture() {
@@ -124,7 +125,7 @@ function Fixture() {
   );
 }
 function BottomsFit({ group, dye, tucked, velvet }: { group: string; dye?: string; tucked: boolean; velvet: boolean }) {
-  const pieces = group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
+  const pieces = group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
     ? PANTS_CAPSULE_GARMENTS
     : (group.startsWith("ville-") ? CITY_CAPSULE_GARMENTS : BOTTOMS_CAPSULE_GARMENTS).filter(piece => piece.id.startsWith(group.startsWith("ville-") ? "fashion." + group : "fashion.capsule-" + group));
   return (

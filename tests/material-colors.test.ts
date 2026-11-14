@@ -98,7 +98,7 @@ test('Nocturne sleeves and Cerise cream panels ignore both selected and previous
 // Redraw the masks in the asset pipeline, then empty this list.
 const KNOWN_MASK_OVERLAPS=new Set(['fashion.hair-02-trait','fashion.hair-03-sillage','fashion.hair-05-azur','fashion.hair-06-nocturne']);
 test('all shop materials recolor while protected seams, prints and every alpha byte stay unchanged',()=>{
- const fabricOnly=new Set(['atelier.prune-fumee-pantalon','fashion.premium-ambre','fashion.premium-alba','fashion.pants-ligne','fashion.pants-sillon','fashion.pants-fuseau','fashion.hair-01-aureole','fashion.hair-04-orbite','fashion.iris-shorts-nacre']);
+ const fabricOnly=new Set(['atelier.prune-fumee-pantalon','fashion.premium-ambre','fashion.premium-alba','fashion.pants-ligne','fashion.pants-sillon','fashion.pants-fuseau','fashion.hair-01-aureole','fashion.hair-04-orbite','fashion.iris-shorts-nacre','fashion.iris-skirts-obsidienne','fashion.iris-skirts-nacre','fashion.iris-skirts-dimanche','fashion.iris-skirts-pli-diris']);
  for(const piece of avatarCatalogSnapshot()){
   if(piece.art.kind!=='image'||piece.colorable===false)continue;
   const regions=garmentMaterials(piece);assert.ok(regions,piece.id);

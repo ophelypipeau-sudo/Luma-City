@@ -15,8 +15,8 @@
   background-position: center;
   background-size: cover;
 }
-.map-viewport::before,
-.game-fullscreen .room-viewport::before {
+/* Only the map keeps a blurred copy around it; rooms fill their frame. */
+.map-viewport::before {
   content: "";
   position: absolute;
   inset: 0;

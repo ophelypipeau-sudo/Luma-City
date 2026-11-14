@@ -54,7 +54,7 @@ export type Garment = Readonly<{
   legacySlot?: AvatarSlot;
   poseProfile?: GarmentPoseProfile;
   /** Approved composites of the same Iris body for these garment overlays. */
-  fittingBody?: Readonly<Record<"front" | "hand-on-hip", string>>;
+  fittingBody?: Readonly<{ front: string; "hand-on-hip"?: string }>;
   fittingHipHand?: string;
   /** Binding to measured canonical body, distinct from the PNG canvas dimensions. */
   pattern?: Readonly<{ id: string; bodySha256: string; cut: string }>;

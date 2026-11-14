@@ -68,7 +68,8 @@ test("shop pieces render only calibrated poses and retain equipped identities an
         assert.ok(svg.includes(`data-avatar-pose="${pose}"`));
       if (capsule.has(piece.id) && pose === "hand-on-hip") {
         const posedTop = piece.poseProfile!.fits[pose].sleeves!.front;
-        assert.ok(svg.includes(piece.fittingBody![pose]));
+        const fittingBody = piece.fittingBody?.[pose];
+        assert.ok(fittingBody && svg.includes(fittingBody));
         assert.ok(svg.includes(posedTop));
         assert.ok(piece.fittingHipHand);
         assert.ok(svg.lastIndexOf(piece.fittingHipHand) > svg.lastIndexOf(posedTop));

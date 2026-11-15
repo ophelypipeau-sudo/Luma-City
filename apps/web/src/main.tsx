@@ -79,6 +79,7 @@ import "./game-shell.css";
 import "./map-markers.css";
 import "./profile.css";
 import "./quartier.css";
+import "./friends-panel.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
 import "@fontsource/outfit/400.css";
@@ -1178,6 +1179,8 @@ function App() {
               ) : view === "friends" && !guestbook ? (
                 <FriendsPanel key={activeId} contacts={state?.contacts ?? []}
                   onlineIds={presence?.onlineIds ?? []} onProfile={setProfileId}
+                  onMessage={choosePeer}
+                  onGuestbook={setGuestbookId}
                   onClose={openMap}
                   onRespond={async (id, accept) => {
                     await updateSocial(id, accept

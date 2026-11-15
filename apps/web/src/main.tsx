@@ -147,7 +147,10 @@ function App() {
   const [roomChat, setRoomChat] = useState<{ roomId: RoomId; messages: RoomMessage[] } | null>(null);
   const [roomReceipt, setRoomReceipt] = useState<RoomChatReceipt | null>(null);
   const requestedRoom = useRef<RoomId | null>(null);
-  const knownCharacters = [...(state?.characters ?? []), ...(state?.contacts ?? [])];
+  // A best friend or partner opened from a profile slot may be outside the contact list.
+  const [linkedProfile, setLinkedProfile] = useState<Character | null>(null);
+  const knownCharacters = [...(state?.characters ?? []), ...(state?.contacts ?? []),
+    ...(linkedProfile ? [linkedProfile] : [])];
   const scene = roomScene(roomId, knownCharacters);
   const players = presence?.players ?? [];
   const [status, setStatus] = useState("offline"),
@@ -285,7 +288,8 @@ function App() {
   const profile = state?.character?.id === profileId
     ? state?.character
     : state?.contacts.find((character) => character.id === profileId)
-      ?? players.find((character) => character.id === profileId);
+      ?? players.find((character) => character.id === profileId)
+      ?? (linkedProfile?.id === profileId ? linkedProfile : undefined);
   const ownProfile = profile?.id === state?.character?.id;
   const guestbookCharacter = knownCharacters.find((character) => character.id === guestbookId);
   const guestbook = guestbookCharacter?.id === activeId && guestbookCharacter
@@ -315,7 +319,9 @@ function App() {
   ];
   const friends = state?.contacts.filter((character) => character.friend) ?? [];
   const incomingRequests = state?.contacts.filter((contact) => (contact.profileRequests ?? 0) > 0) ?? [];
-  const requestCount = incomingRequests.filter(contact => contact.friendRequest).length;
+  // Friend, best friend and couple requests all wait in Amis → Demandes.
+  const requestCount = state?.contacts.filter((contact) => !contact.blocked)
+    .reduce((count, contact) => count + (contact.relationRequests?.length ?? (contact.friendRequest ? 1 : 0)), 0) ?? 0;
   function openMagazine() {
     setMagazineMenu(false);
     setWorldPanel("magazine");
@@ -1182,10 +1188,10 @@ function App() {
                   onMessage={choosePeer}
                   onGuestbook={setGuestbookId}
                   onClose={openMap}
-                  onRespond={async (id, accept) => {
+                  onRespond={async (id, kind, accept) => {
                     await updateSocial(id, accept
-                      ? { type: "relation", kind: "friend", accept: true }
-                      : { type: "decline-friend" });
+                      ? { type: "relation", kind, accept: true }
+                      : { type: "decline-relation", kind });
                     await refresh();
                   }} />
               ) : guestbook ? (
@@ -1575,7 +1581,7 @@ function App() {
         <FloatingRewards rewards={rewards} collect={collectReward} burstOrigin={coinBurst} />}
       {profile && state?.character && !modalOpen && <ProfileCard
         key={`${state.character.id}:${profile.id}`} character={profile}
-        viewerLayers={wornLayers} own={ownProfile}
+        viewerLayers={wornLayers} viewerXp={state.character.xp ?? 0} own={ownProfile}
         rewards={<FloatingRewards rewards={rewards} collect={collectReward} inDialog />}
         blocked={state.contacts.find((contact) => contact.id === profile.id)?.blocked}
         generation={state.generation} requestVersion={profileRevision}
@@ -1583,6 +1589,7 @@ function App() {
           avatarCatalogSnapshot().some((piece) => piece.id === item.pieceId))}
         loadSocial={loadSocial} act={updateSocial}
         onClose={() => setProfileId(null)}
+        onOpenProfile={(person) => { setLinkedProfile(person); setProfileId(person.id); }}
         onProfile={() => { setProfileId(null); setGuestbookId(profile.id); setSocialOpen(false); }}
         onHome={() => { setProfileId(null); enterRoom(homeRoom(profile.id)); }}
         onSave={saveMotto}

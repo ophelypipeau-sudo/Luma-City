@@ -17,10 +17,10 @@ const people: [string, string, number, ReturnType<typeof outfit>, Partial<Contac
   ["Zoé", "", 3000, outfit(2, 1, 2, 0), {}],
   ["Camille-Alexandrine", "Collectionneuse de chignons", 74000, outfit(1, 0, 1, 2), {}],
   ["Jade", "Pas de mode sans confort", 15000, outfit(0, 0, 2, 1), {}],
-  ["Nora", "Ticket du jour gratté", 41000, outfit(2, 2, 1, 0), {}],
+  ["Nora", "Ticket du jour gratté", 41000, outfit(2, 2, 1, 0), { relationRequests: ["best-friend"] }],
   ["Bloquée", "", 0, outfit(0, 0, 0, 0), { blocked: true }],
-  ["Emma", "Nouvelle dans le quartier !", 1200, outfit(1, 1, 0, 2), { friend: false, friendRequest: true }],
-  ["Rose", "", 6500, outfit(0, 1, 2, 0), { friend: false, friendRequest: true }],
+  ["Emma", "Nouvelle dans le quartier !", 1200, outfit(1, 1, 0, 2), { friend: false, friendRequest: true, relationRequests: ["friend"] }],
+  ["Rose", "", 6500, outfit(0, 1, 2, 0), { friend: false, friendRequest: true, relationRequests: ["friend", "romance"] }],
 ];
 
 export const demoFriends: Contact[] = people.map(([name, motto, xp, worn, extra], index) => ({

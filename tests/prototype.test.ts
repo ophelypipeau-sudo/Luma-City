@@ -626,13 +626,16 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
     assert.equal((await mutate(iris, "june", like)).data.xpSent, 5);
     assert.equal((await mutate(iris, "june", like)).data.xpSent, 0);
     assert.equal((await read(iris, "june")).data.likes, 1);
-    assert.equal(
-      (await mutate(iris, "june", { type: "photo" })).data.xpSent,
-      10,
-    );
+    const firstPhoto = (await mutate(iris, "june", { type: "photo" })).data;
+    // A photo duo rewards both players, by level (both are level 1 here).
+    assert.equal(firstPhoto.xpSent, 10);
+    assert.equal(firstPhoto.xpEarned, 10);
+    assert.equal(firstPhoto.photographed, true);
+    assert.ok(Date.parse(firstPhoto.photoAgainAt) - Date.now() > 59 * 60_000);
     assert.equal(
       (await mutate(iris, "june", { type: "photo" })).data.xpSent,
       0,
+      "a photo duo waits an hour",
     );
     assert.equal(
       (await request(app, "state", iris.cookie)).data.character.xp,
@@ -653,7 +656,8 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
     assert.deepEqual(remote.outfit, outfit);
     const lookKey = (await read(iris, "june")).data.lookKey;
     const look = { type: "look-like", lookKey };
-    assert.equal((await mutate(iris, "june", look)).data.xpSent, 5);
+    const liked = (await mutate(iris, "june", look)).data;
+    assert.deepEqual([liked.xpSent, liked.xpEarned, liked.lookLiked], [5, 5, true]);
     assert.equal((await mutate(iris, "june", look)).data.xpSent, 0);
     const face = { eyes: "blue", lips: "berry", skin: "tan", nose: "fine" };
     assert.equal((await request(app, "profile/outfit", june.cookie, {
@@ -703,6 +707,21 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       partner: null,
     });
 
+    // An hour later, photo duo and liked look come back; a higher level earns more.
+    await db.query("UPDATE profile_photos SET created_at=NOW() - INTERVAL '61 minutes'");
+    await db.query("UPDATE profile_look_likes SET created_at=NOW() - INTERVAL '61 minutes'");
+    assert.equal((await read(iris, "june")).data.photographed, false);
+    assert.equal((await read(iris, "june")).data.lookLiked, false);
+    await db.query("UPDATE characters SET xp=5000 WHERE id='iris'");
+    const again = (await mutate(iris, "june", { type: "photo" })).data;
+    assert.deepEqual([again.xpSent, again.xpEarned], [10, 20]);
+    const lookAgain = (await mutate(iris, "june", look)).data;
+    assert.deepEqual([lookAgain.xpSent, lookAgain.xpEarned], [5, 10]);
+    const irisRewards = (await request(app, "state", iris.cookie)).data.xpMagazine.rewards;
+    assert.deepEqual(irisRewards.map(({ source, points }: { source: string; points: number }) => [source, points]),
+      [["look-like", 15], ["photo", 30]]);
+    await db.query("UPDATE characters SET xp=0 WHERE id='iris'");
+
     await mutate(iris, "june", { type: "relation", kind: "friend", accept: false });
     const incoming = async () => (await request(app, "state", june.cookie)).data.contacts
       .find((contact: { id: string }) => contact.id === "iris").friendRequest;
@@ -723,11 +742,9 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       );
       assert.equal((await read(june, "iris")).data.relations[kind], "incoming");
       const inbox = (await request(app, "state", june.cookie)).data.contacts;
-      assert.equal(
-        inbox.find((contact: { id: string }) => contact.id === "iris")
-          .profileRequests,
-        1,
-      );
+      const requester = inbox.find((contact: { id: string }) => contact.id === "iris");
+      assert.equal(requester.profileRequests, 1);
+      assert.deepEqual(requester.relationRequests, [kind]);
       assert.equal(
         (await mutate(june, "iris", { ...action, accept: true })).data
           .relations[kind],
@@ -735,10 +752,11 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       );
       assert.equal((await read(iris, "june")).data.relations[kind], "accepted");
     }
-    assert.deepEqual((await read(iris, "iris")).data.featuredRelations, {
-      bestFriends: [{ id: "june", name: "June" }],
-      partner: { id: "june", name: "June" },
-    });
+    const featured = (await read(iris, "iris")).data.featuredRelations;
+    assert.deepEqual(featured.bestFriends.map(({ id, name }: { id: string; name: string }) => ({ id, name })),
+      [{ id: "june", name: "June" }]);
+    assert.deepEqual([featured.partner.id, featured.partner.name], ["june", "June"]);
+    assert.ok("outfit" in featured.partner, "a slot carries the whole character to open its profile");
     const nova = await enter(app, "test-xp", "nova-xp");
     const propose = { type: "relation", kind: "romance", accept: false };
     assert.equal((await mutate(nova, "iris", propose)).status, 200);
@@ -749,6 +767,12 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
         [friend],
       );
     const bestFriend = { ...propose, kind: "best-friend" };
+    assert.equal((await mutate(nova, "iris", bestFriend)).status, 200);
+    const novaRequests = async () => (await request(app, "state", iris.cookie)).data.contacts
+      .find((contact: { id: string }) => contact.id === "nova-xp").relationRequests;
+    assert.deepEqual(await novaRequests(), ["best-friend", "romance"]);
+    assert.equal((await mutate(iris, "nova-xp", { type: "decline-relation", kind: "best-friend" })).status, 200);
+    assert.deepEqual(await novaRequests(), ["romance"]);
     assert.equal((await mutate(nova, "iris", bestFriend)).status, 200);
     assert.equal((await mutate(iris, "nova-xp", { ...bestFriend, accept: true })).status, 400);
     assert.equal((await read(iris, "iris")).data.featuredRelations.bestFriends.length, 3);

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import {
   PROFILE_XP,
+  profileXp,
   levelProgress,
   PROFILE_RELATIONS,
   PROFILE_RELATION_SLOTS,
@@ -41,6 +42,7 @@ export type ProfileAction =
   | { type: "guestbook"; body: string }
   | { type: "relation"; kind: ProfileRelation; accept: boolean }
   | { type: "decline-friend" }
+  | { type: "decline-relation"; kind: ProfileRelation }
   | { type: "gift"; item: GiftItem; id: string };
 
 const relations = {
@@ -56,6 +58,18 @@ const relations = {
     Icon: Heart,
   },
 };
+
+const requestLabels: Record<ProfileRelation, string> = {
+  friend: "devenir amis",
+  "best-friend": "être meilleurs amis",
+  romance: "être en couple",
+};
+
+/** Minutes before a photo duo or a liked look comes back, rounded up. */
+function minutesLeft(againAt: string | null | undefined, now: number) {
+  const left = againAt ? Date.parse(againAt) - now : 0;
+  return left > 0 ? Math.ceil(left / 60_000) : 0;
+}
 
 const templateLabels: Record<ProfileTemplate, string> = {
   image: "Importer mon image de profil",
@@ -88,12 +102,14 @@ async function prepareProfileImage(file: File) {
 export function ProfileCard({
   character,
   viewerLayers,
+  viewerXp = 0,
   own,
   blocked,
   generation,
   requestVersion,
   purchased,
   onProfile,
+  onOpenProfile,
   onHome,
   onClose,
   onMessage,
@@ -107,12 +123,16 @@ export function ProfileCard({
 }: {
   character: Character;
   viewerLayers: AvatarLayers;
+  /** The viewer's XP, to preview what a photo duo or a liked look earns them. */
+  viewerXp?: number;
   own: boolean;
   blocked?: boolean;
   generation: number;
   requestVersion?: number;
   purchased: readonly GiftItem[];
   onProfile: () => void;
+  /** Opens the profile of a best friend or partner shown in a slot. */
+  onOpenProfile?: (person: Character) => void;
   onHome: () => void;
   onClose: () => void;
   onMessage: () => void;
@@ -146,6 +166,14 @@ export function ProfileCard({
   const [giftChoice, setGiftChoice] = useState<GiftItem>();
   const giftCommand = useRef<string | undefined>(undefined);
   const layers = own ? viewerLayers : undefined;
+  const [now, setNow] = useState(() => Date.now());
+
+  // Photo duo and liked looks come back after an hour: keep the countdown fresh.
+  useEffect(() => {
+    if (!social?.photoAgainAt && !social?.lookAgainAt) return;
+    const timer = setInterval(() => setNow(Date.now()), 20_000);
+    return () => clearInterval(timer);
+  }, [social?.photoAgainAt, social?.lookAgainAt]);
 
   useEffect(() => {
     const element = dialog.current;
@@ -192,7 +220,12 @@ export function ProfileCard({
     void perform(async () => {
       const updated = await act(character.id, action);
       setSocial(updated);
-      if (updated.xpSent) setNotice(`${updated.xpSent} XP dans le magazine de ${character.name}.`);
+      setNow(Date.now());
+      if (updated.xpEarned && updated.xpSent)
+        setNotice(`+${updated.xpEarned} XP pour toi et +${updated.xpSent} XP pour ${character.name}, à récupérer dans vos magazines.`);
+      else if (updated.xpSent) setNotice(`${updated.xpSent} XP dans le magazine de ${character.name}.`);
+      if (action.type === "relation" && action.accept) setNotice(`${relations[action.kind].accepted} avec ${character.name} !`);
+      if (action.type === "decline-relation") setNotice("Demande refusée.");
       if (action.type === "gift") {
         navigate("card");
         setNotice("Cadeau envoyé.");
@@ -201,6 +234,16 @@ export function ProfileCard({
   }
 
   const interactionDisabled = own || blocked || busy || !social;
+  const photoWait = social?.photographed ? minutesLeft(social.photoAgainAt, now) : 0;
+  const lookWait = social?.lookLiked ? minutesLeft(social.lookAgainAt, now) : 0;
+  const duoXp = (source: "photo" | "look-like") =>
+    `+${profileXp(source, viewerXp)} XP pour toi · +${profileXp(source, character.xp ?? 0)} XP pour ${character.name}`;
+  const incoming = own ? [] : PROFILE_RELATIONS.filter((kind) => social?.relations[kind] === "incoming");
+  const relationStatus = own ? [] : PROFILE_RELATIONS.flatMap((kind) => {
+    const state = social?.relations[kind];
+    return state === "accepted" ? [{ kind, text: relations[kind].accepted }]
+      : state === "outgoing" ? [{ kind, text: `Demande envoyée · ${relations[kind].accepted.toLowerCase()}` }] : [];
+  });
   const featured = social?.featuredRelations;
   const relationshipSlots = [
     ...Array.from({ length: PROFILE_RELATION_SLOTS["best-friend"] }, (_, index) => ({
@@ -266,6 +309,7 @@ export function ProfileCard({
             >
               <Heart size={17} fill={social?.liked ? "currentColor" : "none"} />
               {!!social?.likes && <span>{social.likes}</span>}
+              {!own && social?.liked && <span className="profile-like-text">Vous avez aimé ce profil</span>}
             </button>
           )}
           <button type="button" aria-label="Fermer le profil" onClick={onClose}>
@@ -360,6 +404,28 @@ export function ProfileCard({
                   );
                 })}
               </div>
+              {relationStatus.length > 0 && (
+                <ul className="profile-relation-status">
+                  {relationStatus.map(({ kind, text }) => {
+                    const { Icon } = relations[kind];
+                    return <li key={kind}><Icon size={12} aria-hidden="true" /> {text}</li>;
+                  })}
+                </ul>
+              )}
+              {incoming.map((kind) => {
+                const { Icon } = relations[kind];
+                return (
+                  <div key={kind} className="profile-request" role="group" aria-label={`Demande de ${character.name}`}>
+                    <p><Icon size={14} aria-hidden="true" /> {character.name} te propose de {requestLabels[kind]}.</p>
+                    <div>
+                      <button type="button" className="is-accept" disabled={interactionDisabled}
+                        onClick={() => changeSocial({ type: "relation", kind, accept: true })}>Accepter</button>
+                      <button type="button" disabled={interactionDisabled}
+                        onClick={() => changeSocial({ type: "decline-relation", kind })}>Refuser</button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="profile-avatar">
               <Portrait {...character} fullBody layers={layers} />
@@ -418,17 +484,27 @@ export function ProfileCard({
                 </p>
               )}
               <ul className="profile-featured-relations" aria-label="Meilleurs amis et couple">
-                {relationshipSlots.map(({ label, person, Icon }) => (
-                  <li key={label} className="profile-relation-slot" aria-label={`${label} · ${person?.name ?? "Place libre"}`} title={`${label} · ${person?.name ?? "Place libre"}`}>
-                    <span className="profile-relation-portrait" data-empty={!person}>
-                      {person ? <Portrait id={person.id} /> : <UserRound size={20} aria-hidden="true" />}
-                      <span className="profile-relation-badge">
-                        <Icon size={10} fill="currentColor" aria-hidden="true" />
+                {relationshipSlots.map(({ label, person, Icon }) => {
+                  const portrait = (
+                    <>
+                      <span className="profile-relation-portrait" data-empty={!person}>
+                        {person ? <Portrait {...person} /> : <UserRound size={20} aria-hidden="true" />}
+                        <span className="profile-relation-badge">
+                          <Icon size={10} fill="currentColor" aria-hidden="true" />
+                        </span>
                       </span>
-                    </span>
-                    {person && <span className="profile-relation-name">{person.name}</span>}
-                  </li>
-                ))}
+                      {person && <span className="profile-relation-name">{person.name}</span>}
+                    </>
+                  );
+                  return (
+                    <li key={label} className="profile-relation-slot" title={`${label} · ${person?.name ?? "Place libre"}`}>
+                      {person && onOpenProfile ? (
+                        <button type="button" aria-label={`${label} · voir le profil de ${person.name}`}
+                          onClick={() => onOpenProfile(person)}>{portrait}</button>
+                      ) : <span aria-label={`${label} · ${person?.name ?? "Place libre"}`}>{portrait}</span>}
+                    </li>
+                  );
+                })}
               </ul>
               <div
                 className="profile-quick-actions"
@@ -437,20 +513,24 @@ export function ProfileCard({
                 <button
                   type="button"
                   onClick={() => changeSocial({ type: "photo" })}
-                  disabled={interactionDisabled || social?.photographed}
-                  title={`Offrir ${PROFILE_XP.photo} XP à ${character.name}`}
+                  disabled={interactionDisabled || photoWait > 0}
+                  aria-pressed={photoWait > 0}
+                  title={own ? "Prends une photo duo sur le profil d’un autre joueur"
+                    : photoWait > 0 ? `Nouvelle photo duo dans ${photoWait} min` : duoXp("photo")}
                 >
-                  <Camera /> {social?.photographed ? "Photo faite" : "Photo"}
+                  <Camera /> Photo duo
+                  {photoWait > 0 && <small>dans {photoWait} min</small>}
                 </button>
                 <button type="button" onClick={onProfile}>
                   <IdCard /> Livre d’or
                 </button>
                 {!own && social?.lookKey && (
-                  <button type="button" aria-pressed={social.lookLiked}
-                    disabled={interactionDisabled || social.lookLiked}
+                  <button type="button" aria-pressed={lookWait > 0}
+                    disabled={interactionDisabled || lookWait > 0}
+                    title={lookWait > 0 ? `Tu pourras aimer ce look à nouveau dans ${lookWait} min` : duoXp("look-like")}
                     onClick={() => changeSocial({ type: "look-like", lookKey: social.lookKey! })}>
-                    <Heart /> {social.lookLiked ? "Look aimé" : "J’aime ce look"}
-                    {social.lookLikes > 0 ? ` · ${social.lookLikes}` : ""}
+                    <Heart fill={lookWait > 0 ? "currentColor" : "none"} /> {lookWait > 0 ? "Look aimé" : "J’aime ce look"}
+                    {lookWait > 0 && <small>dans {lookWait} min</small>}
                   </button>
                 )}
                 <button

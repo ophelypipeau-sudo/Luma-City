@@ -42,9 +42,19 @@ async function paintFace(src: string, face: AvatarFace) {
   const bitmap = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const { data, width, height } = bitmap;
   const layers = await loadKawaiiLayers(kawaiiLayers(face), width, height);
-  for (const layer of layers) {
-    for (let i = 0; i < layer.skin.length; i += 4)
-      if (layer.skin[i + 3]) data.set(layer.skin.subarray(i, i + 3), i);
+  // Shared eye/brow transitions are complementary. Blend all replacement
+  // patches from the same original pixel so selecting both retains the full correction.
+  if (layers.length) {
+    for (let i = 0; i < layers[0].skin.length; i += 4) {
+      const weight = layers.reduce((sum, layer) => sum + layer.skin[i + 3], 0);
+      if (!weight) continue;
+      const mix = Math.min(1, weight / 255);
+      for (let channel = 0; channel < 3; channel++) {
+        const target = layers.reduce((sum, layer) =>
+          sum + layer.skin[i + channel] * layer.skin[i + 3], 0) / weight;
+        data[i + channel] = data[i + channel] * (1 - mix) + target * mix;
+      }
+    }
   }
   if (face.nose === "fine" || face.nose === "soft") {
     const original = data.slice();

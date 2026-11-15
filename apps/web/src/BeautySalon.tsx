@@ -28,6 +28,7 @@ const choices: { [K in "lips" | "skin" | "nose"]: Choices<K> } = {
     { value: "fine", label: "Fin" },
     { value: "soft", label: "Arrondi" },
     { value: "confettis", label: "Confettis" },
+    { value: "confettis-glam", label: "Confettis Glam" },
   ],
 };
 const fields = [
@@ -86,19 +87,19 @@ export function BeautySalon({ layers, onBack, onSave, canCustomizeColors = false
             onChange={(eyes) => setDraft((current) => ({ ...current, eyes }))}
             onReset={() => setDraft((current) => ({ ...current, eyes: "original" }))} />
         </div> : <div className="beauty-options" role="group" aria-label="Paires d’yeux">
-          {([undefined, "prisme"] as const).map((eyeModel) => <button key={eyeModel ?? "classic"} type="button"
+          {([undefined, "prisme", "prisme-glam"] as const).map((eyeModel) => <button key={eyeModel ?? "classic"} type="button"
             aria-pressed={draft.eyeModel === eyeModel} onClick={() => {
               setDraft((current) => current.eyeModel === eyeModel ? current : { ...current, eyeModel, eyes: "original" });
               setEyeDetail(true);
             }}>
             <svg viewBox={crop} aria-hidden="true">{preview({ ...draft, eyeModel, eyes: "original" })}</svg>
-            {eyeModel ? "Prisme violet" : "Paire classique"}
+            {eyeModel === "prisme-glam" ? "Prisme Glam" : eyeModel ? "Prisme violet" : "Paire classique"}
           </button>)}
         </div> : field === "brows" ? <div className="beauty-options" role="group" aria-label={label}>
-          {([undefined, "kawaii"] as const).map((brows) => <button key={brows ?? "original"} type="button"
+          {([undefined, "kawaii", "arche-glam"] as const).map((brows) => <button key={brows ?? "original"} type="button"
             aria-pressed={draft.brows === brows} onClick={() => setDraft((current) => ({ ...current, brows }))}>
             <svg viewBox={crop} aria-hidden="true">{preview({ ...draft, brows })}</svg>
-            {brows ? "Arc doux" : "Sourcils d’origine"}
+            {brows === "arche-glam" ? "Arche cacao" : brows ? "Arc doux" : "Sourcils d’origine"}
           </button>)}
         </div> : <div className="beauty-options" role="group" aria-label={label}>
           {choices[field].map(({ value, label: name }) =>
@@ -132,6 +133,11 @@ export function BeautySalon({ layers, onBack, onSave, canCustomizeColors = false
           </button>
         </div>
         <div className="beauty-actions">
+          <button type="button" onClick={() => setDraft((current) => ({ ...current,
+            eyeModel: "prisme-glam", eyes: "original", brows: "arche-glam", browColor: undefined,
+            nose: "confettis-glam", lips: "sorbet", lipColor: undefined }))}>
+            Kawaii Glam Mature
+          </button>
           <button type="button" onClick={() => setDraft((current) => ({ ...current, eyeModel: "prisme", eyes: "original", brows: "kawaii", browColor: undefined, nose: "confettis", lips: "sorbet", lipColor: undefined }))}>
             Look kawaii
           </button>

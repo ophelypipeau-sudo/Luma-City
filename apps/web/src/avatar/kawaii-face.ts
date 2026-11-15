@@ -15,11 +15,18 @@ function load(name: string) {
 }
 
 export function kawaiiLayers(face: AvatarFace) {
+  const glamEyes = face.eyeModel === "prisme-glam";
+  const glamBrows = face.brows === "arche-glam";
+  const softEyeArea = glamEyes || glamBrows;
+  const browLayer = glamBrows ? "glam-brows" : "brows";
+  const eyeLayer = glamEyes ? "glam-eyes" : "eyes";
+  const noseLayer = face.nose === "confettis-glam" ? "glam-nose" : "nose";
   return [
-    ...(face.brows ? [{ name: "brows", hex: face.browColor }] : []),
-    ...(face.nose === "confettis" ? [{ name: "nose", hex: undefined }] : []),
-    ...(face.eyeModel ? [{ name: "eyes", hex: face.eyes.startsWith("#") ? face.eyes : undefined }] : []),
-    ...(face.lips === "sorbet" ? [{ name: "lips", hex: face.lipColor }] : []),
+    ...(face.brows ? [{ name: browLayer, patchName: softEyeArea ? "glam-brows" : "brows", hex: face.browColor }] : []),
+    ...(face.nose === "confettis" || face.nose === "confettis-glam"
+      ? [{ name: noseLayer, patchName: noseLayer, hex: undefined }] : []),
+    ...(face.eyeModel ? [{ name: eyeLayer, patchName: softEyeArea ? "glam-eyes" : "eyes", hex: face.eyes.startsWith("#") ? face.eyes : undefined }] : []),
+    ...(face.lips === "sorbet" ? [{ name: "lips", patchName: "lips", hex: face.lipColor }] : []),
   ];
 }
 
@@ -28,9 +35,9 @@ export async function loadKawaiiLayers(
   width: number,
   height: number,
 ) {
-  return Promise.all(layers.map(async ({ name, hex }) => {
+  return Promise.all(layers.map(async ({ name, patchName, hex }) => {
     const [patch, art, mask] = await Promise.all([
-      load(`${name}-skin`), load(name), hex ? load(`${name}-color`) : undefined,
+      load(`${patchName}-skin`), load(name), hex ? load(`${name}-color`) : undefined,
     ]);
     const canvas = document.createElement("canvas");
     canvas.width = width;

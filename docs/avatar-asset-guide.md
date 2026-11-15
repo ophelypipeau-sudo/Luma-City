@@ -47,6 +47,36 @@ L’atelier démarre avec une matière uniforme et mesure ses valeurs dans le ma
 les protections et la seconde matière sont à vérifier sur l’image, dans les trois poses.
 Les [notes techniques de Prune fumée](prune-fumee-v1/README.md) décrivent l’intégration de la tenue.
 
+## Maquillage d’Iris — méthode de référence Kawaii Glam
+
+La [planche Kawaii Glam Mature](kawaii-glam/planche-validation.png) est la
+référence validée pour la qualité graphique et l’intégration au salon.
+Le niveau attendu est semi-réaliste stylisé, avec des traits détaillés, des
+ombres, des textures et des reflets cohérents avec le visage officiel d’Iris.
+Chaque inspiration Pinterest conserve sa propre identité visuelle, ses formes,
+ses couleurs et son style. La référence Kawaii Glam fixe le niveau de finition
+et la méthode de construction.
+
+1. Partir de la pose de face officielle au format natif de 887 × 1774.
+   Mesurer les repères du visage et conserver le crâne, la mâchoire, les
+   oreilles et leurs coordonnées.
+2. Vérifier la base neutralisée seule avant de poser le maquillage.
+   Retirer les traits remplacés avec des masques localisés et conserver
+   l’alpha, le contour et les attaches des oreilles de la base officielle.
+   Contrôler les tempes et les joues sur fond contrasté.
+3. Construire des calques indépendants pour les yeux, les sourcils, le nez
+   et la bouche. Associer le fard et les cils au modèle d’yeux, le blush et
+   les décorations au modèle de nez. Préparer les masques de recoloration
+   des iris, des sourcils et des lèvres en protégeant pupilles, reflets et gloss.
+4. Rechercher la lisibilité à l’échelle du jeu avec des contours dessinés,
+   du relief doux et quelques reflets placés. Utiliser l’illustration originale
+   d’Iris comme repère pour l’expression et l’équilibre du visage.
+5. Présenter la base seule, les éléments séparés et le résultat complet,
+   en gros plan et à taille de jeu. Vérifier aussi les combinaisons avec
+   les autres modèles du salon, notamment les raccords aux tempes, aux
+   oreilles et aux joues. Attendre la validation avant toute
+   intégration ou mise en ligne.
+
 ## Historique du dressing
 
 > [Éclipse rose de face](punk-front-v2/README.md) documente le passage au mannequin frontal dans le jeu et dans la cabine, avec le bouton Pose masqué.

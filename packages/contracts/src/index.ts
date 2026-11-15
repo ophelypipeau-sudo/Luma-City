@@ -84,14 +84,14 @@ export const clothingLayerOrderSchema = z.array(z.enum(CLOTHING_LAYER_SLOTS))
   .readonly();
 const faceHex = z.string().regex(/^#[0-9a-f]{6}$/i);
 export const avatarFaceSchema = z.object({
-  eyeModel: z.enum(["prisme"]).optional(),
-  brows: z.enum(["kawaii"]).optional(),
+  eyeModel: z.enum(["prisme", "prisme-glam"]).optional(),
+  brows: z.enum(["kawaii", "arche-glam"]).optional(),
   browColor: faceHex.optional(),
   lipColor: faceHex.optional(),
   eyes: z.union([z.enum(["original", "green", "blue", "brown"]), faceHex]),
   lips: z.enum(["original", "rose", "berry", "nude", "sorbet"]),
   skin: z.enum(["original", "light", "tan", "deep"]),
-  nose: z.enum(["original", "fine", "soft", "confettis"]),
+  nose: z.enum(["original", "fine", "soft", "confettis", "confettis-glam"]),
 });
 export type AvatarFace = z.infer<typeof avatarFaceSchema>;
 export const wornOutfitSchema = z.object({

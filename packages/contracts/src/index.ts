@@ -137,6 +137,11 @@ export type GarmentTransfer = {
   recipient: string;
   item: GiftItem;
 };
+/** A player found by name on the whole server, with where the friendship stands. */
+export type PlayerSearchResult = Character & {
+  friendship: "accepted" | "outgoing" | "incoming" | null;
+};
+export const PLAYER_SEARCH_LIMIT = 24;
 export type GuestbookEntry = {
   id: number;
   author: string;

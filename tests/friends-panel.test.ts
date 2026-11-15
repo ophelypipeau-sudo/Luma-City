@@ -55,6 +55,20 @@ test("the page shows counts, unread messages and the requests banner", () => {
   assert.doesNotMatch(html, /Bloquée/);
 });
 
+test("the search looks in my friends or, when offered, on the whole server", () => {
+  const props = {
+    contacts: demoFriends, onlineIds: demoOnlineIds, onProfile: () => {}, onRespond: async () => {},
+    onMessage: () => {}, onGuestbook: () => {}, onClose: () => {},
+  };
+  const withServer = renderToStaticMarkup(React.createElement(FriendsPanel, { ...props, onSearch: async () => [] }));
+  assert.match(withServer, /placeholder="Rechercher dans mes amis"/);
+  assert.match(withServer, /aria-label="Où chercher"/);
+  assert.match(withServer, /Mes amis<\/span>/);
+  assert.match(withServer, /Serveur<\/span>/);
+  const friendsOnly = renderToStaticMarkup(React.createElement(FriendsPanel, props));
+  assert.doesNotMatch(friendsOnly, /Où chercher/);
+});
+
 test("an empty list invites the player to the quartier", () => {
   const html = renderToStaticMarkup(React.createElement(FriendsPanel, {
     contacts: [],

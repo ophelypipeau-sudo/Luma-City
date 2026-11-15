@@ -6,7 +6,7 @@ import "@fontsource/outfit/400.css";
 import "@fontsource/outfit/500.css";
 import { FriendsPanel } from "../../apps/web/src/FriendsPanel";
 import "../../apps/web/src/friends-panel.css";
-import { demoFriends, demoOnlineIds } from "./friends-demo";
+import { demoFriends, demoOnlineIds, demoStrangers as strangers } from "./friends-demo";
 
 // ?w=390&h=520 sizes the panel; ?vide shows an empty list; ?erreur makes answers fail.
 const options = new URLSearchParams(location.search);
@@ -25,6 +25,9 @@ function Fixture() {
           onMessage={(id) => setLog(`message ${id}`)}
           onGuestbook={(id) => setLog(`livre d’or ${id}`)}
           onClose={() => setLog("fermer")}
+          onOpenPlayer={(person) => setLog(`profil serveur ${person.id}`)}
+          onSearch={async (q) => strangers.filter((p) => p.name.toLowerCase().includes(q.toLowerCase()))}
+          onAddFriend={async (id) => setLog(`demande ${id}`)}
           onRespond={async (id, kind, accept) => {
             if (options.has("erreur")) throw new Error("Cette interaction est indisponible.");
             setLog(`${accept ? "accepter" : "refuser"} ${kind} ${id}`);

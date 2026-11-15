@@ -1,9 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  BookOpen, ChevronLeft, ChevronRight, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, Star, UserCheck,
-  UserPlus, UserRound, UserX, X,
+  BookOpen, Check, ChevronLeft, ChevronRight, Globe, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, Star,
+  UserCheck, UserPlus, UserRound, Users, UserX, X,
 } from "lucide-react";
-import { levelProgress, type Contact, type ProfileRelation } from "../../../packages/contracts/src/index";
+import {
+  levelProgress, PLAYER_SEARCH_LIMIT, type Character, type Contact, type PlayerSearchResult, type ProfileRelation,
+} from "../../../packages/contracts/src/index";
 import { Portrait } from "./Avatar";
 import { friendsFor, requestsFor, vitrineGrid, type FriendsFilter } from "./friends-list";
 
@@ -17,10 +19,21 @@ const requestKinds: Record<ProfileRelation, { label: string; Icon: typeof Heart 
  * « Mes amis » : friends stand full length on the quartier's terrace, without
  * tiles, like garments in the Boutique. Requests wait in a pink banner.
  */
-export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMessage, onGuestbook, onClose }: {
+type Scope = "friends" | "server";
+type Entry = { contact: Character & { unread?: number }; kind?: ProfileRelation; found?: PlayerSearchResult };
+
+export function FriendsPanel({
+  contacts, onlineIds, onProfile, onOpenPlayer, onRespond, onSearch, onAddFriend, onMessage, onGuestbook, onClose,
+}: {
   contacts: readonly Contact[];
   onlineIds: readonly string[];
   onProfile: (id: string) => void;
+  /** Opens the profile of a player found on the server, who may not be a contact. */
+  onOpenPlayer?: (person: Character) => void;
+  /** Searches players by name on the whole server. */
+  onSearch?: (query: string) => Promise<PlayerSearchResult[]>;
+  /** Sends a friend request. */
+  onAddFriend?: (id: string) => Promise<void>;
   onRespond: (id: string, kind: ProfileRelation, accept: boolean) => Promise<void>;
   onMessage: (id: string) => void;
   onGuestbook: (id: string) => void;
@@ -31,6 +44,11 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   const [page, setPage] = useState(0);
   const [responding, setResponding] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [scope, setScope] = useState<Scope>("friends");
+  const [found, setFound] = useState<PlayerSearchResult[] | null>(null);
+  const [searching, setSearching] = useState(false);
+  const input = useRef<HTMLInputElement>(null);
   const [size, setSize] = useState({ width: 900, height: 520 });
   const floor = useRef<HTMLDivElement>(null);
 
@@ -48,18 +66,35 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   }, []);
 
   useEffect(() => {
-    if (!error) return;
-    const timer = setTimeout(() => setError(""), 5000);
+    if (!error && !notice) return;
+    const timer = setTimeout(() => { setError(""); setNotice(""); }, 5000);
     return () => clearTimeout(timer);
-  }, [error]);
+  }, [error, notice]);
 
-  const online = (c: Contact) => onlineIds.includes(c.id);
+  // Server search waits for a short pause in typing, and ignores answers to older queries.
+  const needle = query.trim();
+  const serverMode = scope === "server" && Boolean(onSearch);
+  useEffect(() => {
+    if (!serverMode || needle.length < 2) { setFound(null); setSearching(false); return; }
+    let current = true;
+    setSearching(true);
+    const timer = setTimeout(() => {
+      onSearch!(needle)
+        .then((players) => { if (current) setFound(players); })
+        .catch((reason: Error) => { if (current) { setFound([]); setError(reason.message); } })
+        .finally(() => { if (current) setSearching(false); });
+    }, 300);
+    return () => { current = false; clearTimeout(timer); };
+  }, [serverMode, needle, onSearch]);
+
+  const online = (c: Character) => onlineIds.includes(c.id);
   const friends = friendsFor(contacts, onlineIds, "all");
   const onlineCount = friends.filter(online).length;
   const requests = requestsFor(contacts, onlineIds);
-  const shown = filter === "requests" ? requestsFor(contacts, onlineIds, query)
-    : friendsFor(contacts, onlineIds, filter, query).map((contact) => ({ contact, kind: undefined }));
-  const grid = vitrineGrid(size.width, size.height, filter === "requests");
+  const shown: Entry[] = serverMode ? (found ?? []).map((player) => ({ contact: player, found: player }))
+    : filter === "requests" ? requestsFor(contacts, onlineIds, query)
+      : friendsFor(contacts, onlineIds, filter, query).map((contact) => ({ contact }));
+  const grid = vitrineGrid(size.width, size.height, filter === "requests" || serverMode);
   const lastPage = Math.max(0, Math.ceil(shown.length / grid.pageSize) - 1);
   const current = Math.min(page, lastPage);
   const visible = shown.slice(current * grid.pageSize, (current + 1) * grid.pageSize);
@@ -67,14 +102,20 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   const short = lastPage === 0 && visible.length < grid.pageSize;
   const columns = short ? Math.min(grid.columns, visible.length) : grid.columns;
   const rows = short ? Math.max(1, Math.ceil(visible.length / grid.columns)) : grid.rows;
-  const choose = (next: FriendsFilter) => { setFilter(next); setPage(0); };
+  const choose = (next: FriendsFilter) => { setFilter(next); setScope("friends"); setPage(0); };
+  const searchIn = (next: Scope) => { setScope(next); setPage(0); input.current?.focus(); };
+  const update = (id: string, friendship: PlayerSearchResult["friendship"]) =>
+    setFound((list) => list?.map((player) => player.id === id ? { ...player, friendship } : player) ?? list);
   const senders = [...new Map(requests.map(({ contact }) => [contact.id, contact])).values()];
 
-  async function respond(c: Contact, kind: ProfileRelation, accept: boolean) {
-    setResponding(c.id);
+  async function add(player: PlayerSearchResult) {
+    if (!onAddFriend) return;
+    setResponding(player.id);
     setError("");
     try {
-      await onRespond(c.id, kind, accept);
+      await onAddFriend(player.id);
+      update(player.id, "outgoing");
+      setNotice(`Demande d’ami envoyée à ${player.name}.`);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Réessaie dans un instant.");
     } finally {
@@ -82,7 +123,23 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
     }
   }
 
-  const empty = query.trim() ? "Aucun pseudo trouvé."
+  async function respond(c: Character, kind: ProfileRelation, accept: boolean) {
+    setResponding(c.id);
+    setError("");
+    try {
+      await onRespond(c.id, kind, accept);
+      if (kind === "friend") update(c.id, accept ? "accepted" : null);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "Réessaie dans un instant.");
+    } finally {
+      setResponding(null);
+    }
+  }
+
+  const empty = serverMode
+    ? needle.length < 2 ? "Tape au moins 2 lettres du pseudo pour chercher sur tout le serveur."
+      : searching ? "Recherche en cours…" : `Aucun joueur nommé « ${needle} » sur le serveur.`
+    : query.trim() ? "Aucun ami ne porte ce pseudo."
     : filter === "requests" ? "Aucune demande en attente pour l’instant."
       : filter === "online" ? "Aucun ami connecté pour le moment."
         : "Ta liste d’amis est vide. Va saluer les joueurs du quartier et ajoute-les depuis leur profil.";
@@ -108,23 +165,41 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
             {requests.length > 0 && <b aria-label={`${requests.length} en attente`}>{requests.length}</b>}
           </button>
         </div>
-        <label className="friends-search">
+        <div className="friends-search">
           <Search size={16} aria-hidden="true" />
-          <input type="search" placeholder="Rechercher un pseudo" aria-label="Rechercher un pseudo"
+          <input type="search" ref={input}
+            placeholder={serverMode ? "Pseudo sur tout le serveur" : "Rechercher dans mes amis"}
+            aria-label={serverMode ? "Rechercher un joueur sur tout le serveur" : "Rechercher dans mes amis"}
             value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} />
-        </label>
+          {onSearch && (
+            <div className="friends-scope" role="group" aria-label="Où chercher">
+              <button type="button" aria-pressed={!serverMode} onClick={() => searchIn("friends")} title="Chercher dans mes amis">
+                <Users size={14} aria-hidden="true" /><span>Mes amis</span>
+              </button>
+              <button type="button" aria-pressed={serverMode} onClick={() => searchIn("server")} title="Chercher sur tout le serveur">
+                <Globe size={14} aria-hidden="true" /><span>Serveur</span>
+              </button>
+            </div>
+          )}
+        </div>
         <button type="button" className="friends-close" aria-label="Fermer Mes amis" onClick={onClose}>
           <X size={18} />
         </button>
       </header>
 
       {error && <p className="friends-error" role="alert">{error}</p>}
+      {notice && !error && <p className="friends-error friends-notice" role="status"><Check size={16} aria-hidden="true" /> {notice}</p>}
 
       <div className="friends-floor" ref={floor}>
         {visible.length === 0 ? (
           <div className="friends-empty">
             <p>{empty}</p>
-            {filter === "all" && !query.trim() && friends.length === 0 && (
+            {!serverMode && needle.length >= 2 && onSearch && (
+              <button type="button" onClick={() => searchIn("server")}>
+                <Globe size={17} aria-hidden="true" /> Chercher « {needle} » sur tout le serveur
+              </button>
+            )}
+            {!serverMode && filter === "all" && !needle && friends.length === 0 && (
               <button type="button" onClick={onClose}><MapIcon size={17} aria-hidden="true" /> Aller au quartier</button>
             )}
           </div>
@@ -133,18 +208,20 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
             gridTemplateColumns: `repeat(${columns}, minmax(0, ${Math.floor(size.width / grid.columns)}px))`,
             gridTemplateRows: `repeat(${rows}, minmax(0, 520px))`,
           }}>
-            {visible.map(({ contact: c, kind }) => {
+            {visible.map(({ contact: c, kind, found: player }) => {
               const isOnline = online(c);
               const level = levelProgress(c.xp ?? 0).level;
               const request = kind && requestKinds[kind];
               return (
-                <li key={`${c.id}:${kind ?? "friend"}`} className={isOnline ? "friends-doll is-online" : "friends-doll"}>
+                <li key={`${c.id}:${kind ?? (player ? "found" : "friend")}`}
+                  className={isOnline ? "friends-doll is-online" : "friends-doll"}>
                   {request && (
                     <span className="friends-kind" data-kind={kind}>
                       <request.Icon size={13} aria-hidden="true" /> {request.label}
                     </span>
                   )}
-                  <button type="button" className="friends-figure" onClick={() => onProfile(c.id)}
+                  <button type="button" className="friends-figure"
+                    onClick={() => player && onOpenPlayer ? onOpenPlayer(player) : onProfile(c.id)}
                     aria-label={`Voir le profil de ${c.name}`}>
                     <Portrait {...c} fullBody />
                   </button>
@@ -157,7 +234,28 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
                       Niv. {level}<span className="friends-sr"> · {isOnline ? "en ligne" : "hors ligne"}</span>
                     </span>
                   </div>
-                  {kind && request ? (
+                  {player?.friendship === "accepted" && (
+                    <div className="friends-answer">
+                      <span className="friends-status is-friend"><UserCheck size={15} aria-hidden="true" /> Ami·e</span>
+                    </div>
+                  )}
+                  {player && player.friendship !== "accepted" ? (
+                    <div className="friends-answer">
+                      {player.friendship === null ? (
+                        <button type="button" className="is-accept" disabled={responding !== null || !onAddFriend}
+                          aria-label={`Envoyer une demande d’ami à ${c.name}`} onClick={() => void add(player)}>
+                          <UserPlus size={16} aria-hidden="true" /> Ajouter
+                        </button>
+                      ) : player.friendship === "incoming" ? (
+                        <button type="button" className="is-accept" disabled={responding !== null}
+                          aria-label={`Accepter la demande d’ami de ${c.name}`} onClick={() => void respond(c, "friend", true)}>
+                          <UserCheck size={16} aria-hidden="true" /> Accepter
+                        </button>
+                      ) : (
+                        <span className="friends-status"><Check size={15} aria-hidden="true" /> Demande envoyée</span>
+                      )}
+                    </div>
+                  ) : kind && request ? (
                     <div className="friends-answer">
                       <button type="button" className="is-accept" disabled={responding !== null}
                         aria-label={`Accepter la demande de ${c.name} · ${request.label}`}
@@ -175,7 +273,7 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
                       <button type="button" className="is-accept" aria-label={`Écrire à ${c.name}`}
                         onClick={() => onMessage(c.id)}>
                         <MessageCircle size={17} aria-hidden="true" />
-                        {c.unread > 0 && <b aria-label={`${c.unread} non lu${c.unread > 1 ? "s" : ""}`}>{c.unread}</b>}
+                        {(c.unread ?? 0) > 0 && <b aria-label={`${c.unread} non lu${c.unread! > 1 ? "s" : ""}`}>{c.unread}</b>}
                       </button>
                       <button type="button" aria-label={`Livre d’or de ${c.name}`} onClick={() => onGuestbook(c.id)}>
                         <BookOpen size={17} aria-hidden="true" />
@@ -190,7 +288,11 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
       </div>
 
       <footer className="friends-foot">
-        {requests.length > 0 && filter !== "requests" ? (
+        {serverMode ? (
+          <p className="friends-hint">{found && found.length >= PLAYER_SEARCH_LIMIT
+            ? `Seuls les ${PLAYER_SEARCH_LIMIT} premiers joueurs sont affichés : précise le pseudo.`
+            : "Ajoute un joueur pour lui envoyer une demande d’ami."}</p>
+        ) : requests.length > 0 && filter !== "requests" ? (
           <button type="button" className="friends-banner" onClick={() => choose("requests")}>
             <span className="friends-banner-icon" aria-hidden="true"><Sparkles size={18} /></span>
             <span className="friends-banner-text">

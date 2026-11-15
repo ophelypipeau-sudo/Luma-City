@@ -35,6 +35,8 @@ import {
   homeOwner,
   type ProfileSocial,
   type Character,
+  type PlayerSearchResult,
+  PLAYER_SEARCH_LIMIT,
   type XpMagazine,
   type RewardWheel,
   type ScratchTicket,
@@ -652,6 +654,28 @@ export async function createApp(
   );
   app.get("/api/state", async (req) =>
     serialRequest(req, () => state(req.cookies.session!)),
+  );
+  // Finds players by name on the whole server, to send them a friend request.
+  app.get("/api/players/search", async (req) =>
+    serialRequest(req, async () => {
+      const { q } = z.object({ q: z.string().trim().min(2).max(24) }).parse(req.query);
+      const me = await activeCharacter(req.cookies.session!);
+      if (irisOnly) return { players: [] };
+      const pattern = q.toLowerCase().replace(/[\\%_]/g, (char) => "\\" + char);
+      const { rows } = await db.query(
+        `SELECT c.*, (SELECT CASE WHEN r.accepted THEN 'accepted' WHEN r.requester=$1 THEN 'outgoing' ELSE 'incoming' END
+           FROM profile_relations r WHERE r.first_id=LEAST($1,c.id) AND r.second_id=GREATEST($1,c.id)
+           AND r.kind='friend') AS friendship
+         FROM characters c
+         WHERE c.id<>$1 AND ${listed} AND LOWER(c.name) LIKE '%' || $2 || '%'
+         AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
+           (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))
+         ORDER BY (LOWER(c.name) LIKE $2 || '%') DESC, c.id = ANY($3::text[]) DESC, c.xp DESC, c.name
+         LIMIT ${PLAYER_SEARCH_LIMIT}`,
+        [me, pattern, [...presence.keys()]],
+      );
+      return { players: rows as PlayerSearchResult[] };
+    }),
   );
   app.get("/api/profile/social/:peer", async (req) =>
     serialRequest(req, async () => {

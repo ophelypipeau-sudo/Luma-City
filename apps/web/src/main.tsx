@@ -59,6 +59,7 @@ import {
   type ProfileTemplate,
   type GarmentTransfer,
   type Character,
+  type PlayerSearchResult,
   type Contact,
   type Message,
   type Presence,
@@ -423,6 +424,8 @@ function App() {
     return task;
   }
   const loadSocial = useCallback((id: string) => api("profile/social/" + encodeURIComponent(id)), []);
+  const searchPlayers = useCallback(async (q: string) =>
+    (await api("players/search?" + new URLSearchParams({ q }))).players as PlayerSearchResult[], []);
   async function updateSocial(id: string, action: ProfileAction) {
     const result = await api("profile/social", { generation: state?.generation, peer: id, action });
     if (action.type === "gift") await refresh();
@@ -1186,6 +1189,12 @@ function App() {
               ) : view === "friends" && !guestbook ? (
                 <FriendsPanel key={activeId} contacts={state?.contacts ?? []}
                   onlineIds={presence?.onlineIds ?? []} onProfile={setProfileId}
+                  onOpenPlayer={(person) => { setLinkedProfile(person); setProfileId(person.id); }}
+                  onSearch={searchPlayers}
+                  onAddFriend={async (id) => {
+                    await updateSocial(id, { type: "relation", kind: "friend", accept: false });
+                    await refresh();
+                  }}
                   onMessage={choosePeer}
                   onGuestbook={setGuestbookId}
                   onClose={openMap}

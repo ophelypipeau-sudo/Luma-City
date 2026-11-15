@@ -621,6 +621,25 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
     const read = (from: typeof iris, peer: string) =>
       request(app, "profile/social/" + peer, from.cookie);
 
+    // Searching the whole server finds players to befriend, with where the friendship stands.
+    const search = async (from: typeof iris, q: string) => {
+      const found = await request(app, "players/search?" + new URLSearchParams({ q }), from.cookie);
+      return found.status === 200
+        ? found.data.players.map((p: { id: string; friendship: string | null }) => [p.id, p.friendship])
+        : found.status;
+    };
+    assert.deepEqual(await search(iris, "JUN"), [["june", null]]);
+    assert.deepEqual(await search(iris, "iri"), [], "a player does not find themself");
+    assert.equal(await search(iris, "j"), 400, "two letters at least");
+    assert.deepEqual(await search(iris, "%%"), [], "wildcards are searched as text");
+    await mutate(iris, "june", { type: "relation", kind: "friend", accept: false });
+    assert.deepEqual(await search(iris, "june"), [["june", "outgoing"]]);
+    assert.deepEqual(await search(june, "iris"), [["iris", "incoming"]]);
+    assert.equal((await mutate(june, "iris", { type: "decline-friend" })).status, 200);
+    assert.equal((await request(app, "block", june.cookie, { generation: june.generation, peer: "iris", blocked: true })).status, 200);
+    assert.deepEqual(await search(iris, "june"), [], "blocked players stay hidden");
+    assert.equal((await request(app, "block", june.cookie, { generation: june.generation, peer: "iris", blocked: false })).status, 200);
+
     assert.equal((await mutate(iris, "iris", { type: "like" })).status, 400);
     const like = { type: "like" };
     assert.equal((await mutate(iris, "june", like)).data.xpSent, 5);

@@ -104,7 +104,7 @@
 }
 .friends-tabs button[aria-pressed="true"] b { background: var(--friends-on-accent); color: var(--friends-accent); }
 .friends-search {
-  flex: 0 1 260px;
+  flex: 0 1 420px;
   min-width: 0;
   margin-left: auto;
   height: 40px;
@@ -129,6 +129,45 @@
   font: 14px "DM Sans", sans-serif;
 }
 .friends-search input::placeholder { color: var(--friends-faint); }
+/* Where to search: my friends or the whole server. */
+.friends-scope {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  margin-right: -8px;
+  padding: 3px;
+  border-radius: 9px;
+  background: #1e1630;
+}
+.friends-scope button {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--friends-muted);
+  font: 700 12px "DM Sans", sans-serif;
+  white-space: nowrap;
+}
+.friends-scope button:hover { color: var(--friends-ink); }
+.friends-scope button[aria-pressed="true"] { background: var(--friends-accent); color: var(--friends-on-accent); }
+.friends-status {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+  border-radius: 12px;
+  background: rgba(27, 19, 40, 0.86);
+  color: var(--friends-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.friends-status.is-friend { height: 30px; color: var(--friends-online); }
+.friends-notice { display: flex; align-items: center; gap: 6px; background: #1f3a2a; color: #dff7d0; }
 .friends-close {
   width: 38px;
   height: 38px;
@@ -432,6 +471,8 @@
   .friends-pager > span { padding: 0 4px; }
 }
 @container friends (max-width: 420px) {
+  .friends-scope span { display: none; }
+  .friends-scope button { padding: 0 8px; }
   .friends-tabs button { gap: 4px; padding: 0 6px; font-size: 13px; }
   .friends-tabs svg, .friends-tabs .friends-dot { display: none; }
   .friends-name strong { font-size: 14px; }

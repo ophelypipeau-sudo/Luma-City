@@ -1,4 +1,4 @@
-import type { Contact } from "../../packages/contracts/src/index";
+import type { Contact, PlayerSearchResult } from "../../packages/contracts/src/index";
 import { starterPieces } from "../../packages/contracts/src/player-account";
 
 /** Fictional friends for the « Mes amis » control page and tests. */
@@ -40,3 +40,11 @@ export const demoFriends: Contact[] = people.map(([name, motto, xp, worn, extra]
 }));
 
 export const demoOnlineIds = ["demo-friend-0", "demo-friend-1", "demo-friend-3", "demo-friend-9"];
+
+/** Players of the whole server, for the search « Tout le serveur ». */
+export const demoStrangers: PlayerSearchResult[] = [
+  { ...demoFriends[0], id: "demo-stranger-0", name: "Margaux", friendship: null },
+  { ...demoFriends[1], id: "demo-stranger-1", name: "Maé", friendship: "outgoing" },
+  { ...demoFriends[2], id: "demo-stranger-2", name: "Marin", friendship: "incoming" },
+  { ...demoFriends[1], id: "demo-friend-1", name: "Maëlys", friendship: "accepted" },
+];

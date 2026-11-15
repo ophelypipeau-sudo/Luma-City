@@ -1,100 +1,206 @@
-import { useState } from "react";
-import { Check, ChevronLeft, ChevronRight, Search, UserCheck, UserX, X } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  BookOpen, ChevronLeft, ChevronRight, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, UserCheck, UserRound, UserX, X,
+} from "lucide-react";
 import { levelProgress, type Contact } from "../../../packages/contracts/src/index";
 import { Portrait } from "./Avatar";
-import "./friends-panel.css";
+import { friendsFor, vitrineGrid, type FriendsFilter } from "./friends-list";
 
-const pageSize = 6;
-
-export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onClose }: {
-  contacts: Contact[];
+/**
+ * « Mes amis » : friends stand full length on the quartier's terrace, without
+ * tiles, like garments in the Boutique. Requests wait in a pink banner.
+ */
+export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMessage, onGuestbook, onClose }: {
+  contacts: readonly Contact[];
   onlineIds: readonly string[];
   onProfile: (id: string) => void;
   onRespond: (id: string, accept: boolean) => Promise<void>;
+  onMessage: (id: string) => void;
+  onGuestbook: (id: string) => void;
   onClose: () => void;
 }) {
-  const [pending, setPending] = useState(false);
-  const [input, setInput] = useState("");
-  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState<FriendsFilter>("all");
+  const [query, setQuery] = useState("");
   const [page, setPage] = useState(0);
-  const [responding, setResponding] = useState(false);
+  const [responding, setResponding] = useState<string | null>(null);
   const [error, setError] = useState("");
-  const requests = contacts.filter(contact => contact.friendRequest);
-  const matches = (pending ? requests : contacts.filter(contact => contact.friend))
-    .filter(contact => contact.name.toLocaleLowerCase("fr").includes(search));
-  const lastPage = Math.max(0, Math.ceil(matches.length / pageSize) - 1);
-  const currentPage = Math.min(page, lastPage);
+  const [size, setSize] = useState({ width: 900, height: 520 });
+  const floor = useRef<HTMLDivElement>(null);
 
-  async function respond(id: string, accept: boolean) {
-    setResponding(true);
+  useLayoutEffect(() => {
+    const element = floor.current;
+    if (!element || typeof ResizeObserver === "undefined") return;
+    const measure = () => {
+      const next = { width: element.clientWidth, height: element.clientHeight };
+      setSize((current) => current.width === next.width && current.height === next.height ? current : next);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!error) return;
+    const timer = setTimeout(() => setError(""), 5000);
+    return () => clearTimeout(timer);
+  }, [error]);
+
+  const online = (c: Contact) => onlineIds.includes(c.id);
+  const friends = friendsFor(contacts, onlineIds, "all");
+  const onlineCount = friends.filter(online).length;
+  const requests = friendsFor(contacts, onlineIds, "requests");
+  const shown = friendsFor(contacts, onlineIds, filter, query);
+  const grid = vitrineGrid(size.width, size.height, filter === "requests");
+  const lastPage = Math.max(0, Math.ceil(shown.length / grid.pageSize) - 1);
+  const current = Math.min(page, lastPage);
+  const visible = shown.slice(current * grid.pageSize, (current + 1) * grid.pageSize);
+  // A short list stands centred, like a shop window, and only uses the rows it needs.
+  const short = lastPage === 0 && visible.length < grid.pageSize;
+  const columns = short ? Math.min(grid.columns, visible.length) : grid.columns;
+  const rows = short ? Math.max(1, Math.ceil(visible.length / grid.columns)) : grid.rows;
+  const choose = (next: FriendsFilter) => { setFilter(next); setPage(0); };
+
+  async function respond(c: Contact, accept: boolean) {
+    setResponding(c.id);
     setError("");
     try {
-      await onRespond(id, accept);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "Réessaie dans un instant.");
+      await onRespond(c.id, accept);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "Réessaie dans un instant.");
     } finally {
-      setResponding(false);
+      setResponding(null);
     }
   }
 
+  const empty = query.trim() ? "Aucun pseudo trouvé."
+    : filter === "requests" ? "Aucune demande d’amitié pour l’instant."
+      : filter === "online" ? "Aucun ami connecté pour le moment."
+        : "Ta liste d’amis est vide. Va saluer les joueurs du quartier et ajoute-les depuis leur profil.";
+
   return (
-    <section className="friends-panel" aria-label="Mes amis" onKeyDown={event => {
+    <section className="friends-vitrine" aria-label="Mes amis" onKeyDown={(event) => {
       if (event.key === "Escape") onClose();
+      if (event.target instanceof HTMLInputElement) return;
+      if (event.key === "ArrowRight" && current < lastPage) setPage(current + 1);
+      if (event.key === "ArrowLeft" && current > 0) setPage(current - 1);
     }}>
-      <header className="friends-toolbar">
-        <button type="button" aria-pressed={!pending} onClick={() => { setPending(false); setPage(0); }}>Mes amis</button>
-        <button type="button" aria-pressed={pending} onClick={() => { setPending(true); setPage(0); }}>
-          En attente {requests.length > 0 && <span>({requests.length})</span>}
+      <header className="friends-head">
+        <h2>Mes amis</h2>
+        <div className="friends-tabs" role="group" aria-label="Afficher">
+          <button type="button" aria-pressed={filter === "all"} onClick={() => choose("all")}>
+            <Heart size={15} aria-hidden="true" /> Tous <em>{friends.length}</em>
+          </button>
+          <button type="button" aria-pressed={filter === "online"} onClick={() => choose("online")}>
+            <i className="friends-dot" aria-hidden="true" /> En ligne <em>{onlineCount}</em>
+          </button>
+          <button type="button" aria-pressed={filter === "requests"} onClick={() => choose("requests")}>
+            <UserRound size={15} aria-hidden="true" /> Demandes
+            {requests.length > 0 && <b aria-label={`${requests.length} en attente`}>{requests.length}</b>}
+          </button>
+        </div>
+        <label className="friends-search">
+          <Search size={16} aria-hidden="true" />
+          <input type="search" placeholder="Rechercher un pseudo" aria-label="Rechercher un pseudo"
+            value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} />
+        </label>
+        <button type="button" className="friends-close" aria-label="Fermer Mes amis" onClick={onClose}>
+          <X size={18} />
         </button>
-        <form className="friends-search" onSubmit={event => {
-          event.preventDefault();
-          setSearch(input.trim().toLocaleLowerCase("fr"));
-          setPage(0);
-        }}>
-          <Search size={19} aria-hidden="true" />
-          <input type="search" aria-label="Rechercher par pseudo" placeholder="Pseudo…" value={input}
-            onChange={event => { setInput(event.target.value); if (!event.target.value) { setSearch(""); setPage(0); } }} />
-          <button type="submit" aria-label="Rechercher"><Check size={19} /></button>
-        </form>
-        <button type="button" className="friends-close" aria-label="Fermer Mes amis" onClick={onClose}><X size={19} /></button>
       </header>
-      <div className="friends-content">
-        {error && <p role="alert">{error}</p>}
-        {matches.length === 0 ? <p className="friends-empty">
-          {search ? "Aucun pseudo trouvé." : pending ? "Aucune demande d’amitié reçue." : "Ta liste d’amis est vide."}
-        </p> : <ul className="friends-grid">
-          {matches.slice(currentPage * pageSize, (currentPage + 1) * pageSize).map(contact => {
-            const online = onlineIds.includes(contact.id);
-            return <li key={contact.id} className="friends-item">
-              <button type="button" className="friends-profile" onClick={() => onProfile(contact.id)}>
-                <span className="friends-avatar">
-                  <Portrait {...contact} />
-                  <span className={online ? "friends-online" : "friends-offline"} />
-                </span>
-                <span className="friends-identity">
-                  <strong>{contact.name}</strong>
-                  <span>Niveau {levelProgress(contact.xp ?? 0).level}</span>
-                  <small>{online ? "En ligne" : "Hors ligne"}</small>
-                </span>
-              </button>
-              <div className="friends-actions">
-                {pending ? <>
-                  <button type="button" disabled={responding} aria-label={`Accepter la demande de ${contact.name}`}
-                    onClick={() => void respond(contact.id, true)}><UserCheck size={21} /></button>
-                  <button type="button" disabled={responding} aria-label={`Refuser la demande de ${contact.name}`}
-                    onClick={() => void respond(contact.id, false)}><UserX size={21} /></button>
-                </> : <UserCheck size={21} aria-hidden="true" />}
-              </div>
-            </li>;
-          })}
-        </ul>}
+
+      {error && <p className="friends-error" role="alert">{error}</p>}
+
+      <div className="friends-floor" ref={floor}>
+        {visible.length === 0 ? (
+          <div className="friends-empty">
+            <p>{empty}</p>
+            {filter === "all" && !query.trim() && friends.length === 0 && (
+              <button type="button" onClick={onClose}><MapIcon size={17} aria-hidden="true" /> Aller au quartier</button>
+            )}
+          </div>
+        ) : (
+          <ul className="friends-dolls" style={{
+            gridTemplateColumns: `repeat(${columns}, minmax(0, ${Math.floor(size.width / grid.columns)}px))`,
+            gridTemplateRows: `repeat(${rows}, minmax(0, 520px))`,
+          }}>
+            {visible.map((c) => {
+              const isOnline = online(c);
+              const level = levelProgress(c.xp ?? 0).level;
+              return (
+                <li key={c.id} className={isOnline ? "friends-doll is-online" : "friends-doll"}>
+                  <button type="button" className="friends-figure" onClick={() => onProfile(c.id)}
+                    aria-label={`Voir le profil de ${c.name}`}>
+                    <Portrait {...c} fullBody />
+                  </button>
+                  <div className="friends-name">
+                    <strong title={c.name}>
+                      <i className="friends-dot" aria-hidden="true" />
+                      <span>{c.name}</span>
+                    </strong>
+                    <span className="friends-chip">
+                      Niv. {level}<span className="friends-sr"> · {isOnline ? "en ligne" : "hors ligne"}</span>
+                    </span>
+                  </div>
+                  {filter === "requests" ? (
+                    <div className="friends-answer">
+                      <button type="button" className="is-accept" disabled={responding !== null}
+                        aria-label={`Accepter la demande de ${c.name}`} onClick={() => void respond(c, true)}>
+                        <UserCheck size={16} aria-hidden="true" /> Accepter
+                      </button>
+                      <button type="button" disabled={responding !== null}
+                        aria-label={`Refuser la demande de ${c.name}`} onClick={() => void respond(c, false)}>
+                        <UserX size={16} aria-hidden="true" /> Refuser
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="friends-actions">
+                      <button type="button" className="is-accept" aria-label={`Écrire à ${c.name}`}
+                        onClick={() => onMessage(c.id)}>
+                        <MessageCircle size={17} aria-hidden="true" />
+                        {c.unread > 0 && <b aria-label={`${c.unread} non lu${c.unread > 1 ? "s" : ""}`}>{c.unread}</b>}
+                      </button>
+                      <button type="button" aria-label={`Livre d’or de ${c.name}`} onClick={() => onGuestbook(c.id)}>
+                        <BookOpen size={17} aria-hidden="true" />
+                      </button>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
-      <nav className="friends-pagination" aria-label="Pages des amis">
-        <button type="button" aria-label="Page précédente" disabled={currentPage === 0}
-          onClick={() => setPage(currentPage - 1)}><ChevronLeft /></button>
-        <button type="button" aria-label="Page suivante" disabled={currentPage === lastPage}
-          onClick={() => setPage(currentPage + 1)}><ChevronRight /></button>
-      </nav>
+
+      <footer className="friends-foot">
+        {requests.length > 0 && filter !== "requests" ? (
+          <button type="button" className="friends-banner" onClick={() => choose("requests")}>
+            <span className="friends-banner-icon" aria-hidden="true"><Sparkles size={18} /></span>
+            <span className="friends-banner-text">
+              <strong>{requests.length} demande{requests.length > 1 ? "s" : ""} d’amitié</strong>
+              <small>{requests.slice(0, 3).map((c) => c.name).join(", ")}{requests.length > 3 ? "…" : ""}
+                {requests.length > 1 ? " attendent" : " attend"} ta réponse</small>
+            </span>
+            <span className="friends-banner-faces" aria-hidden="true">
+              {requests.slice(0, 3).map((c) => <span key={c.id}><Portrait {...c} /></span>)}
+            </span>
+            <ChevronRight size={18} aria-hidden="true" />
+          </button>
+        ) : (
+          <p className="friends-hint">{filter === "requests"
+            ? "Accepte une demande pour ajouter ce joueur à tes amis."
+            : "Clique sur un ami pour voir son profil."}</p>
+        )}
+        {lastPage > 0 && (
+          <nav className="friends-pager" aria-label="Pages des amis">
+            <button type="button" aria-label="Page précédente" disabled={current === 0}
+              onClick={() => setPage(current - 1)}><ChevronLeft size={17} /></button>
+            <span aria-live="polite"><span className="friends-pager-word">Page </span>{current + 1} / {lastPage + 1}</span>
+            <button type="button" aria-label="Page suivante" disabled={current === lastPage}
+              onClick={() => setPage(current + 1)}><ChevronRight size={17} /></button>
+          </nav>
+        )}
+      </footer>
     </section>
   );
 }

@@ -137,6 +137,15 @@ export type GarmentTransfer = {
   recipient: string;
   item: GiftItem;
 };
+export type GuestbookEntry = {
+  id: number;
+  author: string;
+  body: string;
+  authorId?: string;
+  /** The author's character, to draw their portrait and open their profile. */
+  authorCharacter?: Character;
+  createdAt?: string | null;
+};
 export type ProfileSocial = {
   liked: boolean;
   likes: number;
@@ -154,7 +163,7 @@ export type ProfileSocial = {
   relations: Partial<
     Record<ProfileRelation, "incoming" | "outgoing" | "accepted">
   >;
-  guestbook: { id: number; author: string; body: string }[];
+  guestbook: GuestbookEntry[];
   featuredRelations: {
     bestFriends: Character[];
     partner: Character | null;

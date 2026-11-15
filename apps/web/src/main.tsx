@@ -80,6 +80,7 @@ import "./map-markers.css";
 import "./profile.css";
 import "./quartier.css";
 import "./friends-panel.css";
+import "./guestbook/guestbook.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
 import "@fontsource/outfit/400.css";
@@ -1196,6 +1197,10 @@ function App() {
                   }} />
               ) : guestbook ? (
                 <Guestbook key={guestbook.id} character={guestbook}
+                  viewerId={state?.character?.id}
+                  onlineIds={presence?.onlineIds ?? []}
+                  remove={(noteId) => api("profile/guestbook/delete", { generation: state?.generation, id: noteId })}
+                  onOpenProfile={(person) => { setLinkedProfile(person); setProfileId(person.id); }}
                   canWrite={guestbook.id !== state?.character?.id && !state?.contacts.find((c) => c.id === guestbook.id)?.blocked}
                   load={loadSocial}
                   post={(id, body) => updateSocial(id, { type: "guestbook", body })}

@@ -702,6 +702,20 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       (await read(june, "june")).data.guestbook[0].body,
       "Bonjour June !",
     );
+    const [note] = (await read(june, "june")).data.guestbook;
+    assert.equal(note.authorId, "iris");
+    assert.equal(note.authorCharacter.name, "Iris");
+    assert.ok(Date.now() - Date.parse(note.createdAt) < 60_000, "a note shows when it was written");
+    const erase = (from: typeof iris, id: number) =>
+      request(app, "profile/guestbook/delete", from.cookie, { generation: from.generation, id });
+    await mutate(iris, "june", { type: "guestbook", body: "Un deuxième mot" });
+    const [second] = (await read(june, "june")).data.guestbook;
+    // The author removes their own note, the owner removes any note of their book.
+    assert.equal((await erase(iris, second.id)).status, 200);
+    const stranger = await enter(app, "test-xp", "nova-xp");
+    assert.equal((await erase(stranger, note.id)).status, 400, "a stranger cannot erase a note");
+    assert.equal((await erase(june, note.id)).data.guestbook.length, 0);
+    await mutate(iris, "june", { type: "guestbook", body: "Bonjour June !" });
     assert.deepEqual((await read(june, "iris")).data.featuredRelations, {
       bestFriends: [],
       partner: null,

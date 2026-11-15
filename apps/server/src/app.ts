@@ -347,7 +347,8 @@ export async function createApp(
     const { lookLikedAt, ...lookSummary } = look ?? { lookKey: null, lookLikes: 0, lookLikedAt: null };
     const iso = (date: unknown) => date ? new Date(date as string | Date).toISOString() : null;
     const { rows: guestbook } = await q(
-      `SELECT e.id::integer, c.name AS author, e.body FROM profile_guestbook e
+      `SELECT e.id::integer, c.name AS author, e.body, e.actor AS "authorId", e.created_at AS "createdAt",
+       to_jsonb(c) AS "authorCharacter" FROM profile_guestbook e
        JOIN characters c ON c.id=e.actor WHERE e.target=$2
        AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
          (b.actor=$1 AND b.target=e.actor) OR (b.actor=e.actor AND b.target=$1))
@@ -789,6 +790,24 @@ export async function createApp(
           await wardrobe.gift(q, sender, peer, action.id, action.item.key);
         }
         return { ...(await socialProfile(q, me, peer)), xpSent, xpEarned };
+      });
+      changed();
+      return social;
+    }),
+  );
+  // The book's owner can remove any note; an author can remove their own.
+  app.post("/api/profile/guestbook/delete", async (req) =>
+    serialRequest(req, async () => {
+      const { generation, id } = z.object({ generation: z.number().int(), id: z.number().int().positive() })
+        .parse(req.body);
+      const social = await db.transaction(async (q) => {
+        const me = await active(req.cookies.session!, generation, q);
+        const { rows: [note] } = await q(
+          "DELETE FROM profile_guestbook WHERE id=$1 AND (actor=$2 OR target=$2) RETURNING target",
+          [id, me],
+        );
+        if (!note) throw new Error("Ce mot n’existe plus.");
+        return socialProfile(q, me, note.target);
       });
       changed();
       return social;

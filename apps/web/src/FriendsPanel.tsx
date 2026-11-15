@@ -1,10 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  BookOpen, ChevronLeft, ChevronRight, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, UserCheck, UserRound, UserX, X,
+  BookOpen, ChevronLeft, ChevronRight, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, Star, UserCheck,
+  UserPlus, UserRound, UserX, X,
 } from "lucide-react";
-import { levelProgress, type Contact } from "../../../packages/contracts/src/index";
+import { levelProgress, type Contact, type ProfileRelation } from "../../../packages/contracts/src/index";
 import { Portrait } from "./Avatar";
-import { friendsFor, vitrineGrid, type FriendsFilter } from "./friends-list";
+import { friendsFor, requestsFor, vitrineGrid, type FriendsFilter } from "./friends-list";
+
+const requestKinds: Record<ProfileRelation, { label: string; Icon: typeof Heart }> = {
+  friend: { label: "Ami·e", Icon: UserPlus },
+  "best-friend": { label: "Meilleurs amis", Icon: Star },
+  romance: { label: "En couple", Icon: Heart },
+};
 
 /**
  * « Mes amis » : friends stand full length on the quartier's terrace, without
@@ -14,7 +21,7 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   contacts: readonly Contact[];
   onlineIds: readonly string[];
   onProfile: (id: string) => void;
-  onRespond: (id: string, accept: boolean) => Promise<void>;
+  onRespond: (id: string, kind: ProfileRelation, accept: boolean) => Promise<void>;
   onMessage: (id: string) => void;
   onGuestbook: (id: string) => void;
   onClose: () => void;
@@ -49,8 +56,9 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   const online = (c: Contact) => onlineIds.includes(c.id);
   const friends = friendsFor(contacts, onlineIds, "all");
   const onlineCount = friends.filter(online).length;
-  const requests = friendsFor(contacts, onlineIds, "requests");
-  const shown = friendsFor(contacts, onlineIds, filter, query);
+  const requests = requestsFor(contacts, onlineIds);
+  const shown = filter === "requests" ? requestsFor(contacts, onlineIds, query)
+    : friendsFor(contacts, onlineIds, filter, query).map((contact) => ({ contact, kind: undefined }));
   const grid = vitrineGrid(size.width, size.height, filter === "requests");
   const lastPage = Math.max(0, Math.ceil(shown.length / grid.pageSize) - 1);
   const current = Math.min(page, lastPage);
@@ -60,12 +68,13 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   const columns = short ? Math.min(grid.columns, visible.length) : grid.columns;
   const rows = short ? Math.max(1, Math.ceil(visible.length / grid.columns)) : grid.rows;
   const choose = (next: FriendsFilter) => { setFilter(next); setPage(0); };
+  const senders = [...new Map(requests.map(({ contact }) => [contact.id, contact])).values()];
 
-  async function respond(c: Contact, accept: boolean) {
+  async function respond(c: Contact, kind: ProfileRelation, accept: boolean) {
     setResponding(c.id);
     setError("");
     try {
-      await onRespond(c.id, accept);
+      await onRespond(c.id, kind, accept);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Réessaie dans un instant.");
     } finally {
@@ -74,7 +83,7 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
   }
 
   const empty = query.trim() ? "Aucun pseudo trouvé."
-    : filter === "requests" ? "Aucune demande d’amitié pour l’instant."
+    : filter === "requests" ? "Aucune demande en attente pour l’instant."
       : filter === "online" ? "Aucun ami connecté pour le moment."
         : "Ta liste d’amis est vide. Va saluer les joueurs du quartier et ajoute-les depuis leur profil.";
 
@@ -124,11 +133,17 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
             gridTemplateColumns: `repeat(${columns}, minmax(0, ${Math.floor(size.width / grid.columns)}px))`,
             gridTemplateRows: `repeat(${rows}, minmax(0, 520px))`,
           }}>
-            {visible.map((c) => {
+            {visible.map(({ contact: c, kind }) => {
               const isOnline = online(c);
               const level = levelProgress(c.xp ?? 0).level;
+              const request = kind && requestKinds[kind];
               return (
-                <li key={c.id} className={isOnline ? "friends-doll is-online" : "friends-doll"}>
+                <li key={`${c.id}:${kind ?? "friend"}`} className={isOnline ? "friends-doll is-online" : "friends-doll"}>
+                  {request && (
+                    <span className="friends-kind" data-kind={kind}>
+                      <request.Icon size={13} aria-hidden="true" /> {request.label}
+                    </span>
+                  )}
                   <button type="button" className="friends-figure" onClick={() => onProfile(c.id)}
                     aria-label={`Voir le profil de ${c.name}`}>
                     <Portrait {...c} fullBody />
@@ -142,14 +157,16 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
                       Niv. {level}<span className="friends-sr"> · {isOnline ? "en ligne" : "hors ligne"}</span>
                     </span>
                   </div>
-                  {filter === "requests" ? (
+                  {kind && request ? (
                     <div className="friends-answer">
                       <button type="button" className="is-accept" disabled={responding !== null}
-                        aria-label={`Accepter la demande de ${c.name}`} onClick={() => void respond(c, true)}>
+                        aria-label={`Accepter la demande de ${c.name} · ${request.label}`}
+                        onClick={() => void respond(c, kind, true)}>
                         <UserCheck size={16} aria-hidden="true" /> Accepter
                       </button>
                       <button type="button" disabled={responding !== null}
-                        aria-label={`Refuser la demande de ${c.name}`} onClick={() => void respond(c, false)}>
+                        aria-label={`Refuser la demande de ${c.name} · ${request.label}`}
+                        onClick={() => void respond(c, kind, false)}>
                         <UserX size={16} aria-hidden="true" /> Refuser
                       </button>
                     </div>
@@ -177,18 +194,18 @@ export function FriendsPanel({ contacts, onlineIds, onProfile, onRespond, onMess
           <button type="button" className="friends-banner" onClick={() => choose("requests")}>
             <span className="friends-banner-icon" aria-hidden="true"><Sparkles size={18} /></span>
             <span className="friends-banner-text">
-              <strong>{requests.length} demande{requests.length > 1 ? "s" : ""} d’amitié</strong>
-              <small>{requests.slice(0, 3).map((c) => c.name).join(", ")}{requests.length > 3 ? "…" : ""}
-                {requests.length > 1 ? " attendent" : " attend"} ta réponse</small>
+              <strong>{requests.length} demande{requests.length > 1 ? "s" : ""} en attente</strong>
+              <small>{senders.slice(0, 3).map((c) => c.name).join(", ")}{senders.length > 3 ? "…" : ""}
+                {senders.length > 1 ? " attendent" : " attend"} ta réponse</small>
             </span>
             <span className="friends-banner-faces" aria-hidden="true">
-              {requests.slice(0, 3).map((c) => <span key={c.id}><Portrait {...c} /></span>)}
+              {senders.slice(0, 3).map((c) => <span key={c.id}><Portrait {...c} /></span>)}
             </span>
             <ChevronRight size={18} aria-hidden="true" />
           </button>
         ) : (
           <p className="friends-hint">{filter === "requests"
-            ? "Accepte une demande pour ajouter ce joueur à tes amis."
+            ? "Ami·e, meilleurs amis ou couple : réponds à chaque demande."
             : "Clique sur un ami pour voir son profil."}</p>
         )}
         {lastPage > 0 && (

@@ -115,7 +115,9 @@ export function RoomDrawer({
             {requests.length > 0 && (
               <ul className="drawer-list drawer-requests" aria-label="Demandes reçues">
                 {requests.map((c) =>
-                  person(c, c.friendRequest ? "veut être ton ami·e" : "a demandé à voir ton profil",
+                  person(c, c.relationRequests?.includes("romance") ? "te propose d’être en couple"
+                    : c.relationRequests?.includes("best-friend") ? "te propose d’être meilleurs amis"
+                      : c.friendRequest ? "veut être ton ami·e" : "a demandé à voir ton profil",
                     <button type="button" className="drawer-accept" onClick={() => onOpenProfile(c.id)}>
                       <UserPlus size={16} aria-hidden="true" /> Voir
                     </button>),

@@ -447,3 +447,27 @@
   .friends-banner-text small { display: none; }
   .friends-pager { margin: 0 auto; }
 }
+
+/* Request type above a doll: friend, best friends or couple. */
+.friends-kind {
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(27, 19, 40, 0.88);
+  color: var(--friends-ink);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 10px rgba(20, 10, 32, 0.35);
+}
+.friends-kind[data-kind="best-friend"] svg { color: #ffd88a; }
+.friends-kind[data-kind="romance"] { background: #ffd3ee; color: var(--friends-on-accent); }
+.friends-kind[data-kind="romance"] svg { color: #c2397e; }
+.friends-kind ~ .friends-figure { padding-top: 34px; }

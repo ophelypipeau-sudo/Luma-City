@@ -1,22 +1,35 @@
-import type { Contact } from "../../../packages/contracts/src/index";
+import type { Contact, ProfileRelation } from "../../../packages/contracts/src/index";
 
 export type FriendsFilter = "all" | "online" | "requests";
+export type FriendRequest = { contact: Contact; kind: ProfileRelation };
+
+const byPresence = (onlineIds: readonly string[]) => (a: Contact, b: Contact) =>
+  Number(onlineIds.includes(b.id)) - Number(onlineIds.includes(a.id)) || b.unread - a.unread
+    || a.name.localeCompare(b.name, "fr");
+const matches = (c: Contact, query: string) =>
+  c.name.toLocaleLowerCase("fr").includes(query.trim().toLocaleLowerCase("fr"));
 
 /** Friends shown in the vitrine: online first, then unread messages, then by name. */
 export function friendsFor(
   contacts: readonly Contact[],
   onlineIds: readonly string[],
-  filter: FriendsFilter,
+  filter: Exclude<FriendsFilter, "requests">,
   query = "",
 ): Contact[] {
-  const online = (c: Contact) => onlineIds.includes(c.id);
-  const needle = query.trim().toLocaleLowerCase("fr");
   return contacts
-    .filter((c) => !c.blocked)
-    .filter((c) => filter === "requests" ? c.friendRequest : c.friend && (filter === "all" || online(c)))
-    .filter((c) => c.name.toLocaleLowerCase("fr").includes(needle))
-    .sort((a, b) => Number(online(b)) - Number(online(a)) || b.unread - a.unread
-      || a.name.localeCompare(b.name, "fr"));
+    .filter((c) => !c.blocked && c.friend && (filter === "all" || onlineIds.includes(c.id)) && matches(c, query))
+    .sort(byPresence(onlineIds));
+}
+
+const requestOrder: ProfileRelation[] = ["romance", "best-friend", "friend"];
+/** Friend, best friend and couple requests waiting for an answer, one card each. */
+export function requestsFor(contacts: readonly Contact[], onlineIds: readonly string[], query = ""): FriendRequest[] {
+  return contacts
+    .filter((c) => !c.blocked && matches(c, query))
+    .sort(byPresence(onlineIds))
+    .flatMap((contact) => (contact.relationRequests ?? (contact.friendRequest ? ["friend" as const] : []))
+      .slice().sort((a, b) => requestOrder.indexOf(a) - requestOrder.indexOf(b))
+      .map((kind) => ({ contact, kind })));
 }
 
 /**

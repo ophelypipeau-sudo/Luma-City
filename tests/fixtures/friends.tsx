@@ -25,11 +25,14 @@ function Fixture() {
           onMessage={(id) => setLog(`message ${id}`)}
           onGuestbook={(id) => setLog(`livre d’or ${id}`)}
           onClose={() => setLog("fermer")}
-          onRespond={async (id, accept) => {
+          onRespond={async (id, kind, accept) => {
             if (options.has("erreur")) throw new Error("Cette interaction est indisponible.");
-            setLog(`${accept ? "accepter" : "refuser"} ${id}`);
-            setContacts((list) => list.flatMap((c) => c.id !== id ? [c]
-              : accept ? [{ ...c, friendRequest: false, friend: true }] : []));
+            setLog(`${accept ? "accepter" : "refuser"} ${kind} ${id}`);
+            setContacts((list) => list.map((c) => c.id !== id ? c : {
+              ...c,
+              relationRequests: c.relationRequests?.filter((pending) => pending !== kind),
+              ...(kind === "friend" && { friendRequest: false, friend: accept || c.friend }),
+            }));
           }} />
       </div>
       <output data-testid="log">{log}</output>

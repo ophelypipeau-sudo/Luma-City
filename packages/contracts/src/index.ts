@@ -23,6 +23,12 @@ export type ProfileRelation = (typeof PROFILE_RELATIONS)[number];
 export const PROFILE_RELATION_SLOTS = { "best-friend": 3, romance: 1 } as const;
 export const PROFILE_XP = { photo: 10, like: 5, "look-like": 5, firstLevel: 5000 } as const;
 
+/** Photo duo and « J’aime ce look » can be repeated on the same profile once per hour. */
+export const PROFILE_REPEAT_MS = 60 * 60 * 1000;
+/** XP earned by each side of a photo duo or a liked look: the higher your level, the more you earn. */
+export function profileXp(source: "photo" | "look-like", totalXp: number) {
+  return PROFILE_XP[source] * levelProgress(totalXp).level;
+}
 export function levelProgress(totalXp: number) {
   let level = 1;
   let earned = Math.max(0, totalXp);
@@ -135,8 +141,14 @@ export type ProfileSocial = {
   liked: boolean;
   likes: number;
   photographed: boolean;
+  /** When a photo duo becomes available again (ISO date), while `photographed`. */
+  photoAgainAt?: string | null;
+  /** XP sent to the profile's owner by the last action. */
   xpSent?: number;
+  /** XP earned by the viewer with the last action. */
+  xpEarned?: number;
   lookLiked: boolean;
+  lookAgainAt?: string | null;
   lookLikes: number;
   lookKey: string | null;
   relations: Partial<
@@ -144,8 +156,8 @@ export type ProfileSocial = {
   >;
   guestbook: { id: number; author: string; body: string }[];
   featuredRelations: {
-    bestFriends: { id: string; name: string }[];
-    partner: { id: string; name: string } | null;
+    bestFriends: Character[];
+    partner: Character | null;
   };
 };
 export const ROOM_FLOOR: Record<PublicRoomId, number> = {
@@ -210,5 +222,7 @@ export type Contact = Character & {
   blocked: boolean;
   profileRequests?: number;
   friendRequest?: boolean;
+  /** Relations this player asked for and that wait for an answer. */
+  relationRequests?: ProfileRelation[];
   friend?: boolean;
 };

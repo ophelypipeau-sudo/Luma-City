@@ -25,6 +25,8 @@ import {
   PROFILE_RELATIONS,
   PROFILE_RELATION_SLOTS,
   PROFILE_XP,
+  PROFILE_REPEAT_MS,
+  profileXp,
   levelProgress,
   XP_TEST_ACCOUNT,
   XP_TEST_PROFILES,
@@ -32,6 +34,7 @@ import {
   wornOutfitSchema,
   homeOwner,
   type ProfileSocial,
+  type Character,
   type XpMagazine,
   type RewardWheel,
   type ScratchTicket,
@@ -240,7 +243,13 @@ export async function createApp(
        WHERE r.first_id=LEAST($1,c.id) AND r.second_id=GREATEST($1,c.id)
        AND r.kind='friend' AND NOT r.accepted AND r.requester=c.id
        AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
-         (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))) AS "friendRequest"
+         (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))) AS "friendRequest",
+      ARRAY(SELECT r.kind FROM profile_relations r
+       WHERE r.first_id=LEAST($1,c.id) AND r.second_id=GREATEST($1,c.id)
+       AND r.requester=c.id AND NOT r.accepted
+       AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
+         (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))
+       ORDER BY r.kind) AS "relationRequests"
       FROM characters c WHERE c.id<>$1 AND (${listed} OR c.id = ANY($2::text[]))
       ORDER BY (
         c.id = ANY($2::text[])
@@ -321,21 +330,22 @@ export async function createApp(
         (actor=$1 AND target=$2) OR (actor=$2 AND target=$1))`,
       [me, peer],
     );
-    const photographed =
-      (
-        await q("SELECT 1 FROM profile_photos WHERE actor=$1 AND target=$2", [
-          me,
-          peer,
-        ])
-      ).rows.length > 0;
+    const { rows: [photo] } = await q(
+      `SELECT created_at + $3::integer * INTERVAL '1 millisecond' AS "againAt" FROM profile_photos
+       WHERE actor=$1 AND target=$2 AND created_at > NOW() - $3::integer * INTERVAL '1 millisecond'`,
+      [me, peer, PROFILE_REPEAT_MS],
+    );
     const { rows: [look] } = await q(
       `SELECT md5((c.outfit - 'face')::text) AS "lookKey", COUNT(l.actor)::integer AS "lookLikes",
-       COALESCE(BOOL_OR(l.actor=$1), FALSE) AS "lookLiked"
+       MAX(l.created_at) FILTER (WHERE l.actor=$1
+         AND l.created_at > NOW() - $3::integer * INTERVAL '1 millisecond') AS "lookLikedAt"
        FROM characters c LEFT JOIN profile_look_likes l
        ON l.target=c.id AND l.look_key=md5((c.outfit - 'face')::text)
        WHERE c.id=$2 GROUP BY c.id`,
-      [me, peer],
+      [me, peer, PROFILE_REPEAT_MS],
     );
+    const { lookLikedAt, ...lookSummary } = look ?? { lookKey: null, lookLikes: 0, lookLikedAt: null };
+    const iso = (date: unknown) => date ? new Date(date as string | Date).toISOString() : null;
     const { rows: guestbook } = await q(
       `SELECT e.id::integer, c.name AS author, e.body FROM profile_guestbook e
        JOIN characters c ON c.id=e.actor WHERE e.target=$2
@@ -345,7 +355,7 @@ export async function createApp(
       [me, peer],
     );
     const featured = irisOnly ? [] : (await q(
-      `SELECT c.id, c.name, r.kind
+      `SELECT c.*, r.kind
        FROM profile_relations r
        JOIN characters c ON c.id=CASE WHEN r.first_id=$2 THEN r.second_id ELSE r.first_id END
        WHERE $2 IN (r.first_id,r.second_id) AND r.accepted
@@ -358,25 +368,30 @@ export async function createApp(
        ORDER BY c.name, c.id`,
       [me, peer],
     )).rows;
+    // Slots show the whole character, so its portrait wears its outfit and its profile can open.
+    const person = ({ kind: _kind, ...character }: (typeof featured)[number]) => character as Character;
     const bestFriends = featured
       .filter(({ kind }) => kind === "best-friend")
       .slice(0, PROFILE_RELATION_SLOTS["best-friend"])
-      .map(({ id, name }) => ({ id, name }));
+      .map(person);
     const partner = featured.find(({ kind }) => kind === "romance");
     return {
       ...summary,
-      ...look,
+      ...lookSummary,
+      lookLiked: Boolean(lookLikedAt),
+      lookAgainAt: lookLikedAt ? new Date(new Date(lookLikedAt).getTime() + PROFILE_REPEAT_MS).toISOString() : null,
       relations: Object.fromEntries(
         relationships.map(({ kind, accepted, requester }) => [
           kind,
           accepted ? "accepted" : requester === me ? "outgoing" : "incoming",
         ]),
       ),
-      photographed,
+      photographed: Boolean(photo),
+      photoAgainAt: iso(photo?.againAt),
       guestbook,
       featuredRelations: {
         bestFriends,
-        partner: partner ? { id: partner.id, name: partner.name } : null,
+        partner: partner ? person(partner) : null,
       },
     };
   }
@@ -656,6 +671,7 @@ export async function createApp(
             z.object({ type: z.literal("like") }),
             z.object({ type: z.literal("photo") }),
             z.object({ type: z.literal("decline-friend") }),
+            z.object({ type: z.literal("decline-relation"), kind: z.enum(PROFILE_RELATIONS) }),
             z.object({ type: z.literal("look-like"), lookKey: z.string().regex(/^[a-f0-9]{32}$/) }),
             z.object({
               type: z.literal("guestbook"),
@@ -693,41 +709,52 @@ export async function createApp(
         )
           throw new Error("Cette interaction est indisponible.");
         let xpSent = 0;
-        if (action.type === "like" || action.type === "photo" || action.type === "look-like") {
-          let inserted: boolean;
-          if (action.type === "look-like") {
-            const { rows } = await q(
-              `INSERT INTO profile_look_likes (actor,target,look_key)
-               SELECT $1,id,$3 FROM characters WHERE id=$2 AND md5((outfit - 'face')::text)=$3
-               ON CONFLICT DO NOTHING RETURNING actor`,
-              [me, peer, action.lookKey],
-            );
-            inserted = rows.length > 0;
-          } else {
-            const table = action.type === "like" ? "profile_likes" : "profile_photos";
-            const { rows } = await q(
-              `INSERT INTO ${table} VALUES ($1,$2)
-               ON CONFLICT DO NOTHING RETURNING actor`,
-              [me, peer],
-            );
-            inserted = rows.length > 0;
+        let xpEarned = 0;
+        if (action.type === "like") {
+          // A profile is liked once: only its owner earns XP.
+          const { rows } = await q(
+            "INSERT INTO profile_likes VALUES ($1,$2) ON CONFLICT DO NOTHING RETURNING actor",
+            [me, peer],
+          );
+          if (rows.length) {
+            xpSent = PROFILE_XP.like;
+            await q("INSERT INTO xp_rewards (recipient,source,points) VALUES ($1,'like',$2)", [peer, xpSent]);
           }
-          if (inserted) {
-            xpSent = PROFILE_XP[action.type];
-            await q("INSERT INTO xp_rewards (recipient,source,points) VALUES ($1,$2,$3)",
-              [peer, action.type, xpSent]);
+        } else if (action.type === "photo" || action.type === "look-like") {
+          // Photo duo and liked looks come back every hour; both players earn XP by level.
+          const { rows } = action.type === "look-like"
+            ? await q(
+              `INSERT INTO profile_look_likes AS l (actor,target,look_key)
+               SELECT $1,id,$3 FROM characters WHERE id=$2 AND md5((outfit - 'face')::text)=$3
+               ON CONFLICT (actor,target,look_key) DO UPDATE SET created_at=NOW()
+               WHERE l.created_at <= NOW() - $4::integer * INTERVAL '1 millisecond' RETURNING actor`,
+              [me, peer, action.lookKey, PROFILE_REPEAT_MS],
+            )
+            : await q(
+              `INSERT INTO profile_photos AS p (actor,target) VALUES ($1,$2)
+               ON CONFLICT (actor,target) DO UPDATE SET created_at=NOW()
+               WHERE p.created_at <= NOW() - $3::integer * INTERVAL '1 millisecond' RETURNING actor`,
+              [me, peer, PROFILE_REPEAT_MS],
+            );
+          if (rows.length) {
+            const { rows: players } = await q("SELECT id, xp FROM characters WHERE id IN ($1,$2)", [me, peer]);
+            const xpOf = (id: string) => Number(players.find((player) => player.id === id)?.xp ?? 0);
+            xpSent = profileXp(action.type, xpOf(peer));
+            xpEarned = profileXp(action.type, xpOf(me));
+            await q("INSERT INTO xp_rewards (recipient,source,points) VALUES ($1,$3,$4), ($2,$3,$5)",
+              [peer, me, action.type, xpSent, xpEarned]);
           }
         } else if (action.type === "guestbook") {
           await q(
             "INSERT INTO profile_guestbook (actor,target,body) VALUES ($1,$2,$3)",
             [me, peer, action.body],
           );
-        } else if (action.type === "decline-friend") {
+        } else if (action.type === "decline-friend" || action.type === "decline-relation") {
           await q(
             `DELETE FROM profile_relations
              WHERE first_id=LEAST($1,$2) AND second_id=GREATEST($1,$2)
-             AND kind='friend' AND requester=$2 AND NOT accepted`,
-            [me, peer],
+             AND kind=$3 AND requester=$2 AND NOT accepted`,
+            [me, peer, action.type === "decline-relation" ? action.kind : "friend"],
           );
         } else if (action.type === "relation") {
           if (action.accept && action.kind !== "friend") {
@@ -761,7 +788,7 @@ export async function createApp(
           const { rows: [sender] } = await q("SELECT * FROM characters WHERE id=$1", [me]);
           await wardrobe.gift(q, sender, peer, action.id, action.item.key);
         }
-        return { ...(await socialProfile(q, me, peer)), xpSent };
+        return { ...(await socialProfile(q, me, peer)), xpSent, xpEarned };
       });
       changed();
       return social;

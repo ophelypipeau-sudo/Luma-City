@@ -1279,6 +1279,7 @@ function App() {
                   loadScratch={loadScratchTicket} scratch={scratchTicket} claimScratch={claimScratchTicket} />
               ) : view === "salon" ? (
                 <BeautySalon key={activeId} layers={wornLayers} onBack={openMap}
+                  canCustomizeColors={state?.uiCapabilities?.customGarmentColors === true}
                   onSave={(activeId === "iris" || (activeId && isCreatedPlayer(activeId))) ? (face) => saveEquippedOutfit({ ...wornLayers, face }) : undefined} />
               ) : view === "shop" && state?.character ? (
                 <Shop

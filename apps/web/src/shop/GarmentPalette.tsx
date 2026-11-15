@@ -35,11 +35,13 @@ export function GarmentPalette({
   canCustomize,
   onReset,
   swatches,
+  forEyes = false,
 }: {
   value: string;
   onChange: (hex: string) => void;
   canCustomize: boolean;
   onReset?: () => void;
+  forEyes?: boolean;
   swatches?: readonly { name: string; hex: string }[];
 }) {
   const [hex, setHex] = useState(value);
@@ -50,11 +52,15 @@ export function GarmentPalette({
   }
   useEffect(() => setHex(value), [value]);
   const valid = /^#[0-9a-f]{6}$/i.test(hex);
+  const resetButton = onReset && (
+    <button className="garment-original" type="button" onClick={onReset}>
+      Revenir à la couleur d’origine
+    </button>
+  );
   return (
     <div className="garment-palette">
       <p className="palette-help">
-        Choisis la couleur de cette matière. Les coutures, les motifs et les
-        détails protégés restent intacts.
+        {forEyes ? "Choisis la couleur des iris." : "Choisis la couleur de cette matière. Les coutures, les motifs et les détails protégés restent intacts."}
       </p>
       <nav className="palette-tabs" aria-label="Choix du nuancier">
         <button
@@ -69,14 +75,11 @@ export function GarmentPalette({
           aria-pressed={tab === "advanced"}
           onClick={() => setTab("advanced")}
         >
-          Avancé · VIP
+          {forEyes ? "Couleur libre · VIP" : "Avancé · VIP"}
         </button>
+        {forEyes && resetButton}
       </nav>
-      {onReset && (
-        <button className="garment-original" type="button" onClick={onReset}>
-          Revenir à la couleur d’origine
-        </button>
-      )}
+      {!forEyes && resetButton}
       {tab === "table" && swatches && (
         <div
           className="rgb-palette recent-colors capsule-swatches"
@@ -114,13 +117,13 @@ export function GarmentPalette({
       {tab === "advanced" && (
         <fieldset disabled={!canCustomize} className="vip-garment-color">
           <legend>
-            {!canCustomize && <LockKeyhole size={13} />} Couleur libre · VIP
+            {!canCustomize && <LockKeyhole size={13} />} {forEyes ? "Couleur des iris · VIP" : "Couleur libre · VIP"}
           </legend>
           <label>
             Roue de couleurs
             <input
               type="color"
-              aria-label="Roue de couleurs VIP"
+              aria-label={forEyes ? "Roue de couleurs des iris" : "Roue de couleurs VIP"}
               value={value}
               onChange={(e) => {
                 if (canCustomize) {
@@ -132,7 +135,7 @@ export function GarmentPalette({
           <label>
             Code HEX
             <input
-              aria-label="Code HEX du vêtement VIP"
+              aria-label={forEyes ? "Code HEX des iris" : "Code HEX du vêtement VIP"}
               value={hex}
               maxLength={7}
               onChange={(e) => setHex(e.target.value)}

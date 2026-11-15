@@ -1,41 +1,65 @@
 .beauty-salon {
-  min-height: 100%; box-sizing: border-box; padding: clamp(.8rem, 2.5vw, 2rem);
-  background: radial-gradient(ellipse at 27% 32%, #936183, #543755 62%, #38263e);
-  color: #fff3f8;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: clamp(.8rem, 2.5vw, 2rem);
+  background: linear-gradient(#805674, #412d48);
+  color: #fff6fa;
 }
 .beauty-salon header { display: flex; gap: .75rem; align-items: center; margin-bottom: 1rem; }
-.beauty-salon h1 { margin: 0; font-size: clamp(1.2rem, 3vw, 1.9rem); }
+.beauty-salon h1 { margin: 0; font-size: clamp(1.1rem, 2.5vw, 1.6rem); }
 .beauty-salon button {
-  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
-  padding: .45rem .65rem; border: 1px solid #d5a9c2; border-radius: .5rem;
-  background: #624263; color: #fff4f8;
+  display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+  padding: .45rem .65rem; border: 1px solid transparent; border-radius: .55rem;
+  background: #fff8fc; color: #523a52;
 }
+.beauty-salon button:focus-visible { outline: 2px solid #803d6e; outline-offset: 2px; }
 .beauty-workspace {
-  max-width: 49rem; margin: auto; display: grid;
-  grid-template-columns: minmax(11rem, .85fr) minmax(15rem, 1.2fr);
-  gap: clamp(.8rem, 3vw, 2rem); align-items: center;
+  max-width: 68rem; margin: auto; display: grid;
+  grid-template-columns: minmax(11rem, .8fr) minmax(16rem, 1.45fr);
+  gap: clamp(1rem, 3vw, 2rem); align-items: center;
 }
 .beauty-mirror {
-  border-radius: 48% 48% 38% 38%; border: .35rem double #e6c4a6;
-  box-shadow: 0 .65rem 1.4rem #2616298f;
+  border-radius: 46% / 36%; border: 3px solid #fff8fc;
+  box-shadow: 0 .45rem 1rem #25172cc2;
   background: radial-gradient(ellipse at 40% 32%, #f7e6ef, #cfaac6 72%, #ae80a7);
   overflow: hidden;
 }
 .beauty-mirror svg { display: block; width: 100%; height: auto; }
-.beauty-controls { display: grid; gap: .65rem; }
-.beauty-controls fieldset {
-  margin: 0; min-width: 0; padding: .5rem .6rem .65rem; border: 1px solid #cb9cb9;
-  border-radius: .65rem; background: #4e324d;
+.beauty-controls {
+  display: grid; gap: 1rem; padding: clamp(.65rem, 2vw, 1.25rem); min-width: 0;
+  border-radius: 1.4rem; background: #dfd4dd; color: #483246;
+  box-shadow: 0 .35rem .65rem #24172845;
 }
-.beauty-controls legend { padding-inline: .3rem; color: #ffe7d6; font-weight: 700; }
-.beauty-options, .beauty-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
-.beauty-options button { font-size: .84rem; }
-.beauty-options button[aria-pressed="true"] { color: #3d2841; background: #f4d7e5; border-color: #fff0d8; }
-.beauty-options i { width: .75rem; height: .75rem; border: 1px solid #ffffff8a; border-radius: 50%; }
-.beauty-actions { justify-content: space-between; }
-.beauty-actions button:last-child { background: #f4d6aa; color: #462e48; font-weight: 700; }
+.beauty-categories { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-bottom: 2px solid #a691a1; }
+.beauty-categories button { font-size: clamp(.68rem, 1.6vw, .9rem); padding-inline: .15rem; flex-direction: column; min-width: 0; background: transparent; border-radius: .5rem .5rem 0 0; }
+.beauty-categories button + button { border-left-color: #b8a7b3; }
+.beauty-categories button[aria-pressed="true"] { background: #f8edf5; border-bottom-color: #854c76; color: #70365f; }
+.beauty-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
+.beauty-options button { flex-direction: column; min-width: 0; font-size: .82rem; overflow-wrap: anywhere; }
+.beauty-options button[aria-pressed="true"] { background: #f7e4ef; border-color: #8c527a; }
+.beauty-options svg { display: block; width: 100%; height: 3rem; border-radius: .3rem; background: #ebc9ba; }
+.beauty-navigation, .beauty-actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+.beauty-navigation button { border-radius: 50%; width: 2.25rem; height: 2.25rem; padding: 0; box-shadow: 0 2px 3px #50364f40; }
+.beauty-actions button:last-child { background: #633e5e; color: white; font-weight: 700; }
 .beauty-actions button:disabled { opacity: .55; }
 @media (max-width: 650px) {
   .beauty-workspace { grid-template-columns: minmax(0, 1fr); }
-  .beauty-mirror { width: min(45vw, 12rem); margin-inline: auto; }
+  .beauty-mirror { width: min(52vw, 12rem); margin-inline: auto; }
 }
+.beauty-eye-picker { display: grid; gap: .65rem; }
+.beauty-eye-preview { display: block; width: min(100%, 14rem); margin-inline: auto; border-radius: .5rem; background: #ebc9ba; }
+.beauty-eye-picker .garment-palette { color: inherit; }
+.beauty-eye-picker .palette-tabs {
+  display: flex; flex-wrap: nowrap; align-items: stretch; gap: .35rem;
+}
+.beauty-eye-picker .palette-tabs button {
+  min-width: 0; margin: 0; padding: .4rem clamp(.25rem, 1vw, .65rem);
+  font-size: clamp(.72rem, 1.3vw, .9rem); line-height: 1.2;
+}
+.beauty-eye-picker .palette-tabs .garment-original { width: auto; }
+.beauty-eye-picker .palette-tabs [aria-pressed="true"] { background: #633e5e; color: white; }
+.beauty-eye-picker .color-table { display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); gap: 2px; }
+.beauty-eye-picker .color-table button { padding: 0; width: 100%; height: clamp(.55rem, 1.4vw, 1rem); border-radius: 2px; }
+.beauty-eye-picker .color-table button[aria-pressed="true"] { outline: 2px solid #633e5e; z-index: 1; }
+.beauty-eye-picker .vip-garment-color { margin: 0; min-width: 0; color: inherit; }
+.beauty-eye-back { justify-self: start; }

@@ -1,43 +1,70 @@
-import { useState } from "react";
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, Droplet, Eye, Pencil, RotateCcw, Smile, UserRound } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowLeft, Check, Droplet, Eye, Pencil, RotateCcw, Smile, Sparkles, UserRound } from "lucide-react";
 import type { AvatarFace } from "../../../packages/contracts/src/index";
+import { ColorWheel } from "./ColorWheel";
 import { FASHION_BASE } from "./avatar/base";
-import { eyeColorHex, ORIGINAL_FACE } from "./avatar/face-customization";
+import { eyeColorHex, ORIGINAL_FACE, SKIN_TONES, skinHex } from "./avatar/face-customization";
 import { LayeredDoll } from "./avatar/LayeredDoll";
 import type { AvatarLayers } from "./avatar/model";
 import { GarmentPalette } from "./shop/GarmentPalette";
-import "./beauty-salon.css";
 
-type Choices<K extends keyof AvatarFace> = readonly { value: AvatarFace[K]; label: string }[];
-const choices: { [K in "lips" | "skin" | "nose"]: Choices<K> } = {
-  lips: [
-    { value: "original", label: "Naturel" },
-    { value: "rose", label: "Rose" },
-    { value: "berry", label: "Prune" },
-    { value: "nude", label: "Bois de rose" },
-    { value: "sorbet", label: "Sorbet brillant" },
+type Category = "looks" | "eyes" | "brows" | "nose" | "lips" | "skin";
+/** `match` : les valeurs qui comptent pour afficher l’option comme choisie (par défaut, toutes). */
+type Option = { label: string; face: Partial<AvatarFace>; match?: readonly (keyof AvatarFace)[] };
+
+// Zones du visage (repère de la poupée) montrées dans les vignettes et le miroir.
+const MIRROR = "148 13 184 211";
+const CROPS = { looks: "182 34 116 122", eyes: "201 79 78 30", brows: "198 70 84 22", nose: "218 102 44 34", lips: "211 127 58 30" };
+const CATEGORIES = [
+  { key: "looks", label: "Looks", Icon: Sparkles, hint: "Des visages complets, prêts à porter." },
+  { key: "eyes", label: "Yeux", Icon: Eye, hint: "Choisis une paire d’yeux, puis la couleur des iris." },
+  { key: "brows", label: "Sourcils", Icon: Pencil, hint: "Choisis une forme, puis sa couleur." },
+  { key: "nose", label: "Nez", Icon: UserRound, hint: "Choisis la forme du nez." },
+  { key: "lips", label: "Bouche", Icon: Smile, hint: "Choisis un rouge à lèvres." },
+  { key: "skin", label: "Teint", Icon: Droplet, hint: "Fais glisser le point sur la roue pour trouver ta couleur de peau." },
+] as const;
+const OPTIONS: Record<Exclude<Category, "skin">, readonly Option[]> = {
+  looks: [
+    { label: "Visage d’origine", face: { ...ORIGINAL_FACE, eyeModel: undefined, brows: undefined, browColor: undefined, lipColor: undefined } },
+    { label: "Look kawaii", face: { eyeModel: "prisme", eyes: "original", brows: "kawaii", browColor: undefined, nose: "confettis", lips: "sorbet", lipColor: undefined } },
+    { label: "Kawaii Glam Mature", face: { eyeModel: "prisme-glam", eyes: "original", brows: "arche-glam", browColor: undefined, nose: "confettis-glam", lips: "sorbet", lipColor: undefined } },
   ],
-  skin: [
-    { value: "original", label: "Doré" },
-    { value: "light", label: "Clair" },
-    { value: "tan", label: "Hâlé" },
-    { value: "deep", label: "Foncé" },
+  eyes: [
+    { label: "Paire classique", face: { eyeModel: undefined, eyes: "original" }, match: ["eyeModel"] },
+    { label: "Prisme violet", face: { eyeModel: "prisme", eyes: "original" }, match: ["eyeModel"] },
+    { label: "Prisme Glam", face: { eyeModel: "prisme-glam", eyes: "original" }, match: ["eyeModel"] },
+  ],
+  brows: [
+    { label: "Sourcils d’origine", face: { brows: undefined, browColor: undefined }, match: ["brows"] },
+    { label: "Arc doux", face: { brows: "kawaii" }, match: ["brows"] },
+    { label: "Arche cacao", face: { brows: "arche-glam" }, match: ["brows"] },
   ],
   nose: [
-    { value: "original", label: "Original" },
-    { value: "fine", label: "Fin" },
-    { value: "soft", label: "Arrondi" },
-    { value: "confettis", label: "Confettis" },
-    { value: "confettis-glam", label: "Confettis Glam" },
+    { label: "Original", face: { nose: "original" } },
+    { label: "Fin", face: { nose: "fine" } },
+    { label: "Arrondi", face: { nose: "soft" } },
+    { label: "Confettis", face: { nose: "confettis" } },
+    { label: "Confettis Glam", face: { nose: "confettis-glam" } },
+  ],
+  lips: [
+    { label: "Naturel", face: { lips: "original" } },
+    { label: "Rose", face: { lips: "rose" } },
+    { label: "Prune", face: { lips: "berry" } },
+    { label: "Bois de rose", face: { lips: "nude" } },
+    { label: "Sorbet brillant", face: { lips: "sorbet" } },
   ],
 };
-const fields = [
-  ["eyes", "Yeux", Eye, "201 79 78 30"],
-  ["brows", "Sourcils", Pencil, "198 70 84 22"],
-  ["nose", "Nez", UserRound, "218 102 44 34"],
-  ["lips", "Bouche", Smile, "211 127 58 30"],
-  ["skin", "Teint", Droplet, "192 55 96 95"],
-] as const;
+const FACE_KEYS = ["eyes", "lips", "skin", "nose", "eyeModel", "brows", "browColor", "lipColor"] as const;
+const sameFace = (a: AvatarFace, b: AvatarFace) => FACE_KEYS.every((key) => (a[key] ?? null) === (b[key] ?? null));
+// Une option est choisie quand toutes ses valeurs correspondent au visage en cours.
+const chosen = (face: AvatarFace, { face: values, match }: Option) =>
+  (match ?? Object.keys(values) as (keyof AvatarFace)[]).every((key) => (face[key] ?? null) === (values[key] ?? null));
+
+function FacePreview({ face, viewBox }: { face: AvatarFace; viewBox: string }) {
+  return <svg viewBox={viewBox} aria-hidden="true">
+    <LayeredDoll layers={{ top: null, bottom: null, shoes: null, face }} bodyBase={FASHION_BASE} />
+  </svg>;
+}
 
 export function BeautySalon({ layers, onBack, onSave, canCustomizeColors = false }: {
   layers: AvatarLayers;
@@ -45,113 +72,123 @@ export function BeautySalon({ layers, onBack, onSave, canCustomizeColors = false
   canCustomizeColors?: boolean;
   onSave?: (face: AvatarFace) => void;
 }) {
-  const [draft, setDraft] = useState<AvatarFace>(layers.face ?? ORIGINAL_FACE);
-  const [category, setCategory] = useState(0);
-  const [eyeDetail, setEyeDetail] = useState(false);
-  function selectCategory(index: number) {
-    setCategory(index);
-    setEyeDetail(false);
-  }
-  const [field, label, , crop] = fields[category];
   const saved = layers.face ?? ORIGINAL_FACE;
-  const dirty = fields.some(([field]) => draft[field] !== saved[field]) ||
-    draft.eyeModel !== saved.eyeModel || draft.browColor !== saved.browColor ||
-    draft.lipColor !== saved.lipColor;
-  const preview = (face: AvatarFace) => <LayeredDoll layers={{ top: null, bottom: null, shoes: null, face }} bodyBase={FASHION_BASE} />;
+  const [draft, setDraft] = useState<AvatarFace>(saved);
+  const [category, setCategory] = useState<Category>("looks");
+  const [justSaved, setJustSaved] = useState(false);
+  const [leaving, setLeaving] = useState(false);
+  const dirty = !sameFace(draft, saved);
+  const current = CATEGORIES.find(({ key }) => key === category)!;
+  const change = (patch: Partial<AvatarFace>) => {
+    setJustSaved(false);
+    setDraft((face) => ({ ...face, ...patch }));
+  };
+  useEffect(() => {
+    if (!justSaved) return;
+    const timer = setTimeout(() => setJustSaved(false), 2500);
+    return () => clearTimeout(timer);
+  }, [justSaved]);
+  function save() {
+    if (!onSave || !dirty) return;
+    onSave(draft);
+    setJustSaved(true);
+  }
+
+  if (!onSave) return <section className="beauty-salon" aria-label="Salon d’esthétique">
+    <div className="salon-panel salon-closed">
+      <button type="button" className="salon-back" aria-label="Retour au quartier" onClick={onBack}><ArrowLeft size={20} /></button>
+      <p>Le salon est réservé à Iris et aux personnages créés par les joueurs.</p>
+    </div>
+  </section>;
+
+  const colorField = category === "brows" && draft.brows ? "browColor" as const
+    : category === "lips" && draft.lips === "sorbet" ? "lipColor" as const : null;
   return <section className="beauty-salon" aria-label="Salon d’esthétique">
-    <header>
-      <button type="button" aria-label="Retour au quartier" onClick={onBack}><ArrowLeft size={20} /></button>
-      <h1>Salon d’esthétique</h1>
-    </header>
-    {onSave ? <div className="beauty-workspace">
-      <div className="beauty-mirror">
-        <svg role="img" aria-label="Aperçu du visage d’Iris" viewBox="148 13 184 211">
+    <div className="salon-panel salon-studio">
+      <header className="salon-heading">
+        <button type="button" className="salon-back" aria-label="Retour au quartier"
+          onClick={() => dirty ? setLeaving(true) : onBack()}><ArrowLeft size={20} /></button>
+        <h1>Salon d’esthétique</h1>
+      </header>
+      <nav className="salon-categories" aria-label="Catégories du salon">
+        {CATEGORIES.map(({ key, label, Icon }) => <button key={key} type="button"
+          aria-pressed={category === key} onClick={() => setCategory(key)}>
+          <span><Icon size={20} aria-hidden="true" /></span>
+          <small>{label}</small>
+        </button>)}
+      </nav>
+      <p className="salon-hint">{current.hint}</p>
+      <div className="salon-choices">
+        {category === "skin" ? <div className="salon-skin">
+          <ColorWheel label="Couleur de peau" value={skinHex(draft.skin)} onChange={(skin) => change({ skin })} />
+          <div className="salon-swatches" role="group" aria-label="Teintes rapides">
+            {SKIN_TONES.map(({ label, hex }) => <button key={hex} type="button"
+              aria-pressed={skinHex(draft.skin) === hex} onClick={() => change({ skin: hex })}>
+              <span style={{ background: hex }} />{label}
+            </button>)}
+          </div>
+        </div> : <>
+          <div className="salon-options" role="group" aria-label={current.label}
+            data-category={category}>
+            {OPTIONS[category].map((option) => {
+              const { label, face } = option;
+              // Choisir une forme déjà portée ne remet pas sa couleur à zéro.
+              const pick = chosen(draft, option) ? {} : face;
+              return <button key={label} type="button" aria-pressed={chosen(draft, option)}
+                onClick={() => change(pick)}>
+                <FacePreview face={{ ...draft, ...face }} viewBox={CROPS[category]} />
+                <span>{label}</span>
+              </button>;
+            })}
+          </div>
+          {category === "eyes" && <div className="salon-color">
+            <h2>Couleur des iris</h2>
+            <GarmentPalette forEyes canCustomize={canCustomizeColors}
+              value={draft.eyeModel && draft.eyes === "original" ? "#8d53aa" : eyeColorHex(draft.eyes)}
+              onChange={(eyes) => change({ eyes })}
+              onReset={() => change({ eyes: "original" })} />
+          </div>}
+          {colorField && <div className="salon-color">
+            <h2>{colorField === "browColor" ? "Couleur des sourcils" : "Couleur des lèvres"}</h2>
+            <div className="salon-color-wheel">
+              <ColorWheel label={colorField === "browColor" ? "Couleur des sourcils" : "Couleur des lèvres"}
+                value={draft[colorField] ?? (colorField === "browColor" ? "#9b6754" : "#ce596e")}
+                onChange={(color) => change({ [colorField]: color })} />
+              <button type="button" className="salon-secondary" disabled={!draft[colorField]}
+                onClick={() => change({ [colorField]: undefined })}>Couleur d’origine</button>
+            </div>
+          </div>}
+        </>}
+      </div>
+    </div>
+
+    <aside className="salon-panel salon-mirror-panel" aria-label="Miroir">
+      <div className="salon-mirror">
+        <svg role="img" aria-label="Aperçu de ton visage" viewBox={MIRROR}>
           <LayeredDoll layers={{ ...layers, face: draft, headwear: null }} bodyBase={FASHION_BASE} />
         </svg>
       </div>
-      <div className="beauty-controls">
-        <nav className="beauty-categories" aria-label="Catégories du salon">
-          {fields.map(([key, name, Icon], index) => <button key={key} type="button"
-            aria-pressed={category === index} onClick={() => selectCategory(index)}>
-            <Icon size={24} aria-hidden="true" /> {name}
-          </button>)}
-        </nav>
-        {field === "eyes" ? eyeDetail ? <div className="beauty-eye-picker">
-          <button className="beauty-eye-back" type="button" onClick={() => setEyeDetail(false)}>
-            <ArrowLeft size={18} aria-hidden="true" /> Retour aux paires d’yeux
+      {leaving ? <div className="salon-leaving" role="alertdialog" aria-label="Changements non enregistrés">
+        <p>Tes changements ne sont pas enregistrés.</p>
+        <button type="button" className="salon-primary" onClick={() => { save(); onBack(); }}>
+          <Check size={17} aria-hidden="true" /> Enregistrer et quitter
+        </button>
+        <button type="button" className="salon-secondary" onClick={onBack}>Quitter sans enregistrer</button>
+        <button type="button" className="salon-link" onClick={() => setLeaving(false)}>Rester au salon</button>
+      </div> : <>
+        <p className="salon-status" role="status">
+          {justSaved ? "C’est enregistré !" : dirty ? "Changements non enregistrés" : "Ton visage actuel"}
+        </p>
+        <div className="salon-actions">
+          <button type="button" className="salon-secondary" disabled={!dirty}
+            onClick={() => { setDraft(saved); setJustSaved(false); }}>
+            <RotateCcw size={16} aria-hidden="true" /> Annuler
           </button>
-          <svg className="beauty-eye-preview" viewBox={crop} role="img" aria-label="Aperçu de la paire d’yeux">
-            <LayeredDoll layers={{ top: null, bottom: null, shoes: null, face: draft }} bodyBase={FASHION_BASE} />
-          </svg>
-          <GarmentPalette forEyes canCustomize={canCustomizeColors} value={draft.eyeModel && draft.eyes === "original" ? "#8d53aa" : eyeColorHex(draft.eyes)}
-            onChange={(eyes) => setDraft((current) => ({ ...current, eyes }))}
-            onReset={() => setDraft((current) => ({ ...current, eyes: "original" }))} />
-        </div> : <div className="beauty-options" role="group" aria-label="Paires d’yeux">
-          {([undefined, "prisme", "prisme-glam"] as const).map((eyeModel) => <button key={eyeModel ?? "classic"} type="button"
-            aria-pressed={draft.eyeModel === eyeModel} onClick={() => {
-              setDraft((current) => current.eyeModel === eyeModel ? current : { ...current, eyeModel, eyes: "original" });
-              setEyeDetail(true);
-            }}>
-            <svg viewBox={crop} aria-hidden="true">{preview({ ...draft, eyeModel, eyes: "original" })}</svg>
-            {eyeModel === "prisme-glam" ? "Prisme Glam" : eyeModel ? "Prisme violet" : "Paire classique"}
-          </button>)}
-        </div> : field === "brows" ? <div className="beauty-options" role="group" aria-label={label}>
-          {([undefined, "kawaii", "arche-glam"] as const).map((brows) => <button key={brows ?? "original"} type="button"
-            aria-pressed={draft.brows === brows} onClick={() => setDraft((current) => ({ ...current, brows }))}>
-            <svg viewBox={crop} aria-hidden="true">{preview({ ...draft, brows })}</svg>
-            {brows === "arche-glam" ? "Arche cacao" : brows ? "Arc doux" : "Sourcils d’origine"}
-          </button>)}
-        </div> : <div className="beauty-options" role="group" aria-label={label}>
-          {choices[field].map(({ value, label: name }) =>
-            <button key={value} type="button" aria-pressed={draft[field] === value}
-              onClick={() => setDraft((current) => ({ ...current, [field]: value }))}>
-              <svg viewBox={crop} aria-hidden="true">
-                <LayeredDoll layers={{ top: null, bottom: null, shoes: null, face: { ...draft, [field]: value } }} bodyBase={FASHION_BASE} />
-              </svg>
-              {name}
-            </button>)}
-        </div>}
-        {((field === "brows" && draft.brows) || (field === "lips" && draft.lips === "sorbet")) && (() => {
-          const colorField = field === "brows" ? "browColor" : "lipColor";
-          return <div className="beauty-actions">
-            <label>Couleur {field === "brows" ? "des sourcils" : "des lèvres"}{" "}
-              <input type="color" value={draft[colorField] ?? (field === "brows" ? "#9b6754" : "#ce596e")}
-                onChange={(event) => {
-                  const color = event.currentTarget.value;
-                  setDraft((current) => ({ ...current, [colorField]: color }));
-                }} />
-            </label>
-            <button type="button" onClick={() => setDraft((current) => ({ ...current, [colorField]: undefined }))}>Couleur d’origine</button>
-          </div>;
-        })()}
-        <div className="beauty-navigation">
-          <button type="button" aria-label="Catégorie précédente" onClick={() => selectCategory((category + fields.length - 1) % fields.length)}>
-            <ChevronLeft size={20} />
-          </button>
-          <button type="button" aria-label="Catégorie suivante" onClick={() => setCategory((category + 1) % fields.length)}>
-            <ChevronRight size={20} />
+          <button type="button" className="salon-primary" disabled={!dirty} onClick={save}>
+            <Check size={17} aria-hidden="true" /> Enregistrer
           </button>
         </div>
-        <div className="beauty-actions">
-          <button type="button" onClick={() => setDraft((current) => ({ ...current,
-            eyeModel: "prisme-glam", eyes: "original", brows: "arche-glam", browColor: undefined,
-            nose: "confettis-glam", lips: "sorbet", lipColor: undefined }))}>
-            Kawaii Glam Mature
-          </button>
-          <button type="button" onClick={() => setDraft((current) => ({ ...current, eyeModel: "prisme", eyes: "original", brows: "kawaii", browColor: undefined, nose: "confettis", lips: "sorbet", lipColor: undefined }))}>
-            Look kawaii
-          </button>
-          <button type="button" onClick={() => setDraft(ORIGINAL_FACE)}>
-            <RotateCcw size={16} /> Réinitialiser
-          </button>
-          <button type="button" disabled={!dirty} onClick={() => {
-            onSave(draft);
-            if (field === "eyes") setEyeDetail(false);
-          }}>
-            <Check size={17} /> Enregistrer
-          </button>
-        </div>
-      </div>
-    </div> : <p>Le salon est disponible pour Iris.</p>}
+      </>}
+    </aside>
   </section>;
 }

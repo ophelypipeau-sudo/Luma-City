@@ -16,6 +16,30 @@ export function eyeColorHex(color: AvatarFace["eyes"]) {
 
 const lips = { rose: [211, 98, 134], berry: [160, 61, 107], nude: [177, 111, 88] } satisfies Record<string, RGB>;
 const skin = { light: [1.06, 1.14, 1.3], tan: [.84, .79, .74], deep: [.66, .55, .48] } satisfies Record<string, RGB>;
+/** Couleur moyenne de la peau dorée dessinée sur la poupée de base. */
+const SKIN_BASE: RGB = [219, 141, 89];
+const toHex = (rgb: readonly number[]) =>
+  "#" + rgb.map((value) => Math.round(Math.min(255, Math.max(0, value))).toString(16).padStart(2, "0")).join("");
+/** Les teintes proposées en raccourci dans le salon, à côté de la roue. */
+export const SKIN_TONES = [
+  { label: "Doré", hex: toHex(SKIN_BASE) },
+  ...(Object.entries({ Clair: skin.light, Hâlé: skin.tan, Foncé: skin.deep }) as [string, RGB][])
+    .map(([label, gain]) => ({ label, hex: toHex(SKIN_BASE.map((value, channel) => value * gain[channel])) })),
+] as const;
+/** Couleur HEX du teint, qu'il soit une ancienne teinte nommée ou une couleur libre. */
+export function skinHex(value: AvatarFace["skin"]) {
+  if (value.startsWith("#")) return value.toLowerCase();
+  const gain = value === "original" ? [1, 1, 1] : skin[value as keyof typeof skin];
+  return toHex(SKIN_BASE.map((channel, index) => channel * gain[index]));
+}
+// La peau garde ses ombres et ses reflets : chaque canal est multiplié vers la couleur voulue.
+function skinGainFor(value: AvatarFace["skin"]): RGB | undefined {
+  if (value === "original") return undefined;
+  if (!value.startsWith("#")) return skin[value as keyof typeof skin];
+  const target = [1, 3, 5].map((i) => Number.parseInt(value.slice(i, i + 2), 16));
+  if (target.every((channel, index) => channel === SKIN_BASE[index])) return undefined;
+  return [target[0] / SKIN_BASE[0], target[1] / SKIN_BASE[1], target[2] / SKIN_BASE[2]];
+}
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 const oval = (x: number, y: number, cx: number, cy: number, rx: number, ry: number) =>
   clamp((1 - Math.hypot((x - cx) / rx, (y - cy) / ry)) * 3);
@@ -77,7 +101,7 @@ async function paintFace(src: string, face: AvatarFace) {
     ? [1, 3, 5].map((i) => Number.parseInt(face.eyes.slice(i, i + 2), 16))
     : undefined;
   const preset = eyePresets[face.eyes as keyof typeof eyePresets];
-  const skinGain = face.skin === "original" ? undefined : skin[face.skin];
+  const skinGain = skinGainFor(face.skin);
   for (let y = 0; y < (skinGain ? height : 267); y++) {
     for (let x = 0; x < width; x++) {
       const i = 4 * (y * width + x);
@@ -118,7 +142,7 @@ export function useFaceBody(src: string, face?: Readonly<AvatarFace>) {
   const customized = face && (kawaiiLayers(face).length > 0 || (Object.keys(ORIGINAL_FACE) as (keyof AvatarFace)[])
     .some((key) => face[key] !== ORIGINAL_FACE[key]));
   const key = customized ? JSON.stringify([src, face]) : "";
-  const [loaded, setLoaded] = useState<{ key: string; src: string }>();
+  const [loaded, setLoaded] = useState<{ key: string; base: string; src: string }>();
   useEffect(() => {
     if (!key || !face) return;
     if (!paintedFaces.has(key)) {
@@ -127,9 +151,12 @@ export function useFaceBody(src: string, face?: Readonly<AvatarFace>) {
     }
     let active = true;
     void paintedFaces.get(key)!.then((image) => {
-      if (active) setLoaded({ key, src: image });
+      if (active) setLoaded({ key, base: src, src: image });
     });
     return () => { active = false; };
   }, [key, src, face]);
-  return loaded?.key === key ? loaded.src : src;
+  // Pendant le calcul d'un nouveau visage, on garde le précédent plutôt que de
+  // revenir une fraction de seconde au visage d'origine.
+  if (!key) return src;
+  return loaded?.base === src ? loaded.src : src;
 }

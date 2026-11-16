@@ -58,6 +58,9 @@ l'ancienne session de jeu. Deux comptes différents peuvent se retrouver dans la
   licence CC0).
 - Cadeaux reçus emballés dans l'onglet Cadeaux du livre d'or : un clic ouvre le
   paquet et dévoile le vêtement, son expéditeur et sa date d'envoi.
+- Salon d'esthétique sur une seule page : looks, yeux, sourcils, nez, bouche et
+  teint, avec un miroir en direct. Le teint se choisit sur une roue de couleur
+  (`apps/web/src/ColorWheel.tsx`) ou parmi quatre teintes rapides.
 
 Les conversations restent propres à chaque personnage. Pas de suppression ou
 masquage des messages par l'interface. Le blocage bilatéral est un comportement

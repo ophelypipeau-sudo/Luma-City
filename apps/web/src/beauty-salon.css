@@ -1,65 +1,286 @@
+/* Salon d'esthétique : mêmes panneaux de verre sombre que la boutique, sur le quartier flouté. */
 .beauty-salon {
-  min-height: 100%;
+  --salon-ink: #f7f2ff;
+  --salon-soft: #d6b8e6;
+  --salon-pink: #f4a9d8;
+  --salon-panel: rgba(36, 20, 48, 0.74);
+  --salon-line: rgba(255, 255, 255, 0.14);
+  --salon-card: rgba(255, 255, 255, 0.08);
+  position: relative;
+  isolation: isolate;
   box-sizing: border-box;
-  padding: clamp(.8rem, 2.5vw, 2rem);
-  background: linear-gradient(#805674, #412d48);
-  color: #fff6fa;
-}
-.beauty-salon header { display: flex; gap: .75rem; align-items: center; margin-bottom: 1rem; }
-.beauty-salon h1 { margin: 0; font-size: clamp(1.1rem, 2.5vw, 1.6rem); }
-.beauty-salon button {
-  display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
-  padding: .45rem .65rem; border: 1px solid transparent; border-radius: .55rem;
-  background: #fff8fc; color: #523a52;
-}
-.beauty-salon button:focus-visible { outline: 2px solid #803d6e; outline-offset: 2px; }
-.beauty-workspace {
-  max-width: 68rem; margin: auto; display: grid;
-  grid-template-columns: minmax(11rem, .8fr) minmax(16rem, 1.45fr);
-  gap: clamp(1rem, 3vw, 2rem); align-items: center;
-}
-.beauty-mirror {
-  border-radius: 46% / 36%; border: 3px solid #fff8fc;
-  box-shadow: 0 .45rem 1rem #25172cc2;
-  background: radial-gradient(ellipse at 40% 32%, #f7e6ef, #cfaac6 72%, #ae80a7);
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(230px, 1fr);
+  gap: 16px;
+  padding: 16px;
   overflow: hidden;
+  color: var(--salon-ink);
 }
-.beauty-mirror svg { display: block; width: 100%; height: auto; }
-.beauty-controls {
-  display: grid; gap: 1rem; padding: clamp(.65rem, 2vw, 1.25rem); min-width: 0;
-  border-radius: 1.4rem; background: #dfd4dd; color: #483246;
-  box-shadow: 0 .35rem .65rem #24172845;
+.beauty-salon::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  background: linear-gradient(100deg, #2111284d, #33203326), url("/assets/neighborhood-beauty-salon-v1.png") center / cover;
+  filter: blur(6px) brightness(0.85);
+  pointer-events: none;
 }
-.beauty-categories { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-bottom: 2px solid #a691a1; }
-.beauty-categories button { font-size: clamp(.68rem, 1.6vw, .9rem); padding-inline: .15rem; flex-direction: column; min-width: 0; background: transparent; border-radius: .5rem .5rem 0 0; }
-.beauty-categories button + button { border-left-color: #b8a7b3; }
-.beauty-categories button[aria-pressed="true"] { background: #f8edf5; border-bottom-color: #854c76; color: #70365f; }
-.beauty-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
-.beauty-options button { flex-direction: column; min-width: 0; font-size: .82rem; overflow-wrap: anywhere; }
-.beauty-options button[aria-pressed="true"] { background: #f7e4ef; border-color: #8c527a; }
-.beauty-options svg { display: block; width: 100%; height: 3rem; border-radius: .3rem; background: #ebc9ba; }
-.beauty-navigation, .beauty-actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
-.beauty-navigation button { border-radius: 50%; width: 2.25rem; height: 2.25rem; padding: 0; box-shadow: 0 2px 3px #50364f40; }
-.beauty-actions button:last-child { background: #633e5e; color: white; font-weight: 700; }
-.beauty-actions button:disabled { opacity: .55; }
-@media (max-width: 650px) {
-  .beauty-workspace { grid-template-columns: minmax(0, 1fr); }
-  .beauty-mirror { width: min(52vw, 12rem); margin-inline: auto; }
+.beauty-salon button { font: inherit; cursor: pointer; }
+.beauty-salon button:disabled { cursor: default; opacity: 0.5; }
+.beauty-salon button:focus-visible, .color-wheel-disc:focus-visible { outline: 2px solid #ffe5a0; outline-offset: 2px; }
+
+.salon-panel {
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--salon-line);
+  border-radius: 18px;
+  background: var(--salon-panel);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px #1a0c2466;
 }
-.beauty-eye-picker { display: grid; gap: .65rem; }
-.beauty-eye-preview { display: block; width: min(100%, 14rem); margin-inline: auto; border-radius: .5rem; background: #ebc9ba; }
-.beauty-eye-picker .garment-palette { color: inherit; }
-.beauty-eye-picker .palette-tabs {
-  display: flex; flex-wrap: nowrap; align-items: stretch; gap: .35rem;
+
+/* Colonne de gauche : catégories puis choix, seule la liste défile. */
+.salon-studio { display: flex; flex-direction: column; padding: 14px 16px; }
+.salon-heading { display: flex; align-items: center; gap: 12px; }
+.salon-heading h1 { margin: 0; font: 600 20px/1.2 Outfit, sans-serif; }
+.salon-back {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--salon-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
 }
-.beauty-eye-picker .palette-tabs button {
-  min-width: 0; margin: 0; padding: .4rem clamp(.25rem, 1vw, .65rem);
-  font-size: clamp(.72rem, 1.3vw, .9rem); line-height: 1.2;
+.salon-categories { display: flex; gap: 6px; justify-content: space-between; margin: 14px 0 6px; }
+.salon-categories button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--salon-soft);
 }
-.beauty-eye-picker .palette-tabs .garment-original { width: auto; }
-.beauty-eye-picker .palette-tabs [aria-pressed="true"] { background: #633e5e; color: white; }
-.beauty-eye-picker .color-table { display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); gap: 2px; }
-.beauty-eye-picker .color-table button { padding: 0; width: 100%; height: clamp(.55rem, 1.4vw, 1rem); border-radius: 2px; }
-.beauty-eye-picker .color-table button[aria-pressed="true"] { outline: 2px solid #633e5e; z-index: 1; }
-.beauty-eye-picker .vip-garment-color { margin: 0; min-width: 0; color: inherit; }
-.beauty-eye-back { justify-self: start; }
+.salon-categories button > span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--salon-line);
+  border-radius: 50%;
+  background: var(--salon-card);
+  transition: transform 0.15s, background 0.15s;
+}
+.salon-categories button:hover > span { transform: translateY(-2px); }
+.salon-categories button[aria-pressed="true"] { color: var(--salon-ink); }
+.salon-categories button[aria-pressed="true"] > span {
+  border-color: transparent;
+  background: var(--salon-pink);
+  color: #2a1530;
+  box-shadow: 0 0 0 3px #f4a9d833;
+}
+.salon-categories small { font-size: 11px; font-weight: 600; }
+.salon-hint { margin: 6px 0 10px; color: var(--salon-soft); font-size: 13px; }
+.salon-choices {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 2px 4px 6px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #8d548e transparent;
+}
+
+.salon-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.salon-options[data-category="looks"] svg { height: 104px; }
+.salon-options button {
+  display: grid;
+  gap: 6px;
+  padding: 6px 6px 8px;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  background: var(--salon-card);
+  color: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+.salon-options button:hover { background: rgba(255, 255, 255, 0.13); }
+.salon-options button[aria-pressed="true"] { border-color: var(--salon-pink); background: #f4a9d824; }
+.salon-options svg { display: block; width: 100%; height: 56px; border-radius: 10px; background: #f3dcd6; }
+
+.salon-color { margin-top: 16px; }
+.salon-color h2 { margin: 0 0 8px; font: 600 14px Outfit, sans-serif; }
+.salon-color-wheel { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+
+/* Teint : la roue et des raccourcis côte à côte. */
+.salon-skin { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-top: 4px; }
+.salon-swatches { display: grid; gap: 8px; }
+.salon-swatches button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 130px;
+  padding: 7px 12px 7px 7px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  background: var(--salon-card);
+  color: inherit;
+  font-weight: 600;
+}
+.salon-swatches button[aria-pressed="true"] { border-color: var(--salon-pink); }
+.salon-swatches span { width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 2px #ffffff40; }
+
+/* Roue de couleur. */
+.color-wheel { display: grid; gap: 10px; width: 168px; }
+.color-wheel-disc {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #fff 0%, #ffffff00 70%),
+    conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+  box-shadow: 0 0 0 3px #ffffff26;
+  touch-action: none;
+  cursor: crosshair;
+}
+.color-wheel-disc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #000;
+  opacity: calc(1 - var(--wheel-value, 1));
+  pointer-events: none;
+}
+.color-wheel-knob {
+  position: absolute;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  translate: -50% -50%;
+  box-shadow: 0 2px 6px #00000066;
+  pointer-events: none;
+}
+.color-wheel-light { display: grid; gap: 4px; color: var(--salon-soft); font-size: 12px; font-weight: 600; }
+.color-wheel-light input {
+  width: 100%;
+  height: 12px;
+  margin: 0;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #000, var(--wheel-hue, #fff));
+  appearance: none;
+  cursor: pointer;
+}
+.color-wheel-light input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 1px 4px #0006;
+  appearance: none;
+}
+.color-wheel-light input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+}
+
+/* Couleur des iris : le nuancier existant, habillé pour le salon. */
+.salon-color .garment-palette { color: inherit; }
+.salon-color .palette-help { display: none; }
+.salon-color .palette-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.salon-color .palette-tabs button {
+  flex: none;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid var(--salon-line);
+  border-radius: 999px;
+  background: var(--salon-card);
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+.salon-color .palette-tabs [aria-pressed="true"] { border-color: transparent; background: var(--salon-pink); color: #2a1530; }
+.salon-color .color-table { display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); gap: 2px; }
+.salon-color .color-table button { width: 100%; height: 14px; padding: 0; border: 0; border-radius: 3px; }
+.salon-color .color-table button[aria-pressed="true"] { outline: 2px solid #fff; z-index: 1; }
+.salon-color .vip-garment-color { margin: 0; padding: 10px; border: 1px solid var(--salon-line); border-radius: 12px; color: inherit; }
+
+/* Colonne de droite : le miroir et les boutons. */
+.salon-mirror-panel { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px; }
+.salon-mirror {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 260px;
+  display: grid;
+  place-items: center;
+}
+.salon-mirror svg {
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: 184 / 211;
+  border: 4px solid #fff1fa;
+  border-radius: 46% / 38%;
+  background: radial-gradient(ellipse at 40% 30%, #f7e6ef, #cfaac6 72%, #ae80a7);
+  box-shadow: 0 8px 24px #1a0c2480, inset 0 0 0 2px #f4a9d866;
+}
+.salon-status { margin: 0; min-height: 18px; color: var(--salon-soft); font-size: 13px; font-weight: 600; }
+.salon-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; width: 100%; }
+.salon-primary, .salon-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+.salon-primary { border: 0; background: var(--salon-pink); color: #2a1530; }
+.salon-secondary { border: 1.5px solid #f7f2ff47; background: rgba(27, 19, 40, 0.42); color: inherit; }
+.salon-leaving { display: grid; gap: 8px; width: 100%; text-align: center; }
+.salon-leaving p { margin: 0 0 2px; font-weight: 600; }
+.salon-link { border: 0; background: none; color: var(--salon-soft); text-decoration: underline; }
+.salon-closed { display: flex; align-items: center; gap: 14px; padding: 16px; grid-column: 1 / -1; align-self: start; }
+.salon-closed p { margin: 0; }
+
+/* Petits écrans : le miroir passe au-dessus et toute la page défile. */
+@media (max-width: 760px) {
+  .beauty-salon {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: max-content;
+    align-content: start;
+    gap: 12px;
+    padding: 10px;
+    overflow: hidden auto;
+  }
+  .salon-panel { min-height: auto; }
+  .salon-mirror-panel { order: -1; }
+  .salon-mirror { flex: none; max-width: 170px; }
+  .salon-choices { overflow: visible; }
+  .salon-categories { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .salon-categories button > span { width: 40px; height: 40px; }
+  .salon-options { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+  .salon-actions { grid-template-columns: minmax(0, 1fr); }
+  .salon-actions .salon-primary { order: -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .salon-categories button > span { transition: none; }
+}

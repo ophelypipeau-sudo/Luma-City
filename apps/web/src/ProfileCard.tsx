@@ -12,6 +12,7 @@ import {
   Quote,
   Shirt,
   Star,
+  UserMinus,
   UserPlus,
   UserRound,
   X,
@@ -42,6 +43,7 @@ export type ProfileAction =
   | { type: "guestbook"; body: string }
   | { type: "relation"; kind: ProfileRelation; accept: boolean }
   | { type: "decline-friend" }
+  | { type: "remove-friend" }
   | { type: "decline-relation"; kind: ProfileRelation }
   | { type: "gift"; item: GiftItem; id: string };
 
@@ -167,6 +169,7 @@ export function ProfileCard({
   const giftCommand = useRef<string | undefined>(undefined);
   const layers = own ? viewerLayers : undefined;
   const [now, setNow] = useState(() => Date.now());
+  const [confirmUnfriend, setConfirmUnfriend] = useState(false);
 
   // Photo duo and liked looks come back after an hour: keep the countdown fresh.
   useEffect(() => {
@@ -226,6 +229,10 @@ export function ProfileCard({
       else if (updated.xpSent) setNotice(`${updated.xpSent} XP dans le magazine de ${character.name}.`);
       if (action.type === "relation" && action.accept) setNotice(`${relations[action.kind].accepted} avec ${character.name} !`);
       if (action.type === "decline-relation") setNotice("Demande refusée.");
+      if (action.type === "remove-friend") {
+        setConfirmUnfriend(false);
+        setNotice(`${character.name} ne fait plus partie de tes amis.`);
+      }
       if (action.type === "gift") {
         navigate("card");
         setNotice("Cadeau envoyé.");
@@ -412,6 +419,21 @@ export function ProfileCard({
                   })}
                 </ul>
               )}
+              {social?.relations.friend === "accepted" && !own && (confirmUnfriend ? (
+                <div className="profile-request" role="group" aria-label="Supprimer cet ami">
+                  <p><UserMinus size={14} aria-hidden="true" /> Supprimer {character.name} de tes amis ?</p>
+                  <div>
+                    <button type="button" className="is-accept" disabled={interactionDisabled}
+                      onClick={() => changeSocial({ type: "remove-friend" })}>Supprimer</button>
+                    <button type="button" disabled={busy} onClick={() => setConfirmUnfriend(false)}>Annuler</button>
+                  </div>
+                </div>
+              ) : (
+                <button type="button" className="profile-unfriend" disabled={interactionDisabled}
+                  onClick={() => setConfirmUnfriend(true)}>
+                  <UserMinus size={14} aria-hidden="true" /> Supprimer des amis
+                </button>
+              ))}
               {incoming.map((kind) => {
                 const { Icon } = relations[kind];
                 return (

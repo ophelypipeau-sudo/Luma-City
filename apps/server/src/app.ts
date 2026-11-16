@@ -40,7 +40,6 @@ import {
   type XpMagazine,
   type RewardWheel,
   type ScratchTicket,
-  DEFAULT_ROOM,
   roomFloor,
   ROOM_IDS,
   type Presence,
@@ -125,7 +124,10 @@ export async function createApp(
   await app.register(websocket, { options: { maxPayload: 2048 } });
   const logins = new Map<string, Login>();
   const clients = new Map<WebSocket, Client>();
-  const presence = new Map<string, Presence & { roomId: RoomId }>();
+  // roomId vaut null quand le joueur est en ligne sans être dans une salle (carte, boutique…).
+  const presence = new Map<string, Presence & { roomId: RoomId | null }>();
+  const occupiedRooms = () =>
+    [...presence.values()].flatMap((p) => p.roomId ? [p.roomId] : []);
   const chatHistory = new Map<RoomId, RoomMessage[]>();
   const lastSend = new Map<string, number>();
   // Commands of one account run in order; different accounts no longer wait for each other.
@@ -152,7 +154,7 @@ export async function createApp(
   const room = () => {
     const players = [...presence.values()];
     const ids = [
-      ...new Set<RoomId>([...ROOM_IDS, ...players.map((p) => p.roomId)]),
+      ...new Set<RoomId>([...ROOM_IDS, ...occupiedRooms()]),
     ];
     const byRoom = Object.fromEntries(
       ids.map((id) => [id, players.filter((p) => p.roomId === id)]),
@@ -164,7 +166,7 @@ export async function createApp(
         send(ws, {
           type: "room",
           roomId: player.roomId,
-          players: byRoom[player.roomId],
+          players: player.roomId ? byRoom[player.roomId] : [player],
           counts,
           onlineIds: [...presence.keys()],
         });
@@ -184,8 +186,8 @@ export async function createApp(
     }
     for (const [ws, client] of clients) {
       if (recipient && ws !== recipient) continue;
-      const player = client.character && presence.get(client.character);
-      if (!player || !roomIds.includes(player.roomId)) continue;
+      const player = client.character ? presence.get(client.character) : undefined;
+      if (!player?.roomId || !roomIds.includes(player.roomId)) continue;
       const messages = (chatHistory.get(player.roomId) ?? []).filter(
         (message) => !blocked.has(JSON.stringify([player.id, message.sender])),
       );
@@ -434,7 +436,12 @@ export async function createApp(
       garmentTransfers: character
         ? (
             await db.query(
-              "SELECT id, sender, recipient, item FROM profile_garment_transfers WHERE sender=$1 OR recipient=$1",
+              `SELECT t.id, t.sender, t.recipient, t.item, c.name AS "senderName",
+                 (EXTRACT(EPOCH FROM t.created_at) * 1000)::float8 AS "sentAt",
+                 t.opened_at IS NOT NULL AS opened
+               FROM profile_garment_transfers t JOIN characters c ON c.id = t.sender
+               WHERE t.sender=$1 OR t.recipient=$1
+               ORDER BY t.created_at DESC NULLS LAST`,
               [character.id],
             )
           ).rows
@@ -696,6 +703,7 @@ export async function createApp(
             z.object({ type: z.literal("like") }),
             z.object({ type: z.literal("photo") }),
             z.object({ type: z.literal("decline-friend") }),
+            z.object({ type: z.literal("remove-friend") }),
             z.object({ type: z.literal("decline-relation"), kind: z.enum(PROFILE_RELATIONS) }),
             z.object({ type: z.literal("look-like"), lookKey: z.string().regex(/^[a-f0-9]{32}$/) }),
             z.object({
@@ -773,6 +781,12 @@ export async function createApp(
           await q(
             "INSERT INTO profile_guestbook (actor,target,body) VALUES ($1,$2,$3)",
             [me, peer, action.body],
+          );
+        } else if (action.type === "remove-friend") {
+          await q(
+            `DELETE FROM profile_relations
+             WHERE first_id=LEAST($1,$2) AND second_id=GREATEST($1,$2) AND kind='friend'`,
+            [me, peer],
           );
         } else if (action.type === "decline-friend" || action.type === "decline-relation") {
           await q(
@@ -1014,7 +1028,10 @@ export async function createApp(
           await q("UPDATE characters SET xp=xp+$1 WHERE id=$2", [ticket.amount, player]);
       }
       const { rows: [character] } = await q("SELECT xp FROM characters WHERE id=$1", [player]);
-      return { xp: Number(character.xp), wheel: await rewardWheel(q, player) };
+      return {
+        xp: Number(character.xp), wheel: await rewardWheel(q, player),
+        wardrobe: (await wardrobeReply(q, { id: player })).wardrobe,
+      };
     }));
     changed();
     return result;
@@ -1069,7 +1086,11 @@ export async function createApp(
         const gained = drops.reduce((total, drop) => total + (drop.currency === "xp" ? Number(drop.amount) : 0), 0);
         if (gained) await q("UPDATE characters SET xp=xp+$2 WHERE id=$1", [player, gained]);
         const { rows: [character] } = await q("SELECT xp FROM characters WHERE id=$1", [player]);
-        return { player, gained, xp: Number(character.xp), wheel: await rewardWheel(q, player) };
+        return {
+          player, gained, xp: Number(character.xp), wheel: await rewardWheel(q, player),
+          // Les pièces et diamants ramassés changent le porte-monnaie affiché.
+          wardrobe: (await wardrobeReply(q, { id: player })).wardrobe,
+        };
       });
       if (result.gained) {
         const present = presence.get(result.player);
@@ -1077,7 +1098,7 @@ export async function createApp(
         room();
         changed();
       }
-      return { xp: result.xp, wheel: result.wheel };
+      return { xp: result.xp, wheel: result.wheel, wardrobe: result.wardrobe };
     }),
   );
   app.post("/api/profile/xp-test", async (req) =>
@@ -1388,6 +1409,21 @@ export async function createApp(
       return { ok: true };
     }),
   );
+  // Le destinataire déballe un cadeau reçu : il apparaît ensuite dans « Vêtements reçus ».
+  app.post("/api/gift/open", async (req) =>
+    serialRequest(req, async () => {
+      const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid() }).parse(req.body);
+      await db.transaction(async (q) => {
+        const me = await active(req.cookies.session!, generation, q);
+        const { rows } = await q(
+          "UPDATE profile_garment_transfers SET opened_at = COALESCE(opened_at, NOW()) WHERE id=$1 AND recipient=$2 RETURNING id",
+          [id, me],
+        );
+        if (!rows.length) throw new PlayerError("Ce cadeau n’est pas pour toi.");
+      });
+      return { ok: true };
+    }),
+  );
   app.post("/api/block", async (req) =>
     serialRequest(req, async () => {
       const b = z
@@ -1413,10 +1449,7 @@ export async function createApp(
           ]);
       });
       await publishChat([
-        ...new Set([
-          ...ROOM_IDS,
-          ...[...presence.values()].map((p) => p.roomId),
-        ]),
+        ...new Set([...ROOM_IDS, ...occupiedRooms()]),
       ]);
       changed();
       return { ok: true };
@@ -1486,8 +1519,15 @@ export async function createApp(
           const p = presence.get(id);
           if (id !== client.character || !p)
             throw new Error("Rejoins la salle avant de te déplacer.");
+          if (cmd.type === "leave-room") {
+            if (p.roomId) {
+              p.roomId = null;
+              room();
+            }
+            return;
+          }
           if (cmd.type === "room-chat") {
-            if (cmd.roomId !== p.roomId)
+            if (!p.roomId || cmd.roomId !== p.roomId)
               throw new Error("Tu as changé de salle.");
             if (Date.now() - client.lastChat < 600)
               throw new Error(
@@ -1541,10 +1581,10 @@ export async function createApp(
               p.y = roomFloor(cmd.roomId) + 4 + Math.random() * 5;
             }
             room();
-            await publishChat([p.roomId], ws);
+            await publishChat([cmd.roomId], ws);
             return;
           }
-          if (Date.now() - client.moved < 45) return;
+          if (!p.roomId || Date.now() - client.moved < 45) return;
           client.moved = Date.now();
           p.x = cmd.x;
           p.y = Math.max(roomFloor(p.roomId), cmd.y);
@@ -1585,22 +1625,12 @@ export async function createApp(
             detach(old);
             old.close(4001, "Connexion remplacée");
           }
-        const initialRoom = [...presence.values()].filter(
-          (p) => p.roomId === DEFAULT_ROOM,
-        );
-        if (initialRoom.length >= ROOM_CAPACITY)
-          throw new Error("La salle est complète (15 personnes).");
         client.character = s.character.id;
         client.generation = s.generation;
-        presence.set(s.character.id, {
-          ...s.character,
-          roomId: DEFAULT_ROOM,
-          x: 40 + Math.random() * 20,
-          y: roomFloor(DEFAULT_ROOM) + 4 + Math.random() * 5,
-        });
+        // En ligne, mais dans aucune salle tant que le joueur n'en rejoint pas une.
+        presence.set(s.character.id, { ...s.character, roomId: null, x: 50, y: 70 });
         send(ws, { type: "welcome", ...s });
         room();
-        await publishChat([DEFAULT_ROOM], ws);
       } catch (e) {
         send(ws, {
           type: "error",

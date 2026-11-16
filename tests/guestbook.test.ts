@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Guestbook, noteDate, notesPerPage } from "../apps/web/src/Guestbook";
+import { GiftShelf, Guestbook, noteDate, notesPerPage } from "../apps/web/src/Guestbook";
 import type { Character, ProfileSocial } from "../packages/contracts/src/index";
 
 const june = { id: "june", account_id: "sacha", name: "June", color: "#db9574", hair: "", slot: 1, xp: 0 } as Character;
@@ -13,6 +13,7 @@ const book = (props: Partial<React.ComponentProps<typeof Guestbook>>) => renderT
     load: () => new Promise<ProfileSocial>(() => {}),
     post: async () => ({}) as ProfileSocial,
     onWearGift: () => {},
+    onOpenGift: async () => {},
     onBack: () => {},
     ...props,
   }),
@@ -46,4 +47,20 @@ test("a visitor writes on the right page; the owner also sees received gifts", (
   assert.doesNotMatch(owner, /Écrire un petit mot/);
   assert.match(owner, /Les mots laissés par les autres joueurs/);
   assert.match(owner, /Cadeaux/);
+});
+
+test("a received gift stays wrapped until it is opened, then shows its sender and date", () => {
+  const item = { key: "k", pieceId: "fashion.y2k-mcbling", purchasedAt: 1 };
+  const gift = { id: "g", sender: "iris", recipient: "june", item, senderName: "Iris", sentAt: Date.parse("2026-11-16T12:00:00Z") };
+  const gifts = (opened: boolean) => renderToStaticMarkup(React.createElement(GiftShelf, {
+    gifts: [{ ...gift, opened }], unwrapping: null, live: true, onUnwrap: () => {}, onWear: () => {},
+  }));
+  const wrapped = gifts(false);
+  assert.match(wrapped, /Ouvrir le cadeau de Iris/);
+  assert.match(wrapped, /cadeau-ferme\.png/);
+  assert.doesNotMatch(wrapped, /Porter/);
+  const opened = gifts(true);
+  assert.doesNotMatch(opened, /Ouvrir le cadeau/);
+  assert.match(opened, /De Iris · 16 novembre 2026/);
+  assert.match(opened, /Porter/);
 });

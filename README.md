@@ -56,6 +56,8 @@ l'ancienne session de jeu. Deux comptes différents peuvent se retrouver dans la
   ticket) et de mini-jeux, avec un bouton pour couper le son. Code dans
   `apps/web/src/sounds.ts`, fichiers dans `public/sounds` (Kenney.nl et OpenGameArt,
   licence CC0).
+- Cadeaux reçus emballés dans l'onglet Cadeaux du livre d'or : un clic ouvre le
+  paquet et dévoile le vêtement, son expéditeur et sa date d'envoi.
 
 Les conversations restent propres à chaque personnage. Pas de suppression ou
 masquage des messages par l'interface. Le blocage bilatéral est un comportement

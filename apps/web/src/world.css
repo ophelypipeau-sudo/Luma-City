@@ -1015,9 +1015,6 @@ h1 > span {
   .bottom-note {
     gap: 15px;
   }
-  .prototype-note {
-    font-size: 10px;
-  }
 }
 @media (max-width: 375px) {
   .rail {

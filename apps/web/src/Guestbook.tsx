@@ -13,9 +13,80 @@ import { Portrait } from "./Avatar";
 import { avatarCatalogSnapshot } from "./avatar/catalog";
 import { AvatarItemThumbnail } from "./avatar/LayeredDoll";
 import { HeartsSticker, KissSticker, StarSticker } from "./guestbook/stickers";
+import { playSound } from "./sounds";
 
 type Tab = "notes" | "gifts";
+/** Temps de l'animation du paquet avant d'afficher ce qu'il contient. */
+const UNWRAP_TIME = 900;
+
+/** « 16 novembre 2026 » */
+function giftDate(sentAt: number | null) {
+  return sentAt ? new Date(sentAt).toLocaleDateString("fr", { day: "numeric", month: "long", year: "numeric" }) : "";
+}
+const giftPiece = (gift: GarmentTransfer) =>
+  avatarCatalogSnapshot().find((entry) => entry.id === gift.item.pieceId);
 type Turn = { dir: "next" | "prev"; tab: Tab; page: number };
+
+/**
+ * Onglet « Cadeaux » : les paquets encore emballés en haut, puis les vêtements reçus
+ * avec leur expéditeur et leur date. Le paquet qu'on ouvre reste affiché jusqu'à la
+ * fin de son animation.
+ */
+export function GiftShelf({ gifts, unwrapping, live, onUnwrap, onWear }: {
+  gifts: readonly GarmentTransfer[];
+  unwrapping: string | null;
+  live: boolean;
+  onUnwrap: (gift: GarmentTransfer) => void;
+  onWear: (item: GarmentTransfer["item"]) => void;
+}) {
+  const wrapped = gifts.filter((gift) => !gift.opened || gift.id === unwrapping);
+  const received = gifts.filter((gift) => gift.opened && gift.id !== unwrapping);
+  return (
+    <div className="lbook-gifts">
+      {wrapped.length > 0 && (
+        <>
+          <h3><Gift size={18} aria-hidden="true" /> À ouvrir</h3>
+          <ul className="lbook-wrapped">
+            {wrapped.map((gift) => (
+              <li key={gift.id}>
+                <button type="button" tabIndex={live ? 0 : -1} disabled={!!unwrapping}
+                  className={live && unwrapping === gift.id ? "is-unwrapping" : undefined}
+                  aria-label={`Ouvrir le cadeau de ${gift.senderName}`}
+                  onClick={() => onUnwrap(gift)}>
+                  <img src="/assets/gifts/cadeau-ferme.png" alt="" />
+                  <small>De {gift.senderName}</small>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      <h3><Gift size={18} aria-hidden="true" /> Vêtements reçus</h3>
+      {!received.length ? (
+        <p className="lbook-empty">{wrapped.length ? "Ouvre tes cadeaux pour les voir ici." : "Aucun cadeau pour le moment."}</p>
+      ) : (
+        <ul>
+          {received.map((gift) => {
+            const piece = giftPiece(gift);
+            const date = giftDate(gift.sentAt);
+            return (
+              <li key={gift.id}>
+                {piece && <AvatarItemThumbnail piece={piece} color={gift.item.color} detailColor={gift.item.detailColor} />}
+                <span>
+                  <strong>{piece?.name ?? gift.item.pieceId}</strong>
+                  <small>De {gift.senderName}{date && ` · ${date}`}</small>
+                </span>
+                {piece && (
+                  <button type="button" tabIndex={live ? 0 : -1} onClick={() => onWear(gift.item)}>Porter</button>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 /** « il y a 5 min », « hier », « 12 nov. » */
 export function noteDate(iso: string | null | undefined, now = Date.now()) {
@@ -50,6 +121,7 @@ export function Guestbook({
   remove,
   gifts,
   onWearGift,
+  onOpenGift,
   onOpenProfile,
   onBack,
 }: {
@@ -63,6 +135,7 @@ export function Guestbook({
   remove?: (noteId: number) => Promise<ProfileSocial>;
   gifts?: readonly GarmentTransfer[];
   onWearGift: (item: GarmentTransfer["item"]) => void;
+  onOpenGift: (id: string) => Promise<void>;
   onOpenProfile?: (person: Character) => void;
   onBack: () => void;
 }) {
@@ -77,6 +150,10 @@ export function Guestbook({
   const [now, setNow] = useState(() => Date.now());
   const [opened, setOpened] = useState<number | null>(null);
   const [clamped, setClamped] = useState<readonly number[]>([]);
+  // Le paquet en train de s'ouvrir, puis le cadeau dévoilé dans la fenêtre.
+  const [unwrapping, setUnwrapping] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState<GarmentTransfer | null>(null);
+  const reveal = useRef<HTMLDialogElement>(null);
   const list = useRef<HTMLDivElement>(null);
   const own = viewerId === character.id;
 
@@ -121,6 +198,7 @@ export function Guestbook({
   });
 
   const notes = details?.guestbook ?? [];
+  const toOpen = gifts?.filter((gift) => !gift.opened).length ?? 0;
   const pages = tab === "notes" ? Math.max(1, Math.ceil(notes.length / perPage)) : 1;
   const current = Math.min(page, pages - 1);
   const reduceMotion = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -146,6 +224,28 @@ export function Guestbook({
       setError(cause instanceof Error ? cause.message : "Ton mot n’a pas été publié.");
     } finally {
       setBusy(false);
+    }
+  }
+
+  useEffect(() => {
+    if (revealed && !reveal.current?.open) reveal.current?.showModal();
+  }, [revealed]);
+
+  async function unwrap(gift: GarmentTransfer) {
+    if (unwrapping) return;
+    setUnwrapping(gift.id);
+    setError("");
+    try {
+      await Promise.all([
+        onOpenGift(gift.id),
+        new Promise((resolve) => setTimeout(resolve, reduceMotion ? 0 : UNWRAP_TIME)),
+      ]);
+      playSound("cadeau");
+      setRevealed(gift);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Ce cadeau n’a pas pu être ouvert.");
+    } finally {
+      setUnwrapping(null);
     }
   }
 
@@ -246,26 +346,8 @@ export function Guestbook({
           </div>
         </>
       ) : (
-        <div className="lbook-gifts">
-          <h3><Gift size={18} aria-hidden="true" /> Vêtements reçus</h3>
-          {!gifts?.length ? <p className="lbook-empty">Aucun cadeau pour le moment.</p> : (
-            <ul>
-              {gifts.map(({ id, sender, item }) => {
-                const piece = avatarCatalogSnapshot().find((entry) => entry.id === item.pieceId);
-                const from = notes.find((note) => note.authorId === sender)?.author;
-                return (
-                  <li key={id}>
-                    {piece && <AvatarItemThumbnail piece={piece} color={item.color} detailColor={item.detailColor} />}
-                    <span><strong>{piece?.name ?? item.pieceId}</strong>{from && <small>De {from}</small>}</span>
-                    {piece && (
-                      <button type="button" tabIndex={live ? 0 : -1} onClick={() => onWearGift(item)}>Porter</button>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
+        <GiftShelf gifts={gifts ?? []} unwrapping={unwrapping} live={live}
+          onUnwrap={(gift) => void unwrap(gift)} onWear={onWearGift} />
       )}
       <footer className="lbook-folio">
         {shownTab === "notes" && pages > 1 ? (
@@ -284,7 +366,7 @@ export function Guestbook({
 
   return (
     <section className="lbook" aria-label={`Livre d’or de ${character.name}`} onKeyDown={(event) => {
-      if (event.key === "Escape") onBack();
+      if (event.key === "Escape" && !revealed) onBack();
       if (event.target instanceof HTMLInputElement || tab !== "notes") return;
       if (event.key === "ArrowRight" && current < pages - 1) go("notes", current + 1);
       if (event.key === "ArrowLeft" && current > 0) go("notes", current - 1);
@@ -350,7 +432,7 @@ export function Guestbook({
           {own && (
             <button type="button" aria-pressed={tab === "gifts"} onClick={() => go("gifts", 0)} title="Cadeaux reçus">
               <Gift size={20} aria-hidden="true" /><span>Cadeaux</span>
-              {!!gifts?.length && <b>{gifts.length}</b>}
+              {toOpen > 0 && <b aria-label={`${toOpen} à ouvrir`}>{toOpen}</b>}
             </button>
           )}
           {onOpenProfile && (
@@ -363,6 +445,26 @@ export function Guestbook({
       </div>
 
       {error && <p className="lbook-error" role="alert">{error}</p>}
+
+      {revealed && (() => {
+        const piece = giftPiece(revealed);
+        const date = giftDate(revealed.sentAt);
+        return (
+          <dialog ref={reveal} className="lbook-reveal" aria-labelledby="lbook-reveal-title"
+            onClose={() => setRevealed(null)}>
+            <span className="lbook-reveal-burst" aria-hidden="true" />
+            {piece && <AvatarItemThumbnail piece={piece} color={revealed.item.color} detailColor={revealed.item.detailColor} />}
+            <h2 id="lbook-reveal-title">Tu as reçu {piece?.name ?? "un vêtement"}{" "}!</h2>
+            <p>De la part de <strong>{revealed.senderName}</strong>{date && `, le ${date}`}</p>
+            <div>
+              {piece && (
+                <button type="button" onClick={() => { onWearGift(revealed.item); reveal.current?.close(); }}>Porter</button>
+              )}
+              <button type="button" className="lbook-reveal-close" onClick={() => reveal.current?.close()}>Fermer</button>
+            </div>
+          </dialog>
+        );
+      })()}
     </section>
   );
 }

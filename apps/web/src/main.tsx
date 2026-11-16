@@ -9,13 +9,13 @@ import {
   Flag,
   Flower2,
   Gamepad2,
-  Info,
   LogOut,
   MessageCircle,
   MousePointer2,
   Map,
   Pencil,
   Send,
+  Settings,
   Shield,
   Shirt,
   ShoppingBag,
@@ -23,11 +23,10 @@ import {
   Star,
   Trophy,
   Users,
-  Volume2,
-  VolumeX,
   X,
 } from "lucide-react";
-import { playSound, setSoundMuted, useSoundMuted } from "./sounds";
+import { playSound } from "./sounds";
+import { SettingsDialog } from "./SettingsDialog";
 import { Room } from "./Room";
 import { WalletCounter } from "./WalletCounter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
@@ -36,7 +35,6 @@ import { Portrait } from "./Avatar";
 import { NeighborhoodMap } from "./NeighborhoodMap";
 import { BeautySalon } from "./BeautySalon";
 import { roomScene } from "./chat-rooms";
-import { BackgroundPicker } from "./BackgroundPicker";
 import { ProfileCard, type ProfileAction } from "./ProfileCard";
 import { Guestbook } from "./Guestbook";
 import { FriendsPanel } from "./FriendsPanel";
@@ -57,7 +55,6 @@ import {archivedPieces,subscribeArchive,withoutArchivedPieces} from './avatar/ar
 import {
   DEFAULT_ROOM,
   homeRoom,
-  homeOwner,
   levelProgress,
   type ProfileTemplate,
   type GarmentTransfer,
@@ -143,7 +140,8 @@ function App() {
     return api("neon-session", setup, data.session.token);
   }
   const [presence, setPresence] = useState<{
-    roomId: RoomId;
+    /** null : en ligne, mais dans aucune salle. */
+    roomId: RoomId | null;
     players: Presence[];
     counts: Partial<Record<RoomId, number>>;
     onlineIds: string[];
@@ -169,7 +167,8 @@ function App() {
   const [editingMotto, setEditingMotto] = useState(false);
   const [profileRevision, setProfileRevision] = useState(0);
   const [guestbookId, setGuestbookId] = useState<string | null>(null);
-  const [panel, setPanel] = useState<"chat" | "people" | "help">("people");
+  const [panel, setPanel] = useState<"chat" | "people">("people");
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [report, setReport] = useState(false),
     [reason, setReason] = useState("");
   const [theme, setTheme] = useState(
@@ -327,7 +326,6 @@ function App() {
   // Friend, best friend and couple requests all wait in Amis → Demandes.
   const requestCount = state?.contacts.filter((contact) => !contact.blocked)
     .reduce((count, contact) => count + (contact.relationRequests?.length ?? (contact.friendRequest ? 1 : 0)), 0) ?? 0;
-  const soundMuted = useSoundMuted();
   // Sons des notifications : le serveur signale seulement « quelque chose a changé »,
   // donc on compare le nouvel état au précédent pour savoir quoi jouer.
   const heard = useRef<{
@@ -412,9 +410,9 @@ function App() {
   async function claimScratchTicket(id: string) {
     if (!state?.character) throw new Error("Connecte-toi pour réclamer ton prix.");
     const generation = state.generation;
-    const { xp, wheel } = await api("arcade/scratch/claim", { generation, id });
+    const { xp, wheel, wardrobe } = await api("arcade/scratch/claim", { generation, id });
     setState((current) => current?.generation === generation && current.character
-      ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel }
+      ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel, wardrobe }
       : current);
   }
   async function finishArcade(id: string, moves: number[]) {
@@ -445,9 +443,9 @@ function App() {
           ? { ...current, character: { ...current.character, xp }, xpMagazine: magazine, rewardWheel: wheel } : current);
         return;
       }
-      const { xp, wheel } = await api("wheel/collect", { generation, id: reward.id, ids: reward.ids });
+      const { xp, wheel, wardrobe } = await api("wheel/collect", { generation, id: reward.id, ids: reward.ids });
       setState((current) => current?.generation === generation && current.character
-        ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel } : current);
+        ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel, wardrobe } : current);
     }).finally(() => {
       if ("points" in reward) pendingXpClaims.current--;
     });
@@ -768,8 +766,27 @@ function App() {
       }));
     }
   }
+  // Quitter l'écran d'une salle (carte, boutique, jeux…) fait vraiment sortir de la salle :
+  // les autres joueurs ne voient plus le personnage.
+  const inRoom = view === "garden";
+  useEffect(() => {
+    if (inRoom) return;
+    requestedRoom.current = null;
+    if (socket.current?.readyState === WebSocket.OPEN)
+      socket.current.send(JSON.stringify({ type: "leave-room", generation: state?.generation }));
+  }, [inRoom]);
+  function logout() {
+    void action(async () => {
+      await api("logout", {});
+      setState(null);
+      setPeer(null);
+      if (auth) {
+        const { error } = await auth.signOut();
+        if (error) throw new Error("La déconnexion Neon a échoué. Réessaie.");
+      }
+    });
+  }
   function openMap() {
-    if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
     setGuestbookId(null);
     setView("explore");
     setSocialOpen(false);
@@ -788,8 +805,9 @@ function App() {
   const onlineContacts =
     state?.contacts.filter((c) => presence?.onlineIds.includes(c.id)) ?? [];
   const roomPeople = status === "online" && presence?.roomId === roomId ? players : [];
-  const onlinePeople = status === "online" && presence
-    ? [...players, ...onlineContacts.filter((person) => !players.some((player) => player.id === person.id))]
+  // Hors des salles, la barre du bas ne montre que les amis connectés.
+  const onlineFriends = status === "online"
+    ? onlineContacts.filter((contact) => contact.friend && !contact.blocked)
     : [];
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
@@ -885,60 +903,17 @@ function App() {
           </div>
         </div>
         {state?.character && <div className="rail-actions">
-          <button type="button" className="rail-primary" onClick={() => setProfileId(state.character!.id)}>Mon profil</button>
-          <button type="button" aria-pressed={view === "dressing"} onClick={openDressing}>Ma tenue</button>
+          <button type="button" className="rail-primary" onClick={() => setSettingsOpen(true)}>Paramètres</button>
+          <button type="button" onClick={logout}>Déconnexion</button>
         </div>}
+        {/* Petits écrans : les deux boutons au-dessus sont cachés, ces icônes les remplacent. */}
         <div className="rail-bottom">
-          <BackgroundPicker theme={theme} custom={vipBackground} vip={canCustomizeBackground}
-            onTheme={(next) => {
-              setTheme(next);
-              if (canCustomizeBackground) {
-                setVipBackground("");
-                localStorage.removeItem("vip-background");
-              }
-            }} onCustom={(hex) => {
-              setVipBackground(hex);
-              localStorage.setItem("vip-background", hex);
-            }} />
-          <button
-            className="rail-button"
-            title={soundMuted ? "Activer le son" : "Couper le son"}
-            aria-label={soundMuted ? "Activer le son" : "Couper le son"}
-            aria-pressed={soundMuted}
-            onClick={() => setSoundMuted(!soundMuted)}
-          >
-            {soundMuted ? <VolumeX /> : <Volume2 />}
-            <span>{soundMuted ? "Son coupé" : "Son"}</span>
-          </button>
-          <button
-            className="rail-button"
-            title="Aide"
-            aria-label="Aide"
-            onClick={() => {
-              setPanel("help");
-              setSocialOpen(true);
-            }}
-          >
-            <Info />
-            <span>Aide</span>
+          <button className="rail-button" title="Paramètres" aria-label="Paramètres" onClick={() => setSettingsOpen(true)}>
+            <Settings size={18} />
+            <span>Paramètres</span>
           </button>
           {state && (
-            <button
-              className="rail-button"
-              title="Déconnexion"
-              aria-label="Déconnexion"
-              onClick={() =>
-                void action(async () => {
-                  await api("logout", {});
-                  setState(null);
-                  setPeer(null);
-                  if (auth) {
-                    const { error } = await auth.signOut();
-                    if (error) throw new Error("La déconnexion Neon a échoué. Réessaie.");
-                  }
-                })
-              }
-            >
+            <button className="rail-button" title="Déconnexion" aria-label="Déconnexion" onClick={logout}>
               <LogOut size={18} />
               <span>Déconnexion</span>
             </button>
@@ -1258,6 +1233,10 @@ function App() {
                     ? state?.garmentTransfers?.filter((gift) => gift.recipient === guestbook.id)
                     : undefined}
                   onWearGift={wearGift}
+                  onOpenGift={async (id) => {
+                    await api("gift/open", { generation: state?.generation, id });
+                    await refresh();
+                  }}
                   onBack={() => setGuestbookId(null)} />
               ) : view === "dressing" && state?.character ? (
                 <div className="dressing-view">
@@ -1366,7 +1345,6 @@ function App() {
                         aria-label="Retour au quartier"
                         title="Retour au quartier"
                         onClick={() => {
-                          if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
                           setView("explore");
                           setSocialOpen(false);
                         }}
@@ -1526,53 +1504,21 @@ function App() {
                   )}
                 </div>
               )}
-              {panel === "help" && (
-                <div className="people-panel">
-                  <div className="panel-heading">Bienvenue dans P0</div>
-                  <p className="panel-copy">
-                    Clique sur le sol pour déplacer ton avatar, ou utilise les
-                    flèches quand le jardin a le focus. Clique sur un joueur
-                    pour lui écrire.
-                  </p>
-                  <div className="help-item">
-                    <MessageCircle size={20} />
-                    <div>
-                      <strong>Les mots restent</strong>
-                      <p>
-                        Les messages attendent les joueurs hors ligne. Ils ne
-                        peuvent pas être supprimés depuis l’interface.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="help-item">
-                    <Shield size={20} />
-                    <div>
-                      <strong>Garde la main</strong>
-                      <p>
-                        Bloque ou signale un personnage depuis sa conversation.
-                        Les signalements sont enregistrés ; aucun service de
-                        modération humain n’est actif dans ce prototype.
-                      </p>
-                    </div>
-                  </div>
-                  <p className="prototype-note">
-                    Prototype local · comptes de démonstration · visuels
-                    provisoires · aucun achat.
-                  </p>
-                </div>
-              )}
             </aside>
           </div>
           <footer className="bottom-note">
             <div className={view === "garden" ? "world-dock in-room" : "world-dock"}>
               <div className="dock-heading">
-                <h2>{view === "garden" ? `Dans ${scene.name}` : "En ligne"}</h2>
+                <h2>{view === "garden" ? `Dans ${scene.name}` : "Amis en ligne"}</h2>
                 <span><i aria-hidden="true" />{view === "garden"
                   ? `${roomPeople.length} présent${roomPeople.length > 1 ? "s" : ""} · 15 max`
-                  : `${onlinePeople.length} joueur${onlinePeople.length > 1 ? "s" : ""} connecté${onlinePeople.length > 1 ? "s" : ""}`}</span>
+                  : `${onlineFriends.length} ami${onlineFriends.length > 1 ? "s" : ""} connecté${onlineFriends.length > 1 ? "s" : ""}`}</span>
               </div>
-              <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Personnes en ligne"}>
-                {(view === "garden" ? roomPeople : onlinePeople).map((p) => {
+              <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Amis en ligne"}>
+                {view !== "garden" && !onlineFriends.length && (
+                  <p className="dock-empty">Aucun ami connecté pour le moment.</p>
+                )}
+                {(view === "garden" ? roomPeople : onlineFriends).map((p) => {
                   const contact = state?.contacts.find((c) => c.id === p.id);
                   const mine = p.id === activeId;
                   const tag = view !== "garden" ? null : mine ? "toi" : contact?.friend ? "ami·e"
@@ -1630,6 +1576,19 @@ function App() {
         magazine={state?.xpMagazine} busy={claimingXp} status={featureStatus}
         onClose={() => setWorldPanel(null)} onClaim={(source) => void claimXp(source).catch(() => {})}
         rewards={<FloatingRewards rewards={rewards.filter((reward) => !("points" in reward))} collect={collectReward} inDialog />} />}
+      {settingsOpen && <SettingsDialog theme={theme} custom={vipBackground} vip={canCustomizeBackground}
+        onTheme={(next) => {
+          setTheme(next);
+          if (canCustomizeBackground) {
+            setVipBackground("");
+            localStorage.removeItem("vip-background");
+          }
+        }}
+        onCustom={(hex) => {
+          setVipBackground(hex);
+          localStorage.setItem("vip-background", hex);
+        }}
+        onClose={() => setSettingsOpen(false)} />}
       {wheelOpen && !modalOpen && <PrizeWheel wheel={state?.rewardWheel}
         onClose={() => setWheelOpen(false)} onSpin={spinWheel}
         onBurst={(id, origin) => { setCoinBurst({ id, ...origin }); setWheelOpen(false); }} />}

@@ -136,6 +136,11 @@ export type GarmentTransfer = {
   sender: string;
   recipient: string;
   item: GiftItem;
+  senderName: string;
+  /** Date d'envoi en millisecondes ; absente pour les cadeaux offerts avant son ajout. */
+  sentAt: number | null;
+  /** Faux tant que le destinataire n'a pas déballé le cadeau. */
+  opened: boolean;
 };
 /** A player found by name on the whole server, with where the friendship stands. */
 export type PlayerSearchResult = Character & {
@@ -194,6 +199,10 @@ export const commandSchema = z.discriminatedUnion("type", [
     type: z.literal("join-room"),
     generation: z.number().int(),
     roomId: roomIdSchema,
+  }),
+  z.object({
+    type: z.literal("leave-room"),
+    generation: z.number().int(),
   }),
   z.object({
     type: z.literal("move"),

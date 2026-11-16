@@ -1,0 +1,219 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "01-venus",
+      "name": "Vénus",
+      "price": 900,
+      "base": "#713d57",
+      "tone": {
+        "shadow": 18,
+        "middle": 37,
+        "highlight": 99,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        278,
+        1584,
+        328,
+        180
+      ]
+    },
+    {
+      "id": "02-pixel",
+      "name": "Pixel",
+      "price": 900,
+      "base": "#354f57",
+      "tone": {
+        "shadow": 32,
+        "middle": 69,
+        "highlight": 157,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "secondary": {
+        "label": "Empiècements cuir",
+        "base": "#8fb4bd",
+        "tone": {
+          "shadow": 109,
+          "middle": 165,
+          "highlight": 204,
+          "depth": 0.38,
+          "sheen": 0.18
+        }
+      },
+      "crop": [
+        269,
+        1567,
+        346,
+        197
+      ]
+    },
+    {
+      "id": "03-nox",
+      "name": "Nox",
+      "price": 900,
+      "base": "#302e31",
+      "tone": {
+        "shadow": 19,
+        "middle": 31,
+        "highlight": 123,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "backRegion": "M0 0H887V1508H0Z",
+      "crop": [
+        276,
+        1493,
+        332,
+        271
+      ]
+    },
+    {
+      "id": "04-alta",
+      "name": "Alta",
+      "price": 900,
+      "base": "#583644",
+      "tone": {
+        "shadow": 28,
+        "middle": 37,
+        "highlight": 72,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        267,
+        1136,
+        350,
+        628
+      ]
+    },
+    {
+      "id": "05-cherry",
+      "name": "Cherry",
+      "price": 900,
+      "base": "#a51c35",
+      "tone": {
+        "shadow": 18,
+        "middle": 28,
+        "highlight": 159,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        271,
+        1554,
+        342,
+        210
+      ]
+    },
+    {
+      "id": "06-sirocco",
+      "name": "Sirocco",
+      "price": 900,
+      "base": "#94522e",
+      "tone": {
+        "shadow": 41,
+        "middle": 67,
+        "highlight": 125,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        279,
+        1397,
+        327,
+        367
+      ]
+    },
+    {
+      "id": "07-astrid",
+      "name": "Astrid",
+      "price": 900,
+      "base": "#252847",
+      "tone": {
+        "shadow": 20,
+        "middle": 36,
+        "highlight": 83,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        275,
+        1549,
+        334,
+        214
+      ]
+    },
+    {
+      "id": "08-orbit",
+      "name": "Orbit",
+      "price": 900,
+      "base": "#e4d8cb",
+      "tone": {
+        "shadow": 148,
+        "middle": 214,
+        "highlight": 239,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "secondary": {
+        "label": "Empiècements indigo",
+        "base": "#3b4268",
+        "tone": {
+          "shadow": 34,
+          "middle": 65,
+          "highlight": 96,
+          "depth": 0.38,
+          "sheen": 0.18
+        }
+      },
+      "crop": [
+        275,
+        1582,
+        334,
+        183
+      ]
+    },
+    {
+      "id": "09-vega",
+      "name": "Vega",
+      "price": 900,
+      "base": "#3d2c3d",
+      "tone": {
+        "shadow": 30,
+        "middle": 37,
+        "highlight": 52,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        270,
+        1002,
+        345,
+        762
+      ]
+    },
+    {
+      "id": "10-ether",
+      "name": "Éther",
+      "price": 900,
+      "base": "#b0a7ce",
+      "tone": {
+        "shadow": 102,
+        "middle": 163,
+        "highlight": 234,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "crop": [
+        273,
+        1514,
+        338,
+        250
+      ]
+    }
+  ]
+}

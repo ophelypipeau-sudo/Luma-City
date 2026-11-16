@@ -1,4 +1,5 @@
 import { isPunkCut } from "../../../../packages/domain/src/punk-pattern";
+import { torsoBounds } from "../../../../packages/domain/src/avatar-pattern";
 import { PunkGarment } from "./PunkGarment";
 import { RegisteredGarmentImage } from "./RegisteredGarmentImage";
 import { TextileGarment } from "./TextileGarment";
@@ -182,7 +183,17 @@ export function LayeredDoll({
         piece.slot === "top2" && layers.layerOrder))
     .map((piece) => piece.id));
   const tuckLine = Math.min(820, Math.max(650, (bottomPiece?.crop[1] ?? 690) + 50));
-  const tuckClip = (pieceId: string) => tuckedIds.has(pieceId) ? "url(#" + id + "-tucked-top)" : undefined;
+  const fittedTucks = orderedPieces.filter((piece) => tuckedIds.has(piece.id) && piece.tuckedSleeveRegion);
+  const fittedTuckIds = new Map(fittedTucks.map((piece, index) => [piece.id, `${id}-fitted-tuck-${index}`]));
+  const tuckClip = (pieceId: string) => tuckedIds.has(pieceId)
+    ? `url(#${fittedTuckIds.get(pieceId) ?? `${id}-tucked-top`})`
+    : undefined;
+  const waist = Math.min(810, Math.max(550, (bottomPiece?.crop[1] ?? 690) + 5));
+  const [waistLeft, waistRight] = torsoBounds(waist, -10);
+  const torsoTuck = `M0 0H${base.width}V${waist - 42}H${waistRight + 100}
+    Q${waistRight + 48} ${waist - 28} ${waistRight} ${waist}
+    V${waist + 45}H${waistLeft}V${waist}
+    Q${waistLeft - 48} ${waist - 28} ${waistLeft - 100} ${waist - 42}H0Z`;
   const hairMasks = new Map(orderedPieces.flatMap((piece, index) => {
     if (piece.slot !== "hair" || hiddenSlots.includes(piece.slot)) return [];
     const covers = orderedPieces.slice(index + 1).filter(({ slot }) =>
@@ -241,6 +252,13 @@ export function LayeredDoll({
             <path d="M887 600H559L572 625 585 650 590 675 600 700 615 725 632 750 646 775 674 825 699 885 707 1774H887Z" />
           </clipPath>
         )}
+        {fittedTucks.map((piece) => (
+          <clipPath key={piece.id} id={fittedTuckIds.get(piece.id)}>
+            <path d={torsoTuck} />
+            <path d={piece.tuckedSleeveRegion} />
+            <path d={piece.tuckedSleeveRegion} transform={`translate(${base.width} 0) scale(-1 1)`} />
+          </clipPath>
+        ))}
         {fittedLowRise && (
           <>
             <clipPath id={`${id}-fitted-upper`}>

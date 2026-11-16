@@ -11,6 +11,7 @@ import { MorphologyComparison } from "../../apps/web/src/cartoon/MorphologyCompa
 import { PilotFitFixture } from "./PilotFitFixture";
 import { IRIS_SKIRTS_GARMENTS } from "../../apps/web/src/avatar/iris-skirts";
 import { IRIS_DRESSES_GARMENTS, IRIS_DRESSES_V2_GARMENTS } from "../../apps/web/src/avatar/iris-dresses";
+import { IRIS_KNITS_GARMENTS } from "../../apps/web/src/avatar/iris-knits";
 import { HAIR_CAPSULE_V4_GARMENTS } from "../../apps/web/src/avatar/hair-capsule-v4";
 import { IRIS_SHORTS_GARMENTS } from "../../apps/web/src/avatar/iris-shorts";
 
@@ -126,8 +127,13 @@ function Fixture() {
     </main>
   );
 }
-function BottomsFit({ group, dye, detailDye, tucked, velvet, variant }: { group: string; dye?: string; detailDye?: string; tucked: boolean; velvet: boolean; variant: boolean }) {
-  const pieces = group === "dresses-iris-v2" ? IRIS_DRESSES_V2_GARMENTS : group === "hair-iris-v4" ? HAIR_CAPSULE_V4_GARMENTS : group === "dresses-iris" ? IRIS_DRESSES_GARMENTS : group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
+function BottomsFit({ group, dye, detailDye, knitBottom, tucked, velvet, variant }: { group: string; dye?: string; detailDye?: string; knitBottom?: string; tucked: boolean; velvet: boolean; variant: boolean }) {
+  const knits = group === "knits-iris";
+  const bottom = knitBottom === "dalle" ? "fashion.pants-dalle" :
+    knitBottom === "rocade" ? "fashion.pants-rocade" :
+    knitBottom === "jupe" ? IRIS_SKIRTS_GARMENTS[0].id :
+    knitBottom === "short" ? IRIS_SHORTS_GARMENTS[0].id : "fashion.pants-indigo";
+  const pieces = knits ? IRIS_KNITS_GARMENTS : group === "dresses-iris-v2" ? IRIS_DRESSES_V2_GARMENTS : group === "hair-iris-v4" ? HAIR_CAPSULE_V4_GARMENTS : group === "dresses-iris" ? IRIS_DRESSES_GARMENTS : group === "skirts-iris" ? IRIS_SKIRTS_GARMENTS : group === "shorts-iris" ? IRIS_SHORTS_GARMENTS : group === "pants"
     ? PANTS_CAPSULE_GARMENTS
     : (group.startsWith("ville-") ? CITY_CAPSULE_GARMENTS : BOTTOMS_CAPSULE_GARMENTS).filter(piece => piece.id.startsWith(group.startsWith("ville-") ? "fashion." + group : "fashion.capsule-" + group));
   return (
@@ -140,9 +146,10 @@ function BottomsFit({ group, dye, detailDye, tucked, velvet, variant }: { group:
               ...(piece.isDress && variant && {
                 shoes: "fashion.shoes-campus",
               }),
-              top: piece.isDress ? piece.id : piece.slot === "hair" ? plumLook.top : velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
+              top: knits || piece.isDress ? piece.id : piece.slot === "hair" ? plumLook.top : velvet ? "fashion.premium-velvet" : group === "pants" || tucked ? plumLook.top : null,
               topTucked: tucked,
-              bottom: piece.slot === "hair" ? plumLook.bottom : piece.isDress ? null : piece.id,
+              pieceOrder: knits ? (tucked ? [bottom, piece.id] : [piece.id, bottom]) : undefined,
+              bottom: knits ? bottom : piece.slot === "hair" ? plumLook.bottom : piece.isDress ? null : piece.id,
               hair: piece.slot === "hair" ? piece.id : piece.isDress && variant ? "fashion.hair-v3-01-carre" : plumLook.hair,
               colors: dye ? { [piece.id]: dye } : undefined,
               detailColors: detailDye ? { [piece.id]: detailDye } : undefined,
@@ -159,5 +166,5 @@ function BottomsFit({ group, dye, detailDye, tucked, velvet, variant }: { group:
 const params = new URLSearchParams(location.search);
 const group = params.get("bottoms");
 createRoot(document.getElementById("fixture")!).render(
-  group ? <BottomsFit group={group} dye={params.get("dye") ?? undefined} detailDye={params.get("detail") ?? undefined} tucked={params.has("tucked")} velvet={params.get("top") === "velvet"} variant={params.has("variant")} /> : <Fixture />,
+  group ? <BottomsFit group={group} dye={params.get("dye") ?? undefined} detailDye={params.get("detail") ?? undefined} knitBottom={params.get("bas") ?? undefined} tucked={params.has("tucked")} velvet={params.get("top") === "velvet"} variant={params.has("variant")} /> : <Fixture />,
 );

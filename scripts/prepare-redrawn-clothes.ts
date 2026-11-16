@@ -5,6 +5,10 @@ import { Resvg } from "@resvg/resvg-js";
 import { pngPixels } from "../apps/server/src/atelier-images";
 import { rgbaPng } from "./lib/png-rgba";
 import { torsoBounds } from "../packages/domain/src/avatar-pattern";
+if (process.argv[2] === "--iris-dresses-v2") {
+  await import("./lib/prepare-iris-dresses-v2");
+  process.exit(0);
+}
 const W = 887,
   H = 1774,
   N = W * H,

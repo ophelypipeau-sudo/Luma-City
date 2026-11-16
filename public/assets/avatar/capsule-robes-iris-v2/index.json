@@ -1,0 +1,237 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "vesper",
+      "name": "Vesper",
+      "price": 950,
+      "crop": [
+        255,
+        322,
+        399,
+        682
+      ],
+      "tone": {
+        "shadow": 33,
+        "middle": 52,
+        "highlight": 111,
+        "depth": 0.36,
+        "sheen": 0.36
+      },
+      "fittingBody": "/assets/avatar/capsule-robes-iris-v1/comete-fitting.png",
+      "back": true,
+      "protected": false
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "price": 950,
+      "crop": [
+        255,
+        333,
+        377,
+        667
+      ],
+      "tone": {
+        "shadow": 103,
+        "middle": 137,
+        "highlight": 170,
+        "depth": 0.36,
+        "sheen": 0.18
+      },
+      "back": false,
+      "protected": true
+    },
+    {
+      "id": "solstice",
+      "name": "Solstice",
+      "price": 950,
+      "crop": [
+        223,
+        291,
+        437,
+        672
+      ],
+      "tone": {
+        "shadow": 128,
+        "middle": 167,
+        "highlight": 215,
+        "depth": 0.36,
+        "sheen": 0.49
+      },
+      "back": false,
+      "protected": false
+    },
+    {
+      "id": "celeste",
+      "name": "Céleste",
+      "price": 950,
+      "crop": [
+        255,
+        335,
+        377,
+        654
+      ],
+      "tone": {
+        "shadow": 34,
+        "middle": 46,
+        "highlight": 59,
+        "depth": 0.36,
+        "sheen": 0.18
+      },
+      "detailTone": {
+        "shadow": 20,
+        "middle": 34,
+        "highlight": 63,
+        "depth": 0.35,
+        "sheen": 0.19
+      },
+      "back": false,
+      "protected": false
+    },
+    {
+      "id": "aura",
+      "name": "Aura",
+      "price": 950,
+      "crop": [
+        246,
+        333,
+        390,
+        664
+      ],
+      "tone": {
+        "shadow": 24,
+        "middle": 36,
+        "highlight": 59,
+        "depth": 0.36,
+        "sheen": 0.18
+      },
+      "back": false,
+      "protected": true
+    },
+    {
+      "id": "saturne",
+      "name": "Saturne",
+      "price": 950,
+      "crop": [
+        225,
+        331,
+        438,
+        663
+      ],
+      "tone": {
+        "shadow": 43,
+        "middle": 76,
+        "highlight": 153,
+        "depth": 0.36,
+        "sheen": 0.48
+      },
+      "detailTone": {
+        "shadow": 43,
+        "middle": 65,
+        "highlight": 141,
+        "depth": 0.35,
+        "sheen": 0.19
+      },
+      "back": false,
+      "protected": true
+    },
+    {
+      "id": "opaline",
+      "name": "Opaline",
+      "price": 950,
+      "crop": [
+        133,
+        341,
+        618,
+        630
+      ],
+      "tone": {
+        "shadow": 129,
+        "middle": 170,
+        "highlight": 205,
+        "depth": 0.36,
+        "sheen": 0.18
+      },
+      "fittingBody": "/assets/avatar/capsule-robes-iris-v1/comete-fitting.png",
+      "back": false,
+      "protected": false
+    },
+    {
+      "id": "velvette",
+      "name": "Velvette",
+      "price": 950,
+      "crop": [
+        255,
+        329,
+        377,
+        652
+      ],
+      "tone": {
+        "shadow": 8,
+        "middle": 16,
+        "highlight": 87,
+        "depth": 0.36,
+        "sheen": 0.33
+      },
+      "fittingBody": "/assets/avatar/capsule-robes-iris-v1/comete-fitting.png",
+      "back": false,
+      "protected": false
+    },
+    {
+      "id": "nyx",
+      "name": "Nyx",
+      "price": 950,
+      "crop": [
+        253,
+        328,
+        379,
+        642
+      ],
+      "tone": {
+        "shadow": 20,
+        "middle": 37,
+        "highlight": 95,
+        "depth": 0.36,
+        "sheen": 0.18
+      },
+      "detailTone": {
+        "shadow": 19,
+        "middle": 31,
+        "highlight": 62,
+        "depth": 0.35,
+        "sheen": 0.19
+      },
+      "back": false,
+      "protected": true
+    },
+    {
+      "id": "equinoxe",
+      "name": "Équinoxe",
+      "price": 950,
+      "crop": [
+        233,
+        329,
+        419,
+        661
+      ],
+      "tone": {
+        "shadow": 53,
+        "middle": 87,
+        "highlight": 130,
+        "depth": 0.36,
+        "sheen": 0.24
+      },
+      "detailTone": {
+        "shadow": 135,
+        "middle": 175,
+        "highlight": 184,
+        "depth": 0.35,
+        "sheen": 0.19
+      },
+      "back": true,
+      "protected": false
+    }
+  ]
+}

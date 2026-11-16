@@ -249,4 +249,6 @@ export type Contact = Character & {
   /** Relations this player asked for and that wait for an answer. */
   relationRequests?: ProfileRelation[];
   friend?: boolean;
+  /** Dernier message échangé (début du texte), pour trier les conversations comme sur un téléphone. */
+  lastMessage?: { body: string; at: number; mine: boolean } | null;
 };

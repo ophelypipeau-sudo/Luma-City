@@ -199,6 +199,14 @@ test("P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnex
           state.contacts.find((c: any) => c.id === "iris").unread,
           1,
         );
+        // La liste des conversations connaît le dernier message, pour le trier et l'afficher.
+        const last = state.contacts.find((c: any) => c.id === "iris").lastMessage;
+        assert.equal(last.body, payload.body);
+        assert.equal(last.mine, false);
+        assert.ok(Math.abs(last.at - Date.now()) < 60_000);
+        const own = (await request(app, "state", a.cookie)).data.contacts;
+        assert.equal(own.find((c: any) => c.id === "june").lastMessage.mine, true);
+        assert.equal(own.find((c: any) => c.id === "noa").lastMessage, null);
         const conversation = (await request(app, "conversation/iris", b.cookie))
           .data.messages;
         assert.equal(conversation.length, 1);

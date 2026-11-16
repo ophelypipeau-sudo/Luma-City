@@ -24,11 +24,6 @@
   cursor: pointer;
   border-radius: 10px;
 }
-.conversation-profile {
-  color: inherit;
-  padding: 0;
-  text-align: left;
-}
 .profile-card {
   width: min(680px, calc(100vw - 34px));
   max-height: calc(100dvh - 30px);

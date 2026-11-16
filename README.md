@@ -46,8 +46,10 @@ l'ancienne session de jeu. Deux comptes différents peuvent se retrouver dans la
   coupure réseau et resynchronisation de la salle.
 - Deux personnages par compte de démonstration, autorisation et génération de
   session contrôlées côté serveur.
-- Messages privés texte/Unicode persistants, y compris hors ligne, avec renvoi
-  idempotent et pastille de non-lus indépendante et silencieuse.
+- Messages privés persistants, y compris hors ligne, avec renvoi idempotent et
+  pastille de non-lus. Comme sur un téléphone, la conversation la plus récente
+  remonte en haut avec un aperçu du dernier message ; un bouton ajoute des emojis
+  (`apps/web/src/PrivateChat.tsx`, `apps/web/src/EmojiPicker.tsx`).
 - Consultation d'une conversation visible et au premier plan pour la marquer lue.
 - Blocage entre personnages, déblocage et signalement enregistré côté serveur.
 - Quatre couleurs d'interface indépendantes du personnage, enregistrées localement.

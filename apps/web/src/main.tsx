@@ -14,9 +14,7 @@ import {
   MousePointer2,
   Map,
   Pencil,
-  Send,
   Settings,
-  Shield,
   Shirt,
   ShoppingBag,
   Sparkles,
@@ -30,6 +28,7 @@ import { SettingsDialog } from "./SettingsDialog";
 import { Room } from "./Room";
 import { WalletCounter } from "./WalletCounter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
+import { PrivateChat } from "./PrivateChat";
 import { RoomDrawer } from "./RoomDrawer";
 import { Portrait } from "./Avatar";
 import { NeighborhoodMap } from "./NeighborhoodMap";
@@ -83,6 +82,7 @@ import "./quartier.css";
 import "./friends-panel.css";
 import "./guestbook/guestbook.css";
 import "./beauty-salon.css";
+import "./private-chat.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
 import "@fontsource/outfit/400.css";
@@ -163,6 +163,7 @@ function App() {
     [busy, setBusy] = useState(false);
   const [peer, setPeer] = useState<string | null>(null),
     [messages, setMessages] = useState<Message[]>([]),
+    [loadedPeer, setLoadedPeer] = useState<string | null>(null),
     [draft, setDraft] = useState("");
   const [profileId, setProfileId] = useState<string | null>(null);
   const [editingMotto, setEditingMotto] = useState(false);
@@ -209,7 +210,6 @@ function App() {
   const [featureStatus, setFeatureStatus] = useState("");
   const [socialOpen, setSocialOpen] = useState(false);
   const privateChatOpen = socialOpen && panel === "chat";
-  const [chatPage, setChatPage] = useState(0);
   const wornOwner = outfitOwner(state?.account ?? 'local', state?.character?.id ?? 'iris');
   const savedOutfit = readAvatarLayers(state?.character?.outfit);
   const starterOutfit = readAvatarLayers(state?.character?.starter_outfit) ?? DEFAULT_LAYERS;
@@ -550,12 +550,14 @@ function App() {
       )
         return;
       setMessages(data.messages);
+      setLoadedPeer(p);
     } catch (e) {
       setError((e as Error).message);
     }
   }, []);
   useEffect(() => {
     setMessages([]);
+    setLoadedPeer(null);
     setDraft("");
     pending.current = null;
     if (peer) void loadConversation();
@@ -598,12 +600,6 @@ function App() {
     }, 200);
     return () => clearTimeout(timer);
   }, [messages, panel, peer, state, refresh, focusTick, socialOpen]);
-  useEffect(() => {
-    scroller.current?.scrollTo({
-      top: scroller.current.scrollHeight,
-      behavior: "smooth",
-    });
-  }, [messages, privateChatOpen]);
   useEffect(() => {
     const focus = () => {
       setFocusTick((x) => x + 1);
@@ -801,8 +797,6 @@ function App() {
   const contact = state?.contacts.find((c) => c.id === peer),
     unread = state?.contacts.reduce((n, c) => n + c.unread, 0) ?? 0;
   const chatContacts = state?.contacts ?? [];
-  const lastChatPage = Math.max(0, Math.ceil(chatContacts.length / 5) - 1);
-  const currentChatPage = Math.min(chatPage, lastChatPage);
   const onlineContacts =
     state?.contacts.filter((c) => presence?.onlineIds.includes(c.id)) ?? [];
   const roomPeople = status === "online" && presence?.roomId === roomId ? players : [];
@@ -1051,158 +1045,18 @@ function App() {
               }
             >
               {privateChatOpen ? (
-                <div className="private-chat">
-                  <aside className="private-chat-list" aria-label="Conversations privées">
-                    <div className="private-chat-contacts">
-                      {chatContacts.slice(currentChatPage * 5, (currentChatPage + 1) * 5).map(c => {
-                        const online = presence?.onlineIds.includes(c.id);
-                        return <button type="button" key={c.id} aria-pressed={peer === c.id}
-                          className="private-chat-contact" onClick={() => choosePeer(c.id)}>
-                          <span className="private-chat-avatar">
-                            <Portrait {...c} />
-                            <i data-online={Boolean(online)} aria-hidden="true" />
-                          </span>
-                          <span className="private-chat-name">{c.name}
-                            <small>{c.blocked ? "Bloqué" : online ? "En ligne" : "Hors ligne"}</small>
-                          </span>
-                          {c.unread > 0 && <b className="count-pill" aria-label={`${c.unread} messages non lus`}>{c.unread}</b>}
-                        </button>;
-                      })}
-                      {!chatContacts.length && <p>Aucun joueur disponible.</p>}
-                    </div>
-                    <nav className="private-chat-pages" aria-label="Pages des conversations">
-                      <button type="button" aria-label="Page précédente" disabled={currentChatPage === 0}
-                        onClick={() => setChatPage(currentChatPage - 1)}><ArrowLeft size={18} /></button>
-                      <button type="button" aria-label="Page suivante" disabled={currentChatPage === lastChatPage}
-                        onClick={() => setChatPage(currentChatPage + 1)}><ArrowRight size={18} /></button>
-                    </nav>
-                  </aside>
-                  <div className="private-chat-pane">
-                    <button type="button" className="private-chat-close icon-button" aria-label="Fermer les messages privés"
-                      onClick={() => setSocialOpen(false)}><X size={18} /></button>
-                    {contact && peer ? (
-                  <div className="conversation">
-                    <div className="conversation-header">
-                      <button
-                        className="icon-button"
-                        aria-label="Retour aux conversations"
-                        onClick={() => setPeer(null)}
-                      >
-                        <ArrowLeft size={18} />
-                      </button>
-                      <div>
-                          <button type="button" className="conversation-profile" onClick={() => setProfileId(peer)}
-                            aria-label={`Voir le profil de ${contact?.name ?? "ce personnage"}`}><strong>Message privé avec {contact?.name}</strong></button>
-                        <small>
-                          {onlineContacts.some((p) => p.id === peer)
-                            ? "En ligne"
-                            : "Hors ligne · les messages l’attendront"}
-                        </small>
-                      </div>
-                      <button
-                        className="icon-button"
-                        title="Signaler"
-                        aria-label="Signaler ce joueur"
-                        onClick={() => setReport(true)}
-                      >
-                        <Flag size={16} />
-                      </button>
-                      <button
-                        className={
-                          "icon-button " +
-                          (contact?.blocked ? "is-blocked" : "")
-                        }
-                        title={contact?.blocked ? "Débloquer" : "Bloquer"}
-                        aria-label={contact?.blocked ? "Débloquer" : "Bloquer"}
-                        onClick={() =>
-                          void action(async () => {
-                            await api("block", {
-                              generation: state?.generation,
-                              peer,
-                              blocked: !contact?.blocked,
-                            });
-                            await refresh();
-                            setNotice(
-                              contact?.blocked
-                                ? "Personnage débloqué."
-                                : "Personnage bloqué. Les nouveaux messages sont désactivés dans les deux sens.",
-                            );
-                          })
-                        }
-                      >
-                        <Shield size={16} />
-                      </button>
-                    </div>
-                    <div
-                      className="messages"
-                      ref={scroller}
-                      onScroll={() => setFocusTick((x) => x + 1)}
-                    >
-                      {messages.length === 0 && (
-                        <div className="empty-state">
-                          <MessageCircle size={30} />
-                          <h3>Un petit bonjour ?</h3>
-                          <p>
-                            Tu peux écrire même si {contact?.name} est hors
-                            ligne.
-                          </p>
-                        </div>
-                      )}
-                      {messages.map((m) => (
-                        <div
-                          key={m.id}
-                          data-incoming-id={
-                            m.recipient === state?.character?.id
-                              ? m.id
-                              : undefined
-                          }
-                          className={
-                            "bubble " +
-                            (m.sender === state?.character?.id ? "mine" : "")
-                          }
-                        >
-                          <strong>{m.sender === state?.character?.id ? "Moi" : contact?.name}</strong>
-                          <p>{m.body}</p>
-                          <time>
-                            {new Date(m.created_at).toLocaleTimeString(
-                              "fr-FR",
-                              { hour: "2-digit", minute: "2-digit" },
-                            )}
-                          </time>
-                        </div>
-                      ))}
-                    </div>
-                    {contact?.blocked && (
-                      <div className="blocked-note">
-                        Tu as bloqué ce personnage.
-                      </div>
-                    )}
-                    <form className="message-form" onSubmit={sendMessage}>
-                      <label className="sr-only" htmlFor="message">
-                        Ton message
-                      </label>
-                      <input
-                        id="message"
-                        value={draft}
-                        onChange={(e) => setDraft(e.target.value)}
-                        placeholder="Écrire mon message…"
-                        maxLength={800}
-                        disabled={contact?.blocked}
-                      />
-                      <button
-                        disabled={!draft.trim() || busy || contact?.blocked}
-                        aria-label="Envoyer le message"
-                      >
-                        <Send size={17} />
-                      </button>
-                    </form>
-                    <div className="message-note">
-                      Messages privés · sans son · {draft.length}/800
-                    </div>
-                  </div>
-                    ) : <p className="private-chat-empty">Choisis un joueur pour ouvrir une conversation.</p>}
-                  </div>
-                </div>
+                <PrivateChat contacts={chatContacts} onlineIds={presence?.onlineIds ?? []}
+                  me={state?.character?.id} peer={peer} messages={messages} loading={Boolean(peer) && loadedPeer !== peer}
+                  draft={draft} busy={busy} scroller={scroller}
+                  onDraft={setDraft} onSend={sendMessage} onChoose={choosePeer} onBack={() => setPeer(null)}
+                  onClose={() => setSocialOpen(false)} onProfile={setProfileId} onReport={() => setReport(true)}
+                  onScroll={() => setFocusTick((x) => x + 1)}
+                  onToggleBlock={() => void action(async () => {
+                    await api("block", { generation: state?.generation, peer, blocked: !contact?.blocked });
+                    await refresh();
+                    setNotice(contact?.blocked ? "Personnage débloqué."
+                      : "Personnage bloqué. Les nouveaux messages sont désactivés dans les deux sens.");
+                  })} />
               ) : view === "friends" && !guestbook ? (
                 <FriendsPanel key={activeId} contacts={state?.contacts ?? []}
                   onlineIds={presence?.onlineIds ?? []} onProfile={setProfileId}

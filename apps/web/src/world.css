@@ -751,9 +751,6 @@ h1 > span {
   .top-actions {
     gap: 0;
   }
-  .messages {
-    max-height: 235px;
-  }
   .room-count {
     font-size: 9px;
     padding: 8px;

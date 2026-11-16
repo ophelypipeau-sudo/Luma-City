@@ -40,7 +40,6 @@ import {
   type XpMagazine,
   type RewardWheel,
   type ScratchTicket,
-  DEFAULT_ROOM,
   roomFloor,
   ROOM_IDS,
   type Presence,
@@ -125,7 +124,10 @@ export async function createApp(
   await app.register(websocket, { options: { maxPayload: 2048 } });
   const logins = new Map<string, Login>();
   const clients = new Map<WebSocket, Client>();
-  const presence = new Map<string, Presence & { roomId: RoomId }>();
+  // roomId vaut null quand le joueur est en ligne sans être dans une salle (carte, boutique…).
+  const presence = new Map<string, Presence & { roomId: RoomId | null }>();
+  const occupiedRooms = () =>
+    [...presence.values()].flatMap((p) => p.roomId ? [p.roomId] : []);
   const chatHistory = new Map<RoomId, RoomMessage[]>();
   const lastSend = new Map<string, number>();
   // Commands of one account run in order; different accounts no longer wait for each other.
@@ -152,7 +154,7 @@ export async function createApp(
   const room = () => {
     const players = [...presence.values()];
     const ids = [
-      ...new Set<RoomId>([...ROOM_IDS, ...players.map((p) => p.roomId)]),
+      ...new Set<RoomId>([...ROOM_IDS, ...occupiedRooms()]),
     ];
     const byRoom = Object.fromEntries(
       ids.map((id) => [id, players.filter((p) => p.roomId === id)]),
@@ -164,7 +166,7 @@ export async function createApp(
         send(ws, {
           type: "room",
           roomId: player.roomId,
-          players: byRoom[player.roomId],
+          players: player.roomId ? byRoom[player.roomId] : [player],
           counts,
           onlineIds: [...presence.keys()],
         });
@@ -184,8 +186,8 @@ export async function createApp(
     }
     for (const [ws, client] of clients) {
       if (recipient && ws !== recipient) continue;
-      const player = client.character && presence.get(client.character);
-      if (!player || !roomIds.includes(player.roomId)) continue;
+      const player = client.character ? presence.get(client.character) : undefined;
+      if (!player?.roomId || !roomIds.includes(player.roomId)) continue;
       const messages = (chatHistory.get(player.roomId) ?? []).filter(
         (message) => !blocked.has(JSON.stringify([player.id, message.sender])),
       );
@@ -1433,10 +1435,7 @@ export async function createApp(
           ]);
       });
       await publishChat([
-        ...new Set([
-          ...ROOM_IDS,
-          ...[...presence.values()].map((p) => p.roomId),
-        ]),
+        ...new Set([...ROOM_IDS, ...occupiedRooms()]),
       ]);
       changed();
       return { ok: true };
@@ -1506,8 +1505,15 @@ export async function createApp(
           const p = presence.get(id);
           if (id !== client.character || !p)
             throw new Error("Rejoins la salle avant de te déplacer.");
+          if (cmd.type === "leave-room") {
+            if (p.roomId) {
+              p.roomId = null;
+              room();
+            }
+            return;
+          }
           if (cmd.type === "room-chat") {
-            if (cmd.roomId !== p.roomId)
+            if (!p.roomId || cmd.roomId !== p.roomId)
               throw new Error("Tu as changé de salle.");
             if (Date.now() - client.lastChat < 600)
               throw new Error(
@@ -1561,10 +1567,10 @@ export async function createApp(
               p.y = roomFloor(cmd.roomId) + 4 + Math.random() * 5;
             }
             room();
-            await publishChat([p.roomId], ws);
+            await publishChat([cmd.roomId], ws);
             return;
           }
-          if (Date.now() - client.moved < 45) return;
+          if (!p.roomId || Date.now() - client.moved < 45) return;
           client.moved = Date.now();
           p.x = cmd.x;
           p.y = Math.max(roomFloor(p.roomId), cmd.y);
@@ -1605,22 +1611,12 @@ export async function createApp(
             detach(old);
             old.close(4001, "Connexion remplacée");
           }
-        const initialRoom = [...presence.values()].filter(
-          (p) => p.roomId === DEFAULT_ROOM,
-        );
-        if (initialRoom.length >= ROOM_CAPACITY)
-          throw new Error("La salle est complète (15 personnes).");
         client.character = s.character.id;
         client.generation = s.generation;
-        presence.set(s.character.id, {
-          ...s.character,
-          roomId: DEFAULT_ROOM,
-          x: 40 + Math.random() * 20,
-          y: roomFloor(DEFAULT_ROOM) + 4 + Math.random() * 5,
-        });
+        // En ligne, mais dans aucune salle tant que le joueur n'en rejoint pas une.
+        presence.set(s.character.id, { ...s.character, roomId: null, x: 50, y: 70 });
         send(ws, { type: "welcome", ...s });
         room();
-        await publishChat([DEFAULT_ROOM], ws);
       } catch (e) {
         send(ws, {
           type: "error",

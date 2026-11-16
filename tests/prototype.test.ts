@@ -56,6 +56,8 @@ function connect(url: string, cookie: string) {
     },
   };
 }
+const joinRoom = (c: ReturnType<typeof connect>, generation: number, roomId: string) =>
+  c.ws.send(JSON.stringify({ type: "join-room", generation, roomId }));
 
 test("Seul un compte VIP peut importer le fond de son profil, et les autres joueurs peuvent le voir", async () => {
   const db = await openDatabase("memory://");
@@ -243,6 +245,21 @@ test("P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnex
         sockets.push(ca.ws, cb.ws);
         await ca.wait("welcome");
         await cb.wait("welcome");
+        // Connecté, on n'est dans aucune salle : personne ne nous y voit.
+        const outside = await ca.wait("room");
+        assert.equal(outside.roomId, null);
+        assert.equal(outside.counts.greenhouse, 0);
+        joinRoom(ca, a.generation, "greenhouse");
+        joinRoom(cb, b.generation, "greenhouse");
+        await ca.wait("room", (e) => e.players.length === 2);
+        // Quitter la salle fait vraiment disparaître le personnage pour les autres.
+        cb.events.length = 0;
+        ca.ws.send(JSON.stringify({ type: "leave-room", generation: a.generation }));
+        const left = await cb.wait("room", (e) => e.players.length === 1);
+        assert.deepEqual(left.players.map((p: { id: string }) => p.id), ["june"]);
+        assert.equal(left.counts.greenhouse, 1);
+        assert(left.onlineIds.includes("iris"), "un joueur hors salle reste en ligne");
+        joinRoom(ca, a.generation, "greenhouse");
         await ca.wait("room", (e) => e.players.length === 2);
         ca.ws.send(
           JSON.stringify({
@@ -384,6 +401,7 @@ test("P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnex
         const replacement = connect(url, b.cookie);
         sockets.push(replacement.ws);
         await replacement.wait("welcome");
+        joinRoom(replacement, b.generation, "greenhouse");
         await replacement.wait("room", (e) => e.players.length === 2);
         const hidden = new WebSocket(url, {
           origin: "https://evil.example",
@@ -523,7 +541,7 @@ test("P0 : autorisation, idempotence, non-lus, blocage, signalements et reconnex
   }
 });
 
-test("admission concurrente : la seizième connexion est refusée", async () => {
+test("admission concurrente : la seizième entrée dans une salle est refusée", async () => {
   const db = await openDatabase("memory://");
   const app = await createApp(db);
   const connections: ReturnType<typeof connect>[] = [];
@@ -541,27 +559,23 @@ test("admission concurrente : la seizième connexion est refusée", async () => 
       assert.equal(created.status, 200);
       identities.push({ cookie: created.cookie! });
     }
-    // All handshakes compete for admission through the same server authority.
+    // Everyone can be online; the room itself holds 15 people.
     for (const identity of identities)
       connections.push(connect(url, identity.cookie));
+    const welcomes = await Promise.all(connections.map((c) => c.wait("welcome")));
+    // All entries compete for the same room through the same server authority.
+    connections.forEach((c, i) => joinRoom(c, welcomes[i].generation, "greenhouse"));
     await Promise.all(
-      connections.map(async (c) => {
-        await Promise.race([c.wait("welcome"), c.wait("error")]);
-      }),
+      connections.map((c) => Promise.race([
+        c.wait("room", (e) => e.roomId === "greenhouse"),
+        c.wait("room-full"),
+      ])),
     );
     assert.equal(
-      connections.filter((c) => c.events.some((e) => e.type === "welcome"))
-        .length,
+      connections.filter((c) => c.events.some((e) => e.type === "room" && e.roomId === "greenhouse")).length,
       15,
     );
-    assert.equal(
-      connections.filter((c) =>
-        c.events.some(
-          (e) => e.type === "error" && e.message.includes("complète"),
-        ),
-      ).length,
-      1,
-    );
+    assert.equal(connections.filter((c) => c.events.some((e) => e.type === "room-full")).length, 1);
     for (const c of connections)
       for (const e of c.events)
         if (e.type === "room") assert(e.players.length <= 15);

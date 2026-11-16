@@ -57,7 +57,6 @@ import {archivedPieces,subscribeArchive,withoutArchivedPieces} from './avatar/ar
 import {
   DEFAULT_ROOM,
   homeRoom,
-  homeOwner,
   levelProgress,
   type ProfileTemplate,
   type GarmentTransfer,
@@ -143,7 +142,8 @@ function App() {
     return api("neon-session", setup, data.session.token);
   }
   const [presence, setPresence] = useState<{
-    roomId: RoomId;
+    /** null : en ligne, mais dans aucune salle. */
+    roomId: RoomId | null;
     players: Presence[];
     counts: Partial<Record<RoomId, number>>;
     onlineIds: string[];
@@ -768,8 +768,16 @@ function App() {
       }));
     }
   }
+  // Quitter l'écran d'une salle (carte, boutique, jeux…) fait vraiment sortir de la salle :
+  // les autres joueurs ne voient plus le personnage.
+  const inRoom = view === "garden";
+  useEffect(() => {
+    if (inRoom) return;
+    requestedRoom.current = null;
+    if (socket.current?.readyState === WebSocket.OPEN)
+      socket.current.send(JSON.stringify({ type: "leave-room", generation: state?.generation }));
+  }, [inRoom]);
   function openMap() {
-    if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
     setGuestbookId(null);
     setView("explore");
     setSocialOpen(false);
@@ -1370,7 +1378,6 @@ function App() {
                         aria-label="Retour au quartier"
                         title="Retour au quartier"
                         onClick={() => {
-                          if (homeOwner(roomId)) enterRoom(DEFAULT_ROOM);
                           setView("explore");
                           setSocialOpen(false);
                         }}

@@ -201,6 +201,10 @@ export const commandSchema = z.discriminatedUnion("type", [
     roomId: roomIdSchema,
   }),
   z.object({
+    type: z.literal("leave-room"),
+    generation: z.number().int(),
+  }),
+  z.object({
     type: z.literal("move"),
     generation: z.number().int(),
     x: z.number().finite().min(8).max(92),

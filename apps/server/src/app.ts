@@ -434,7 +434,12 @@ export async function createApp(
       garmentTransfers: character
         ? (
             await db.query(
-              "SELECT id, sender, recipient, item FROM profile_garment_transfers WHERE sender=$1 OR recipient=$1",
+              `SELECT t.id, t.sender, t.recipient, t.item, c.name AS "senderName",
+                 (EXTRACT(EPOCH FROM t.created_at) * 1000)::float8 AS "sentAt",
+                 t.opened_at IS NOT NULL AS opened
+               FROM profile_garment_transfers t JOIN characters c ON c.id = t.sender
+               WHERE t.sender=$1 OR t.recipient=$1
+               ORDER BY t.created_at DESC NULLS LAST`,
               [character.id],
             )
           ).rows
@@ -1385,6 +1390,21 @@ export async function createApp(
         );
       });
       changed();
+      return { ok: true };
+    }),
+  );
+  // Le destinataire déballe un cadeau reçu : il apparaît ensuite dans « Vêtements reçus ».
+  app.post("/api/gift/open", async (req) =>
+    serialRequest(req, async () => {
+      const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid() }).parse(req.body);
+      await db.transaction(async (q) => {
+        const me = await active(req.cookies.session!, generation, q);
+        const { rows } = await q(
+          "UPDATE profile_garment_transfers SET opened_at = COALESCE(opened_at, NOW()) WHERE id=$1 AND recipient=$2 RETURNING id",
+          [id, me],
+        );
+        if (!rows.length) throw new PlayerError("Ce cadeau n’est pas pour toi.");
+      });
       return { ok: true };
     }),
   );

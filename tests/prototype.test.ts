@@ -825,10 +825,16 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       (await mutate(iris, "june", { ...gift, id: randomUUID() })).status,
       400,
     );
+    const [received] = (await request(app, "state", june.cookie)).data.garmentTransfers;
     assert.deepEqual(
-      (await request(app, "state", june.cookie)).data.garmentTransfers,
-      [{ id: gift.id, sender: "iris", recipient: "june", item }],
+      { ...received, sentAt: typeof received.sentAt },
+      { id: gift.id, sender: "iris", recipient: "june", item, senderName: "Iris", sentAt: "number", opened: false },
+      "a new gift arrives wrapped, with its sender's name and date",
     );
+    const open = (from: typeof iris) => request(app, "gift/open", from.cookie, { generation: from.generation, id: gift.id });
+    assert.equal((await open(iris)).status, 400, "only the recipient can open a gift");
+    assert.equal((await open(june)).status, 200);
+    assert.equal((await request(app, "state", june.cookie)).data.garmentTransfers[0].opened, true);
     const afterGift = (await request(app, "state", iris.cookie)).data;
     assert.ok(!afterGift.wardrobe.items.some((owned: { key: string }) => owned.key === item.key));
     assert.equal(afterGift.character.outfit.outerwear, null, "the sender stops wearing the offered piece");

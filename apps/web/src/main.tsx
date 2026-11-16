@@ -1258,6 +1258,10 @@ function App() {
                     ? state?.garmentTransfers?.filter((gift) => gift.recipient === guestbook.id)
                     : undefined}
                   onWearGift={wearGift}
+                  onOpenGift={async (id) => {
+                    await api("gift/open", { generation: state?.generation, id });
+                    await refresh();
+                  }}
                   onBack={() => setGuestbookId(null)} />
               ) : view === "dressing" && state?.character ? (
                 <div className="dressing-view">

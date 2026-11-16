@@ -1114,6 +1114,11 @@ body {
   height: 66px;
   align-items: center;
 }
+.dock-avatars .dock-empty {
+  margin: 0;
+  color: #e9c7f3;
+  font-size: 12px;
+}
 .dock-avatars button {
   width: 47px;
   padding: 0;

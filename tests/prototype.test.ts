@@ -804,6 +804,11 @@ test("Les actions de profil sont persistantes et les relations nécessitent l’
       [{ id: "june", name: "June" }]);
     assert.deepEqual([featured.partner.id, featured.partner.name], ["june", "June"]);
     assert.ok("outfit" in featured.partner, "a slot carries the whole character to open its profile");
+    // Either friend can end the friendship; the other one no longer sees it.
+    assert.equal((await mutate(iris, "june", { type: "remove-friend" })).data.relations.friend, undefined);
+    assert.equal((await read(june, "iris")).data.relations.friend, undefined);
+    assert.equal((await request(app, "state", june.cookie)).data.contacts
+      .find((contact: { id: string }) => contact.id === "iris").friend, false);
     const nova = await enter(app, "test-xp", "nova-xp");
     const propose = { type: "relation", kind: "romance", accept: false };
     assert.equal((await mutate(nova, "iris", propose)).status, 200);
@@ -922,6 +927,11 @@ test("Le ticket à gratter donne un seul gain quotidien par compte, à récolter
       assert.equal(collected.data.wheel.accountCoins, 100);
       assert.equal(collected.data.wheel.accountDiamonds, index >= 1 ? 1 : 0);
       assert.equal(collected.data.xp, index === 2 ? 25 : 0);
+      // The wallet shown in the game updates without reloading the page.
+      assert.deepEqual(
+        { balance: collected.data.wardrobe.balance, diamonds: collected.data.wardrobe.diamonds },
+        { balance: (await request(app, "state", milo.cookie)).data.wardrobe.balance, diamonds: index >= 1 ? 1 : 0 },
+      );
       assert.deepEqual(await claim(milo, current.id), collected);
       assert.equal((await replay()).data.ticket.claimed, true);
       await db.query("UPDATE daily_scratch_tickets SET play_day=play_day-1");

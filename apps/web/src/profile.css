@@ -797,6 +797,20 @@
   font-weight: 700;
 }
 .profile-card-summary .profile-actions .profile-request .is-accept { background: #ed9bcc; color: #3d1530; }
+.profile-card-summary .profile-actions .profile-unfriend {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  color: #8a5c78;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .profile-relation-slot > button,
 .profile-relation-slot > span {
   display: block;

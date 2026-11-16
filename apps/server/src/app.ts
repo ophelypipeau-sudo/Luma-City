@@ -703,6 +703,7 @@ export async function createApp(
             z.object({ type: z.literal("like") }),
             z.object({ type: z.literal("photo") }),
             z.object({ type: z.literal("decline-friend") }),
+            z.object({ type: z.literal("remove-friend") }),
             z.object({ type: z.literal("decline-relation"), kind: z.enum(PROFILE_RELATIONS) }),
             z.object({ type: z.literal("look-like"), lookKey: z.string().regex(/^[a-f0-9]{32}$/) }),
             z.object({
@@ -780,6 +781,12 @@ export async function createApp(
           await q(
             "INSERT INTO profile_guestbook (actor,target,body) VALUES ($1,$2,$3)",
             [me, peer, action.body],
+          );
+        } else if (action.type === "remove-friend") {
+          await q(
+            `DELETE FROM profile_relations
+             WHERE first_id=LEAST($1,$2) AND second_id=GREATEST($1,$2) AND kind='friend'`,
+            [me, peer],
           );
         } else if (action.type === "decline-friend" || action.type === "decline-relation") {
           await q(
@@ -1021,7 +1028,10 @@ export async function createApp(
           await q("UPDATE characters SET xp=xp+$1 WHERE id=$2", [ticket.amount, player]);
       }
       const { rows: [character] } = await q("SELECT xp FROM characters WHERE id=$1", [player]);
-      return { xp: Number(character.xp), wheel: await rewardWheel(q, player) };
+      return {
+        xp: Number(character.xp), wheel: await rewardWheel(q, player),
+        wardrobe: (await wardrobeReply(q, { id: player })).wardrobe,
+      };
     }));
     changed();
     return result;
@@ -1076,7 +1086,11 @@ export async function createApp(
         const gained = drops.reduce((total, drop) => total + (drop.currency === "xp" ? Number(drop.amount) : 0), 0);
         if (gained) await q("UPDATE characters SET xp=xp+$2 WHERE id=$1", [player, gained]);
         const { rows: [character] } = await q("SELECT xp FROM characters WHERE id=$1", [player]);
-        return { player, gained, xp: Number(character.xp), wheel: await rewardWheel(q, player) };
+        return {
+          player, gained, xp: Number(character.xp), wheel: await rewardWheel(q, player),
+          // Les pièces et diamants ramassés changent le porte-monnaie affiché.
+          wardrobe: (await wardrobeReply(q, { id: player })).wardrobe,
+        };
       });
       if (result.gained) {
         const present = presence.get(result.player);
@@ -1084,7 +1098,7 @@ export async function createApp(
         room();
         changed();
       }
-      return { xp: result.xp, wheel: result.wheel };
+      return { xp: result.xp, wheel: result.wheel, wardrobe: result.wardrobe };
     }),
   );
   app.post("/api/profile/xp-test", async (req) =>

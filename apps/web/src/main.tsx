@@ -412,9 +412,9 @@ function App() {
   async function claimScratchTicket(id: string) {
     if (!state?.character) throw new Error("Connecte-toi pour réclamer ton prix.");
     const generation = state.generation;
-    const { xp, wheel } = await api("arcade/scratch/claim", { generation, id });
+    const { xp, wheel, wardrobe } = await api("arcade/scratch/claim", { generation, id });
     setState((current) => current?.generation === generation && current.character
-      ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel }
+      ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel, wardrobe }
       : current);
   }
   async function finishArcade(id: string, moves: number[]) {
@@ -445,9 +445,9 @@ function App() {
           ? { ...current, character: { ...current.character, xp }, xpMagazine: magazine, rewardWheel: wheel } : current);
         return;
       }
-      const { xp, wheel } = await api("wheel/collect", { generation, id: reward.id, ids: reward.ids });
+      const { xp, wheel, wardrobe } = await api("wheel/collect", { generation, id: reward.id, ids: reward.ids });
       setState((current) => current?.generation === generation && current.character
-        ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel } : current);
+        ? { ...current, character: { ...current.character, xp }, rewardWheel: wheel, wardrobe } : current);
     }).finally(() => {
       if ("points" in reward) pendingXpClaims.current--;
     });
@@ -796,8 +796,9 @@ function App() {
   const onlineContacts =
     state?.contacts.filter((c) => presence?.onlineIds.includes(c.id)) ?? [];
   const roomPeople = status === "online" && presence?.roomId === roomId ? players : [];
-  const onlinePeople = status === "online" && presence
-    ? [...players, ...onlineContacts.filter((person) => !players.some((player) => player.id === person.id))]
+  // Hors des salles, la barre du bas ne montre que les amis connectés.
+  const onlineFriends = status === "online"
+    ? onlineContacts.filter((contact) => contact.friend && !contact.blocked)
     : [];
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
@@ -1577,13 +1578,16 @@ function App() {
           <footer className="bottom-note">
             <div className={view === "garden" ? "world-dock in-room" : "world-dock"}>
               <div className="dock-heading">
-                <h2>{view === "garden" ? `Dans ${scene.name}` : "En ligne"}</h2>
+                <h2>{view === "garden" ? `Dans ${scene.name}` : "Amis en ligne"}</h2>
                 <span><i aria-hidden="true" />{view === "garden"
                   ? `${roomPeople.length} présent${roomPeople.length > 1 ? "s" : ""} · 15 max`
-                  : `${onlinePeople.length} joueur${onlinePeople.length > 1 ? "s" : ""} connecté${onlinePeople.length > 1 ? "s" : ""}`}</span>
+                  : `${onlineFriends.length} ami${onlineFriends.length > 1 ? "s" : ""} connecté${onlineFriends.length > 1 ? "s" : ""}`}</span>
               </div>
-              <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Personnes en ligne"}>
-                {(view === "garden" ? roomPeople : onlinePeople).map((p) => {
+              <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Amis en ligne"}>
+                {view !== "garden" && !onlineFriends.length && (
+                  <p className="dock-empty">Aucun ami connecté pour le moment.</p>
+                )}
+                {(view === "garden" ? roomPeople : onlineFriends).map((p) => {
                   const contact = state?.contacts.find((c) => c.id === p.id);
                   const mine = p.id === activeId;
                   const tag = view !== "garden" ? null : mine ? "toi" : contact?.friend ? "ami·e"

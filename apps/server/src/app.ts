@@ -253,7 +253,11 @@ export async function createApp(
        AND r.requester=c.id AND NOT r.accepted
        AND NOT EXISTS (SELECT 1 FROM blocks b WHERE
          (b.actor=$1 AND b.target=c.id) OR (b.actor=c.id AND b.target=$1))
-       ORDER BY r.kind) AS "relationRequests"
+       ORDER BY r.kind) AS "relationRequests",
+      (SELECT json_build_object('body', LEFT(m.body, 120), 'mine', m.sender=$1,
+        'at', (EXTRACT(EPOCH FROM m.created_at) * 1000)::float8)
+       FROM messages m WHERE (m.sender=$1 AND m.recipient=c.id) OR (m.sender=c.id AND m.recipient=$1)
+       ORDER BY m.id DESC LIMIT 1) AS "lastMessage"
       FROM characters c WHERE c.id<>$1 AND (${listed} OR c.id = ANY($2::text[]))
       ORDER BY (
         c.id = ANY($2::text[])

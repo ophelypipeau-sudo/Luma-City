@@ -625,32 +625,6 @@ kbd {
   place-items: center;
   color: white;
 }
-.conversation {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
-}
-.conversation-header {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  padding: 15px 10px;
-  border-bottom: 1px solid #f2edf5;
-}
-.conversation-header > div {
-  flex: 1;
-  min-width: 0;
-}
-.conversation-header strong {
-  font-size: 12px;
-}
-.conversation-header small {
-  display: block;
-  font-size: 8px;
-  color: #a394ad;
-  margin-top: 4px;
-}
 .icon-button {
   display: grid;
   place-items: center;
@@ -665,93 +639,12 @@ kbd {
   color: #b64f69;
   background: #f9eaf0;
 }
-.messages {
-  overflow: auto;
-  flex: 1;
-  padding: 17px 14px;
-  min-height: 260px;
-  max-height: 510px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.messages > .empty-state {
-  margin: auto;
-}
-.bubble {
-  background: #f2eef6;
-  border-radius: 12px 12px 12px 3px;
-  padding: 10px 12px;
-  max-width: 88%;
-  align-self: flex-start;
-  min-width: 65px;
-}
-.bubble.mine {
-  background: var(--accent-soft);
-  border-radius: 12px 12px 3px 12px;
-  align-self: flex-end;
-}
-.bubble p {
-  font-size: 11px;
-  margin: 0;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.bubble time {
-  display: block;
-  text-align: right;
-  font-size: 8px;
-  color: #a494ad;
-  margin-top: 5px;
-}
-.message-form {
-  display: flex;
-  border: 1px solid #e6dfee;
-  margin: 8px 13px 0;
-  border-radius: 12px;
-  padding: 7px;
-  background: #fcfafe;
-}
-.message-form input {
-  min-width: 0;
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 11px;
-  color: #594766;
-  padding: 4px;
-}
-.message-form input::placeholder {
-  color: #b0a1ba;
-}
-.message-form button {
-  background: var(--accent);
-  border-radius: 9px;
-  color: white;
-  width: 33px;
-  height: 33px;
-  display: grid;
-  place-items: center;
-}
-.message-note {
-  text-align: center;
-  font-size: 8px;
-  color: #b3a6bc;
-  padding: 10px 0 12px;
-}
 .count-pill {
   background: var(--accent);
   color: white;
   font-size: 10px;
   padding: 4px 7px;
   border-radius: 10px;
-}
-.blocked-note {
-  font-size: 10px;
-  color: #aa6578;
-  margin: 5px 17px;
 }
 .alert,
 .notice {
@@ -1051,9 +944,6 @@ h2 {
   .social-card {
     max-height: 800px;
   }
-  .messages {
-    max-height: 650px;
-  }
 }
 @media (max-width: 1200px) {
   main {
@@ -1155,9 +1045,6 @@ h2 {
   }
   .bottom-note {
     font-size: 9px;
-  }
-  .messages {
-    max-height: 300px;
   }
 }
 @media (max-width: 600px) {

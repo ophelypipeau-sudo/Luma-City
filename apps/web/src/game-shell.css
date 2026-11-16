@@ -930,153 +930,11 @@ body {
 .game-fullscreen .side-tip > svg {
   color: #e0b8ef;
 }
-.game-fullscreen .conversation-header {
-  border-color: #ad80ba3d;
-}
-.game-fullscreen .conversation-header small {
-  color: #d5afd9;
-}
 .game-fullscreen .icon-button {
   color: #ddbae8;
 }
 .game-fullscreen .icon-button:hover {
   background: #bf8bce33;
-}
-.game-fullscreen .bubble {
-  color: #f2e3fa;
-  background: #81569c55;
-}
-.game-fullscreen .bubble.mine {
-  background: #b076ad4d;
-}
-.game-fullscreen .bubble time {
-  color: #d2b0dd;
-}
-.game-fullscreen .message-form {
-  background: #2e193b8c;
-  border-color: #ae7cc34d;
-}
-.game-fullscreen .message-form input {
-  color: #f7e5ff;
-}
-.game-fullscreen .message-form input::placeholder {
-  color: #b994c8;
-}
-.game-fullscreen .message-form button {
-  background: linear-gradient(#ab77bf, #765091);
-}
-.game-fullscreen .message-note {
-  color: #c4a0d2;
-}
-.game-fullscreen .blocked-note {
-  color: #f0bacd;
-}
-.game-fullscreen .messages {
-  min-height: 120px;
-  max-height: none;
-}
-.private-chat {
-  display: grid;
-  grid-template-columns: minmax(140px, 42%) minmax(0, 1fr);
-  height: 100%;
-  background: #40223f;
-}
-.private-chat-list, .private-chat-pane {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  gap: 12px;
-  padding: clamp(8px, 2vw, 22px);
-}
-.private-chat-list { border-right: 3px solid #fef8ff; }
-.private-chat-contacts {
-  flex: 1;
-  min-height: 0;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 2vh, 18px);
-}
-.private-chat-contact {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  min-width: 0;
-  text-align: left;
-  padding: 7px 10px;
-  border: 2px solid transparent;
-  border-radius: 18px;
-  background: #e3dce4;
-  color: #251627;
-}
-.private-chat-contact[aria-pressed="true"] { border-color: #cc92d6; background: #f1dcef; }
-.private-chat-avatar {
-  position: relative;
-  width: clamp(29px, 5vw, 62px);
-  aspect-ratio: 1;
-  flex: none;
-}
-.private-chat-avatar svg { width: 100%; height: 100%; border-radius: 50%; background: #e8b9d3; }
-.private-chat-avatar i {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 27%;
-  aspect-ratio: 1;
-  border: 1px solid #422d46;
-  border-radius: 50%;
-  background: #949495;
-}
-.private-chat-avatar i[data-online="true"] { background: #a1d521; }
-.private-chat-name {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 800;
-  font-size: clamp(.75rem, 1.6vw, 1.5rem);
-}
-.private-chat-name small { display: block; font-size: .7rem; font-weight: 500; }
-.private-chat-pages { display: flex; justify-content: center; gap: 12px; }
-.private-chat-pages button {
-  display: grid;
-  place-items: center;
-  padding: 6px;
-  border: 0;
-  border-radius: 50%;
-  background: #e3dce4;
-  color: #40223f;
-}
-.private-chat-pages button:disabled { opacity: .45; }
-.private-chat-pane { position: relative; }
-.game-fullscreen .private-chat-close { position: absolute; top: 4px; right: 4px; z-index: 1; }
-.private-chat .conversation, .private-chat-empty {
-  flex: 1;
-  min-height: 0;
-  margin: 0;
-  padding: clamp(7px, 1vw, 15px);
-  border-radius: 6px;
-  background: #fff;
-  color: #251627;
-}
-.game-fullscreen .private-chat .conversation-header small,
-.game-fullscreen .private-chat .conversation-header button,
-.game-fullscreen .private-chat .message-note,
-.game-fullscreen .private-chat .blocked-note { color: #603d66; }
-.game-fullscreen .private-chat .messages { min-height: 0; }
-.game-fullscreen .private-chat .bubble { background: #edd2eb; color: #251627; }
-.game-fullscreen .private-chat .bubble.mine { background: #d3afd2; }
-.game-fullscreen .private-chat .bubble time { color: #654269; }
-.game-fullscreen .private-chat .message-form { background: #e5dce6; }
-.game-fullscreen .private-chat .message-form input { color: #251627; }
-.game-fullscreen .private-chat .message-form input::placeholder { color: #6f5b72; }
-@media (max-width: 620px) {
-  .private-chat { grid-template-columns: minmax(76px, 31%) minmax(0, 1fr); }
-  .private-chat-contact { padding: 5px; gap: 4px; }
-  .private-chat-name small { font-size: .6rem; }
-  .private-chat .conversation-header { flex-wrap: wrap; }
 }
 .game-fullscreen .count-pill {
   background: #b06eab;
@@ -1616,16 +1474,6 @@ body {
   .game-fullscreen .person-avatar svg {
     width: 35px;
     height: 35px;
-  }
-  .game-fullscreen .conversation-header {
-    gap: 2px;
-    padding: 11px 5px;
-  }
-  .game-fullscreen .conversation-header small {
-    font-size: 7px;
-  }
-  .game-fullscreen .conversation-header strong {
-    font-size: 11px;
   }
   .game-fullscreen .icon-button {
     padding: 5px;

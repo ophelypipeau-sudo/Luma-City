@@ -47,7 +47,8 @@ export function RoomDrawer({
   const conversations = contacts
     .filter((c) => !c.blocked)
     .slice()
-    .sort((a, b) => b.unread - a.unread || rank(a) - rank(b) || a.name.localeCompare(b.name));
+    // La discussion la plus récente en haut, comme dans les messages privés.
+    .sort((a, b) => (b.lastMessage?.at ?? 0) - (a.lastMessage?.at ?? 0) || rank(a) - rank(b) || a.name.localeCompare(b.name));
   const sortedFriends = friends.slice().sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
   const tabs: [Tab, string, number][] = [
     ["room", "Salle", 0],

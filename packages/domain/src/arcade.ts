@@ -21,6 +21,8 @@ export const WHEEL_PRIZES = [
   { currency: "coins", amount: 1500 },
   { currency: "xp", amount: 2500 },
 ] as const;
+/** Nombre maximal de tours de roue lancés d'un seul clic. */
+export const WHEEL_BATCH_MAX = 50;
 export type WheelPrize = { currency: (typeof WHEEL_PRIZES)[number]["currency"] | "diamonds"; amount: number };
 export const arcadeLevel = (score: number) => Math.min(5, 1 + Math.floor(score / 4));
 

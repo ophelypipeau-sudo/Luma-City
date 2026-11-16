@@ -27,6 +27,7 @@ import { playSound } from "./sounds";
 import { SettingsDialog } from "./SettingsDialog";
 import { Room } from "./Room";
 import { WalletCounter } from "./WalletCounter";
+import { LevelMeter } from "./LevelMeter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
 import { PrivateChat } from "./PrivateChat";
 import { RoomDrawer } from "./RoomDrawer";
@@ -73,6 +74,9 @@ import {
 import { PlayerWelcome } from "./PlayerWelcome";
 import { createAuthClient } from "@neon/auth";
 import { isCreatedPlayer, type StarterOutfit } from "../../../packages/contracts/src/player-account";
+// Chargés en premier, comme lorsque leurs composants les importaient eux-mêmes.
+import "./arcade.css";
+import "./floating-rewards.css";
 import "./style.css";
 import "./world.css";
 import "./game-shell.css";
@@ -199,7 +203,7 @@ function App() {
     };
   }, [magazineMenu]);
   const [wheelOpen, setWheelOpen] = useState(false);
-  const [coinBurst, setCoinBurst] = useState<{ id: string; x: number; y: number }>();
+  const [coinBurst, setCoinBurst] = useState<{ ids: string[]; x: number; y: number }>();
   const [ranking, setRanking] = useState<RankingEntry[] | null>(null);
   const [rankingStatus, setRankingStatus] = useState("");
   const [claimingXp, setClaimingXp] = useState(false);
@@ -302,7 +306,6 @@ function App() {
     : guestbookCharacter;
   const xp = state?.character?.xp ?? 0;
   const { level, earned: xpInLevel, required: xpRequired } = levelProgress(xp);
-  const xpRemaining = xpRequired - xpInLevel;
   const pendingXp = state?.xpMagazine?.rewards.reduce((total, reward) => total + reward.points, 0) ?? 0;
   const xpOwner = state?.character ? `${state.generation}:${state.character.id}` : "";
   useEffect(() => {
@@ -422,11 +425,11 @@ function App() {
     const { wheel } = await api("arcade/finish", { generation, id, moves });
     updateWheel(generation, wheel);
   }
-  async function spinWheel(id: string) {
+  async function spinWheel(ids: string[]) {
     if (!state?.character) throw new Error("Connecte-toi pour tourner la roue.");
     const generation = state.generation;
-    const { wheel, index, prize } = await api("wheel/spin", { generation, id });
-    return { index, prize, reveal: () => updateWheel(generation, wheel) };
+    const { wheel, index, prize, spins } = await api("wheel/spin", { generation, ids });
+    return { index, prize, spins, reveal: () => updateWheel(generation, wheel) };
   }
   async function collectReward(reward: Collectible) {
     if (!state?.character) throw new Error("Connecte-toi pour récolter ton gain.");
@@ -927,15 +930,8 @@ function App() {
             </div>
             <div className="fame-meter">
               <Star size={17} aria-hidden="true" />
-              <span>Niv. {level}</span>
-              <div className="fame-track" role="progressbar" aria-label="Progression du niveau"
-                aria-valuenow={xpInLevel} aria-valuemax={xpRequired}
-                aria-valuetext={`${xpInLevel} sur ${xpRequired} XP, ${xpRemaining} XP avant le prochain niveau`}>
-                <span style={{ width: `${100 * xpInLevel / xpRequired}%` }} />
-              </div>
-              <span className="fame-progress" title={`${xpRemaining} XP avant le prochain niveau`}>
-                {xpInLevel} / {xpRequired}
-              </span>
+              <LevelMeter xp={xp} />
+              <span className="fame-progress" aria-hidden="true">{xpInLevel} / {xpRequired}</span>
               {activeId && <button type="button" className="level-wheel" onClick={() => setWheelOpen(true)}
                 aria-label={`Roue des récompenses, ${state?.rewardWheel?.tickets ?? 0} tour(s)`}>
                 <CircleDot size={12} /> {state?.rewardWheel?.tickets ?? 0}
@@ -1446,7 +1442,7 @@ function App() {
         onClose={() => setSettingsOpen(false)} />}
       {wheelOpen && !modalOpen && <PrizeWheel wheel={state?.rewardWheel}
         onClose={() => setWheelOpen(false)} onSpin={spinWheel}
-        onBurst={(id, origin) => { setCoinBurst({ id, ...origin }); setWheelOpen(false); }} />}
+        onBurst={(ids, origin) => { setCoinBurst({ ids, ...origin }); setWheelOpen(false); }} />}
       {!worldPanel && !wheelOpen && !profile && !modalOpen && activeId &&
         <FloatingRewards rewards={rewards} collect={collectReward} burstOrigin={coinBurst} />}
       {profile && state?.character && !modalOpen && <ProfileCard

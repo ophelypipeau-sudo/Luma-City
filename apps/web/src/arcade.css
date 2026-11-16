@@ -184,6 +184,24 @@
 .wheel-card > p { margin: 0; color: #f4d5eb; font-size: .85rem; }
 .wheel-card > .world-feature-claim { display: flex; align-items: center; justify-content: center; gap: .45rem; min-height: 2.25rem; }
 .wheel-card:not(.wheel-card-vip) > .world-feature-claim:enabled { background: #ffdfae; color: #492b53; font-weight: 800; }
+/* Nombre de tours lancés d'un coup. */
+.wheel-count { display: flex; align-items: center; justify-content: center; gap: .4rem; flex-wrap: wrap; margin-bottom: .2rem; }
+.wheel-count button {
+  display: grid; place-items: center; min-width: 2rem; height: 2rem; padding: 0 .55rem;
+  border: 1px solid #f4c6e3; border-radius: 999px; background: #ffffff1a; color: #fff4fa; font-weight: 700;
+}
+.wheel-count button:disabled { opacity: .4; }
+.wheel-count output { min-width: 4.6rem; color: #fff4fa; text-align: center; font-size: .95rem; }
+.wheel-count output strong { font-size: 1.2rem; }
+.wheel-count .wheel-count-all { font-size: .82rem; }
+.wheel-result { display: grid; gap: .5rem; justify-items: center; }
+.wheel-result p { margin: 0; }
+.wheel-result ul { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem; margin: 0; max-height: 7.5rem; overflow-y: auto; }
+.wheel-result li {
+  display: flex; align-items: center; gap: .3rem; padding: .2rem .55rem;
+  border-radius: 999px; background: #ffffff1a; font-size: .8rem; font-weight: 700;
+}
+.wheel-result img { width: .95rem; height: .95rem; object-fit: contain; }
 .wheel-card-vip { background: radial-gradient(ellipse at 50% 45%, #524653, #3d3341 75%); border-color: #827383; }
 .wheel-card-vip .wheel-frame { filter: grayscale(1); }
 .wheel-card-vip .world-feature-claim { background: #605562; color: #fff5fc; }

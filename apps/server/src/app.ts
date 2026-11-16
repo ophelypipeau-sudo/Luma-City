@@ -53,7 +53,8 @@ import {
 } from "../../../packages/domain/src/rules.ts";
 import {
   ARCADE_COLUMNS, ARCADE_GAMES, ARCADE_MAX_MOVES, ARCADE_TARGET_LEVEL,
-  WHEEL_PRIZES, MEMORY_CARDS, arcadeLevel, replayArcade, replayMemory, splitReward, type ArcadeGame,
+  WHEEL_PRIZES, WHEEL_BATCH_MAX, REWARD_PICKUP_LIMIT, MEMORY_CARDS, arcadeLevel, replayArcade, replayMemory, splitReward,
+  type ArcadeGame, type WheelPrize,
   MOLE_MISS, MOLE_TARGET, replayMole,
 } from "../../../packages/domain/src/arcade.ts";
 
@@ -1042,37 +1043,59 @@ export async function createApp(
   });
   app.post("/api/wheel/spin", async (req) =>
     serialRequest(req, () => db.transaction(async (q) => {
-      const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid() }).parse(req.body);
-      const player = await active(req.cookies.session!, generation, q);
-      const { rows: [previous] } = await q(
-        "SELECT currency, amount FROM reward_wheel_spins WHERE id=$1 AND character_id=$2", [id, player],
+      // Un clic peut lancer plusieurs tours : un identifiant par tour, pour pouvoir renvoyer la demande sans rejouer.
+      const body = z.object({
+        generation: z.number().int(),
+        id: z.uuid().optional(),
+        ids: z.array(z.uuid()).min(1).max(WHEEL_BATCH_MAX).optional(),
+      }).refine((value) => value.id || value.ids, "Choisis au moins un tour.").parse(req.body);
+      const ids = [...new Set(body.ids ?? [body.id!])];
+      const player = await active(req.cookies.session!, body.generation, q);
+      const { rows: previous } = await q(
+        "SELECT id, currency, amount FROM reward_wheel_spins WHERE id=ANY($1::uuid[]) AND character_id=$2", [ids, player],
       );
-      if (previous) {
-        const index = WHEEL_PRIZES.findIndex(({ currency, amount }) =>
-          currency === previous.currency && amount === previous.amount);
-        return { index, prize: previous, wheel: await rewardWheel(q, player) };
+      let spins: { index: number; prize: WheelPrize }[];
+      if (previous.length) {
+        if (previous.length !== ids.length) throw new Error("Ces tours de roue ont déjà été joués.");
+        spins = ids.map((id) => {
+          const prize = previous.find((row) => row.id === id)!;
+          return {
+            index: WHEEL_PRIZES.findIndex(({ currency, amount }) => currency === prize.currency && amount === prize.amount),
+            prize: { currency: prize.currency, amount: prize.amount },
+          };
+        });
+      } else {
+        const { tickets } = await rewardWheel(q, player);
+        if (!tickets) throw new Error("Tu n’as pas de tour disponible.");
+        if (tickets < ids.length) throw new Error(`Tu n’as que ${tickets} tour${tickets > 1 ? "s" : ""} disponible${tickets > 1 ? "s" : ""}.`);
+        spins = [];
+        for (const id of ids) {
+          const index = randomInt(WHEEL_PRIZES.length), prize = WHEEL_PRIZES[index];
+          await q(
+            "INSERT INTO reward_wheel_spins (id,character_id,prize_index,currency,amount) VALUES ($1,$2,$3,$4,$5)",
+            [id, player, index, prize.currency, prize.amount],
+          );
+          const amounts = splitReward(prize.amount);
+          await q(
+            `INSERT INTO reward_wheel_drops (id,spin_id,slot,amount)
+             SELECT drop_id, $1, (position - 1)::integer, amount
+             FROM unnest($2::uuid[], $3::integer[]) WITH ORDINALITY AS drops(drop_id, amount, position)`,
+            [id, amounts.map(() => randomUUID()), amounts],
+          );
+          spins.push({ index, prize });
+        }
       }
-      if (!(await rewardWheel(q, player)).tickets) throw new Error("Tu n’as pas de tour disponible.");
-      const index = randomInt(WHEEL_PRIZES.length), prize = WHEEL_PRIZES[index];
-      await q(
-        "INSERT INTO reward_wheel_spins (id,character_id,prize_index,currency,amount) VALUES ($1,$2,$3,$4,$5)",
-        [id, player, index, prize.currency, prize.amount],
-      );
-      const amounts = splitReward(prize.amount);
-      await q(
-        `INSERT INTO reward_wheel_drops (id,spin_id,slot,amount)
-         SELECT drop_id, $1, (position - 1)::integer, amount
-         FROM unnest($2::uuid[], $3::integer[]) WITH ORDINALITY AS drops(drop_id, amount, position)`,
-        [id, amounts.map(() => randomUUID()), amounts],
-      );
-      return { index, prize, wheel: await rewardWheel(q, player) };
+      // `index` et `prize` décrivent le dernier tour, celui sur lequel la roue s'arrête.
+      return { ...spins.at(-1)!, spins, wheel: await rewardWheel(q, player) };
     })),
   );
   app.post("/api/wheel/collect", async (req) =>
     serialRequest(req, async () => {
       const result = await db.transaction(async (q) => {
         const { generation, id, ids } = z.object({
-          generation: z.number().int(), id: z.uuid(), ids: z.array(z.uuid()).max(19).optional(),
+          generation: z.number().int(), id: z.uuid(),
+          // Les gains de plusieurs tours lancés ensemble se ramassent en une seule bulle.
+          ids: z.array(z.uuid()).max(WHEEL_BATCH_MAX * REWARD_PICKUP_LIMIT).optional(),
         }).parse(req.body);
         const player = await active(req.cookies.session!, generation, q);
         await q(

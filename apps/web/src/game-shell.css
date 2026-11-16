@@ -400,9 +400,30 @@ body {
 }
 .money-counter:hover .wallet-exact,
 .money-counter:focus-within .wallet-exact,
-.money-counter[data-revealed="true"] .wallet-exact {
+.money-counter[data-revealed="true"] .wallet-exact,
+.fame-level:hover .wallet-exact,
+.fame-level:focus-within .wallet-exact,
+.fame-level[data-revealed="true"] .wallet-exact {
   visibility: visible;
 }
+/* « Niv. 2 » et sa barre : la bulle d'XP s'ouvre au survol. */
+.fame-level { position: relative; display: flex; flex: 1; min-width: 0; }
+.fame-level > button {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: inherit;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: help;
+}
+.fame-level { gap: inherit; }
+.fame-exact { left: 50%; translate: -50% 0; display: grid; gap: 2px; font: 500 13px "DM Sans", sans-serif; }
+.fame-exact strong { color: #f9d998; font-size: 15px; }
 .fame-meter {
   display: flex;
   align-items: center;

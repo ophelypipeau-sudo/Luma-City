@@ -1036,6 +1036,25 @@ test("Les jeux et les niveaux alimentent la même roue, sans récompenser deux f
     assert.equal(result.wheel.tickets, ARCADE_GAMES.length + 1);
     assert.deepEqual(result.wheel.pending, []);
     assert.deepEqual((await collect(drops[0].id)).data, result);
+    // Plusieurs tours d'un seul clic : un tirage par tour, rejouable sans tirer à nouveau.
+    const ids = [randomUUID(), randomUUID(), randomUUID()];
+    const batch = await request(app, "wheel/spin", cookie, { generation, ids });
+    assert.equal(batch.status, 200);
+    assert.equal(batch.data.spins.length, 3);
+    assert.equal(batch.data.wheel.tickets, ARCADE_GAMES.length - 2);
+    assert.deepEqual(batch.data.prize, batch.data.spins[2].prize);
+    assert.equal(batch.data.wheel.pending.length,
+      batch.data.spins.reduce((total: number, spin: { prize: { amount: number } }) => total + Math.min(5, spin.prize.amount), 0));
+    assert.deepEqual((await request(app, "wheel/spin", cookie, { generation, ids })).data, batch.data);
+    const tooMany = await request(app, "wheel/spin", cookie, {
+      generation, ids: Array.from({ length: ARCADE_GAMES.length }, () => randomUUID()),
+    });
+    assert.equal(tooMany.status, 400);
+    assert.match(tooMany.data.error, /Tu n’as que \d+ tours? disponibles?/);
+    // Les bulles de la même monnaie, à la même place, se ramassent en une fois.
+    const all = batch.data.wheel.pending.map((drop: { id: string }) => drop.id);
+    const swept = await request(app, "wheel/collect", cookie, { generation, id: all[0], ids: all.slice(1) });
+    assert.deepEqual(swept.data.wheel.pending, []);
   } finally {
     await app.close();
     await db.close();

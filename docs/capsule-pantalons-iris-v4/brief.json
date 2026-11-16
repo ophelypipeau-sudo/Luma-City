@@ -1,0 +1,77 @@
+{
+  "phase": "propositions",
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "models": [
+    {
+      "id": "01-sculpt",
+      "name": "Sculpt",
+      "style": "Legging sculptant · maille mate",
+      "c": "Ceinture haute et large, coutures ergonomiques courbes et micro-maille taupe prune. La construction tranche avec le Studio à bords simples.",
+      "d": "Une zone de maille. Garder les coutures dans le même ton et conserver le grain."
+    },
+    {
+      "id": "02-flow",
+      "name": "Flow",
+      "style": "Legging Pilates · flare souple",
+      "c": "Jersey stretch bleu minéral et évasement souple sous le genou. Le tombé léger distingue Flow du jean bootcut Denim Nova et de l’ajusté Fuseau.",
+      "d": "Une zone de jersey, avec conservation du relief aux genoux et des plis près de l’ourlet."
+    },
+    {
+      "id": "03-shadow",
+      "name": "Shadow",
+      "style": "Legging · cuir souple mat",
+      "c": "Effet cuir mûre charbon à reflets étroits et coutures fines. Le fini peu brillant et la ceinture continue le distinguent d’un pantalon habillé.",
+      "d": "Une zone pour le cuir souple, en conservant les reflets et la valeur des coutures."
+    },
+    {
+      "id": "04-motion",
+      "name": "Motion",
+      "style": "Legging Y2K · empiècements techniques",
+      "c": "Maille pétrole et panneaux cobalt asymétriques. Les empiècements restent pleins et les deux petites barrettes argentées ont été retirées.",
+      "d": "Base pétrole et empiècements cobalt séparés."
+    },
+    {
+      "id": "05-district",
+      "name": "District",
+      "style": "Jean baggy Y2K · denim lourd",
+      "c": "Taille basse, plis creux à la hanche, larges poches angulaires et denim indigo ardoise. Les jambes larges et droites se distinguent du volume resserré en bas de Dalle.",
+      "d": "Denim principal, délavage conservé. Surpiqûres contrastantes et ferrures protégées."
+    },
+    {
+      "id": "06-muse",
+      "name": "Muse",
+      "style": "Pantalon tailleur · taille rabattue",
+      "c": "Tissu tailleur gris taupe, rayure fine et revers de taille café. La ceinture rabattue et les pinces le distinguent de Ligne.",
+      "d": "Tissu et revers de ceinture séparables. Attache métallique protégée."
+    },
+    {
+      "id": "07-chrome",
+      "name": "Chrome",
+      "style": "Pantalon de soirée · crêpe émeraude",
+      "c": "Crêpe satiné vert émeraude profond, ceinture fine, jambes droites et fluides, ourlets fendus.",
+      "d": "Crêpe satiné dans une seule teinte, avec ses reflets doux."
+    },
+    {
+      "id": "08-rebel",
+      "name": "Rebel",
+      "style": "Cargo alternatif · sergé technique",
+      "c": "Sergé prune ardoise, poches et fermetures dissemblables, sangles courtes rapportées sur une jambe. Les ourlets ouverts le distinguent de Rocade.",
+      "d": "Une zone de sergé. Glissières et attaches protégées."
+    },
+    {
+      "id": "09-denim-nova",
+      "name": "Denim Nova",
+      "style": "Jean bootcut · denim surpiqué",
+      "c": "Hanches ajustées, évasement léger sous le genou et poches courbes surpiquées. La coupe est plus près du corps que District.",
+      "d": "Denim, contraste de délavage maintenu. Surpiqûres, clous et rivets protégés."
+    },
+    {
+      "id": "10-veil",
+      "name": "Veil",
+      "style": "Pantalon créateur · drapé intégré",
+      "c": "Crêpe aubergine fluide, taille haute et plis asymétriques qui se fondent dans une jambe.",
+      "d": "Une teinte de crêpe partagée par les jambes et le drapé pour conserver la continuité."
+    }
+  ]
+}

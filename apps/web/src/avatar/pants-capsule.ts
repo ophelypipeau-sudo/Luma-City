@@ -1,4 +1,5 @@
 import manifest from "../../../../public/assets/avatar/capsule-pantalons-v1/index.json";
+import newManifest from "../../../../public/assets/avatar/capsule-pantalons-iris-v4/index.json";
 import type { Garment } from "./catalog";
 import { stationaryPoseProfile } from "./pose-wardrobe";
 
@@ -45,4 +46,33 @@ export const PANTS_CAPSULE_GARMENTS: readonly Garment[] = manifest.pieces.map(
       },
     },
   }),
+);
+
+export const IRIS_PANTS_GARMENTS: readonly Garment[] = newManifest.pieces.map(
+  ({ id, name, price, crop, base, tone, detail, lowRise, hasProtected }) => {
+    const stem = `/assets/avatar/capsule-pantalons-iris-v4/${id}`;
+    return {
+      id: `fashion.iris-pants-${id}`,
+      name, price, slot: "bottom",
+      crop: [crop[0], crop[1], crop[2], crop[3]],
+      coverage: [],
+      bodyMask: `${stem}-coverage.png`,
+      underwearCut: lowRise ? "low-rise" : undefined,
+      pattern: { id: newManifest.pattern, bodySha256: newManifest.bodySha256, cut: `redrawn:iris-pants-${id}` },
+      poseProfile: { ...stationaryPoseProfile(), fits: {
+        front: { kind: "shared" },
+        "hand-on-hip": { kind: "unavailable" },
+        "heart-hands": { kind: "unavailable" },
+      } },
+      colorable: true,
+      secondaryColor: detail ? { label: detail.label, defaultColor: detail.base, mode: "dark" } : undefined,
+      art: { kind: "image", front: `${stem}.png`, colorMasks: {
+        main: `${stem}-mask.png`,
+        detail: detail ? `${stem}-detail-mask.png` : undefined,
+        protected: hasProtected ? `${stem}-protected.png` : undefined,
+        mainBase: base, detailBase: detail?.base ?? "#808080",
+        mainTone: tone, detailTone: detail?.tone, shading: "material",
+      } },
+    };
+  },
 );

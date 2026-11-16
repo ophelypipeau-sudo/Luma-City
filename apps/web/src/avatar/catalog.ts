@@ -11,7 +11,7 @@ import { IRIS_SKIRTS_GARMENTS } from "./iris-skirts";
 import { IRIS_DRESSES_GARMENTS, IRIS_DRESSES_V2_GARMENTS } from "./iris-dresses";
 import { IRIS_KNITS_GARMENTS } from "./iris-knits";
 import { IRIS_SHORTS_GARMENTS } from "./iris-shorts";
-import { PANTS_CAPSULE_GARMENTS } from "./pants-capsule";
+import { IRIS_PANTS_GARMENTS, PANTS_CAPSULE_GARMENTS } from "./pants-capsule";
 import { LEGGING_GARMENTS } from "./legging";
 import { IRIS_SHOES_CAPSULE_GARMENTS, SHOES_CAPSULE_GARMENTS } from "./shoes-capsule";
 import { HAIR_CAPSULE_GARMENTS } from "./hair-capsule";
@@ -313,6 +313,7 @@ const byId = new Map(
     ...IRIS_KNITS_GARMENTS,
     ...IRIS_SHORTS_GARMENTS,
     ...PANTS_CAPSULE_GARMENTS,
+    ...IRIS_PANTS_GARMENTS,
     ...LEGGING_GARMENTS,
     ...SHOES_CAPSULE_GARMENTS,
     ...IRIS_SHOES_CAPSULE_GARMENTS,
@@ -354,6 +355,7 @@ const shopGarments = [
   ...IRIS_KNITS_GARMENTS,
   ...IRIS_SHORTS_GARMENTS,
   ...PANTS_CAPSULE_GARMENTS,
+  ...IRIS_PANTS_GARMENTS,
   ...LEGGING_GARMENTS,
   ...SHOES_CAPSULE_GARMENTS,
   ...IRIS_SHOES_CAPSULE_GARMENTS,

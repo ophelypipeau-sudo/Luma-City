@@ -96,7 +96,8 @@ export const avatarFaceSchema = z.object({
   lipColor: faceHex.optional(),
   eyes: z.union([z.enum(["original", "green", "blue", "brown"]), faceHex]),
   lips: z.enum(["original", "rose", "berry", "nude", "sorbet"]),
-  skin: z.enum(["original", "light", "tan", "deep"]),
+  // Les quatre teintes d'origine restent valables ; la roue du salon enregistre une couleur HEX.
+  skin: z.union([z.enum(["original", "light", "tan", "deep"]), faceHex]),
   nose: z.enum(["original", "fine", "soft", "confettis", "confettis-glam"]),
 });
 export type AvatarFace = z.infer<typeof avatarFaceSchema>;

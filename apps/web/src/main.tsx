@@ -82,6 +82,7 @@ import "./profile.css";
 import "./quartier.css";
 import "./friends-panel.css";
 import "./guestbook/guestbook.css";
+import "./beauty-salon.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/600.css";
 import "@fontsource/outfit/400.css";

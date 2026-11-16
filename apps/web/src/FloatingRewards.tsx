@@ -2,12 +2,14 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Sparkles } from "lucide-react";
 import type { WheelPayout } from "../../../packages/contracts/src/index";
 import { REWARD_PICKUP_LIMIT } from "../../../packages/domain/src/arcade";
-import "./floating-rewards.css";
 
 const COLLECT_AFTER_MS = 8000;
+// Cinq places pour les pièces, cinq autres pour l'XP quand plusieurs tours sont lancés ensemble.
 const scatterPoints = [
   [50, 48], [28, 30], [72, 31], [32, 68], [68, 68],
+  [50, 18], [14, 50], [86, 50], [50, 82], [86, 20],
 ];
+const currencyPlaces = { coins: 0, xp: 1, diamonds: 1 };
 const counter = {
   xp: ".fame-track",
   coins: ".money-counter.monnaie button",
@@ -16,12 +18,15 @@ const counter = {
 type WalletPickup = WheelPayout & { ids?: string[] };
 export type Collectible = WalletPickup | { id: string; currency: "xp"; amount: number; points: number };
 
-/** Existing wheel spins can still have four small drops at each of the five destinations. */
+/**
+ * Les gains de la roue restent cinq bulles par monnaie, même après plusieurs tours :
+ * chaque bulle additionne les gains de tous les tours à sa place.
+ */
 export function walletPickups(pending: readonly WheelPayout[]): WalletPickup[] {
   const groups = new Map<string, WalletPickup>();
   for (const drop of pending) {
-    const slot = (drop.slot ?? 0) % REWARD_PICKUP_LIMIT;
-    const key = drop.burst ? `${drop.burst}:${slot}` : drop.id;
+    const slot = (drop.slot ?? 0) % REWARD_PICKUP_LIMIT + currencyPlaces[drop.currency] * REWARD_PICKUP_LIMIT;
+    const key = drop.burst ? `${drop.currency}:${slot}` : drop.id;
     const group = groups.get(key);
     if (group) {
       group.amount += drop.amount;
@@ -118,7 +123,7 @@ export function FloatingRewards({ rewards, collect, inDialog = false, burstOrigi
   rewards: readonly Collectible[];
   collect: (reward: Collectible) => Promise<void>;
   inDialog?: boolean;
-  burstOrigin?: { id: string; x: number; y: number };
+  burstOrigin?: { ids: readonly string[]; x: number; y: number };
 }) {
   if (!rewards.length) return null;
   const scattered = rewards.filter((reward) => "burst" in reward && reward.burst);
@@ -131,7 +136,7 @@ export function FloatingRewards({ rewards, collect, inDialog = false, burstOrigi
       {scattered.map((reward) => {
         if (!("burst" in reward)) return null;
         const slot = reward.slot ?? 0;
-        const origin = burstOrigin?.id === reward.burst ? burstOrigin : undefined;
+        const origin = reward.burst && burstOrigin?.ids.includes(reward.burst) ? burstOrigin : undefined;
         const offset = parseInt(reward.id.slice(0, 4), 16) || 0;
         const [x, y] = scatterPoints[slot % scatterPoints.length];
         return <Reward key={reward.id} reward={reward} collect={collect}

@@ -63,6 +63,9 @@ l'ancienne session de jeu. Deux comptes différents peuvent se retrouver dans la
 - Salon d'esthétique sur une seule page : looks, yeux, sourcils, nez, bouche et
   teint, avec un miroir en direct. Le teint se choisit sur une roue de couleur
   (`apps/web/src/ColorWheel.tsx`) ou parmi quatre teintes rapides.
+- Roue des récompenses : on choisit combien de tours lancer d'un coup (jusqu'à 50),
+  avec un récapitulatif des gains. Au survol de la barre de niveau, une bulle
+  indique l'XP du niveau en cours et ce qu'il reste à gagner.
 
 Les conversations restent propres à chaque personnage. Pas de suppression ou
 masquage des messages par l'interface. Le blocage bilatéral est un comportement

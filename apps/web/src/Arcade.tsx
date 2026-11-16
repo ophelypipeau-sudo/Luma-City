@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type Ref } from "react";
-import { ArrowLeft, Check, CircleDot, Crown, Hammer, LockKeyhole, RotateCw, Shirt, Sparkles, Trophy, X } from "lucide-react";
+import { ArrowLeft, Check, CircleDot, Crown, Hammer, LockKeyhole, Minus, Plus, RotateCw, Shirt, Sparkles, Trophy, X } from "lucide-react";
 import type { RewardWheel, ScratchTicket } from "../../../packages/contracts/src/index";
 import {
-  ARCADE_TARGET_LEVEL, MEMORY_PAIRS, WHEEL_PRIZES, type WheelPrize,
+  ARCADE_TARGET_LEVEL, MEMORY_PAIRS, WHEEL_BATCH_MAX, WHEEL_PRIZES, type WheelPrize,
   arcadeLevel, replayMemory,
 } from "../../../packages/domain/src/arcade";
 import { avatarGarment } from "./avatar/catalog";
@@ -10,7 +10,6 @@ import { AvatarItemThumbnail } from "./avatar/LayeredDoll";
 import { DailyScratch } from "./DailyScratch";
 import { MoleGame } from "./MoleGame";
 import { playSound } from "./sounds";
-import "./arcade.css";
 
 type Round = { id: string; seed: number; moves: number[]; rewarded: boolean };
 const memoryPieces = ["fashion.premium-rosalie", "fashion.pants-dalle", "fashion.premium-velvet", "fashion.pants-ruban"].map(avatarGarment);
@@ -190,6 +189,14 @@ const wheelSegments = WHEEL_PRIZES.map((_, index) => {
 }).join(", ");
 const rewardIcons = { coins: "billet-rose.png", diamonds: "diamants.png", xp: "etoile-xp.png" };
 const formatAmount = new Intl.NumberFormat("fr-FR");
+/** « 4 000 pièces et 3 500 XP » : les gains de plusieurs tours, additionnés par monnaie. */
+export function wheelTotals(prizes: readonly WheelPrize[]) {
+  const totals = new Map<WheelPrize["currency"], number>();
+  for (const { currency, amount } of prizes) totals.set(currency, (totals.get(currency) ?? 0) + amount);
+  const parts = (["coins", "diamonds", "xp"] as const).filter((currency) => totals.has(currency))
+    .map((currency) => rewardLabel(totals.get(currency)!, currency));
+  return parts.length > 1 ? `${parts.slice(0, -1).join(", ")} et ${parts.at(-1)}` : parts[0] ?? "";
+}
 function rewardLabel(amount: number, currency: WheelPrize["currency"]) {
   const unit = currency === "xp" ? "XP" : currency === "coins" ? "pièce" : "diamant";
   return `${formatAmount.format(amount)} ${unit}${amount > 1 && currency !== "xp" ? "s" : ""}`;
@@ -216,14 +223,19 @@ function WheelDial({ disc, vip = false }: { disc?: Ref<HTMLDivElement>; vip?: bo
 export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
   wheel?: RewardWheel;
   onClose: () => void;
-  onSpin: (id: string) => Promise<{ index: number; prize: WheelPrize; reveal: () => void }>;
-  onBurst: (id: string, origin: { x: number; y: number }) => void;
+  /** Lance un tour par identifiant ; la roue s'arrête sur le dernier. */
+  onSpin: (ids: string[]) => Promise<{ index: number; prize: WheelPrize; spins: { prize: WheelPrize }[]; reveal: () => void }>;
+  onBurst: (ids: string[], origin: { x: number; y: number }) => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const disc = useRef<HTMLDivElement>(null);
-  const pending = useRef<string | null>(null);
+  const pending = useRef<string[] | null>(null);
   const rotation = useRef(0);
-  const [result, setResult] = useState<WheelPrize | null>(null);
+  const [result, setResult] = useState<WheelPrize[] | null>(null);
+  const tickets = wheel?.tickets ?? 0;
+  const max = Math.min(tickets, WHEEL_BATCH_MAX);
+  const [wanted, setWanted] = useState(1);
+  const count = Math.max(1, Math.min(wanted, max));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -232,14 +244,15 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
     return () => node?.close();
   }, []);
   async function spin() {
-    if (busy || !wheel?.tickets) return;
-    const id = pending.current ?? crypto.randomUUID();
-    pending.current = id;
+    if (busy || !tickets) return;
+    // Après une erreur réseau, on renvoie les mêmes tours au lieu d'en relancer d'autres.
+    const ids = pending.current ?? Array.from({ length: count }, () => crypto.randomUUID());
+    pending.current = ids;
     setError("");
     setResult(null);
     setBusy(true);
     try {
-      const prize = await onSpin(id);
+      const prize = await onSpin(ids);
       const target = (360 - (prize.index + .5) * segmentAngle) % 360;
       const nextAngle = rotation.current + 1440 + ((target - (rotation.current % 360) + 360) % 360);
       const element = disc.current;
@@ -271,12 +284,13 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
       if (prize.index >= 0) rotation.current = nextAngle;
       pending.current = null;
       prize.reveal();
-      setResult(prize.prize);
+      setResult(prize.spins.map((spin) => spin.prize));
       playSound("gain");
       if (element?.isConnected) {
         const rect = element.getBoundingClientRect();
-        await new Promise<void>((resolve) => window.setTimeout(resolve, 850));
-        if (element.isConnected) onBurst(id, { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+        // Le récapitulatif de plusieurs tours reste affiché le temps d'être lu.
+        await new Promise<void>((resolve) => window.setTimeout(resolve, prize.spins.length > 1 ? 2600 : 850));
+        if (element.isConnected) onBurst(ids, { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
       }
     } catch (cause) {
       setError((cause as Error).message);
@@ -291,10 +305,22 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
     <div className="wheel-selection">
       <section className="wheel-card" aria-label="Roue classique">
         <h3>Roue classique</h3>
-        <p>{wheel?.tickets ?? 0} {(wheel?.tickets ?? 0) === 1 ? "tour disponible" : "tours disponibles"}</p>
+        <p>{tickets} {tickets === 1 ? "tour disponible" : "tours disponibles"}</p>
         <WheelDial disc={disc} />
-        <button type="button" className="world-feature-claim" disabled={busy || !wheel?.tickets} onClick={() => void spin()}>
-          {busy && !result ? "La roue tourne…" : "Tourner la roue"}
+        {max > 1 && (
+          <div className="wheel-count" role="group" aria-label="Nombre de tours à lancer">
+            <button type="button" aria-label="Un tour de moins" disabled={busy || count <= 1}
+              onClick={() => setWanted(count - 1)}><Minus size={16} /></button>
+            <output aria-live="polite"><strong>{count}</strong> tour{count > 1 ? "s" : ""}</output>
+            <button type="button" aria-label="Un tour de plus" disabled={busy || count >= max}
+              onClick={() => setWanted(count + 1)}><Plus size={16} /></button>
+            <button type="button" className="wheel-count-all" disabled={busy || count === max}
+              onClick={() => setWanted(max)}>Tout ({max})</button>
+          </div>
+        )}
+        <button type="button" className="world-feature-claim" disabled={busy || !tickets} onClick={() => void spin()}>
+          {busy && !result ? count > 1 ? `Les ${count} tours sont lancés…` : "La roue tourne…"
+            : count > 1 ? `Tourner ${count} fois` : "Tourner la roue"}
         </button>
       </section>
       <section className="wheel-card wheel-card-vip" aria-label="Roue VIP verrouillée">
@@ -306,7 +332,14 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
         </button>
       </section>
     </div>
-    {result && <p role="status">Tu as gagné {rewardLabel(result.amount, result.currency)} !</p>}
+    {result && <div role="status" className="wheel-result">
+      <p>Tu as gagné {wheelTotals(result)} !</p>
+      {result.length > 1 && <ul aria-label="Gain de chaque tour">
+        {result.map(({ amount, currency }, index) => <li key={index}>
+          <img src={`/assets/wallet/${rewardIcons[currency]}`} alt="" />{rewardLabel(amount, currency)}
+        </li>)}
+      </ul>}
+    </div>}
     {error && <p role="alert">{error}</p>}
   </dialog>;
 }

@@ -14,6 +14,7 @@ import { IRIS_DRESSES_GARMENTS, IRIS_DRESSES_V2_GARMENTS } from "../../apps/web/
 import { IRIS_KNITS_GARMENTS } from "../../apps/web/src/avatar/iris-knits";
 import { HAIR_CAPSULE_V4_GARMENTS } from "../../apps/web/src/avatar/hair-capsule-v4";
 import { IRIS_SHORTS_GARMENTS } from "../../apps/web/src/avatar/iris-shorts";
+import { IrisPantFit, pantLooks, type PantLook } from "./IrisPantFit";
 import { IrisShoeFit, shoeLooks, type ShoeLook } from "./IrisShoeFit";
 
 function Fixture() {
@@ -167,7 +168,9 @@ function BottomsFit({ group, dye, detailDye, knitBottom, tucked, velvet, variant
 const params = new URLSearchParams(location.search);
 const group = params.get("bottoms");
 const shoes = params.get("chaussures");
+const pants = params.get("pantalons");
 createRoot(document.getElementById("fixture")!).render(
+  pants && Object.hasOwn(pantLooks, pants) ? <IrisPantFit look={pants as PantLook} color={params.get("dye") ?? undefined} detail={params.get("detail") ?? undefined} /> :
   shoes && Object.hasOwn(shoeLooks, shoes) ? <IrisShoeFit look={shoes as ShoeLook} /> :
   group ? <BottomsFit group={group} dye={params.get("dye") ?? undefined} detailDye={params.get("detail") ?? undefined} knitBottom={params.get("bas") ?? undefined} tucked={params.has("tucked")} velvet={params.get("top") === "velvet"} variant={params.has("variant")} /> : <Fixture />,
 );

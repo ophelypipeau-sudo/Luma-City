@@ -1,0 +1,238 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "sculpt",
+      "name": "Sculpt",
+      "base": "#74515a",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        253,
+        613,
+        381,
+        959
+      ],
+      "tone": {
+        "shadow": 56,
+        "middle": 78,
+        "highlight": 98,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "flow",
+      "name": "Flow",
+      "base": "#596f8a",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        241,
+        622,
+        404,
+        1001
+      ],
+      "tone": {
+        "shadow": 75,
+        "middle": 101,
+        "highlight": 132,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "shadow",
+      "name": "Shadow",
+      "base": "#423037",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        257,
+        626,
+        370,
+        908
+      ],
+      "tone": {
+        "shadow": 22,
+        "middle": 35,
+        "highlight": 77,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "motion",
+      "name": "Motion",
+      "base": "#153749",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        256,
+        627,
+        371,
+        905
+      ],
+      "tone": {
+        "shadow": 28,
+        "middle": 40,
+        "highlight": 53,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "detail": {
+        "label": "Empiècements cobalt",
+        "base": "#4754a2",
+        "tone": {
+          "shadow": 54,
+          "middle": 81,
+          "highlight": 108,
+          "depth": 0.38,
+          "sheen": 0.17
+        }
+      }
+    },
+    {
+      "id": "district",
+      "name": "District",
+      "base": "#34445d",
+      "price": 900,
+      "lowRise": true,
+      "hasProtected": true,
+      "crop": [
+        237,
+        668,
+        411,
+        1012
+      ],
+      "tone": {
+        "shadow": 28,
+        "middle": 45,
+        "highlight": 88,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "muse",
+      "name": "Muse",
+      "base": "#87766d",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": true,
+      "crop": [
+        247,
+        620,
+        389,
+        997
+      ],
+      "tone": {
+        "shadow": 86,
+        "middle": 113,
+        "highlight": 145,
+        "depth": 0.38,
+        "sheen": 0.18
+      },
+      "detail": {
+        "label": "Revers de ceinture",
+        "base": "#322824",
+        "tone": {
+          "shadow": 15,
+          "middle": 39,
+          "highlight": 57,
+          "depth": 0.38,
+          "sheen": 0.17
+        }
+      }
+    },
+    {
+      "id": "chrome",
+      "name": "Chrome",
+      "base": "#235447",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        253,
+        623,
+        381,
+        961
+      ],
+      "tone": {
+        "shadow": 27,
+        "middle": 38,
+        "highlight": 53,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "rebel",
+      "name": "Rebel",
+      "base": "#482933",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": true,
+      "crop": [
+        253,
+        626,
+        370,
+        910
+      ],
+      "tone": {
+        "shadow": 14,
+        "middle": 27,
+        "highlight": 47,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "denim-nova",
+      "name": "Denim Nova",
+      "base": "#325479",
+      "price": 900,
+      "lowRise": true,
+      "hasProtected": true,
+      "crop": [
+        252,
+        636,
+        378,
+        947
+      ],
+      "tone": {
+        "shadow": 38,
+        "middle": 57,
+        "highlight": 114,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    },
+    {
+      "id": "veil",
+      "name": "Veil",
+      "base": "#502839",
+      "price": 900,
+      "lowRise": false,
+      "hasProtected": false,
+      "crop": [
+        253,
+        626,
+        380,
+        1042
+      ],
+      "tone": {
+        "shadow": 20,
+        "middle": 29,
+        "highlight": 50,
+        "depth": 0.38,
+        "sheen": 0.18
+      }
+    }
+  ]
+}

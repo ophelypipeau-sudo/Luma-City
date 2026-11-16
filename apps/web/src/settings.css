@@ -1,0 +1,109 @@
+.settings-dialog {
+  box-sizing: border-box;
+  width: min(34rem, calc(100% - 2rem));
+  max-height: min(85vh, 46rem);
+  padding: 1.25rem;
+  border: 1px solid #b68ab7;
+  border-radius: 1rem;
+  background: #38233f;
+  color: #fff1fa;
+  box-shadow: 0 20px 70px #200f2da8;
+  font-size: 14px;
+}
+.settings-dialog::backdrop { background: #25172c70; }
+.settings-dialog header { display: flex; align-items: center; gap: .7rem; }
+.settings-dialog header > svg { color: #f7ce8a; }
+.settings-dialog h2 { flex: 1; margin: 0; font-size: 20px; }
+.settings-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ffffff38;
+  border-radius: .5rem;
+  background: #744475;
+  color: inherit;
+  cursor: pointer;
+}
+.settings-dialog section { margin-top: 1.25rem; }
+.settings-dialog h3 {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  margin: 0 0 .6rem;
+  font-size: 15px;
+}
+.settings-dialog h4 {
+  margin: .9rem 0 .35rem;
+  color: #d6b8e6;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Fond : les mêmes pastilles qu'avant, en plus grand. */
+.settings-dialog .background-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: .75rem;
+}
+.settings-dialog .background-swatches button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 8px;
+  border: 1px solid #c89bd25c;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.settings-dialog .background-swatches button[aria-pressed="true"] { background: #70477f; }
+.settings-dialog .background-swatches span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.settings-dialog .vip-background { position: static; }
+
+/* Sons : une ligne par son, avec case, intensité et bouton pour l'écouter. */
+.settings-master { display: flex; align-items: center; gap: .5rem; font-weight: 600; cursor: pointer; }
+.settings-sounds[data-muted="true"] { opacity: .5; }
+.settings-sounds ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.settings-sounds li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(90px, 140px) 44px 30px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: .5rem;
+  background: #ffffff0e;
+}
+.settings-sound-name { display: flex; align-items: center; gap: .5rem; min-width: 0; cursor: pointer; }
+.settings-dialog input[type="checkbox"] { flex: none; width: 16px; height: 16px; accent-color: #f4a9d8; }
+.settings-dialog input[type="range"] { width: 100%; accent-color: #f4a9d8; }
+.settings-sounds output { color: #d6b8e6; font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
+.settings-play {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #744475;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .settings-dialog .background-swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .settings-sounds li { grid-template-columns: minmax(0, 1fr) 44px 30px; }
+  .settings-sounds li input[type="range"] { grid-column: 1 / -1; grid-row: 2; }
+}

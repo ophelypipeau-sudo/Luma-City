@@ -233,29 +233,7 @@
     color: #2a1530;
     font-weight: 700;
   }
-  .game-fullscreen .rail-bottom {
-    position: static;
-    width: auto;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
-  }
-  .game-fullscreen .rail-bottom .rail-button {
-    width: auto;
-    height: 40px;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #e3d7f5;
-    border-radius: 12px;
-  }
-  .game-fullscreen .rail-bottom .rail-button > span {
-    display: inline;
-    font-size: 13px;
-  }
-  .game-fullscreen .rail-bottom .rail-button:hover { background: rgba(27, 19, 40, 0.42); }
+  .game-fullscreen .rail-bottom { display: none; }
 
   /* Top bar: one labelled navigation, wallet on the right. */
   .game-fullscreen .workspace { left: calc(var(--character-width) + 20px); }

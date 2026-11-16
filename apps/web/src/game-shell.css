@@ -913,10 +913,7 @@ body {
 .game-fullscreen .empty-state h3 {
   color: #ecd1f3;
 }
-.game-fullscreen .empty-state p,
-.game-fullscreen .panel-copy,
-.game-fullscreen .help-item p,
-.game-fullscreen .prototype-note {
+.game-fullscreen .empty-state p {
   color: #d5b4df;
 }
 .game-fullscreen .empty-state > svg {
@@ -930,7 +927,6 @@ body {
   background: #b380c037;
   border-color: #e8bfdc;
 }
-.game-fullscreen .help-item > svg,
 .game-fullscreen .side-tip > svg {
   color: #e0b8ef;
 }

@@ -598,12 +598,6 @@ kbd {
   margin: 0;
   color: #a191ad;
 }
-.panel-copy {
-  font-size: 12px;
-  line-height: 1.9;
-  color: #95869f;
-  margin: 0 0 22px;
-}
 .theme-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -630,30 +624,6 @@ kbd {
   display: grid;
   place-items: center;
   color: white;
-}
-.help-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  font-size: 11px;
-}
-.help-item > svg {
-  flex-shrink: 0;
-  color: var(--accent);
-}
-.help-item strong {
-  font-weight: 600;
-}
-.help-item p {
-  font-size: 11px;
-  line-height: 1.8;
-  color: #96859f;
-}
-.prototype-note {
-  font-size: 10px;
-  line-height: 1.8;
-  color: #a595ad;
-  margin-top: auto;
 }
 .conversation {
   display: flex;

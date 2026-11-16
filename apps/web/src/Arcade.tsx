@@ -9,6 +9,7 @@ import { avatarGarment } from "./avatar/catalog";
 import { AvatarItemThumbnail } from "./avatar/LayeredDoll";
 import { DailyScratch } from "./DailyScratch";
 import { MoleGame } from "./MoleGame";
+import { playSound } from "./sounds";
 import "./arcade.css";
 
 type Round = { id: string; seed: number; moves: number[]; rewarded: boolean };
@@ -86,7 +87,11 @@ export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, s
   const level = arcadeLevel(memory?.score ?? 0);
   const won = level >= ARCADE_TARGET_LEVEL;
   function move(column: number) {
-    if (!memory || memory.over || won || busy) return;
+    if (!memory || memory.over || won || busy || !round) return;
+    const next = replayMemory(round.seed, [...round.moves, column]);
+    playSound(next.matched.size > memory.matched.size ? "paire" : "carte");
+    if (next.over || arcadeLevel(next.score) >= ARCADE_TARGET_LEVEL)
+      window.setTimeout(() => playSound("fin-de-partie"), 400);
     setRound((current) => current && { ...current, moves: [...current.moves, column] });
   }
   async function reward() {
@@ -240,11 +245,23 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
       const element = disc.current;
       const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prize.index >= 0 && element && !reduce) {
+        const from = rotation.current;
         const animation = element.animate([
-          { transform: `rotate(${rotation.current}deg)` },
+          { transform: `rotate(${from}deg)` },
           { transform: `rotate(${nextAngle}deg)` },
         ], { duration: 2800, easing: "cubic-bezier(.13,.7,.14,1)", fill: "forwards" });
+        // Un « tic » à chaque case qui passe sous le repère : il ralentit avec la roue.
+        let segment = Math.floor(from / segmentAngle), frame = 0;
+        const tick = () => {
+          const progress = animation.effect?.getComputedTiming().progress ?? 1;
+          const current = Math.floor((from + (nextAngle - from) * progress) / segmentAngle);
+          if (current !== segment) playSound("roue-tic");
+          segment = current;
+          if (animation.playState === "running") frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
         await animation.finished.catch(() => {});
+        cancelAnimationFrame(frame);
         element.style.transform = `rotate(${nextAngle}deg)`;
         animation.cancel();
       } else if (prize.index >= 0) {
@@ -255,6 +272,7 @@ export function PrizeWheel({ wheel, onClose, onSpin, onBurst }: {
       pending.current = null;
       prize.reveal();
       setResult(prize.prize);
+      playSound("gain");
       if (element?.isConnected) {
         const rect = element.getBoundingClientRect();
         await new Promise<void>((resolve) => window.setTimeout(resolve, 850));

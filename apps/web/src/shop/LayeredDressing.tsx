@@ -1,5 +1,6 @@
 import { FASHION_BASE } from "../avatar/base";
 import { garmentMaterials } from "../avatar/materials";
+import { playSound } from "../sounds";
 import {
   isPunkCut,
   PUNK_SWATCHES,
@@ -227,6 +228,7 @@ export function LayeredDressing({
     }
     setPurchaseError(error ?? "");
     if (!error) {
+      playSound("achat");
       setReceipt({ stamp: Date.now(), cost });
       setPaletteId(null);
       if (!id) setCartOpen(false);

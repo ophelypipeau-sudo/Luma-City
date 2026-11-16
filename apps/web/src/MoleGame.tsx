@@ -1,6 +1,7 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { CircleDot, Hammer, Heart, RotateCw, Trophy } from "lucide-react";
 import { MOLE_HOLES, MOLE_LIVES, MOLE_MISS, MOLE_TARGET, replayMole } from "../../../packages/domain/src/arcade";
+import { playSound } from "./sounds";
 
 const visibleTime = 1500;
 const pauseTime = 400;
@@ -66,9 +67,13 @@ export function MoleGame({ startRound, finish, onWheel }: {
   useEffect(() => {
     if (won) void rewardOnWin();
   }, [won]);
+  useEffect(() => {
+    if (won || lost) playSound("fin-de-partie");
+  }, [won, lost]);
 
   function hit(hole: number) {
     if (!round?.visible || !playing || progress?.hole !== hole) return;
+    playSound("taupe");
     setRound((current) => current === round ? { ...round, moves: [...round.moves, hole], visible: false } : current);
   }
 

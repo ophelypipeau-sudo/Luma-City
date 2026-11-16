@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sons du jeu · Luma City</title>
+    <style>
+      :root { --bg: #f4eefb; --card: #fff; --ink: #2d2140; --muted: #7a6c8f; --accent: #8b5cf6; --accent-soft: #ede4fe; --line: #e4d9f3; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, sans-serif; }
+      main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+      h1 { margin: 0 0 4px; font-size: 28px; }
+      .intro { color: var(--muted); margin: 0 0 20px; }
+      h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 28px 0 10px; }
+      ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+      button.sound { width: 100%; display: flex; align-items: center; gap: 14px; text-align: left; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 16px; font: inherit; color: inherit; cursor: pointer; }
+      button.sound:hover, button.sound.playing { border-color: var(--accent); background: var(--accent-soft); }
+      .icon { width: 34px; height: 34px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff; font-size: 13px; }
+      .sound strong { display: block; }
+      .sound span { color: var(--muted); font-size: 14px; }
+      #all { border: 0; border-radius: 999px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; padding: 10px 18px; cursor: pointer; }
+      #muted { display: none; margin-top: 12px; color: #c2410c; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Sons du jeu</h1>
+      <p class="intro">Les sons retenus, joués exactement comme dans le jeu (mêmes fichiers, mêmes volumes).</p>
+      <button id="all" type="button">▶ Tout écouter à la suite</button>
+      <p id="muted">Le son est coupé dans le jeu : réactive-le avec le bouton « Son » pour entendre cette page.</p>
+      <div id="list"></div>
+    </main>
+    <script type="module">
+      import { playSound } from "/apps/web/src/sounds.ts";
+      try { if (localStorage.getItem("luma-sound-muted") === "1") document.getElementById("muted").style.display = "block"; } catch {}
+      const groups = [
+        ["Notifications", [
+          ["message", "Message privé reçu", "Sauf si la conversation est déjà ouverte."],
+          ["cadeau", "Cadeau reçu", "Un vêtement offert par un autre joueur."],
+          ["demande-ami", "Demande reçue", "Ami, meilleur ami ou couple."],
+        ]],
+        ["Récompenses", [
+          ["roue-tic", "Roue : tic-tic", "Répété à chaque case qui passe."],
+          ["gain", "Gain", "Fin de la roue et ticket à gratter."],
+          ["xp", "Ramasser de l'XP", "Gains qui flottent sur la carte."],
+          ["niveau", "Passage de niveau", "Quand on monte d'un niveau."],
+          ["grattage", "Grattage du ticket", "Pendant qu'on gratte."],
+        ]],
+        ["Mini-jeux et boutique", [
+          ["carte", "Memory : carte retournée", ""],
+          ["paire", "Memory : paire trouvée", ""],
+          ["taupe", "Taupe touchée", ""],
+          ["fin-de-partie", "Fin de partie", "Memory et taupe."],
+          ["achat", "Achat en boutique", "Quand un achat est validé."],
+        ]],
+      ];
+      const list = document.getElementById("list");
+      const buttons = [];
+      for (const [title, sounds] of groups) {
+        const h2 = document.createElement("h2");
+        h2.textContent = title;
+        const ul = document.createElement("ul");
+        for (const [name, label, hint] of sounds) {
+          const li = document.createElement("li");
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "sound";
+          button.innerHTML = `<span class="icon">▶</span><div><strong></strong><span></span></div>`;
+          button.querySelector("strong").textContent = label;
+          button.querySelector("div span").textContent = hint;
+          button.onclick = () => flash(button, name);
+          buttons.push([button, name]);
+          li.append(button);
+          ul.append(li);
+        }
+        list.append(h2, ul);
+      }
+      function flash(button, name) {
+        playSound(name);
+        button.classList.add("playing");
+        setTimeout(() => button.classList.remove("playing"), 700);
+      }
+      document.getElementById("all").onclick = async () => {
+        for (const [button, name] of buttons) {
+          flash(button, name);
+          await new Promise((resolve) => setTimeout(resolve, name === "niveau" || name === "gain" || name === "fin-de-partie" ? 2200 : 1100));
+        }
+      };
+    </script>
+  </body>
+</html>

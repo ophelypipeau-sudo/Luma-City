@@ -23,8 +23,11 @@ import {
   Star,
   Trophy,
   Users,
+  Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
+import { playSound, setSoundMuted, useSoundMuted } from "./sounds";
 import { Room } from "./Room";
 import { WalletCounter } from "./WalletCounter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
@@ -324,6 +327,33 @@ function App() {
   // Friend, best friend and couple requests all wait in Amis → Demandes.
   const requestCount = state?.contacts.filter((contact) => !contact.blocked)
     .reduce((count, contact) => count + (contact.relationRequests?.length ?? (contact.friendRequest ? 1 : 0)), 0) ?? 0;
+  const soundMuted = useSoundMuted();
+  // Sons des notifications : le serveur signale seulement « quelque chose a changé »,
+  // donc on compare le nouvel état au précédent pour savoir quoi jouer.
+  const heard = useRef<{
+    character: string; unread: Record<string, number>; requests: number; gifts: Set<string>; level: number;
+  } | null>(null);
+  useEffect(() => {
+    const character = state?.character?.id;
+    if (!state || !character) {
+      heard.current = null;
+      return;
+    }
+    const previous = heard.current;
+    const gifts = new Set((state.garmentTransfers ?? [])
+      .filter((gift) => gift.recipient === character).map((gift) => gift.id));
+    heard.current = {
+      character, gifts, level, requests: requestCount,
+      unread: Object.fromEntries(state.contacts.map((contact) => [contact.id, contact.unread])),
+    };
+    if (previous?.character !== character) return;
+    const reading = socialOpen && panel === "chat" && document.visibilityState === "visible";
+    if (state.contacts.some((contact) => contact.unread > (previous.unread[contact.id] ?? 0)
+      && !(reading && contact.id === peer))) playSound("message");
+    if ([...gifts].some((id) => !previous.gifts.has(id))) playSound("cadeau");
+    if (requestCount > previous.requests) playSound("demande-ami");
+    if (level > previous.level) playSound("niveau");
+  }, [state, level, requestCount, socialOpen, panel, peer]);
   function openMagazine() {
     setMagazineMenu(false);
     setWorldPanel("magazine");
@@ -401,6 +431,7 @@ function App() {
   }
   async function collectReward(reward: Collectible) {
     if (!state?.character) throw new Error("Connecte-toi pour récolter ton gain.");
+    playSound("xp");
     const generation = state.generation;
     if ("points" in reward) pendingXpClaims.current++;
     const task = walletClaims.current.then(async () => {
@@ -869,6 +900,16 @@ function App() {
               setVipBackground(hex);
               localStorage.setItem("vip-background", hex);
             }} />
+          <button
+            className="rail-button"
+            title={soundMuted ? "Activer le son" : "Couper le son"}
+            aria-label={soundMuted ? "Activer le son" : "Couper le son"}
+            aria-pressed={soundMuted}
+            onClick={() => setSoundMuted(!soundMuted)}
+          >
+            {soundMuted ? <VolumeX /> : <Volume2 />}
+            <span>{soundMuted ? "Son coupé" : "Son"}</span>
+          </button>
           <button
             className="rail-button"
             title="Aide"

@@ -9,6 +9,7 @@ import { CAPSULE_MODE_GARMENTS } from "./capsule-mode";
 import { PREMIUM_CAPSULE_GARMENTS } from "./premium-capsule";
 import { IRIS_SKIRTS_GARMENTS } from "./iris-skirts";
 import { IRIS_DRESSES_GARMENTS, IRIS_DRESSES_V2_GARMENTS } from "./iris-dresses";
+import { IRIS_KNITS_GARMENTS } from "./iris-knits";
 import { IRIS_SHORTS_GARMENTS } from "./iris-shorts";
 import { PANTS_CAPSULE_GARMENTS } from "./pants-capsule";
 import { LEGGING_GARMENTS } from "./legging";
@@ -125,6 +126,8 @@ export type Garment = Readonly<{
   beltFit?: Readonly<{ scaleX: number; offsetY: number }>;
   /** Region above this waistband, with a small overlap under its opaque edge. */
   tuckedTopRegion?: string;
+  /** Left sleeve corridor on the native front canvas, mirrored on the right. */
+  tuckedSleeveRegion?: string;
   /** Underwear cut only; identity, outline and pose stay the canonical body. */
   underwearCut?: "strapless" | "low-rise";
   frontPaths?: readonly { d: string; fill: string }[];
@@ -307,6 +310,7 @@ const byId = new Map(
     ...IRIS_SKIRTS_GARMENTS,
     ...IRIS_DRESSES_GARMENTS,
     ...IRIS_DRESSES_V2_GARMENTS,
+    ...IRIS_KNITS_GARMENTS,
     ...IRIS_SHORTS_GARMENTS,
     ...PANTS_CAPSULE_GARMENTS,
     ...LEGGING_GARMENTS,
@@ -346,6 +350,7 @@ const shopGarments = [
   ...IRIS_SKIRTS_GARMENTS,
   ...IRIS_DRESSES_GARMENTS,
   ...IRIS_DRESSES_V2_GARMENTS,
+  ...IRIS_KNITS_GARMENTS,
   ...IRIS_SHORTS_GARMENTS,
   ...PANTS_CAPSULE_GARMENTS,
   ...LEGGING_GARMENTS,

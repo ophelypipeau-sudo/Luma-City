@@ -1,0 +1,217 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "nuage",
+      "name": "Nuage",
+      "base": "#ccae87",
+      "crop": [
+        102,
+        303,
+        664,
+        549
+      ],
+      "tone": {
+        "shadow": 121,
+        "middle": 183,
+        "highlight": 224,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": false
+    },
+    {
+      "id": "alaska",
+      "name": "Alaska",
+      "base": "#21392d",
+      "crop": [
+        134,
+        278,
+        617,
+        568
+      ],
+      "tone": {
+        "shadow": 26,
+        "middle": 41,
+        "highlight": 65,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": false
+    },
+    {
+      "id": "mila",
+      "name": "Mila",
+      "base": "#9b90b8",
+      "crop": [
+        126,
+        328,
+        629,
+        525
+      ],
+      "tone": {
+        "shadow": 94,
+        "middle": 139,
+        "highlight": 188,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": false
+    },
+    {
+      "id": "epaules-nues",
+      "name": "Épaules nues",
+      "base": "#a0a18c",
+      "crop": [
+        127,
+        388,
+        631,
+        475
+      ],
+      "tone": {
+        "shadow": 105,
+        "middle": 152,
+        "highlight": 192,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": true
+    },
+    {
+      "id": "eclipse",
+      "name": "Éclipse",
+      "base": "#766a7a",
+      "crop": [
+        129,
+        291,
+        627,
+        559
+      ],
+      "tone": {
+        "shadow": 57,
+        "middle": 87,
+        "highlight": 123,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": false
+    },
+    {
+      "id": "mocha",
+      "name": "Mocha",
+      "base": "#694737",
+      "crop": [
+        125,
+        330,
+        633,
+        536
+      ],
+      "tone": {
+        "shadow": 44,
+        "middle": 59,
+        "highlight": 88,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": true,
+      "bareBodice": true
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "base": "#242639",
+      "crop": [
+        114,
+        316,
+        649,
+        663
+      ],
+      "tone": {
+        "shadow": 17,
+        "middle": 32,
+        "highlight": 59,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "detail": {
+        "label": "Empiècement rouille",
+        "base": "#a65728",
+        "tone": {
+          "shadow": 31,
+          "middle": 71,
+          "highlight": 108,
+          "depth": 0.28,
+          "sheen": 0.18
+        }
+      },
+      "hasProtected": true,
+      "bareBodice": false
+    },
+    {
+      "id": "velvet-cotele",
+      "name": "Velvet côtelé",
+      "base": "#481729",
+      "crop": [
+        132,
+        294,
+        621,
+        557
+      ],
+      "tone": {
+        "shadow": 22,
+        "middle": 32,
+        "highlight": 50,
+        "depth": 0.42,
+        "sheen": 0.28
+      },
+      "hasProtected": true,
+      "bareBodice": false
+    },
+    {
+      "id": "sienna",
+      "name": "Sienna",
+      "base": "#b96539",
+      "crop": [
+        134,
+        337,
+        612,
+        508
+      ],
+      "tone": {
+        "shadow": 62,
+        "middle": 98,
+        "highlight": 145,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": false,
+      "bareBodice": false
+    },
+    {
+      "id": "astral",
+      "name": "Astral",
+      "base": "#184857",
+      "crop": [
+        129,
+        314,
+        627,
+        542
+      ],
+      "tone": {
+        "shadow": 28,
+        "middle": 51,
+        "highlight": 77,
+        "depth": 0.42,
+        "sheen": 0.17
+      },
+      "hasProtected": true,
+      "bareBodice": false
+    }
+  ]
+}

@@ -9,6 +9,10 @@ if (process.argv[2] === "--iris-dresses-v2") {
   await import("./lib/prepare-iris-dresses-v2");
   process.exit(0);
 }
+if (process.argv[2] === "--iris-knits") {
+  await import("./lib/prepare-iris-knits");
+  process.exit(0);
+}
 const W = 887,
   H = 1774,
   N = W * H,

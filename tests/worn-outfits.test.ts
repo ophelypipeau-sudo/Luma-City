@@ -184,6 +184,41 @@ test("tucking removes the lower torso paint but keeps both long sleeves intact",
     assert.ok(left > 100 && right > 100 && trimmed > 30, top);
   }
 });
+
+test("moving Mila and Nuage behind a bottom preserves their sleeves and tucks their sides", () => {
+  const render = (layers: Parameters<typeof moveOutfitPiece>[0]) => {
+    const drawing = renderToStaticMarkup(React.createElement("svg",
+      { xmlns: "http://www.w3.org/2000/svg", width: 480, height: 1024 },
+      React.createElement(LayeredDoll, { layers, inspection: "garments", hiddenSlots: ["bottom"] }),
+    )).replace(/href="(\/assets\/[^"]+)"/g, (_, url: string) =>
+      `href="data:image/png;base64,${readFileSync("public" + url).toString("base64")}"`);
+    return new Resvg(drawing).render().pixels;
+  };
+  for (const bottom of ["fashion.pants-indigo", "fashion.pants-rocade"]) {
+    for (const id of ["mila", "nuage"]) {
+      const top = `fashion.iris-knits-${id}`;
+      const outfit = { top, bottom, shoes: "fashion.shoes-campus" };
+      const moved = moveOutfitPiece(outfit, top, 1);
+      assert.deepEqual(moved.pieceOrder?.slice(0, 2), [bottom, top]);
+      const outside = render(outfit);
+      const tucked = render(moved);
+      const at = (x: number, y: number) => (y * 480 + x) * 4;
+      const sleeveY = 423;
+      for (const x of [112, 368]) {
+        const i = at(x, sleeveY);
+        assert.ok(outside[i + 3] > 240, id);
+        assert.equal(tucked.readUInt32BE(i), outside.readUInt32BE(i), id);
+      }
+      if (id === "nuage") {
+        for (const x of [161, 319]) {
+          const i = at(x, 392);
+          assert.ok(outside[i + 3] > 220, bottom);
+          assert.equal(tucked[i + 3], 0, bottom);
+        }
+      }
+    }
+  }
+});
 test("malformed local saves do not crash", () => {
   assert.deepEqual(readWornOutfits("broken"), {});
   assert.deepEqual(readWornOutfits("[]"), {});

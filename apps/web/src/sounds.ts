@@ -3,12 +3,12 @@ import { useSyncExternalStore } from "react";
 // Sons du jeu. Les fichiers sont dans public/sounds (Kenney.nl, licence CC0).
 // Chaque son a son volume, de 0 à 1, pour qu'aucun ne couvre les autres.
 const VOLUMES = {
-  message: 0.6,
+  message: 0.5,
   cadeau: 0.6,
   "demande-ami": 0.6,
   "roue-tic": 0.3,
   gain: 0.6,
-  xp: 0.5,
+  xp: 0.6,
   niveau: 0.6,
   grattage: 0.4,
   carte: 0.5,

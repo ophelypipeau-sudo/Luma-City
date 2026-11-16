@@ -1,5 +1,6 @@
 import { FASHION_BASE } from "../avatar/base";
 import { garmentMaterials } from "../avatar/materials";
+import { playSound } from "../sounds";
 import {
   isPunkCut,
   PUNK_SWATCHES,
@@ -227,6 +228,7 @@ export function LayeredDressing({
     }
     setPurchaseError(error ?? "");
     if (!error) {
+      playSound("achat");
       setReceipt({ stamp: Date.now(), cost });
       setPaletteId(null);
       if (!id) setCartOpen(false);
@@ -360,6 +362,7 @@ export function LayeredDressing({
                     aria-pressed={wornSlot(layers, piece.id) != null}
                     aria-label={(wornSlot(layers, piece.id) ? "Retirer " : "Essayer ") + piece.name}
                     onClick={() => {
+                      playSound("essayage");
                       onChange((current) => {
                         const slot = wornSlot(current, piece.id);
                         return slot ? removeGarment(current, piece.id) : wearGarment(current, piece.id);

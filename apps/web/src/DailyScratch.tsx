@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Coins, Gem, Sparkles, Star, Ticket, X } from "lucide-react";
 import type { ScratchTicket } from "../../../packages/contracts/src/index";
+import { playSound } from "./sounds";
 
 const width = 360, height = 105;
 const prizeLabels = { coins: "pièces", diamonds: "diamant", xp: "XP" };
@@ -19,6 +20,7 @@ export function DailyScratch({ load, reveal, claim }: {
   const dialog = useRef<HTMLDialogElement>(null);
   const operation = useRef(false);
   const previous = useRef<{ x: number; y: number } | null>(null);
+  const lastScratchSound = useRef(0);
   const available = ticket === null;
 
   async function refresh() {
@@ -81,6 +83,7 @@ export function DailyScratch({ load, reveal, claim }: {
       const result = await reveal();
       setTicket(result.ticket);
       setShowPrize(!result.ticket.claimed);
+      if (!result.ticket.claimed) playSound("gain");
     });
   }
   function scratch(event: PointerEvent<HTMLCanvasElement>) {
@@ -93,6 +96,11 @@ export function DailyScratch({ load, reveal, claim }: {
       y: (event.clientY - rect.top) * height / rect.height };
     const start = previous.current ?? point;
     previous.current = point;
+    // Un grattement toutes les 150 ms au plus, tant que le doigt bouge.
+    if (event.timeStamp - lastScratchSound.current > 150) {
+      lastScratchSound.current = event.timeStamp;
+      playSound("grattage");
+    }
     ctx.globalCompositeOperation = "destination-out";
     ctx.strokeStyle = "#000";
     ctx.lineWidth = 33;

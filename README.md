@@ -52,6 +52,10 @@ l'ancienne session de jeu. Deux comptes différents peuvent se retrouver dans la
 - Blocage entre personnages, déblocage et signalement enregistré côté serveur.
 - Quatre couleurs d'interface indépendantes du personnage, enregistrées localement.
 - Mise en page adaptative, accès clavier et gestion du focus des dialogues.
+- Sons de notification (message, cadeau, demande), de récompense (XP, niveau, roue,
+  ticket) et de mini-jeux, avec un bouton pour couper le son. Code dans
+  `apps/web/src/sounds.ts`, fichiers dans `public/sounds` (Kenney.nl et OpenGameArt,
+  licence CC0).
 
 Les conversations restent propres à chaque personnage. Pas de suppression ou
 masquage des messages par l'interface. Le blocage bilatéral est un comportement

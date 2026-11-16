@@ -15,10 +15,10 @@ const VOLUMES = {
   paire: 0.6,
   taupe: 0.6,
   "fin-de-partie": 0.6,
-  essayage: 0.5,
   achat: 0.6,
 } as const;
 export type SoundName = keyof typeof VOLUMES;
+export const SOUND_NAMES = Object.keys(VOLUMES) as SoundName[];
 
 const MUTED_KEY = "luma-sound-muted";
 let muted = false;
@@ -76,7 +76,7 @@ export function useSoundMuted() {
 function unlock() {
   if (muted || typeof AudioContext === "undefined") return;
   audio();
-  for (const name of Object.keys(VOLUMES) as SoundName[]) void load(name);
+  for (const name of SOUND_NAMES) void load(name);
 }
 if (typeof window !== "undefined") {
   window.addEventListener("pointerdown", unlock, { capture: true });

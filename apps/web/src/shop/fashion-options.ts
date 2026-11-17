@@ -1,5 +1,14 @@
+import { retiredGarments } from "../../../../packages/contracts/src/retired-garments";
 import { avatarGarment } from "../avatar/catalog";
-import { equippedPieces, type AvatarLayers } from "../avatar/model";
+import { equipLayer, equippedPieces, removeGarment, wearGarment, type AvatarLayers } from "../avatar/model";
+
+export function tryOnGarment(layers: AvatarLayers, id: string): AvatarLayers {
+  if (retiredGarments.has(id)) return layers;
+  if (avatarGarment(id).slot !== "hair") return wearGarment(layers, id);
+  const otherWigs = equippedPieces(layers).filter((piece) => piece.slot === "hair" && piece.id !== id);
+  const outfit = otherWigs.reduce((current, piece) => removeGarment(current, piece.id), layers);
+  return equipLayer(outfit, "hair", id);
+}
 
 /** Temporary game-currency prices, independent of any real-money checkout. */
 export const FASHION_PRICES: Readonly<Record<string, number>> = {

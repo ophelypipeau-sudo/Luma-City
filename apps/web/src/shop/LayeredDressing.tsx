@@ -43,13 +43,13 @@ import type {
   AtelierCapabilities,
 } from "../../../../packages/contracts/src/atelier";
 import { AvatarItemThumbnail } from "../avatar/LayeredDoll";
-import { DEFAULT_LAYERS, removeGarment, wearGarment, wornSlot, type AvatarLayers } from "../avatar/model";
+import { DEFAULT_LAYERS, removeGarment, wornSlot, type AvatarLayers } from "../avatar/model";
 import { BARE_OUTFIT } from "./catalog";
 import { FittingAvatar } from "./FittingAvatar";
 import { OutfitLayerPanel } from "../avatar/OutfitLayerPanel";
 import { fittingPieceAt } from "./fitting-hit";
 import "./layered-dressing.css";
-import { FASHION_PRICES, colorGarment, fittingCart } from "./fashion-options";
+import { FASHION_PRICES, colorGarment, fittingCart, tryOnGarment } from "./fashion-options";
 import { GarmentPalette } from "./GarmentPalette";
 import { ownsVariant, type PurchasedItem } from "./commerce";
 import "./runway-shop.css";
@@ -211,7 +211,7 @@ export function LayeredDressing({
     } catch {}
   }
   function openColor(id: string, zone: "main" | "detail" = "main") {
-    onChange((current) => wearGarment(current, id));
+    onChange((current) => tryOnGarment(current, id));
     setPaletteId(id);
     setPaletteZone(zone);
   }
@@ -270,7 +270,7 @@ export function LayeredDressing({
         }}
         onClose={() => setAtelierOpen(false)}
         onPublished={(pub) => {
-          onChange((current) => wearGarment(current, pub.id));
+          onChange((current) => tryOnGarment(current, pub.id));
           setCategory("tops");
           setPage(0);
         }}
@@ -364,7 +364,7 @@ export function LayeredDressing({
                     onClick={() => {
                       onChange((current) => {
                         const slot = wornSlot(current, piece.id);
-                        return slot ? removeGarment(current, piece.id) : wearGarment(current, piece.id);
+                        return slot ? removeGarment(current, piece.id) : tryOnGarment(current, piece.id);
                       });
                     }}
                   >

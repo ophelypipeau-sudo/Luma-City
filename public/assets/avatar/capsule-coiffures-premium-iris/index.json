@@ -1,0 +1,203 @@
+{
+  "pattern": "iris-canonical-pattern-v1",
+  "bodySha256": "8e3b61c5a45e5ddc9ee528530ced84eea3bd883a1a2e05914b81fd46e3b269e4",
+  "pieces": [
+    {
+      "id": "01-ambre",
+      "name": "Ambre",
+      "crop": [
+        273,
+        -29,
+        347,
+        559
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 25,
+        "middle": 56,
+        "highlight": 124,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "02-sienna",
+      "name": "Sienna",
+      "crop": [
+        277,
+        -12,
+        330,
+        691
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 24,
+        "middle": 44,
+        "highlight": 97,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "03-zahra",
+      "name": "Zahra",
+      "crop": [
+        256,
+        -24,
+        375,
+        593
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 15,
+        "middle": 37,
+        "highlight": 111,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "04-velvet",
+      "name": "Velvet",
+      "crop": [
+        318,
+        -8,
+        263,
+        643
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 17,
+        "middle": 38,
+        "highlight": 106,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "05-nova",
+      "name": "Nova",
+      "crop": [
+        212,
+        -19,
+        464,
+        569
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 21,
+        "middle": 48,
+        "highlight": 116,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "detailTone": {
+        "shadow": 27,
+        "middle": 43,
+        "highlight": 90,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": true
+    },
+    {
+      "id": "06-eden",
+      "name": "Éden",
+      "crop": [
+        220,
+        -14,
+        447,
+        704
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 28,
+        "middle": 61,
+        "highlight": 129,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "07-raven",
+      "name": "Raven",
+      "crop": [
+        275,
+        -44,
+        339,
+        546
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 7,
+        "middle": 30,
+        "highlight": 92,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "08-opaline",
+      "name": "Opaline",
+      "crop": [
+        305,
+        -5,
+        299,
+        355
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 18,
+        "middle": 46,
+        "highlight": 120,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "09-ruby",
+      "name": "Ruby",
+      "crop": [
+        294,
+        -23,
+        354,
+        617
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 10,
+        "middle": 27,
+        "highlight": 72,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    },
+    {
+      "id": "10-luna",
+      "name": "Luna",
+      "crop": [
+        299,
+        -12,
+        284,
+        382
+      ],
+      "offsetY": -90,
+      "mainTone": {
+        "shadow": 32,
+        "middle": 69,
+        "highlight": 144,
+        "depth": 0.28,
+        "sheen": 0.18
+      },
+      "hasProtected": false
+    }
+  ]
+}

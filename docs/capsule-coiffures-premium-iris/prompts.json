@@ -1,0 +1,58 @@
+{
+  "outil": "ImageGen intégré",
+  "mode": "Prévisualisations opaques habillées",
+  "reference": "docs/coiffures-iris-v3/01-carre.png",
+  "promptCommun": "Edit reference image 1 as an exact identity-preserving 2D fashion doll hair try-on for Luma City. Reference 1 is the EXCLUSIVE base pixel layout, face, outfit, pose, background and framing. Reference 2 is the craft reference, never copy its bob. Output a SINGLE portrait of exactly the same adult doll at exactly the same size and position, head to waist and a little below, straight frontal view, on the very same flat dusty plum background. Keep the exact eyebrows, eyes, makeup, nose, lips, cheek beauty mark, skin, skull anatomy and ears in the same placement, same relaxed arms, same sleeveless fitted plum vest with gold waist clasp, same entire body silhouette, proportions, identical flat lighting and crop. No text and no other changes. Paint ONLY the specified new hair, replacing the reference bob fully, and keep tiny flyaways, luxurious fine illustrated strand detail, individually separated illustrated locks, textured fine shadows, directional tonal highlights and soft clear game illustration outlines at the reference craft level. Match the 2D illustrated finish, no photorealism, no 3D. Hair must be rooted on forehead, crown and temples and leave both eyes completely unobstructed. Keep hair intact inside the vignette. This is a dressed opaque preview. Hair spec: ",
+  "coiffures": [
+    {
+      "nom": "Ambre",
+      "id": "01-ambre",
+      "prompt": "Amber chestnut layered butterfly hair ending at the bust, cheekbone curtain fringe with a small central opening, tiered airy C-curves, separated staggered tips; narrower and less symmetric than Soleil's broad champagne blowout. No swept cascade shoulder-length style."
+    },
+    {
+      "nom": "Sienna",
+      "id": "02-sienna",
+      "prompt": "Waist-long ultra-straight dark umber satin hair with an unmistakable straight, finely feathered full fringe just above both brows; each side tapers in a narrow sleek curtain, fine continuous sheen, clean silhouette. Preserve both eyebrows. CRITICAL: the waistline is at about 89% canvas height. The sleek ends must finish beside the gold waist clasp, with at least 6% canvas height and clearly visible arms BELOW both complete tips; both tail ends visibly curve into fine points at the waist and stay separated from the bottom edge."
+    },
+    {
+      "nom": "Zahra",
+      "id": "03-zahra",
+      "prompt": "Long mass of rich dark chestnut defined spring ringlets with varied diameters, slightly off-center tight roots, round rope-like ringlets cascading to the bust, interleaved black shadows and delicate highlight arcs; silhouette narrows down toward the tips. Avoid spherical afro or loose beach waves."
+    },
+    {
+      "nom": "Velvet",
+      "id": "04-velvet",
+      "prompt": "Truly low nape ponytail in warm black espresso, precise center part slicked toward ears, a very fine strand at each temple, ponytail visible over one shoulder as a very smooth compact ribbon with tucked ends at waist and a discreet hair-wrapped tie. No scarf, no tumbling barrel curls."
+    },
+    {
+      "nom": "Nova",
+      "id": "05-nova",
+      "prompt": "Two long high thick S-waved pigtails in cool cocoa with understated pop magenta underlights, tight clean diagonal crown sections, slim brushed silver cuffs at both high ties, two fine tendrils, broad smooth waves with tapered ends, graphic sculpted Y2K rather than Cabotine's soft loose ringlets. CRITICAL registration: keep original doll's eyes at exactly 36.2% from top and gold clasp at 90%, chin at 50%, shoulder straps beginning at 54%, preserve the exact legacy character scale. Fit these two high pigtails around the existing doll, never shrink the doll, don't extend down from the waist. Preserve the pigtail length to mid-bust and both sides fully visible."
+    },
+    {
+      "nom": "Éden",
+      "id": "06-eden",
+      "prompt": "Long center-parted softly waved dark bronde, with three or four slim filigree three-strand braids woven into midlengths running partly in and out of the loose mass. Waves to waist. Braids distributed off-center, not matching face-framing antenna braids. Romantic boho, subdued warm highlights."
+    },
+    {
+      "nom": "Raven",
+      "id": "07-raven",
+      "prompt": "Blue-black sharply choppy long wolf cut, short lifted staggered crown layers, broken textured light fringe keeping brows exposed, temple razor wings and narrow disconnected neck lengths to upper chest. Subtle petrol sheen. Strong almost angular silhouette, unlike a loose flowing shag."
+    },
+    {
+      "nom": "Opaline",
+      "id": "08-opaline",
+      "prompt": "Romantic soft side part swept into a broad softly looped low bun at the nape, slightly to viewer-right so it can be read from the front, glossy chestnut and cool chestnut highlights, two visibly soft waved face-framing tendrils, naked crown with no braid or ornament. Ears and eyes clearly legible."
+    },
+    {
+      "nom": "Ruby",
+      "id": "09-ruby",
+      "prompt": "Glossy dark cherry-cola glamorous long blowout with deeply placed asymmetric side part, raised clean sweep just outside the eye, dramatic large curved S-waves, broad volume collected mostly over one shoulder with the opposite temple swept and the shorter side close to the neck. Soft ends, no visible binding and no ponytail."
+    },
+    {
+      "nom": "Luna",
+      "id": "10-luna",
+      "prompt": "Medium cool beige-brown textured hair ending just below shoulders, broken nearly straight slight bends, airy feathered stepped ends and two prominent, very fine short front braids beginning beside a subtle center part, tied with tiny dark ties. Keep shape compact, unlike long boho waves or long pearl braids."
+    }
+  ]
+}

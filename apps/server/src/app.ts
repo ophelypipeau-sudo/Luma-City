@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import { registerAtelier } from "./atelier-routes.ts";
+import { registerPuzzle } from "./puzzle-routes.ts";
 import { imageUpload } from "./atelier-images.ts";
 import type { AtelierProvider } from "./atelier-provider.ts";
 import cookie from "@fastify/cookie";
@@ -297,7 +298,8 @@ export async function createApp(
     const { rows: [wheel] } = await q(
       `SELECT c.xp,
        (SELECT COUNT(*) FROM arcade_rounds WHERE character_id=c.id AND completed) -
-       (SELECT COUNT(*) FROM reward_wheel_spins WHERE character_id=c.id) AS "gameTickets",
+       (SELECT COUNT(*) FROM reward_wheel_spins WHERE character_id=c.id) +
+       COALESCE((SELECT SUM(reward) FROM puzzle_rounds WHERE character_id=c.id AND reward>0),0) AS "gameTickets",
        (COALESCE(SUM(s.amount) FILTER (WHERE s.currency='coins' AND s.collected_at IS NOT NULL),0)
         + COALESCE((SELECT cardinality(home_gifts) * 200 FROM accounts WHERE id=c.account_id),0))::integer AS "accountCoins",
        COALESCE(SUM(s.amount) FILTER (WHERE s.currency='diamonds' AND s.collected_at IS NOT NULL),0)::integer AS "accountDiamonds",
@@ -947,6 +949,7 @@ export async function createApp(
     );
     return { entries: rows };
   });
+  registerPuzzle(app, db, { active, serialRequest, rewardWheel });
   app.post("/api/arcade/start", async (req) =>
     serialRequest(req, () => db.transaction(async (q) => {
       const { generation, game } = z.object({

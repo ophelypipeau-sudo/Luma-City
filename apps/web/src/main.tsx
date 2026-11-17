@@ -43,6 +43,7 @@ import { TodayPanel } from "./TodayPanel";
 import { ProfileWardrobe } from "./ProfileWardrobe";
 import { ServerRanking } from "./ServerRanking";
 import { Arcade, PrizeWheel } from "./Arcade";
+import type { PuzzleRequest } from "./PuzzleGame";
 import { FloatingRewards, walletPickups, type Collectible } from "./FloatingRewards";
 import { splitReward } from "../../../packages/domain/src/arcade";
 import { MottoEditor } from "./MottoEditor";
@@ -399,10 +400,17 @@ function App() {
     walletClaims.current = task.catch(() => {});
     return task;
   }
-  function updateWheel(generation: number, rewardWheel: RewardWheel) {
+  const updateWheel = useCallback((generation: number, rewardWheel: RewardWheel) => {
     setState((current) => current?.generation === generation && current.character
       ? { ...current, rewardWheel } : current);
-  }
+  }, []);
+  const puzzleGeneration = state?.character ? state.generation : undefined;
+  const requestPuzzle: PuzzleRequest = useCallback(async (action, body) => {
+    if (puzzleGeneration === undefined) throw new Error("Connecte-toi pour jouer.");
+    const result = await api(`arcade/puzzle/${action}`, { ...body, generation: puzzleGeneration });
+    if (result.wheel) updateWheel(puzzleGeneration, result.wheel);
+    return result;
+  }, [puzzleGeneration, updateWheel]);
   async function startArcade(game: "memory" | "mole" = "memory") {
     if (!state?.character) throw new Error("Connecte-toi pour jouer.");
     return api("arcade/start", { generation: state.generation, game });
@@ -1169,7 +1177,7 @@ function App() {
               ) : view === "arcade" ? (
                 <Arcade tickets={state?.rewardWheel?.tickets ?? 0}
                   onBack={openMap} onWheel={() => setWheelOpen(true)}
-                  start={startArcade} finish={finishArcade}
+                  start={startArcade} finish={finishArcade} puzzle={requestPuzzle}
                   loadScratch={loadScratchTicket} scratch={scratchTicket} claimScratch={claimScratchTicket} />
               ) : view === "salon" ? (
                 <BeautySalon key={activeId} layers={wornLayers} onBack={openMap}

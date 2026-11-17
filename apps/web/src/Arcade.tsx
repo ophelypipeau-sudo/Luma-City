@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type Ref } from "react";
-import { ArrowLeft, Check, CircleDot, Crown, Hammer, LockKeyhole, Minus, Plus, RotateCw, Shirt, Sparkles, Trophy, X } from "lucide-react";
+import { ArrowLeft, Check, CircleDot, Crown, Hammer, LockKeyhole, Minus, Plus, Puzzle, RotateCw, Shirt, Sparkles, Trophy, X } from "lucide-react";
 import type { RewardWheel, ScratchTicket } from "../../../packages/contracts/src/index";
 import {
   ARCADE_TARGET_LEVEL, MEMORY_PAIRS, WHEEL_BATCH_MAX, WHEEL_PRIZES, type WheelPrize,
@@ -10,6 +10,7 @@ import { AvatarItemThumbnail } from "./avatar/LayeredDoll";
 import { DailyScratch } from "./DailyScratch";
 import { MoleGame } from "./MoleGame";
 import { playSound } from "./sounds";
+import { PuzzleGame, type PuzzleRequest } from "./PuzzleGame";
 
 type Round = { id: string; seed: number; moves: number[]; rewarded: boolean };
 const memoryPieces = ["fashion.premium-rosalie", "fashion.pants-dalle", "fashion.premium-velvet", "fashion.pants-ruban"].map(avatarGarment);
@@ -56,7 +57,7 @@ function MemoryBoard({ round, move, busy, won }: {
   </div>;
 }
 
-export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, scratch, claimScratch }: {
+export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, scratch, claimScratch, puzzle }: {
   tickets: number;
   onBack: () => void;
   onWheel: () => void;
@@ -65,9 +66,11 @@ export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, s
   loadScratch: () => Promise<{ ticket: ScratchTicket | null }>;
   scratch: () => Promise<{ ticket: ScratchTicket }>;
   claimScratch: (id: string) => Promise<void>;
+  puzzle: PuzzleRequest;
 }) {
   const [round, setRound] = useState<Round | null>(null);
   const [showMoleGame, setShowMoleGame] = useState(false);
+  const [showPuzzle, setShowPuzzle] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const play = async () => {
@@ -114,18 +117,20 @@ export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, s
     await play();
   }
   return (
-    <section className="arcade">
+    <section className={showPuzzle ? "arcade is-puzzle" : "arcade"}>
       <header>
-        <button type="button" onClick={round || showMoleGame ? () => {
+        <button type="button" onClick={round || showMoleGame || showPuzzle ? () => {
           setRound(null);
           setShowMoleGame(false);
+          setShowPuzzle(false);
           setError("");
         } : onBack} disabled={busy}
-          aria-label={round || showMoleGame ? "Retour aux jeux" : "Retour au quartier"}><ArrowLeft size={19} /></button>
+          aria-label={round || showMoleGame || showPuzzle ? "Retour aux jeux" : "Retour au quartier"}><ArrowLeft size={19} /></button>
         <h1>Coin détente</h1>
         <button type="button" onClick={onWheel}><CircleDot size={18} /> Roue <b>{tickets}</b></button>
       </header>
-      {showMoleGame ? <MoleGame startRound={() => start("mole")} finish={finish} onWheel={onWheel} /> : round && memory ? (
+      {showPuzzle ? <PuzzleGame request={puzzle} onGames={() => setShowPuzzle(false)} onWheel={onWheel} />
+        : showMoleGame ? <MoleGame startRound={() => start("mole")} finish={finish} onWheel={onWheel} /> : round && memory ? (
         <div className="memory-game">
           <h2>Mémo du dressing</h2>
           <p>Retourne deux cartes. Si elles montrent le même vêtement, la paire reste visible.</p>
@@ -171,6 +176,11 @@ export function Arcade({ tickets, onBack, onWheel, start, finish, loadScratch, s
               <p>Touche 10 taupes avec tes 3 vies.</p>
             </div>
             <button type="button" disabled={busy} onClick={() => setShowMoleGame(true)}>Jouer à Tape la taupe</button>
+          </div>
+          <div className="puzzle-entry">
+            <Puzzle size={28} aria-hidden="true" />
+            <div><h2>Puzzle</h2><p>Reconstitue une photo en 10, 20 ou 30 pièces.</p></div>
+            <button type="button" disabled={busy} onClick={() => setShowPuzzle(true)}>Jouer au puzzle</button>
           </div>
           <DailyScratch load={loadScratch} reveal={scratch} claim={claimScratch} />
         </>

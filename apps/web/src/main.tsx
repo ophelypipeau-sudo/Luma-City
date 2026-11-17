@@ -77,6 +77,7 @@ import { createAuthClient } from "@neon/auth";
 import { isCreatedPlayer, type StarterOutfit } from "../../../packages/contracts/src/player-account";
 // Chargés en premier, comme lorsque leurs composants les importaient eux-mêmes.
 import "./arcade.css";
+import "./puzzle.css";
 import "./floating-rewards.css";
 import "./style.css";
 import "./world.css";

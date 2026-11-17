@@ -5,7 +5,6 @@ import {
   PUZZLE_LEVELS, puzzleFits, puzzleGeometry, puzzleOrder, puzzlePhotoUrl, puzzleSlot,
   type PuzzleDrop, type PuzzleLevel, type PuzzleRound,
 } from "../../../packages/domain/src/puzzle";
-import "./puzzle.css";
 
 type PuzzleCommands = {
   resume: { body: Record<string, never>; result: { round: PuzzleRound | null } };

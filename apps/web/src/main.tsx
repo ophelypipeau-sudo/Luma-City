@@ -942,7 +942,8 @@ function App() {
           <span className="avatar-spark spark-two">✦</span>
           <div className="avatar-pedestal" />
           <Portrait {...(state?.character ?? { id: "iris" })} layers={wornLayers} fullBody />
-          {equippedModel && <CompanionArt model={equippedModel} className="rail-companion" />}
+          {equippedModel && <CompanionArt model={equippedModel}
+            className={equippedModel.species === "Hamster" ? "rail-companion rail-companion-hamster" : "rail-companion"} />}
           {state?.character && <button type="button" className="profile-avatar-trigger"
             aria-label={`Voir le profil de ${state.character.name}`}
             onClick={() => setProfileId(state.character!.id)} />}

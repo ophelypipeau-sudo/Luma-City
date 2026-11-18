@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties
 import { ArrowLeft, Check, PawPrint, X } from "lucide-react";
 import { companionNameSchema, type CompanionCollection, type OwnedCompanion } from "../../../packages/contracts/src/companions";
 import { COMPANION_BREEDS, companionImage, companionModel, companionVariants, type CompanionBreedId } from "../../../packages/domain/src/companions";
+import { CompanionBreedDirectory } from "./CompanionBreedDirectory";
 
 type Model = NonNullable<ReturnType<typeof companionModel>>;
 type Equip = (id: string | null) => Promise<void>;
@@ -22,7 +23,8 @@ export function CompanionArt({ model, className, lazy = false }: {
     "--pet-height-ratio": model.heightRatio * height / (ground - top),
     "--pet-tail": `${100 * (bottom - ground) / height}%`,
   } as CSSProperties;
-  return <span className={`pet-art ${className ?? ""}`} style={sizing}>
+  return <span className={`pet-art ${className ?? ""}`} style={sizing}
+    data-large-dog={model.species === "Chien" && model.heightRatio >= .45 ? true : undefined}>
     <img src={companionImage(model.id)} alt="" loading={lazy ? "lazy" : undefined} decoding="async" draggable={false}
       style={{ width: `${100 * model.canvas[0] / width}%`, left: `${-100 * left / width}%`, top: `${-100 * top / height}%` }} />
   </span>;
@@ -106,9 +108,10 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
 }) {
   const [selected, setSelected] = useState<Model | null>(null);
   const [breedId, setBreedId] = useState<CompanionBreedId | null>(null);
+  const [showDirectory, setShowDirectory] = useState(false);
   const shop = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
-  const returnTo = useRef<{ id: CompanionBreedId; scroll: number } | null>(null);
+  const returnTo = useRef<{ trigger: HTMLButtonElement; scroll: number } | null>(null);
   const breed = breedId && COMPANION_BREEDS[breedId];
   const variants = breedId ? companionVariants(breedId) : [];
   const ownedModels = new Map(collection.items.map((animal) => [animal.modelId, animal]));
@@ -120,10 +123,15 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
       heading.current?.focus({ preventScroll: true });
     } else {
       panel.scrollTop = returnTo.current.scroll;
-      panel.querySelector<HTMLButtonElement>(`[data-breed="${returnTo.current.id}"]`)?.focus({ preventScroll: true });
+      returnTo.current.trigger.focus({ preventScroll: true });
       returnTo.current = null;
     }
   }, [breedId]);
+
+  function browseBreed(id: CompanionBreedId, trigger: HTMLButtonElement) {
+    returnTo.current = { trigger, scroll: shop.current?.scrollTop ?? 0 };
+    setBreedId(id);
+  }
 
   return <section className="companion-shop" ref={shop} aria-labelledby="companion-shop-title">
     <header className="companion-shop-heading">
@@ -137,7 +145,7 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
       <p>{breed ? coatCount(variants.length) : "Choisis un compagnon pour découvrir ses pelages."}</p>
       <strong>{coins(balance)}</strong>
     </div>
-    {breed ? <div className="companion-cards">
+    {breed && <div className="companion-cards">
         {variants.map((model) => {
           const owned = ownedModels.get(model.id);
           return <article key={model.id} className="companion-card">
@@ -151,7 +159,13 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
             </div>
           </article>;
         })}
-      </div> : speciesList.map((species) => <section className="companion-shelf" key={species} aria-label={speciesLabels[species]}>
+      </div>}
+    <div hidden={Boolean(breed)}>
+      <div className="companion-shop-views" role="group" aria-label="Vue de l’animalerie">
+        <button type="button" aria-pressed={!showDirectory} onClick={() => setShowDirectory(false)}>Compagnons disponibles</button>
+        <button type="button" aria-pressed={showDirectory} onClick={() => setShowDirectory(true)}>Toutes les races FCI et LOOF</button>
+      </div>
+      {showDirectory ? <CompanionBreedDirectory onBrowse={browseBreed} /> : speciesList.map((species) => <section className="companion-shelf" key={species} aria-label={speciesLabels[species]}>
       <h2>{speciesLabels[species]}</h2>
       <div className="companion-cards">
         {breeds.filter((id) => COMPANION_BREEDS[id].species === species).map((id) => {
@@ -165,15 +179,13 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
               <h3>{entry.name}</h3>
               <p>{coatCount(available.length)}</p>
               <button type="button" className="companion-primary" data-breed={id}
-                aria-label={`Voir les pelages · ${entry.name}`} onClick={() => {
-                  returnTo.current = { id, scroll: shop.current?.scrollTop ?? 0 };
-                  setBreedId(id);
-                }}>Voir les pelages</button>
+                aria-label={`Voir les pelages · ${entry.name}`} onClick={(event) => browseBreed(id, event.currentTarget)}>Voir les pelages</button>
             </div>
           </article>;
         })}
       </div>
-    </section>)}
+      </section>)}
+    </div>
     {selected && <BuyCompanionDialog model={selected} balance={balance} buy={buy} equip={equip} onClose={() => setSelected(null)} />}
   </section>;
 }

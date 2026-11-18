@@ -14,10 +14,12 @@
   position: absolute;
   bottom: var(--pet-floor);
   right: 3%;
-  width: min(38%, calc(var(--pet-height) * var(--pet-ratio)));
+  width: min(var(--pet-width-limit, 38%), calc(var(--pet-height) * var(--pet-ratio)));
   transform: translateY(var(--pet-tail));
   z-index: 2;
 }
+.rail-companion[data-large-dog] { --pet-width-limit: 44%; }
+.rail-companion.rail-companion-hamster { left: 68%; right: auto; }
 .game-fullscreen .rail-companion-button {
   position: absolute;
   top: 22%;
@@ -40,6 +42,7 @@
 @media (max-width: 700px) {
   .game-fullscreen .character-stage.has-companion > .full-body { width: 72%; left: 0; }
   .rail-companion { --pet-floor: 35px; right: 2%; }
+  .rail-companion.rail-companion-hamster { left: 62%; }
   .game-fullscreen .rail-companion-button { top: 30%; right: 2px; width: 34px; height: 34px; }
 }
 .companion-shop {
@@ -67,6 +70,48 @@
 .companion-shop-summary strong, .companion-price { color: #ffe2a9; }
 .companion-shelf + .companion-shelf { margin-top: 1.35rem; }
 .companion-shelf h2 { font-size: 1.28rem; margin: 0 0 .6rem; color: #fff3fa; }
+.companion-directory {
+  margin-bottom: 1.3rem;
+  padding: .65rem .8rem;
+  border: 1px solid #b493bf;
+  border-radius: .8rem;
+  background: #50375d;
+}
+.companion-shop-views, .companion-directory-species { display: flex; flex-wrap: wrap; gap: .4rem; }
+.companion-shop-views { margin-bottom: 1rem; }
+.companion-shop-views [aria-pressed="true"], .companion-directory-species [aria-pressed="true"] {
+  color: #47274a;
+  background: #ffe1aa;
+}
+.companion-directory-tools { display: grid; gap: .45rem; }
+.companion-directory-tools input {
+  width: 100%;
+  padding: .45rem .65rem;
+  border: 1px solid #be97c3;
+  border-radius: .45rem;
+  color: inherit;
+  background: #392341;
+}
+.companion-directory-source { margin: .65rem 0; font-size: .85rem; }
+.companion-directory-source a { color: #ffe2a9; }
+.companion-directory-list {
+  max-height: 18rem;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+.companion-directory-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .6rem;
+  min-height: 2.65rem;
+  padding: .35rem .4rem;
+  border-top: 1px solid #b493bf50;
+}
+.companion-directory-list small { display: block; color: #ebd7ee; }
 .companion-cards {
   --companion-card-min: 10.1rem;
   display: grid;
@@ -232,9 +277,10 @@
   position: absolute;
   right: 5%;
   bottom: 15px;
-  width: min(36%, calc(var(--pet-height) * var(--pet-ratio)));
+  width: min(var(--pet-width-limit, 36%), calc(var(--pet-height) * var(--pet-ratio)));
   transform: translateY(var(--pet-tail));
 }
+.profile-avatar-companion[data-large-dog] { --pet-width-limit: 42%; }
 @media (max-width: 540px) {
   .companion-shop-heading button:last-child { padding-inline: .45rem; font-size: .8rem; }
   .companion-cards { --companion-card-min: 6.7rem; gap: .45rem; }

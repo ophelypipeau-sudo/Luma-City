@@ -7,26 +7,65 @@ import { DEFAULT_ROOM } from "../packages/contracts/src/index.ts";
 import { createApp } from "../apps/server/src/app.ts";
 import { openDatabase } from "../apps/server/src/db.ts";
 import { COMPANION_BREEDS, COMPANION_CATALOG, companionGeometry, companionImage, companionVariants, type CompanionBreedId } from "../packages/domain/src/companions.ts";
+import { FCI_BREEDS, LOOF_BREEDS } from "../packages/domain/src/companion-breed-references.ts";
 
 const origin = "http://127.0.0.1:5173";
 
-test("Les 76 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 16);
+test("La nomenclature FCI contient une seule entrée par standard", () => {
+  assert.equal(FCI_BREEDS.length, 364);
+  assert.equal(new Set(FCI_BREEDS.map(([code]) => code)).size, FCI_BREEDS.length);
+  assert.equal(FCI_BREEDS.filter(([, , , provisional]) => provisional).length, 20);
+});
+
+test("Les races adoptables se rattachent à des références officielles uniques", () => {
+  const canineCodes = new Set(FCI_BREEDS.map(([code]) => code));
+  const felineCodes = new Set(LOOF_BREEDS.map(([code]) => code));
+  const usedCodes = new Set<string>();
+  for (const breed of Object.values(COMPANION_BREEDS)) {
+    if (breed.species === "Chien") assert.ok("standard" in breed, breed.name);
+    if (!("standard" in breed)) continue;
+    assert.ok((breed.species === "Chien" ? canineCodes : felineCodes).has(breed.standard), breed.name);
+    assert.ok(!usedCodes.has(breed.standard), breed.standard);
+    usedCodes.add(breed.standard);
+  }
+});
+
+test("Les 276 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 116);
   const breeds = Object.values(COMPANION_BREEDS);
-  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 7);
-  assert.equal(breeds.filter(({ species }) => species === "Chat").length, 7);
-  assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 1);
-  assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 1);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 57);
+  assert.equal(breeds.filter(({ species }) => species === "Chat").length, 53);
+  assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 3);
+  assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 3);
   const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
+  const twoCoats = new Set<CompanionBreedId>(["nain-neerlandais", "mini-rex", "hamster-roborovski", "hamster-russe",
+    "labrador", "dalmatien", "bengal", "sphynx", "berger-allemand", "berger-belge", "chihuahua", "beagle",
+    "border-collie", "berger-australien", "shiba", "cocker-anglais", "norvegien", "sacre-birmanie", "siberien", "abyssin",
+    "boxer", "carlin", "cavalier-king-charles", "berger-shetland", "cane-corso", "chow-chow", "dobermann", "akita",
+    "springer-anglais", "jack-russell", "american-shorthair", "angora-turc", "balinais", "british-longhair",
+    "cornish-rex", "devon-rex", "exotic-shorthair", "oriental", "somali", "turc-van",
+    "basset-hound", "terre-neuve", "saint-bernard", "schnauzer-nain", "whippet",
+    "epagneul-breton", "bouvier-australien", "basenji", "levrier-afghan", "epagneul-papillon",
+    "american-curl-pc", "burmese-anglais", "burmilla", "manx", "mau-egyptien",
+    "ocicat", "selkirk-rex-pc", "snowshoe", "tonkinois-pc", "laperm-pl",
+    "dogue-allemand", "corgi-cardigan", "colley-poil-long", "schnauzer-geant", "bull-terrier",
+    "bulldog-anglais", "bullmastiff", "flat-coated-retriever", "lhasa-apso", "shih-tzu",
+    "fox-terrier-dur", "fox-terrier-lisse", "setter-anglais", "pinscher-nain", "americain-cocker",
+    "grif-belge", "levrier-italien", "chien-chinois-crete", "pointer-anglais", "lagotto-romagnolo",
+    "russe", "american-wirehair", "american-bobtail-pc", "asian-shorthair", "asian-longhair",
+    "burmese-americain", "cymric", "european-shorthair", "german-rex", "japanese-bobtail-pc",
+    "kurilian-bobtail-pl", "mandarin", "peterbald", "selkirk-rex-pl", "tonkinois-pl",
+    "thai", "laperm-pc", "ceylan", "donskoy", "american-curl-pl"]);
   for (const breedId of Object.keys(COMPANION_BREEDS) as CompanionBreedId[]) {
     const breed = COMPANION_BREEDS[breedId];
     const coats = companionVariants(breedId);
-    assert.equal(coats.length, breedId === "spitz" ? 7 : threeCoats.has(breedId) ? 3 : 6);
+    const expected = breedId === "spitz" ? 7 : threeCoats.has(breedId) ? 3 : twoCoats.has(breedId) ? 2 : 6;
+    assert.equal(coats.length, expected);
     assert.equal(coats[0].id, breed.cover);
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 76);
+  assert.equal(COMPANION_CATALOG.length, 276);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
   for (const model of COMPANION_CATALOG) {
     const png = await readFile(new URL(`../public${companionImage(model.id)}`, import.meta.url));

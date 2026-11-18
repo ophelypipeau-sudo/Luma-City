@@ -34,10 +34,10 @@ test("Les races adoptables se rattachent à des références officielles uniques
   }
 });
 
-test("Les 397 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 215);
+test("Les 523 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 278);
   const breeds = Object.values(COMPANION_BREEDS);
-  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 129);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 192);
   assert.equal(breeds.filter(({ species }) => species === "Chat").length, 80);
   assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 3);
   assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 3);
@@ -64,6 +64,19 @@ test("Les 397 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
   ]);
   const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
   const twoCoats = new Set<CompanionBreedId>([
+    "elan-suedois", "ours-carelie", "wachtelhund", "kintamani-bali", "bobtail",
+    "berger-catalan", "berger-serra-aires", "berger-majorque", "pyrenees-face-rase", "pyrenees-poil-long",
+    "berger-islandais", "kangal", "karaman", "berger-polonais-tatras", "berger-roumain-corb",
+    "berger-bucovine", "berger-mioritza", "berger-carpathes", "sarplaninac", "canaan",
+    "segugio-italien-pr", "dunker", "courant-polonais", "courant-serbe", "courant-slovaque",
+    "courant-suisse", "courant-tricolore-serbe", "drahthaar", "stichelhaar", "arret-danois-ancestral",
+    "stabijhoun", "arret-portugais", "chien-artois", "eau-americain", "eau-espagnol",
+    "wetterhoun", "eau-irlandais", "eau-portugais", "elan-norvegien-gris", "elan-norvegien-noir",
+    "courant-montenegro", "courant-schiller", "courant-transylvanie", "courant-apennins", "courant-tatras",
+    "courant-smaland", "courant-espagnol", "courant-finlandais", "courant-grec", "segugio-italien-pd",
+    "otterhound", "berger-croate", "courant-estonie", "istrie-poil-dur", "istrie-poil-ras",
+    "barak-bosnie", "courant-halden", "courant-hamilton", "courant-hygen", "courant-vallee-save",
+    "bulldog-campeiro", "bulldog-continental", "cairn-terrier",
     "brachet-styrie", "brachet-noir-feu", "brachet-polonais", "brachet-tyrolien",
     "braque-allemand-pc", "braque-auvergne", "braque-ariege", "weimaraner",
     "braque-bourbonnais", "braque-francais-gascogne", "braque-francais-pyrenees", "vizsla-pc",
@@ -96,7 +109,7 @@ test("Les 397 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 397);
+  assert.equal(COMPANION_CATALOG.length, 523);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
   const spriteByHash = new Map<string, string>();
   for (const model of COMPANION_CATALOG) {

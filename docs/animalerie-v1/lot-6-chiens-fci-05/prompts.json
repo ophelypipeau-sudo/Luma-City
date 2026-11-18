@@ -1,0 +1,140 @@
+[
+  {
+    "id": "bulldog-campeiro-fauve-blanc",
+    "breedId": "bulldog-campeiro",
+    "name": "Bulldog campeiro",
+    "standard": "374",
+    "coat": "Fauve et blanc",
+    "price": 1700,
+    "heightRatio": 0.36,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Brazilian Campeiro Bulldog, muscular medium stocky rectangular body, broad square head, medium-short broad muzzle (not flat), small folded rose ears, natural full tapering tail, strong straight legs. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: warm fawn with white chest, white toes and narrow white facial blaze, subtle black muzzle. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/bulldog-campeiro-fauve-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-44d5f537-1e4e-47f8-9e64-07850f25af5b.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      213,
+      8,
+      1315,
+      987
+    ]
+  },
+  {
+    "id": "bulldog-campeiro-bringe-blanc",
+    "breedId": "bulldog-campeiro",
+    "name": "Bulldog campeiro",
+    "standard": "374",
+    "coat": "Bringé et blanc",
+    "price": 1700,
+    "heightRatio": 0.36,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Brazilian Campeiro Bulldog, muscular medium stocky rectangular body, broad square head, medium-short broad muzzle (not flat), small folded rose ears, natural full tapering tail, strong straight legs. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: dark brown brindle striped with black, white chest and white toes, subtle black muzzle. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/bulldog-campeiro-bringe-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9e2d662c-e970-4bf4-bfb4-0cad2d3eb889.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      207,
+      6,
+      1367,
+      1009
+    ]
+  },
+  {
+    "id": "bulldog-continental-fauve-blanc",
+    "breedId": "bulldog-continental",
+    "name": "Bulldog continental",
+    "standard": "369",
+    "coat": "Fauve et blanc",
+    "price": 1700,
+    "heightRatio": 0.34,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Swiss Continental Bulldog, athletic compact medium-sized bulldog body, broad square head, medium-short broad muzzle (not flat), small folded rose ears, natural full tapering tail, strong straight legs. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: warm fawn with white chest, white toes and narrow white facial blaze, subtle black muzzle. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/bulldog-continental-fauve-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-81dd6b3d-6689-477f-b95f-514499a06c79.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      231,
+      5,
+      1309,
+      1011
+    ]
+  },
+  {
+    "id": "bulldog-continental-bringe",
+    "breedId": "bulldog-continental",
+    "name": "Bulldog continental",
+    "standard": "369",
+    "coat": "Bringé",
+    "price": 1700,
+    "heightRatio": 0.34,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Swiss Continental Bulldog, athletic compact medium-sized bulldog body, broad square head, medium-short broad muzzle (not flat), small folded rose ears, natural full tapering tail, strong straight legs. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: deep red brindle with fine black stripes, black muzzle and small white chest patch. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/bulldog-continental-bringe.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ebffe88a-c601-4de7-96ae-31ba3d086ac5.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      230,
+      10,
+      1305,
+      1001
+    ]
+  },
+  {
+    "id": "cairn-terrier-froment",
+    "breedId": "cairn-terrier",
+    "name": "Cairn Terrier",
+    "standard": "4",
+    "coat": "Froment",
+    "price": 1250,
+    "heightRatio": 0.23,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Cairn Terrier, small sturdy compact body, short legs, broad fox-like head with shaggy eyebrows, small pointed upright ears, rough shaggy weatherproof coat, short straight upright natural tail. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: warm wheaten shaggy fur, slightly darker ears and muzzle. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/cairn-terrier-froment.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9293f207-c5e3-4fee-acdf-b4d795bda25c.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1374,
+      1145
+    ],
+    "bounds": [
+      175,
+      8,
+      1185,
+      1132
+    ]
+  },
+  {
+    "id": "cairn-terrier-gris-bringe",
+    "breedId": "cairn-terrier",
+    "name": "Cairn Terrier",
+    "standard": "4",
+    "coat": "Gris bringé",
+    "price": 1250,
+    "heightRatio": 0.23,
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City. Paint ONE complete adult Cairn Terrier, small sturdy compact body, short legs, broad fox-like head with shaggy eyebrows, small pointed upright ears, rough shaggy weatherproof coat, short straight upright natural tail. Standing three-quarter view facing left, head turned slightly towards viewer. Coat: silver grey and charcoal brindle shaggy fur, dark ears and muzzle. Warm detailed hand-painted semi-realistic 2D illustration, soft upper-left lighting, matte fur, readable silhouette at small game size. All four paws, ears and entire tail visible, generous clear margin. True RGBA transparent background, fully transparent exterior and gaps between limbs. Absolutely no glow, haze, floor shadow, background, collar, text or props.",
+    "fichier": "public/assets/companions/cairn-terrier-gris-bringe.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-4b25718a-ebda-4c7f-a093-d492078b2e3f.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1402,
+      1122
+    ],
+    "bounds": [
+      155,
+      14,
+      1213,
+      1102
+    ]
+  }
+]

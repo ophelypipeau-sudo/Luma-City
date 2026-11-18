@@ -1,0 +1,924 @@
+[
+  {
+    "breedId": "segugio-italien-pr",
+    "name": "Chien courant italien à poil ras",
+    "standard": "337",
+    "price": 1810,
+    "heightRatio": 0.44,
+    "id": "segugio-italien-pr-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Italian Short-haired Segugio, medium lean square muscular body, long narrow head with slightly convex nose bridge and low stop, very long triangular folded hanging ears, very short uniformly smooth horsehair-textured coat, long fine strong legs, long slender tapering sabre tail. Coat: solid warm golden fawn all over, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/segugio-italien-pr-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-828aed91-8eae-4f37-b0d8-614b0840f722.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      94,
+      49,
+      1236,
+      1140
+    ]
+  },
+  {
+    "breedId": "segugio-italien-pr",
+    "name": "Chien courant italien à poil ras",
+    "standard": "337",
+    "price": 1810,
+    "heightRatio": 0.44,
+    "id": "segugio-italien-pr-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Italian Short-haired Segugio, medium lean square muscular body, long narrow head with slightly convex nose bridge and low stop, very long triangular folded hanging ears, very short uniformly smooth horsehair-textured coat, long fine strong legs, long slender tapering sabre tail. Coat: black body ears and upper head, clearly defined rich tan eyebrows muzzle cheeks chest and legs, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/segugio-italien-pr-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-a28dc470-5600-4c36-8972-4f6ae9d6677c.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      84,
+      25,
+      1254,
+      1164
+    ]
+  },
+  {
+    "breedId": "dunker",
+    "name": "Chien courant norvégien (Dunker)",
+    "standard": "203",
+    "price": 1750,
+    "heightRatio": 0.4,
+    "id": "dunker-noir-dilue-feu-blanc",
+    "coat": "Noir dilué, feu et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Dunker Norwegian Hound, medium strong rectangular scent hound with long clean head, long rounded hanging ears, straight dense hard short coat, strong medium-long legs, full long tapering low sabre tail. Coat: charcoal diluted-black saddle with pale tan head ears and upper legs, white chest white socks and narrow facial blaze, less than half white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/dunker-noir-dilue-feu-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-83457e1e-3ecc-47db-8232-c74c96f9c699.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      202,
+      33,
+      1381,
+      990
+    ]
+  },
+  {
+    "breedId": "dunker",
+    "name": "Chien courant norvégien (Dunker)",
+    "standard": "203",
+    "price": 1750,
+    "heightRatio": 0.4,
+    "id": "dunker-bleu-merle-feu-blanc",
+    "coat": "Bleu merle, feu et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Dunker Norwegian Hound, medium strong rectangular scent hound with long clean head, long rounded hanging ears, straight dense hard short coat, strong medium-long legs, full long tapering low sabre tail. Coat: clearly blue-grey marbled merle saddle with dark slate patches, pale tan head ears and upper legs, white chest socks and narrow blaze, less than half white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/dunker-bleu-merle-feu-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-b7f1fd9e-4089-4974-9355-b0ddfef5d7cc.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      185,
+      30,
+      1369,
+      976
+    ]
+  },
+  {
+    "breedId": "courant-polonais",
+    "name": "Chien courant polonais",
+    "standard": "354",
+    "price": 1780,
+    "heightRatio": 0.42,
+    "id": "courant-polonais-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Polish Hunting Dog Gonczy Polski, medium muscular slightly rectangular athletic hound, noble long head, medium rounded pendant ears, harsh short close body fur and smooth ears, strong straight legs, full long sabre tail held low. Coat: black body ears and head with intense reddish tan eyebrows muzzle cheeks chest and legs, black nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-polonais-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-35a0ba10-19fd-4793-b2b7-86aeb0f48f4d.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      241,
+      18,
+      1330,
+      996
+    ]
+  },
+  {
+    "breedId": "courant-polonais",
+    "name": "Chien courant polonais",
+    "standard": "354",
+    "price": 1780,
+    "heightRatio": 0.42,
+    "id": "courant-polonais-chocolat-feu",
+    "coat": "Chocolat et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Polish Hunting Dog Gonczy Polski, medium muscular slightly rectangular athletic hound, noble long head, medium rounded pendant ears, harsh short close body fur and smooth ears, strong straight legs, full long sabre tail held low. Coat: chocolate brown body ears and head with intense reddish tan eyebrows muzzle cheeks chest and legs, brown nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-polonais-chocolat-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-729b3ec3-315d-4a28-aa12-1ad79d676eac.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      229,
+      14,
+      1306,
+      997
+    ]
+  },
+  {
+    "breedId": "courant-serbe",
+    "name": "Chien courant serbe",
+    "standard": "150",
+    "price": 1690,
+    "heightRatio": 0.4,
+    "id": "courant-serbe-selle-noire-feu-dore",
+    "coat": "Selle noire et feu doré",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Serbian Hound Srpski Gonic, medium robust slightly elongated body, strong long head, high-set medium oval-tipped pendulous ears close to cheeks, short glossy thick smooth coat, sturdy balanced legs, full long tapering low tail. Coat: yellow-red golden fox-tan head chest and legs, sharply defined black saddle extending to neck with black temple markings, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-serbe-selle-noire-feu-dore.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-b6d2a1ff-b41c-4b37-b47c-9065ff6e2d61.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      188,
+      25,
+      1381,
+      992
+    ]
+  },
+  {
+    "breedId": "courant-serbe",
+    "name": "Chien courant serbe",
+    "standard": "150",
+    "price": 1690,
+    "heightRatio": 0.4,
+    "id": "courant-serbe-selle-noire-feu-roux",
+    "coat": "Selle noire et feu roux",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Serbian Hound Srpski Gonic, medium robust slightly elongated body, strong long head, high-set medium oval-tipped pendulous ears close to cheeks, short glossy thick smooth coat, sturdy balanced legs, full long tapering low tail. Coat: rich rusty red head chest and legs, sharply defined black saddle extending to neck with black temple markings, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-serbe-selle-noire-feu-roux.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-5605ae49-e3c5-48a0-8fef-9dfb0488d6ce.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      204,
+      27,
+      1339,
+      998
+    ]
+  },
+  {
+    "breedId": "courant-slovaque",
+    "name": "Chien courant slovaque",
+    "standard": "244",
+    "price": 1680,
+    "heightRatio": 0.36,
+    "id": "courant-slovaque-noir-feu-brun",
+    "coat": "Noir à feu brun",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Slovakian Hound Slovensky Kopov, medium-small strong elongated rectangular mountain hound, moderately long head, medium rounded hanging ears, dense close medium-short coarse fur with undercoat, sturdy medium legs with good ground clearance, long low sabre tail. Coat: black body head and ears with sharply demarcated brown tan eyebrow muzzle chest and limb markings, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-slovaque-noir-feu-brun.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-2f275d9d-01f5-4e87-8a15-81f36757741c.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      145,
+      21,
+      1415,
+      998
+    ]
+  },
+  {
+    "breedId": "courant-slovaque",
+    "name": "Chien courant slovaque",
+    "standard": "244",
+    "price": 1680,
+    "heightRatio": 0.36,
+    "id": "courant-slovaque-noir-feu-acajou",
+    "coat": "Noir à feu acajou",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Slovakian Hound Slovensky Kopov, medium-small strong elongated rectangular mountain hound, moderately long head, medium rounded hanging ears, dense close medium-short coarse fur with undercoat, sturdy medium legs with good ground clearance, long low sabre tail. Coat: black body head and ears with sharply demarcated rich mahogany red tan eyebrows muzzle chest and limbs, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-slovaque-noir-feu-acajou.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ce2c107c-d8a5-4719-a627-3d228019f43d.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      153,
+      19,
+      1385,
+      989
+    ]
+  },
+  {
+    "breedId": "courant-suisse",
+    "name": "Chien courant suisse",
+    "standard": "59",
+    "price": 1740,
+    "heightRatio": 0.41,
+    "id": "courant-suisse-bernois-tricolore",
+    "coat": "Tricolore bernois",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Swiss Hound Schweizer Laufhund, medium elongated elegant muscular scenthound, narrow long noble head, VERY long low-set folded pendant ears, short smooth dense coat, long lean legs, full long slender low sabre tail. Coat: white body with black saddle and black outer ears, defined tan eyebrows cheeks and inner ears, white legs and blaze. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-suisse-bernois-tricolore.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-32ca8bb1-57cb-4e0f-82ed-751a011cfa1d.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      155,
+      13,
+      1381,
+      999
+    ]
+  },
+  {
+    "breedId": "courant-suisse",
+    "name": "Chien courant suisse",
+    "standard": "59",
+    "price": 1740,
+    "heightRatio": 0.41,
+    "id": "courant-suisse-lucernois-bleu",
+    "coat": "Bleu lucernois",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Swiss Hound Schweizer Laufhund, medium elongated elegant muscular scenthound, narrow long noble head, VERY long low-set folded pendant ears, short smooth dense coat, long lean legs, full long slender low sabre tail. Coat: blue black-and-white densely speckled roan body, distinct black saddle and black outer ears, tan eyebrows cheeks and inner ears. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-suisse-lucernois-bleu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-b0ddf7f2-e335-494b-a4b7-dd5abd40ab8d.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      164,
+      12,
+      1381,
+      1008
+    ]
+  },
+  {
+    "breedId": "courant-tricolore-serbe",
+    "name": "Chien courant tricolore serbe",
+    "standard": "229",
+    "price": 1710,
+    "heightRatio": 0.41,
+    "id": "courant-tricolore-serbe-tricolore",
+    "coat": "Tricolore",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Serbian Tricolour Hound Srpski Trobojni Gonic, medium robust slightly elongated rectangular hound, long clean head, high-set medium rounded pendant ears, short abundant glossy close coat, strong straight legs, full long low tapering tail. Coat: deep fox red head chest and legs with black mantle, narrow white blaze and white chest feet and tail tip, white less than one third. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-tricolore-serbe-tricolore.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9294e2c2-d333-4d3a-9b59-44f1671414c4.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      217,
+      33,
+      1361,
+      979
+    ]
+  },
+  {
+    "breedId": "courant-tricolore-serbe",
+    "name": "Chien courant tricolore serbe",
+    "standard": "229",
+    "price": 1710,
+    "heightRatio": 0.41,
+    "id": "courant-tricolore-serbe-tricolore-collier",
+    "coat": "Tricolore à collier blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Serbian Tricolour Hound Srpski Trobojni Gonic, medium robust slightly elongated rectangular hound, long clean head, high-set medium rounded pendant ears, short abundant glossy close coat, strong straight legs, full long low tapering tail. Coat: rich red head and legs with black mantle, broad white blaze and a white neck collar white chest socks and tail tip, white less than one third, no ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/courant-tricolore-serbe-tricolore-collier.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-bb24aa5c-25c3-4744-bb32-a37548630bec.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      238,
+      9,
+      1357,
+      1006
+    ]
+  },
+  {
+    "breedId": "drahthaar",
+    "name": "Chien d’arrêt allemand à poil dur",
+    "standard": "98",
+    "price": 1950,
+    "heightRatio": 0.49,
+    "id": "drahthaar-rouan-marron",
+    "coat": "Rouan marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Deutsch Drahthaar German Wirehaired Pointer, medium-large muscular slightly rectangular pointing dog, long broad strong muzzle, medium flat triangular hanging ears, pronounced harsh beard and eyebrows, short dense wiry weatherproof coat, long straight strong legs, natural full uncut tapering tail. Coat: brown and white dense roan body with liver-brown head ears and irregular brown body patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/drahthaar-rouan-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-d02d2dd6-0282-4191-9070-e6fbef7e69d6.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      233,
+      18,
+      1329,
+      1002
+    ]
+  },
+  {
+    "breedId": "drahthaar",
+    "name": "Chien d’arrêt allemand à poil dur",
+    "standard": "98",
+    "price": 1950,
+    "heightRatio": 0.49,
+    "id": "drahthaar-rouan-noir",
+    "coat": "Rouan noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Deutsch Drahthaar German Wirehaired Pointer, medium-large muscular slightly rectangular pointing dog, long broad strong muzzle, medium flat triangular hanging ears, pronounced harsh beard and eyebrows, short dense wiry weatherproof coat, long straight strong legs, natural full uncut tapering tail. Coat: black and white dense roan body with black head ears and irregular black body patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/drahthaar-rouan-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-f443fc80-2b0d-4c28-8912-0d2818873b3f.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      239,
+      14,
+      1334,
+      1011
+    ]
+  },
+  {
+    "breedId": "stichelhaar",
+    "name": "Chien d’arrêt allemand à poil raide",
+    "standard": "232",
+    "price": 1960,
+    "heightRatio": 0.5,
+    "id": "stichelhaar-marron",
+    "coat": "Marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Deutsch Stichelhaar German Roughhaired Pointer, large strong balanced slightly rectangular pointing dog, long powerful broad straight muzzle, medium hanging ears, conspicuous stiff bristly upright eyebrows and short coarse moustache beard, rigid harsh straight bristly body hair not curly, long strong legs, natural full-length uncut tail. Coat: solid liver-brown rough coat, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/stichelhaar-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e2360dd3-ddd8-4bb6-ab88-c8035244f653.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      215,
+      16,
+      1374,
+      1001
+    ]
+  },
+  {
+    "breedId": "stichelhaar",
+    "name": "Chien d’arrêt allemand à poil raide",
+    "standard": "232",
+    "price": 1960,
+    "heightRatio": 0.5,
+    "id": "stichelhaar-rouan-clair-marron",
+    "coat": "Rouan clair et marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Deutsch Stichelhaar German Roughhaired Pointer, large strong balanced slightly rectangular pointing dog, long powerful broad straight muzzle, medium hanging ears, conspicuous stiff bristly upright eyebrows and short coarse moustache beard, rigid harsh straight bristly body hair not curly, long strong legs, natural full-length uncut tail. Coat: light white-and-brown roan body with clearly defined liver-brown head ears and large brown flank patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/stichelhaar-rouan-clair-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-6583fd4d-9485-41b7-8887-0d4220bf66cc.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      281,
+      15,
+      1313,
+      987
+    ]
+  },
+  {
+    "breedId": "arret-danois-ancestral",
+    "name": "Chien d’arrêt danois ancestral",
+    "standard": "281",
+    "price": 1840,
+    "heightRatio": 0.44,
+    "id": "arret-danois-ancestral-blanc-marron",
+    "coat": "Blanc et marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Old Danish Pointer Gammel Dansk Honsehund, medium sturdy heavy rectangular pointing dog, broad head with short broad muzzle, large medium-length hanging rounded ears, loose throat dewlap, short dense close smooth fur, strong thick straight legs, natural full tapering low tail. Coat: white body with a few large rich brown flank patches, brown head ears and sparse small brown freckles on legs. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/arret-danois-ancestral-blanc-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-edcfab17-e465-4fd0-9701-e36ad1b8a580.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      211,
+      20,
+      1322,
+      972
+    ]
+  },
+  {
+    "breedId": "arret-danois-ancestral",
+    "name": "Chien d’arrêt danois ancestral",
+    "standard": "281",
+    "price": 1840,
+    "heightRatio": 0.44,
+    "id": "arret-danois-ancestral-blanc-marron-mouchete",
+    "coat": "Blanc et marron moucheté",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Old Danish Pointer Gammel Dansk Honsehund, medium sturdy heavy rectangular pointing dog, broad head with short broad muzzle, large medium-length hanging rounded ears, loose throat dewlap, short dense close smooth fur, strong thick straight legs, natural full tapering low tail. Coat: white body with many small dark brown freckles and several distinct dark brown patches, brown ears and head, white blaze. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/arret-danois-ancestral-blanc-marron-mouchete.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9f3f1c70-98b3-40eb-959c-3c354fe5377e.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      161,
+      21,
+      1358,
+      995
+    ]
+  },
+  {
+    "breedId": "stabijhoun",
+    "name": "Chien d’arrêt frison (Stabijhoun)",
+    "standard": "222",
+    "price": 1810,
+    "heightRatio": 0.39,
+    "id": "stabijhoun-noir-blanc",
+    "coat": "Noir et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Stabijhoun Frisian pointing dog, medium strong slightly elongated body, long clean head, medium dropped triangular ears, medium straight silky body hair with bushy collar chest trousers and full long bushy low tail, smooth face, strong moderate legs, no curls. Coat: black head and ears, white body with broad black patches, white chest and lower legs, slight black ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/stabijhoun-noir-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-57833af5-2a6d-4e1d-aee7-a6473c82301e.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      222,
+      33,
+      1368,
+      978
+    ]
+  },
+  {
+    "breedId": "stabijhoun",
+    "name": "Chien d’arrêt frison (Stabijhoun)",
+    "standard": "222",
+    "price": 1810,
+    "heightRatio": 0.39,
+    "id": "stabijhoun-marron-blanc",
+    "coat": "Marron et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Stabijhoun Frisian pointing dog, medium strong slightly elongated body, long clean head, medium dropped triangular ears, medium straight silky body hair with bushy collar chest trousers and full long bushy low tail, smooth face, strong moderate legs, no curls. Coat: rich brown head and ears, white body with broad brown patches, white chest and lower legs, slight brown ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/stabijhoun-marron-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-774b27d4-cbda-4967-b113-379562cb6ef2.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      140,
+      18,
+      1420,
+      989
+    ]
+  },
+  {
+    "breedId": "arret-portugais",
+    "name": "Chien d’arrêt portugais",
+    "standard": "187",
+    "price": 1800,
+    "heightRatio": 0.4,
+    "id": "arret-portugais-jaune",
+    "coat": "Jaune",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Pointer Perdigueiro Portugues, medium sturdy almost square muscular pointing dog, broad square skull and short broad square muzzle, high-set medium triangular rounded hanging ears, slight dewlap, very short hard smooth coat, strong straight legs, natural full tapering tail. Coat: solid warm golden yellow coat, black nose, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/arret-portugais-jaune.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ef8128d8-fb3a-4079-bcfc-467bf843bd7e.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      58,
+      35,
+      1255,
+      1133
+    ]
+  },
+  {
+    "breedId": "arret-portugais",
+    "name": "Chien d’arrêt portugais",
+    "standard": "187",
+    "price": 1800,
+    "heightRatio": 0.4,
+    "id": "arret-portugais-jaune-blanc",
+    "coat": "Jaune et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Pointer Perdigueiro Portugues, medium sturdy almost square muscular pointing dog, broad square skull and short broad square muzzle, high-set medium triangular rounded hanging ears, slight dewlap, very short hard smooth coat, strong straight legs, natural full tapering tail. Coat: deeper warm yellow coat with distinct white chest and throat white muzzle stripe and white lower socks, black nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/arret-portugais-jaune-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-521e45fa-7918-4ba5-8e76-b720344d81eb.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      60,
+      33,
+      1268,
+      1146
+    ]
+  },
+  {
+    "breedId": "chien-artois",
+    "name": "Chien d’Artois",
+    "standard": "28",
+    "price": 1720,
+    "heightRatio": 0.42,
+    "id": "chien-artois-tricolore-manteau",
+    "coat": "Tricolore à manteau",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Artois Hound, medium robust muscular long rectangular French hound, broad domed head, thick long rounded flat hanging ears, strong broad muzzle and slightly loose lips, short thick smooth coat, sturdy strong legs, full long tapering low sabre tail. Coat: dark fawn hare-toned tricolour with broad black mantle, fawn head ears and upper legs, clear white chest lower legs and narrow blaze. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/chien-artois-tricolore-manteau.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-50144831-7cb6-4d3e-bfc8-950c821f1cbe.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      156,
+      30,
+      1413,
+      979
+    ]
+  },
+  {
+    "breedId": "chien-artois",
+    "name": "Chien d’Artois",
+    "standard": "28",
+    "price": 1720,
+    "heightRatio": 0.42,
+    "id": "chien-artois-tricolore-panache",
+    "coat": "Tricolore à grandes taches",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Artois Hound, medium robust muscular long rectangular French hound, broad domed head, thick long rounded flat hanging ears, strong broad muzzle and slightly loose lips, short thick smooth coat, sturdy strong legs, full long tapering low sabre tail. Coat: dark fawn tricolour with several large separate black body patches on white, fawn head ears and upper legs, white chest lower legs and broader blaze, no ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/chien-artois-tricolore-panache.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-edc9c7f3-208e-433b-93dc-28a811f2bd2d.png",
+    "originalSourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-bb2e1359-ed77-4298-b16f-42a21053ec00.png",
+    "correctionPrompt": "Use case: background-extraction. Edit this supplied original Artois Hound game sprite. Preserve the exact complete dog, its breed anatomy, posture, facial expression, fur detail, all black fawn and white coat patches, all four paws and full tail. Remove ALL residual backdrop, haze, glow and low-opacity fog around and between limbs, including any nontransparent corner or edge pixels. Output only the isolated dog on a genuinely transparent RGBA canvas, with a generous completely transparent margin on all four sides. No floor shadow, no objects, no lettering. Do not crop any part of the dog; fit the whole unchanged illustration comfortably inside the frame.",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      147,
+      35,
+      1383,
+      973
+    ]
+  },
+  {
+    "breedId": "eau-americain",
+    "name": "Chien d’eau américain",
+    "standard": "301",
+    "price": 1800,
+    "heightRatio": 0.35,
+    "id": "eau-americain-foie",
+    "coat": "Foie",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult American Water Spaniel, medium compact strong slightly rectangular spaniel, broad moderate head and square muzzle, long wide lobular hanging ears, dense small curls and waves on body and ears, smooth short forehead WITHOUT topknot, moderate feathering on legs and full natural tail. Coat: solid warm rich liver-brown curly coat. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-americain-foie.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e9a036e4-da04-4560-bf67-eefb3d320de4.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      178,
+      38,
+      1353,
+      990
+    ]
+  },
+  {
+    "breedId": "eau-americain",
+    "name": "Chien d’eau américain",
+    "standard": "301",
+    "price": 1800,
+    "heightRatio": 0.35,
+    "id": "eau-americain-chocolat-fonce",
+    "coat": "Chocolat foncé",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult American Water Spaniel, medium compact strong slightly rectangular spaniel, broad moderate head and square muzzle, long wide lobular hanging ears, dense small curls and waves on body and ears, smooth short forehead WITHOUT topknot, moderate feathering on legs and full natural tail. Coat: solid deep dark chocolate curly coat. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-americain-chocolat-fonce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-30039afa-e061-4420-b11e-a4e4a0dd6faf.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      149,
+      29,
+      1417,
+      981
+    ]
+  },
+  {
+    "breedId": "eau-espagnol",
+    "name": "Chien d’eau espagnol",
+    "standard": "336",
+    "price": 1790,
+    "heightRatio": 0.36,
+    "id": "eau-espagnol-noir",
+    "coat": "Noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Spanish Water Dog Perro de Agua Espanol, medium rustic athletic slightly rectangular dog, broad strong head, medium triangular dropped ears, dense natural woolly corkscrew curls all over face body and limbs, eyes still visible, strong moderate legs, full natural undocked tail with curls, no pompons. Coat: solid deep black woolly curly coat. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-espagnol-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-2b226b4e-23dd-490d-ac25-9e9bcb628842.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      196,
+      12,
+      1362,
+      1012
+    ]
+  },
+  {
+    "breedId": "eau-espagnol",
+    "name": "Chien d’eau espagnol",
+    "standard": "336",
+    "price": 1790,
+    "heightRatio": 0.36,
+    "id": "eau-espagnol-marron-blanc",
+    "coat": "Marron et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Spanish Water Dog Perro de Agua Espanol, medium rustic athletic slightly rectangular dog, broad strong head, medium triangular dropped ears, dense natural woolly corkscrew curls all over face body and limbs, eyes still visible, strong moderate legs, full natural undocked tail with curls, no pompons. Coat: rich chestnut brown woolly curls with distinct white chest collar and lower paws, two colours only, no tan or speckles. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-espagnol-marron-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-617df273-4e30-4251-bd2d-ce43f390a9ce.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      52,
+      29,
+      1268,
+      1153
+    ]
+  },
+  {
+    "breedId": "wetterhoun",
+    "name": "Chien d’eau frison (Wetterhoun)",
+    "standard": "221",
+    "price": 1880,
+    "heightRatio": 0.43,
+    "id": "wetterhoun-noir-blanc",
+    "coat": "Noir et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Wetterhoun Frisian Water Dog, medium sturdy almost square broad-chested dog, broad head and strong muzzle, medium low-set rounded pendant ears, characteristic stern almond eyes, tight coarse curls on body with smooth head ears and legs, distinctive full tight ring tail curving over back. Coat: black curly head and body patches over white curly chest and flanks, white legs with light black ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/wetterhoun-noir-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-2a58cf2f-1c8c-46a6-ace1-58bebb370f6f.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      115,
+      28,
+      1184,
+      1156
+    ]
+  },
+  {
+    "breedId": "wetterhoun",
+    "name": "Chien d’eau frison (Wetterhoun)",
+    "standard": "221",
+    "price": 1880,
+    "heightRatio": 0.43,
+    "id": "wetterhoun-marron-blanc",
+    "coat": "Marron et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Wetterhoun Frisian Water Dog, medium sturdy almost square broad-chested dog, broad head and strong muzzle, medium low-set rounded pendant ears, characteristic stern almond eyes, tight coarse curls on body with smooth head ears and legs, distinctive full tight ring tail curving over back. Coat: rich brown head and curly body patches over white curly chest and flanks, white legs with light brown ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/wetterhoun-marron-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-1666af8f-c6e7-4fb1-b9d0-493925dbbaf0.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1331,
+      1181
+    ],
+    "bounds": [
+      136,
+      52,
+      1206,
+      1108
+    ]
+  },
+  {
+    "breedId": "eau-irlandais",
+    "name": "Chien d’eau irlandais",
+    "standard": "124",
+    "price": 1990,
+    "heightRatio": 0.44,
+    "id": "eau-irlandais-foie-puce",
+    "coat": "Foie puce",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Irish Water Spaniel, tall athletic compact barrel-ribbed spaniel, long strong square smooth muzzle, distinctive tall loose curly topknot, very long hanging ears covered in corkscrew curls, tight crisp body ringlets, long sturdy legs with feathering, distinctive full natural rat-tail thick curly base with long thin smooth uncovered lower tail. Coat: solid very rich reddish purple-brown puce liver coat, no white and no black. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-irlandais-foie-puce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-dd9af916-4d1e-4deb-9511-6c5da46a4dcc.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1374,
+      1145
+    ],
+    "bounds": [
+      90,
+      16,
+      1276,
+      1121
+    ]
+  },
+  {
+    "breedId": "eau-irlandais",
+    "name": "Chien d’eau irlandais",
+    "standard": "124",
+    "price": 1990,
+    "heightRatio": 0.44,
+    "id": "eau-irlandais-foie-puce-fonce",
+    "coat": "Foie puce foncé",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Irish Water Spaniel, tall athletic compact barrel-ribbed spaniel, long strong square smooth muzzle, distinctive tall loose curly topknot, very long hanging ears covered in corkscrew curls, tight crisp body ringlets, long sturdy legs with feathering, distinctive full natural rat-tail thick curly base with long thin smooth uncovered lower tail. Coat: solid deep dark purple-brown puce liver coat, no white and no black. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-irlandais-foie-puce-fonce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-82aeee1f-d8bd-492a-b748-a71c0eac2ed0.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      86,
+      12,
+      1246,
+      1156
+    ]
+  },
+  {
+    "breedId": "eau-portugais",
+    "name": "Chien d’eau portugais",
+    "standard": "37",
+    "price": 1900,
+    "heightRatio": 0.41,
+    "id": "eau-portugais-noir-blanc",
+    "coat": "Noir et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Water Dog, medium strong square muscular dog, broad domed head, medium hanging heart-shaped ears, dense natural medium curly coat in even retriever trim, visible eyes, substantial strong legs, full natural long tapering curly tail with plume tip, no lion clip. Coat: black curly body with distinct white muzzle chest and lower paws and white tail tip. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-portugais-noir-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e0955ec2-15a0-4b0d-842e-062ba5719514.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      58,
+      38,
+      1265,
+      1157
+    ]
+  },
+  {
+    "breedId": "eau-portugais",
+    "name": "Chien d’eau portugais",
+    "standard": "37",
+    "price": 1900,
+    "heightRatio": 0.41,
+    "id": "eau-portugais-marron",
+    "coat": "Marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Water Dog, medium strong square muscular dog, broad domed head, medium hanging heart-shaped ears, dense natural medium curly coat in even retriever trim, visible eyes, substantial strong legs, full natural long tapering curly tail with plume tip, no lion clip. Coat: solid rich warm brown curly coat, brown nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/eau-portugais-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-90bf98b3-5a06-4ea0-ad1b-8da95a4a5bcf.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      89,
+      63,
+      1217,
+      1122
+    ]
+  },
+  {
+    "breedId": "elan-norvegien-gris",
+    "name": "Chien d’élan norvégien gris",
+    "standard": "242",
+    "price": 1810,
+    "heightRatio": 0.39,
+    "id": "elan-norvegien-gris-gris-clair",
+    "coat": "Gris clair",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Grey Norwegian Elkhound Norsk Elghund Gra, medium sturdy compact square Nordic spitz, broad wedge head, small erect pointed ears, dense thick straight coarse double coat with full neck ruff, short sturdy legs, thick tail firmly curled over centre of back. Coat: light silver-grey outer coat with black-tipped guard hairs, black ears and dark muzzle mask, lighter grey chest belly legs and harness stripe, no white patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/elan-norvegien-gris-gris-clair.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9e9ef1f9-9f16-40e1-82a7-89bf28b30641.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      144,
+      33,
+      1135,
+      1137
+    ]
+  },
+  {
+    "breedId": "elan-norvegien-gris",
+    "name": "Chien d’élan norvégien gris",
+    "standard": "242",
+    "price": 1810,
+    "heightRatio": 0.39,
+    "id": "elan-norvegien-gris-gris-soutenu",
+    "coat": "Gris soutenu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Grey Norwegian Elkhound Norsk Elghund Gra, medium sturdy compact square Nordic spitz, broad wedge head, small erect pointed ears, dense thick straight coarse double coat with full neck ruff, short sturdy legs, thick tail firmly curled over centre of back. Coat: deeper medium wolf-grey black-tipped outer coat with black ears and dark muzzle mask, lighter grey chest belly legs and harness stripe, pale grey undercoat, no white patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/elan-norvegien-gris-gris-soutenu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ffd4eda7-eae3-4526-8eee-89fe970ff818.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      185,
+      48,
+      1098,
+      1120
+    ]
+  },
+  {
+    "breedId": "elan-norvegien-noir",
+    "name": "Chien d’élan norvégien noir",
+    "standard": "268",
+    "price": 1780,
+    "heightRatio": 0.36,
+    "id": "elan-norvegien-noir-noir",
+    "coat": "Noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Black Norwegian Elkhound Norsk Elghund Sort, medium-small compact light athletic square Nordic spitz, refined wedge head, small upright pointed ears, shining dense short-medium straight double coat, moderate neck ruff, lean strong legs, natural full tight curl tail over back. Coat: solid shining jet-black fur all over, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/elan-norvegien-noir-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-4bd66af0-19c3-4270-978f-0916df99ce32.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      201,
+      41,
+      1096,
+      1133
+    ]
+  },
+  {
+    "breedId": "elan-norvegien-noir",
+    "name": "Chien d’élan norvégien noir",
+    "standard": "268",
+    "price": 1780,
+    "heightRatio": 0.36,
+    "id": "elan-norvegien-noir-noir-petit-plastron",
+    "coat": "Noir à petit plastron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Black Norwegian Elkhound Norsk Elghund Sort, medium-small compact light athletic square Nordic spitz, refined wedge head, small upright pointed ears, shining dense short-medium straight double coat, moderate neck ruff, lean strong legs, natural full tight curl tail over back. Coat: shining jet-black coat with one discreet small white chest star, black face paws and tail. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and recognisable breed silhouette. Delicately painted detailed fur, soft warm upper-left lighting, matte soft shading, readable at small game scale. All four paws, both ears and the ENTIRE tail fully visible, with generous clear transparent margin on ALL sides (at least five percent). True RGBA transparency outside the animal and between limbs, clean natural antialiased contours. NO painted backdrop, glow, haze, ground shadow, text, collar, props, extra animals or cropped body parts.",
+    "fichier": "public/assets/companions/elan-norvegien-noir-noir-petit-plastron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9fd4e654-1ebb-4f8c-8cec-fb838e29c7cb.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      186,
+      37,
+      1116,
+      1137
+    ]
+  }
+]

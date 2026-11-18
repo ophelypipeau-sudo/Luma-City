@@ -1,0 +1,462 @@
+[
+  {
+    "breedId": "courant-montenegro",
+    "name": "Chien courant de montagne du Monténégro",
+    "standard": "279",
+    "price": 1690,
+    "heightRatio": 0.38,
+    "id": "courant-montenegro-noir-feu-clair",
+    "coat": "Noir à feu clair",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Montenegrin Mountain Hound, medium robust rectangular mountain scenthound, moderately broad elongated head, rounded medium hanging ears set high, short smooth dense glossy coat, strong medium-length legs, long tapering sabre tail carried below back line. Coat: predominantly black body head and ears with distinct light reddish tan eyebrow spots, tan sides of muzzle and tan lower legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-montenegro-noir-feu-clair.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-44f0978f-0c82-4200-9457-039d2160c0da.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      225,
+      40,
+      1358,
+      988
+    ]
+  },
+  {
+    "breedId": "courant-montenegro",
+    "name": "Chien courant de montagne du Monténégro",
+    "standard": "279",
+    "price": 1690,
+    "heightRatio": 0.38,
+    "id": "courant-montenegro-noir-feu-roux",
+    "coat": "Noir à feu roux",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Montenegrin Mountain Hound, medium robust rectangular mountain scenthound, moderately broad elongated head, rounded medium hanging ears set high, short smooth dense glossy coat, strong medium-length legs, long tapering sabre tail carried below back line. Coat: predominantly black body head and ears with distinct rich red tan eyebrow spots, rich rusty red muzzle-side markings and lower legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-montenegro-noir-feu-roux.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e776d222-0c73-4a3b-90b0-f369be877a3c.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      146,
+      19,
+      1402,
+      998
+    ]
+  },
+  {
+    "breedId": "courant-schiller",
+    "name": "Chien courant de Schiller",
+    "standard": "131",
+    "price": 1760,
+    "heightRatio": 0.43,
+    "id": "courant-schiller-noir-feu-dore",
+    "coat": "Noir à feu doré",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Schillerstovare, elegant medium-large sinewy Swedish hound, slightly rectangular athletic body, long refined head with straight muzzle, medium flat pendant ears, short smooth close fur, long lean legs, long tapering low sabre tail. Coat: well-defined black mantle over back upper neck shoulders sides and upper tail, golden tan head ears chest throat lower shoulders and legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-schiller-noir-feu-dore.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-dd39f0fc-0caf-4649-9b16-6d8986fec6f3.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      218,
+      34,
+      1345,
+      993
+    ]
+  },
+  {
+    "breedId": "courant-schiller",
+    "name": "Chien courant de Schiller",
+    "standard": "131",
+    "price": 1760,
+    "heightRatio": 0.43,
+    "id": "courant-schiller-noir-feu-roux",
+    "coat": "Noir à feu roux",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Schillerstovare, elegant medium-large sinewy Swedish hound, slightly rectangular athletic body, long refined head with straight muzzle, medium flat pendant ears, short smooth close fur, long lean legs, long tapering low sabre tail. Coat: well-defined black mantle over back upper neck shoulders sides and upper tail, deep warm rusty tan head ears chest throat lower shoulders and legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-schiller-noir-feu-roux.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e71032e1-e655-4b38-9199-47051d735e42.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      209,
+      10,
+      1325,
+      991
+    ]
+  },
+  {
+    "breedId": "courant-transylvanie",
+    "name": "Chien courant de Transylvanie",
+    "standard": "241",
+    "price": 1850,
+    "heightRatio": 0.46,
+    "id": "courant-transylvanie-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Transylvanian Scent Hound Erdelyi Kopo, medium-large robust muscular rectangular hound, moderately long broad head, medium-high set rounded hanging ears, close short straight glossy coarse fur, strong long legs, full long slightly curved tapering tail. Coat: black coat with clearly defined warm tan eyebrow spots muzzle cheeks chest and legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-transylvanie-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-239de455-47f4-476c-b8a3-0bfcbdc21bd1.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      195,
+      19,
+      1377,
+      996
+    ]
+  },
+  {
+    "breedId": "courant-transylvanie",
+    "name": "Chien courant de Transylvanie",
+    "standard": "241",
+    "price": 1850,
+    "heightRatio": 0.46,
+    "id": "courant-transylvanie-noir-feu-plastron",
+    "coat": "Noir et feu à plastron blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Transylvanian Scent Hound Erdelyi Kopo, medium-large robust muscular rectangular hound, moderately long broad head, medium-high set rounded hanging ears, close short straight glossy coarse fur, strong long legs, full long slightly curved tapering tail. Coat: black coat with clearly defined warm tan eyebrow spots muzzle cheeks and legs, small white chest patch and a few white toes, white far less than one fifth of body. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-transylvanie-noir-feu-plastron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-955b638e-fd90-4c57-a0fc-7af972da58ce.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      169,
+      13,
+      1433,
+      987
+    ]
+  },
+  {
+    "breedId": "courant-apennins",
+    "name": "Chien courant des Apennins",
+    "standard": "375",
+    "price": 1700,
+    "heightRatio": 0.37,
+    "id": "courant-apennins-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Appennine Hound Segugio dell Appennino, rustic agile medium-small Italian scenthound, slightly rectangular light muscular body, lean fine legs, long slender head, broad-set medium hanging rounded ears, stiff short rough close coat with subtle whiskery muzzle, full tapering tail. Coat: even warm fawn coat with subtle darker hair on back, no large white patches. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-apennins-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-3e36db1b-8162-4b53-884e-880b4d9cb1d3.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      232,
+      26,
+      1336,
+      991
+    ]
+  },
+  {
+    "breedId": "courant-apennins",
+    "name": "Chien courant des Apennins",
+    "standard": "375",
+    "price": 1700,
+    "heightRatio": 0.37,
+    "id": "courant-apennins-gris-lievre",
+    "coat": "Gris lièvre",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Appennine Hound Segugio dell Appennino, rustic agile medium-small Italian scenthound, slightly rectangular light muscular body, lean fine legs, long slender head, broad-set medium hanging rounded ears, stiff short rough close coat with subtle whiskery muzzle, full tapering tail. Coat: natural hare-grey grizzled coat, salt-and-pepper earthy grey brown hairs with warm tan grey muzzle and lower legs, no large white patches. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-apennins-gris-lievre.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e5e6105c-0340-46fa-a435-cc237e4c5873.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      223,
+      34,
+      1408,
+      994
+    ]
+  },
+  {
+    "breedId": "courant-tatras",
+    "name": "Chien courant des Tatras",
+    "standard": "377",
+    "price": 1590,
+    "heightRatio": 0.3,
+    "id": "courant-tatras-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Tatra Hound Tatransky duric, small light but sturdy clearly rectangular scenthound, legs with ample ground clearance not a dachshund, elegant rounded head, long rounded hanging ears, coarse close-fitting short coat, straight back, long slender straight or gently sabre tail carried at back level. Coat: black body and ears with clearly bounded warm tan eyebrows muzzle sides chest and legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-tatras-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-a0675819-e1aa-4618-8698-34b7956c61ec.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      209,
+      41,
+      1408,
+      974
+    ]
+  },
+  {
+    "breedId": "courant-tatras",
+    "name": "Chien courant des Tatras",
+    "standard": "377",
+    "price": 1590,
+    "heightRatio": 0.3,
+    "id": "courant-tatras-rouge-cerf",
+    "coat": "Rouge cerf",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Tatra Hound Tatransky duric, small light but sturdy clearly rectangular scenthound, legs with ample ground clearance not a dachshund, elegant rounded head, long rounded hanging ears, coarse close-fitting short coat, straight back, long slender straight or gently sabre tail carried at back level. Coat: solid warm deer red coat from head through tail and paws, no black mask and no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-tatras-rouge-cerf.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-dcc53235-9be2-45dd-bc0d-9496845ca2fd.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      148,
+      53,
+      1436,
+      971
+    ]
+  },
+  {
+    "breedId": "courant-smaland",
+    "name": "Chien courant du Småland",
+    "standard": "129",
+    "price": 1710,
+    "heightRatio": 0.38,
+    "id": "courant-smaland-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Smalandsstovare, medium robust elegant Swedish hound, almost square compact strong body with short powerful back, lean medium head, fairly high-set short rounded flat hanging ears, harsh dense close medium-short coat, strong balanced legs, natural full-length low sabre tail. Coat: black body head and ears with warm amber tan eyebrows muzzle sides throat chest and legs, black nose. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-smaland-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-b628170c-d589-408a-8369-18291feb3ddb.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      74,
+      30,
+      1239,
+      1135
+    ]
+  },
+  {
+    "breedId": "courant-smaland",
+    "name": "Chien courant du Småland",
+    "standard": "129",
+    "price": 1710,
+    "heightRatio": 0.38,
+    "id": "courant-smaland-marron-feu",
+    "coat": "Marron et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Smalandsstovare, medium robust elegant Swedish hound, almost square compact strong body with short powerful back, lean medium head, fairly high-set short rounded flat hanging ears, harsh dense close medium-short coat, strong balanced legs, natural full-length low sabre tail. Coat: liver brown body head and ears with distinct warm golden tan eyebrows muzzle sides throat chest and legs, dark brown nose and hazel eyes. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-smaland-marron-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-3174d9dd-e656-49fa-ae1f-aae38e057b9f.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      114,
+      65,
+      1222,
+      1089
+    ]
+  },
+  {
+    "breedId": "courant-espagnol",
+    "name": "Chien courant espagnol",
+    "standard": "204",
+    "price": 1770,
+    "heightRatio": 0.41,
+    "id": "courant-espagnol-blanc-citron",
+    "coat": "Blanc et citron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Spanish Hound Sabueso Espanol, medium very strong long rectangular body with deep roomy chest, moderately short sturdy legs not a basset, noble long broad head, extremely long large soft rounded hanging ears gently twisted and extending past muzzle length, noticeable loose throat dewlap, short fine dense smooth coat, full long thick tapering low tail. Coat: white coat with distinct irregular light lemon orange patches and lemon coloured long ears, no ticking. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-espagnol-blanc-citron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-3d905fe2-b01e-413a-9254-5fbfddefa527.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      136,
+      52,
+      1430,
+      975
+    ]
+  },
+  {
+    "breedId": "courant-espagnol",
+    "name": "Chien courant espagnol",
+    "standard": "204",
+    "price": 1770,
+    "heightRatio": 0.41,
+    "id": "courant-espagnol-blanc-orange-roux",
+    "coat": "Blanc et orange roux",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Spanish Hound Sabueso Espanol, medium very strong long rectangular body with deep roomy chest, moderately short sturdy legs not a basset, noble long broad head, extremely long large soft rounded hanging ears gently twisted and extending past muzzle length, noticeable loose throat dewlap, short fine dense smooth coat, full long thick tapering low tail. Coat: white coat with large distinct intense russet-orange patches and rich russet-orange long ears, no ticking. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-espagnol-blanc-orange-roux.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-35fafdae-b08b-486e-995f-f5c0e7cc2940.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      96,
+      20,
+      1453,
+      976
+    ]
+  },
+  {
+    "breedId": "courant-finlandais",
+    "name": "Chien courant finlandais",
+    "standard": "51",
+    "price": 1790,
+    "heightRatio": 0.44,
+    "id": "courant-finlandais-tricolore",
+    "coat": "Tricolore",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Finnish Hound Suomenajokoira, medium-large balanced strong rectangular hound, long noble head, medium length hanging ears with front edges close to head, dense straight close medium-short harsh coat, long lean muscular legs, full long tapering tail carried below back. Coat: black continuous mantle, rich tan head ears shoulders lower body upper thighs and legs, narrow white facial blaze white throat chest feet and tail tip. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-finlandais-tricolore.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e006e4de-b499-40aa-bfa3-7feb3091d12f.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      166,
+      23,
+      1375,
+      1000
+    ]
+  },
+  {
+    "breedId": "courant-finlandais",
+    "name": "Chien courant finlandais",
+    "standard": "51",
+    "price": 1790,
+    "heightRatio": 0.44,
+    "id": "courant-finlandais-tricolore-collier",
+    "coat": "Tricolore à collier blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Finnish Hound Suomenajokoira, medium-large balanced strong rectangular hound, long noble head, medium length hanging ears with front edges close to head, dense straight close medium-short harsh coat, long lean muscular legs, full long tapering tail carried below back. Coat: black continuous mantle, rich tan head ears shoulders lower body upper thighs and legs, broader white forehead blaze distinct white neck collar white chest socks and tail tip, maintain predominantly black mantle. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-finlandais-tricolore-collier.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-3e8195b9-a810-4f83-b5ae-780bd6a61c37.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      237,
+      22,
+      1352,
+      1000
+    ]
+  },
+  {
+    "breedId": "courant-grec",
+    "name": "Chien courant grec",
+    "standard": "214",
+    "price": 1680,
+    "heightRatio": 0.4,
+    "id": "courant-grec-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Hellenic Hound Hellinikos Ichnilatis, medium strong balanced elongated rectangular Greek hound, long clean head and straight muzzle, high-set medium rounded pendant ears hanging vertically, short dense slightly harsh close smooth coat, straight lean strong legs, full medium-length tapering low tail. Coat: predominantly black coat with distinct rich tan eyebrow spots muzzle cheeks chest lower body and legs, black nose and nails, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-grec-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-19d03670-eea3-47df-b227-57a2c62ac3fe.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      198,
+      13,
+      1345,
+      974
+    ]
+  },
+  {
+    "breedId": "courant-grec",
+    "name": "Chien courant grec",
+    "standard": "214",
+    "price": 1680,
+    "heightRatio": 0.4,
+    "id": "courant-grec-noir-feu-plastron",
+    "coat": "Noir et feu à petit plastron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Hellenic Hound Hellinikos Ichnilatis, medium strong balanced elongated rectangular Greek hound, long clean head and straight muzzle, high-set medium rounded pendant ears hanging vertically, short dense slightly harsh close smooth coat, straight lean strong legs, full medium-length tapering low tail. Coat: predominantly black coat with distinct warm tan eyebrow spots muzzle cheeks lower body and legs, one small white chest patch, black nose and nails, no white elsewhere. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/courant-grec-noir-feu-plastron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-bfda57a2-f043-4bb5-9bd2-6f8343d1ea41.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      189,
+      19,
+      1372,
+      988
+    ]
+  },
+  {
+    "breedId": "segugio-italien-pd",
+    "name": "Chien courant italien à poil dur",
+    "standard": "198",
+    "price": 1830,
+    "heightRatio": 0.44,
+    "id": "segugio-italien-pd-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Italian rough-haired Segugio Italiano a pelo forte, elegant medium square lean muscular hound, long narrow head with slightly convex nose bridge and low stop, very long triangular folded hanging ears, rough dry straight body hair under 5 cm, modest beard under lips and short eyebrows leaving eyes clear, smoother ears and legs, long fine muscular legs and long slender tapering sabre tail. Coat: even warm golden fawn rough coat, subtle darker ear shading, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/segugio-italien-pd-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-beb640ca-2c75-4859-b933-318b31eefbd1.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      267,
+      23,
+      1336,
+      994
+    ]
+  },
+  {
+    "breedId": "segugio-italien-pd",
+    "name": "Chien courant italien à poil dur",
+    "standard": "198",
+    "price": 1830,
+    "heightRatio": 0.44,
+    "id": "segugio-italien-pd-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable dog sprite for Luma City, matching the established premium warm hand-painted semi-realistic 2D companion collection. Draw ONE adult Italian rough-haired Segugio Italiano a pelo forte, elegant medium square lean muscular hound, long narrow head with slightly convex nose bridge and low stop, very long triangular folded hanging ears, rough dry straight body hair under 5 cm, modest beard under lips and short eyebrows leaving eyes clear, smoother ears and legs, long fine muscular legs and long slender tapering sabre tail. Coat: black rough body coat with clearly defined rich tan eyebrows muzzle beard chest and legs, no white. Standing naturally in three-quarter view facing left, head slightly turned towards viewer. Preserve the adult breed silhouette and distinctive anatomy, not a generic beagle. Delicate detailed painted fur, soft warm upper-left lighting, matte soft shading, legible at small game scale. Full body with ALL four paws, both ears and ENTIRE tail visible; generous completely clear margin on ALL sides, at least five percent of canvas. Genuine RGBA transparent exterior and gaps between limbs, clean antialiased fur contours. No painted background, no glow, no haze, no ground shadow, no text, no collar or props. Do not crop paws ears or tail.",
+    "fichier": "public/assets/companions/segugio-italien-pd-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-4435fdba-c9f1-41d0-b0c0-06a445676d86.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      248,
+      12,
+      1310,
+      1007
+    ]
+  }
+]

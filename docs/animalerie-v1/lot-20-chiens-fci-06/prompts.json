@@ -1,0 +1,462 @@
+﻿[
+    {
+        "breedId":  "otterhound",
+        "name":  "Chien à loutre",
+        "standard":  "294",
+        "price":  2050,
+        "heightRatio":  0.5,
+        "id":  "otterhound-froment",
+        "coat":  "Froment",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Otterhound, large powerful rectangular hound, very long low-set folded pendant ears, large long bearded head, shaggy rough waterproof hair, deep chest, substantial legs, long thick tapering slightly raised tail. Coat: warm wheaten shaggy coat with slightly darker ears. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/otterhound-froment.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-36f8c0e4-766d-4e70-a542-4eb102d41985.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       177,
+                       29,
+                       1459,
+                       992
+                   ]
+    },
+    {
+        "breedId":  "otterhound",
+        "name":  "Chien à loutre",
+        "standard":  "294",
+        "price":  2050,
+        "heightRatio":  0.5,
+        "id":  "otterhound-noir-feu",
+        "coat":  "Noir et feu",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Otterhound, large powerful rectangular hound, very long low-set folded pendant ears, large long bearded head, shaggy rough waterproof hair, deep chest, substantial legs, long thick tapering slightly raised tail. Coat: black saddle and rich tan head ears chest and legs, natural grizzled rough hair. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/otterhound-noir-feu.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-6d541a14-aefe-4986-b8f8-ed3f8f689a73.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       149,
+                       14,
+                       1413,
+                       1009
+                   ]
+    },
+    {
+        "breedId":  "berger-croate",
+        "name":  "Berger croate",
+        "standard":  "277",
+        "price":  1750,
+        "heightRatio":  0.37,
+        "id":  "berger-croate-noir",
+        "coat":  "Noir",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Croatian Shepherd, medium athletic slightly rectangular sheepdog, fox-like wedge head, pointed upright triangular ears, wavy curly medium body coat, shorter smooth face and lower legs, natural full bushy sickle tail. Coat: solid deep black coat, softly lit charcoal curls, no white. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/berger-croate-noir.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-6e269e48-7015-478e-87fe-3f0a90563368.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       300,
+                       15,
+                       1225,
+                       983
+                   ]
+    },
+    {
+        "breedId":  "berger-croate",
+        "name":  "Berger croate",
+        "standard":  "277",
+        "price":  1750,
+        "heightRatio":  0.37,
+        "id":  "berger-croate-noir-plastron",
+        "coat":  "Noir à petit plastron",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Croatian Shepherd, medium athletic slightly rectangular sheepdog, fox-like wedge head, pointed upright triangular ears, wavy curly medium body coat, shorter smooth face and lower legs, natural full bushy sickle tail. Coat: black coat with one small discreet white chest star, all legs and face fully black. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/berger-croate-noir-plastron.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-2f8a551a-1d6f-4a6a-a79a-70176e1c26af.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1426,
+                       1103
+                   ],
+        "bounds":  [
+                       220,
+                       16,
+                       1248,
+                       1047
+                   ]
+    },
+    {
+        "breedId":  "courant-estonie",
+        "name":  "Chien courant d’Estonie",
+        "standard":  "366",
+        "price":  1600,
+        "heightRatio":  0.34,
+        "id":  "courant-estonie-tricolore",
+        "coat":  "Tricolore",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Estonian Hound, small-medium muscular rectangular scenthound, moderately short strong legs but not a basset, broad rounded pendant ears, straight long muzzle, short smooth dense hair, long tapered gently curved tail. Coat: black saddle, rich tan cheeks and ears, vivid white muzzle blaze chest legs and tail tip. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-estonie-tricolore.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-6bc45ba1-fc1a-456b-8795-76839c8c7ffe.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       203,
+                       33,
+                       1371,
+                       988
+                   ]
+    },
+    {
+        "breedId":  "courant-estonie",
+        "name":  "Chien courant d’Estonie",
+        "standard":  "366",
+        "price":  1600,
+        "heightRatio":  0.34,
+        "id":  "courant-estonie-citron-blanc",
+        "coat":  "Citron et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Estonian Hound, small-medium muscular rectangular scenthound, moderately short strong legs but not a basset, broad rounded pendant ears, straight long muzzle, short smooth dense hair, long tapered gently curved tail. Coat: white with warm lemon golden-tan ears and large distinct golden body patches, no black coat. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-estonie-citron-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ad6965a2-6dc7-408b-a915-d46886b08880.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       178,
+                       31,
+                       1360,
+                       971
+                   ]
+    },
+    {
+        "breedId":  "istrie-poil-dur",
+        "name":  "Chien courant d’Istrie à poil dur",
+        "standard":  "152",
+        "price":  1690,
+        "heightRatio":  0.39,
+        "id":  "istrie-poil-dur-blanc-orange",
+        "coat":  "Blanc et orange",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Istrian Wire-haired Hound, medium strong rectangular hound, long narrow dignified head, medium triangular dropped ears, conspicuous wiry beard moustache and eyebrows, harsh matte straight wiry shaggy coat 5 to 8 cm, lean legs, long tapering sabre tail. Coat: snow-white coat with even orange ears, symmetrical orange cheek patches separated by white forehead, one orange flank patch, less than one third orange overall. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/istrie-poil-dur-blanc-orange.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-7f02ea88-7f0b-4734-ac03-f6089004663f.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       211,
+                       36,
+                       1354,
+                       995
+                   ]
+    },
+    {
+        "breedId":  "istrie-poil-dur",
+        "name":  "Chien courant d’Istrie à poil dur",
+        "standard":  "152",
+        "price":  1690,
+        "heightRatio":  0.39,
+        "id":  "istrie-poil-dur-blanc-orange-clair",
+        "coat":  "Blanc et orange clair",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Istrian Wire-haired Hound, medium strong rectangular hound, long narrow dignified head, medium triangular dropped ears, conspicuous wiry beard moustache and eyebrows, harsh matte straight wiry shaggy coat 5 to 8 cm, lean legs, long tapering sabre tail. Coat: snow-white wiry coat, paler even orange ear and cheek patches and two separate small pale orange flank patches, white forehead and legs, less than one third orange. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/istrie-poil-dur-blanc-orange-clair.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-198b9703-effd-44c3-8ef9-59c2254b89d0.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       171,
+                       17,
+                       1359,
+                       1004
+                   ]
+    },
+    {
+        "breedId":  "istrie-poil-ras",
+        "name":  "Chien courant d’Istrie à poil ras",
+        "standard":  "151",
+        "price":  1630,
+        "heightRatio":  0.38,
+        "id":  "istrie-poil-ras-blanc-orange",
+        "coat":  "Blanc et orange",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Istrian Short-haired Hound, elegant medium rectangular lean muscular hound, long narrow head and straight elongated muzzle, medium triangular rounded-tip pendant ears held close to head, very short glossy close smooth fur, long slender legs and long narrow sabre tail. Coat: snow-white body and legs, orange ears, small symmetrical orange facial patches separated by broad white blaze, one distinct orange flank patch, less than one third orange. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/istrie-poil-ras-blanc-orange.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-1d17bdcb-6654-4487-a807-97ab03559aa6.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       219,
+                       27,
+                       1331,
+                       998
+                   ]
+    },
+    {
+        "breedId":  "istrie-poil-ras",
+        "name":  "Chien courant d’Istrie à poil ras",
+        "standard":  "151",
+        "price":  1630,
+        "heightRatio":  0.38,
+        "id":  "istrie-poil-ras-blanc-orange-clair",
+        "coat":  "Blanc et orange clair",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Istrian Short-haired Hound, elegant medium rectangular lean muscular hound, long narrow head and straight elongated muzzle, medium triangular rounded-tip pendant ears held close to head, very short glossy close smooth fur, long slender legs and long narrow sabre tail. Coat: snow-white body with light orange ears and symmetrical cheek patches, white forehead, two small separate light orange patches on back and near tail base, less than one third orange. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/istrie-poil-ras-blanc-orange-clair.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-61cd5740-be2e-4fef-892a-2efd77f472a7.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       219,
+                       18,
+                       1350,
+                       1006
+                   ]
+    },
+    {
+        "breedId":  "barak-bosnie",
+        "name":  "Chien courant de Bosnie (Barak)",
+        "standard":  "155",
+        "price":  1730,
+        "heightRatio":  0.39,
+        "id":  "barak-bosnie-roux-blanc",
+        "coat":  "Roux et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Bosnian Broken-haired Hound Barak, medium robust rectangular scenthound, long moderately broad head, shaggy beard and pronounced bushy eyebrows, broad medium-length floppy ears, tousled hard straight long hair and dense undercoat, strong legs, long shaggy tapering tail. Coat: reddish wheaten shaggy coat with small white chest, white lower paws and white tail tip. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/barak-bosnie-roux-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-622c0cfa-5f31-4234-99b8-4375828c0a0f.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       170,
+                       17,
+                       1381,
+                       977
+                   ]
+    },
+    {
+        "breedId":  "barak-bosnie",
+        "name":  "Chien courant de Bosnie (Barak)",
+        "standard":  "155",
+        "price":  1730,
+        "heightRatio":  0.39,
+        "id":  "barak-bosnie-gris-terre-blanc",
+        "coat":  "Gris terre et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Bosnian Broken-haired Hound Barak, medium robust rectangular scenthound, long moderately broad head, shaggy beard and pronounced bushy eyebrows, broad medium-length floppy ears, tousled hard straight long hair and dense undercoat, strong legs, long shaggy tapering tail. Coat: earthy grey grizzled shaggy coat with warm grey-brown facial hair, small white chest, white lower paws and white tail tip. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/barak-bosnie-gris-terre-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-16454b7b-a2e0-4f7d-aae6-2809b8233a50.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       126,
+                       19,
+                       1423,
+                       1004
+                   ]
+    },
+    {
+        "breedId":  "courant-halden",
+        "name":  "Chien courant de Halden",
+        "standard":  "267",
+        "price":  1740,
+        "heightRatio":  0.42,
+        "id":  "courant-halden-tricolore",
+        "coat":  "Tricolore",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Halden Hound, medium-large strong rectangular but elegant Norwegian scenthound, long head with straight muzzle, medium dropped ears, harsh dense straight close coat, long strong legs, long thick tapering low-carried tail. Coat: predominantly white coat with two broad black back patches, tan cheeks ears and a little tan above white lower legs, white facial blaze, black less than half body, no ticking. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-halden-tricolore.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-4dfaa934-97a5-47b5-843d-a80c0a336f7c.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       192,
+                       28,
+                       1382,
+                       989
+                   ]
+    },
+    {
+        "breedId":  "courant-halden",
+        "name":  "Chien courant de Halden",
+        "standard":  "267",
+        "price":  1740,
+        "heightRatio":  0.42,
+        "id":  "courant-halden-tricolore-panache",
+        "coat":  "Tricolore à panachure étendue",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Halden Hound, medium-large strong rectangular but elegant Norwegian scenthound, long head with straight muzzle, medium dropped ears, harsh dense straight close coat, long strong legs, long thick tapering low-carried tail. Coat: predominantly white body with one smaller distinct black back patch and black at tail base, tan cheeks ears and tan shading on upper legs, broad white blaze, no ticking. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-halden-tricolore-panache.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-36fd95a0-1cb1-425c-9ab0-368e8e15fa31.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       180,
+                       21,
+                       1355,
+                       996
+                   ]
+    },
+    {
+        "breedId":  "courant-hamilton",
+        "name":  "Chien courant de Hamilton",
+        "standard":  "132",
+        "price":  1750,
+        "heightRatio":  0.43,
+        "id":  "courant-hamilton-tricolore-dore",
+        "coat":  "Tricolore à feu doré",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Hamiltonstovare, medium-large elegant strong Swedish hound, elongated rectangular lean muscular body, long refined head, medium flat hanging ears, close short smooth coat, long straight legs, long tapering tail carried below back line. Coat: distinct black mantle continuing over upper neck and upper tail, golden tan head ears shoulders flanks and legs, white muzzle blaze chest paws and tail tip. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-hamilton-tricolore-dore.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-06049424-7cf5-47bf-abd4-e5740839ff84.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       155,
+                       14,
+                       1393,
+                       1011
+                   ]
+    },
+    {
+        "breedId":  "courant-hamilton",
+        "name":  "Chien courant de Hamilton",
+        "standard":  "132",
+        "price":  1750,
+        "heightRatio":  0.43,
+        "id":  "courant-hamilton-tricolore-roux",
+        "coat":  "Tricolore à feu roux",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Hamiltonstovare, medium-large elegant strong Swedish hound, elongated rectangular lean muscular body, long refined head, medium flat hanging ears, close short smooth coat, long straight legs, long tapering tail carried below back line. Coat: distinct black mantle continuing over upper neck and upper tail, rich deep rusty red tan head ears shoulders flanks and legs, white muzzle blaze chest paws and tail tip. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-hamilton-tricolore-roux.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-184b766f-b854-4711-ad3c-56ee858999ba.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       179,
+                       12,
+                       1387,
+                       1011
+                   ]
+    },
+    {
+        "breedId":  "courant-hygen",
+        "name":  "Chien courant de Hygen",
+        "standard":  "266",
+        "price":  1740,
+        "heightRatio":  0.42,
+        "id":  "courant-hygen-rouge-blanc",
+        "coat":  "Rouge et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Hygen Hound, medium strong compact rectangular Norwegian hound, moderately broad wedge-shaped head, fairly broad short pendant ears, straight muzzle, short dense shiny slightly harsh coat, strong medium-long legs, long tapering low gently curved tail. Coat: red brown coat with white chest white feet and white narrow facial blaze. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-hygen-rouge-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-1b927ed3-39b9-4118-9cf8-5d7d9851a5e9.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       201,
+                       23,
+                       1334,
+                       992
+                   ]
+    },
+    {
+        "breedId":  "courant-hygen",
+        "name":  "Chien courant de Hygen",
+        "standard":  "266",
+        "price":  1740,
+        "heightRatio":  0.42,
+        "id":  "courant-hygen-noir-feu-blanc",
+        "coat":  "Noir, feu et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Hygen Hound, medium strong compact rectangular Norwegian hound, moderately broad wedge-shaped head, fairly broad short pendant ears, straight muzzle, short dense shiny slightly harsh coat, strong medium-long legs, long tapering low gently curved tail. Coat: black saddle, tan head cheeks ears and legs, white chest white paws and white narrow facial blaze. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-hygen-noir-feu-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-87d66632-f34e-4cb5-9bf6-99c34a4ff079.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       195,
+                       27,
+                       1325,
+                       996
+                   ]
+    },
+    {
+        "breedId":  "courant-vallee-save",
+        "name":  "Chien courant de la vallée de la Save",
+        "standard":  "154",
+        "price":  1680,
+        "heightRatio":  0.4,
+        "id":  "courant-vallee-save-froment-roux-blanc",
+        "coat":  "Froment roux et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Posavatz Hound Posavski Gonic, medium strong balanced rectangular Croatian scenthound, long broad head, rounded-tip medium flat hanging ears, short dense straight fur, solid medium-long legs, long tapering sabre tail with slightly brushy underside. Coat: warm reddish wheaten body, fully reddish ears, white forehead blaze partial white neck collar white chest white socks and white tail tip, white under one third of body, no black. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-vallee-save-froment-roux-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-5711c037-e1ae-4d17-b668-f8dcdbabd5ea.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       187,
+                       49,
+                       1345,
+                       979
+                   ]
+    },
+    {
+        "breedId":  "courant-vallee-save",
+        "name":  "Chien courant de la vallée de la Save",
+        "standard":  "154",
+        "price":  1680,
+        "heightRatio":  0.4,
+        "id":  "courant-vallee-save-roux-fonce-blanc",
+        "coat":  "Roux foncé et blanc",
+        "prompt":  "Use case: illustration-story. Asset: original adoptable dog sprite for the Luma City 2D game, matching the existing premium warm hand-painted semi-realistic companion collection. Draw ONE adult Posavatz Hound Posavski Gonic, medium strong balanced rectangular Croatian scenthound, long broad head, rounded-tip medium flat hanging ears, short dense straight fur, solid medium-long legs, long tapering sabre tail with slightly brushy underside. Coat: deeper rich rusty red wheaten body, fully red ears, narrow white forehead stripe white chest white socks and white tail tip, white under one third of body, no black. Standing in natural three-quarter view facing left, head slightly towards viewer, adult breed proportions. Delicate detailed painted fur, soft warm light from upper left, matte soft shading, clear readable breed silhouette at small game scale. Full body: all four paws, both ears and the ENTIRE tail within canvas, generous transparent margins on ALL sides, minimum 5 percent. Export genuine RGBA transparency behind animal and between limbs, clean antialiased fur contours. No painted backdrop, no glow, no haze, no ground shadow, no text, no props, no collar. Do not crop paws ears or tail.",
+        "fichier":  "public/assets/companions/courant-vallee-save-roux-fonce-blanc.png",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9ca72bdb-dd40-4b1d-8939-fb473d088887.png",
+        "mode":  "built-in image_gen",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       199,
+                       39,
+                       1404,
+                       973
+                   ]
+    }
+]

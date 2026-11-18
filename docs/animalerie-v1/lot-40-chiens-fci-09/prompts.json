@@ -1,0 +1,924 @@
+[
+  {
+    "breedId": "elan-suedois",
+    "name": "Chien d’élan suédois (Jämthund)",
+    "standard": "42",
+    "price": 1920,
+    "heightRatio": 0.45,
+    "id": "elan-suedois-gris-clair",
+    "coat": "Gris clair",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Jamthund Swedish Elkhound, large strong but agile slightly rectangular Nordic spitz, long broad wedge head, small erect triangular ears, dense straight medium double coat, long sturdy legs, bushy tail loosely curled over back rather than a tight pompom. Coat: light wolf-grey back with cream pale grey muzzle sides cheeks throat chest belly legs and underside of tail, dark ear tips. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/elan-suedois-gris-clair.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-8bf2f062-27ac-4b74-be09-a29058947864.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1402,
+      1122
+    ],
+    "bounds": [
+      214,
+      35,
+      1151,
+      1088
+    ]
+  },
+  {
+    "breedId": "elan-suedois",
+    "name": "Chien d’élan suédois (Jämthund)",
+    "standard": "42",
+    "price": 1920,
+    "heightRatio": 0.45,
+    "id": "elan-suedois-gris-fonce",
+    "coat": "Gris foncé",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Jamthund Swedish Elkhound, large strong but agile slightly rectangular Nordic spitz, long broad wedge head, small erect triangular ears, dense straight medium double coat, long sturdy legs, bushy tail loosely curled over back rather than a tight pompom. Coat: darker charcoal wolf-grey back with sharply lighter cream grey muzzle sides cheeks throat chest belly and legs, dark ear tips. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/elan-suedois-gris-fonce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-6ccdf27c-5ca4-4cb2-beed-5b3607393203.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1379,
+      1141
+    ],
+    "bounds": [
+      206,
+      21,
+      1171,
+      1102
+    ]
+  },
+  {
+    "breedId": "ours-carelie",
+    "name": "Chien d’ours de Carélie",
+    "standard": "48",
+    "price": 1850,
+    "heightRatio": 0.42,
+    "id": "ours-carelie-noir-blanc",
+    "coat": "Noir et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Karelian Bear Dog, medium-large strong slightly rectangular Nordic spitz, broad wedge head, small sharp upright ears, harsh straight medium double coat with neck ruff, strong lean legs, full bushy tail curved over back. Coat: predominantly black coat with narrow white blaze white chest and white lower paws, black ears. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/ours-carelie-noir-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9dce005a-fb89-4c38-9197-13d29293df45.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      170,
+      50,
+      1129,
+      1127
+    ]
+  },
+  {
+    "breedId": "ours-carelie",
+    "name": "Chien d’ours de Carélie",
+    "standard": "48",
+    "price": 1850,
+    "heightRatio": 0.42,
+    "id": "ours-carelie-noir-blanc-collier",
+    "coat": "Noir et blanc à collier",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Karelian Bear Dog, medium-large strong slightly rectangular Nordic spitz, broad wedge head, small sharp upright ears, harsh straight medium double coat with neck ruff, strong lean legs, full bushy tail curved over back. Coat: predominantly black coat with broad white muzzle blaze and distinct white neck collar white chest socks and white tail tip, black ears, white less than black. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/ours-carelie-noir-blanc-collier.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e9d7519a-2b76-4c25-b5ac-d1a3b791d645.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1448,
+      1086
+    ],
+    "bounds": [
+      268,
+      33,
+      1178,
+      1037
+    ]
+  },
+  {
+    "breedId": "wachtelhund",
+    "name": "Chien d’oysel allemand",
+    "standard": "104",
+    "price": 1770,
+    "heightRatio": 0.39,
+    "id": "wachtelhund-marron",
+    "coat": "Marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult German Spaniel Deutscher Wachtelhund, medium sturdy elongated sporting spaniel, strong long muzzle, very long broad hanging ears, dense wavy medium-long body coat with feathered legs belly and full long low tail, shorter smooth face, no poodle curls. Coat: solid warm dark liver-brown coat with subtle sheen. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/wachtelhund-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-717a0cb2-4a4b-45fd-8a68-315d9e67fdca.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      195,
+      38,
+      1414,
+      970
+    ]
+  },
+  {
+    "breedId": "wachtelhund",
+    "name": "Chien d’oysel allemand",
+    "standard": "104",
+    "price": 1770,
+    "heightRatio": 0.39,
+    "id": "wachtelhund-rouan-marron",
+    "coat": "Rouan marron",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult German Spaniel Deutscher Wachtelhund, medium sturdy elongated sporting spaniel, strong long muzzle, very long broad hanging ears, dense wavy medium-long body coat with feathered legs belly and full long low tail, shorter smooth face, no poodle curls. Coat: white and liver-brown dense roan body with distinct brown head and ears and broad brown body patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/wachtelhund-rouan-marron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-050c96ef-c0ce-464e-9e59-dc267cf7e3bb.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      171,
+      34,
+      1386,
+      972
+    ]
+  },
+  {
+    "breedId": "kintamani-bali",
+    "name": "Chien de Bali (Kintamani)",
+    "standard": "362",
+    "price": 1810,
+    "heightRatio": 0.4,
+    "id": "kintamani-bali-blanc-biscuit",
+    "coat": "Blanc à oreilles biscuit",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Kintamani Bali Dog, medium strong agile slightly rectangular spitz, broad wedge head, erect forward triangular ears with rounded tips, medium harsh double coat and pronounced thick neck ruff and withers mane, full feathered tail curled high over back, sturdy straight legs. Coat: predominantly clean white coat with light biscuit ear edges, black nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/kintamani-bali-blanc-biscuit.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-d75d5297-df40-4ad6-a84a-505417e4825c.png",
+    "originalSourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-0ba43fdf-a108-48ef-b3ca-a5b7ced3ef2d.png",
+    "correctionPrompt": "Use case: background-extraction. Precisely extract ONLY the supplied white Kintamani-Bali dog from its residual white/grey noisy backdrop. Remove ALL surrounding backdrop, haze, cloud, glow and floor shadow including between paws, under belly and inside tail curve. Preserve the complete same adult dog: face expression, upright biscuit-edged ears, white fur strands, neck ruff, curled fluffy tail, four complete paws, original soft fur shading. Make all exterior pixels truly transparent RGBA, including every corner and border. The transparency must follow actual fur contours closely, without a white aura. Keep a comfortable transparent margin on all four sides. No new objects, lettering, collar or background. Do not crop or recolour the dog.",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      148,
+      61,
+      1114,
+      1111
+    ]
+  },
+  {
+    "breedId": "kintamani-bali",
+    "name": "Chien de Bali (Kintamani)",
+    "standard": "362",
+    "price": 1810,
+    "heightRatio": 0.4,
+    "id": "kintamani-bali-fauve-masque-noir",
+    "coat": "Fauve à masque noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Kintamani Bali Dog, medium strong agile slightly rectangular spitz, broad wedge head, erect forward triangular ears with rounded tips, medium harsh double coat and pronounced thick neck ruff and withers mane, full feathered tail curled high over back, sturdy straight legs. Coat: rich warm fawn coat with a clear black muzzle mask and darker ears, black nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/kintamani-bali-fauve-masque-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-305d1dfe-eace-463b-abf2-c26cd28c44b9.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1395,
+      1127
+    ],
+    "bounds": [
+      192,
+      35,
+      1188,
+      1070
+    ]
+  },
+  {
+    "breedId": "bobtail",
+    "name": "Berger anglais ancestral (Bobtail)",
+    "standard": "16",
+    "price": 2200,
+    "heightRatio": 0.48,
+    "id": "bobtail-gris-blanc",
+    "coat": "Gris et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Old English Sheepdog, large strong square shaggy dog with broad head, small hanging ears hidden in fur, profuse harsh shaggy long straight coat with dense undercoat, bear-like body and low-looking strong legs, eyes subtly visible through parted fringe, full natural long shaggy low tail not docked. Coat: solid medium grizzle grey body and hindquarters with clean white head neck chest and forelegs, no white patches on grey body. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/bobtail-gris-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-442a0998-58c6-4653-9b5c-bc124ddf5734.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1474,
+      1067
+    ],
+    "bounds": [
+      124,
+      33,
+      1358,
+      1023
+    ]
+  },
+  {
+    "breedId": "bobtail",
+    "name": "Berger anglais ancestral (Bobtail)",
+    "standard": "16",
+    "price": 2200,
+    "heightRatio": 0.48,
+    "id": "bobtail-bleu-blanc",
+    "coat": "Bleu et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Old English Sheepdog, large strong square shaggy dog with broad head, small hanging ears hidden in fur, profuse harsh shaggy long straight coat with dense undercoat, bear-like body and low-looking strong legs, eyes subtly visible through parted fringe, full natural long shaggy low tail not docked. Coat: solid deeper blue-grey body and hindquarters with clean white head neck chest and forelegs, no white patches on blue body. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/bobtail-bleu-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-ce430007-e93a-4219-9c09-c3fb801b1899.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      175,
+      35,
+      1380,
+      989
+    ]
+  },
+  {
+    "breedId": "berger-catalan",
+    "name": "Berger catalan",
+    "standard": "87",
+    "price": 1760,
+    "heightRatio": 0.38,
+    "id": "berger-catalan-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Catalan Sheepdog Gos d Atura Catala, medium agile slightly elongated shaggy sheepdog, strong conical head with beard moustache and eyebrows leaving eyes readable, triangular hanging ears, long harsh straight gently wavy shaggy coat, sturdy medium legs, full long feathered low tail. Coat: natural mixed golden fawn reddish brown and pale hairs reading warm fawn from distance, slightly lighter feet. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-catalan-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-13bd8839-4de8-4a77-aefe-abf51207eed9.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      217,
+      28,
+      1342,
+      999
+    ]
+  },
+  {
+    "breedId": "berger-catalan",
+    "name": "Berger catalan",
+    "standard": "87",
+    "price": 1760,
+    "heightRatio": 0.38,
+    "id": "berger-catalan-gris",
+    "coat": "Gris",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Catalan Sheepdog Gos d Atura Catala, medium agile slightly elongated shaggy sheepdog, strong conical head with beard moustache and eyebrows leaving eyes readable, triangular hanging ears, long harsh straight gently wavy shaggy coat, sturdy medium legs, full long feathered low tail. Coat: natural mixture of grey black and white hairs reading earthy medium grey from distance, slightly lighter extremities. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-catalan-gris.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-a83fb35f-6ead-43fe-b4bd-befbb061519d.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      235,
+      54,
+      1320,
+      964
+    ]
+  },
+  {
+    "breedId": "berger-serra-aires",
+    "name": "Berger de la Serra de Aires",
+    "standard": "93",
+    "price": 1790,
+    "heightRatio": 0.4,
+    "id": "berger-serra-aires-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Sheepdog Cao da Serra de Aires, medium rustic agile slightly elongated dog, monkey-like expressive face framed by long beard moustache and eyebrows leaving eyes visible, high-set small triangular hanging ears, very long dry goat-like straight hair without woolly undercoat, moderately strong legs, full long low hairy tail. Coat: warm golden fawn long goat-like coat with darker mixed hairs and subtly paler extremities, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-serra-aires-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-aab1539c-1195-407c-b0af-af5498af0adc.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      197,
+      38,
+      1348,
+      986
+    ]
+  },
+  {
+    "breedId": "berger-serra-aires",
+    "name": "Berger de la Serra de Aires",
+    "standard": "93",
+    "price": 1790,
+    "heightRatio": 0.4,
+    "id": "berger-serra-aires-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Portuguese Sheepdog Cao da Serra de Aires, medium rustic agile slightly elongated dog, monkey-like expressive face framed by long beard moustache and eyebrows leaving eyes visible, high-set small triangular hanging ears, very long dry goat-like straight hair without woolly undercoat, moderately strong legs, full long low hairy tail. Coat: black long goat-like coat with clearly visible warm tan muzzle eyebrows chest and lower legs, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-serra-aires-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-122efec5-c5bf-46e1-a7cf-abac02eb2ce6.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      180,
+      28,
+      1361,
+      999
+    ]
+  },
+  {
+    "breedId": "berger-majorque",
+    "name": "Berger de Majorque",
+    "standard": "321",
+    "price": 2060,
+    "heightRatio": 0.5,
+    "id": "berger-majorque-noir-jais",
+    "coat": "Noir de jais",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Majorca Shepherd Ca de Bestiar short-haired variety, large strong slightly rectangular agile herding dog, long broad wedge head and strong elongated muzzle, small triangular broken hanging ears, short close tough smooth coat, long strong straight legs, full long tapering low tail. Coat: uniform shiny jet-black coat with soft charcoal highlights, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-majorque-noir-jais.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-d597d458-2b2e-4cc9-8fec-ff60e441dea8.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      214,
+      37,
+      1351,
+      1001
+    ]
+  },
+  {
+    "breedId": "berger-majorque",
+    "name": "Berger de Majorque",
+    "standard": "321",
+    "price": 2060,
+    "heightRatio": 0.5,
+    "id": "berger-majorque-noir-petite-cravate",
+    "coat": "Noir à petite cravate",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Majorca Shepherd Ca de Bestiar short-haired variety, large strong slightly rectangular agile herding dog, long broad wedge head and strong elongated muzzle, small triangular broken hanging ears, short close tough smooth coat, long strong straight legs, full long tapering low tail. Coat: uniform black coat with a discreet narrow white throat and upper chest tie only, black paws head and tail. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-majorque-noir-petite-cravate.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-0bff0f75-1b06-499e-88c1-f55ae0797dd7.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      267,
+      29,
+      1313,
+      998
+    ]
+  },
+  {
+    "breedId": "pyrenees-face-rase",
+    "name": "Berger des Pyrénées à face rase",
+    "standard": "138",
+    "price": 1730,
+    "heightRatio": 0.36,
+    "id": "pyrenees-face-rase-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Smooth-Faced Pyrenean Sheepdog, small-medium light athletic almost square sheepdog, narrow wedge head with SHORT SMOOTH hair on muzzle and face without beard, semi-erect triangular tipped ears, semi-long flat body coat and neck ruff with light leg fringes, lean longish legs, full long low feathered tail. Coat: warm fawn coat with subtle black-tipped hairs and slightly darker ears, smooth fawn muzzle. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/pyrenees-face-rase-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-2f24db05-5b3e-4f2f-9c05-19c7dc50ae68.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1396,
+      1127
+    ],
+    "bounds": [
+      141,
+      80,
+      1265,
+      1053
+    ]
+  },
+  {
+    "breedId": "pyrenees-face-rase",
+    "name": "Berger des Pyrénées à face rase",
+    "standard": "138",
+    "price": 1730,
+    "heightRatio": 0.36,
+    "id": "pyrenees-face-rase-bleu-merle",
+    "coat": "Bleu merle",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Smooth-Faced Pyrenean Sheepdog, small-medium light athletic almost square sheepdog, narrow wedge head with SHORT SMOOTH hair on muzzle and face without beard, semi-erect triangular tipped ears, semi-long flat body coat and neck ruff with light leg fringes, lean longish legs, full long low feathered tail. Coat: clearly marbled blue-grey and black body coat, blue-grey smooth face with black patches, no tan and very little white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/pyrenees-face-rase-bleu-merle.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-04635678-537a-47ba-887f-8e0697d56cae.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1433,
+      1098
+    ],
+    "bounds": [
+      170,
+      33,
+      1331,
+      1053
+    ]
+  },
+  {
+    "breedId": "pyrenees-poil-long",
+    "name": "Berger des Pyrénées à poil long",
+    "standard": "141",
+    "price": 1730,
+    "heightRatio": 0.34,
+    "id": "pyrenees-poil-long-fauve",
+    "coat": "Fauve",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Long-Haired Pyrenean Sheepdog, small light lively slightly elongated sheepdog, narrow triangular head, semi-erect tipped triangular ears, long dense almost flat slightly wavy goat-like body coat, shorter whiskery muzzle and eyebrows swept aside so eyes visible, slender strong legs, full long low feathered tail. Coat: warm golden fawn with darker mixed guard hairs and dark ear shading, no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/pyrenees-poil-long-fauve.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-832753ed-7a39-4496-8691-5793e1f82b95.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      202,
+      35,
+      1334,
+      988
+    ]
+  },
+  {
+    "breedId": "pyrenees-poil-long",
+    "name": "Berger des Pyrénées à poil long",
+    "standard": "141",
+    "price": 1730,
+    "heightRatio": 0.34,
+    "id": "pyrenees-poil-long-gris",
+    "coat": "Gris",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Long-Haired Pyrenean Sheepdog, small light lively slightly elongated sheepdog, narrow triangular head, semi-erect tipped triangular ears, long dense almost flat slightly wavy goat-like body coat, shorter whiskery muzzle and eyebrows swept aside so eyes visible, slender strong legs, full long low feathered tail. Coat: medium silver-grey mixed black-tipped hair with darker ears and muzzle shading, no tan and no white. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/pyrenees-poil-long-gris.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e5f57a8a-9244-480a-97cd-6d08693a90e2.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      190,
+      32,
+      1347,
+      986
+    ]
+  },
+  {
+    "breedId": "berger-islandais",
+    "name": "Berger islandais",
+    "standard": "289",
+    "price": 1710,
+    "heightRatio": 0.34,
+    "id": "berger-islandais-roux-blanc",
+    "coat": "Roux et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Icelandic Sheepdog long-haired variety, small-medium cheerful strong slightly rectangular Nordic spitz, fox-like wedge face, upright triangular ears, thick weatherproof medium-long double coat with ruff, moderate strong legs with discreet natural rear dewclaws, full very bushy tail curled over back. Coat: rich red sable coat with distinct white blaze neck collar chest socks and tail tip, red ears. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-islandais-roux-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-09f4ccf8-af57-4d83-a753-a0a3333f5103.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1399,
+      1124
+    ],
+    "bounds": [
+      180,
+      42,
+      1194,
+      1049
+    ]
+  },
+  {
+    "breedId": "berger-islandais",
+    "name": "Berger islandais",
+    "standard": "289",
+    "price": 1710,
+    "heightRatio": 0.34,
+    "id": "berger-islandais-chocolat-feu-blanc",
+    "coat": "Chocolat, feu et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Icelandic Sheepdog long-haired variety, small-medium cheerful strong slightly rectangular Nordic spitz, fox-like wedge face, upright triangular ears, thick weatherproof medium-long double coat with ruff, moderate strong legs with discreet natural rear dewclaws, full very bushy tail curled over back. Coat: chocolate brown coat with warm tan eyebrows cheeks and legs, white blaze neck collar chest and socks, brown nose. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-islandais-chocolat-feu-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-77add45a-9165-4615-ad4f-d59469f17f4c.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1362,
+      1155
+    ],
+    "bounds": [
+      188,
+      69,
+      1122,
+      1080
+    ]
+  },
+  {
+    "breedId": "kangal",
+    "name": "Berger Kangal",
+    "standard": "331",
+    "price": 2450,
+    "heightRatio": 0.56,
+    "id": "kangal-fauve-sable",
+    "coat": "Fauve sable",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Kangal Shepherd, very large powerful yet athletic rectangular livestock guardian, broad strong head with robust moderately long muzzle, medium dark triangular hanging ears, dense short-medium straight double coat, tall strong straight legs, full long thick tail gently curled upward, natural uncut ears. Coat: uniform light sandy fawn body, clear black face mask and dark ears, no large white patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/kangal-fauve-sable.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-368ca67c-7e5c-4d4b-87af-ff700c9e0f9a.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1484,
+      1060
+    ],
+    "bounds": [
+      206,
+      34,
+      1253,
+      1029
+    ]
+  },
+  {
+    "breedId": "kangal",
+    "name": "Berger Kangal",
+    "standard": "331",
+    "price": 2450,
+    "heightRatio": 0.56,
+    "id": "kangal-sable-loup",
+    "coat": "Sable loup",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Kangal Shepherd, very large powerful yet athletic rectangular livestock guardian, broad strong head with robust moderately long muzzle, medium dark triangular hanging ears, dense short-medium straight double coat, tall strong straight legs, full long thick tail gently curled upward, natural uncut ears. Coat: uniform deeper wolf-sable fawn body with dark-tipped guard hairs, clear black face mask and dark ears, no large white patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/kangal-sable-loup.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-af44f7f5-cac4-4571-bbb8-2a39cb81e208.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      132,
+      86,
+      1190,
+      1122
+    ]
+  },
+  {
+    "breedId": "karaman",
+    "name": "Berger macédonien Karaman",
+    "standard": "378",
+    "price": 2420,
+    "heightRatio": 0.53,
+    "id": "karaman-noir",
+    "coat": "Noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Macedonian Shepherd Dog Karaman, large powerful compact rectangular flock guardian, strong long broad head with slightly shorter muzzle, medium triangular rounded hanging ears close to cheeks, dense rough medium-long straight coat and pronounced withers ruff, strong long legs, full long thick bushy natural tail carried low with gently raised tip, natural uncut ears. Coat: uniform deep black rough coat with charcoal highlights. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/karaman-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-e211906b-905e-4605-b222-d482eefef1d9.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      205,
+      45,
+      1334,
+      981
+    ]
+  },
+  {
+    "breedId": "karaman",
+    "name": "Berger macédonien Karaman",
+    "standard": "378",
+    "price": 2420,
+    "heightRatio": 0.53,
+    "id": "karaman-noir-feu",
+    "coat": "Noir et feu",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Macedonian Shepherd Dog Karaman, large powerful compact rectangular flock guardian, strong long broad head with slightly shorter muzzle, medium triangular rounded hanging ears close to cheeks, dense rough medium-long straight coat and pronounced withers ruff, strong long legs, full long thick bushy natural tail carried low with gently raised tip, natural uncut ears. Coat: predominantly black rough coat with clearly defined brown tan markings on eyebrows muzzle sides chest and lower legs. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/karaman-noir-feu.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-229f60dc-f2c8-43b7-8240-714f26c705fb.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      189,
+      26,
+      1387,
+      990
+    ]
+  },
+  {
+    "breedId": "berger-polonais-tatras",
+    "name": "Berger polonais des Tatras",
+    "standard": "252",
+    "price": 2310,
+    "heightRatio": 0.52,
+    "id": "berger-polonais-tatras-blanc-neige",
+    "coat": "Blanc neige",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Polish Tatra Shepherd, large strong imposing rectangular white mountain guardian, broad head and broad strong muzzle, medium triangular rounded hanging ears, abundant long thick straight double coat with mane and trouser feathering, sturdy tall straight legs, full long bushy low tail, black nose and dark eyes. Coat: uniform pure snow-white coat with cool pale silver-grey shadows, black nose and eyelids, absolutely no coloured patches and no cream patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-polonais-tatras-blanc-neige.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-c2d68d7f-4fec-4c4a-a64d-c339036f5379.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1491,
+      1055
+    ],
+    "bounds": [
+      157,
+      16,
+      1366,
+      1030
+    ]
+  },
+  {
+    "breedId": "berger-polonais-tatras",
+    "name": "Berger polonais des Tatras",
+    "standard": "252",
+    "price": 2310,
+    "heightRatio": 0.52,
+    "id": "berger-polonais-tatras-blanc-perle",
+    "coat": "Blanc perle",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Polish Tatra Shepherd, large strong imposing rectangular white mountain guardian, broad head and broad strong muzzle, medium triangular rounded hanging ears, abundant long thick straight double coat with mane and trouser feathering, sturdy tall straight legs, full long bushy low tail, black nose and dark eyes. Coat: uniform pure pearl-white coat with neutral soft grey shadows and luminous white highlights, black nose and eyelids, absolutely no coloured patches and no cream patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-polonais-tatras-blanc-perle.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-88f6c879-b6b6-4fdb-9e84-2c22c4178083.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      210,
+      46,
+      1323,
+      969
+    ]
+  },
+  {
+    "breedId": "berger-roumain-corb",
+    "name": "Berger roumain Corb",
+    "standard": "373",
+    "price": 2440,
+    "heightRatio": 0.55,
+    "id": "berger-roumain-corb-noir-corbeau",
+    "coat": "Noir corbeau",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Raven Shepherd Ciobanesc Romanesc Corb, very large massive powerful rectangular mountain guardian, large broad head and strong broad muzzle, medium high triangular hanging ears, dense rough medium-long straight black coat with very full neck mane and trousers, tall strong heavy-boned legs, full long bushy natural low tail. Coat: uniform deep raven-black coat with soft charcoal highlights. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-roumain-corb-noir-corbeau.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-360e534e-774b-487c-be4c-bb1f064b2e41.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1448,
+      1086
+    ],
+    "bounds": [
+      187,
+      38,
+      1329,
+      1054
+    ]
+  },
+  {
+    "breedId": "berger-roumain-corb",
+    "name": "Berger roumain Corb",
+    "standard": "373",
+    "price": 2440,
+    "heightRatio": 0.55,
+    "id": "berger-roumain-corb-noir-plastron",
+    "coat": "Noir à plastron blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Raven Shepherd Ciobanesc Romanesc Corb, very large massive powerful rectangular mountain guardian, large broad head and strong broad muzzle, medium high triangular hanging ears, dense rough medium-long straight black coat with very full neck mane and trousers, tall strong heavy-boned legs, full long bushy natural low tail. Coat: raven black coat covering more than eighty percent of body with distinct small white chest patch and a little white on front toes, black head ears back tail. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-roumain-corb-noir-plastron.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-cc5e628d-f119-4d8a-b367-478a0a394776.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      213,
+      20,
+      1358,
+      1009
+    ]
+  },
+  {
+    "breedId": "berger-bucovine",
+    "name": "Berger roumain de Bucovine",
+    "standard": "357",
+    "price": 2430,
+    "heightRatio": 0.55,
+    "id": "berger-bucovine-blanc-noir",
+    "coat": "Blanc et noir",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bucovina Shepherd, very large imposing strong rectangular mountain guardian, huge broad head and strong muzzle, medium triangular hanging ears, abundant long flat straight rough coat with thick neck mane and hind trousers, shorter smooth head and front legs, tall heavy-boned legs, full long very bushy low tail. Coat: clear white coat with large well-defined black head ear and body patches, white legs with a little black ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-bucovine-blanc-noir.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-17c97315-5b7f-47a7-b657-163f17dfacf4.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      178,
+      23,
+      1368,
+      989
+    ]
+  },
+  {
+    "breedId": "berger-bucovine",
+    "name": "Berger roumain de Bucovine",
+    "standard": "357",
+    "price": 2430,
+    "heightRatio": 0.55,
+    "id": "berger-bucovine-blanc-gris",
+    "coat": "Blanc et gris",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bucovina Shepherd, very large imposing strong rectangular mountain guardian, huge broad head and strong muzzle, medium triangular hanging ears, abundant long flat straight rough coat with thick neck mane and hind trousers, shorter smooth head and front legs, tall heavy-boned legs, full long very bushy low tail. Coat: clear white coat with large well-defined ashen-grey head ear and body patches, white legs with a little grey ticking. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-bucovine-blanc-gris.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-3681593d-ff57-4913-bc7d-23e4263d45c4.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      189,
+      35,
+      1382,
+      993
+    ]
+  },
+  {
+    "breedId": "berger-mioritza",
+    "name": "Berger roumain de Mioritza",
+    "standard": "349",
+    "price": 2410,
+    "heightRatio": 0.55,
+    "id": "berger-mioritza-blanc-taches-grises",
+    "coat": "Blanc à taches grises",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Mioritic Shepherd, very large robust rectangular shaggy guardian, broad powerful head, hanging ears concealed by abundant long rough straight shaggy coat, long dense hair all over body legs and head, eyes readable through parted brows, tall heavy-boned legs, full long bushy low tail. Coat: predominantly white shaggy coat with clear distinct large grey head ear and body patches, dark grey ear tips. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-mioritza-blanc-taches-grises.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-1b58c63e-d2c4-4ca5-b49c-35dbb3546050.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      161,
+      34,
+      1380,
+      995
+    ]
+  },
+  {
+    "breedId": "berger-mioritza",
+    "name": "Berger roumain de Mioritza",
+    "standard": "349",
+    "price": 2410,
+    "heightRatio": 0.55,
+    "id": "berger-mioritza-gris-uni",
+    "coat": "Gris uni",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Mioritic Shepherd, very large robust rectangular shaggy guardian, broad powerful head, hanging ears concealed by abundant long rough straight shaggy coat, long dense hair all over body legs and head, eyes readable through parted brows, tall heavy-boned legs, full long bushy low tail. Coat: solid medium grey shaggy coat with darker grey ear tips and soft lighter grey face hairs, no white patches. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-mioritza-gris-uni.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-33b96ff2-771c-41a8-a4a0-a854453c08f7.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      164,
+      11,
+      1381,
+      1014
+    ]
+  },
+  {
+    "breedId": "berger-carpathes",
+    "name": "Berger roumain des Carpathes",
+    "standard": "350",
+    "price": 2320,
+    "heightRatio": 0.52,
+    "id": "berger-carpathes-gris-loup-clair",
+    "coat": "Gris loup clair",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Carpathian Shepherd, large powerful agile slightly rectangular wolf-like mountain sheepdog, broad wedge head and strong long muzzle, medium triangular hanging ears, dense medium-long harsh straight coat with neck ruff and feathered trousers, tall strong legs, full long bushy low tail. Coat: pale fawn heavily overlaid with black guard hairs reading light wolf-grey, darker back and mask, lighter grey fawn sides and legs. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-carpathes-gris-loup-clair.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-52e928c6-4e46-49a1-9088-804c2aef45a0.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      210,
+      31,
+      1329,
+      981
+    ]
+  },
+  {
+    "breedId": "berger-carpathes",
+    "name": "Berger roumain des Carpathes",
+    "standard": "350",
+    "price": 2320,
+    "heightRatio": 0.52,
+    "id": "berger-carpathes-gris-loup-fonce",
+    "coat": "Gris loup foncé",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Romanian Carpathian Shepherd, large powerful agile slightly rectangular wolf-like mountain sheepdog, broad wedge head and strong long muzzle, medium triangular hanging ears, dense medium-long harsh straight coat with neck ruff and feathered trousers, tall strong legs, full long bushy low tail. Coat: deeper fawn heavily overlaid with charcoal black guard hairs reading dark wolf-grey, darker back and mask, lighter grey fawn sides and legs. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/berger-carpathes-gris-loup-fonce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9e193dac-bf29-4d51-bd5d-3e1af9085f80.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      178,
+      18,
+      1382,
+      999
+    ]
+  },
+  {
+    "breedId": "sarplaninac",
+    "name": "Berger de Charplanina",
+    "standard": "41",
+    "price": 2350,
+    "heightRatio": 0.5,
+    "id": "sarplaninac-gris-fer",
+    "coat": "Gris fer",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Sarplaninac Sharplanina Shepherd, large sturdy powerful compact mountain guardian, broad rounded head and strong moderately long muzzle, medium V-shaped dropped ears, thick long harsh straight double coat with huge neck ruff and trousers, stout strong legs, full long bushy low sabre tail. Coat: uniform iron-grey coat with dark guard hairs and soft lighter grey undertones, darker muzzle, no white spots. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/sarplaninac-gris-fer.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-d507e634-e266-418b-a4d3-c42f616bc072.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      189,
+      24,
+      1377,
+      1004
+    ]
+  },
+  {
+    "breedId": "sarplaninac",
+    "name": "Berger de Charplanina",
+    "standard": "41",
+    "price": 2350,
+    "heightRatio": 0.5,
+    "id": "sarplaninac-gris-fonce",
+    "coat": "Gris foncé",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Sarplaninac Sharplanina Shepherd, large sturdy powerful compact mountain guardian, broad rounded head and strong moderately long muzzle, medium V-shaped dropped ears, thick long harsh straight double coat with huge neck ruff and trousers, stout strong legs, full long bushy low sabre tail. Coat: uniform deep dark grey coat with black-tipped guard hair and charcoal muzzle, no white spots. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/sarplaninac-gris-fonce.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-58b52456-2278-449e-814d-76f49b80ed88.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      197,
+      32,
+      1383,
+      993
+    ]
+  },
+  {
+    "breedId": "canaan",
+    "name": "Chien de Canaan",
+    "standard": "273",
+    "price": 1740,
+    "heightRatio": 0.38,
+    "id": "canaan-sable",
+    "coat": "Sable",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Canaan Dog, medium balanced square alert primitive spitz-like dog, broad wedge head and tapering muzzle, low-set upright wide triangular ears, dense harsh straight short-medium double coat, moderately long straight lean legs, full bushy tail curled over back when alert. Coat: uniform warm desert-sand coat with subtle lighter underside, black nose, no tan-point pattern. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/canaan-sable.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-9ae328c3-fdca-4257-a446-9a36b9b4bdf1.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1327,
+      1186
+    ],
+    "bounds": [
+      199,
+      52,
+      1100,
+      1104
+    ]
+  },
+  {
+    "breedId": "canaan",
+    "name": "Chien de Canaan",
+    "standard": "273",
+    "price": 1740,
+    "heightRatio": 0.38,
+    "id": "canaan-noir-blanc",
+    "coat": "Noir et blanc",
+    "prompt": "Use case: illustration-story. Asset: original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Canaan Dog, medium balanced square alert primitive spitz-like dog, broad wedge head and tapering muzzle, low-set upright wide triangular ears, dense harsh straight short-medium double coat, moderately long straight lean legs, full bushy tail curled over back when alert. Coat: black coat with clean white symmetrical muzzle blaze chest collar and lower socks, black ears, two colours only no tan. Standing naturally in three-quarter view facing left, head slightly towards viewer. Accurate adult breed proportions and a distinctive readable breed silhouette. Delicately painted detailed fur, soft upper-left lighting and matte soft shading. Full complete dog with all FOUR paws, both ears and ENTIRE tail inside canvas. Leave generous completely transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs, clean natural antialiased fur contours. NO backdrop, opaque colour, haze, glow, floor shadow, lettering, collar, props, extra animal or cropped body part.",
+    "fichier": "public/assets/companions/canaan-noir-blanc.png",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f007-d27b-7b21-b8f4-06e1fd79b65f\\exec-f8e2f9b4-39a1-4d81-a3e5-6ca8f327d218.png",
+    "mode": "built-in image_gen",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      171,
+      46,
+      1119,
+      1144
+    ]
+  }
+]

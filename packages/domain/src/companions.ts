@@ -11,6 +11,12 @@ export const COMPANION_BREEDS = {
   british: { name: "British Shorthair", species: "Chat", cover: "08-nala", price: 1300, heightRatio: .24 },
   "maine-coon": { name: "Maine Coon", species: "Chat", cover: "09-moka", price: 2050, heightRatio: .33 },
   "ginger-tabby": { name: "Chat tigré à poil court", species: "Chat", cover: "10-biscotte", price: 850, heightRatio: .24 },
+  "belier-nain": { name: "Lapin bélier nain", species: "Lapin", cover: "belier-nain-roux", price: 700, heightRatio: .16 },
+  "hamster-syrien": { name: "Hamster syrien", species: "Hamster", cover: "hamster-syrien-dore", price: 450, heightRatio: .085 },
+  "siamois": { name: "Siamois", species: "Chat", cover: "siamois-seal-point", price: 1450, heightRatio: .27 },
+  "persan": { name: "Persan", species: "Chat", cover: "persan-blanc", price: 1700, heightRatio: .25 },
+  "corgi": { name: "Welsh Corgi Pembroke", species: "Chien", cover: "corgi-roux-blanc", price: 1600, heightRatio: .26 },
+  "teckel": { name: "Teckel à poil ras", species: "Chien", cover: "teckel-roux", price: 1350, heightRatio: .23 },
 } as const;
 
 export type CompanionBreedId = keyof typeof COMPANION_BREEDS;
@@ -84,6 +90,24 @@ const variants: readonly CompanionVariant[] = [
   { id: "ginger-tabby-brun-rayures", breedId: "ginger-tabby", coat: "Brun rayé", canvas: [1536, 1024], bounds: [267, 9, 1350, 979] },
   { id: "ginger-tabby-creme-rayures", breedId: "ginger-tabby", coat: "Crème rayé", canvas: [1536, 1024], bounds: [268, 15, 1358, 980] },
   { id: "ginger-tabby-roux-blanc", breedId: "ginger-tabby", coat: "Roux tigré et blanc", canvas: [1536, 1024], bounds: [270, 17, 1350, 977] },
+  { id: "belier-nain-roux", breedId: "belier-nain", coat: "Roux", canvas: [1254, 1254], bounds: [182, 77, 1085, 1183] },
+  { id: "belier-nain-noir", breedId: "belier-nain", coat: "Noir", canvas: [1254, 1254], bounds: [170, 94, 1109, 1151] },
+  { id: "belier-nain-chocolat-blanc", breedId: "belier-nain", coat: "Chocolat et blanc", canvas: [1254, 1254], bounds: [151, 78, 1100, 1181] },
+  { id: "hamster-syrien-dore", breedId: "hamster-syrien", coat: "Doré", canvas: [1254, 1254], bounds: [9, 125, 1197, 1104] },
+  { id: "hamster-syrien-creme", breedId: "hamster-syrien", coat: "Crème", canvas: [1254, 1254], bounds: [47, 148, 1173, 1109] },
+  { id: "hamster-syrien-noir", breedId: "hamster-syrien", coat: "Noir", canvas: [1254, 1254], bounds: [19, 154, 1205, 1118] },
+  { id: "siamois-seal-point", breedId: "siamois", coat: "Seal point", canvas: [1254, 1254], bounds: [269, 17, 999, 1232], ground: 1179 },
+  { id: "siamois-blue-point", breedId: "siamois", coat: "Blue point", canvas: [1254, 1254], bounds: [267, 15, 987, 1235], ground: 1165 },
+  { id: "siamois-chocolate-point", breedId: "siamois", coat: "Chocolate point", canvas: [1254, 1254], bounds: [263, 12, 1074, 1237], ground: 1165 },
+  { id: "persan-blanc", breedId: "persan", coat: "Blanc", canvas: [1254, 1254], bounds: [92, 51, 1163, 1222], ground: 1196 },
+  { id: "persan-bleu", breedId: "persan", coat: "Bleu", canvas: [1254, 1254], bounds: [92, 49, 1184, 1230], ground: 1197 },
+  { id: "persan-noir", breedId: "persan", coat: "Noir", canvas: [1254, 1254], bounds: [96, 47, 1169, 1225], ground: 1199 },
+  { id: "corgi-roux-blanc", breedId: "corgi", coat: "Roux et blanc", canvas: [1254, 1254], bounds: [124, 58, 1161, 1138] },
+  { id: "corgi-tricolore", breedId: "corgi", coat: "Tricolore", canvas: [1254, 1254], bounds: [83, 37, 1193, 1177] },
+  { id: "corgi-sable-blanc", breedId: "corgi", coat: "Sable et blanc", canvas: [1254, 1254], bounds: [128, 72, 1142, 1125] },
+  { id: "teckel-roux", breedId: "teckel", coat: "Roux", canvas: [1254, 1254], bounds: [37, 151, 1213, 1082] },
+  { id: "teckel-noir-feu", breedId: "teckel", coat: "Noir et feu", canvas: [1254, 1254], bounds: [42, 145, 1201, 1100] },
+  { id: "teckel-chocolat-feu", breedId: "teckel", coat: "Chocolat et feu", canvas: [1254, 1254], bounds: [27, 126, 1229, 1113] },
 ];
 
 export const COMPANION_CATALOG = variants.map((variant) => {

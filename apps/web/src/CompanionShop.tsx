@@ -8,6 +8,8 @@ type Equip = (id: string | null) => Promise<void>;
 const coins = (price: number) => `${price.toLocaleString("fr-FR")} pièces`;
 const coatCount = (count: number) => count === 1 ? "1 pelage disponible" : `${count} pelages disponibles`;
 const breeds = Object.keys(COMPANION_BREEDS) as CompanionBreedId[];
+const speciesLabels = { Chien: "Chiens", Chat: "Chats", Lapin: "Lapins", Hamster: "Hamsters" } as const;
+const speciesList = Object.keys(speciesLabels) as (keyof typeof speciesLabels)[];
 
 export function CompanionArt({ model, className, lazy = false }: {
   model: Model; className?: string; lazy?: boolean;
@@ -126,13 +128,13 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
   return <section className="companion-shop" ref={shop} aria-labelledby="companion-shop-title">
     <header className="companion-shop-heading">
       <button type="button" className="companion-icon"
-        aria-label={breed ? (breed.species === "Chien" ? "Retour aux chiens" : "Retour aux chats") : "Retour au quartier"}
+        aria-label={breed ? `Retour aux ${speciesLabels[breed.species].toLowerCase()}` : "Retour au quartier"}
         onClick={breed ? () => setBreedId(null) : onBack}><ArrowLeft size={19} /></button>
       <h1 id="companion-shop-title" ref={heading} tabIndex={-1}>{breed ? breed.name : "Animalerie"}</h1>
       <button type="button" onClick={onCollection}><PawPrint size={17} /> Mes compagnons</button>
     </header>
     <div className="companion-shop-summary">
-      <p>{breed ? coatCount(variants.length) : "Choisis une race pour découvrir ses pelages."}</p>
+      <p>{breed ? coatCount(variants.length) : "Choisis un compagnon pour découvrir ses pelages."}</p>
       <strong>{coins(balance)}</strong>
     </div>
     {breed ? <div className="companion-cards">
@@ -149,8 +151,8 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
             </div>
           </article>;
         })}
-      </div> : (["Chien", "Chat"] as const).map((species) => <section className="companion-shelf" key={species}>
-      <h2>{species === "Chien" ? "Chiens" : "Chats"}</h2>
+      </div> : speciesList.map((species) => <section className="companion-shelf" key={species} aria-label={speciesLabels[species]}>
+      <h2>{speciesLabels[species]}</h2>
       <div className="companion-cards">
         {breeds.filter((id) => COMPANION_BREEDS[id].species === species).map((id) => {
           const entry = COMPANION_BREEDS[id];
@@ -260,7 +262,7 @@ export function CompanionPicker({ collection, equip, onClose, onShop }: {
   const { busy, error, run } = useCompanionAction();
   return <CompanionDialog title="Mes compagnons" busy={busy} onClose={onClose}>
     {collection.items.length === 0 ? <>
-      <p>Ta collection est vide. Retrouve les chiens et les chats à l’animalerie.</p>
+      <p>Ta collection est vide. Retrouve tous les compagnons à l’animalerie.</p>
       <button type="button" className="companion-primary" onClick={onShop}>Ouvrir l’animalerie</button>
     </> : <CompanionList collection={collection} actions={(animal, equipped) =>
       <button type="button" disabled={busy} className={equipped ? "" : "companion-primary"}

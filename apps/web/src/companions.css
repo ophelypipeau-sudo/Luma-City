@@ -67,7 +67,15 @@
 .companion-shop-summary strong, .companion-price { color: #ffe2a9; }
 .companion-shelf + .companion-shelf { margin-top: 1.35rem; }
 .companion-shelf h2 { font-size: 1.28rem; margin: 0 0 .6rem; color: #fff3fa; }
-.companion-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.1rem), 1fr)); gap: .75rem; }
+.companion-cards {
+  --companion-card-min: 10.1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--companion-card-min)), 1fr));
+  gap: .75rem;
+}
+.companion-shelf .companion-cards {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--companion-card-min)), 1fr));
+}
 .companion-card {
   min-width: 0;
   overflow: hidden;
@@ -229,7 +237,7 @@
 }
 @media (max-width: 540px) {
   .companion-shop-heading button:last-child { padding-inline: .45rem; font-size: .8rem; }
-  .companion-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.7rem), 1fr)); gap: .45rem; }
+  .companion-cards { --companion-card-min: 6.7rem; gap: .45rem; }
   .companion-card-art { height: 6.8rem; --pet-height: 5.8rem; }
   .companion-card-info { padding-inline: .5rem; }
 }

@@ -10,18 +10,23 @@ import { COMPANION_BREEDS, COMPANION_CATALOG, companionGeometry, companionImage,
 
 const origin = "http://127.0.0.1:5173";
 
-test("Les 58 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 10);
-  assert.equal(Object.values(COMPANION_BREEDS).filter(({ species }) => species === "Chien").length, 5);
+test("Les 76 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 16);
+  const breeds = Object.values(COMPANION_BREEDS);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 7);
+  assert.equal(breeds.filter(({ species }) => species === "Chat").length, 7);
+  assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 1);
+  assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 1);
+  const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
   for (const breedId of Object.keys(COMPANION_BREEDS) as CompanionBreedId[]) {
     const breed = COMPANION_BREEDS[breedId];
     const coats = companionVariants(breedId);
-    assert.equal(coats.length, breedId === "spitz" ? 7 : breedId === "golden" ? 3 : 6);
+    assert.equal(coats.length, breedId === "spitz" ? 7 : threeCoats.has(breedId) ? 3 : 6);
     assert.equal(coats[0].id, breed.cover);
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 58);
+  assert.equal(COMPANION_CATALOG.length, 76);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
   for (const model of COMPANION_CATALOG) {
     const png = await readFile(new URL(`../public${companionImage(model.id)}`, import.meta.url));

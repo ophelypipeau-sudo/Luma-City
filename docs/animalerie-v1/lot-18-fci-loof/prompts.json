@@ -1,0 +1,77 @@
+[
+  {
+    "fichier": "public/assets/companions/samoyede-blanc.png",
+    "reference": "public/assets/companions/golden-dore-clair.png",
+    "prompt": "Use case: illustration-story. Create an original Luma City adoptable pet sprite. The attached PNG is the rendering style reference only. Hand-painted 2D digital illustration with natural anatomy, softly modeled volume, detailed fur clumps, warm upper-left studio light and legibility at small display size. One full-body animal in a slight three-quarter view, paws, ears and full tail inside frame with clean 7% margin all around. Genuine transparent RGBA background with zero exterior alpha. No ground or drop shadow, no scene, no accessories, no text. Subject: one adult Samoyed dog seated, lush thick snow-white double coat with warm ivory underlight, substantial neck ruff, distinct erect triangular ears with rounded tips, black almond eyes and a natural Samoyed smile, densely plumed tail curling next to the body."
+  },
+  {
+    "fichier": "public/assets/companions/rottweiler-noir-feu.png",
+    "reference": "public/assets/companions/berger-allemand-noir-feu.png",
+    "prompt": "Use case: illustration-story. Create an original Luma City adoptable pet sprite. The attached PNG is the rendering style reference only. Hand-painted 2D digital illustration with natural anatomy, softly modeled volume, detailed fur clumps, warm upper-left studio light and legibility at small display size. One full-body animal in a slight three-quarter view, paws, ears and full tail inside frame with clean 7% margin all around. Genuine transparent RGBA background with zero exterior alpha. No ground or drop shadow, no scene, no accessories, no text. Subject: one powerful adult Rottweiler dog seated with a broad head, medium pendant triangular ears set close to the head, wide chest, black glossy short double coat with clear rust-tan eyebrows, muzzle cheeks, chest patches and lower limbs, natural full-length tail resting beside the body."
+  },
+  {
+    "fichier": "public/assets/companions/affenpinscher-noir.png",
+    "reference": "public/assets/companions/schnauzer-nain-poivre-sel.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: small adult Affenpinscher standing, square compact body, rough black wirehaired coat, shaggy brows and short monkey-like bearded face, dark round eyes, erect triangular ears, natural tail."
+  },
+  {
+    "fichier": "public/assets/companions/airedale-terrier-noir-feu.png",
+    "reference": "public/assets/companions/schnauzer-nain-poivre-sel.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult Airedale Terrier standing, square build on long straight legs, long flat skull with beard, folded V ears, hard dense wiry tan coat with dark black saddle, upright natural tail."
+  },
+  {
+    "fichier": "public/assets/companions/barbet-noir.png",
+    "reference": "public/assets/companions/golden-dore-clair.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult French Barbet water dog sitting, complete silhouette, thick black long curly ringlets including over ears, discernible warm dark eyes, broad bearded muzzle, full tail with subtle hook at tip."
+  },
+  {
+    "fichier": "public/assets/companions/barbet-marron.png",
+    "reference": "public/assets/companions/golden-dore-clair.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult French Barbet water dog sitting, complete silhouette, thick rich dark brown long curly ringlets including over ears, discernible warm dark eyes, broad bearded muzzle, full tail with subtle hook at tip."
+  },
+  {
+    "fichier": "public/assets/companions/chartreux-bleu.png",
+    "reference": "public/assets/companions/british-lilas.png",
+    "prompt": "Use case: illustration-story. Create an original Luma City adoptable pet sprite. The attached PNG is the rendering style reference only. Hand-painted 2D digital illustration with natural anatomy, softly modeled volume, detailed fur clumps, warm upper-left studio light and legibility at small display size. One full-body animal in a slight three-quarter view, paws, ears and full tail inside frame with clean 7% margin all around. Genuine transparent RGBA background with zero exterior alpha. No ground or drop shadow, no scene, no accessories, no text. Subject: adult Chartreux cat seated, robust semi-cobby body with powerful shoulders, relatively slender legs, trapezoidal head with full cheeks, high-set upright medium ears, golden copper eyes, blue-gray dense woolly short double coat, solid color."
+  },
+  {
+    "fichier": "public/assets/companions/korat-bleu.png",
+    "reference": "public/assets/companions/russe-bleu.png",
+    "prompt": "Use case: illustration-story. Create an original Luma City adoptable pet sprite. The attached PNG is the rendering style reference only. Hand-painted 2D digital illustration with natural anatomy, softly modeled volume, detailed fur clumps, warm upper-left studio light and legibility at small display size. One full-body animal in a slight three-quarter view, paws, ears and full tail inside frame with clean 7% margin all around. Genuine transparent RGBA background with zero exterior alpha. No ground or drop shadow, no scene, no accessories, no text. Subject: adult Korat cat seated, distinctive heart-shaped face with broad brow tapering to rounded chin, large upright rounded-tip ears, luminous large green eyes, muscular medium body with slender legs and sleek short silvery blue fur, tail curving naturally around feet."
+  },
+  {
+    "fichier": "public/assets/companions/bombay-noir.png",
+    "reference": "public/assets/companions/07-salem.png",
+    "prompt": "Use case: illustration-story. Create an original Luma City adoptable pet sprite. The attached PNG is the rendering style reference only. Hand-painted 2D digital illustration with natural anatomy, softly modeled volume, detailed fur clumps, warm upper-left studio light and legibility at small display size. One full-body animal in a slight three-quarter view, paws, ears and full tail inside frame with clean 7% margin all around. Genuine transparent RGBA background with zero exterior alpha. No ground or drop shadow, no scene, no accessories, no text. Subject: adult Bombay cat seated, compact muscular cobby build, rounded face and forehead, short broad muzzle, slight stop, moderately sized round-tipped ears, glowing golden eyes, solid jet black satin-sleek fur, warm muted highlights."
+  },
+  {
+    "fichier": "public/assets/companions/singapura-seal-ticked-tabby-sepia.png",
+    "reference": "public/assets/companions/british-lilas.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: a compact adult Singapura sitting, old ivory coat with sepia ticking, small paws, deep-cupped broad ears, expressive green walnut eyes and fine facial lines. Make it noticeably petite and sleek, with its full tail beside the paws."
+  },
+  {
+    "fichier": "public/assets/companions/havana-brown-chocolat.png",
+    "reference": "public/assets/companions/07-salem.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult Havana Brown sitting three-quarter, sleek uniform rich warm mahogany chocolate coat, green eyes, distinctive squared muzzle, moderately large forward inclined ears, slim elegant forelegs."
+  },
+  {
+    "fichier": "public/assets/companions/nebelung-bleu.png",
+    "reference": "public/assets/companions/british-longhair-bleu.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult Nebelung sitting three-quarter, elegant long-limbed wedge-headed build, emerald green eyes, solid slate blue silver-tipped silky semi-long coat and a long feathery tail resting alongside the paws."
+  },
+  {
+    "fichier": "public/assets/companions/toyger-brown-mackerel-tabby.png",
+    "reference": "public/assets/companions/10-biscotte.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult Toyger cat standing in three-quarter side view so the coat pattern reads clearly, strong long rectangular build, small rounded ears and thick low-set tail, warm orange brown coat with dark bold vertical broken mackerel stripes, pale chin and underside. A domestic cat."
+  },
+  {
+    "fichier": "public/assets/companions/scottish-fold-bleu.png",
+    "reference": "public/assets/companions/british-lilas.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult blue Scottish Fold, sitting with full body and tail, distinctly forward- and downward-folded small ears following the arc of the rounded skull, rounded eyes in warm amber, plush uniform slate-blue short coat."
+  },
+  {
+    "fichier": "public/assets/companions/scottish-fold-roux-tabby.png",
+    "reference": "public/assets/companions/british-lilas.png",
+    "prompt": "Use case: illustration-story. Create one original full-body animal sprite for Luma City, centered with a clear margin on every side. TRUE transparent PNG alpha, zero exterior alpha, crisp animal silhouette. Empty canvas outside the animal, including the gaps between the legs. No background, gradient, halo, base, drop shadow, text, scenery or accessories. Reference image guides only the illustrated rendering style and transparent presentation. Natural anatomy and painterly detailed fur, soft natural warm upper-left lighting. Subject: adult red tabby Scottish Fold, sitting with full body and tail, distinctly folded small ears folded forward and down hugging the round skull, large copper eyes, plush warm ginger short coat with clear darker tabby stripes."
+  }
+]

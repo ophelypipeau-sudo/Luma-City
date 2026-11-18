@@ -1,0 +1,922 @@
+[
+  {
+    "id": "brachet-styrie-rouge",
+    "breedId": "brachet-styrie",
+    "name": "Brachet de Styrie à poil dur",
+    "standard": "62",
+    "coat": "Rouge",
+    "price": 1660,
+    "heightRatio": 0.377,
+    "fichier": "public/assets/companions/brachet-styrie-rouge.png",
+    "reference": "public/assets/companions/basset-fauve-bretagne-fauve.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Styrian coarse-haired hound, medium long-legged rectangular frame, broad pendant ears, rough close dry wiry hair and a moustache, full medium sabre tail. Coat: rich even rusty red coat.",
+    "sourceImage": "exec-f63800af-e136-4c3a-86db-a583885908b0.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      234,
+      90,
+      1295,
+      962
+    ]
+  },
+  {
+    "id": "brachet-styrie-fauve",
+    "breedId": "brachet-styrie",
+    "name": "Brachet de Styrie à poil dur",
+    "standard": "62",
+    "coat": "Fauve",
+    "price": 1660,
+    "heightRatio": 0.377,
+    "fichier": "public/assets/companions/brachet-styrie-fauve.png",
+    "reference": "public/assets/companions/basset-fauve-bretagne-fauve.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Styrian coarse-haired hound, medium long-legged rectangular frame, broad pendant ears, rough close dry wiry hair and a moustache, full medium sabre tail. Coat: warm golden fawn coat, subtle ivory tiny chest fleck.",
+    "sourceImage": "exec-408752a0-522b-46e1-a468-7095ce83ef2a.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      231,
+      65,
+      1252,
+      966
+    ]
+  },
+  {
+    "id": "brachet-noir-feu-feu-clair",
+    "breedId": "brachet-noir-feu",
+    "name": "Brachet noir et feu",
+    "standard": "63",
+    "coat": "Noir et feu clair",
+    "price": 1660,
+    "heightRatio": 0.405,
+    "fichier": "public/assets/companions/brachet-noir-feu-feu-clair.png",
+    "reference": "public/assets/companions/berger-beauce-noir-feu.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Austrian Black and Tan Hound, lean medium rectangular hound, low-set long flat hanging ears, long refined muzzle, smooth short fur, clear four-eyes tan eyebrow dots and natural curved full tail. Coat: jet black coat with clearly outlined light warm tan brows, cheeks, chest and lower legs.",
+    "sourceImage": "exec-398289e9-7367-4b06-b3ba-6bcbdec958fb.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      281,
+      17,
+      1287,
+      978
+    ]
+  },
+  {
+    "id": "brachet-noir-feu-feu-soutenu",
+    "breedId": "brachet-noir-feu",
+    "name": "Brachet noir et feu",
+    "standard": "63",
+    "coat": "Noir et feu soutenu",
+    "price": 1660,
+    "heightRatio": 0.405,
+    "fichier": "public/assets/companions/brachet-noir-feu-feu-soutenu.png",
+    "reference": "public/assets/companions/berger-beauce-noir-feu.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Austrian Black and Tan Hound, lean medium rectangular hound, low-set long flat hanging ears, long refined muzzle, smooth short fur, clear four-eyes tan eyebrow dots and natural curved full tail. Coat: black coat with deep rich reddish tan brow dots, cheeks, chest arcs and legs.",
+    "sourceImage": "exec-29213e09-9d2c-42c5-b655-12e9d86d8cb1.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      287,
+      27,
+      1272,
+      983
+    ]
+  },
+  {
+    "id": "brachet-polonais-noir-feu",
+    "breedId": "brachet-polonais",
+    "name": "Brachet polonais",
+    "standard": "52",
+    "coat": "Selle noire et feu",
+    "price": 1730,
+    "heightRatio": 0.418,
+    "fichier": "public/assets/companions/brachet-polonais-noir-feu.png",
+    "reference": "public/assets/companions/american-foxhound-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Ogar Polski, medium-large strong rectangular hound, noble domed head, deep chest with light throat skin folds, fairly long rounded pendant ears and natural low sabre tail. Coat: black large saddle on a rich tan body, black ears tipped tan.",
+    "sourceImage": "exec-0201ea04-2ae3-4b6d-a80e-65280d750eae.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      309,
+      16,
+      1327,
+      974
+    ]
+  },
+  {
+    "id": "brachet-polonais-gris-fonce-feu",
+    "breedId": "brachet-polonais",
+    "name": "Brachet polonais",
+    "standard": "52",
+    "coat": "Selle gris foncé et feu",
+    "price": 1730,
+    "heightRatio": 0.418,
+    "fichier": "public/assets/companions/brachet-polonais-gris-fonce-feu.png",
+    "reference": "public/assets/companions/american-foxhound-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Ogar Polski, medium-large strong rectangular hound, noble domed head, deep chest with light throat skin folds, fairly long rounded pendant ears and natural low sabre tail. Coat: dark charcoal gray saddle over warm golden tan torso, face and legs.",
+    "sourceImage": "exec-50cbb2d7-aafe-49c1-b9c5-c120cf28921c.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      274,
+      27,
+      1230,
+      961
+    ]
+  },
+  {
+    "id": "brachet-tyrolien-rouge",
+    "breedId": "brachet-tyrolien",
+    "name": "Brachet tyrolien",
+    "standard": "68",
+    "coat": "Rouge",
+    "price": 1640,
+    "heightRatio": 0.361,
+    "fichier": "public/assets/companions/brachet-tyrolien-rouge.png",
+    "reference": "public/assets/companions/beagle-harrier-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Tyrolean Hound, athletic medium rectangular hound with broad drop ears ending in rounded tips, narrow refined head, short dense double coat and full sabre tail. Coat: solid red deer-colored coat with a small white chest spot.",
+    "sourceImage": "exec-b192d536-b830-4061-94a9-4c01896fb51f.png",
+    "canvas": [
+      1454,
+      1082
+    ],
+    "bounds": [
+      236,
+      41,
+      1225,
+      1043
+    ]
+  },
+  {
+    "id": "brachet-tyrolien-noir-feu",
+    "breedId": "brachet-tyrolien",
+    "name": "Brachet tyrolien",
+    "standard": "68",
+    "coat": "Noir et feu",
+    "price": 1640,
+    "heightRatio": 0.361,
+    "fichier": "public/assets/companions/brachet-tyrolien-noir-feu.png",
+    "reference": "public/assets/companions/beagle-harrier-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Tyrolean Hound, athletic medium rectangular hound with broad drop ears ending in rounded tips, narrow refined head, short dense double coat and full sabre tail. Coat: black coat with chestnut tan brows muzzle chest legs, very small white toes.",
+    "sourceImage": "exec-ce7f928d-7d36-4d36-b32d-bfd94b0df5cd.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      309,
+      33,
+      1211,
+      954
+    ]
+  },
+  {
+    "id": "braque-allemand-pc-marron",
+    "breedId": "braque-allemand-pc",
+    "name": "Braque allemand à poil court",
+    "standard": "119",
+    "coat": "Marron",
+    "price": 1860,
+    "heightRatio": 0.463,
+    "fichier": "public/assets/companions/braque-allemand-pc-marron.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult German Shorthaired Pointer, tall noble athletic balanced frame, lean long head, brown nose, broad pendant ears, deep chest, glossy very short hair, complete natural tapering tail. Coat: solid deep liver-brown coat with no white.",
+    "sourceImage": "exec-5fbecc3f-f2d8-4a07-a493-b7176a71575a.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      138,
+      64,
+      1082,
+      1221
+    ]
+  },
+  {
+    "id": "braque-allemand-pc-rouan-marron",
+    "breedId": "braque-allemand-pc",
+    "name": "Braque allemand à poil court",
+    "standard": "119",
+    "coat": "Rouan marron",
+    "price": 1860,
+    "heightRatio": 0.463,
+    "fichier": "public/assets/companions/braque-allemand-pc-rouan-marron.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult German Shorthaired Pointer, tall noble athletic balanced frame, lean long head, brown nose, broad pendant ears, deep chest, glossy very short hair, complete natural tapering tail. Coat: dense liver-brown roan flecking on pale body with solid liver head and liver patches.",
+    "sourceImage": "exec-81d017a0-7c9a-4600-8980-9148fafe2276.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      133,
+      62,
+      1077,
+      1219
+    ]
+  },
+  {
+    "id": "braque-auvergne-noir-blanc-mouchete",
+    "breedId": "braque-auvergne",
+    "name": "Braque d’Auvergne",
+    "standard": "180",
+    "coat": "Noir et blanc moucheté",
+    "price": 1810,
+    "heightRatio": 0.436,
+    "fichier": "public/assets/companions/braque-auvergne-noir-blanc-mouchete.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Auvergne Pointer, strong medium-large long-limbed frame, rounded head and long gently twisted low hanging ears, dark hazel eyes, short shiny fur and fully visible natural tail. Coat: black head with white blaze, mostly white body with fine black ticking and several black patches.",
+    "sourceImage": "exec-9f7797f6-9fd8-41d3-95c1-70506a817ea2.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      210,
+      74,
+      1147,
+      1133
+    ]
+  },
+  {
+    "id": "braque-auvergne-noir-blanc-charbonne",
+    "breedId": "braque-auvergne",
+    "name": "Braque d’Auvergne",
+    "standard": "180",
+    "coat": "Noir et blanc grisonné",
+    "price": 1810,
+    "heightRatio": 0.436,
+    "fichier": "public/assets/companions/braque-auvergne-noir-blanc-charbonne.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Auvergne Pointer, strong medium-large long-limbed frame, rounded head and long gently twisted low hanging ears, dark hazel eyes, short shiny fur and fully visible natural tail. Coat: solid black head with narrow white blaze, dark gray appearance of dense black-white roaning over body and broad black saddle patches.",
+    "sourceImage": "exec-cdcc3a38-f485-42e4-864c-7c37b20e49ae.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      204,
+      72,
+      1146,
+      1138
+    ]
+  },
+  {
+    "id": "braque-ariege-orange-blanc",
+    "breedId": "braque-ariege",
+    "name": "Braque de l’Ariège",
+    "standard": "177",
+    "coat": "Orange et blanc",
+    "price": 1850,
+    "heightRatio": 0.464,
+    "fichier": "public/assets/companions/braque-ariege-orange-blanc.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Ariège Pointer, tall lean powerful frame, long narrow noble head, low-set slightly curled long pendant ears, amber eyes, flesh-brown nose, close short coat and full fine low tail. Coat: white coat with pale orange patches and delicate orange ticking, orange ears.",
+    "sourceImage": "exec-9b4dab76-1a99-4fe1-9f7f-894e973e9138.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      129,
+      63,
+      1162,
+      1217
+    ]
+  },
+  {
+    "id": "braque-ariege-marron-blanc",
+    "breedId": "braque-ariege",
+    "name": "Braque de l’Ariège",
+    "standard": "177",
+    "coat": "Marron et blanc",
+    "price": 1850,
+    "heightRatio": 0.464,
+    "fichier": "public/assets/companions/braque-ariege-marron-blanc.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. One adult Ariege Pointer game companion standing full-body, tall lean powerful body and long elegant narrow head, low-set long gently rolled ears, amber eyes and flesh-brown nose. DARK LIVER CHESTNUT BROWN head and ear coloring, pale white body with small chocolate chestnut patches and very fine chestnut ticking. Clearly brown rather than orange. Full natural fine tail, full legs and paws. Semi-realistic painterly 2D matching supplied style reference only. Genuine transparent RGBA cutout, blank exterior, all appendages inside generous margins, no floor shadow or scenery or text.",
+    "sourceImage": "exec-3a2914ee-c64d-449b-ab35-c9c07906549d.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      200,
+      75,
+      1147,
+      1135
+    ]
+  },
+  {
+    "id": "weimaraner-gris-argent",
+    "breedId": "weimaraner",
+    "name": "Braque de Weimar",
+    "standard": "99",
+    "coat": "Gris argent",
+    "price": 2050,
+    "heightRatio": 0.488,
+    "fichier": "public/assets/companions/weimaraner-gris-argent.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult shorthaired Weimaraner, sleek elegant muscular tall pointer, noble long head, long broad folded ears, amber eyes and gray nose, glossy short solid fur, full natural long tail. Coat: light silver-gray coat with warm subtle taupe undertone, no markings.",
+    "sourceImage": "exec-c6b6092e-67be-43b6-b150-455449125865.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      193,
+      71,
+      1146,
+      1138
+    ]
+  },
+  {
+    "id": "weimaraner-gris-souris",
+    "breedId": "weimaraner",
+    "name": "Braque de Weimar",
+    "standard": "99",
+    "coat": "Gris souris",
+    "price": 2050,
+    "heightRatio": 0.488,
+    "fichier": "public/assets/companions/weimaraner-gris-souris.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult shorthaired Weimaraner, sleek elegant muscular tall pointer, noble long head, long broad folded ears, amber eyes and gray nose, glossy short solid fur, full natural long tail. Coat: deeper warm mouse-gray coat, slightly lighter gray head, no blue-black.",
+    "sourceImage": "exec-9f0b6c9a-d398-46b5-b7a1-240deef9789c.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      194,
+      72,
+      1149,
+      1138
+    ]
+  },
+  {
+    "id": "braque-bourbonnais-lie-de-vin",
+    "breedId": "braque-bourbonnais",
+    "name": "Braque du Bourbonnais",
+    "standard": "179",
+    "coat": "Lie de vin",
+    "price": 1710,
+    "heightRatio": 0.383,
+    "fichier": "public/assets/companions/braque-bourbonnais-lie-de-vin.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Bourbonnais Pointer, compact rounded muscular medium build, pear-shaped head, soft rounded drop ears, fine close coat, amber eyes, natural short bobtail clearly attached at rump. Coat: predominantly white coat finely flecked with faded liver brown, small sparse liver patches.",
+    "sourceImage": "exec-d0b55381-8744-4d80-8d05-acc1c8847ad0.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      134,
+      66,
+      1058,
+      1218
+    ]
+  },
+  {
+    "id": "braque-bourbonnais-fleur-de-pecher",
+    "breedId": "braque-bourbonnais",
+    "name": "Braque du Bourbonnais",
+    "standard": "179",
+    "coat": "Fleur de pêcher",
+    "price": 1710,
+    "heightRatio": 0.383,
+    "fichier": "public/assets/companions/braque-bourbonnais-fleur-de-pecher.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Bourbonnais Pointer, compact rounded muscular medium build, pear-shaped head, soft rounded drop ears, fine close coat, amber eyes, natural short bobtail clearly attached at rump. Coat: predominantly white coat with fine warm fawn-orange flecking, only small pale fawn patches.",
+    "sourceImage": "exec-343857d8-4129-4fad-ae84-76aaaed3cb65.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      132,
+      67,
+      1055,
+      1218
+    ]
+  },
+  {
+    "id": "braque-francais-gascogne-marron",
+    "breedId": "braque-francais-gascogne",
+    "name": "Braque français type Gascogne",
+    "standard": "133",
+    "coat": "Marron",
+    "price": 1850,
+    "heightRatio": 0.466,
+    "fichier": "public/assets/companions/braque-francais-gascogne-marron.png",
+    "reference": "public/assets/companions/braque_placeholder.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: pointer-anglais-noir-blanc. Coat: uniform rich chestnut brown short coat.",
+    "sourceImage": "exec-4cb1c84b-8669-4607-9352-e2d141880220.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      197,
+      73,
+      1144,
+      1139
+    ]
+  },
+  {
+    "id": "braque-francais-gascogne-marron-blanc",
+    "breedId": "braque-francais-gascogne",
+    "name": "Braque français type Gascogne",
+    "standard": "133",
+    "coat": "Marron et blanc moucheté",
+    "price": 1850,
+    "heightRatio": 0.466,
+    "fichier": "public/assets/companions/braque-francais-gascogne-marron-blanc.png",
+    "reference": "public/assets/companions/braque_placeholder.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: pointer-anglais-noir-blanc. Coat: chestnut head with white muzzle blaze, white body with broad chestnut patches and abundant fine brown ticking.",
+    "sourceImage": "exec-08ea294f-26ac-4099-be6e-953c9c0e1c6c.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      197,
+      73,
+      1149,
+      1133
+    ]
+  },
+  {
+    "id": "braque-francais-pyrenees-marron-blanc",
+    "breedId": "braque-francais-pyrenees",
+    "name": "Braque français type Pyrénées",
+    "standard": "134",
+    "coat": "Marron et blanc",
+    "price": 1740,
+    "heightRatio": 0.393,
+    "fichier": "public/assets/companions/braque-francais-pyrenees-marron-blanc.png",
+    "reference": "public/assets/companions/pointer-anglais-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Original full-body adult Pyrenean French Pointer standing in three-quarter side view, medium light athletic frame, moderately short folded ears above eye level, refined chestnut-brown nose, lightly hanging lips, natural short bobtail. Coat explicitly DARK CHOCOLATE LIVER BROWN patches and white. Dark liver brown head and ears, big dark chestnut brown shoulder patches on white torso with fine BROWN ticking. No orange or ginger hue. Warm semi-realistic painted 2D sprite matching the reference only in brushwork. All paws, ear tips and tail intact, generous blank margin on all four edges. Transparent PNG alpha, empty exterior, no floor shadow, no scene or text.",
+    "sourceImage": "exec-680f039d-8cfa-45f1-9b95-16bfec6f4995.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      198,
+      72,
+      1091,
+      1138
+    ]
+  },
+  {
+    "id": "braque-francais-pyrenees-marron-feu",
+    "breedId": "braque-francais-pyrenees",
+    "name": "Braque français type Pyrénées",
+    "standard": "134",
+    "coat": "Marron marqué de feu",
+    "price": 1740,
+    "heightRatio": 0.393,
+    "fichier": "public/assets/companions/braque-francais-pyrenees-marron-feu.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Pyrenean French Pointer, medium light athletic frame with tight skin, shorter ears attached above eye level, refined brown-nosed head with lightly hanging lips, short smooth hair, natural short bobtail. Coat: chestnut brown body with clearly lighter tan eyebrow spots, lips and lower legs.",
+    "sourceImage": "exec-fa270b44-4dc3-4f24-94f3-97975082d394.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      139,
+      66,
+      1066,
+      1216
+    ]
+  },
+  {
+    "id": "vizsla-pc-froment-dore",
+    "breedId": "vizsla-pc",
+    "name": "Braque hongrois à poil court",
+    "standard": "57",
+    "coat": "Froment doré",
+    "price": 1840,
+    "heightRatio": 0.438,
+    "fichier": "public/assets/companions/vizsla-pc-froment-dore.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult smooth-haired Hungarian Vizsla, tall lean muscular pointer, moderately long refined head with broad rounded drop ears, amber eyes and russet nose, very short smooth coat and natural full tail. Coat: even medium warm russet-golden wheat coat with ears slightly darker.",
+    "sourceImage": "exec-77b81cf3-4457-4861-a446-53db195b33dc.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      134,
+      64,
+      1086,
+      1217
+    ]
+  },
+  {
+    "id": "vizsla-pc-froment-dore-plastron",
+    "breedId": "vizsla-pc",
+    "name": "Braque hongrois à poil court",
+    "standard": "57",
+    "coat": "Froment doré à petit plastron",
+    "price": 1840,
+    "heightRatio": 0.438,
+    "fichier": "public/assets/companions/vizsla-pc-froment-dore-plastron.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult smooth-haired Hungarian Vizsla, tall lean muscular pointer, moderately long refined head with broad rounded drop ears, amber eyes and russet nose, very short smooth coat and natural full tail. Coat: same golden wheat family slightly richer warm golden coat with a tiny white chest spot below throat, no other white.",
+    "sourceImage": "exec-240b7fb5-2506-4ee1-949d-d072285319c4.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      133,
+      63,
+      1079,
+      1219
+    ]
+  },
+  {
+    "id": "vizsla-pd-froment-dore",
+    "breedId": "vizsla-pd",
+    "name": "Braque hongrois à poil dur",
+    "standard": "239",
+    "coat": "Froment doré",
+    "price": 1890,
+    "heightRatio": 0.441,
+    "fichier": "public/assets/companions/vizsla-pd-froment-dore.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Wirehaired Hungarian Vizsla, medium-large dry athletic pointer, refined amber-eyed head and hanging ears, prominent coarse eyebrows and beard, dense wiry rusty-golden wheat fur, complete natural tail. Coat: uniform golden russet wheat coat with a warm coarse bearded muzzle.",
+    "sourceImage": "exec-295e7350-129f-4484-8c00-73ddda684216.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      203,
+      49,
+      1174,
+      1099
+    ]
+  },
+  {
+    "id": "vizsla-pd-froment-dore-plastron",
+    "breedId": "vizsla-pd",
+    "name": "Braque hongrois à poil dur",
+    "standard": "239",
+    "coat": "Froment doré à petit plastron",
+    "price": 1890,
+    "heightRatio": 0.441,
+    "fichier": "public/assets/companions/vizsla-pd-froment-dore-plastron.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Wirehaired Hungarian Vizsla, medium-large dry athletic pointer, refined amber-eyed head and hanging ears, prominent coarse eyebrows and beard, dense wiry rusty-golden wheat fur, complete natural tail. Coat: slightly deeper warm wheat golden coat with a tiny neat white chest spot and minute white toe tips.",
+    "sourceImage": "exec-f6df1f96-4e3e-4b0d-9a73-51f9b8dcd35d.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      210,
+      43,
+      1179,
+      1096
+    ]
+  },
+  {
+    "id": "braque-italien-orange-blanc",
+    "breedId": "braque-italien",
+    "name": "Braque italien",
+    "standard": "202",
+    "coat": "Orange et blanc",
+    "price": 1890,
+    "heightRatio": 0.452,
+    "fichier": "public/assets/companions/braque-italien-orange-blanc.png",
+    "reference": "public/assets/companions/basset-artesien-normand-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Bracco Italiano, tall robust athletic frame, very long sculpted Roman nose and divergent head planes, long rounded low-set twisted ears, light dewlap and pendulous upper lips, fine short fur and natural full tail. Coat: white body with large warm orange patches and orange ears.",
+    "sourceImage": "exec-56318645-3339-426b-85a3-25c00c9ebef3.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      266,
+      48,
+      1349,
+      968
+    ]
+  },
+  {
+    "id": "braque-italien-rouan-marron",
+    "breedId": "braque-italien",
+    "name": "Braque italien",
+    "standard": "202",
+    "coat": "Rouan marron",
+    "price": 1890,
+    "heightRatio": 0.452,
+    "fichier": "public/assets/companions/braque-italien-rouan-marron.png",
+    "reference": "public/assets/companions/basset-artesien-normand-tricolore.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Bracco Italiano, tall robust athletic frame, very long sculpted Roman nose and divergent head planes, long rounded low-set twisted ears, light dewlap and pendulous upper lips, fine short fur and natural full tail. Coat: dense chestnut roan ticking on white body, dark chestnut ears and face, several chestnut patches.",
+    "sourceImage": "exec-a013cc15-8e90-4883-ad52-7a410617546d.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      273,
+      47,
+      1275,
+      977
+    ]
+  },
+  {
+    "id": "braque-saint-germain-orange-blanc",
+    "breedId": "braque-saint-germain",
+    "name": "Braque Saint-Germain",
+    "standard": "115",
+    "coat": "Orange et blanc",
+    "price": 1800,
+    "heightRatio": 0.426,
+    "fichier": "public/assets/companions/braque-saint-germain-orange-blanc.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Saint-Germain Pointer, noble balanced medium frame, golden-yellow eyes, pink-flesh nose, fine long muzzle, rounded folded ears, short smooth coat and natural fine long horizontal tail. Coat: dull ivory-white coat with large warm orange-fawn saddle patches, solid orange ears.",
+    "sourceImage": "exec-91d87aeb-214b-4bfe-8d18-92daaf078bd0.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      315,
+      24,
+      1347,
+      1003
+    ]
+  },
+  {
+    "id": "braque-saint-germain-orange-blanc-panache",
+    "breedId": "braque-saint-germain",
+    "name": "Braque Saint-Germain",
+    "standard": "115",
+    "coat": "Orange et blanc à panachure étendue",
+    "price": 1800,
+    "heightRatio": 0.426,
+    "fichier": "public/assets/companions/braque-saint-germain-orange-blanc-panache.png",
+    "reference": "public/assets/companions/pointer-anglais-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Saint-Germain Pointer, noble balanced medium frame, golden-yellow eyes, pink-flesh nose, fine long muzzle, rounded folded ears, short smooth coat and natural fine long horizontal tail. Coat: mostly clean dull white body, orange ears and small orange rump patch, narrow orange forehead patch with broad white blaze.",
+    "sourceImage": "exec-1a6bab89-4b19-492f-98fa-7374b1322110.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      293,
+      31,
+      1278,
+      980
+    ]
+  },
+  {
+    "id": "braque-slovaque-pd-gris",
+    "breedId": "braque-slovaque-pd",
+    "name": "Braque slovaque à poil dur",
+    "standard": "320",
+    "coat": "Gris",
+    "price": 1930,
+    "heightRatio": 0.464,
+    "fichier": "public/assets/companions/braque-slovaque-pd-gris.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Slovakian Wirehaired Pointer, tall strong but elegant lean frame, long rectangular noble muzzle, amber eyes, broad hanging ears, harsh straight gray-sable coat with beard and eyebrows, natural full hairy tail. Coat: even warm brown-shaded gray sable fur with darker muzzle.",
+    "sourceImage": "exec-712773db-d179-46cd-99a9-abf8a8bc7943.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      210,
+      47,
+      1169,
+      1101
+    ]
+  },
+  {
+    "id": "braque-slovaque-pd-gris-blanc",
+    "breedId": "braque-slovaque-pd",
+    "name": "Braque slovaque à poil dur",
+    "standard": "320",
+    "coat": "Gris et blanc moucheté",
+    "price": 1930,
+    "heightRatio": 0.464,
+    "fichier": "public/assets/companions/braque-slovaque-pd-gris-blanc.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Slovakian Wirehaired Pointer, tall strong but elegant lean frame, long rectangular noble muzzle, amber eyes, broad hanging ears, harsh straight gray-sable coat with beard and eyebrows, natural full hairy tail. Coat: gray brown-shaded sable head and patches, broad white chest and white legs with fine gray speckling, gray saddle.",
+    "sourceImage": "exec-c8aa79ed-d437-421f-9759-c1df182824d4.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      207,
+      46,
+      1196,
+      1099
+    ]
+  },
+  {
+    "id": "briquet-griffon-vendeen-noir-blanc",
+    "breedId": "briquet-griffon-vendeen",
+    "name": "Briquet Griffon vendéen",
+    "standard": "19",
+    "coat": "Noir et blanc",
+    "price": 1660,
+    "heightRatio": 0.38,
+    "fichier": "public/assets/companions/briquet-griffon-vendeen-noir-blanc.png",
+    "reference": "public/assets/companions/basset-fauve-bretagne-fauve.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Briquet Griffon Vendeen, medium compact hound on sturdy moderately long legs, short head with lively dark eyes, narrow folded pendant ears, rough dry tousled wiry coat and beard, natural sabre tail. Coat: white body with bold black patches over head and rump.",
+    "sourceImage": "exec-7f6e298b-7c16-4515-ae5b-aab3d540bb26.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      258,
+      57,
+      1293,
+      975
+    ]
+  },
+  {
+    "id": "briquet-griffon-vendeen-orange-blanc",
+    "breedId": "briquet-griffon-vendeen",
+    "name": "Briquet Griffon vendéen",
+    "standard": "19",
+    "coat": "Orange et blanc",
+    "price": 1660,
+    "heightRatio": 0.38,
+    "fichier": "public/assets/companions/briquet-griffon-vendeen-orange-blanc.png",
+    "reference": "public/assets/companions/basset-fauve-bretagne-fauve.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Briquet Griffon Vendeen, medium compact hound on sturdy moderately long legs, short head with lively dark eyes, narrow folded pendant ears, rough dry tousled wiry coat and beard, natural sabre tail. Coat: white body with warm orange-fawn patches over ears shoulder and rump.",
+    "sourceImage": "exec-bae3ca8c-b0ae-4acf-b646-40f7a96ad24a.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      245,
+      80,
+      1319,
+      957
+    ]
+  },
+  {
+    "id": "broholmer-fauve-masque-noir",
+    "breedId": "broholmer",
+    "name": "Broholmer",
+    "standard": "315",
+    "coat": "Fauve à masque noir",
+    "price": 2390,
+    "heightRatio": 0.527,
+    "fichier": "public/assets/companions/broholmer-fauve-masque-noir.png",
+    "reference": "public/assets/companions/cane-corso-noir.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Broholmer Danish mastiff, huge square head with broad blunt muzzle, small high-set hanging ears close to cheeks, very broad deep chest and muscular rectangular body, short coarse coat, natural full low thick tail. Coat: golden yellow-fawn coat with distinct black muzzle mask.",
+    "sourceImage": "exec-2cde51d3-83fc-4c75-972f-155452e52fc7.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      293,
+      26,
+      1268,
+      990
+    ]
+  },
+  {
+    "id": "broholmer-noir",
+    "breedId": "broholmer",
+    "name": "Broholmer",
+    "standard": "315",
+    "coat": "Noir",
+    "price": 2390,
+    "heightRatio": 0.527,
+    "fichier": "public/assets/companions/broholmer-noir.png",
+    "reference": "public/assets/companions/cane-corso-noir.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Broholmer Danish mastiff, huge square head with broad blunt muzzle, small high-set hanging ears close to cheeks, very broad deep chest and muscular rectangular body, short coarse coat, natural full low thick tail. Coat: deep solid black coat with subtle charcoal coat highlights.",
+    "sourceImage": "exec-659dc842-014f-438a-8508-07377edc3965.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      287,
+      22,
+      1267,
+      982
+    ]
+  },
+  {
+    "id": "buhund-norvegien-froment",
+    "breedId": "buhund-norvegien",
+    "name": "Buhund norvégien",
+    "standard": "237",
+    "coat": "Froment",
+    "price": 1640,
+    "heightRatio": 0.329,
+    "fichier": "public/assets/companions/buhund-norvegien-froment.png",
+    "reference": "public/assets/companions/spitz-sable.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Norwegian Buhund, medium-small square spitz with narrow wedge muzzle, upright pointed ears, dark eyes, thick close stand-off double coat and a tightly curled full plume tail on back. Coat: clear warm wheat-gold coat with paler cream chest, dark nose.",
+    "sourceImage": "exec-e7fa16cf-58b8-4425-8cd1-2ae4e669e52b.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      203,
+      30,
+      1074,
+      1123
+    ]
+  },
+  {
+    "id": "buhund-norvegien-noir",
+    "breedId": "buhund-norvegien",
+    "name": "Buhund norvégien",
+    "standard": "237",
+    "coat": "Noir",
+    "price": 1640,
+    "heightRatio": 0.329,
+    "fichier": "public/assets/companions/buhund-norvegien-noir.png",
+    "reference": "public/assets/companions/spitz-sable.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Norwegian Buhund, medium-small square spitz with narrow wedge muzzle, upright pointed ears, dark eyes, thick close stand-off double coat and a tightly curled full plume tail on back. Coat: solid glossy jet-black coat, subtle charcoal undercoat only.",
+    "sourceImage": "exec-75debc22-9510-402f-945a-a4f513739d94.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      212,
+      35,
+      1094,
+      1134
+    ]
+  },
+  {
+    "id": "bull-terrier-miniature-blanc",
+    "breedId": "bull-terrier-miniature",
+    "name": "Bull Terrier miniature",
+    "standard": "359",
+    "coat": "Blanc à marque d’oreille",
+    "price": 1530,
+    "heightRatio": 0.253,
+    "fichier": "public/assets/companions/bull-terrier-miniature-blanc.png",
+    "reference": "public/assets/companions/bull-terrier-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Miniature Bull Terrier, unmistakably small compact muscular body on short strong legs, egg-shaped convex head with no stop, narrow small triangular eyes, close-set upright triangular ears, natural thin full tail, short smooth coat. Coat: white coat with one small brindle patch over the left ear.",
+    "sourceImage": "exec-a333988d-60a5-48ae-a459-8d2a4d3f0a39.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      237,
+      115,
+      1145,
+      1083
+    ]
+  },
+  {
+    "id": "bull-terrier-miniature-bringe-blanc",
+    "breedId": "bull-terrier-miniature",
+    "name": "Bull Terrier miniature",
+    "standard": "359",
+    "coat": "Bringé et blanc",
+    "price": 1530,
+    "heightRatio": 0.253,
+    "fichier": "public/assets/companions/bull-terrier-miniature-bringe-blanc.png",
+    "reference": "public/assets/companions/bull-terrier-blanc.png",
+    "prompt": "Use case: illustration-story. Original Luma City adoptable dog game sprite. Use supplied image only for the established warm semi-realistic hand-painted 2D style, subtle fur detail and upper-left soft light. Paint ONE complete adult dog, standing in three-quarter view, natural anatomy and a legible distinct breed silhouette, all paws and full tail visible with generous blank margin on all sides. Export true transparent RGBA PNG. Exterior and gaps between limbs fully transparent. No scene, painted background, haze, shadow, text, collar or props. Breed: adult Miniature Bull Terrier, unmistakably small compact muscular body on short strong legs, egg-shaped convex head with no stop, narrow small triangular eyes, close-set upright triangular ears, natural thin full tail, short smooth coat. Coat: rich dark brindle body with white blaze and muzzle, white chest and front feet.",
+    "sourceImage": "exec-5af35b9c-cc34-428c-9b9e-c59af3407cc5.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      236,
+      86,
+      1153,
+      1093
+    ]
+  }
+]

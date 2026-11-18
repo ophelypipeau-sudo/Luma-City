@@ -1,0 +1,97 @@
+[
+  {
+    "fichier": "public/assets/companions/american-bobtail-pl-brown-tabby.png",
+    "reference": "public/assets/companions/american-bobtail-pc-brown-tabby.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing, a muscular slightly rectangular domestic cat, shaggy semi-long brown tabby coat, broad head and clearly visible naturally short thick tail angled upward from the rump."
+  },
+  {
+    "fichier": "public/assets/companions/californian-rex-blanc.png",
+    "reference": "public/assets/companions/cornish-rex-noir.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing in three-quarter side view, lean arched Cornish Rex body, egg-shaped head, large upright ears, long slim legs and tail, ivory-white semi-long silky wavy fur with clearly visible ripples across torso and longer wavy tail plumes."
+  },
+  {
+    "fichier": "public/assets/companions/chausie-brown-ticked-tabby.png",
+    "reference": "public/assets/companions/toyger-brown-mackerel-tabby.png",
+    "prompt": "Use case: illustration-story. Isolate one original full-body game companion on EMPTY TRUE TRANSPARENT PNG alpha. No solid background, no shadows, no halo. Reference PNG is painting-style only. Soft upper-left light, realistic fur and refined painterly 2D finish. The whole silhouette, ears, all paws and entire tail sit well inside canvas. Paint an adult Chausie standing in profile three-quarter, tall lean athletic body, long legs, elongated head and high broad ears. Brown ticked tabby with dark-tipped hairs on sandy gray-brown base; even ticking across the torso, faint facial and lower leg markings, relatively short but fully visible tail. Distinct from the tiger stripes of reference, use reference for painting style only."
+  },
+  {
+    "fichier": "public/assets/companions/cherubim-seal-mink-mitted.png",
+    "reference": "public/assets/companions/ragdoll-seal-point.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated large and muscular adult domestic cat with a broad rounded wedge face and silky semi-long pelage, aquamarine eyes, seal mink coloring with medium warm beige torso, subtle transition into moderately darker seal brown face, ears and tail, white chin and neat white mittens over the paws."
+  },
+  {
+    "fichier": "public/assets/companions/celeste-pc-bleu-locket.png",
+    "reference": "public/assets/companions/chartreux-bleu.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: compact elegant seated adult Céleste, vivid blue eyes, soft medium-round head and upright medium ears, short plush solid blue gray coat with only a small white locket on the center of the chest and tiny white tips on two toes; face entirely blue gray, no point mask."
+  },
+  {
+    "fichier": "public/assets/companions/celeste-pl-noir-locket.png",
+    "reference": "public/assets/companions/nebelung-bleu.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated adult Céleste with bright blue eyes, medium-round head, ears upright, semi-long silky jet black fur, restrained silver rim lighting, a small white locket in the middle of its chest and very small white toe tips, no other white; full fluffy tail alongside the feet."
+  },
+  {
+    "fichier": "public/assets/companions/highland-fold-creme.png",
+    "reference": "public/assets/companions/scottish-fold-bleu.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated compact adult longhaired Scottish Highland Fold cat, distinctive small ears folding low forward against the round skull, large round copper eyes, solid pale warm cream coat with silky feathering, full neck ruff and flowing plume tail."
+  },
+  {
+    "fichier": "public/assets/companions/highland-straight-lilas.png",
+    "reference": "public/assets/companions/british-longhair-bleu.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated compact adult Highland Straight, medium straight upright softly rounded ears, broad round open face with amber eyes and plump cheeks, semi-long silky pale warm lilac-gray coat with plush feathering and full tail."
+  },
+  {
+    "fichier": "public/assets/companions/japanese-bobtail-pl-mi-ke.png",
+    "reference": "public/assets/companions/japanese-bobtail-pc-mi-ke.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult Japanese Bobtail Longhair, elegant long-legged silhouette, angular head, high cheekbones, tri-color mi-ke pattern with large white areas and clean red and black patches, medium-long silky fur feathered on hind legs, unmistakable SHORT fuzzy pom-pom tail attached at rump, not a long tail."
+  },
+  {
+    "fichier": "public/assets/companions/kurilian-bobtail-pc-noir-blanc.png",
+    "reference": "public/assets/companions/kurilian-bobtail-pl-noir-blanc.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing robust short-haired Kurilian Bobtail, slightly arched back rising towards strong high hindquarters, medium rounded ears, compact broad muzzle, close dense short jet-black fur with white chest and paws, visibly very short kinked bobtail tuft at rump."
+  },
+  {
+    "fichier": "public/assets/companions/lykoi-noir-roan.png",
+    "reference": "public/assets/companions/korat-bleu.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult Lykoi werewolf cat with natural lean feline anatomy and long tapered tail, sparse short black roan coat made of intermixed black and white individual hairs, patchy bare dark skin on muzzle and around golden eyes, sparse ears, no ruff, alert gentle demeanor."
+  },
+  {
+    "fichier": "public/assets/companions/munchkin-pc-roux-tabby.png",
+    "reference": "public/assets/companions/10-biscotte.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult ginger tabby shorthaired Munchkin in three-quarter side view, recognizable very short sturdy legs supporting a normal-length medium feline torso, full tail, medium ears and gentle adult head proportions, all paws visible."
+  },
+  {
+    "fichier": "public/assets/companions/munchkin-pl-bleu-blanc.png",
+    "reference": "public/assets/companions/10-biscotte.png",
+    "prompt": "Use case: illustration-story. Isolate one original full-body game companion on EMPTY TRUE TRANSPARENT PNG alpha. No solid background, no shadows, no halo. Reference PNG is painting-style only. Soft upper-left light, realistic fur and refined painterly 2D finish. The whole silhouette, ears, all paws and entire tail sit well inside canvas. Paint an adult longhaired Munchkin in standing three-quarter side view. Straight upright simple TRIANGULAR CAT EARS, anatomically normal and never bent or curled. Long low body on very short sturdy legs, silky slate-blue and white coat with a white breast and white paws. Full fluffy tail."
+  },
+  {
+    "fichier": "public/assets/companions/pixie-bob-pc-brown-spotted-tabby.png",
+    "reference": "public/assets/companions/ocicat-tawny.png",
+    "prompt": "Use case: illustration-story. Isolate one original full-body game companion on EMPTY TRUE TRANSPARENT PNG alpha. No solid background, no shadows, no halo. Reference PNG is painting-style only. Soft upper-left light, realistic fur and refined painterly 2D finish. The whole silhouette, ears, all paws and entire tail sit well inside canvas. Paint an adult shorthaired Pixie Bob cat standing in three-quarter view, head facing left, darker muted taupe-brown short coat with small charcoal spots, substantial shoulders, pear-shaped broad head and tufted ears. SHORT thick bobbed tail visible at the rump. Painterly warm light, different silhouette from reference."
+  },
+  {
+    "fichier": "public/assets/companions/pixie-bob-pl-brown-spotted-tabby.png",
+    "reference": "public/assets/companions/kurilian-bobtail-pl-brown-tabby.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult Pixie Bob longhair, heavy muscular domestic body, characteristic pear-shaped face with broad whisker pads, gold eyes, slightly tufted ears, shaggy semi-long brown spotted tabby with subdued small spots, light chin, naturally short thick stub tail clearly attached at rump."
+  },
+  {
+    "fichier": "public/assets/companions/savannah-brown-spotted-tabby.png",
+    "reference": "public/assets/companions/ocicat-tawny.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult Savannah cat with very tall long legs, elongated lean torso, small triangular head, extremely large high rounded upright ears, warm gold brown spotted tabby coat with crisp black solid spots, and a medium-length thin tail with black rings; adult domestic breed cat."
+  },
+  {
+    "fichier": "public/assets/companions/scottish-straight-silver-tabby.png",
+    "reference": "public/assets/companions/british-silver-tabby.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated adult Scottish Straight cat in three-quarter view, round open face and wide round golden eyes, recognizable medium upright ears with rounded tips, short plush pale silver coat with distinct charcoal tabby stripes, full tail curled beside the front paws."
+  },
+  {
+    "fichier": "public/assets/companions/sokoke-brown-marble-tabby.png",
+    "reference": "public/assets/companions/toyger-brown-mackerel-tabby.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: standing adult Sokoke with long elegant legs and hind legs slightly higher, angular small wedge-shaped head, green amber eyes, short warm brown marbled classic tabby fur with irregular broad tree-bark swirls and ticking inside the markings, slim naturally extended ringed tail."
+  },
+  {
+    "fichier": "public/assets/companions/york-chocolat-chocolat.png",
+    "reference": "public/assets/companions/havana-brown-chocolat.png",
+    "prompt": "Use case: illustration-story. Create a game-ready original Luma City pet sprite to match the existing reference's hand-painted semi-realistic 2D rendering only. Preserve the specific anatomy, fur and pose of the requested breed. One complete adult animal centered in a three-quarter view, all paws and entire tail visible, fluffy details clean and legible at small sizes. Soft controlled warm upper-left light. TRUE transparent PNG alpha with empty space outside the silhouette, including between legs. No scenery, background color, shadow, halo, crop, text or accessories. Subject: seated adult York Chocolate cat with soft triangular head, almond golden hazel eyes, medium-large upright ears, moderately elongated body, solid deep dark chocolate silky medium-long fur with lighter brown light reflections, full feathery tail naturally resting at the side."
+  }
+]

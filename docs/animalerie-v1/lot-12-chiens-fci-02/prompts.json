@@ -1,0 +1,62 @@
+[
+  {
+    "fichier": "public/assets/companions/basset-westphalie-tricolore.png",
+    "reference": "public/assets/companions/anglo-francais-petite-venerie-orange-blanc.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint an adult Westphalian Dachsbracke standing in a three-quarter pose. Long low sturdy build, shorter legs than reference, close round-ended pendant ears shorter than a Basset Hound's, long tapered muzzle and gently raised bristly tail. Short dense red-and-black coat with small white blaze, white chest, white toes and tail tip."
+  },
+  {
+    "fichier": "public/assets/companions/basset-alpes-rouge-cerf.png",
+    "reference": "public/assets/companions/teckel-roux.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Alpine Dachsbracke standing three-quarter, stocky strong-boned hound built close to ground but sturdier and taller than a Dachshund. Long torso, broad drop ears, straight strong short legs, large velvety paws, broad chest and natural tapered tail. Dense deep red deer-colored coat with a fine dark overlay on shoulders and back."
+  },
+  {
+    "fichier": "public/assets/companions/basset-fauve-bretagne-fauve.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Basset Fauve de Bretagne standing, compact elongated body on low strong legs, warm fawn to wheaten coarse dry wiry fur throughout the body including the natural tail, fine drop ears with shorter darker hair, lively brown eyes and subtle whiskery muzzle, short neck, confident alert silhouette."
+  },
+  {
+    "fichier": "public/assets/companions/drever-roux-blanc.png",
+    "reference": "public/assets/companions/basset-artesien-normand-tricolore.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Swedish Drever standing three-quarter, well-muscled long rectangular body, sturdy short straight legs, rounded moderate drop ears distinctly shorter than a French Basset's, straight back, natural thick-based tail carried low, smooth bright red and white fur with white neck collar and white blaze and paws, closed relaxed mouth."
+  },
+  {
+    "fichier": "public/assets/companions/beagle-harrier-tricolore.png",
+    "reference": "public/assets/companions/golden-dore-clair.png",
+    "prompt": "Use case: illustration-story. Paint a full-body isolated Luma City game companion. Use the supplied image only for the gentle warm detailed painterly 2D treatment. True transparent PNG alpha, empty exterior, no floor, shadow, backdrop, graphics or accessories. Paint one adult tricolor Beagle-Harrier hound calmly seated in three-quarter view facing slightly left. Athletic medium-sized French hound, head with moderate stop, slightly tapered muzzle, good-length rounded ears falling flat, balanced build and muscular legs. Mostly white chest and legs, chestnut tan head with a narrow clean white blaze, charcoal-black saddle, and thin natural tan tail with white tip fully visible next to the back paw. Clear sitting pose on empty transparent canvas."
+  },
+  {
+    "fichier": "public/assets/companions/berger-bergamasque-gris.png",
+    "reference": "public/assets/companions/barbet-noir.png",
+    "prompt": "Use case: illustration-story. Paint a full-body isolated Luma City game companion. Use the supplied image only for the gentle warm detailed painterly 2D treatment. True transparent PNG alpha, empty exterior, no floor, shadow, backdrop, graphics or accessories. Paint one adult gray Bergamasco sheepdog standing four-square, turned gently toward the camera. Natural drop ears behind the scruffy head, broad irregular flat felted flocks of slate-gray fur draping to mid-leg, distinct full shaggy tail down, large paws still visible. Render the ENTIRE dog at reduced zoom with generous 12% transparent margin ABOVE the crown fur as well as below paws and around tail."
+  },
+  {
+    "fichier": "public/assets/companions/berger-asie-centrale-blanc-fauve.png",
+    "reference": "public/assets/companions/berger-blanc-suisse-blanc.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Central Asian Shepherd sitting three-quarter, very large heavy-boned adult livestock guardian with a broad blocky head, short strong deep blunt muzzle, natural small hanging triangular ears (fully intact), powerful deep chest and huge paws, off-white dense short-to-medium double coat, natural thick tail resting fully visible beside body."
+  },
+  {
+    "fichier": "public/assets/companions/berger-beauce-noir-feu.png",
+    "reference": "public/assets/companions/rottweiler-noir-feu.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Beauceron standing in three-quarter side, elegant power and rectangular body, distinctly long narrow head, natural short triangular semi-drop ears, dark eyes, firm short jet-black coat with clear dark tan points above eyes, on muzzle and lower legs, distinctly rust-red stockings, long natural low tail with slight J-shaped end."
+  },
+  {
+    "fichier": "public/assets/companions/berger-boheme-noir-feu.png",
+    "reference": "public/assets/companions/berger-allemand-noir-feu.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Chodsky Pes Bohemian Shepherd dog seated three-quarter, medium rather than large, small high-set upright pointed ears and compact kind wedge face, long straight dense black fur with fluffy neck ruff and rich tan eyebrow marks, cheeks and chest arcs and lower legs, feathered low tail lying at side, complete ears and paws."
+  },
+  {
+    "fichier": "public/assets/companions/tornjak-noir-blanc.png",
+    "reference": "public/assets/companions/bouvier-bernois-tricolore.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Tornjak standing in a compact three-quarter pose, strong nearly square substantial Balkan mountain guardian dog, gently broad wedge-shaped skull with hanging ears, very thick long straight fur, mostly ivory white with clean large black saddle patches and asymmetric white face blaze, distinct white legs, long well-feathered tail rising in an arc."
+  },
+  {
+    "fichier": "public/assets/companions/berger-brie-fauve.png",
+    "reference": "public/assets/companions/barbu-tcheque-rouan-fonce.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Briard (Berger de Brie) standing in slight three-quarter front view, agile rectangular body on long strong legs, flat long goat-like distinct tawny fawn locks with soft black shading on tips, full naturally hanging ears, expressive eyes peeking through bangs, shaggy beard, long feathered low tail ending in a small hook. Long draping wavy hair, no felted mats."
+  },
+  {
+    "fichier": "public/assets/companions/berger-picardie-fauve-charbonne.png",
+    "reference": "public/assets/companions/berger-allemand-noir-feu.png",
+    "prompt": "Use case: illustration-story. Original full-body Luma City dog sprite to match the existing hand-painted semi-realistic 2D illustration style, detailed fur and soft controlled warm upper-left light. Reference PNG is for painting style only. Distinguish the new breed's silhouette and markings from the reference. One entire dog centered with clean blank margin all around, intact ears, paws and entire tail. Export genuine transparent RGBA PNG with clear exterior and clear gaps between legs. No scene, surface, halo, cast shadow, text, collar or objects. Paint one adult Berger Picard standing three-quarter with distinctive large upright naturally pointed ears, intelligent dark eyes visible beneath rough eyebrows, lean leggy athletic rectangular frame, medium rough tousled sandy-fawn wiry coat with charcoal overlay on ears, chest and back, light beard, natural low tail curved gently at the tip."
+  }
+]

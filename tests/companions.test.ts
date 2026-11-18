@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { test } from "node:test";
 import { readFile } from "node:fs/promises";
 import { once } from "node:events";
@@ -28,17 +29,47 @@ test("Les races adoptables se rattachent à des références officielles uniques
     assert.ok(!usedCodes.has(breed.standard), breed.standard);
     usedCodes.add(breed.standard);
   }
+  for (const [code, name] of LOOF_BREEDS) {
+    assert.ok(usedCodes.has(code), `Race LOOF absente de l’animalerie : ${name}`);
+  }
 });
 
-test("Les 276 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 116);
+test("Les 397 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 215);
   const breeds = Object.values(COMPANION_BREEDS);
-  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 57);
-  assert.equal(breeds.filter(({ species }) => species === "Chat").length, 53);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 129);
+  assert.equal(breeds.filter(({ species }) => species === "Chat").length, 80);
   assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 3);
   assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 3);
+  const oneCoat = new Set<CompanionBreedId>([
+    "berger-russie-meridionale", "berger-abruzzes-maremme", "berger-caucase", "berger-karst",
+    "berger-finnois-laponie", "berger-hollandais", "berger-miniature-americain", "berger-polonais-plaine",
+    "bichon-frise", "bichon-bolonais", "bichon-havanais", "bichon-maltais",
+    "billy", "border-terrier", "bouvier-appenzellois", "bouvier-australien-courte-queue",
+    "bouvier-entlebuch", "bouvier-ardennes", "bouvier-flandres", "brachet-allemand",
+    "basset-westphalie", "basset-alpes", "basset-fauve-bretagne", "drever",
+    "beagle-harrier", "berger-bergamasque", "berger-asie-centrale", "berger-beauce",
+    "berger-boheme", "tornjak", "berger-brie", "berger-picardie",
+    "akita-americain", "american-foxhound", "american-staffordshire-terrier", "anglo-francais-petite-venerie",
+    "ariegeois", "azawakh", "bangkaew-thailande", "barbu-tcheque",
+    "barzoi", "basset-artesien-normand", "basset-bleu-gascogne", "berger-blanc-suisse",
+    "american-bobtail-pl", "californian-rex", "chausie", "cherubim",
+    "celeste-pc", "celeste-pl", "highland-fold", "highland-straight",
+    "japanese-bobtail-pl", "kurilian-bobtail-pc", "lykoi", "munchkin-pc",
+    "munchkin-pl", "pixie-bob-pc", "pixie-bob-pl", "savannah",
+    "scottish-straight", "sokoke", "york-chocolat",
+    "bouvier-bernois", "setter-irlandais", "yorkshire-terrier", "samoyede", "rottweiler",
+    "affenpinscher", "airedale-terrier", "chartreux", "korat", "bombay", "singapura",
+    "havana-brown", "nebelung", "toyger",
+  ]);
   const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
-  const twoCoats = new Set<CompanionBreedId>(["nain-neerlandais", "mini-rex", "hamster-roborovski", "hamster-russe",
+  const twoCoats = new Set<CompanionBreedId>([
+    "brachet-styrie", "brachet-noir-feu", "brachet-polonais", "brachet-tyrolien",
+    "braque-allemand-pc", "braque-auvergne", "braque-ariege", "weimaraner",
+    "braque-bourbonnais", "braque-francais-gascogne", "braque-francais-pyrenees", "vizsla-pc",
+    "vizsla-pd", "braque-italien", "braque-saint-germain", "braque-slovaque-pd",
+    "briquet-griffon-vendeen", "broholmer", "buhund-norvegien", "bull-terrier-miniature",
+    "nain-neerlandais", "mini-rex", "hamster-roborovski", "hamster-russe",
     "labrador", "dalmatien", "bengal", "sphynx", "berger-allemand", "berger-belge", "chihuahua", "beagle",
     "border-collie", "berger-australien", "shiba", "cocker-anglais", "norvegien", "sacre-birmanie", "siberien", "abyssin",
     "boxer", "carlin", "cavalier-king-charles", "berger-shetland", "cane-corso", "chow-chow", "dobermann", "akita",
@@ -55,20 +86,24 @@ test("Les 276 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
     "russe", "american-wirehair", "american-bobtail-pc", "asian-shorthair", "asian-longhair",
     "burmese-americain", "cymric", "european-shorthair", "german-rex", "japanese-bobtail-pc",
     "kurilian-bobtail-pl", "mandarin", "peterbald", "selkirk-rex-pl", "tonkinois-pl",
-    "thai", "laperm-pc", "ceylan", "donskoy", "american-curl-pl"]);
+    "thai", "laperm-pc", "ceylan", "donskoy", "american-curl-pl", "barbet", "scottish-fold"]);
   for (const breedId of Object.keys(COMPANION_BREEDS) as CompanionBreedId[]) {
     const breed = COMPANION_BREEDS[breedId];
     const coats = companionVariants(breedId);
-    const expected = breedId === "spitz" ? 7 : threeCoats.has(breedId) ? 3 : twoCoats.has(breedId) ? 2 : 6;
+    const expected = breedId === "spitz" ? 7 : oneCoat.has(breedId) ? 1 : threeCoats.has(breedId) ? 3 : twoCoats.has(breedId) ? 2 : 6;
     assert.equal(coats.length, expected);
     assert.equal(coats[0].id, breed.cover);
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 276);
+  assert.equal(COMPANION_CATALOG.length, 397);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
+  const spriteByHash = new Map<string, string>();
   for (const model of COMPANION_CATALOG) {
     const png = await readFile(new URL(`../public${companionImage(model.id)}`, import.meta.url));
+    const hash = createHash("sha256").update(png).digest("hex");
+    assert.equal(spriteByHash.get(hash), undefined, `PNG dupliqué : ${model.id}`);
+    spriteByHash.set(hash, model.id);
     assert.equal(png.toString("ascii", 12, 16), "IHDR");
     assert.equal(png[25], 6);
     assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], model.canvas);

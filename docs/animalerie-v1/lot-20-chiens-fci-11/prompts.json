@@ -1,0 +1,482 @@
+﻿[
+    {
+        "breedId":  "rouge-baviere",
+        "name":  "Chien rouge de Bavière",
+        "standard":  "217",
+        "price":  1790,
+        "heightRatio":  0.39,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/217g06-en.pdf",
+        "id":  "rouge-baviere-rouge-cerf",
+        "coat":  "Rouge cerf",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bavarian Mountain Scent Hound, medium athletic low-set elongated body, slightly rising croup, strong short legs of normal hound length, broad gently domed head, dark medium-long rounded drop ears, dense short coat, long low tapering tail. Coat: rich deer red body with dark muzzle and dark ears. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rouge-baviere-rouge-cerf.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-3cbc544e-73f2-440e-9965-231982bbf44a.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       131,
+                       53,
+                       1410,
+                       967
+                   ]
+    },
+    {
+        "breedId":  "rouge-baviere",
+        "name":  "Chien rouge de Bavière",
+        "standard":  "217",
+        "price":  1790,
+        "heightRatio":  0.39,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/217g06-en.pdf",
+        "id":  "rouge-baviere-fauve-bringe",
+        "coat":  "Fauve bringé",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bavarian Mountain Scent Hound, medium athletic low-set elongated body, slightly rising croup, strong short legs of normal hound length, broad gently domed head, dark medium-long rounded drop ears, dense short coat, long low tapering tail. Coat: golden fawn base with black brindling, dark muzzle and dark ears. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rouge-baviere-fauve-bringe.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-dedd55ba-e2ce-4a12-9f24-0356ce146341.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       92,
+                       61,
+                       1459,
+                       971
+                   ]
+    },
+    {
+        "breedId":  "saint-hubert",
+        "name":  "Chien de Saint-Hubert",
+        "standard":  "84",
+        "price":  2240,
+        "heightRatio":  0.5,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/084g06-en.pdf",
+        "id":  "saint-hubert-noir-feu",
+        "coat":  "Noir et feu",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bloodhound Saint Hubert, large powerful rectangular scent hound, noble long head with characteristic loose wrinkled brow and pendulous lips, very long thin low-set drooping ears, short smooth coat, muscular limbs and long low sabre tail. Coat: coal black mantle with rich tan muzzle cheeks eyebrow spots chest and legs. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/saint-hubert-noir-feu.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-c6324af8-2209-49f1-88d9-3c64ad8ee414.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       188,
+                       14,
+                       1389,
+                       1009
+                   ]
+    },
+    {
+        "breedId":  "saint-hubert",
+        "name":  "Chien de Saint-Hubert",
+        "standard":  "84",
+        "price":  2240,
+        "heightRatio":  0.5,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/084g06-en.pdf",
+        "id":  "saint-hubert-rouge",
+        "coat":  "Rouge",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Bloodhound Saint Hubert, large powerful rectangular scent hound, noble long head with characteristic loose wrinkled brow and pendulous lips, very long thin low-set drooping ears, short smooth coat, muscular limbs and long low sabre tail. Coat: uniform deep red with slightly darker ears, black nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/saint-hubert-rouge.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-8d451f9e-093d-42dc-8ef1-c818dea7d4be.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       156,
+                       32,
+                       1378,
+                       987
+                   ]
+    },
+    {
+        "breedId":  "taiwan",
+        "name":  "Chien de Taïwan",
+        "standard":  "348",
+        "price":  1690,
+        "heightRatio":  0.385,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/348g05-en.pdf",
+        "id":  "taiwan-noir",
+        "coat":  "Noir",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Taiwan Dog, lean sinewy agile nearly square primitive dog, broad triangular head, upright triangular ears angled outward, dark almond eyes, tightly fitting short coat, high sickle tail with tip curved forward, long athletic legs. Coat: solid jet black with soft visible fur highlights and black nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/taiwan-noir.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-527d1a8f-950f-41f1-ab1f-7b616494b0f3.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       171,
+                       47,
+                       1156,
+                       1164
+                   ]
+    },
+    {
+        "breedId":  "taiwan",
+        "name":  "Chien de Taïwan",
+        "standard":  "348",
+        "price":  1690,
+        "heightRatio":  0.385,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/348g05-en.pdf",
+        "id":  "taiwan-bringe",
+        "coat":  "Bringé",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Taiwan Dog, lean sinewy agile nearly square primitive dog, broad triangular head, upright triangular ears angled outward, dark almond eyes, tightly fitting short coat, high sickle tail with tip curved forward, long athletic legs. Coat: warm golden fawn with dark black brindling, black nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/taiwan-bringe.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-78ec4d49-53af-4c8b-87d4-35d11564510b.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       156,
+                       33,
+                       1147,
+                       1158
+                   ]
+    },
+    {
+        "breedId":  "groenland",
+        "name":  "Chien du Groenland",
+        "standard":  "274",
+        "price":  2130,
+        "heightRatio":  0.48,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/274g05-en.pdf",
+        "id":  "groenland-noir-blanc",
+        "coat":  "Noir et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Greenland Dog, strongly built powerful Nordic sledge dog, broad wedge head, small upright rounded triangular ears, dark brown eyes, very dense coarse straight double coat, sturdy long legs, thick bushy curled tail carried over back. Coat: black back and ears with white muzzle cheeks chest belly and legs, dark eyes and black nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/groenland-noir-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-83e5a7cf-7733-4029-adeb-794875eee722.png",
+        "canvas":  [
+                       1374,
+                       1145
+                   ],
+        "bounds":  [
+                       186,
+                       21,
+                       1194,
+                       1106
+                   ]
+    },
+    {
+        "breedId":  "groenland",
+        "name":  "Chien du Groenland",
+        "standard":  "274",
+        "price":  2130,
+        "heightRatio":  0.48,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/274g05-en.pdf",
+        "id":  "groenland-roux-blanc",
+        "coat":  "Roux et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Greenland Dog, strongly built powerful Nordic sledge dog, broad wedge head, small upright rounded triangular ears, dark brown eyes, very dense coarse straight double coat, sturdy long legs, thick bushy curled tail carried over back. Coat: rust red back and ears with white muzzle cheeks chest belly and legs, brown nose and amber-brown eyes. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/groenland-roux-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-416ed7dd-c381-487e-adab-a16077de48f0.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       135,
+                       24,
+                       1157,
+                       1133
+                   ]
+    },
+    {
+        "breedId":  "pharaon",
+        "name":  "Chien du Pharaon",
+        "standard":  "248",
+        "price":  1880,
+        "heightRatio":  0.45,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/248g05-en.pdf",
+        "id":  "pharaon-feu-clair",
+        "coat":  "Feu clair",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Pharaoh Hound, noble elegant powerful lean long-legged primitive hound, long clean wedge head, large tall erect ears, amber eyes and flesh-coloured nose, short glossy coat, long fine tapering gently curved tail. Coat: warm light tan body with small white chest star and white tail tip. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/pharaon-feu-clair.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-1f4454f6-24c0-4328-b9d0-3e999b954115.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       211,
+                       21,
+                       1131,
+                       1136
+                   ]
+    },
+    {
+        "breedId":  "pharaon",
+        "name":  "Chien du Pharaon",
+        "standard":  "248",
+        "price":  1880,
+        "heightRatio":  0.45,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/248g05-en.pdf",
+        "id":  "pharaon-feu-soutenu",
+        "coat":  "Feu soutenu",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Pharaoh Hound, noble elegant powerful lean long-legged primitive hound, long clean wedge head, large tall erect ears, amber eyes and flesh-coloured nose, short glossy coat, long fine tapering gently curved tail. Coat: rich deep chestnut tan body with narrow white chest star and white tail tip. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/pharaon-feu-soutenu.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-7308d6b4-fd81-40bc-80eb-fb61f04f604a.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       306,
+                       3,
+                       1233,
+                       993
+                   ]
+    },
+    {
+        "breedId":  "esquimau-canadien",
+        "name":  "Chien esquimau canadien",
+        "standard":  "211",
+        "price":  2190,
+        "heightRatio":  0.49,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/211g05-en.pdf",
+        "id":  "esquimau-canadien-gris-blanc",
+        "coat":  "Gris et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult male Canadian Eskimo Dog, large powerful Arctic sled dog with very substantial bone and broad chest, broad wedge head, short thick erect triangular ears, dark brown eyes, dense stiff medium-length double coat with impressive neck mane, bushy tail curled over back. Coat: dark grey back with white chest legs underside cheeks and muzzle. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/esquimau-canadien-gris-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-cd33186e-1ef1-4e54-93a0-360c950f70e9.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       131,
+                       28,
+                       1137,
+                       1161
+                   ]
+    },
+    {
+        "breedId":  "esquimau-canadien",
+        "name":  "Chien esquimau canadien",
+        "standard":  "211",
+        "price":  2190,
+        "heightRatio":  0.49,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/211g05-en.pdf",
+        "id":  "esquimau-canadien-cannelle-blanc",
+        "coat":  "Cannelle et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult male Canadian Eskimo Dog, large powerful Arctic sled dog with very substantial bone and broad chest, broad wedge head, short thick erect triangular ears, dark brown eyes, dense stiff medium-length double coat with impressive neck mane, bushy tail curled over back. Coat: cinnamon-red back and ears with white chest legs underside cheeks and muzzle, brown nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/esquimau-canadien-cannelle-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-6becf157-2453-47ae-a785-dec10f08c128.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       128,
+                       26,
+                       1178,
+                       1161
+                   ]
+    },
+    {
+        "breedId":  "finnois-laponie",
+        "name":  "Chien finnois de Laponie",
+        "standard":  "189",
+        "price":  1810,
+        "heightRatio":  0.36,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/189g05-en.pdf",
+        "id":  "finnois-laponie-noir-feu",
+        "coat":  "Noir et feu",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Finnish Lapphund, compact strong medium Nordic herding spitz, broad friendly short-muzzled head, widely set erect triangular ears, warm dark brown oval eyes, profuse coarse long double coat with abundant mane, bushy tail curved loosely over back. Coat: dominant coal black with warm tan eyebrow points cheeks chest and legs. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/finnois-laponie-noir-feu.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-4ba8eb86-49fa-40b2-bff2-034961705ce0.png",
+        "canvas":  [
+                       1402,
+                       1122
+                   ],
+        "bounds":  [
+                       193,
+                       30,
+                       1196,
+                       1069
+                   ]
+    },
+    {
+        "breedId":  "finnois-laponie",
+        "name":  "Chien finnois de Laponie",
+        "standard":  "189",
+        "price":  1810,
+        "heightRatio":  0.36,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/189g05-en.pdf",
+        "id":  "finnois-laponie-marron-feu",
+        "coat":  "Marron et feu",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Finnish Lapphund, compact strong medium Nordic herding spitz, broad friendly short-muzzled head, widely set erect triangular ears, warm dark brown oval eyes, profuse coarse long double coat with abundant mane, bushy tail curved loosely over back. Coat: dominant chocolate brown with warm pale tan eyebrow points cheeks chest and legs, brown nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/finnois-laponie-marron-feu.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-e2021561-567d-4eb7-b494-71e85a7daac9.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       52,
+                       25,
+                       1253,
+                       1156
+                   ]
+    },
+    {
+        "breedId":  "loup-tchecoslovaque",
+        "name":  "Chien-loup tchécoslovaque",
+        "standard":  "332",
+        "price":  2290,
+        "heightRatio":  0.5,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/332g01-en.pdf",
+        "id":  "loup-tchecoslovaque-gris-jaune",
+        "coat":  "Gris jaune",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Czechoslovakian Wolfdog, athletic tall rectangular wolf-like body, long straight legs, wedge-shaped lean head, small upright triangular ears, amber oblique eyes, straight dense medium short double coat, high-set bushy tail hanging straight with a slight curve, characteristic light face mask. Coat: yellowish wolf grey coat with dark-tipped guard hair and pale mask muzzle throat and chest. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/loup-tchecoslovaque-gris-jaune.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-c642226b-98c2-4aec-bae8-b4c9589d4d28.png",
+        "canvas":  [
+                       1448,
+                       1086
+                   ],
+        "bounds":  [
+                       207,
+                       5,
+                       1266,
+                       1056
+                   ]
+    },
+    {
+        "breedId":  "loup-tchecoslovaque",
+        "name":  "Chien-loup tchécoslovaque",
+        "standard":  "332",
+        "price":  2290,
+        "heightRatio":  0.5,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/332g01-en.pdf",
+        "id":  "loup-tchecoslovaque-gris-argent",
+        "coat":  "Gris argent",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Czechoslovakian Wolfdog, athletic tall rectangular wolf-like body, long straight legs, wedge-shaped lean head, small upright triangular ears, amber oblique eyes, straight dense medium short double coat, high-set bushy tail hanging straight with a slight curve, characteristic light face mask. Coat: silver wolf grey coat with dark-tipped guard hair and pale mask muzzle throat and chest. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/loup-tchecoslovaque-gris-argent.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-4d2d037a-fe92-47d3-80da-7865feab818a.png",
+        "canvas":  [
+                       1402,
+                       1122
+                   ],
+        "bounds":  [
+                       206,
+                       28,
+                       1211,
+                       1076
+                   ]
+    },
+    {
+        "breedId":  "coonhound-noir-feu",
+        "name":  "Coonhound noir et feu",
+        "standard":  "300",
+        "price":  1990,
+        "heightRatio":  0.49,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/300g06-en.pdf",
+        "id":  "coonhound-noir-feu-feu-dore",
+        "coat":  "Noir et feu doré",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Black and Tan Coonhound, large strong balanced athletic scent hound, level back, long strong legs, clean long narrow head with minimal wrinkles, exceptionally long thin low-set hanging ears reaching past nose, short dense coat, long natural tapering low tail. Coat: coal black base with rich golden tan markings above eyes, sides of muzzle, chest, legs and breeching; black pencil markings on toes; NO white. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/coonhound-noir-feu-feu-dore.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-13899ba0-c701-4734-934d-ba9ea8bec1b2.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       200,
+                       13,
+                       1353,
+                       998
+                   ]
+    },
+    {
+        "breedId":  "coonhound-noir-feu",
+        "name":  "Coonhound noir et feu",
+        "standard":  "300",
+        "price":  1990,
+        "heightRatio":  0.49,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/300g06-en.pdf",
+        "id":  "coonhound-noir-feu-feu-cuivre",
+        "coat":  "Noir et feu cuivré",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Black and Tan Coonhound, large strong balanced athletic scent hound, level back, long strong legs, clean long narrow head with minimal wrinkles, exceptionally long thin low-set hanging ears reaching past nose, short dense coat, long natural tapering low tail. Coat: coal black base with deeper rich copper tan markings above eyes, sides of muzzle, chest, legs and breeching; black pencil markings on toes; NO white. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/coonhound-noir-feu-feu-cuivre.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-8a81cb50-6c21-4602-8c0b-70e26a8fea8d.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       213,
+                       15,
+                       1368,
+                       997
+                   ]
+    },
+    {
+        "breedId":  "lundehund",
+        "name":  "Chien norvégien de macareux",
+        "standard":  "265",
+        "price":  1540,
+        "heightRatio":  0.28,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/265g05-en.pdf",
+        "id":  "lundehund-roux-blanc",
+        "coat":  "Roux et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Norwegian Lundehund, small agile rectangular primitive spitz, refined wedge head, upright mobile triangular ears, medium dense straight double coat, light limbs and small feet with six functional toes per foot including extra inner toes, high-set tail in loose arch over back. Coat: red coat with black-tipped guard hairs along back and white chest underside legs and muzzle. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/lundehund-roux-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-4b3f2282-d481-4d33-940a-0cde664ed488.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       175,
+                       31,
+                       1149,
+                       1136
+                   ]
+    },
+    {
+        "breedId":  "lundehund",
+        "name":  "Chien norvégien de macareux",
+        "standard":  "265",
+        "price":  1540,
+        "heightRatio":  0.28,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/265g05-en.pdf",
+        "id":  "lundehund-fauve-blanc",
+        "coat":  "Fauve et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching our established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Norwegian Lundehund, small agile rectangular primitive spitz, refined wedge head, upright mobile triangular ears, medium dense straight double coat, light limbs and small feet with six functional toes per foot including extra inner toes, high-set tail in loose arch over back. Coat: light fawn coat with subtle black-tipped guard hairs and white chest underside legs and muzzle. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions and anatomical details, distinctive readable silhouette. Delicately painted detailed fur, soft upper-left light, gentle matte shading, alert friendly expression. Exactly FOUR legs, four complete visible paws, both ears and ENTIRE tail inside canvas. Leave generous transparent margins on EVERY side. Genuine RGBA transparent background outside the dog\u0027s fur silhouette and between legs, clean antialiased fur contours. No opaque backdrop, no haze, no glow, no floor shadow, no lettering, collar, props, other animals or cropped body parts.",
+        "fichier":  "public/assets/companions/lundehund-fauve-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-0a13bc66-9d9c-4e94-a600-602436ab171a.png",
+        "canvas":  [
+                       1431,
+                       1099
+                   ],
+        "bounds":  [
+                       260,
+                       42,
+                       1154,
+                       1040
+                   ]
+    }
+]

@@ -1,0 +1,502 @@
+﻿[
+    {
+        "breedId":  "castro-laboreiro",
+        "name":  "Chien de Castro Laboreiro",
+        "standard":  "170",
+        "price":  2050,
+        "heightRatio":  0.47,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/170g02-en.pdf",
+        "id":  "castro-laboreiro-loup-gris",
+        "coat":  "Loup gris",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Castro Laboreiro dog, rustic agile slight mastiff build, slightly long body, broad strong head and medium drop triangular ears, coarse dense short coat and long low sabre tail. Coat: wolf grey with black brindling and lighter grey underside. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/castro-laboreiro-loup-gris.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-e4c7df63-2018-4d3b-97a9-35bfce12c71d.png",
+        "discardedEdit":  {
+                              "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-cb50c4f4-2120-44b9-9e70-3ed7d031f7ff.png",
+                              "prompt":  "Precise background-removal edit. Preserve this exact dog, breed anatomy, coat colour and markings, all fur details, pose, four paws, ears and complete tail. Remove ALL the broad coloured atmospheric halo and glow behind and around the dog, including between legs and beneath tail. Output ONLY the isolated dog as a clean transparent RGBA PNG, alpha zero everywhere outside fur silhouette. No background of any colour, no shadow or fog. Preserve delicate fur strands but absolutely no broad semi-transparent glow. Do not add any new element.",
+                              "reason":  "Retouche inutile : le halo de l’aperçu correspond à des pixels transparents. PNG initial validé sur fonds composés."
+                          },
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       186,
+                       35,
+                       1358,
+                       991
+                   ]
+    },
+    {
+        "breedId":  "castro-laboreiro",
+        "name":  "Chien de Castro Laboreiro",
+        "standard":  "170",
+        "price":  2050,
+        "heightRatio":  0.47,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/170g02-en.pdf",
+        "id":  "castro-laboreiro-montagne",
+        "coat":  "Montagne",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Castro Laboreiro dog, rustic agile slight mastiff build, slightly long body, broad strong head and medium drop triangular ears, coarse dense short coat and long low sabre tail. Coat: mountain brindle, grey base with reddish pine-nut and mahogany tones and dark black brindling. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/castro-laboreiro-montagne.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-45b2904f-daf2-4269-b99c-c7769de08544.png",
+        "discardedEdit":  {
+                              "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-0c0b553f-2efe-4f5a-ba51-f48c418f4605.png",
+                              "prompt":  "Precise background-removal edit. Preserve this exact dog, breed anatomy, coat colour and markings, all fur details, pose, four paws, ears and complete tail. Remove ALL the broad coloured atmospheric halo and glow behind and around the dog, including between legs and beneath tail. Output ONLY the isolated dog as a clean transparent RGBA PNG, alpha zero everywhere outside fur silhouette. No background of any colour, no shadow or fog. Preserve delicate fur strands but absolutely no broad semi-transparent glow. Do not add any new element.",
+                              "reason":  "Retouche inutile : le halo de l’aperçu correspond à des pixels transparents. PNG initial validé sur fonds composés."
+                          },
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       144,
+                       28,
+                       1386,
+                       986
+                   ]
+    },
+    {
+        "breedId":  "ferme-dano-suedois",
+        "name":  "Chien de ferme dano-suédois",
+        "standard":  "356",
+        "price":  1320,
+        "heightRatio":  0.275,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/356g02-en.pdf",
+        "id":  "ferme-dano-suedois-tricolore",
+        "coat":  "Tricolore",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Danish-Swedish Farmdog, small compact slightly rectangular pinscher-type body, small triangular head, button ears folding close to cheeks, short smooth coat, natural full-length gently curved tail. Coat: predominantly white with distinct black patches on head and body. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/ferme-dano-suedois-tricolore.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-f4a9cb18-b272-478c-91ff-ca60136c3b85.png",
+        "canvas":  [
+                       1385,
+                       1136
+                   ],
+        "bounds":  [
+                       208,
+                       79,
+                       1181,
+                       1043
+                   ]
+    },
+    {
+        "breedId":  "ferme-dano-suedois",
+        "name":  "Chien de ferme dano-suédois",
+        "standard":  "356",
+        "price":  1320,
+        "heightRatio":  0.275,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/356g02-en.pdf",
+        "id":  "ferme-dano-suedois-fauve-blanc",
+        "coat":  "Fauve et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Danish-Swedish Farmdog, small compact slightly rectangular pinscher-type body, small triangular head, button ears folding close to cheeks, short smooth coat, natural full-length gently curved tail. Coat: predominantly white with rich warm tan patches on head and body. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/ferme-dano-suedois-fauve-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-4a694610-944d-44fc-ae54-798457396bcc.png",
+        "canvas":  [
+                       1462,
+                       1076
+                   ],
+        "bounds":  [
+                       252,
+                       85,
+                       1191,
+                       990
+                   ]
+    },
+    {
+        "breedId":  "podenco-canario",
+        "name":  "Chien de garenne des Canaries",
+        "standard":  "329",
+        "price":  1770,
+        "heightRatio":  0.45,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/329g05-en.pdf",
+        "id":  "podenco-canario-rouge-blanc",
+        "coat":  "Rouge et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Podenco Canario, slender athletic long-legged primitive hound, long narrow head, very large pricked ears, amber almond eyes, short sleek coat, flesh-toned nose, fine long low curved tail. Coat: mahogany red with white chest blaze and socks. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/podenco-canario-rouge-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-d78dbd8a-4989-4e2e-a2ec-5ba258dc2532.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       173,
+                       50,
+                       1151,
+                       1106
+                   ]
+    },
+    {
+        "breedId":  "podenco-canario",
+        "name":  "Chien de garenne des Canaries",
+        "standard":  "329",
+        "price":  1770,
+        "heightRatio":  0.45,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/329g05-en.pdf",
+        "id":  "podenco-canario-orange-blanc",
+        "coat":  "Orange et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Podenco Canario, slender athletic long-legged primitive hound, long narrow head, very large pricked ears, amber almond eyes, short sleek coat, flesh-toned nose, fine long low curved tail. Coat: predominantly white with warm orange patches on ears and body. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/podenco-canario-orange-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-a7928329-7377-4bc4-a8a8-83965a1d51e7.png",
+        "canvas":  [
+                       1312,
+                       1199
+                   ],
+        "bounds":  [
+                       195,
+                       31,
+                       1122,
+                       1120
+                   ]
+    },
+    {
+        "breedId":  "podengo-portugais",
+        "name":  "Chien de garenne portugais",
+        "standard":  "94",
+        "price":  1490,
+        "heightRatio":  0.32,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/094g05-en.pdf",
+        "id":  "podengo-portugais-fauve",
+        "coat":  "Fauve",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult medium-size smooth-coated Portuguese Podengo, nearly square agile body, wedge pyramidal head, tall erect triangular ears, honey eyes, short smooth coat, natural sickle-shaped tail. Coat: solid rich fawn with slightly lighter underside and dark nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/podengo-portugais-fauve.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-3897fecb-ad4e-44e7-b63a-5173ad766ba6.png",
+        "canvas":  [
+                       1254,
+                       1254
+                   ],
+        "bounds":  [
+                       199,
+                       32,
+                       1049,
+                       1179
+                   ]
+    },
+    {
+        "breedId":  "podengo-portugais",
+        "name":  "Chien de garenne portugais",
+        "standard":  "94",
+        "price":  1490,
+        "heightRatio":  0.32,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/094g05-en.pdf",
+        "id":  "podengo-portugais-jaune-blanc",
+        "coat":  "Jaune et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult medium-size smooth-coated Portuguese Podengo, nearly square agile body, wedge pyramidal head, tall erect triangular ears, honey eyes, short smooth coat, natural sickle-shaped tail. Coat: golden yellow with white chest muzzle blaze and socks. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/podengo-portugais-jaune-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-5b35f168-6b80-4107-a9e2-a8e9994b649a.png",
+        "canvas":  [
+                       1254,
+                       1254
+                   ],
+        "bounds":  [
+                       165,
+                       21,
+                       1051,
+                       1176
+                   ]
+    },
+    {
+        "breedId":  "serra-estrela",
+        "name":  "Chien de la Serra da Estrela",
+        "standard":  "173",
+        "price":  2360,
+        "heightRatio":  0.52,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/173g02-en.pdf",
+        "id":  "serra-estrela-fauve-masque-noir",
+        "coat":  "Fauve à masque noir",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult long-haired Estrela Mountain Dog, large rustic substantial mastiff guardian, broad head, small rose folded ears, dense slightly wavy long coat and feathered long low tail with a hook tip, dark facial mask. Coat: warm fawn coat, black facial mask and darker ears. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/serra-estrela-fauve-masque-noir.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-cefadf65-a2b0-4391-b248-f8c1ab613ef6.png",
+        "discardedEdit":  {
+                              "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-2d694af5-63e0-4af8-bfc8-6b2bce189502.png",
+                              "prompt":  "Precise background-removal edit. Preserve this exact dog, breed anatomy, coat colour and markings, all fur details, pose, four paws, ears and complete tail. Remove ALL the broad coloured atmospheric halo and glow behind and around the dog, including between legs and beneath tail. Output ONLY the isolated dog as a clean transparent RGBA PNG, alpha zero everywhere outside fur silhouette. No background of any colour, no shadow or fog. Preserve delicate fur strands but absolutely no broad semi-transparent glow. Do not add any new element.",
+                              "reason":  "Retouche inutile : le halo de l’aperçu correspond à des pixels transparents. PNG initial validé sur fonds composés."
+                          },
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       211,
+                       42,
+                       1347,
+                       965
+                   ]
+    },
+    {
+        "breedId":  "serra-estrela",
+        "name":  "Chien de la Serra da Estrela",
+        "standard":  "173",
+        "price":  2360,
+        "heightRatio":  0.52,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/173g02-en.pdf",
+        "id":  "serra-estrela-gris-loup",
+        "coat":  "Gris loup",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult long-haired Estrela Mountain Dog, large rustic substantial mastiff guardian, broad head, small rose folded ears, dense slightly wavy long coat and feathered long low tail with a hook tip, dark facial mask. Coat: wolf grey coat with dark tips and pale undercoat, dark facial mask. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/serra-estrela-gris-loup.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-814d0436-2c76-4ce9-9e4e-08eba44c4ad1.png",
+        "discardedEdit":  {
+                              "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-3df6d220-a7e6-430f-8196-a94f5566e808.png",
+                              "prompt":  "Precise background-removal edit. Preserve this exact dog, breed anatomy, coat colour and markings, all fur details, pose, four paws, ears and complete tail. Remove ALL the broad coloured atmospheric halo and glow behind and around the dog, including between legs and beneath tail. Output ONLY the isolated dog as a clean transparent RGBA PNG, alpha zero everywhere outside fur silhouette. No background of any colour, no shadow or fog. Preserve delicate fur strands but absolutely no broad semi-transparent glow. Do not add any new element.",
+                              "reason":  "Retouche inutile : le halo de l’aperçu correspond à des pixels transparents. PNG initial validé sur fonds composés."
+                          },
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       180,
+                       30,
+                       1350,
+                       989
+                   ]
+    },
+    {
+        "breedId":  "leonberg",
+        "name":  "Chien de Leonberg",
+        "standard":  "145",
+        "price":  2580,
+        "heightRatio":  0.57,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/145g02-en.pdf",
+        "id":  "leonberg-jaune-lion",
+        "coat":  "Jaune lion",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult male Leonberger, very large strong elegant mountain dog, long rich straight coat, impressive lion mane, triangular drop ears, long feathered hanging tail, mandatory distinct black facial mask. Coat: golden lion yellow with clear black facial mask and darker ear tips. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/leonberg-jaune-lion.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-3dd33aa1-19a2-4a3c-804f-a7c57c75cc66.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       237,
+                       14,
+                       1303,
+                       978
+                   ]
+    },
+    {
+        "breedId":  "leonberg",
+        "name":  "Chien de Leonberg",
+        "standard":  "145",
+        "price":  2580,
+        "heightRatio":  0.57,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/145g02-en.pdf",
+        "id":  "leonberg-rouge-brun",
+        "coat":  "Rouge brun",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult male Leonberger, very large strong elegant mountain dog, long rich straight coat, impressive lion mane, triangular drop ears, long feathered hanging tail, mandatory distinct black facial mask. Coat: rich reddish brown with clear black facial mask and black hair tips along back. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/leonberg-rouge-brun.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-cac0b04e-2bb9-40d3-bfe5-d53ce2a1fc99.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       197,
+                       19,
+                       1333,
+                       991
+                   ]
+    },
+    {
+        "breedId":  "aidi",
+        "name":  "Chien de montagne de l’Atlas (Aïdi)",
+        "standard":  "247",
+        "price":  1920,
+        "heightRatio":  0.44,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/247g02-en.pdf",
+        "id":  "aidi-fauve",
+        "coat":  "Fauve",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Aidi Atlas mountain dog, powerful agile medium-large guardian, broad bear-like head tapering muzzle, half-dropped medium ears, thick harsh medium-length coat with neck ruff, abundant long plumed low scimitar tail. Coat: rich fawn with subtle dark overlay on back and black nose. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/aidi-fauve.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-281666e0-c5fc-48f9-8556-380ca8cf93c3.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       243,
+                       28,
+                       1321,
+                       972
+                   ]
+    },
+    {
+        "breedId":  "aidi",
+        "name":  "Chien de montagne de l’Atlas (Aïdi)",
+        "standard":  "247",
+        "price":  1920,
+        "heightRatio":  0.44,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/247g02-en.pdf",
+        "id":  "aidi-noir-blanc",
+        "coat":  "Noir et blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Aidi Atlas mountain dog, powerful agile medium-large guardian, broad bear-like head tapering muzzle, half-dropped medium ears, thick harsh medium-length coat with neck ruff, abundant long plumed low scimitar tail. Coat: black body patches and head with white blaze chest legs and underside. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/aidi-noir-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-26219c70-758a-41e0-b05f-5e0a77d166ad.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       218,
+                       26,
+                       1327,
+                       980
+                   ]
+    },
+    {
+        "breedId":  "montagne-pyrenees",
+        "name":  "Chien de montagne des Pyrénées",
+        "standard":  "137",
+        "price":  2510,
+        "heightRatio":  0.565,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/137g02-en.pdf",
+        "id":  "montagne-pyrenees-blanc",
+        "coat":  "Blanc",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Pyrenean Mountain Dog, imposing elegant very large guardian with long thick white coat, small triangular drop ears, gentle almond brown eyes, black nose, long low plumed tail curved at tip, double rear dewclaws. Coat: pure white all over with subtle cool natural shadows. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/montagne-pyrenees-blanc.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-e6675efa-c544-4e7c-89d1-eee8e04d6271.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       180,
+                       30,
+                       1375,
+                       987
+                   ]
+    },
+    {
+        "breedId":  "montagne-pyrenees",
+        "name":  "Chien de montagne des Pyrénées",
+        "standard":  "137",
+        "price":  2510,
+        "heightRatio":  0.565,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/137g02-en.pdf",
+        "id":  "montagne-pyrenees-blanc-blaireau",
+        "coat":  "Blanc et blaireau",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Pyrenean Mountain Dog, imposing elegant very large guardian with long thick white coat, small triangular drop ears, gentle almond brown eyes, black nose, long low plumed tail curved at tip, double rear dewclaws. Coat: white with badger grey markings restricted to ears and around eyes, small badger patch at tail base. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/montagne-pyrenees-blanc-blaireau.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-296d88ad-796e-4e2e-9209-d06065b381ac.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       168,
+                       33,
+                       1400,
+                       971
+                   ]
+    },
+    {
+        "breedId":  "rouge-hanovre",
+        "name":  "Chien de recherche au sang de Hanovre",
+        "standard":  "213",
+        "price":  1810,
+        "heightRatio":  0.405,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/213g06-en.pdf",
+        "id":  "rouge-hanovre-rouge-cerf",
+        "coat":  "Rouge cerf",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Hanoverian Scenthound, strong rectangular heavy scent hound body, deep chest, relatively short stout legs but not dwarf, broad slightly wrinkled forehead, long drop rounded ears, short dense coat, thick long tapering low tail. Coat: rich deer red with slightly darker muzzle and ears. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rouge-hanovre-rouge-cerf.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-712bcf09-0719-4ec1-a6ed-c7090d267aa0.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       161,
+                       40,
+                       1400,
+                       958
+                   ]
+    },
+    {
+        "breedId":  "rouge-hanovre",
+        "name":  "Chien de recherche au sang de Hanovre",
+        "standard":  "213",
+        "price":  1810,
+        "heightRatio":  0.405,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/213g06-en.pdf",
+        "id":  "rouge-hanovre-bringe",
+        "coat":  "Bringé",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Hanoverian Scenthound, strong rectangular heavy scent hound body, deep chest, relatively short stout legs but not dwarf, broad slightly wrinkled forehead, long drop rounded ears, short dense coat, thick long tapering low tail. Coat: dark deer red with dense black brindling on body and darker face. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rouge-hanovre-bringe.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-e32811af-c047-49ea-a5d8-d329a6c7485c.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       220,
+                       71,
+                       1315,
+                       948
+                   ]
+    },
+    {
+        "breedId":  "rhodesian-ridgeback",
+        "name":  "Chien de Rhodésie à crête dorsale",
+        "standard":  "146",
+        "price":  2150,
+        "heightRatio":  0.505,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/146g06-en.pdf",
+        "id":  "rhodesian-ridgeback-froment-clair",
+        "coat":  "Froment clair",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Rhodesian Ridgeback, muscular balanced athletic tall hound, short glossy coat, clear narrow backwards-growing dorsal ridge, triangular drop ears, long tapering natural low curved tail, black nose. Coat: light wheaten golden tan coat. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rhodesian-ridgeback-froment-clair.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-9649e963-c4ff-4e67-bcc6-ebe1a653bfda.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       239,
+                       23,
+                       1282,
+                       970
+                   ]
+    },
+    {
+        "breedId":  "rhodesian-ridgeback",
+        "name":  "Chien de Rhodésie à crête dorsale",
+        "standard":  "146",
+        "price":  2150,
+        "heightRatio":  0.505,
+        "standardUrl":  "https://www.fci.be/Nomenclature/Standards/146g06-en.pdf",
+        "id":  "rhodesian-ridgeback-froment-rouge",
+        "coat":  "Froment rouge",
+        "prompt":  "Use case: illustration-story. Original adoptable companion sprite for Luma City, matching the established warm premium hand-painted semi-realistic 2D dog collection. Draw ONE adult Rhodesian Ridgeback, muscular balanced athletic tall hound, short glossy coat, clear narrow backwards-growing dorsal ridge, triangular drop ears, long tapering natural low curved tail, black nose. Coat: deep red wheaten reddish tan coat. Natural standing three-quarter view facing LEFT, head slightly toward viewer. Accurate ADULT breed proportions, anatomically correct distinct breed silhouette. Delicately painted detailed fur, soft upper-left light, matte gentle shading, friendly alert expression. Entire dog, exactly FOUR legs with four complete paws, both ears and ENTIRE tail inside canvas. Generous fully transparent margins on EVERY side, at least eight percent. Genuine RGBA transparency outside dog and between legs. Clean antialiased fur edges without coloured fringe. NO backdrop, white background, haze, glow, ground shadow, collar, text, accessories, extra animals or cropped body parts.",
+        "fichier":  "public/assets/companions/rhodesian-ridgeback-froment-rouge.png",
+        "mode":  "built-in image_gen",
+        "sourceImage":  "C:\\Users\\vosma\\.codex\\generated_images\\01a1f066-4d39-7541-b8b4-0349b3faebcb\\exec-bfe2a88d-e622-46a4-8d58-fc8c70da492a.png",
+        "canvas":  [
+                       1536,
+                       1024
+                   ],
+        "bounds":  [
+                       223,
+                       24,
+                       1291,
+                       987
+                   ]
+    }
+]

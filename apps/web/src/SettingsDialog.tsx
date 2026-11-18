@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Check, Palette, Play, Settings, Volume2, X } from "lucide-react";
 import {
   MAX_SOUND_LEVEL, SOUND_GROUPS, SOUND_NAMES, playSound, setSoundEnabled, setSoundLevel, setSoundMuted,
@@ -15,10 +15,11 @@ const BACKGROUNDS = [
 ] as const;
 
 /** Paramètres du joueur : couleur du fond et réglage de chaque son du jeu. */
-export function SettingsDialog({ theme, custom, vip, onTheme, onCustom, onClose }: {
+export function SettingsDialog({ theme, custom, vip, companions, onTheme, onCustom, onClose }: {
   theme: string;
   custom: string;
   vip: boolean;
+  companions?: ReactNode;
   onTheme: (theme: string) => void;
   onCustom: (hex: string) => void;
   onClose: () => void;
@@ -56,6 +57,8 @@ export function SettingsDialog({ theme, custom, vip, onTheme, onCustom, onClose 
         </div>
         <VipBackgroundControl key={custom} enabled={vip} initialValue={custom} onApply={onCustom} />
       </section>
+
+      {companions}
 
       <section aria-labelledby="settings-sounds">
         <h3 id="settings-sounds"><Volume2 size={16} aria-hidden="true" /> Sons</h3>

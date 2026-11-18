@@ -227,7 +227,11 @@ export type Character = {
   outfit?: WornOutfit | null;
   starter_outfit?: WornOutfit | null;
 };
-export type Presence = Character & { x: number; y: number };
+export type Presence = Character & {
+  x: number;
+  y: number;
+  companion?: import("./companions.ts").OwnedCompanion | null;
+};
 export type RoomMessage = {
   id: string;
   sender: string;

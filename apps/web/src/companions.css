@@ -1,0 +1,235 @@
+.pet-art {
+  display: block;
+  position: relative;
+  width: min(100%, calc(var(--pet-height, 9rem) * var(--pet-ratio)));
+  aspect-ratio: var(--pet-ratio);
+  pointer-events: none;
+}
+.pet-art img { display: block; position: absolute; max-width: none; height: auto; }
+.game-fullscreen .character-stage.has-companion { container-type: size; }
+.game-fullscreen .character-stage.has-companion > .full-body { width: 84%; left: 0; }
+.rail-companion {
+  --pet-floor: 42px;
+  --pet-height: calc(min(100cqh - var(--pet-floor), 173cqw) * var(--pet-height-ratio));
+  position: absolute;
+  bottom: var(--pet-floor);
+  right: 3%;
+  width: min(38%, calc(var(--pet-height) * var(--pet-ratio)));
+  transform: translateY(var(--pet-tail));
+  z-index: 2;
+}
+.game-fullscreen .rail-companion-button {
+  position: absolute;
+  top: 22%;
+  right: 3%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #d7a8df;
+  border-radius: 50%;
+  color: #ffe5ba;
+  background: #684778;
+  box-shadow: 0 3px 10px #1a112855;
+}
+.game-fullscreen .rail-companion-button:hover { background: #835999; }
+@media (min-width: 1001px) { .rail-companion { --pet-floor: 86px; } }
+@media (max-width: 700px) {
+  .game-fullscreen .character-stage.has-companion > .full-body { width: 72%; left: 0; }
+  .rail-companion { --pet-floor: 35px; right: 2%; }
+  .game-fullscreen .rail-companion-button { top: 30%; right: 2px; width: 34px; height: 34px; }
+}
+.companion-shop {
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: clamp(.85rem, 2.5vw, 2rem);
+  color: #fff3fa;
+  background: radial-gradient(ellipse at top right, #714977, #372946 75%);
+}
+.companion-shop-heading,
+.companion-shop-summary,
+.companion-dialog-heading,
+.companion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem .75rem;
+}
+.companion-shop-heading h1,
+.companion-dialog-heading h2 { flex: 1; margin: 0; color: #fff3fa; }
+.companion-shop-heading h1 { font-size: clamp(1.2rem, 3vw, 2rem); }
+.companion-shop-summary { justify-content: space-between; margin: .85rem 0 1.3rem; }
+.companion-shop-summary p { margin: 0; color: #f3dff0; }
+.companion-shop-summary strong, .companion-price { color: #ffe2a9; }
+.companion-shelf + .companion-shelf { margin-top: 1.35rem; }
+.companion-shelf h2 { font-size: 1.28rem; margin: 0 0 .6rem; color: #fff3fa; }
+.companion-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.1rem), 1fr)); gap: .75rem; }
+.companion-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid #b493bf;
+  background: #50375d;
+}
+.companion-card-art, .companion-purchase-art, .companion-collection-art {
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #faf0f9, #d8bfdf);
+}
+.companion-card-art { height: 10rem; padding: .55rem; --pet-height: 8.6rem; }
+.companion-card-info { display: grid; align-content: start; gap: .35rem; padding: .65rem .75rem .85rem; }
+.companion-card h2, .companion-card h3, .companion-card p { margin: 0; }
+.companion-card h2, .companion-card h3 { color: #fff3fa; font-size: 1.16rem; }
+.companion-card p { color: #eedaf0; font-size: .83rem; min-height: 2.3em; }
+.companion-card-info > strong { color: #ffe2a9; font-size: .9rem; }
+.companion-owned { display: flex; align-items: center; gap: .3rem; overflow-wrap: anywhere; font-size: .85rem; color: #ffe7b7; }
+.companion-shop button, .companion-dialog button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem .65rem;
+  min-height: 36px;
+  color: #fff3fa;
+  border: 1px solid #b68eb9;
+  border-radius: .6rem;
+  background: #795084;
+}
+.companion-shop .companion-primary, .companion-dialog .companion-primary {
+  color: #47274a;
+  background: #ffe1aa;
+  border-color: #ffebc7;
+  font-weight: 700;
+}
+.companion-card .companion-primary { margin-top: .2rem; justify-self: start; }
+.companion-dialog {
+  width: min(29rem, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid #bf9ccb;
+  border-radius: .95rem;
+  color: #fff1fa;
+  background: #452e54;
+  box-shadow: 0 14px 50px #1c1026aa;
+}
+.companion-dialog::backdrop { background: #1f112bb5; }
+.companion-dialog-heading h2 { font-size: 1.35rem; }
+.companion-dialog .companion-icon { padding: .35rem; }
+.companion-purchase-art { --pet-height: 10rem; min-height: 11rem; border-radius: .6rem; margin-top: .8rem; padding: .5rem 1.5rem; }
+.companion-breed { text-align: center; margin: .55rem 0; color: #f1daef; }
+.companion-dialog form { display: grid; gap: .5rem; }
+.companion-dialog form p { margin: .1rem 0; }
+.companion-dialog form label, .companion-collection-info { display: grid; gap: .3rem; }
+.companion-dialog input {
+  width: 100%;
+  padding: .55rem .6rem;
+  border: 1px solid #be97c3;
+  border-radius: .45rem;
+  color: #fff6fb;
+  background: #392341;
+}
+.companion-dialog small { color: #ead5ee; }
+.companion-dialog button:disabled { opacity: .55; }
+.companion-error { color: #ffcad7; margin-bottom: 0; }
+.companion-collection { display: grid; gap: .55rem; padding: 0; margin: .8rem 0 0; list-style: none; }
+.companion-collection li {
+  display: grid;
+  grid-template-columns: 3.7rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .65rem;
+  padding: .4rem;
+  background: #563961;
+  border-radius: .55rem;
+  overflow-wrap: anywhere;
+}
+.companion-collection-art { --pet-height: 3rem; height: 3.65rem; padding: .25rem; border-radius: .35rem; }
+.companion-settings { padding: 12px 15px 15px; border-top: 1px solid #e7abc9; background: #fff1f8; }
+.companion-settings h3 { margin: 0; font: 500 1.15rem Outfit, sans-serif; }
+.companion-settings .companion-collection li { background: #fff8fc; border: 1px solid #e4b4cf; }
+.companion-settings .companion-collection li > button {
+  padding: 6px 8px;
+  border: 1px solid #cd7eae;
+  border-radius: 8px;
+  background: #fff1fb;
+  font-size: 12px;
+}
+.companion-settings .companion-name-editor,
+.profile-companion .companion-name-editor {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: .35rem;
+  padding: .35rem;
+}
+.companion-name-editor input {
+  width: 100%;
+  min-width: 0;
+  padding: .5rem .6rem;
+  border: 1px solid #d38cb6;
+  border-radius: .5rem;
+  color: inherit;
+  background: #fff;
+}
+.companion-name-editor [aria-invalid="true"] { border-color: #a83c61; }
+.companion-settings .companion-error,
+.profile-companion .companion-error { color: #8c2451; }
+.profile-companion {
+  display: grid;
+  grid-template-columns: 3.7rem minmax(0, 1fr);
+  align-items: center;
+  gap: .55rem;
+  padding: .4rem;
+  border: 1px solid #e4b4cf;
+  border-radius: .55rem;
+  background: #fff8fc;
+  overflow-wrap: anywhere;
+}
+.profile-companion small { display: block; }
+.profile-companion-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .25rem;
+}
+.profile-companion-rename {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #dca8c8;
+  border-radius: .5rem;
+  background: #fff0f8;
+}
+.profile-companion-rename:hover:enabled { background: #ffdeee; }
+.profile-companion .companion-name-editor {
+  min-width: 0;
+  border: 0;
+  background: transparent;
+}
+.profile-companion .companion-name-editor label { margin: 0; }
+.profile-card-summary .profile-avatar.has-companion > svg {
+  width: 82%;
+  min-width: 0;
+  justify-self: start;
+}
+.profile-avatar-companion {
+  --pet-height: calc(min(100cqh, 165cqw) * var(--pet-height-ratio));
+  position: absolute;
+  right: 5%;
+  bottom: 15px;
+  width: min(36%, calc(var(--pet-height) * var(--pet-ratio)));
+  transform: translateY(var(--pet-tail));
+}
+@media (max-width: 540px) {
+  .companion-shop-heading button:last-child { padding-inline: .45rem; font-size: .8rem; }
+  .companion-cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.7rem), 1fr)); gap: .45rem; }
+  .companion-card-art { height: 6.8rem; --pet-height: 5.8rem; }
+  .companion-card-info { padding-inline: .5rem; }
+}

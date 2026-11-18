@@ -365,8 +365,10 @@
 .profile-card-summary .profile-avatar {
   position: relative;
   isolation: isolate;
-  align-self: start;
-  height: clamp(250px, 48dvh, 380px);
+  container-type: size;
+  align-self: stretch;
+  height: auto;
+  min-height: clamp(250px, 48dvh, 380px);
   padding: 12px 8px;
   overflow: hidden;
   border: 1px solid #cc8eb8;
@@ -513,7 +515,9 @@
     padding: 9px;
   }
   .profile-card-summary .profile-avatar {
+    align-self: start;
     height: 235px;
+    min-height: 0;
   }
 }
 .profile-detail-panel {

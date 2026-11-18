@@ -30,7 +30,10 @@ import {
   type ProfileSocial,
   type ProfileTemplate,
 } from "../../../packages/contracts/src/index";
+import type { CompanionCollection, OwnedCompanion } from "../../../packages/contracts/src/companions";
+import { companionModel } from "../../../packages/domain/src/companions";
 import { Portrait } from "./Avatar";
+import { CompanionArt, CompanionNameEditor, CompanionSettings } from "./CompanionShop";
 import { MottoEditor } from "./MottoEditor";
 import { avatarGarment } from "./avatar/catalog";
 import { AvatarItemThumbnail } from "./avatar/LayeredDoll";
@@ -101,6 +104,35 @@ async function prepareProfileImage(file: File) {
   }
 }
 
+function ProfileCompanion({ animal, model, rename }: {
+  animal: OwnedCompanion;
+  model: NonNullable<ReturnType<typeof companionModel>>;
+  rename?: (id: string, name: string) => Promise<void>;
+}) {
+  const [renaming, setRenaming] = useState(false);
+  const renameButton = useRef<HTMLButtonElement>(null);
+  const renameLabel = `Renommer ${animal.name}`;
+
+  return <div className="profile-companion">
+    <div className="companion-collection-art"><CompanionArt model={model} /></div>
+    <div className="profile-companion-info">
+      <div className="profile-companion-name">
+        <strong>{animal.name}</strong>
+        {rename && <button type="button" ref={renameButton} className="profile-companion-rename"
+          title={renameLabel} aria-label={renameLabel} aria-expanded={renaming} disabled={renaming}
+          onClick={() => setRenaming(true)}>
+          <Pencil size={14} aria-hidden="true" />
+        </button>}
+      </div>
+      <small>{model.breed} · {model.coat}</small>
+    </div>
+    {rename && renaming && <CompanionNameEditor animal={animal} rename={rename} onClose={() => {
+      setRenaming(false);
+      requestAnimationFrame(() => renameButton.current?.focus());
+    }} />}
+  </div>;
+}
+
 export function ProfileCard({
   character,
   viewerLayers,
@@ -110,6 +142,8 @@ export function ProfileCard({
   generation,
   requestVersion,
   purchased,
+  companion,
+  companionSettings,
   onProfile,
   onOpenProfile,
   onHome,
@@ -132,6 +166,8 @@ export function ProfileCard({
   generation: number;
   requestVersion?: number;
   purchased: readonly GiftItem[];
+  companion?: OwnedCompanion | null;
+  companionSettings?: { collection: CompanionCollection; rename: (id: string, name: string) => Promise<void> };
   onProfile: () => void;
   /** Opens the profile of a best friend or partner shown in a slot. */
   onOpenProfile?: (person: Character) => void;
@@ -168,6 +204,7 @@ export function ProfileCard({
   const [giftChoice, setGiftChoice] = useState<GiftItem>();
   const giftCommand = useRef<string | undefined>(undefined);
   const layers = own ? viewerLayers : undefined;
+  const petModel = companion && companionModel(companion.modelId);
   const [now, setNow] = useState(() => Date.now());
   const [confirmUnfriend, setConfirmUnfriend] = useState(false);
 
@@ -449,8 +486,9 @@ export function ProfileCard({
                 );
               })}
             </div>
-            <div className="profile-avatar">
+            <div className={`profile-avatar${petModel ? " has-companion" : ""}`}>
               <Portrait {...character} fullBody layers={layers} />
+              {petModel && <CompanionArt model={petModel} className="profile-avatar-companion" />}
             </div>
             <div className="profile-note">
               {editing ? (
@@ -504,6 +542,10 @@ export function ProfileCard({
                   <Quote size={16} aria-hidden="true" />
                   <span>{character.motto || "Aucun texte pour le moment."}</span>
                 </p>
+              )}
+              {!editing && companion && petModel && (
+                <ProfileCompanion key={companion.id} animal={companion} model={petModel}
+                  rename={own ? companionSettings?.rename : undefined} />
               )}
               <ul className="profile-featured-relations" aria-label="Meilleurs amis et couple">
                 {relationshipSlots.map(({ label, person, Icon }) => {
@@ -580,6 +622,10 @@ export function ProfileCard({
               </div>
             </div>
           </div>
+        )}
+
+        {view === "card" && own && editing && companionSettings && (
+          <CompanionSettings {...companionSettings} />
         )}
 
         {view === "wardrobe" && own && (

@@ -26,6 +26,11 @@
   cursor: pointer;
 }
 .settings-dialog section { margin-top: 1.25rem; }
+.settings-dialog .companion-settings {
+  border: 1px solid #b68ab7;
+  border-radius: .65rem;
+  color: #51213f;
+}
 .settings-dialog h3 {
   display: flex;
   align-items: center;

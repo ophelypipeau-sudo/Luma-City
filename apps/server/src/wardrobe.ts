@@ -50,17 +50,20 @@ export function createWardrobe(atelier?: AtelierStore) {
   }
   async function spent(q: Query, account: string) {
     const { rows: [row] } = await q(
-      "SELECT COALESCE(SUM(price),0)::integer AS spent FROM wardrobe_items WHERE paid_by=$1", [account]);
+      `SELECT (COALESCE((SELECT SUM(price) FROM wardrobe_items WHERE paid_by=$1),0)
+             + COALESCE((SELECT SUM(price) FROM companions WHERE paid_by=$1),0)) AS spent`, [account]);
     return Number(row.spent);
+  }
+  async function balance(q: Query, character: CharacterRow, earnedCoins: number) {
+    return Math.max(0, startingBalance(character.id) + earnedCoins - await spent(q, character.account_id));
   }
   /** Same model as the shop: starting coins + coins earned on the server − purchases. */
   async function commerce(q: Query, character: CharacterRow, earnedCoins: number) {
     const owned = await items(q, character.id);
     const worn = layersOf(character.outfit);
     const starter = layersOf(character.starter_outfit);
-    const balance = startingBalance(character.id) + earnedCoins - (await spent(q, character.account_id));
     const state: FashionCommerce = {
-      accounts: { [character.account_id]: { balance: Math.max(0, balance) } },
+      accounts: { [character.account_id]: { balance: await balance(q, character, earnedCoins) } },
       wardrobes: { [character.id]: { items: owned, equipped: worn } },
     };
     return { state, worn, starter };
@@ -181,5 +184,5 @@ export function createWardrobe(atelier?: AtelierStore) {
     await q("UPDATE characters SET wardrobe_imported=TRUE WHERE id=$1", [character.id]);
     return { imported, skipped };
   }
-  return { view, buy, assertWearable, gift, importLegacy };
+  return { view, balance, buy, assertWearable, gift, importLegacy };
 }

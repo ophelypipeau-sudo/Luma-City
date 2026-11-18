@@ -14,6 +14,7 @@ import {
   MousePointer2,
   Map,
   Pencil,
+  PawPrint,
   Settings,
   Shirt,
   ShoppingBag,
@@ -26,6 +27,9 @@ import {
 import { playSound } from "./sounds";
 import { SettingsDialog } from "./SettingsDialog";
 import { Room } from "./Room";
+import { CompanionArt, CompanionPicker, CompanionShop, CompanionSettings } from "./CompanionShop";
+import type { CompanionCollection, OwnedCompanion } from "../../../packages/contracts/src/companions";
+import { companionModel } from "../../../packages/domain/src/companions";
 import { WalletCounter } from "./WalletCounter";
 import { LevelMeter } from "./LevelMeter";
 import { RoomChat, type RoomChatReceipt } from "./RoomChat";
@@ -85,6 +89,7 @@ import "./game-shell.css";
 import "./map-markers.css";
 import "./profile.css";
 import "./quartier.css";
+import "./companions.css";
 import "./friends-panel.css";
 import "./guestbook/guestbook.css";
 import "./beauty-salon.css";
@@ -105,10 +110,12 @@ type State = {
   rewardWheel?: RewardWheel;
   /** Owned garments and balance, computed by the server. */
   wardrobe?: Wardrobe;
+  companions?: CompanionCollection;
   uiCapabilities?: { customBackground?: boolean; customGarmentColors?: boolean; customProfileImage?: boolean };
 };
 type Wardrobe = { items: PurchasedItem[]; balance: number; diamonds: number };
 const EMPTY_WARDROBE: Wardrobe = { items: [], balance: 0, diamonds: 0 };
+const EMPTY_COMPANIONS: CompanionCollection = { items: [], equipped: null };
 const createPlayerAuth = (url: string) => createAuthClient(url);
 async function api(path: string, body?: unknown, token?: string) {
   const r = await fetch("/api/" + path, {
@@ -182,7 +189,8 @@ function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("interface-theme") ?? "lavender",
   );
-  const [view, setView] = useState<"explore" | "garden" | "shop" | "dressing" | "salon" | "arcade" | "ranking" | "friends">("explore");
+  const [view, setView] = useState<"explore" | "garden" | "shop" | "pets" | "dressing" | "salon" | "arcade" | "ranking" | "friends">("explore");
+  const [companionPicker, setCompanionPicker] = useState(false);
   const [worldPanel, setWorldPanel] = useState<"magazine" | "quests" | null>(null);
   const [magazineMenu, setMagazineMenu] = useState(false);
   const magazineNav = useRef<HTMLDivElement>(null);
@@ -226,6 +234,39 @@ function App() {
   const activeId = state?.character?.id;
   const ownLayers = (id: string | undefined) => id === activeId ? wornLayers : undefined;
   const wardrobe = state?.wardrobe ?? EMPTY_WARDROBE;
+  const companions = state?.companions ?? EMPTY_COMPANIONS;
+  const equippedModel = companions.equipped && companionModel(companions.equipped.modelId);
+  function openCompanionShop() {
+    setCompanionPicker(false);
+    setGuestbookId(null);
+    setSocialOpen(false);
+    setView("pets");
+  }
+  async function companionRequest(action: "buy" | "equip" | "rename", body: object) {
+    if (!state?.character) throw new Error("Connecte-toi pour gérer tes compagnons.");
+    const generation = state.generation;
+    const result = await api(`companions/${action}`, { ...body, generation }) as {
+      companions: CompanionCollection; balance?: number; animal?: OwnedCompanion;
+    };
+    setState((current) => current?.character?.id === activeId && current?.generation === generation ? {
+      ...current,
+      companions: result.companions,
+      wardrobe: result.balance !== undefined && current.wardrobe
+        ? { ...current.wardrobe, balance: result.balance } : current.wardrobe,
+    } : current);
+    return result;
+  }
+  async function purchaseCompanion(modelId: string, name: string) {
+    const { animal } = await companionRequest("buy", { modelId, name });
+    if (!animal) throw new Error("Achat indisponible. Réessaie.");
+    return animal;
+  }
+  async function selectCompanion(id: string | null) {
+    await companionRequest("equip", { id });
+  }
+  async function renameCompanion(id: string, name: string) {
+    await companionRequest("rename", { id, name });
+  }
   function applyWardrobe(result: { outfit?: unknown; wardrobe?: Wardrobe }, characterId = activeId) {
     setState((current) => current?.character && current.character.id === characterId ? {
       ...current,
@@ -894,16 +935,20 @@ function App() {
           <Pencil size={13} />
           <span>{state.character.motto || "Écrire ma bulle"}</span>
         </button>)}
-        <div className="character-stage">
+        <div className={`character-stage${equippedModel ? " has-companion" : ""}`}>
           <div className="character-orbit orbit-one" />
           <div className="character-orbit orbit-two" />
           <span className="avatar-spark spark-one">✧</span>
           <span className="avatar-spark spark-two">✦</span>
           <div className="avatar-pedestal" />
           <Portrait {...(state?.character ?? { id: "iris" })} layers={wornLayers} fullBody />
+          {equippedModel && <CompanionArt model={equippedModel} className="rail-companion" />}
           {state?.character && <button type="button" className="profile-avatar-trigger"
             aria-label={`Voir le profil de ${state.character.name}`}
             onClick={() => setProfileId(state.character!.id)} />}
+          {activeId && <button type="button" className="rail-companion-button" aria-label="Mes compagnons"
+            aria-haspopup="dialog" title={companions.equipped?.name ?? "Mes compagnons"}
+            onClick={() => setCompanionPicker(true)}><PawPrint size={17} aria-hidden="true" /></button>}
           <div className="stage-caption">
             {state?.character?.name ?? "Bienvenue"}
             <span>Un style, une personnalité.</span>
@@ -1046,7 +1091,7 @@ function App() {
                   : view === "shop"
                     ? "Boutique de vêtements"
                     : view === "dressing" ? "Mon dressing"
-                    : view === "friends" ? "Mes amis" : view === "salon" ? "Salon d’esthétique" : view === "arcade" ? "Coin détente" : view === "ranking" ? "Classements" : scene.name
+                    : view === "friends" ? "Mes amis" : view === "salon" ? "Salon d’esthétique" : view === "pets" ? "Animalerie" : view === "arcade" ? "Coin détente" : view === "ranking" ? "Classements" : scene.name
               }
             >
               {privateChatOpen ? (
@@ -1145,6 +1190,7 @@ function App() {
                       setView("shop");
                       setSocialOpen(false);
                     }}
+                    onPets={activeId ? openCompanionShop : undefined}
                     onSalon={() => {
                       setView("salon");
                       setSocialOpen(false);
@@ -1184,6 +1230,10 @@ function App() {
                 <BeautySalon key={activeId} layers={wornLayers} onBack={openMap}
                   canCustomizeColors={state?.uiCapabilities?.customGarmentColors === true}
                   onSave={(activeId === "iris" || (activeId && isCreatedPlayer(activeId))) ? (face) => saveEquippedOutfit({ ...wornLayers, face }) : undefined} />
+              ) : view === "pets" && state?.character ? (
+                <CompanionShop key={activeId} collection={companions} balance={wardrobe.balance}
+                  onBack={openMap} onCollection={() => setCompanionPicker(true)}
+                  buy={purchaseCompanion} equip={selectCompanion} />
               ) : view === "shop" && state?.character ? (
                 <Shop
                   canCustomizeColors={state.uiCapabilities?.customGarmentColors === true}
@@ -1231,6 +1281,7 @@ function App() {
                         players={presence?.roomId === roomId ? players : []}
                         me={state?.character?.id}
                         wornLayers={wornLayers}
+                        ownCompanion={companions.equipped}
                         messages={roomChat?.roomId === roomId ? roomChat.messages : undefined}
                         onMove={move}
                         onSelect={setProfileId}
@@ -1437,6 +1488,7 @@ function App() {
         onClose={() => setWorldPanel(null)} onClaim={(source) => void claimXp(source).catch(() => {})}
         rewards={<FloatingRewards rewards={rewards.filter((reward) => !("points" in reward))} collect={collectReward} inDialog />} />}
       {settingsOpen && <SettingsDialog theme={theme} custom={vipBackground} vip={canCustomizeBackground}
+        companions={activeId ? <CompanionSettings key={activeId} collection={companions} rename={renameCompanion} /> : undefined}
         onTheme={(next) => {
           setTheme(next);
           if (canCustomizeBackground) {
@@ -1452,11 +1504,15 @@ function App() {
       {wheelOpen && !modalOpen && <PrizeWheel wheel={state?.rewardWheel}
         onClose={() => setWheelOpen(false)} onSpin={spinWheel}
         onBurst={(ids, origin) => { setCoinBurst({ ids, ...origin }); setWheelOpen(false); }} />}
+      {companionPicker && activeId && !modalOpen && <CompanionPicker key={activeId} collection={companions}
+        equip={selectCompanion} onClose={() => setCompanionPicker(false)} onShop={openCompanionShop} />}
       {!worldPanel && !wheelOpen && !profile && !modalOpen && activeId &&
         <FloatingRewards rewards={rewards} collect={collectReward} burstOrigin={coinBurst} />}
       {profile && state?.character && !modalOpen && <ProfileCard
         key={`${state.character.id}:${profile.id}`} character={profile}
         viewerLayers={wornLayers} viewerXp={state.character.xp ?? 0} own={ownProfile}
+        companion={ownProfile ? companions.equipped : roomPeople.find((player) => player.id === profile.id)?.companion}
+        companionSettings={ownProfile ? { collection: companions, rename: renameCompanion } : undefined}
         rewards={<FloatingRewards rewards={rewards} collect={collectReward} inDialog />}
         blocked={state.contacts.find((contact) => contact.id === profile.id)?.blocked}
         generation={state.generation} requestVersion={profileRevision}

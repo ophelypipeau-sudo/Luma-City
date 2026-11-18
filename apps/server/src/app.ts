@@ -17,6 +17,8 @@ import type { WebSocket } from "ws";
 import type { Database, Query } from "./db.ts";
 import { migrate } from "./db.ts";
 import { createWardrobe, legacyItemsSchema, PlayerError } from "./wardrobe.ts";
+import { buyCompanion, companionCollection, equipCompanion, renameCompanion } from "./companions.ts";
+import { companionNameSchema, type CompanionCollection } from "../../../packages/contracts/src/companions.ts";
 import type { createNeonPlayerAuth } from "./neon-auth.ts";
 import {
   commandSchema,
@@ -437,6 +439,7 @@ export async function createApp(
         ? (await db.query("SELECT home_gifts FROM accounts WHERE id=$1", [account])).rows[0].home_gifts
         : null,
       rewardWheel: wheel,
+      companions: character ? await companionCollection(db.query, character.id) : undefined,
       wardrobe: character && wheel
         ? await wardrobe.view(db.query, character, wheel.accountCoins, wheel.accountDiamonds)
         : undefined,
@@ -1266,6 +1269,55 @@ export async function createApp(
     }
     changed();
   }
+  app.post("/api/companions/buy", (req) => serialRequest(req, async () => {
+    const { generation, modelId, name } = z.object({
+      generation: z.number().int(), modelId: z.string().max(60), name: z.unknown(),
+    }).parse(req.body);
+    const parsedName = companionNameSchema.safeParse(name);
+    if (!parsedName.success) throw new PlayerError(parsedName.error.issues[0].message);
+    const account = login(req.cookies.session).account;
+    return db.transaction(async (q) => {
+      await q("SELECT id FROM accounts WHERE id=$1 FOR UPDATE", [account]);
+      const character = await activeRow(q, req.cookies.session!, generation);
+      const wheel = await rewardWheel(q, character.id);
+      const balance = await wardrobe.balance(q, character, wheel.accountCoins);
+      const receipt = await buyCompanion(q, character.id, account, modelId, parsedName.data, balance);
+      return { ...receipt, companions: await companionCollection(q, character.id) };
+    });
+  }));
+
+  function shareEquippedCompanion(playerId: string, companions: CompanionCollection) {
+    const player = presence.get(playerId);
+    if (player) {
+      player.companion = companions.equipped;
+      room();
+    }
+  }
+
+  app.post("/api/companions/equip", (req) => serialRequest(req, async () => {
+    const { generation, id } = z.object({ generation: z.number().int(), id: z.uuid().nullable() }).parse(req.body);
+    const { playerId, companions } = await db.transaction(async (q) => {
+      const playerId = await active(req.cookies.session!, generation, q);
+      return { playerId, companions: await equipCompanion(q, playerId, id) };
+    });
+    shareEquippedCompanion(playerId, companions);
+    return { companions };
+  }));
+
+  app.post("/api/companions/rename", (req) => serialRequest(req, async () => {
+    const { generation, id, name } = z.object({
+      generation: z.number().int(), id: z.uuid(), name: z.unknown(),
+    }).parse(req.body);
+    const parsedName = companionNameSchema.safeParse(name);
+    if (!parsedName.success) throw new PlayerError(parsedName.error.issues[0].message);
+    const { playerId, companions } = await db.transaction(async (q) => {
+      const playerId = await active(req.cookies.session!, generation, q);
+      return { playerId, companions: await renameCompanion(q, playerId, id, parsedName.data) };
+    });
+    if (companions.equipped?.id === id) shareEquippedCompanion(playerId, companions);
+    return { companions };
+  }));
+
   app.post("/api/shop/buy", async (req) =>
     serialRequest(req, async () => {
       const { generation, draft, onlyPieceId } = z.object({
@@ -1658,7 +1710,7 @@ export async function createApp(
         client.character = s.character.id;
         client.generation = s.generation;
         // En ligne, mais dans aucune salle tant que le joueur n'en rejoint pas une.
-        presence.set(s.character.id, { ...s.character, roomId: null, x: 50, y: 70 });
+        presence.set(s.character.id, { ...s.character, companion: s.companions?.equipped, roomId: null, x: 50, y: 70 });
         send(ws, { type: "welcome", ...s });
         room();
       } catch (e) {

@@ -58,6 +58,7 @@ export function NeighborhoodMap({
   roomCounts,
   onEnter,
   onShop,
+  onPets,
   onSalon,
   onArcade,
 }: {
@@ -66,6 +67,7 @@ export function NeighborhoodMap({
   roomCounts: Partial<Record<RoomId, number>>;
   onEnter: (roomId: RoomId) => void;
   onShop: () => void;
+  onPets?: () => void;
   onSalon?: () => void;
   onArcade?: () => void;
 }) {
@@ -121,7 +123,7 @@ export function NeighborhoodMap({
           {places.map(({ id, name, label, x, y, roomId }) => (
             <div
               key={id}
-              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""} ${id === "home" || id === "pets" ? "is-soon" : ""}`}
+              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""} ${id === "home" || (id === "pets" && !onPets) ? "is-soon" : ""}`}
               style={
                 {
                   left: `${x * 100}%`,
@@ -143,6 +145,7 @@ export function NeighborhoodMap({
                   fitTooltip(id);
                   if (roomId) onEnter(roomId);
                   else if (id === "shop") onShop();
+                  else if (id === "pets" && onPets) onPets();
                   else if (id === "salon" && onSalon) onSalon();
                   else if (id === "arcade" && onArcade) onArcade();
                   else setSelected((s) => (s === id ? null : id));
@@ -152,7 +155,7 @@ export function NeighborhoodMap({
                 <img className="place-icon" src={`/assets/map-icons/${placeIcons[id]}.png`} alt="" draggable={false} />
                 <span className="place-name" aria-hidden="true">{label ?? name}
                   {roomId && <small className="place-count">{`· ${roomCounts[roomId] ?? 0}`}</small>}
-                  {(id === "home" || id === "pets") && <small className="place-soon">· Bientôt</small>}
+                  {(id === "home" || (id === "pets" && !onPets)) && <small className="place-soon">· Bientôt</small>}
                 </span>
               </button>
               {id !== "home" && <span
@@ -170,7 +173,7 @@ export function NeighborhoodMap({
                         ? "Personnaliser ton visage"
                       : id === "arcade" && onArcade
                           ? "Jouer aux mini-jeux"
-                          : "Bientôt disponible"}
+                          : id === "pets" && onPets ? "Adopter un compagnon" : "Bientôt disponible"}
                 </small>
               </span>}
             </div>

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Avatar } from "./Avatar";
 import type { AvatarLayers } from "./avatar/model";
+import type { OwnedCompanion } from "../../../packages/contracts/src/companions";
+import { companionGeometry, companionImage, companionModel } from "../../../packages/domain/src/companions";
 import {
   roomFloor,
   type Presence,
@@ -14,6 +16,7 @@ export function Room({
   players,
   me,
   wornLayers,
+  ownCompanion,
   messages,
   onMove,
   onSelect,
@@ -23,12 +26,27 @@ export function Room({
   players: Presence[];
   me?: string;
   wornLayers?: AvatarLayers;
+  ownCompanion?: OwnedCompanion | null;
   /** Room chat; undefined until the history has arrived. New lines show as speech bubbles. */
   messages?: RoomMessage[];
   onMove: (x: number, y: number) => void;
   onSelect: (id: string) => void;
 }) {
   const ref = useRef<SVGSVGElement>(null);
+  const [visibleEdge, setVisibleEdge] = useState(0);
+  useEffect(() => {
+    const svg = ref.current;
+    if (!svg || !scene.background) {
+      setVisibleEdge(0);
+      return;
+    }
+    const observer = new ResizeObserver(([{ contentRect }]) => {
+      const ratio = contentRect.height > 0 ? contentRect.width / contentRect.height : 1000 / 680;
+      setVisibleEdge(Math.max(0, (1000 - 680 * ratio) / 2));
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, [scene.background]);
   const floor = roomFloor(roomId);
   const bubbles = useSpeechBubbles(messages);
   return (
@@ -135,6 +153,9 @@ export function Room({
                 outfit={p.outfit}
                 layers={p.id === me ? wornLayers : undefined}
               />
+              <RoomCompanion
+                animal={p.id === me && ownCompanion !== undefined ? ownCompanion : p.companion}
+                playerX={p.x * 10} visibleEdge={visibleEdge} />
               <rect
                 x="-40"
                 y="13"
@@ -167,6 +188,21 @@ export function Room({
       </svg>
     </div>
   );
+}
+
+function RoomCompanion({ animal, playerX, visibleEdge }: {
+  animal?: OwnedCompanion | null; playerX: number; visibleEdge: number;
+}) {
+  const model = animal && companionModel(animal.modelId);
+  if (!animal || !model) return null;
+  const { x, y, width, height, visibleWidth } = companionGeometry(model, 178);
+  const gap = 32;
+  const rightSpace = 1000 - visibleEdge - playerX - gap;
+  const leftSpace = playerX - visibleEdge - gap;
+  const left = rightSpace < visibleWidth && leftSpace > rightSpace;
+  return <image className="room-companion" href={companionImage(model.id)}
+    x={x + (left ? -gap - visibleWidth : gap)} y={y + 1} width={width} height={height}
+    pointerEvents="none" aria-label={animal.name} />;
 }
 
 const BUBBLE_MS = 6000;

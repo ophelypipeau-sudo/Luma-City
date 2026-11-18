@@ -36,15 +36,15 @@ function PieceImage({ piece, geometry, photo, width, height }: {
 
 type Drag = { token: string; pointer: number; x: number; y: number; moved: boolean };
 
-function PuzzleTable({ round, busy, place }: {
-  round: PuzzleRound; busy: boolean; place: (drop: PuzzleDrop) => void;
+function PuzzleTable({ round, visibleSlots, busy, place }: {
+  round: PuzzleRound; visibleSlots: ReadonlySet<number>; busy: boolean;
+  place: (slot: number, drop: PuzzleDrop) => void;
 }) {
-  const { config, tokens, placed, reward } = round;
+  const { config, tokens, reward } = round;
   const { photo } = config;
   const photoUrl = puzzlePhotoUrl(photo);
   const geometry = useMemo(() => puzzleGeometry(config), [config]);
   const order = useMemo(() => puzzleOrder(config), [config]);
-  const placedSlots = new Set(placed);
   const boardId = useId();
   const board = useRef<HTMLDivElement>(null);
   const tray = useRef<HTMLDivElement>(null);
@@ -58,13 +58,14 @@ function PuzzleTable({ round, busy, place }: {
 
   function drop(token: string, x: number, y: number) {
     const slot = order[tokens.indexOf(token)];
+    if (busy || visibleSlots.has(slot)) return;
     if (!puzzleFits(config, slot, { x, y })) {
       setHint("Cette pièce ne s’emboîte pas ici. Réessaie.");
       return;
     }
     setSelected(null);
     setHint("");
-    place({ token, x, y });
+    place(slot, { token, x, y });
   }
 
   function select(token: string) {
@@ -118,14 +119,14 @@ function PuzzleTable({ round, busy, place }: {
       <div className="puzzle-board" ref={board} style={{ aspectRatio: `${width} / ${height}` }}>
         {reward ? <img src={photoUrl} alt={photo.name} className="puzzle-completed-image" /> :
           <svg viewBox={`0 0 ${width} ${height}`} aria-label="Plateau de puzzle" role="img">
-            <defs>{geometry.pieces.filter(({ slot }) => placedSlots.has(slot)).map(({ slot, path }) =>
+            <defs>{geometry.pieces.filter(({ slot }) => visibleSlots.has(slot)).map(({ slot, path }) =>
               <clipPath key={slot} id={`${boardId}-${slot}`}><path d={path} /></clipPath>)}</defs>
-            {geometry.pieces.filter(({ slot }) => placedSlots.has(slot)).map(({ slot }) =>
+            {geometry.pieces.filter(({ slot }) => visibleSlots.has(slot)).map(({ slot }) =>
               <image key={slot} href={photoUrl} width={width} height={height} clipPath={`url(#${boardId}-${slot})`} />)}
             {geometry.pieces.map(({ path, slot }) => <path className="puzzle-slot" key={slot} d={path}
-              data-placed={placedSlots.has(slot)} />)}
+              data-placed={visibleSlots.has(slot)} />)}
           </svg>}
-        {!reward && selected && geometry.pieces.filter(({ slot }) => !placedSlots.has(slot)).map(({ slot, left, top }) => {
+        {!reward && selected && geometry.pieces.filter(({ slot }) => !visibleSlots.has(slot)).map(({ slot, left, top }) => {
           const point = puzzleSlot(config, slot);
           return <button key={slot} type="button" className="puzzle-slot-button" disabled={busy}
             aria-label={`Emplacement ${slot + 1}`} style={{
@@ -148,7 +149,7 @@ function PuzzleTable({ round, busy, place }: {
       </div>
       <div className="puzzle-tray-pieces" ref={tray}>
         {order.map((slot, index) => {
-          if (placedSlots.has(slot)) return null;
+          if (visibleSlots.has(slot)) return null;
           const token = tokens[index];
           return <button type="button" className="puzzle-piece" key={token}
             aria-label={`Pièce ${index + 1}`} aria-pressed={selected === token} disabled={busy}
@@ -187,6 +188,8 @@ export function PuzzleGame({ request, onGames, onWheel }: {
   const [loaded, setLoaded] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const pending = useRef(false);
+  const [pendingSlots, setPendingSlots] = useState<{ roundId: string; slot: number }[]>([]);
+  const placementsInFlight = useRef(new Set<Promise<void>>());
   useEffect(() => {
     let current = true;
     setBusy(true);
@@ -223,12 +226,36 @@ export function PuzzleGame({ request, onGames, onWheel }: {
   });
 
   const close = (id: string, goToGames: boolean) => action(async () => {
+    await Promise.all(placementsInFlight.current);
     await request("close", { id });
     setRound(null);
     if (goToGames) onGames();
   });
 
+  function place(slot: number, drop: PuzzleDrop) {
+    if (!round || pending.current || busy) return;
+    const placement = { roundId: round.id, slot };
+    setError("");
+    setPendingSlots((current) => [...current, placement]);
+    const inFlight = placementsInFlight.current;
+    const save = request("place", { id: placement.roundId, ...drop }).then(({ round: saved }) => {
+      // Responses can arrive out of order, but the server's saved placements only grow.
+      setRound((current) => current?.id === saved.id && saved.placed.length >= current.placed.length
+        ? { ...current, placed: saved.placed, reward: saved.reward } : current);
+    }).catch((cause: Error) => {
+      setError(cause.message);
+    }).finally(() => {
+      setPendingSlots((current) => current.filter((item) => item !== placement));
+      inFlight.delete(save);
+    });
+    inFlight.add(save);
+  }
+
   const level = round && PUZZLE_LEVELS[round.config.level];
+  const visibleSlots = new Set(round?.placed);
+  for (const placement of pendingSlots) {
+    if (placement.roundId === round?.id) visibleSlots.add(placement.slot);
+  }
   return <section className="puzzle-game" aria-labelledby="puzzle-title">
     <div className="puzzle-heading">
       <h2 id="puzzle-title"><Puzzle aria-hidden="true" /> Puzzle</h2>
@@ -255,15 +282,11 @@ export function PuzzleGame({ request, onGames, onWheel }: {
     {round && level && <>
       <div className="puzzle-score">
         <strong>{level.label}</strong>
-        <span aria-live="polite">{round.placed.length} / {level.count} pièces</span>
+        <span aria-live="polite">{visibleSlots.size} / {level.count} pièces</span>
         <span><CircleDot size={16} aria-hidden="true" /> {turnsLabel(level.turns)}</span>
-        <progress max={level.count} value={round.placed.length} aria-label="Pièces placées" />
+        <progress max={level.count} value={visibleSlots.size} aria-label="Pièces placées" />
       </div>
-      <PuzzleTable key={round.id} round={round} busy={busy} place={(drop) =>
-        void action(async () => {
-          const { round: saved } = await request("place", { id: round.id, ...drop });
-          setRound({ ...round, placed: saved.placed, reward: saved.reward });
-        })} />
+      <PuzzleTable key={round.id} round={round} visibleSlots={visibleSlots} busy={busy} place={place} />
       {round.reward > 0 && <div className="puzzle-victory">
         <div role="status">
           <Trophy aria-hidden="true" />

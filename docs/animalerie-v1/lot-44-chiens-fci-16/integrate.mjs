@@ -1,0 +1,20 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+
+const root = new URL('../../../', import.meta.url);
+const entries = JSON.parse(readFileSync(new URL('prompts.json', import.meta.url), 'utf8').replace(/^\uFEFF/, ''));
+if (entries.length !== 44 || entries.some(e => !e.canvas || !e.bounds)) throw new Error('44 measured PNGs required');
+const breeds = entries.filter((_, i) => i % 2 === 0);
+const file = new URL('packages/domain/src/companions.ts', root);
+let code = readFileSync(file, 'utf8');
+if (code.includes('"terrier-bresilien":')) throw new Error('Lot already integrated');
+const definitions = breeds.map(e => `  ${JSON.stringify(e.breedId)}: ${JSON.stringify({name:e.name,species:'Chien',standard:e.standard,cover:e.id,price:e.price,heightRatio:e.heightRatio})},`).join('\n');
+code = code.replace('} as const;', `${definitions}\n} as const;`);
+const variants = entries.map(({id,breedId,coat,canvas,bounds}) => `  ${JSON.stringify({id,breedId,coat,canvas,bounds})},`).join('\n');
+code = code.replace('\n];\n\nexport const COMPANION_CATALOG', `\n${variants}\n];\n\nexport const COMPANION_CATALOG`);
+writeFileSync(file, code);
+const testFile = new URL('tests/companions.test.ts', root);
+let tests = readFileSync(testFile, 'utf8').replaceAll('823','867').replace('length, 428','length, 450').replace('length, 342','length, 364');
+tests = tests.replace('const twoCoats = new Set<CompanionBreedId>([', 'const twoCoats = new Set<CompanionBreedId>([\n    '+breeds.map(e=>JSON.stringify(e.breedId)).join(', ')+',');
+tests = tests.replace('  for (const [code, name] of LOOF_BREEDS)', '  for (const [code, name] of FCI_BREEDS) {\n    assert.ok(usedCodes.has(code), `Race FCI absente de l’animalerie : ${name}`);\n  }\n  for (const [code, name] of LOOF_BREEDS)');
+writeFileSync(testFile, tests);
+console.log('22 breeds and 44 native variants integrated; full FCI coverage asserted');

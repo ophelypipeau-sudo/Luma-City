@@ -1,0 +1,22 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+const root=new URL('../../../',import.meta.url);
+const entries=JSON.parse(readFileSync(new URL('prompts.json',import.meta.url),'utf8').replace(/^\uFEFF/,''));
+if(entries.length!==51 || entries.some(e=>!e.sourceImage || !e.canvas || !e.bounds)) throw new Error('51 measured second coats required');
+if(new Set(entries.map(e=>e.breedId)).size!==51) throw new Error('Duplicate breed');
+const file=new URL('packages/domain/src/companions.ts',root);
+let code=readFileSync(file,'utf8');
+if(entries.some(e=>code.includes(JSON.stringify(e.id)))) throw new Error('Second coat already integrated');
+const marker='\n];\n\nexport const COMPANION_CATALOG';
+if(!code.includes(marker)) throw new Error('Catalogue marker absent');
+const variants=entries.map(({id,breedId,coat,canvas,bounds,ground})=>`  ${JSON.stringify({id,breedId,coat,canvas,bounds,...(ground===undefined?{}:{ground})})},`).join('\n');
+writeFileSync(file,code.replace(marker,`\n${variants}${marker}`));
+const testFile=new URL('tests/companions.test.ts',root);
+let tests=readFileSync(testFile,'utf8').replaceAll('867','918');
+tests=tests.replace(/const oneCoat = new Set<CompanionBreedId>\(\[([\s\S]*?)\]\);/,(_,list)=>{
+  for(const e of entries) list=list.replace(new RegExp('"'+e.breedId+'",?\\s*','g'),'');
+  return 'const oneCoat = new Set<CompanionBreedId>(['+list+']);';
+});
+tests=tests.replace('const twoCoats = new Set<CompanionBreedId>([','const twoCoats = new Set<CompanionBreedId>([\n    '+entries.map(e=>JSON.stringify(e.breedId)).join(', ')+',');
+tests=tests.replace('  const oneCoat =', '  assert.ok(Object.entries(COMPANION_BREEDS).filter(([,b]) => b.species === "Chien").every(([id]) => companionVariants(id as CompanionBreedId).length >= 2), "Chaque race canine doit disposer d’au moins deux pelages");\n  const oneCoat =');
+writeFileSync(testFile,tests);
+console.log('51 second coats appended. Existing breed covers, prices and variants preserved.');

@@ -1,0 +1,1329 @@
+[
+  {
+    "breedId": "bouvier-bernois",
+    "name": "Bouvier bernois",
+    "standard": "45",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/045g02-en.pdf",
+    "price": 2240,
+    "heightRatio": 0.51,
+    "id": "bouvier-bernois-tricolore-feu-acajou",
+    "coat": "Tricolore à feu acajou",
+    "existingCover": "bouvier-bernois-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bernese Mountain Dog, large sturdy long-haired Swiss mountain dog, broad head, pendant triangular ears, full bushy low tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: jet black with deep mahogany rust cheeks brows and legs, narrow symmetrical white blaze, white muzzle chest toes and tail tip; no white collar. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-bernois-tricolore-feu-acajou.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-82086aae-e389-493a-a985-e5b2dc312087.png",
+    "canvas": [
+      1186,
+      1326
+    ],
+    "bounds": [
+      130,
+      65,
+      1103,
+      1255
+    ]
+  },
+  {
+    "breedId": "setter-irlandais",
+    "name": "Setter irlandais rouge",
+    "standard": "120",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/120g07-en.pdf",
+    "price": 1870,
+    "heightRatio": 0.465,
+    "id": "setter-irlandais-chataigne",
+    "coat": "Rouge châtaigne",
+    "existingCover": "setter-irlandais-rouge",
+    "existingCoat": "Rouge acajou",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Irish Red Setter, racy tall athletic sporting dog, long narrow head, long low-set silky pendant ears, fine feathering and full fringed tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: rich warm chestnut red throughout, no black, tiny white chest fleck. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/setter-irlandais-chataigne.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-e8a59d3c-123f-4554-848c-9dc8b78e894d.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      147,
+      32,
+      1231,
+      1144
+    ]
+  },
+  {
+    "breedId": "yorkshire-terrier",
+    "name": "Terrier du Yorkshire",
+    "standard": "86",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/086g03-en.pdf",
+    "price": 1220,
+    "heightRatio": 0.202,
+    "id": "yorkshire-terrier-bleu-acier-feu-dore",
+    "coat": "Bleu acier et feu doré",
+    "existingCover": "yorkshire-terrier-bleu-acier-et-feu",
+    "existingCoat": "Bleu acier et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult adult Yorkshire Terrier, tiny compact body, upright V ears, long straight fine silky parted coat and full natural tail, eyes visible. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: dark steel blue back with rich golden tan head chest and legs, tan darker at roots and lighter tips, not silver blue. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/yorkshire-terrier-bleu-acier-feu-dore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-a72d9638-a3b3-418d-abab-f258a2362614.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      207,
+      58,
+      1101,
+      1103
+    ]
+  },
+  {
+    "breedId": "samoyede",
+    "name": "Samoyède",
+    "standard": "212",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/212g05-en.pdf",
+    "price": 1950,
+    "heightRatio": 0.43,
+    "id": "samoyede-blanc-biscuit",
+    "coat": "Blanc et biscuit",
+    "existingCover": "samoyede-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Samoyed, medium Arctic spitz, smiling dark eyes, erect small ears, dense stand-off double coat and profuse plumed tail curled over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with subtle pale biscuit markings on ears and shoulders, predominantly white, never brown. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/samoyede-blanc-biscuit.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-664bcc53-b78f-40a6-940c-ef3f1cd0f214.png",
+    "canvas": [
+      1216,
+      1293
+    ],
+    "bounds": [
+      146,
+      46,
+      1147,
+      1210
+    ]
+  },
+  {
+    "breedId": "rottweiler",
+    "name": "Rottweiler",
+    "standard": "147",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/147g02-en.pdf",
+    "price": 2110,
+    "heightRatio": 0.495,
+    "id": "rottweiler-noir-feu-acajou",
+    "coat": "Noir et feu acajou",
+    "existingCover": "rottweiler-noir-feu",
+    "existingCoat": "Noir et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Rottweiler, powerful robust medium-large muscular frame, broad head, triangular pendant ears, short double coat and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: jet black with deep rich mahogany tan brows cheeks muzzle chest and lower legs, no white. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/rottweiler-noir-feu-acajou.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-c3ce5eb0-3ed3-49eb-80fa-129dff718818.png",
+    "canvas": [
+      1189,
+      1323
+    ],
+    "bounds": [
+      133,
+      81,
+      1112,
+      1241
+    ]
+  },
+  {
+    "breedId": "affenpinscher",
+    "name": "Affenpinscher",
+    "standard": "186",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/186g02-en.pdf",
+    "price": 1190,
+    "heightRatio": 0.22,
+    "id": "affenpinscher-noir-charbon",
+    "coat": "Noir charbon",
+    "existingCover": "affenpinscher-noir",
+    "existingCoat": "Noir",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Affenpinscher, small compact rough-haired toy dog, distinctive monkey-like short bearded face, small ears, wiry coat and natural full tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: solid charcoal black, black undercoat and subtle neutral black fur highlights, no colored patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/affenpinscher-noir-charbon.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-d95e49dc-862b-4ccd-8bd3-2954716f3c98.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      235,
+      49,
+      1126,
+      1080
+    ]
+  },
+  {
+    "breedId": "airedale-terrier",
+    "name": "Airedale Terrier",
+    "standard": "7",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/007g03-en.pdf",
+    "price": 1810,
+    "heightRatio": 0.446,
+    "id": "airedale-terrier-grisonne-feu",
+    "coat": "Grisonné et feu",
+    "existingCover": "airedale-terrier-noir-feu",
+    "existingCoat": "Noir et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Airedale Terrier, largest terrier, square long-legged athletic body, long rectangular bearded head, V folded ears, hard wiry coat and full upright tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black grizzle saddle and upper neck, warm rich tan head ears and legs. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/airedale-terrier-grisonne-feu.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-c9979b2e-eab4-4175-841b-2a21634308e2.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      231,
+      44,
+      1144,
+      1079
+    ]
+  },
+  {
+    "breedId": "akita-americain",
+    "name": "Akita américain",
+    "standard": "344",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/344g05-en.pdf",
+    "price": 2170,
+    "heightRatio": 0.498,
+    "id": "akita-americain-bringe-blanc",
+    "coat": "Bringé et blanc",
+    "existingCover": "akita-americain-fauve-masque-noir",
+    "existingCoat": "Fauve à masque noir",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult American Akita, large powerful heavy-boned spitz, massive broad bear-like head, small erect triangular ears, dense double coat and full tail curled over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: dark brown brindle with clear white chest belly and lower legs, black mask. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/akita-americain-bringe-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-8a67f2fa-2abb-4733-ad54-65e23fbcdbd2.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      243,
+      20,
+      1098,
+      1145
+    ]
+  },
+  {
+    "breedId": "american-foxhound",
+    "name": "American Foxhound",
+    "standard": "303",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/303g06-en.pdf",
+    "price": 1760,
+    "heightRatio": 0.446,
+    "id": "american-foxhound-citron-blanc",
+    "coat": "Citron et blanc",
+    "existingCover": "american-foxhound-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult American Foxhound, tall long-legged lean athletic hound, long muzzle, long pendant ears, short dense fur and full gently curved tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with warm lemon patches and lemon head markings. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/american-foxhound-citron-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-3c0dd811-1fd5-48c7-9dad-b69ece624a45.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      165,
+      31,
+      1173,
+      1165
+    ],
+    "repair": "Nettoyage du masque alpha par image_gen : suppression du halo et des pixels parasites au bord supérieur, sans modifier le chien ni sa robe."
+  },
+  {
+    "breedId": "american-staffordshire-terrier",
+    "name": "American Staffordshire Terrier",
+    "standard": "286",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/286g03-en.pdf",
+    "price": 1680,
+    "heightRatio": 0.366,
+    "id": "american-staffordshire-terrier-fauve-blanc",
+    "coat": "Fauve et blanc",
+    "existingCover": "american-staffordshire-terrier-bringe-blanc",
+    "existingCoat": "Bringé et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult American Staffordshire Terrier, compact powerfully muscular athletic body, broad head, natural rose ears, short glossy fur and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: rich fawn with white chest muzzle stripe and toes, dark nose. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/american-staffordshire-terrier-fauve-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-18160918-324e-4ae8-8760-07eed55b759e.png",
+    "canvas": [
+      1189,
+      1323
+    ],
+    "bounds": [
+      191,
+      94,
+      994,
+      1213
+    ]
+  },
+  {
+    "breedId": "anglo-francais-petite-venerie",
+    "name": "Anglo-français de petite vénerie",
+    "standard": "325",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/325g06-en.pdf",
+    "price": 1680,
+    "heightRatio": 0.414,
+    "id": "anglo-francais-petite-venerie-tricolore",
+    "coat": "Tricolore",
+    "existingCover": "anglo-francais-petite-venerie-orange-blanc",
+    "existingCoat": "Orange et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Anglo-Francais de Petite Venerie, medium balanced short-haired hound, lean head, hanging soft ears and full elegant saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: tricolor black saddle, white body markings and rich tan head and legs. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/anglo-francais-petite-venerie-tricolore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-e292e9bc-ee75-4cbf-8bc5-c5b98d50ffda.png",
+    "canvas": [
+      1396,
+      1127
+    ],
+    "bounds": [
+      236,
+      71,
+      1161,
+      1070
+    ]
+  },
+  {
+    "breedId": "ariegeois",
+    "name": "Ariégeois",
+    "standard": "20",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/020g06-en.pdf",
+    "price": 1670,
+    "heightRatio": 0.419,
+    "id": "ariegeois-noir-blanc-plages",
+    "coat": "Noir et blanc à grandes plages",
+    "existingCover": "ariegeois-noir-blanc-feu",
+    "existingCoat": "Noir et blanc marqué de feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Ariegeois, medium light elegant hound, lean long head, soft long pendant ears, short fine fur and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white body with broad distinct jet black patches, black ears, faint pale tan cheeks and eyebrow dots. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/ariegeois-noir-blanc-plages.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-a3edebf6-8969-43b7-a02a-3677a03ae3f1.png",
+    "canvas": [
+      1415,
+      1111
+    ],
+    "bounds": [
+      206,
+      34,
+      1258,
+      1071
+    ]
+  },
+  {
+    "breedId": "azawakh",
+    "name": "Azawakh",
+    "standard": "307",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/307g10-en.pdf",
+    "price": 1910,
+    "heightRatio": 0.49,
+    "id": "azawakh-bringe",
+    "coat": "Bringé",
+    "existingCover": "azawakh-fauve",
+    "existingCoat": "Fauve",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Azawakh, very tall extremely slender African sighthound, long fine legs, deep narrow chest, tucked-up abdomen, fine pendant ears, short fur and long slim tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: warm fawn with dark brindle stripes, white chest bib and white socks on four feet. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/azawakh-bringe.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-4bd6260f-ddf7-4020-8a42-439e86fa0b5b.png",
+    "canvas": [
+      1222,
+      1287
+    ],
+    "bounds": [
+      137,
+      70,
+      1129,
+      1229
+    ]
+  },
+  {
+    "breedId": "bangkaew-thailande",
+    "name": "Bangkaew de Thaïlande",
+    "standard": "358",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/358g05-en.pdf",
+    "price": 1770,
+    "heightRatio": 0.365,
+    "id": "bangkaew-thailande-noir-blanc",
+    "coat": "Noir et blanc",
+    "existingCover": "bangkaew-thailande-fauve-blanc",
+    "existingCoat": "Fauve et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Thai Bangkaew Dog, square compact medium spitz, wedge head, erect pointed ears, abundant neck ruff and bushy tail curved over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with black patches on head and body, symmetrical face blaze. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bangkaew-thailande-noir-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-9a193ad8-3b37-4ae9-9f4b-eabaf27615d6.png",
+    "canvas": [
+      1216,
+      1294
+    ],
+    "bounds": [
+      163,
+      50,
+      1152,
+      1230
+    ]
+  },
+  {
+    "breedId": "barbu-tcheque",
+    "name": "Barbu tchèque",
+    "standard": "245",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/245g07-en.pdf",
+    "price": 1740,
+    "heightRatio": 0.453,
+    "id": "barbu-tcheque-marron",
+    "coat": "Marron",
+    "existingCover": "barbu-tcheque-rouan-fonce",
+    "existingCoat": "Rouan foncé",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Cesky Fousek, tall robust wire-haired pointing dog, strong bearded muzzle, hanging ears, harsh fur and complete natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: solid rich brown with a small white chest mark. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/barbu-tcheque-marron.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-608498eb-709f-4a68-9f3c-6334caedd4d8.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      209,
+      41,
+      1180,
+      1104
+    ]
+  },
+  {
+    "breedId": "barzoi",
+    "name": "Barzoï",
+    "standard": "193",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/193g10-en.pdf",
+    "price": 2280,
+    "heightRatio": 0.555,
+    "id": "barzoi-blanc-noir",
+    "coat": "Blanc et noir",
+    "existingCover": "barzoi-blanc-fauve",
+    "existingCoat": "Blanc et fauve",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Borzoi Russian sighthound, very tall elegant narrow head, rose ears, arched back, long fine legs, flowing silky wavy fur and full low curved plumed tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with large black patches and black ear markings. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/barzoi-blanc-noir.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-3fd584f9-dc11-44d0-a68a-9988ee19f185.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      142,
+      74,
+      1213,
+      1113
+    ]
+  },
+  {
+    "breedId": "basset-artesien-normand",
+    "name": "Basset artésien normand",
+    "standard": "34",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/034g06-en.pdf",
+    "price": 1540,
+    "heightRatio": 0.272,
+    "id": "basset-artesien-normand-fauve-blanc",
+    "coat": "Fauve et blanc",
+    "existingCover": "basset-artesien-normand-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Basset Artesien Normand, long low hound, very short slightly bowed forelegs, domed head, very long thin pendant ears, smooth short fur and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: fawn and white bicolor, fawn head and broad body patches, white blaze chest and legs, no black saddle. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/basset-artesien-normand-fauve-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-be220662-85e6-4609-a3dc-86b481359e62.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      213,
+      74,
+      1343,
+      941
+    ]
+  },
+  {
+    "breedId": "basset-bleu-gascogne",
+    "name": "Basset bleu de Gascogne",
+    "standard": "35",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/035g06-en.pdf",
+    "price": 1540,
+    "heightRatio": 0.275,
+    "id": "basset-bleu-gascogne-bleu-plages-noires",
+    "coat": "Bleu à plages noires",
+    "existingCover": "basset-bleu-gascogne-bleu-mouchete",
+    "existingCoat": "Bleu moucheté",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Basset Bleu de Gascogne, low elongated hound, short strong legs, long folded pendant ears, domed head, short mottled coat and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: dense fine black and white mottling producing slate blue, large distinct black body patches, black ears and tan eyebrow dots and cheeks. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/basset-bleu-gascogne-bleu-plages-noires.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-f6342afc-adc3-4bee-b53b-59bfc1657e6b.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      173,
+      89,
+      1394,
+      948
+    ]
+  },
+  {
+    "breedId": "berger-blanc-suisse",
+    "name": "Berger blanc suisse",
+    "standard": "347",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/347g01-en.pdf",
+    "price": 1990,
+    "heightRatio": 0.47,
+    "id": "berger-blanc-suisse-blanc-nacre",
+    "coat": "Blanc nacré",
+    "existingCover": "berger-blanc-suisse-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult White Swiss Shepherd, medium-large athletic shepherd, long wedge head, erect ears, dense medium double coat and full low bushy saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: pure white with softly pearly neutral highlights, black nose and lips, dark eyes, no yellow or gray patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-blanc-suisse-blanc-nacre.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-7ca36aee-b3be-483f-bd4f-68f5a96a4119.png",
+    "canvas": [
+      1186,
+      1326
+    ],
+    "bounds": [
+      215,
+      57,
+      1050,
+      1253
+    ]
+  },
+  {
+    "breedId": "basset-westphalie",
+    "name": "Basset de Westphalie",
+    "standard": "100",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/100g06-en.pdf",
+    "price": 1540,
+    "heightRatio": 0.269,
+    "id": "basset-westphalie-tricolore-feu-dore",
+    "coat": "Tricolore à feu doré",
+    "existingCover": "basset-westphalie-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Westphalian Dachsbracke, small sturdy elongated low-legged hound, broad drop ears, short dense fur and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: yellow-red and white with black saddle, white muzzle blaze chest collar feet and tail tip. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/basset-westphalie-tricolore-feu-dore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-96724f1e-a586-40f5-8d78-4ea17f1d03ab.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      222,
+      78,
+      1317,
+      888
+    ]
+  },
+  {
+    "breedId": "basset-alpes",
+    "name": "Basset des Alpes",
+    "standard": "254",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/254g06-en.pdf",
+    "price": 1570,
+    "heightRatio": 0.277,
+    "id": "basset-alpes-noir-feu",
+    "coat": "Noir et feu",
+    "existingCover": "basset-alpes-rouge-cerf",
+    "existingCoat": "Rouge cerf",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Alpine Dachsbracke, sturdy robust low elongated hound, short muscular legs, broad drop ears, dense short double coat and full brush tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black with well-defined red-brown tan head chest and leg markings. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/basset-alpes-noir-feu.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-24ad8d90-e67f-4bb1-a612-4cca783bff40.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      153,
+      23,
+      1391,
+      999
+    ]
+  },
+  {
+    "breedId": "basset-fauve-bretagne",
+    "name": "Basset fauve de Bretagne",
+    "standard": "36",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/036g06-en.pdf",
+    "price": 1530,
+    "heightRatio": 0.268,
+    "id": "basset-fauve-bretagne-froment-dore",
+    "coat": "Froment doré",
+    "existingCover": "basset-fauve-bretagne-fauve",
+    "existingCoat": "Fauve",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Basset Fauve de Bretagne, small stocky elongated short-legged hound, medium pendant ears, harsh shaggy wiry fur and full slightly curved tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: even golden wheaten fawn with subtle deeper ear tips. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/basset-fauve-bretagne-froment-dore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-0b83bbb0-da72-450f-9803-5ff13e224b53.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      228,
+      92,
+      1339,
+      942
+    ]
+  },
+  {
+    "breedId": "drever",
+    "name": "Drever",
+    "standard": "130",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/130g06-en.pdf",
+    "price": 1540,
+    "heightRatio": 0.268,
+    "id": "drever-tricolore",
+    "coat": "Tricolore",
+    "existingCover": "drever-roux-blanc",
+    "existingCoat": "Roux et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Drever Swedish Dachsbracke, long low sturdy hound, short straight legs, long rectangular head, medium drop ears, short close coat and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black tan and white tricolor, clearly white muzzle blaze neck chest feet and tail tip. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/drever-tricolore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-0cb1ede4-a937-4750-894c-20e104d927fc.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      219,
+      125,
+      1375,
+      923
+    ]
+  },
+  {
+    "breedId": "beagle-harrier",
+    "name": "Beagle-Harrier",
+    "standard": "290",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/290g06-en.pdf",
+    "price": 1650,
+    "heightRatio": 0.366,
+    "id": "beagle-harrier-tricolore-feu-clair",
+    "coat": "Tricolore à feu clair",
+    "existingCover": "beagle-harrier-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Beagle Harrier, medium strong balanced athletic hound, rounded hanging ears, short dense fur and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with black saddle and warm light fawn head and patches, symmetrical white blaze chest and socks. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/beagle-harrier-tricolore-feu-clair.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-90cb8034-20f4-457d-a4a8-97aca1715598.png",
+    "canvas": [
+      1216,
+      1293
+    ],
+    "bounds": [
+      177,
+      23,
+      1114,
+      1214
+    ]
+  },
+  {
+    "breedId": "berger-bergamasque",
+    "name": "Berger bergamasque",
+    "standard": "194",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/194g01-en.pdf",
+    "price": 2010,
+    "heightRatio": 0.449,
+    "id": "berger-bergamasque-noir",
+    "coat": "Noir",
+    "existingCover": "berger-bergamasque-gris",
+    "existingCoat": "Gris",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bergamasco Shepherd, medium robust square frame, broad head, folded ears, distinctive long flat felted flocked coat and full shaggy low tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: solid matte black with subtle black highlights, no white patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-bergamasque-noir.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-4e3f5d24-55fc-4e0f-a51f-fd900c424daf.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      211,
+      104,
+      1137,
+      1083
+    ]
+  },
+  {
+    "breedId": "berger-asie-centrale",
+    "name": "Berger d’Asie centrale",
+    "standard": "335",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/335g02-en.pdf",
+    "price": 2400,
+    "heightRatio": 0.532,
+    "id": "berger-asie-centrale-blanc-noir",
+    "coat": "Blanc et noir",
+    "existingCover": "berger-asie-centrale-blanc-fauve",
+    "existingCoat": "Blanc et fauve",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Central Asian Shepherd, very large powerful robust guardian, broad massive head, natural pendant ears, thick medium double coat and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with broad black body patches and black head markings. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-asie-centrale-blanc-noir.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-bcc6d36b-df33-443f-8e77-9772fbf034b9.png",
+    "canvas": [
+      1186,
+      1326
+    ],
+    "bounds": [
+      154,
+      90,
+      1078,
+      1247
+    ]
+  },
+  {
+    "breedId": "berger-beauce",
+    "name": "Berger de Beauce",
+    "standard": "44",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/044g01-en.pdf",
+    "price": 2030,
+    "heightRatio": 0.479,
+    "id": "berger-beauce-arlequin",
+    "coat": "Arlequin",
+    "existingCover": "berger-beauce-noir-feu",
+    "existingCoat": "Noir et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Beauceron, large muscular athletic shepherd, long broad head, natural half-pricked ears, short dense double coat, rear double dewclaws and full low J-hook tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: harlequin balanced gray and black patches with tan eyebrow dots muzzle chest and lower legs, dark eyes. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-beauce-arlequin.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-a28d711c-8636-4d54-80d8-33532489b93d.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      273,
+      11,
+      1272,
+      984
+    ]
+  },
+  {
+    "breedId": "berger-boheme",
+    "name": "Berger de Bohême",
+    "standard": "364",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/364g01-en.pdf",
+    "price": 1760,
+    "heightRatio": 0.396,
+    "id": "berger-boheme-noir-feu-acajou",
+    "coat": "Noir et feu acajou",
+    "existingCover": "berger-boheme-noir-feu",
+    "existingCoat": "Noir et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bohemian Shepherd Chodsky Pes, medium rectangular athletic shepherd, small erect ears, abundant long double coat and full low bushy tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: deep black with clearly defined deep mahogany tan eyebrows cheeks chest and legs. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-boheme-noir-feu-acajou.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-8efd4416-bc23-43d9-a8c7-cd4c93236968.png",
+    "canvas": [
+      1186,
+      1326
+    ],
+    "bounds": [
+      191,
+      52,
+      1083,
+      1222
+    ]
+  },
+  {
+    "breedId": "tornjak",
+    "name": "Tornjak",
+    "standard": "355",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/355g02-en.pdf",
+    "price": 2260,
+    "heightRatio": 0.501,
+    "id": "tornjak-fauve-blanc",
+    "coat": "Fauve et blanc",
+    "existingCover": "tornjak-noir-blanc",
+    "existingCoat": "Noir et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Tornjak, large strong nearly square mountain guardian, broad head, pendant ears, profuse long coat and full plumed low tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with broad rich fawn patches and fawn ears, white face blaze. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/tornjak-fauve-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-4aa880da-d88e-4368-b3fc-f219b1dfb6ed.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      133,
+      42,
+      1195,
+      1164
+    ]
+  },
+  {
+    "breedId": "berger-brie",
+    "name": "Berger de Brie",
+    "standard": "113",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/113g01-en.pdf",
+    "price": 1990,
+    "heightRatio": 0.465,
+    "id": "berger-brie-noir",
+    "coat": "Noir",
+    "existingCover": "berger-brie-fauve",
+    "existingCoat": "Fauve",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Briard, large supple robust French shepherd, long parted wavy shaggy coat, natural pendant ears, bearded face with visible eyes, rear double dewclaws and full J-hook tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: solid deep black coat. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-brie-noir.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-103fd1c1-a3ec-4008-90ed-9c83285ffecc.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      173,
+      17,
+      1210,
+      1121
+    ]
+  },
+  {
+    "breedId": "berger-picardie",
+    "name": "Berger de Picardie",
+    "standard": "176",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/176g01-en.pdf",
+    "price": 1850,
+    "heightRatio": 0.43,
+    "id": "berger-picardie-bringe",
+    "coat": "Bringé",
+    "existingCover": "berger-picardie-fauve-charbonne",
+    "existingCoat": "Fauve charbonné",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Picardy Shepherd, medium-large rustic long-legged shepherd, large erect ears, bearded muzzle, harsh medium shaggy fur and full low hooked tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: gray fawn with dark brindle stripes, softly charcoal ears. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-picardie-bringe.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-4ca2a7a7-d943-4691-b885-f84b9627f104.png",
+    "canvas": [
+      1200,
+      1310
+    ],
+    "bounds": [
+      172,
+      11,
+      1102,
+      1246
+    ]
+  },
+  {
+    "breedId": "berger-russie-meridionale",
+    "name": "Berger de Russie méridionale",
+    "standard": "326",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/326g01-en.pdf",
+    "price": 2220,
+    "heightRatio": 0.495,
+    "id": "berger-russie-meridionale-gris-clair",
+    "coat": "Gris clair",
+    "existingCover": "berger-russie-meridionale-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult South Russian Shepherd, large robust long-legged guardian, small drop ears, profuse long coarse shaggy coat, bearded face and full bushy low tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: uniform very pale ash gray coat with slightly darker soft gray ears, black nose. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-russie-meridionale-gris-clair.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-a71c5122-bc2b-4758-8d07-2d78823b628d.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      218,
+      18,
+      1174,
+      1115
+    ]
+  },
+  {
+    "breedId": "berger-abruzzes-maremme",
+    "name": "Berger des Abruzzes et de la Maremme",
+    "standard": "201",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/201g01-en.pdf",
+    "price": 2200,
+    "heightRatio": 0.49,
+    "id": "berger-abruzzes-maremme-blanc-ivoire",
+    "coat": "Blanc ivoire",
+    "existingCover": "berger-abruzzes-maremme-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Maremma and Abruzzes Sheepdog, large powerful white guardian, bear-like broad head, pendant ears, thick harsh long double coat and full bushy low tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with the faintest ivory highlights, black nose and dark eyes, no yellow patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-abruzzes-maremme-blanc-ivoire.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-f0a34652-2feb-43a7-9ed8-873240f5ea54.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      214,
+      23,
+      1327,
+      1005
+    ]
+  },
+  {
+    "breedId": "berger-caucase",
+    "name": "Berger du Caucase",
+    "standard": "328",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/328g02-en.pdf",
+    "price": 2450,
+    "heightRatio": 0.55,
+    "id": "berger-caucase-blanc-fauve",
+    "coat": "Blanc et fauve",
+    "existingCover": "berger-caucase-gris-fauve-masque-noir",
+    "existingCoat": "Gris fauve à masque noir",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Caucasian Shepherd, very large massive powerful mountain guardian, broad bear-like head, natural pendant ears, extremely thick long fur and full bushy tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: predominantly white with warm fawn patches and gray-black face mask. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-caucase-blanc-fauve.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-52dce6e6-c845-405b-8a9c-9775e0f9745e.png",
+    "canvas": [
+      1186,
+      1326
+    ],
+    "bounds": [
+      129,
+      87,
+      1116,
+      1245
+    ]
+  },
+  {
+    "breedId": "berger-karst",
+    "name": "Berger du Karst",
+    "standard": "278",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/278g02-en.pdf",
+    "price": 1970,
+    "heightRatio": 0.444,
+    "id": "berger-karst-gris-fer-fonce",
+    "coat": "Gris fer foncé",
+    "existingCover": "berger-karst-gris-fer",
+    "existingCoat": "Gris fer",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Karst Shepherd, medium-large robust mountain dog, broad head, folded ears, thick long double coat, abundant neck ruff and full saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: dark iron gray back with lighter ash gray legs and belly, dark gray face mask. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-karst-gris-fer-fonce.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-a04e4f48-1123-4140-a7a3-5af65e265abd.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      299,
+      54,
+      1262,
+      966
+    ]
+  },
+  {
+    "breedId": "berger-finnois-laponie",
+    "name": "Berger finnois de Laponie",
+    "standard": "284",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/284g05-en.pdf",
+    "price": 1740,
+    "heightRatio": 0.386,
+    "id": "berger-finnois-laponie-marron-feu",
+    "coat": "Marron et feu",
+    "existingCover": "berger-finnois-laponie-noir-feu",
+    "existingCoat": "Noir et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Lapponian Herder, medium rectangular athletic Nordic herding dog, erect ears, medium straight dense double coat and full bushy low curved tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: dark brown with pale tan cheeks eyebrows chest and lower legs. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-finnois-laponie-marron-feu.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-5c3b8260-b576-492c-bbaa-bb2309943dbc.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      333,
+      27,
+      1247,
+      962
+    ]
+  },
+  {
+    "breedId": "berger-hollandais",
+    "name": "Berger hollandais",
+    "standard": "223",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/223g01-en.pdf",
+    "price": 1910,
+    "heightRatio": 0.454,
+    "id": "berger-hollandais-bringe-argente",
+    "coat": "Bringé argenté",
+    "existingCover": "berger-hollandais-bringe-dore",
+    "existingCoat": "Bringé doré",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Dutch Shepherd short-haired variety, medium athletic rectangular shepherd, erect ears, dense short fur and full low saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: silver base with dense clearly visible dark brindle stripes, dark muzzle. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-hollandais-bringe-argente.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-55981fdf-ef9f-4314-8fa3-6bfdc0d21146.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      295,
+      17,
+      1221,
+      976
+    ]
+  },
+  {
+    "breedId": "berger-miniature-americain",
+    "name": "Berger miniature américain",
+    "standard": "367",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/367g01-en.pdf",
+    "price": 1690,
+    "heightRatio": 0.307,
+    "id": "berger-miniature-americain-noir-tricolore",
+    "coat": "Noir tricolore",
+    "existingCover": "berger-miniature-americain-rouge-merle",
+    "existingCoat": "Rouge merle",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Miniature American Shepherd, small athletic rectangular herding dog, triangular folded ears, medium double coat and full natural feathered tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black tricolor with warm tan cheeks eyebrows and legs, white blaze chest and paws, dark eyes. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-miniature-americain-noir-tricolore.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-78fce2d3-8d47-46a9-ac63-7f73864b1e34.png",
+    "canvas": [
+      1202,
+      1309
+    ],
+    "bounds": [
+      214,
+      98,
+      994,
+      1168
+    ]
+  },
+  {
+    "breedId": "berger-polonais-plaine",
+    "name": "Berger polonais de plaine",
+    "standard": "251",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/251g01-en.pdf",
+    "price": 1790,
+    "heightRatio": 0.365,
+    "id": "berger-polonais-plaine-noir-blanc",
+    "coat": "Noir et blanc",
+    "existingCover": "berger-polonais-plaine-gris-blanc",
+    "existingCoat": "Gris et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Polish Lowland Sheepdog, medium compact rectangular herding dog, folded ears, long thick shaggy coat, bearded face with visible eyes and full shaggy tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black and white parti-colored with broad black patches and white face blaze. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/berger-polonais-plaine-noir-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-12e9af91-6e17-43d5-a859-a7dfcf0e2270.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      204,
+      102,
+      1322,
+      936
+    ]
+  },
+  {
+    "breedId": "bichon-frise",
+    "name": "Bichon à poil frisé",
+    "standard": "215",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/215g09-en.pdf",
+    "price": 1230,
+    "heightRatio": 0.219,
+    "id": "bichon-frise-blanc-nacre",
+    "coat": "Blanc nacré",
+    "existingCover": "bichon-frise-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult adult Bichon Frise, small compact toy dog, rounded fluffy head, fine silky corkscrew curls, drop ears, black nose and plumed tail curled over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: pure white with soft pearly white curl highlights, no cream patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bichon-frise-blanc-nacre.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-1d11da22-ddae-4d80-aa19-47017f0ad130.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      358,
+      50,
+      1140,
+      933
+    ]
+  },
+  {
+    "breedId": "bichon-bolonais",
+    "name": "Bichon bolonais",
+    "standard": "196",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/196g09-en.pdf",
+    "price": 1250,
+    "heightRatio": 0.21,
+    "id": "bichon-bolonais-blanc-neige",
+    "coat": "Blanc neige",
+    "existingCover": "bichon-bolonais-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bolognese, small stocky square toy dog, rounded head, drop ears, distinctive long fluffy flocked white fur and full tail curved over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: pure snow white throughout with neutral soft white fur shadows. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bichon-bolonais-blanc-neige.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-fc96fe86-f7e6-41bd-b766-6cfddb594b99.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      117,
+      85,
+      1147,
+      1032
+    ]
+  },
+  {
+    "breedId": "bichon-havanais",
+    "name": "Bichon havanais",
+    "standard": "250",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/250g09-en.pdf",
+    "price": 1290,
+    "heightRatio": 0.215,
+    "id": "bichon-havanais-chocolat-blanc",
+    "coat": "Chocolat et blanc",
+    "existingCover": "bichon-havanais-fauve-blanc",
+    "existingCoat": "Fauve et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Havanese, small sturdy elongated toy dog, drop ears, soft long loose wavy silky fur and plumed tail curled over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: warm chocolate brown with white chest muzzle blaze and paws, brown nose. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bichon-havanais-chocolat-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-eb3e0504-5b2e-4b12-97f9-e9b2917e1e5e.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      263,
+      106,
+      1245,
+      956
+    ]
+  },
+  {
+    "breedId": "bichon-maltais",
+    "name": "Bichon maltais",
+    "standard": "65",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/065g09-en.pdf",
+    "price": 1300,
+    "heightRatio": 0.19,
+    "id": "bichon-maltais-blanc-ivoire",
+    "coat": "Blanc ivoire",
+    "existingCover": "bichon-maltais-blanc",
+    "existingCoat": "Blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Maltese, tiny compact toy dog, drop ears, long straight silky parted flowing coat, visible dark eyes and full plumed tail carried over back. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with very subtle pale ivory highlights, black nose and eye rims, no yellow patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bichon-maltais-blanc-ivoire.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-24e5d636-460d-4ff2-b250-e20badb020ac.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      215,
+      97,
+      1327,
+      941
+    ]
+  },
+  {
+    "breedId": "billy",
+    "name": "Billy",
+    "standard": "25",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/025g06-en.pdf",
+    "price": 1790,
+    "heightRatio": 0.486,
+    "id": "billy-blanc-citron",
+    "coat": "Blanc et citron",
+    "existingCover": "billy-blanc-orange",
+    "existingCoat": "Blanc et orange",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Billy hound, large elegant long-legged strong French hound, long head, medium flat pendant ears, short close fur and full tapering tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: white with pale lemon patches on ears and body. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/billy-blanc-citron.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-3623a551-5d3a-44b4-8f87-cfda6ceb71c4.png",
+    "canvas": [
+      1415,
+      1111
+    ],
+    "bounds": [
+      236,
+      44,
+      1281,
+      1073
+    ]
+  },
+  {
+    "breedId": "border-terrier",
+    "name": "Border Terrier",
+    "standard": "10",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/010g03-en.pdf",
+    "price": 1210,
+    "heightRatio": 0.251,
+    "id": "border-terrier-bleu-feu",
+    "coat": "Bleu et feu",
+    "existingCover": "border-terrier-grisonne-feu",
+    "existingCoat": "Grisonné et feu",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Border Terrier, small long-legged compact working terrier, distinctive otter-like head, small V folded ears, harsh wiry short coat and full carrot tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: blue grizzle body with rich tan head and lower legs. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/border-terrier-bleu-feu.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-af699627-d78c-4c81-bcb7-5784481861a8.png",
+    "canvas": [
+      1380,
+      1140
+    ],
+    "bounds": [
+      250,
+      121,
+      1123,
+      1039
+    ]
+  },
+  {
+    "breedId": "bouvier-appenzellois",
+    "name": "Bouvier appenzellois",
+    "standard": "46",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/046g02-en.pdf",
+    "price": 1790,
+    "heightRatio": 0.399,
+    "id": "bouvier-appenzellois-noir-feu-blanc",
+    "coat": "Noir marqué de feu et blanc",
+    "existingCover": "bouvier-appenzellois-havane-feu-blanc",
+    "existingCoat": "Havane marqué de feu et blanc",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Appenzell Mountain Dog, medium square muscular Swiss cattle dog, broad wedge head, folded ears, short glossy fur and full tightly curled ring tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: black tricolor with rich tan brows cheeks and legs, symmetrical white face blaze chest socks and tail tip. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-appenzellois-noir-feu-blanc.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-c0d4b148-9102-49f0-a486-1e4a3cd89f4e.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      219,
+      91,
+      1086,
+      1091
+    ]
+  },
+  {
+    "breedId": "bouvier-australien-courte-queue",
+    "name": "Bouvier australien courte queue",
+    "standard": "351",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/351g01-en.pdf",
+    "price": 1710,
+    "heightRatio": 0.36,
+    "id": "bouvier-australien-courte-queue-bleu-mouchete",
+    "coat": "Bleu moucheté",
+    "existingCover": "bouvier-australien-courte-queue-rouge-mouchete",
+    "existingCoat": "Rouge moucheté",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Australian Stumpy Tail Cattle Dog, medium square athletic compact herder, upright ears, short dense coat and natural very short stumpy tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: blue mottled coat with fine even black-white speckling, dark head markings, no tan. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-australien-courte-queue-bleu-mouchete.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-5231a6cc-5ec7-4a70-88fc-737fd357ac95.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      216,
+      44,
+      1077,
+      1123
+    ]
+  },
+  {
+    "breedId": "bouvier-entlebuch",
+    "name": "Bouvier de l’Entlebuch",
+    "standard": "47",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/047g02-en.pdf",
+    "price": 1640,
+    "heightRatio": 0.343,
+    "id": "bouvier-entlebuch-tricolore-feu-acajou",
+    "coat": "Tricolore à feu acajou",
+    "existingCover": "bouvier-entlebuch-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Entlebuch Mountain Dog, medium-small muscular elongated Swiss cattle dog, broad wedge head, folded ears, short dense fur and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: jet black with deep mahogany tan brows cheeks chest and legs, narrow symmetrical white blaze chest and white toes. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-entlebuch-tricolore-feu-acajou.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-1270719e-3d0b-4d10-ad95-a8bb5f501cac.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      307,
+      66,
+      1299,
+      954
+    ]
+  },
+  {
+    "breedId": "bouvier-ardennes",
+    "name": "Bouvier des Ardennes",
+    "standard": "171",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/171g01-en.pdf",
+    "price": 1770,
+    "heightRatio": 0.388,
+    "id": "bouvier-ardennes-bringe-fauve",
+    "coat": "Bringé fauve",
+    "existingCover": "bouvier-ardennes-gris-charbonne",
+    "existingCoat": "Gris charbonné",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bouvier des Ardennes, medium sturdy compact rustic cattle dog, erect ears, shaggy harsh short-medium coat, bearded muzzle and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: fawn with dark brindle streaks and darker muzzle, no white patches. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-ardennes-bringe-fauve.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-9b8392f9-8e48-40ec-abcf-96dc32893dc6.png",
+    "canvas": [
+      1374,
+      1145
+    ],
+    "bounds": [
+      273,
+      36,
+      1111,
+      1097
+    ]
+  },
+  {
+    "breedId": "bouvier-flandres",
+    "name": "Bouvier des Flandres",
+    "standard": "191",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/191g01-en.pdf",
+    "price": 2150,
+    "heightRatio": 0.476,
+    "id": "bouvier-flandres-noir",
+    "coat": "Noir",
+    "existingCover": "bouvier-flandres-gris-bringe",
+    "existingCoat": "Gris bringé",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Bouvier des Flandres, large powerful compact square cattle dog, broad bearded head, natural folded ears, thick rough tousled coat and full natural tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: solid deep black with softly readable black fur texture. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/bouvier-flandres-noir.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-24fa3c3f-96f2-4e28-8e65-c29f42221388.png",
+    "canvas": [
+      1312,
+      1199
+    ],
+    "bounds": [
+      232,
+      98,
+      1120,
+      1099
+    ]
+  },
+  {
+    "breedId": "brachet-allemand",
+    "name": "Brachet allemand",
+    "standard": "299",
+    "standardUrl": "https://www.fci.be/Nomenclature/Standards/299g06-en.pdf",
+    "price": 1630,
+    "heightRatio": 0.351,
+    "id": "brachet-allemand-tricolore-feu-roux",
+    "coat": "Tricolore à feu roux",
+    "existingCover": "brachet-allemand-tricolore",
+    "existingCoat": "Tricolore",
+    "prompt": "Use case: precise-object-edit. Image 1 is the EDIT TARGET: our existing Luma City adoptable adult Deutsche Bracke, medium-small light elegant long-legged hound, long fine head, broad pendant ears, dense short coat and full bushy saber tail. Create its SECOND COAT VARIANT. Change ONLY coat color and coat markings to: rich red with black saddle and white muzzle blaze chest collar socks and tail tip. Preserve the exact same adult dog, face, expression, pose, anatomy, body proportions, ear shapes, full tail, paw positions, fur length, fur texture and warm premium hand-painted semi-realistic 2D style. Preserve the existing composition and whole silhouette, never turn a sitting dog into a standing dog. Keep gentle matte shading and soft upper-left light ON DOG ONLY. Keep the complete dog with every existing paw, both ears and whole tail fully inside the canvas and transparent margins on EVERY side. Genuine transparent RGBA cutout, alpha ZERO outside fur and in existing gaps, clean antialiased fur contours. No backdrop, painted background, checkerboard, floor, outside shadow, glow, halo, haze, text, collar, leash, bow, accessories, extra dogs or cropped parts.",
+    "fichier": "public/assets/companions/brachet-allemand-tricolore-feu-roux.png",
+    "mode": "built-in image_gen",
+    "sourceImage": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f3e6-fa7f-7510-b9de-73979d8fbe6a\\exec-8c95d255-6d20-4df1-ae4e-b14d91e0f75a.png",
+    "canvas": [
+      1536,
+      1024
+    ],
+    "bounds": [
+      257,
+      51,
+      1314,
+      958
+    ]
+  }
+]

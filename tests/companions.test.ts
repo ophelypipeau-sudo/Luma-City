@@ -29,42 +29,37 @@ test("Les races adoptables se rattachent à des références officielles uniques
     assert.ok(!usedCodes.has(breed.standard), breed.standard);
     usedCodes.add(breed.standard);
   }
+  for (const [code, name] of FCI_BREEDS) {
+    assert.ok(usedCodes.has(code), `Race FCI absente de l’animalerie : ${name}`);
+  }
   for (const [code, name] of LOOF_BREEDS) {
     assert.ok(usedCodes.has(code), `Race LOOF absente de l’animalerie : ${name}`);
   }
 });
 
-test("Les 823 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 428);
+test("Les 918 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 450);
   const breeds = Object.values(COMPANION_BREEDS);
-  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 342);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 364);
   assert.equal(breeds.filter(({ species }) => species === "Chat").length, 80);
   assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 3);
   assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 3);
+  assert.ok(Object.entries(COMPANION_BREEDS).filter(([,b]) => b.species === "Chien").every(([id]) => companionVariants(id as CompanionBreedId).length >= 2), "Chaque race canine doit disposer d’au moins deux pelages");
   const oneCoat = new Set<CompanionBreedId>([
-    "berger-russie-meridionale", "berger-abruzzes-maremme", "berger-caucase", "berger-karst",
-    "berger-finnois-laponie", "berger-hollandais", "berger-miniature-americain", "berger-polonais-plaine",
-    "bichon-frise", "bichon-bolonais", "bichon-havanais", "bichon-maltais",
-    "billy", "border-terrier", "bouvier-appenzellois", "bouvier-australien-courte-queue",
-    "bouvier-entlebuch", "bouvier-ardennes", "bouvier-flandres", "brachet-allemand",
-    "basset-westphalie", "basset-alpes", "basset-fauve-bretagne", "drever",
-    "beagle-harrier", "berger-bergamasque", "berger-asie-centrale", "berger-beauce",
-    "berger-boheme", "tornjak", "berger-brie", "berger-picardie",
-    "akita-americain", "american-foxhound", "american-staffordshire-terrier", "anglo-francais-petite-venerie",
-    "ariegeois", "azawakh", "bangkaew-thailande", "barbu-tcheque",
-    "barzoi", "basset-artesien-normand", "basset-bleu-gascogne", "berger-blanc-suisse",
     "american-bobtail-pl", "californian-rex", "chausie", "cherubim",
     "celeste-pc", "celeste-pl", "highland-fold", "highland-straight",
     "japanese-bobtail-pl", "kurilian-bobtail-pc", "lykoi", "munchkin-pc",
     "munchkin-pl", "pixie-bob-pc", "pixie-bob-pl", "savannah",
     "scottish-straight", "sokoke", "york-chocolat",
-    "bouvier-bernois", "setter-irlandais", "yorkshire-terrier", "samoyede", "rottweiler",
-    "affenpinscher", "airedale-terrier", "chartreux", "korat", "bombay", "singapura",
+    "chartreux", "korat", "bombay", "singapura",
     "havana-brown", "nebelung", "toyger",
   ]);
   const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
   const twoCoats = new Set<CompanionBreedId>([
-    "kai", "tazy-kazakh", "kelpie", "kishu", "komondor", "kromfohrlander", "kuvasz", "laika-occidental", "laika-oriental", "laika-russo-europeen", "lakeland-terrier", "lancashire-heeler", "landseer", "lapphund-suedois", "laika-iakoutie", "greyhound", "galgo", "levrier-hongrois", "irish-wolfhound", "levrier-polonais", "malamute", "mastiff", "matin-pyrenees", "matin-espagnol", "matin-napolitain", "mudi", "matin-transmontano", "kooikerhondje", "norfolk-terrier", "norwich-terrier", "pekinois", "perdiguero-burgos", "petit-basset-griffon-vendeen", "petit-bleu-gascogne", "petit-brabancon", "petit-courant-suisse", "petit-chien-lion", "petit-chien-russe", "petit-munsterlander", "pinscher-allemand", "pinscher-autrichien", "pisteur-bresilien", "podenco-ibiza", "poitevin", "porcelaine", "presa-canario", "pudelpointer", "puli", "pumi", "rafeiro-alentejo", "ratier-prague", "ratier-valencien", "retriever-poil-boucle", "chesapeake", "toller", "sabueso-fino-colombiano", "saluki", "schapendoes", "schipperke", "schnauzer", "sealyham-terrier", "segugio-maremmano", "setter-gordon", "setter-irlandais-rouge-blanc", "shar-pei", "shikoku", "skye-terrier", "sloughi", "smous-pays-bas", "spinone", "spitz-norrbotten", "spitz-finlandais", "spitz-japonais", "staffordshire-bull-terrier", "sussex-spaniel", "tchouvatch-slovaque", "terrier-andalou", "english-toy-terrier", "terrier-australien", "terrier-soyeux",
+    "bouvier-bernois", "setter-irlandais", "yorkshire-terrier", "samoyede", "rottweiler", "affenpinscher", "airedale-terrier", "akita-americain", "american-foxhound", "american-staffordshire-terrier", "anglo-francais-petite-venerie", "ariegeois", "azawakh", "bangkaew-thailande", "barbu-tcheque", "barzoi", "basset-artesien-normand", "basset-bleu-gascogne", "berger-blanc-suisse", "basset-westphalie", "basset-alpes", "basset-fauve-bretagne", "drever", "beagle-harrier", "berger-bergamasque", "berger-asie-centrale", "berger-beauce", "berger-boheme", "tornjak", "berger-brie", "berger-picardie", "berger-russie-meridionale", "berger-abruzzes-maremme", "berger-caucase", "berger-karst", "berger-finnois-laponie", "berger-hollandais", "berger-miniature-americain", "berger-polonais-plaine", "bichon-frise", "bichon-bolonais", "bichon-havanais", "bichon-maltais", "billy", "border-terrier", "bouvier-appenzellois", "bouvier-australien-courte-queue", "bouvier-entlebuch", "bouvier-ardennes", "bouvier-flandres", "brachet-allemand",
+    "terrier-bresilien", "bedlington-terrier", "boston-terrier", "jagdterrier", "manchester-terrier", "parson-russell", "scottish-terrier", "irish-terrier", "wheaten-terrier", "glen-imaal", "terrier-japonais", "kerry-blue", "terrier-noir-russe", "cesky-terrier", "terrier-tibetain", "tosa", "vallhund", "volpino", "welsh-springer", "welsh-terrier", "westie", "xoloitzcuintle",
+    "pinscher-autrichien", "pisteur-bresilien", "podenco-ibiza", "poitevin", "porcelaine", "presa-canario", "pudelpointer", "puli", "pumi", "rafeiro-alentejo", "ratier-prague", "ratier-valencien", "retriever-poil-boucle", "chesapeake", "toller", "sabueso-fino-colombiano", "saluki", "schapendoes", "schipperke", "schnauzer", "sealyham-terrier", "segugio-maremmano", "setter-gordon", "setter-irlandais-rouge-blanc", "shar-pei", "shikoku", "skye-terrier", "sloughi", "smous-pays-bas", "spinone", "spitz-norrbotten", "spitz-finlandais", "spitz-japonais", "staffordshire-bull-terrier", "sussex-spaniel", "tchouvatch-slovaque", "terrier-andalou", "english-toy-terrier", "terrier-australien", "terrier-soyeux",
+    "kai", "tazy-kazakh", "kelpie", "kishu", "komondor", "kromfohrlander", "kuvasz", "laika-occidental", "laika-oriental", "laika-russo-europeen", "lakeland-terrier", "lancashire-heeler", "landseer", "lapphund-suedois", "laika-iakoutie", "greyhound", "galgo", "levrier-hongrois", "irish-wolfhound", "levrier-polonais", "malamute", "mastiff", "matin-pyrenees", "matin-espagnol", "matin-napolitain", "mudi", "matin-transmontano", "kooikerhondje", "norfolk-terrier", "norwich-terrier", "pekinois", "perdiguero-burgos", "petit-basset-griffon-vendeen", "petit-bleu-gascogne", "petit-brabancon", "petit-courant-suisse", "petit-chien-lion", "petit-chien-russe", "petit-munsterlander", "pinscher-allemand",
     "dandie-dinmont", "deerhound", "langhaar", "dogue-argentin", "dogue-bordeaux",
     "dogue-majorque", "dogue-tibet", "english-foxhound", "epagneul-bleu-picardie", "pont-audemer",
     "epagneul-francais", "epagneul-japonais", "king-charles", "epagneul-picard", "epagneul-tibetain",
@@ -124,7 +119,7 @@ test("Les 823 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 823);
+  assert.equal(COMPANION_CATALOG.length, 918);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
   const spriteByHash = new Map<string, string>();
   for (const model of COMPANION_CATALOG) {

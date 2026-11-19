@@ -1,0 +1,14 @@
+[
+  {
+    "index": 21,
+    "original": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f35a-325a-7e02-9009-e08767a9697e\\exec-75e84e76-8fd5-4d86-be09-f9ed3a6f7e77.png",
+    "corrected": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f35a-325a-7e02-9009-e08767a9697e\\exec-7373d43a-2c3a-49b4-a5e0-7738debf421a.png",
+    "prompt": "Edit target: supplied Lakeland Terrier. Extract the exact dog as a clean transparent RGBA sprite. REMOVE ALL the fake checkerboard printed background, all glow and all shadows outside its fur silhouette, including between legs. Background pixels MUST be alpha 0. Preserve the dog, coat colours, hairs, pose, shape, all four complete paws, ears and tail. Do not print a checkerboard. Keep transparent margin on every side."
+  },
+  {
+    "index": 36,
+    "original": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f35a-325a-7e02-9009-e08767a9697e\\exec-877b149f-7207-4c94-9805-ea0cfe47df76.png",
+    "corrected": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f35a-325a-7e02-9009-e08767a9697e\\exec-3c7754a6-9d55-4c10-b4d2-03446e0df8fd.png",
+    "prompt": "Edit target: supplied grey Irish Wolfhound. Keep exactly the same dog, grey rough coat, all hairs, anatomy, four entire paws, ears and complete tail. Remove ALL residual background and light halo outside the silhouette and between the legs. Output a clean transparent RGBA cutout, alpha ZERO everywhere outside dog fur. No floor, glow, shadow or checkerboard. Keep transparent margin on ALL edges."
+  }
+]

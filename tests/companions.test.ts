@@ -34,10 +34,10 @@ test("Les races adoptables se rattachent à des références officielles uniques
   }
 });
 
-test("Les 663 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
-  assert.equal(Object.keys(COMPANION_BREEDS).length, 348);
+test("Les 823 pelages du catalogue disposent de PNG RGBA et de dimensions adaptées", async () => {
+  assert.equal(Object.keys(COMPANION_BREEDS).length, 428);
   const breeds = Object.values(COMPANION_BREEDS);
-  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 262);
+  assert.equal(breeds.filter(({ species }) => species === "Chien").length, 342);
   assert.equal(breeds.filter(({ species }) => species === "Chat").length, 80);
   assert.equal(breeds.filter(({ species }) => species === "Lapin").length, 3);
   assert.equal(breeds.filter(({ species }) => species === "Hamster").length, 3);
@@ -64,6 +64,7 @@ test("Les 663 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
   ]);
   const threeCoats = new Set<CompanionBreedId>(["golden", "belier-nain", "hamster-syrien", "siamois", "persan", "corgi", "teckel"]);
   const twoCoats = new Set<CompanionBreedId>([
+    "kai", "tazy-kazakh", "kelpie", "kishu", "komondor", "kromfohrlander", "kuvasz", "laika-occidental", "laika-oriental", "laika-russo-europeen", "lakeland-terrier", "lancashire-heeler", "landseer", "lapphund-suedois", "laika-iakoutie", "greyhound", "galgo", "levrier-hongrois", "irish-wolfhound", "levrier-polonais", "malamute", "mastiff", "matin-pyrenees", "matin-espagnol", "matin-napolitain", "mudi", "matin-transmontano", "kooikerhondje", "norfolk-terrier", "norwich-terrier", "pekinois", "perdiguero-burgos", "petit-basset-griffon-vendeen", "petit-bleu-gascogne", "petit-brabancon", "petit-courant-suisse", "petit-chien-lion", "petit-chien-russe", "petit-munsterlander", "pinscher-allemand", "pinscher-autrichien", "pisteur-bresilien", "podenco-ibiza", "poitevin", "porcelaine", "presa-canario", "pudelpointer", "puli", "pumi", "rafeiro-alentejo", "ratier-prague", "ratier-valencien", "retriever-poil-boucle", "chesapeake", "toller", "sabueso-fino-colombiano", "saluki", "schapendoes", "schipperke", "schnauzer", "sealyham-terrier", "segugio-maremmano", "setter-gordon", "setter-irlandais-rouge-blanc", "shar-pei", "shikoku", "skye-terrier", "sloughi", "smous-pays-bas", "spinone", "spitz-norrbotten", "spitz-finlandais", "spitz-japonais", "staffordshire-bull-terrier", "sussex-spaniel", "tchouvatch-slovaque", "terrier-andalou", "english-toy-terrier", "terrier-australien", "terrier-soyeux",
     "dandie-dinmont", "deerhound", "langhaar", "dogue-argentin", "dogue-bordeaux",
     "dogue-majorque", "dogue-tibet", "english-foxhound", "epagneul-bleu-picardie", "pont-audemer",
     "epagneul-francais", "epagneul-japonais", "king-charles", "epagneul-picard", "epagneul-tibetain",
@@ -123,7 +124,7 @@ test("Les 663 pelages du catalogue disposent de PNG RGBA et de dimensions adapt�
     assert.equal(new Set(coats.map(({ coat }) => coat)).size, coats.length);
     assert.ok(coats.every(({ price }) => price === breed.price));
   }
-  assert.equal(COMPANION_CATALOG.length, 663);
+  assert.equal(COMPANION_CATALOG.length, 823);
   assert.equal(new Set(COMPANION_CATALOG.map(({ id }) => id)).size, COMPANION_CATALOG.length);
   const spriteByHash = new Map<string, string>();
   for (const model of COMPANION_CATALOG) {

@@ -8,6 +8,7 @@ import { FurnitureCollection } from "./FurnitureCollection";
 import { HomeAccessPanel } from "./HomeAccess";
 import { housingRequest, HousingRequestError } from "./home-http";
 import { reconcileHome, saveSignature, canVerifySave } from "./home-state";
+import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
 import "./housing.css";
 
 export type HomeRoomProps = ComponentProps<typeof Room> & {
@@ -32,6 +33,7 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
   const [category, setCategory] = useState("Tous");
   const [saving, setSaving] = useState(false);
   const [saveUnconfirmed, setSaveUnconfirmed] = useState(false);
+  const [draftStorageUnavailable, setDraftStorageUnavailable] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [reload, setReload] = useState(0);
@@ -58,11 +60,21 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
     const controller = new AbortController();
     setError("");
     void requestHome("load", { generation, ownerId: owner }, controller.signal).then((loaded) => {
-      setHome(loaded); setDraft(loaded.decoration); setDraftRevision(loaded.revision);
-      setEditing(false); setSelected(null);
+      const recovered = isOwner ? draftToRestore(loaded, readHomeDraft(sessionStorage, owner)) : null;
+      setHome(loaded); setDraft(recovered?.decoration ?? loaded.decoration); setDraftRevision(recovered?.expectedRevision ?? loaded.revision);
+      pending.current = recovered?.pending ?? null; setSaveUnconfirmed(recovered?.unconfirmed ?? false);
+      setEditing(!!recovered); setSelected(null); setInventoryOpen(true);
+      setMessage(recovered ? "Brouillon restauré. Enregistre-le pour le conserver dans ta maison." : "");
     }).catch((failure) => { if (!controller.signal.aborted) setError(failure.message); });
     return () => controller.abort();
   }, [owner, generation, reload]);
+  useEffect(() => {
+    if (!home || !isOwner || !draft) return;
+    const ok = editing && (dirty || saving || saveUnconfirmed)
+      ? writeHomeDraft(sessionStorage, owner, draft, draftRevision, pending.current, saving || saveUnconfirmed)
+      : clearHomeDraft(sessionStorage, owner);
+    setDraftStorageUnavailable(!ok);
+  }, [home, isOwner, owner, draft, draftRevision, editing, dirty, saving, saveUnconfirmed]);
   useEffect(() => {
     if (!layoutUpdate || layoutUpdate.ownerId !== owner) return;
     setHome((current) => {
@@ -98,6 +110,7 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
         operationId: pending.current.operationId, decoration: draft });
       if (!mounted.current) return;
       setHome(saved); setDraft(saved.decoration); setDraftRevision(saved.revision);
+      clearHomeDraft(sessionStorage, owner);
       setEditing(false); setSelected(null); setMessage("Décoration enregistrée."); pending.current = null; setSaveUnconfirmed(false);
     } catch (failure) { if (mounted.current) {
       setError((failure as Error).message);
@@ -162,7 +175,10 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
       {isOwner && !editing && <button type="button" onClick={() => setAccessOpen(true)}>Accès & invitations</button>}
       {editing && <><span>Mode décoration</span><button type="button" disabled={saving || (conflict && !verifyingSave)} onClick={() => void save()}>
         {saving ? "Enregistrement…" : verifyingSave ? "Vérifier la sauvegarde" : "Enregistrer"}</button>
-        <button type="button" disabled={saving} onClick={() => { setEditing(false); setDraft(home.decoration); setSelected(null); setError(""); }}>Annuler</button></>}
+        <button type="button" disabled={saving} onClick={() => {
+          clearHomeDraft(sessionStorage, owner); pending.current = null; setSaveUnconfirmed(false);
+          setEditing(false); setDraft(home.decoration); setSelected(null); setError(""); setMessage("");
+        }}>Annuler</button></>}
     </div>
     {accessOpen && isOwner && <HomeAccessPanel generation={generation} revision={accessRevision}
       visitors={roomProps.players.filter((p) => p.id !== owner).map((p) => ({ id: p.id, name: p.name }))}
@@ -176,7 +192,11 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
     <div className="housing-status" aria-live="polite">
       {error && <p role="alert">{error}</p>}
       {conflict && <p role="alert">{verifyingSave ? "Une version a été enregistrée. Vérifie ta dernière sauvegarde sans la dupliquer." : "Une nouvelle version a été enregistrée ailleurs. Ton brouillon est conservé."}</p>}
-      {(conflict || (editing && error)) && <button type="button" disabled={saving} onClick={() => setReload((n) => n + 1)}>Recharger et abandonner le brouillon</button>}
+      {(conflict || (editing && error)) && <button type="button" disabled={saving} onClick={() => {
+        clearHomeDraft(sessionStorage, owner); pending.current = null; setSaveUnconfirmed(false); setReload((n) => n + 1);
+        setEditing(false); setDraft(home.decoration); setDraftRevision(home.revision); setSelected(null); setMessage("");
+      }}>Recharger et abandonner le brouillon</button>}
+      {editing && dirty && draftStorageUnavailable && <p role="alert">Le brouillon local est indisponible. Enregistre avant de quitter cet écran.</p>}
       {message && <p>{message}</p>}
       {editing && !error && !conflict && <p>{dirty ? "Modifications non enregistrées" : "Glisse un meuble ou choisis-le dans l’inventaire."}</p>}
     </div>

@@ -4,16 +4,19 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n serveur,client \"tsx watch apps/server/src/index.ts\" \"vite --host 127.0.0.1\"",
-    "build": "npm run check:poses && tsc --noEmit && npm test && vite build",
+    "build": "npm run assets:companions && npm run check:poses && tsc --noEmit && npm test && vite build",
     "test": "node scripts/run-tests.mjs",
     "start": "tsx apps/server/src/index.ts",
     "check:poses": "tsx scripts/check-pose-wardrobe.ts",
     "assets:fit": "tsx scripts/prepare-redrawn-clothes.ts",
     "assets:fit:archive": "tsx scripts/calibrate-winter-patterns.ts",
     "test:avatar": "node scripts/run-tests.mjs tests/punk-front.test.ts tests/punk-capsule.test.ts tests/textile-pilot.test.ts tests/burgundy-cut.test.ts tests/redrawn-clothes.test.ts tests/avatar-pattern.test.ts tests/pose-wardrobe.test.ts tests/winter-dressing.test.ts tests/rail-pose.test.ts tests/heart-pose.test.ts tests/static-poses.test.ts tests/avatar-breathing.test.ts tests/fashion-commerce.test.ts tests/worn-outfits.test.ts tests/separated-belt.test.ts tests/material-colors.test.ts tests/atelier.test.ts",
-    "build:fast": "tsc --noEmit && vite build",
+    "build:fast": "npm run assets:companions && tsc --noEmit && vite build",
     "garment:sheet": "tsx scripts/preview-looks.tsx",
-    "garment:fitted": "tsx scripts/prepare-legging.ts"
+    "garment:fitted": "tsx scripts/prepare-legging.ts",
+    "assets:companions": "tsx scripts/prepare-companion-previews.ts",
+    "predev": "npm run assets:companions",
+    "pretest": "npm run assets:companions"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.15",
@@ -44,6 +47,7 @@
     "@vitejs/plugin-react": "^5.1.0",
     "concurrently": "^9.2.1",
     "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
     "ws": "^8.18.3"

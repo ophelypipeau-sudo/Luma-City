@@ -1,7 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ArrowLeft, Check, PawPrint, X } from "lucide-react";
 import { companionNameSchema, type CompanionCollection, type OwnedCompanion } from "../../../packages/contracts/src/companions";
-import { COMPANION_BREEDS, companionImage, companionModel, companionVariants, type CompanionBreedId } from "../../../packages/domain/src/companions";
+import { COMPANION_BREEDS, companionPreviewImage, companionModel, companionVariants, type CompanionBreedId } from "../../../packages/domain/src/companions";
 import { CompanionBreedDirectory } from "./CompanionBreedDirectory";
 
 type Model = NonNullable<ReturnType<typeof companionModel>>;
@@ -12,8 +12,8 @@ const breeds = Object.keys(COMPANION_BREEDS) as CompanionBreedId[];
 const speciesLabels = { Chien: "Chiens", Chat: "Chats", Lapin: "Lapins", Hamster: "Hamsters" } as const;
 const speciesList = Object.keys(speciesLabels) as (keyof typeof speciesLabels)[];
 
-export function CompanionArt({ model, className, lazy = false }: {
-  model: Model; className?: string; lazy?: boolean;
+export function CompanionArt({ model, className, lazy = false, priority = false }: {
+  model: Model; className?: string; lazy?: boolean; priority?: boolean;
 }) {
   const [left, top, right, bottom] = model.bounds;
   const width = right - left, height = bottom - top;
@@ -25,7 +25,10 @@ export function CompanionArt({ model, className, lazy = false }: {
   } as CSSProperties;
   return <span className={`pet-art ${className ?? ""}`} style={sizing}
     data-large-dog={model.species === "Chien" && model.heightRatio >= .45 ? true : undefined}>
-    <img src={companionImage(model.id)} alt="" loading={lazy ? "lazy" : undefined} decoding="async" draggable={false}
+    <img src={companionPreviewImage(model.id, 320)}
+      srcSet={`${companionPreviewImage(model.id, 320)} 320w, ${companionPreviewImage(model.id, 640)} 640w`}
+      sizes="(max-width: 700px) 200px, 280px"
+      width={model.canvas[0]} height={model.canvas[1]} fetchPriority={priority ? "high" : "auto"} alt="" loading={lazy ? "lazy" : undefined} decoding="async" draggable={false}
       style={{ width: `${100 * model.canvas[0] / width}%`, left: `${-100 * left / width}%`, top: `${-100 * top / height}%` }} />
   </span>;
 }
@@ -146,10 +149,10 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
       <strong>{coins(balance)}</strong>
     </div>
     {breed && <div className="companion-cards">
-        {variants.map((model) => {
+        {variants.map((model, index) => {
           const owned = ownedModels.get(model.id);
           return <article key={model.id} className="companion-card">
-            <div className="companion-card-art"><CompanionArt model={model} lazy /></div>
+            <div className="companion-card-art"><CompanionArt model={model} lazy={index >= 4} priority={index < 2} /></div>
             <div className="companion-card-info">
               <h2>{model.coat}</h2>
               <strong>{coins(model.price)}</strong>
@@ -168,13 +171,13 @@ export function CompanionShop({ collection, balance, onBack, onCollection, buy, 
       {showDirectory ? <CompanionBreedDirectory onBrowse={browseBreed} /> : speciesList.map((species) => <section className="companion-shelf" key={species} aria-label={speciesLabels[species]}>
       <h2>{speciesLabels[species]}</h2>
       <div className="companion-cards">
-        {breeds.filter((id) => COMPANION_BREEDS[id].species === species).map((id) => {
+        {breeds.filter((id) => COMPANION_BREEDS[id].species === species).map((id, index) => {
           const entry = COMPANION_BREEDS[id];
           const available = companionVariants(id);
           const cover = available.find((model) => model.id === entry.cover) ?? available[0];
           if (!cover) return null;
           return <article key={id} className="companion-card">
-            <div className="companion-card-art"><CompanionArt model={cover} lazy /></div>
+            <div className="companion-card-art"><CompanionArt model={cover} lazy={species !== "Chien" || index >= 6} priority={species === "Chien" && index < 2} /></div>
             <div className="companion-card-info">
               <h3>{entry.name}</h3>
               <p>{coatCount(available.length)}</p>

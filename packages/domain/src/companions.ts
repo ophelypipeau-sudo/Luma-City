@@ -1407,3 +1407,7 @@ export function companionGeometry(model: CompanionModel, avatarHeight: number, m
     visibleWidth: (right - left) * scale,
   };
 }
+
+/** Lightweight derivatives keep the original canvas coordinates and transparent background. */
+export const companionPreviewImage = (id: string, width: 320 | 640 = 640) =>
+  `/assets/companions-web/v1/${id}-${width}.webp`;

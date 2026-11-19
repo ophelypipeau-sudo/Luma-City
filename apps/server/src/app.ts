@@ -1745,7 +1745,11 @@ export async function createApp(
   timer.unref();
   const dist = resolve("dist");
   if (existsSync(dist)) {
-    await app.register(staticFiles, { root: dist });
+    await app.register(staticFiles, { root: dist, setHeaders(response, path) {
+      if (/[\\/]companions-web[\\/]/.test(path)) {
+        response.header("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
+      }
+    } });
     app.setNotFoundHandler((_req, reply) =>
       reply.code(404).send({ error: "Page introuvable." }),
     );

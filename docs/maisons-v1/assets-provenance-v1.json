@@ -1,0 +1,83 @@
+{
+  "tool": "image_gen.imagegen (outil intégré)",
+  "styleApproved": true,
+  "assets": [
+    {
+      "id": "room-empty",
+      "transparent": false,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/salon-concept-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. EDIT the reference: remove ALL ten furniture objects and accessories: sofa, armchair, coffee table, rug, lamp, plant and pot, bookcase with its contents, wall mirror, framed painting, cabinet. Remove all furniture shadows and reflections. Reconstruct the empty plaster wall and parquet seamlessly. KEEP the original room proportions and FRONT camera, original arched window left, city outside, mouldings, warm light and parquet. Fully empty back wall and bare floor. One straight horizontal wall/floor junction at 62 percent of image height. Landscape 1000:680 aspect. No extra room decor. This is the empty modular room background.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-99ef2527-d79d-4d10-a051-6a3005cb63b8.png"
+    },
+    {
+      "id": "sofa",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the plum velvet three-seat low contemporary sofa with matching plum and ivory cushions, rounded arms, low oak feet from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-950a730c-2af0-4991-918e-2040196590f7.png"
+    },
+    {
+      "id": "armchair",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the ivory boucle rounded armchair with one lilac cushion and low oak feet from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-11af2e70-d50b-49d3-9fe8-382bb63492da.png"
+    },
+    {
+      "id": "coffee-table",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the oval light oak coffee table, thick thin-edged oval top and two chunky cylindrical pedestal legs from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-009c5aea-d63b-4735-b512-9a5a7d726d2b.png"
+    },
+    {
+      "id": "rug",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the wide rounded ivory boucle rug, flattened ellipse seen at shallow frontal floor perspective, textured pile from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-b97bbb95-0d13-4122-be87-bedf006d50c2.png"
+    },
+    {
+      "id": "floor-lamp",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the slender brushed brass floor lamp with domed shade, curved upper neck and round base from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-d20447e4-c9f1-4d1d-a437-7c3f0243971e.png"
+    },
+    {
+      "id": "plant",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the tall leafy sage indoor tree in a round matte warm ivory ceramic pot, preserve every fine leaf from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-ed3f77b3-5c13-44ee-a933-8e6c4c1d540b.png"
+    },
+    {
+      "id": "bookcase",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the tall narrow four-shelf open pale oak bookcase with the same sparse pastel books and ivory ceramics from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-9e416e1e-471e-4eb3-85e8-66d7b8816fe8.png"
+    },
+    {
+      "id": "mirror",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the tall oval wall mirror with thin brushed brass frame, subtle neutral glass reflections without reflecting furniture from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-5816fae2-9375-434f-82ce-b24a5f5d521e.png"
+    },
+    {
+      "id": "painting",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the rectangular framed abstract artwork with plum lilac and warm ivory organic painted strokes, thin champagne frame from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-c34c8ab8-0131-4a13-997a-9244fea366ae.png"
+    },
+    {
+      "id": "cabinet",
+      "transparent": true,
+      "reference": "C:/Users/vosma/Documents/ChatGPT/MSP remake/docs/maisons-v1/meubles-planche-v1.png",
+      "prompt": "Luma City 2D social fashion game production illustration, strictly FRONT elevation, no isometric view or top-down, match the approved reference design EXACTLY: painterly premium 2D illustration with rich soft shading and very fine outlines, warm upper-left daylight, detailed boucle/velvet/oak/brass materials, plum ivory pale oak palette. No text, no numbers, no interface, no people, no pets, no watermark. Create ONE standalone sprite of the low pale oak two-door storage cabinet with narrow legs and visible subtle wood grain from the approved reference board. Only this ONE piece, entirely visible, isolated, tightly framed with 5 percent transparent padding. Use a genuinely transparent alpha background, not ivory or checkerboard. Preserve its exact front-facing design and materials. No other furniture, no floor, no wall, no panel, no captions. Very faint small contact shadow at base only if appropriate, no cast shadow halo. The rug lies flat on a floor plane; other objects vertical. Production PNG cutout for freely positioning in a 2D room.",
+      "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-cfca6a18-7a89-4b8d-8057-ddfdfce3f220.png"
+    }
+  ]
+}

@@ -26,13 +26,26 @@ export function RoomChat({
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const operation = useRef<{ commandId: string; body: string } | null>(null);
   const history = useRef<HTMLOListElement>(null);
   useEffect(() => {
-    if (!pending || receipt?.commandId !== pending) return;
+    const sent = operation.current;
+    if (!sent || receipt?.commandId !== sent.commandId) return;
     setPending(null);
     setError(receipt.error ?? "");
-    if (!receipt.error) setDraft("");
-  }, [pending, receipt]);
+    if (!receipt.error) {
+      setDraft((current) => current.trim() === sent.body ? "" : current);
+      operation.current = null;
+    }
+  }, [receipt]);
+  useEffect(() => {
+    if (!pending) return;
+    const timer = setTimeout(() => {
+      setPending(null);
+      setError("Le serveur n’a pas confirmé le message. Réessaie pour obtenir la confirmation.");
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [pending]);
   useEffect(() => {
     if (!enabled) setPending(null);
   }, [enabled]);
@@ -43,10 +56,12 @@ export function RoomChat({
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!enabled || pending || !draft.trim()) return;
-    const commandId = crypto.randomUUID();
+    const body = draft.trim();
+    if (operation.current?.body !== body) operation.current = { commandId: crypto.randomUUID(), body };
+    const { commandId } = operation.current;
     setPending(commandId);
     setError("");
-    onSend(draft.trim(), commandId);
+    onSend(body, commandId);
   }
   return (
     <section className="room-chat" aria-label="Discussion publique de la salle">

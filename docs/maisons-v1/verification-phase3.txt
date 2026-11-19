@@ -1,0 +1,50 @@
+Phase 3 — déplacement des maisons — 19 novembre 2026
+
+Vérification complète : npm run build
+- Contrôle des poses : 150 pièces, 558 calques/masques ; OK.
+- TypeScript : OK.
+- 177 tests réussis, 0 échec ; durée 256815,9903 ms.
+- Vite : compilation réussie en 17,31 s.
+- Journal local : .cache/phase3-build.log.
+
+Après correction de l’arrondi au bord supérieur du sol :
+node scripts/run-tests.mjs tests/home-navigation.test.ts tests/home-motion-render.test.ts
+- 7 tests réussis, 0 échec ; durée 6754,1227 ms.
+- Journal local : .cache/phase3-final-focused.log.
+- Cette relance comprend le nouveau test de conversion 438 / 6,8 × 6,8.
+- La compilation Vite de fin du build a pris en compte ce correctif.
+- Dernier npx tsc --noEmit : code de sortie 0.
+- git diff --check sur les fichiers suivis modifiés pour cette phase : OK.
+
+Couverture automatisée :
+- A* : détour autour d’un canapé, absence de traversée à chaque segment.
+- Échantillonnage à 16 ms, vitesse constante, destination exacte, temps avant départ.
+- Refus des murs, bords, destination occupée et passage fermé.
+- Aucun blocage de marche pour tapis et tableau.
+- Nouvelle destination depuis la position en cours et arrêt explicite.
+- Position libérée quand la décoration recouvre le personnage.
+- Trajet recalculé avec la nouvelle révision ; ancien décor ignoré.
+- Trajet réellement transmis aux visiteurs via WebSocket.
+- Troisième joueur entrant pendant le déplacement : même trajet, position cohérente.
+- Animal équipé « Nuage », modèle 01-mochi et vêtements partagés conservés.
+- Ancienne commande move : ne contourne ni les obstacles ni la vitesse.
+- Départ d’un visiteur et nettoyage de présence existant.
+- Rendu avant / pendant / après : mêmes images d’avatar, animal dans le groupe.
+
+Recette interactive sur .cache/housing-review (aucune base distante) :
+- Iris et Nuage, Spitz roux adopté et équipé par l’animalerie existante.
+- Premier clic : départ progressif de (750 ; 565), arrivée à (599,749 ; 462,334).
+- Clic dans l’empreinte du canapé : refus explicite, personnage immobile.
+- Destination libre suivante : (199,498 ; 479,900), détour devant la table et arrêt.
+- Mode Décoration pendant un déplacement : arrêt à (334,964 ; 525,220).
+- Les interactions de décoration suivantes conservent cette position.
+- Redimensionnement à 390×844 : mêmes coordonnées internes.
+- Tap sur le sol : arrivée à (836,898 ; 616,738), Nuage toujours près des pieds.
+- Le nom et le pelage du compagnon restent ceux de l’équipement.
+- Viewport de test réinitialisé ; capture phase3-mobile-iris-nuage.jpg conservée.
+- Le serveur de recette a été redémarré avec le correctif final ; santé HTTP OK.
+
+Limites du contrôle : gestes pilotés dans le navigateur ; pas de test sur un
+appareil tactile physique. La présence reste limitée à l’instance unique actuelle.
+Pas de nouvelle animation de marche, pas de modification de corps, visage,
+vêtements ou autres assets des avatars. Aucun meuble publié en boutique.

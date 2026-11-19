@@ -1,0 +1,61 @@
+Phase 5 — vérification locale du 19 novembre 2026
+
+Résultats finaux :
+- npx tsc --noEmit : succès, code 0.
+- node scripts/run-tests.mjs --test-concurrency=1
+    tests/furniture-commerce.test.ts tests/housing.test.ts
+    tests/home-navigation.test.ts tests/home-visits.test.ts
+    tests/companions.test.ts tests/fashion-commerce.test.ts
+    tests/hardening.test.ts tests/prototype.test.ts
+  48 tests, 48 réussis, 0 échec, 0 ignoré, 0 annulé.
+  Durée : 156388.465 ms.
+- npx vite build : succès, code 0, 1968 modules, 23.65 secondes.
+  Avertissements non bloquants : annotations de commentaires Zod et taille du
+  bundle principal supérieure au seuil Rollup de 500 kB.
+- git diff --check sur les fichiers suivis modifiés : succès.
+
+La suite générale de 181 tests validée en phase 4 n’a pas été relancée en entier.
+Cette phase utilise les 48 tests pertinents pour la monnaie, les achats, les
+maisons et leurs interactions multijoueurs, dont trois nouveaux scénarios.
+
+Nouveaux cas d’achat :
+- Vente fermée par défaut, même avec une offre d’essai en base ; absence de
+  session refusée avec 401 ; modèles non publiés et sans prix publics.
+- Achat et reçu atomiques, renvoi de la même commande sans double attribution
+  ni double débit, refus de réutilisation avec un contenu différent.
+- Deux commandes distinctes du même modèle donnent deux exemplaires distincts.
+- Exemplaire acheté initialement rangé, placement, sauvegarde, rangement et
+  inventaire privé. Un autre personnage ne peut pas placer cet exemplaire.
+- Deux personnages d’un compte partagent le solde mais gardent leurs inventaires.
+- Ancienne génération refusée ; reçu toujours lisible après redémarrage et
+  retrait de l’offre, sans nouveau débit.
+- Offres non approuvées, désactivées, inconnues ou obsolètes refusées.
+- Prix client falsifié et champs propriétaire/prix supplémentaires refusés.
+- Échec SQL forcé entre attribution et reçu : rollback complet et solde intact.
+- Deux achats concurrents de 6000 pièces sur un solde de 10000 : un seul achat
+  admis. L’achat ultérieur d’un animal utilise le solde restant ; le catalogue
+  de meubles affiche ensuite ce même solde.
+
+Recette UI via scripts/housing-review.ts --commerce :
+- Base isolée .cache/housing-review-v5, compte de démonstration Iris.
+- Solde initial après équipement du compagnon : 8800 pièces.
+- Achat d’une Plante Sauge d’essai à 200 pièces : solde 8600,
+  11 exemplaires dont un rangé, attribution confirmée.
+- Placement de cet exemplaire en X=110 puis sauvegarde : deux plantes au salon.
+- Achat d’un Tableau Prune d’essai à 180 pièces : solde 8420,
+  12 exemplaires dont un rangé.
+- Confirmation d’un nouvel achat ouverte puis annulée : aucun débit.
+- Rechargement : solde 8420, douze exemplaires, deux plantes toujours placées.
+- Recherche, filtre Rangés et passage vers la décoration contrôlés.
+- Panneau et confirmation contrôlés à 390 x 844 ; viewport réinitialisé.
+
+Captures : phase5-achat-confirme.jpg, phase5-inventaire.jpg,
+phase5-mobile-inventaire.jpg, phase5-mobile-confirmation.jpg.
+Logs : .cache/phase5-tests-final.log, .cache/phase5-typecheck-final.log,
+.cache/phase5-vite-final.log.
+
+Les prix de la recette sont des prix de démonstration, pas des prix commerciaux
+validés. Aucune offre n’est créée dans la base habituelle ou publique ; l’option
+de recette est forcée à faux lorsqu’une origine publique est configurée.
+Aucun dessin de personnage ni vêtement n’a été modifié pour cette phase.
+Aucun meuble publié en boutique, aucun déploiement.

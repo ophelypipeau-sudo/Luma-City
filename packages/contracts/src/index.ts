@@ -190,6 +190,19 @@ export function roomFloor(room: RoomId) {
 }
 export const commandSchema = z.discriminatedUnion("type", [
   z.object({
+    type: z.literal("home-move"),
+    generation: z.number().int(),
+    roomId: roomIdSchema,
+    x: z.number().finite().min(0).max(1000),
+    y: z.number().finite().min(0).max(680),
+  }).strict(),
+  z.object({
+    type: z.literal("home-stop"),
+    generation: z.number().int(),
+    roomId: roomIdSchema,
+  }).strict(),
+
+  z.object({
     type: z.literal("room-chat"),
     generation: z.number().int(),
     roomId: roomIdSchema,
@@ -230,6 +243,7 @@ export type Character = {
 export type Presence = Character & {
   x: number;
   y: number;
+  motion?: import("./housing.ts").HomeMotion;
   companion?: import("./companions.ts").OwnedCompanion | null;
 };
 export type RoomMessage = {

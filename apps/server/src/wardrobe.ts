@@ -51,7 +51,8 @@ export function createWardrobe(atelier?: AtelierStore) {
   async function spent(q: Query, account: string) {
     const { rows: [row] } = await q(
       `SELECT (COALESCE((SELECT SUM(price) FROM wardrobe_items WHERE paid_by=$1),0)
-             + COALESCE((SELECT SUM(price) FROM companions WHERE paid_by=$1),0)) AS spent`, [account]);
+             + COALESCE((SELECT SUM(price) FROM companions WHERE paid_by=$1),0)
+             + COALESCE((SELECT SUM(price) FROM furniture_purchases WHERE paid_by=$1),0)) AS spent`, [account]);
     return Number(row.spent);
   }
   async function balance(q: Query, character: CharacterRow, earnedCoins: number) {

@@ -1,0 +1,50 @@
+Luma City — Phase 2 des maisons — 19 novembre 2026
+
+Vérification complète : npm run build
+- assets:companions : OK
+- check:poses : OK
+- TypeScript : OK
+- 171 tests réussis, 0 échec, 0 ignoré
+- durée de la suite : 359830,423 ms
+- Vite : compilation réussie
+- journal local : .cache/housing-build.log
+
+Après les derniers ajustements WebP, mobile et accessibilité :
+- npx tsc --noEmit : code de sortie 0
+- node scripts/run-tests.mjs tests/housing.test.ts : 4 réussis, 0 échec
+- durée : 10184,1398 ms
+- npx vite build : code de sortie 0, compilation en 23,03 s
+- journal local : .cache/housing-vite-final.log
+- git diff --check : aucun défaut d’espacement signalé
+
+Recette interactive — base PGlite dédiée .cache/housing-review :
+- Entrée depuis Ma maison ; seul le propriétaire dispose des outils.
+- Décoration : sélection dans l’inventaire, glisser-déposer, champs X/Y.
+- Canapé déplacé de (415,435) à (471,470), puis accusé positif du serveur.
+- Rechargement du navigateur et contrôle à 390×844 : X=471 et Y=470 conservés.
+- Glisser-déposer à 390 px : déplacement à (524,5 ; 507,4), puis rangement.
+- L’exemplaire apparaît Rangé · Placer, puis est réutilisé sans duplication.
+- Devant / Derrière, choix mur Lilas et parquet Miel, sauvegarde confirmée.
+- Annuler conserve la dernière disposition enregistrée.
+- Contrôle final des WebP, de l’échelle d’Iris et de l’interface mobile.
+- Contrôle des dix sprites sur fonds clair, foncé et turquoise : contours propres.
+- Captures JPEG conservées dans docs/maisons-v1/phase2-*.jpg.
+- Le viewport temporaire du navigateur a été réinitialisé.
+
+Les tests API vérifient aussi : inventaire privé rangé, accès sans session,
+blocage bilatéral, meuble étranger, faux propriétaire, doublon d’exemplaire,
+exemplaire déjà placé dans une autre pièce, révision obsolète, sauvegardes
+concurrentes, renvoi idempotent et contenu différent sous une même clé,
+persistance après fermeture/réouverture de PGlite, diffusion réelle du nouveau
+décor vers deux clients WebSocket sans doublonner les meubles.
+
+Encodages : PNG natifs conservés ; WebP principaux 1699042 octets contre
+18547814 octets, réduction 90,8 %. Vignettes séparées de 256 px.
+
+Portée : phase 2 seulement. Aucun achat ni publication de meubles, aucun
+déploiement. Trajets avec obstacles, confidentialité avancée, invitations,
+expulsions et recette sur appareil tactile physique restent à réaliser.
+
+Les avertissements Vite de taille du bundle global et d’annotations Zod
+n’empêchent pas la compilation. Le rendu habituel des salons et le dessin
+des avatars sont conservés.

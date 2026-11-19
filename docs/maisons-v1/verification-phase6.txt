@@ -1,0 +1,72 @@
+Phase 6 — vérification locale du 19 novembre 2026
+
+Résultats :
+- npx tsc --noEmit : succès, code 0.
+- Tests accès / visites / décoration : 10 réussis, 0 échec, 0 ignoré,
+  durée 43946.1627 ms. Log : .cache/phase6-access-tests.log.
+- Régression achats / monnaie / navigation / chat / contrôles d’accès :
+  41 réussis, 0 échec, 0 ignoré, durée 152836.0708 ms.
+  Log : .cache/phase6-regression.log.
+- Après regroupement des requêtes de boîte d’invitations, les trois tests
+  d’accès ont été rejoués : 3 réussis, 0 échec, durée 26911.5717 ms.
+  Log : .cache/phase6-access-final.log.
+- Total distinct contrôlé : 51 tests. La suite générale entière n’est pas
+  relancée pour cette phase ; les rendus d’avatars n’ont pas été modifiés.
+- npx vite build final : succès, code 0, 25.14 s.
+  Avertissements non bloquants : annotations de commentaires Zod et taille
+  du bundle principal au-dessus du seuil de 500 kB.
+- git diff --check sur les fichiers suivis modifiés : succès.
+
+Commandes de tests :
+node scripts/run-tests.mjs --test-concurrency=1 tests/home-access.test.ts
+  tests/home-visits.test.ts tests/housing.test.ts
+node scripts/run-tests.mjs --test-concurrency=1 tests/furniture-commerce.test.ts
+  tests/home-navigation.test.ts tests/companions.test.ts tests/fashion-commerce.test.ts
+  tests/hardening.test.ts tests/prototype.test.ts
+node scripts/run-tests.mjs --test-concurrency=1 tests/home-access.test.ts
+
+Couverture spécifique :
+- Public, amis confirmés, privé et propriétaire toujours autorisé.
+- Amitié en attente sans accès, même avec un identifiant de maison direct.
+- Même politique sur HTTP et WebSocket ; mode changé sans altérer la révision
+  du décor ; refus d’un changement obsolète et retry du mode courant sans effet.
+- Réglages d’un autre propriétaire non accessibles via un champ client.
+- Invitation adressée au destinataire, émission idempotente sans prolongation,
+  une seule active par paire ; refus d’inviter une amitié non confirmée.
+- Acceptation par un tiers refusée ; invitation en attente sans accès privé.
+- Acceptation, entrée privée, révocation, retrait en direct, refus de réactivation.
+- Invitation déclinée ou expirée non acceptable ; renouvellement par nouvel identifiant.
+- Invitation acceptée puis expirée : retrait automatique sans commande client,
+  vérifié par le timer serveur ; chat de l’ancienne salle refusé ensuite.
+- Visiteur incapable d’expulser le propriétaire ou d’agir sur sa maison ;
+  propriétaire incapable de s’expulser lui-même.
+- Expulsion et refus de réentrée HTTP/WS ; retry de l’expulsion ; exclusion
+  conservée après fermeture et réouverture de la base.
+- Retour explicitement autorisé, sans restaurer les anciennes invitations.
+- Blocage bilatéral, retrait immédiat, révocation durable des invitations,
+  y compris après déblocage.
+- Les tests existants contrôlent encore les capacités concurrentes, les achats,
+  le solde partagé, le décor, les animaux, les trajets, le chat et la reconnexion.
+
+Recette dans le navigateur :
+- scripts/housing-review.ts --access ; base isolée .cache/housing-review-v6.
+- Iris sur http://127.0.0.1:5176/ et June sur http://localhost:5176/.
+- Iris choisit Privée puis invite June. June reçoit un compteur d’invitation,
+  accepte et rejoint la maison privée. Deux personnages et leurs compagnons
+  sont visibles dans la présence existante.
+- Iris confirme l’expulsion. June revient au quartier avec une explication ;
+  Iris voit un seul occupant et June dans Retour interdit.
+- À 390 x 844, le panneau des trois modes est lisible et défilable. Autorisation
+  du retour et émission d’une nouvelle invitation effectuées depuis ce panneau.
+- Boîte d’invitations contrôlée aussi à 390 x 844 : destinataire, heure de fin,
+  boutons Accepter et visiter / Décliner accessibles.
+- Overrides de viewport réinitialisés. L’aperçu reste privé, avec une nouvelle
+  invitation en attente pour June ; l’ancienne invitation reste révoquée.
+
+Captures : phase6-acces-prive.jpg, phase6-invitation.jpg,
+phase6-expulsion-confirmation.jpg, phase6-visiteur-expulse.jpg,
+phase6-mobile-acces.jpg, phase6-mobile-invitation.jpg.
+Autres logs : .cache/phase6-typecheck-final.log, .cache/phase6-vite-final.log.
+
+Aucune modification des dessins, corps, vêtements ou assets de personnages.
+Aucun meuble publié en boutique. Aucun déploiement effectué.

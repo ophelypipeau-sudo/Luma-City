@@ -1,6 +1,15 @@
 import Fastify from "fastify";
 import { registerAtelier } from "./atelier-routes.ts";
 import { registerPuzzle } from "./puzzle-routes.ts";
+import { registerHousing, publicHomeSnapshot } from "./housing-routes.ts";
+import { buyFurniture, furnitureOffers } from "./furniture-commerce.ts";
+import { buyFurnitureSchema } from "../../../packages/contracts/src/housing.ts";
+import { ensureHome, homeSnapshot } from "./housing.ts";
+import { createHomeNavigation } from "./home-navigation.ts";
+import { createRoomChatReceipts } from "./room-chat-receipts.ts";
+import { homeAllows } from "./home-access.ts";
+import { registerHomeAccess } from "./home-access-routes.ts";
+
 import { imageUpload } from "./atelier-images.ts";
 import type { AtelierProvider } from "./atelier-provider.ts";
 import cookie from "@fastify/cookie";
@@ -43,6 +52,7 @@ import {
   type XpMagazine,
   type RewardWheel,
   type ScratchTicket,
+  DEFAULT_ROOM,
   roomFloor,
   ROOM_IDS,
   type Presence,
@@ -109,6 +119,7 @@ export async function createApp(
     profileImageVipAccounts?: readonly string[];
     neonAuth?: ReturnType<typeof createNeonPlayerAuth>;
     publicOrigin?: string;
+    housingCommercePreview?: boolean;
     logger?: boolean | { level: string };
   } = {},
 ) {
@@ -132,6 +143,9 @@ export async function createApp(
   const presence = new Map<string, Presence & { roomId: RoomId | null }>();
   const occupiedRooms = () =>
     [...presence.values()].flatMap((p) => p.roomId ? [p.roomId] : []);
+  const homeNavigation = createHomeNavigation(presence);
+  const homeCapacities = new Map<RoomId, number>();
+  const chatReceipts = createRoomChatReceipts();
   const chatHistory = new Map<RoomId, RoomMessage[]>();
   const lastSend = new Map<string, number>();
   // Commands of one account run in order; different accounts no longer wait for each other.
@@ -156,6 +170,9 @@ export async function createApp(
     if (ws.readyState === 1) ws.send(JSON.stringify(event));
   };
   const room = () => {
+    const serverTime = Date.now();
+    for (const player of presence.values()) homeNavigation.sample(player, serverTime);
+    homeNavigation.prune();
     const players = [...presence.values()];
     const ids = [
       ...new Set<RoomId>([...ROOM_IDS, ...occupiedRooms()]),
@@ -169,6 +186,8 @@ export async function createApp(
       if (player)
         send(ws, {
           type: "room",
+          serverTime,
+          capacities: Object.fromEntries(ids.map((id) => [id, homeCapacities.get(id) ?? ROOM_CAPACITY])),
           roomId: player.roomId,
           players: player.roomId ? byRoom[player.roomId] : [player],
           counts,
@@ -182,7 +201,7 @@ export async function createApp(
   ) {
     const present = [...presence.keys()];
     const { rows } = await db.query(
-      "SELECT actor, target FROM blocks WHERE actor = ANY($1::text[]) AND target = ANY($1::text[])", [present]);
+      "SELECT actor, target FROM blocks WHERE actor = ANY($1::text[]) OR target = ANY($1::text[])", [present]);
     const blocked = new Set<string>();
     for (const { actor, target } of rows) {
       blocked.add(JSON.stringify([actor, target]));
@@ -220,6 +239,36 @@ export async function createApp(
   }
   // Rows created by former demo seeds stay out of a public server's lists.
   const listed = publicOrigin ? "c.id LIKE 'player-%'" : "TRUE";
+  async function allowedHomePeer(q: Query, actor: string, owner: string) {
+    if (irisOnly && owner !== "iris") return false;
+    const { rows } = await q(`SELECT 1 FROM characters c WHERE c.id=$1 AND ${listed}
+      AND NOT EXISTS (SELECT 1 FROM blocks WHERE (actor=$2 AND target=$1) OR (actor=$1 AND target=$2))`, [owner, actor]);
+    return rows.length > 0;
+  }
+  async function canVisitHome(q: Query, actor: string, owner: string) {
+    return await allowedHomePeer(q, actor, owner) && await homeAllows(q, actor, owner);
+  }
+  function leaveRestrictedHome(id: string, owner: string) {
+    const p = presence.get(id);
+    if (!p || p.roomId !== `home:${owner}`) return;
+    homeNavigation.stop(p);
+    p.roomId = null; p.x = 50; p.y = roomFloor(DEFAULT_ROOM) + 5;
+    for (const [ws, client] of clients) if (client.character === id) send(ws, {
+      type: "home-removed", roomId: `home:${owner}`, currentRoomId: null,
+      message: "Tu as quitté cette maison : ton accès a été retiré ou a expiré.",
+    });
+  }
+  async function revalidateHome(owner: string) {
+    let removed = false;
+    for (const p of [...presence.values()]) if (p.roomId === `home:${owner}` && !await canVisitHome(db.query, p.id, owner)) {
+      leaveRestrictedHome(p.id, owner); removed = true;
+    }
+    if (removed) { room(); await publishChat([DEFAULT_ROOM, `home:${owner}`]); }
+  }
+  async function revalidateHomes() {
+    const owners = new Set([...presence.values()].map((p) => homeOwner(p.roomId ?? DEFAULT_ROOM)).filter((id): id is string => !!id));
+    await Promise.all([...owners].map((owner) => serialFor(`home:${owner}`, () => revalidateHome(owner))));
+  }
   const CONTACT_LIMIT = 200;
   async function activeCharacter(token: string) {
     const account = login(token).account;
@@ -480,8 +529,12 @@ export async function createApp(
         return reply.code(403).send({ error: "Hôte local requis." });
     }
     const port = process.env.PORT ?? "3001";
+    const localOrigin = process.env.APP_ORIGIN ?? "http://127.0.0.1:5173";
+    const localAlias = localOrigin.replace(/^(https?:\/\/)(127\.0\.0\.1|localhost)(?=[:/]|$)/,
+      (_match, protocol: string, hostname: string) => `${protocol}${hostname === "localhost" ? "127.0.0.1" : "localhost"}`);
     const allowed = new Set(publicOrigin ? [publicOrigin.origin] : [
-      process.env.APP_ORIGIN ?? "http://127.0.0.1:5173",
+      localOrigin,
+      localAlias,
       "http://localhost:5173",
       `http://127.0.0.1:${port}`,
       `http://localhost:${port}`,
@@ -839,6 +892,7 @@ export async function createApp(
         }
         return { ...(await socialProfile(q, me, peer)), xpSent, xpEarned };
       });
+      if (action.type === "relation" || action.type === "decline-friend") await revalidateHomes();
       changed();
       return social;
     }),
@@ -953,6 +1007,50 @@ export async function createApp(
     return { entries: rows };
   });
   registerPuzzle(app, db, { active, serialRequest, rewardWheel });
+  registerHomeAccess(app, db, { active, serialRequest,
+    serialHome: (owner, fn) => serialFor(`home:${owner}`, fn), allowedPeer: allowedHomePeer,
+    visiblePeer: (id) => (!irisOnly || id === "iris") && (!publicOrigin || id.startsWith("player-")),
+    revalidate: revalidateHome, occupants: (owner) => [...presence.values()].filter((p) => p.roomId === `home:${owner}`).map((p) => p.id), changed });
+  // Explicit local review option only: unpublished furniture never enters the public shop.
+  const furniturePreview = !publicOrigin && atelierOptions.housingCommercePreview === true;
+  app.post("/api/housing/catalog", (req) => serialRequest(req, () => db.transaction(async (q) => {
+    const { generation } = z.object({ generation: z.number().int() }).strict().parse(req.body);
+    const character = await activeRow(q, req.cookies.session!, generation);
+    const wheel = await rewardWheel(q, character.id);
+    await ensureHome(q, character.id);
+    return { preview: furniturePreview, offers: await furnitureOffers(q, furniturePreview),
+      balance: await wardrobe.balance(q, character, wheel.accountCoins), home: await homeSnapshot(q, character.id) };
+  })));
+  app.post("/api/housing/buy", (req) => serialRequest(req, async () => {
+    const input = buyFurnitureSchema.parse(req.body);
+    const account = login(req.cookies.session).account;
+    const receipt = await serialFor(`furniture-account:${account}`, () => db.transaction(async (q) => {
+      await q("SELECT id FROM accounts WHERE id=$1 FOR UPDATE", [account]);
+      const character = await activeRow(q, req.cookies.session!, input.generation);
+      const wheel = await rewardWheel(q, character.id);
+      const balance = await wardrobe.balance(q, character, wheel.accountCoins);
+      return buyFurniture(q, account, character.id, balance, input, furniturePreview);
+    }));
+    changed();
+    return receipt;
+  }));
+  registerHousing(app, db, {
+    active, serialRequest,
+    serialHome: (owner, fn) => serialFor(`home:${owner}`, fn),
+    canVisit: canVisitHome,
+    publish: async (home) => {
+      await revalidateHome(home.ownerId);
+      homeCapacities.set(`home:${home.ownerId}`, home.capacity ?? ROOM_CAPACITY);
+      homeNavigation.update(home);
+      for (const [ws, client] of clients) {
+        const player = client.character ? presence.get(client.character) : undefined;
+        if (player?.roomId === `home:${home.ownerId}`)
+          send(ws, { type: "home-layout", home: publicHomeSnapshot(home) });
+      }
+      room();
+    },
+  });
+
   app.post("/api/arcade/start", async (req) =>
     serialRequest(req, () => db.transaction(async (q) => {
       const { generation, game } = z.object({
@@ -1519,17 +1617,19 @@ export async function createApp(
         const me = await active(req.cookies.session!, b.generation, q);
         if (irisOnly || me === b.peer)
           throw new Error("Action impossible sur ton personnage.");
-        if (b.blocked)
+        if (b.blocked) {
           await q("INSERT INTO blocks VALUES ($1,$2) ON CONFLICT DO NOTHING", [
             me,
             b.peer,
           ]);
-        else
+          await q("UPDATE home_invitations SET state='revoked' WHERE (owner_id=$1 AND guest_id=$2) OR (owner_id=$2 AND guest_id=$1)", [me, b.peer]);
+        } else
           await q("DELETE FROM blocks WHERE actor=$1 AND target=$2", [
             me,
             b.peer,
           ]);
       });
+      await revalidateHomes();
       await publishChat([
         ...new Set([...ROOM_IDS, ...occupiedRooms()]),
       ]);
@@ -1602,15 +1702,30 @@ export async function createApp(
           if (id !== client.character || !p)
             throw new Error("Rejoins la salle avant de te déplacer.");
           if (cmd.type === "leave-room") {
+            homeNavigation.stop(p);
             if (p.roomId) {
               p.roomId = null;
               room();
             }
             return;
           }
+          if (!p.roomId && (cmd.type === "home-move" || cmd.type === "home-stop")) throw new PlayerError("Tu as changé de pièce.");
+          const currentOwner = p.roomId && homeOwner(p.roomId);
+          if (cmd.type !== "join-room" && currentOwner && !await canVisitHome(db.query, id, currentOwner)) {
+            leaveRestrictedHome(id, currentOwner); room();
+            throw new PlayerError("Cette maison n’est plus accessible.");
+          }
           if (cmd.type === "room-chat") {
             if (!p.roomId || cmd.roomId !== p.roomId)
               throw new Error("Tu as changé de salle.");
+            if (chatReceipts.has(id, cmd.commandId, cmd.roomId, cmd.body)) {
+              if (!chatReceipts.delivered(id, cmd.commandId)) {
+                await publishChat([p.roomId]);
+                chatReceipts.confirm(id, cmd.commandId);
+              }
+              send(ws, { type: "room-chat-ack", commandId: cmd.commandId });
+              return;
+            }
             if (Date.now() - client.lastChat < 600)
               throw new Error(
                 "Attends un instant avant de renvoyer un message.",
@@ -1626,48 +1741,74 @@ export async function createApp(
               p.roomId,
               [...(chatHistory.get(p.roomId) ?? []), message].slice(-40),
             );
+            chatReceipts.remember(id, cmd.commandId, p.roomId, cmd.body);
             await publishChat([p.roomId]);
+            chatReceipts.confirm(id, cmd.commandId);
             send(ws, { type: "room-chat-ack", commandId: cmd.commandId });
             return;
           }
           if (cmd.type === "join-room") {
-            if (cmd.roomId !== p.roomId) {
-              const owner = homeOwner(cmd.roomId);
-              if (
-                owner &&
-                ((irisOnly && owner !== "iris") || !(
-                  await db.query("SELECT 1 FROM characters WHERE id=$1", [
-                    owner,
-                  ])
-                ).rows.length ||
-                  (
-                    await db.query(
-                      `SELECT 1 FROM blocks WHERE
-                  (actor=$1 AND target=$2) OR (actor=$2 AND target=$1)`,
-                      [id, owner],
-                    )
-                  ).rows.length)
-              ) {
-                send(ws, { type: "room-unavailable", roomId: cmd.roomId });
-                return;
+            const owner = homeOwner(cmd.roomId);
+            const admitted = await serialFor(owner ? `home:${owner}` : `room:${cmd.roomId}`, async () => {
+              if (owner && !await canVisitHome(db.query, id, owner)) {
+                  send(ws, { type: "room-unavailable", roomId: cmd.roomId, currentRoomId: p.roomId });
+                  return false;
               }
-              const count = [...presence.values()].filter(
-                (other) => other.roomId === cmd.roomId,
-              ).length;
-              if (count >= ROOM_CAPACITY) {
-                send(ws, { type: "room-full", roomId: cmd.roomId });
-                return;
+              const home = owner ? await db.transaction(async (q) => {
+                await ensureHome(q, owner);
+                return homeSnapshot(q, owner);
+              }) : null;
+              const capacity = home?.capacity ?? ROOM_CAPACITY;
+              if (home) {
+                homeCapacities.set(cmd.roomId, capacity);
+                homeNavigation.update(home);
               }
-              p.roomId = cmd.roomId;
-              p.x = 40 + Math.random() * 20;
-              p.y = roomFloor(cmd.roomId) + 4 + Math.random() * 5;
-            }
+              if (cmd.roomId !== p.roomId) {
+                const count = [...presence.values()].filter(
+                  (other) => other.roomId === cmd.roomId,
+                ).length;
+                if (count >= capacity) {
+                  send(ws, { type: "room-full", roomId: cmd.roomId, capacity, currentRoomId: p.roomId });
+                  return false;
+                }
+                const spawn = home ? homeNavigation.spawn(home) : null;
+                if (home && !spawn) {
+                  send(ws, { type: "room-full", roomId: cmd.roomId, capacity, currentRoomId: p.roomId });
+                  return false;
+                }
+                homeNavigation.stop(p);
+                p.roomId = cmd.roomId;
+                p.x = spawn ? spawn.x / 10 : 40 + Math.random() * 20;
+                p.y = spawn ? spawn.y / 6.8 : roomFloor(cmd.roomId) + 4 + Math.random() * 5;
+              }
+              if (home) send(ws, { type: "home-layout", home: owner === id ? home : publicHomeSnapshot(home) });
+              return true;
+            });
+            if (!admitted) return;
             room();
             await publishChat([cmd.roomId], ws);
             return;
           }
-          if (!p.roomId || Date.now() - client.moved < 45) return;
+          if (!p.roomId || (cmd.type !== "home-stop" && Date.now() - client.moved < 45)) return;
           client.moved = Date.now();
+          const owner = homeOwner(p.roomId);
+          if (cmd.type === "home-move" || cmd.type === "home-stop") {
+            if (!owner || cmd.roomId !== p.roomId) throw new PlayerError("Tu as changé de pièce.");
+            await serialFor(`home:${owner}`, async () => {
+              if (p.roomId !== cmd.roomId || !await canVisitHome(db.query, id, owner)) throw new PlayerError("Cette maison n’est plus accessible.");
+              if (cmd.type === "home-stop") homeNavigation.stop(p);
+              else homeNavigation.move(p, { x: cmd.x, y: cmd.y });
+              room();
+            });
+            return;
+          }
+          if (owner) {
+            // Older clients cannot bypass collisions or speed by sending legacy moves.
+            await serialFor(`home:${owner}`, async () => {
+              homeNavigation.move(p, { x: cmd.x * 10, y: cmd.y * 6.8 }); room();
+            });
+            return;
+          }
           p.x = cmd.x;
           p.y = Math.max(roomFloor(p.roomId), cmd.y);
           room();
@@ -1725,6 +1866,18 @@ export async function createApp(
       }
     });
   });
+  const motionTimer = setInterval(() => {
+    if (homeNavigation.settle()) room();
+  }, 80);
+  motionTimer.unref();
+  let accessChecking = false;
+  const accessTimer = setInterval(() => {
+    if (accessChecking) return;
+    accessChecking = true;
+    void revalidateHomes().catch((err) => app.log.error({ err }, "home access check failed"))
+      .finally(() => { accessChecking = false; });
+  }, 10000);
+  accessTimer.unref();
   const timer = setInterval(() => {
     {
       for (const [ws, c] of clients) {
@@ -1756,6 +1909,8 @@ export async function createApp(
   }
   app.addHook("onClose", async () => {
     clearInterval(timer);
+    clearInterval(motionTimer);
+    clearInterval(accessTimer);
     for (const ws of clients.keys()) ws.terminate();
     await Promise.all(queues.values());
   });

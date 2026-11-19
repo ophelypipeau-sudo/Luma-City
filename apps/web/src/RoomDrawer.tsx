@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ChevronRight, MessageCircle, UserPlus } from "lucide-react";
+import { ChevronRight, House, MessageCircle, UserPlus } from "lucide-react";
 import type { Contact } from "../../../packages/contracts/src/index";
 
 type Tab = "room" | "messages" | "friends";
@@ -19,6 +19,7 @@ export function RoomDrawer({
   onOpenProfile,
   onAllMessages,
   onAllFriends,
+  onVisit,
 }: {
   chat: ReactNode;
   /** Id of the room's latest public message, to flag news while another tab is open. */
@@ -31,6 +32,7 @@ export function RoomDrawer({
   onOpenProfile: (id: string) => void;
   onAllMessages: () => void;
   onAllFriends: () => void;
+  onVisit?: (id: string) => void;
 }) {
   const [tab, setTab] = useState<Tab>("room");
   const [seenChat, setSeenChat] = useState(chatLatest);
@@ -130,10 +132,12 @@ export function RoomDrawer({
               <ul className="drawer-list">
                 {sortedFriends.map((c) =>
                   person(c, where(c.id),
+                    <>{onVisit && <button type="button" className="drawer-write" disabled={c.blocked}
+                      aria-label={`Visiter la maison de ${c.name}`} onClick={() => onVisit(c.id)}><House size={17} aria-hidden="true" /></button>}
                     <button type="button" className="drawer-write" onClick={() => onOpenChat(c.id)}
                       aria-label={`Écrire à ${c.name}`}>
                       <MessageCircle size={17} aria-hidden="true" />
-                    </button>),
+                    </button></>),
                 )}
               </ul>
             ) : (

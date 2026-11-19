@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-19",
+  "status": "proposal-awaiting-user-validation",
+  "tool": "image_gen.imagegen (outil intégré)",
+  "images": [
+    {
+      "file": "salon-concept-v1.png",
+      "source": "C:/Users/vosma/.codex/generated_images/01a1f4bc-b9cd-7690-8d50-fa4beec204ce/exec-bf885fbd-0c90-4bd4-bf34-9989bd3ee102.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: ART DIRECTION PROPOSAL ONLY, single living-room environment illustration for Luma City, a premium 2D social dress-up game.\nCreate an original beautiful illustrated contemporary apartment living room, strictly FRONT ELEVATION camera, horizontal landscape approximately 1000:680 composition. Back wall horizontal, furniture fronts parallel to the image plane, no isometric view, no top-down view, no 3D render, no photograph. Soft hand-painted digital fashion-game illustration, precise elegant outlines and rich soft shading, credible boucle and velvet fabrics, oak grain, brass reflections, gentle daylight from upper left. Modern sophisticated youthful elegance, not childish geometric clipart.\nPalette: smoky plum and dusty lilac velvet, warm ivory plaster, pale oak parquet, small brushed champagne brass accents, sage foliage.\nRoom has flat rear wall with restrained mouldings, arched window at upper left looking onto a softly illustrated city, natural oak parquet floor beginning at approximately 62% image height. Keep the FRONT floor open with room for several standing character sprites, do not fill the foreground with furniture.\nBack arrangement: contemporary low plum sofa slightly left of center, matching ivory armchair to right, oval oak coffee table and rounded ivory rug toward center, slender brass floor lamp, tall potted plant, open oak bookcase on far right, oval brass wall mirror, framed abstract lilac artwork, low oak storage cabinet. All ten objects visually independent, clearly readable in front elevation, harmonious realistic proportions. Floor objects sit convincingly on the floor, rug beneath table, wall objects on wall. Minimal books and ceramics in bookcase only; no vase on coffee table.\nNo people, no pets, no interface, no text, no logos, no watermark. Avoid angular side walls, dramatic perspective, glossy 3D, hard black outlines, flat SVG shapes. This is a room composition for approving art direction; final modular production assets will be generated only after approval."
+    },
+    {
+      "file": "meubles-planche-v1.png",
+      "source": "C:/Users/vosma/.codex/generated_images/01a1f4bc-b9cd-7690-8d50-fa4beec204ce/exec-48b9c1b6-e2b2-4d9f-ac28-f9384af4631e.png",
+      "reference": "salon-concept-v1.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: original furniture ART DIRECTION CONTACT SHEET, not production sprites, for Luma City 2D frontal social game.\nInput image 1 is STYLE AND DESIGN REFERENCE: match its illustrated furniture designs and rendering faithfully; do not reproduce the room background.\nCreate an elegant editorial collection board on warm pale ivory background, with generous margins and ten clearly separated isolated illustrated objects arranged as TWO ROWS of FIVE: upper row plum contemporary sofa, matching ivory boucle armchair with lilac cushion, oval pale oak coffee table with two chunky rounded legs, rounded ivory boucle rug seen at shallow frontal floor perspective, slender brushed brass floor lamp with dome shade; lower row tall leafy indoor plant in matte ceramic pot, tall open oak bookcase with a few books and ceramics, oval thin brass wall mirror, framed abstract plum/lilac/ivory painting, low two-door pale oak storage cabinet. Every object in FRONT view matching reference, same painterly 2D premium game illustration and coherent soft upper-left lighting, velvety plum upholstery, detailed woven boucle, wood grain and soft material shading. Each cell has exactly one furniture object, feet and outline complete, no overlap between cells. Soft restrained contact shadows. The rug is wider than tall and visibly lies on a floor plane. No room geometry. Keep objects large and legible, not tiny thumbnails.\nTop header exact text: \"LUMA CITY\". Second smaller line exact text: \"Collection salon · Proposition 01\". Under each object use only a small numeral from 01 to 10; no item names or prices. No people, no pets, no logo marks, no stock photos, no flat SVG vector geometry, no 3D render. This is a proposal sheet for validation before final transparent modular assets are made."
+    }
+  ],
+  "preview": {
+    "renderer": "render-preview.tsx — React Avatar existant, composition SVG, rendu Resvg",
+    "character": "Iris, pose frontale, DEFAULT_LAYERS + fashion.hair-v3-01-carre",
+    "scale": 1.6,
+    "modifiedCharacterAssets": false
+  }
+}

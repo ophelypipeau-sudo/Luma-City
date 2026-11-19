@@ -26,7 +26,10 @@ import {
 } from "lucide-react";
 import { playSound } from "./sounds";
 import { SettingsDialog } from "./SettingsDialog";
-import { Room } from "./Room";
+import { GameRoom as Room } from "./housing/GameRoom";
+import { HomeInvitations } from "./housing/HomeAccess";
+import type { HomeSnapshot } from "../../../packages/contracts/src/housing";
+
 import { CompanionArt, CompanionPicker, CompanionShop, CompanionSettings } from "./CompanionShop";
 import type { CompanionCollection, OwnedCompanion } from "../../../packages/contracts/src/companions";
 import { companionModel } from "../../../packages/domain/src/companions";
@@ -39,6 +42,7 @@ import { Portrait } from "./Avatar";
 import { NeighborhoodMap } from "./NeighborhoodMap";
 import { BeautySalon } from "./BeautySalon";
 import { roomScene } from "./chat-rooms";
+import { ROOM_CAPACITY } from "../../../packages/domain/src/rules";
 import { ProfileCard, type ProfileAction } from "./ProfileCard";
 import { Guestbook } from "./Guestbook";
 import { FriendsPanel } from "./FriendsPanel";
@@ -60,6 +64,7 @@ import {archivedPieces,subscribeArchive,withoutArchivedPieces} from './avatar/ar
 import {
   DEFAULT_ROOM,
   homeRoom,
+  homeOwner,
   levelProgress,
   type ProfileTemplate,
   type GarmentTransfer,
@@ -158,18 +163,33 @@ function App() {
     roomId: RoomId | null;
     players: Presence[];
     counts: Partial<Record<RoomId, number>>;
+    capacities?: Partial<Record<RoomId, number>>;
+    serverTime: number;
+    receivedAt: number;
     onlineIds: string[];
   } | null>(null);
   const [roomId, setRoomId] = useState<RoomId>(DEFAULT_ROOM);
+  const [homeLayout, setHomeLayout] = useState<HomeSnapshot | null>(null);
+  const [homeSocialOpen, setHomeSocialOpen] = useState(false);
+  const [seenHomeChat, setSeenHomeChat] = useState<string | undefined>(undefined);
+
   const [roomChat, setRoomChat] = useState<{ roomId: RoomId; messages: RoomMessage[] } | null>(null);
   const [roomReceipt, setRoomReceipt] = useState<RoomChatReceipt | null>(null);
   const requestedRoom = useRef<RoomId | null>(null);
+  const homeChatBaseline = useRef<RoomId | null>(null);
   // A best friend or partner opened from a profile slot may be outside the contact list.
   const [linkedProfile, setLinkedProfile] = useState<Character | null>(null);
   const knownCharacters = [...(state?.characters ?? []), ...(state?.contacts ?? []),
     ...(linkedProfile ? [linkedProfile] : [])];
   const scene = roomScene(roomId, knownCharacters);
   const players = presence?.players ?? [];
+  const currentRoomCapacity = presence?.capacities?.[roomId] ?? ROOM_CAPACITY;
+  const homeChatLatest = roomChat?.roomId === roomId ? roomChat.messages.at(-1) : undefined;
+  const homeChatNews = !!homeChatLatest && homeChatLatest.sender !== state?.character?.id && homeChatLatest.id !== seenHomeChat;
+  useEffect(() => {
+    if (homeSocialOpen && homeChatLatest) setSeenHomeChat(homeChatLatest.id);
+  }, [homeSocialOpen, homeChatLatest?.id]);
+
   const [status, setStatus] = useState("offline"),
     [error, setError] = useState(""),
     [notice, setNotice] = useState(""),
@@ -690,13 +710,26 @@ function App() {
             }));
           }
         }
-        if (data.type === "room") setPresence(data);
-        if (data.type === "room-chat") setRoomChat(data);
+        if (data.type === "room") setPresence({ ...data, receivedAt: performance.now() });
+        if (data.type === "home-layout") setHomeLayout(data.home);
+        if (data.type === "home-removed") {
+          requestedRoom.current = data.currentRoomId; setRoomId(data.currentRoomId ?? DEFAULT_ROOM);
+          setHomeLayout(null); setRoomChat(null); setHomeSocialOpen(false); homeChatBaseline.current = null;
+          setView("explore"); setNotice(data.message);
+        }
+        if (data.type === "room-chat") {
+          if (homeOwner(data.roomId) && homeChatBaseline.current !== data.roomId) {
+            homeChatBaseline.current = data.roomId;
+            setSeenHomeChat(data.messages.at(-1)?.id);
+          }
+          setRoomChat(data);
+        }
         if (data.type === "room-chat-ack") setRoomReceipt(data);
         if (["room-full", "room-unavailable"].includes(data.type) && requestedRoom.current === data.roomId) {
-          requestedRoom.current = null;
-          setView("explore");
-          setError(data.type === "room-full" ? "Cette salle est complète (15 personnes)." : "Cette maison est indisponible.");
+          requestedRoom.current = data.currentRoomId ?? null;
+          if (data.currentRoomId) setRoomId(data.currentRoomId);
+          setView(data.currentRoomId ? "garden" : "explore");
+          setError(data.type === "room-full" ? `Cette salle est complète (${data.capacity ?? ROOM_CAPACITY} personnes).` : "Cette maison est indisponible.");
         }
         if (data.type === "refresh") {
           setProfileRevision((revision) => revision + 1);
@@ -801,6 +834,7 @@ function App() {
     setSocialOpen(true);
   }
   function enterRoom(nextRoom: RoomId) {
+    setHomeLayout(null); setHomeSocialOpen(false); setSeenHomeChat(undefined); homeChatBaseline.current = null;
     setGuestbookId(null);
     requestedRoom.current = nextRoom;
     setRoomId(nextRoom);
@@ -844,7 +878,7 @@ function App() {
   function move(x: number, y: number) {
     if (presence?.roomId === roomId && socket.current?.readyState === 1)
       socket.current.send(
-        JSON.stringify({ type: "move", generation: state?.generation, x, y }),
+        JSON.stringify(homeOwner(roomId) ? { type: "home-move", generation: state?.generation, roomId, x: x * 10, y: y * 6.8 } : { type: "move", generation: state?.generation, x, y }),
       );
   }
   const contact = state?.contacts.find((c) => c.id === peer),
@@ -916,7 +950,7 @@ function App() {
           ? ({ "--vip-background": vipBackground } as React.CSSProperties)
           : undefined
       }
-      className={`app-shell game-fullscreen ${socialOpen && !privateChatOpen ? "social-open" : ""} ${view === "shop" ? "is-shopping" : ""}`}
+      className={`app-shell game-fullscreen ${view === "garden" && homeOwner(roomId) ? "is-housing" : ""} ${socialOpen && !privateChatOpen ? "social-open" : ""} ${view === "shop" ? "is-shopping" : ""}`}
     >
       <aside className="rail" inert={modalOpen}>
         <div className="sidebar-brand">
@@ -1043,6 +1077,8 @@ function App() {
           </div>
         </header>
         <main>
+          {state?.character && <HomeInvitations key={state.character.id} generation={state.generation}
+            revision={profileRevision} onVisit={(owner) => enterRoom(homeRoom(owner))} />}
           <div className="page-heading">
             <div>
               <div className="eyebrow">
@@ -1109,7 +1145,7 @@ function App() {
                       : "Personnage bloqué. Les nouveaux messages sont désactivés dans les deux sens.");
                   })} />
               ) : view === "friends" && !guestbook ? (
-                <FriendsPanel key={activeId} contacts={state?.contacts ?? []}
+                <FriendsPanel onVisit={(id) => enterRoom(homeRoom(id))} key={activeId} contacts={state?.contacts ?? []}
                   onlineIds={presence?.onlineIds ?? []} onProfile={setProfileId}
                   onOpenPlayer={(person) => { setLinkedProfile(person); setProfileId(person.id); }}
                   onSearch={searchPlayers}
@@ -1177,6 +1213,7 @@ function App() {
                     <span className="map-time">✦ Belle journée</span>
                   </div>
                   <NeighborhoodMap
+                    onHome={state?.character ? () => enterRoom(homeRoom(state.character!.id)) : undefined}
                     homeGifts={state?.homeGifts}
                     onGift={gift => {
                       if (busy) return;
@@ -1247,7 +1284,7 @@ function App() {
                   onClose={() => setView("explore")}
                 />
               ) : (
-                <div className="room-layout">
+                <div className={`room-layout ${homeOwner(roomId) ? "housing-layout" : ""}`}>
                   <div className="room-stage">
                     <div className="room-label">
                       <button
@@ -1264,7 +1301,7 @@ function App() {
                       </button>
                       <div>
                         <strong>{scene.name}</strong>
-                        <span>{presence?.counts[roomId] ?? 0} / 15 · Salle de chat</span>
+                        <span>{presence?.counts[roomId] ?? 0} / {currentRoomCapacity} · {homeOwner(roomId) ? "Salon personnalisable" : "Salle de chat"}</span>
                       </div>
                       <span className={"connection " + status}>
                         <i />
@@ -1277,6 +1314,9 @@ function App() {
                     </div>
                     <div className="scene-wrap">
                       <Room
+                        serverTime={presence?.serverTime} receivedAt={presence?.receivedAt}
+                        generation={state?.generation ?? 0} layoutUpdate={homeLayout} accessRevision={profileRevision}
+                        onStop={() => { if (homeOwner(roomId) && socket.current?.readyState === WebSocket.OPEN) socket.current.send(JSON.stringify({ type: "home-stop", roomId, generation: state?.generation })); }}
                         roomId={roomId}
                         scene={scene}
                         players={presence?.roomId === roomId ? players : []}
@@ -1300,6 +1340,7 @@ function App() {
                       </span>
                     </div>
                   </div>
+                  <div className={homeOwner(roomId) ? `housing-social ${homeSocialOpen ? "is-open" : ""}` : "room-social-host"}>
                   <RoomDrawer
                     key={roomId}
                     chat={
@@ -1335,9 +1376,14 @@ function App() {
                     portrait={(person) => <Portrait {...person} />}
                     onOpenChat={choosePeer}
                     onOpenProfile={setProfileId}
+                    onVisit={(id) => enterRoom(homeRoom(id))}
                     onAllMessages={() => { setPanel("chat"); setSocialOpen(true); }}
                     onAllFriends={() => { setGuestbookId(null); setSocialOpen(false); setView("friends"); }}
                   />
+                  </div>
+                  {homeOwner(roomId) && <button type="button" className="housing-social-toggle" aria-expanded={homeSocialOpen}
+                    aria-label={homeSocialOpen ? "Fermer la discussion" : homeChatNews ? "Discussion · nouveaux messages" : "Discussion"}
+                    onClick={() => setHomeSocialOpen(!homeSocialOpen)}>{homeSocialOpen ? "Fermer la discussion" : "Discussion"}{!homeSocialOpen && homeChatNews && <span className="housing-chat-news" />}</button>}
                 </div>
               )}
             </section>
@@ -1423,7 +1469,7 @@ function App() {
               <div className="dock-heading">
                 <h2>{view === "garden" ? `Dans ${scene.name}` : "Amis en ligne"}</h2>
                 <span><i aria-hidden="true" />{view === "garden"
-                  ? `${roomPeople.length} présent${roomPeople.length > 1 ? "s" : ""} · 15 max`
+                  ? `${roomPeople.length} présent${roomPeople.length > 1 ? "s" : ""} · ${currentRoomCapacity} max`
                   : `${onlineFriends.length} ami${onlineFriends.length > 1 ? "s" : ""} connecté${onlineFriends.length > 1 ? "s" : ""}`}</span>
               </div>
               <div className="dock-avatars" role="group" aria-label={view === "garden" ? `Personnes dans ${scene.name}` : "Amis en ligne"}>

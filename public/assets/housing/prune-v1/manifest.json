@@ -1,0 +1,122 @@
+{
+  "sofa": {
+    "width": 1862,
+    "height": 845,
+    "crop": [
+      55,
+      68,
+      1745,
+      714
+    ],
+    "transparent": 448754,
+    "translucent": 1124211
+  },
+  "armchair": {
+    "width": 1293,
+    "height": 1217,
+    "crop": [
+      144,
+      115,
+      996,
+      931
+    ],
+    "transparent": 766871,
+    "translucent": 806627
+  },
+  "coffee-table": {
+    "width": 1774,
+    "height": 887,
+    "crop": [
+      102,
+      173,
+      1564,
+      562
+    ],
+    "transparent": 964728,
+    "translucent": 607649
+  },
+  "rug": {
+    "width": 2172,
+    "height": 724,
+    "crop": [
+      55,
+      281,
+      2064,
+      180
+    ],
+    "transparent": 1178003,
+    "translucent": 394207
+  },
+  "floor-lamp": {
+    "width": 1024,
+    "height": 1536,
+    "crop": [
+      195,
+      61,
+      584,
+      1393
+    ],
+    "transparent": 1434509,
+    "translucent": 138355
+  },
+  "plant": {
+    "width": 1024,
+    "height": 1536,
+    "crop": [
+      88,
+      24,
+      861,
+      1496
+    ],
+    "transparent": 915368,
+    "translucent": 657496
+  },
+  "bookcase": {
+    "width": 887,
+    "height": 1774,
+    "crop": [
+      126,
+      115,
+      633,
+      1570
+    ],
+    "transparent": 593635,
+    "translucent": 979893
+  },
+  "mirror": {
+    "width": 1064,
+    "height": 1478,
+    "crop": [
+      95,
+      56,
+      850,
+      1335
+    ],
+    "transparent": 657636,
+    "translucent": 914607
+  },
+  "painting": {
+    "width": 1261,
+    "height": 1247,
+    "crop": [
+      106,
+      117,
+      1049,
+      1009
+    ],
+    "transparent": 490131,
+    "translucent": 1082325
+  },
+  "cabinet": {
+    "width": 1536,
+    "height": 1024,
+    "crop": [
+      206,
+      73,
+      1124,
+      888
+    ],
+    "transparent": 735609,
+    "translucent": 837255
+  }
+}

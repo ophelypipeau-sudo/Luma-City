@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\vosma\\.codex\\generated_images\\01a1f4bc-b9cd-7690-8d50-fa4beec204ce\\exec-92562199-f843-4f76-b589-4b52f04c4306.png",
+  "reason": "Perspective frontale aplatie, sans étirer les textures",
+  "prompt": "Production transparent PNG sprite for the approved Luma City living room collection, illustrated warm ivory boucle rug only. Match rug material and shape of the reference, but correct perspective for a FRONT-ELEVATION room: VERY SHALLOW viewing angle, extremely flattened rounded rectangle/oval on the ground. The visible rug silhouette must be about SEVEN TIMES AS WIDE AS TALL (7:1), not a tall oval or top-down view. Wide landscape canvas about 1600x600, rug centred in transparent padding, ivory textured pile and subtle light upper left, precise painterly 2D material details. No floor, no background, no captions, no other objects. Real transparent alpha. Complete rug edges, no clipped ends, only extremely faint tight contact shadow. This is a floor-plane sprite for a 2D frontal room; preserve an almost horizontal upper and lower edge with strongly compressed depth."
+}

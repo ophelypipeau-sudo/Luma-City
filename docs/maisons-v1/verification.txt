@@ -1,0 +1,28 @@
+Phase 1 — 19 novembre 2026
+
+Commande exécutée :
+node scripts/run-tests.mjs tests/prototype.test.ts tests/hardening.test.ts tests/companions.test.ts
+
+Résultat : 27 tests réussis, 0 échec, 0 ignoré ; durée 38160,9214 ms.
+Le lanceur retire les variables de déploiement avant les tests.
+Périmètre : socle existant, pas un nouveau moteur de maisons.
+
+Couvert notamment :
+- Isolation d’une maison et de son chat par rapport au quartier.
+- Déplacements diffusés et coordonnées invalides refusées.
+- Présence, reconnexion, remplacement de session et admission concurrente.
+- Relations acceptées, blocages et signalements.
+- Tenue partagée et ordre des calques persistant.
+- Animal équipé, collection privée et solde partagé.
+- Achats serveur, manque de fonds et dépenses concurrentes du même compte.
+- Persistance, migrations et isolation des réglages de production.
+
+Rendu statique :
+npx tsx docs/maisons-v1/render-preview.tsx
+Export réussi depuis le véritable composant Avatar, sans modifier ses sources.
+Contrôle visuel du grand rendu et de la version de 390 pixels.
+
+Non réalisé en phase 1 : moteur de décoration, achat de meubles, confidentialité
+des maisons, invitations, collisions, nouvelle synchronisation de trajet,
+recette interactive tactile et tests de charge des maisons.
+Ces fonctions ne sont pas déclarées opérationnelles.

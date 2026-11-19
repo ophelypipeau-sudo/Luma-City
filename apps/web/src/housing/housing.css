@@ -1,0 +1,105 @@
+.housing-room { position: relative; width: 100%; height: 100%; color: #432d48; font-family: "DM Sans", sans-serif; }
+.housing-room .housing-viewport { background: #dfcfbf; }
+.housing-room .housing-viewport .room-svg { background: #e9dcd1; }
+.home-access-panel, .home-inbox-panel { background: #fff9f5; color: #513458; border: 1px solid #dac3d6; border-radius: 16px; padding: 15px; overflow: auto; overscroll-behavior: contain; box-shadow: 0 12px 40px #30203e55; font-family: "DM Sans",sans-serif; }
+.home-access-panel { position: absolute; inset: 75px 12px 48px; z-index: 12; }
+.home-access-panel header, .home-inbox-panel header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.home-access-panel h3 { font-size: .95rem; margin: 18px 0 9px; }
+.home-access-panel p, .home-inbox-panel p { font-size: .82rem; line-height: 1.5; }
+.home-access-modes, .home-invite-form { display: flex; flex-wrap: wrap; gap: 7px; }
+.home-access-panel button[aria-pressed="true"] { background: #eed7eb; border-color: #aa6da3; }
+.home-access-panel ul, .home-inbox-panel ul { list-style: none; padding: 0; margin: 10px 0; }
+.home-access-panel li { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid #e5d3e1; padding: 7px 0; font-size: .82rem; }
+.home-inbox-panel li { border-top: 1px solid #e5d3e1; padding: 10px 0; }
+.home-inbox-panel li button { margin: 0 7px 7px 0; }
+.home-access-panel [role="alert"], .home-inbox-panel [role="alert"] { color: #842646; }
+.home-kick-confirm { background: #f4dfeb; border: 1px solid #bb8ab5; border-radius: 12px; padding: 10px; }
+.home-kick-confirm button { margin-right: 7px; }
+.home-inbox-toggle, .home-inbox-panel button { min-height: 38px; padding: 8px 12px; background: #fff9f2; color: #513458; border: 1px solid #c8acc7; border-radius: 10px; font: 600 .8rem "DM Sans",sans-serif; cursor: pointer; }
+.home-inbox-toggle { position: fixed; right: 24px; top: 105px; z-index: 14; }
+.home-inbox-panel { position: fixed; right: 20px; top: 155px; bottom: 30px; width: min(430px,calc(100vw - 40px)); box-sizing: border-box; z-index: 25; }
+@media (max-width: 650px) {
+  .home-access-panel { inset: 75px 5px 44px; padding: 10px; }
+  .home-inbox-toggle { top: 138px; right: 18px; max-width: 150px; font-size: .65rem; padding: 5px 8px; min-height: 30px; }
+  .home-inbox-panel { top: 180px; right: 8px; bottom: 15px; width: calc(100vw - 16px); }
+}
+.furniture-collection { position: absolute; inset: 75px 12px 48px; z-index: 11; overflow: auto; overscroll-behavior: contain; padding: 16px; border: 1px solid #dac3d6; border-radius: 18px; background: #fff9f5; box-shadow: 0 12px 40px #30203e55; }
+.furniture-collection header, .furniture-collection nav, .furniture-filters { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.furniture-collection header { justify-content: space-between; }
+.furniture-collection small { display: block; color: #806680; font-size: .75rem; margin-top: 5px; }
+.furniture-collection p { font-size: .85rem; }
+.furniture-collection [role="alert"] { color: #842646; }
+.furniture-collection nav span { margin-left: auto; font-weight: 600; }
+.furniture-collection button[aria-pressed="true"] { background: #eed7eb; border-color: #aa6da3; }
+.furniture-filters input { flex: 1; min-width: 120px; max-width: none; }
+.furniture-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 12px; }
+.furniture-grid article { border: 1px solid #e6d2de; border-radius: 12px; padding: 12px; text-align: center; }
+.furniture-grid article svg { width: 100%; height: 85px; display: block; margin-bottom: 8px; }
+.furniture-grid article strong { font-size: .86rem; }
+.furniture-grid article button { font-size: .76rem; margin-top: 9px; }
+.furniture-confirm { position: sticky; bottom: 0; padding: 12px; background: #f3dfef; border: 1px solid #bb8ab5; border-radius: 12px; margin-top: 12px; box-shadow: 0 -4px 16px #38203c22; }
+.furniture-confirm p { margin-top: 0; }
+.furniture-confirm button + button { margin-left: 8px; }
+.furniture-collection footer { margin-top: 12px; }
+@media (max-width: 650px) {
+  .furniture-collection { inset: 75px 5px 44px; padding: 10px; }
+  .furniture-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+  .furniture-grid article { padding: 8px; }
+  .furniture-collection nav span { width: 100%; margin-left: 0; font-size: .85rem; }
+}
+.housing-viewport .scene-player { transition: none; }
+.housing-room.is-decorating .housing-viewport { height: max(210px, calc(100% - var(--housing-panel-space))); }
+.housing-toolbar { position: absolute; right: 12px; top: 76px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; max-width: calc(100% - 24px); z-index: 5; }
+.housing-toolbar > span { color: #fff; border-radius: 12px; padding: 8px 12px; background: #513759e8; font-weight: 600; }
+.housing-room button, .housing-room select, .housing-room input, .housing-loading button { font: inherit; }
+.housing-room button, .housing-loading button { border: 1px solid #c8acc7; border-radius: 11px; background: #fff9f2f5; color: #513458; padding: 9px 13px; font-weight: 600; cursor: pointer; min-height: 42px; }
+.housing-room button:disabled { cursor: default; opacity: .5; }
+.housing-room button:focus-visible, .housing-room select:focus-visible, .housing-room input:focus-visible { outline: 3px solid #a864ab; outline-offset: 2px; }
+.housing-furniture.editable { cursor: grab; touch-action: none; }
+.housing-furniture.editable:active { cursor: grabbing; }
+.housing-furniture.editable:focus { outline: none; filter: drop-shadow(0 0 3px #a748b4); }
+.housing-selection { fill: none; stroke: #a846a4; stroke-width: 2; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
+.housing-status { position: absolute; top: 130px; right: 12px; max-width: min(440px, calc(100% - 24px)); z-index: 5; }
+.housing-status p { padding: 8px 12px; margin: 0 0 5px; border-radius: 10px; background: #fff9f2f5; box-shadow: 0 2px 10px #32203b18; font-size: .8rem; }
+.housing-status p[role="alert"] { background: #ffedef; color: #842646; }
+.housing-panel { position: absolute; inset: auto 12px 42px; background: #fff9f3f5; border: 1px solid #e3cfe1; border-radius: 16px; padding: 10px 12px; box-shadow: 0 8px 32px #3d244a33; z-index: 6; max-height: 46%; overflow: auto; }
+.housing-panel summary { cursor: pointer; font-weight: 600; min-height: 26px; }
+.housing-finishes { display: flex; gap: 12px; flex-wrap: wrap; margin: 5px 0 10px; }
+.housing-finishes label { display: flex; align-items: center; gap: 5px; font-size: .8rem; }
+.housing-room select, .housing-room input { min-height: 36px; border: 1px solid #d1bcd0; border-radius: 7px; background: #fffdf9; color: #4b3352; padding: 4px 8px; max-width: 150px; }
+.housing-inventory { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 7px; }
+.housing-inventory button { flex: 0 0 113px; padding: 7px; font-size: .73rem; min-height: 116px; }
+.housing-inventory button[aria-pressed="true"] { border: 2px solid #a451a1; background: #f5e8f4; }
+.housing-inventory svg { width: 85px; height: 58px; display: block; margin: 0 auto 4px; overflow: visible; }
+.housing-inventory span, .housing-inventory small { display: block; }
+.housing-inventory small { font-size: .66rem; font-weight: 400; color: #856d86; margin-top: 4px; }
+.housing-inspector { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid #ead9e5; font-size: .8rem; }
+.housing-inspector strong { margin-right: auto; }
+.housing-inspector label { display: flex; align-items: center; gap: 4px; }
+.housing-inspector input { width: 65px; }
+.housing-inspector button { padding: 6px 9px; }
+.housing-loading { height: 100%; display: grid; place-content: center; gap: 12px; background: #e6d8e4; color: #513458; }
+.room-social-host { display: contents; }
+.housing-layout .housing-social { display: none; position: absolute; right: 8px; top: 76px; bottom: 60px; width: min(320px, calc(100% - 16px)); z-index: 9; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 35px #25142c55; }
+.housing-layout .housing-social.is-open { display: block; }
+.housing-layout .housing-social .room-drawer { width: 100%; height: 100%; border: 0; }
+.housing-social-toggle { position: absolute; bottom: 12px; right: 12px; z-index: 10; min-height: 40px; padding: 8px 14px; border: 1px solid #bc9cbe; border-radius: 12px; color: #fff8f0; background: #4d3158; font: 600 .8rem "DM Sans",sans-serif; cursor: pointer; }
+.housing-chat-news { display: inline-block; margin-left: 8px; width: 8px; height: 8px; border-radius: 50%; background: #ffde9c; }
+.housing-layout .room-footer .keyboard-hint { display: none; }
+.housing-layout:has(.is-decorating) .room-footer { display: none; }
+@media (max-width: 650px) {
+  .game-fullscreen.is-housing .workspace { left: 0; }
+  .game-fullscreen.is-housing .rail > :not(.sidebar-brand) { display: none; }
+  .game-fullscreen.is-housing .rail { height: 95px; }
+  .housing-toolbar { top: 75px; right: 7px; gap: 5px; }
+  .housing-toolbar > span { display: none; }
+  .housing-toolbar button, .housing-toolbar > span { padding: 7px 9px; font-size: .74rem; }
+  .housing-status { top: auto; bottom: calc(var(--housing-panel-space) + 8px); right: 7px; }
+  .housing-status p { font-size: .7rem; }
+  .housing-panel { left: 6px; right: 6px; bottom: 30px; max-height: 42%; padding: 8px; }
+  .housing-finishes { gap: 6px; }
+  .housing-finishes label { font-size: .7rem; }
+  .housing-finishes select { max-width: 116px; }
+  .housing-inventory button { flex-basis: 98px; min-height: 108px; }
+  .housing-inspector strong { width: 100%; }
+}

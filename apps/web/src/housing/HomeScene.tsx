@@ -1,0 +1,39 @@
+import { useId } from "react";
+import type { FurnitureModel } from "../../../../packages/domain/src/housing";
+import type { HomeDecoration } from "../../../../packages/contracts/src/housing";
+import assetManifest from "../../../../public/assets/housing/prune-v1/manifest.json";
+
+type Asset = { width: number; height: number; crop: number[] };
+const manifest = assetManifest as Record<string, Asset>;
+export function FurnitureArt({ model, thumbnail = false }: { model: FurnitureModel; thumbnail?: boolean }) {
+  const asset = manifest[model.id];
+  const image = model.image.replace(/\.png$/, thumbnail ? ".thumb.webp" : ".webp");
+  return asset ? <svg x={-model.width / 2} y={-model.height} width={model.width} height={model.height}
+    viewBox={asset.crop.join(" ")} preserveAspectRatio="xMidYMax meet" overflow="hidden" aria-hidden="true">
+    <image href={image} width={asset.width} height={asset.height} />
+  </svg> : <image href={image} x={-model.width / 2} y={-model.height}
+    width={model.width} height={model.height} preserveAspectRatio="xMidYMax meet" aria-hidden="true" />;
+}
+
+/** Tint textures together with their original material, lighting and shadows. */
+export function HomeBackground({ wall, floor }: Pick<HomeDecoration, "wall" | "floor">) {
+  const uid = useId().replace(/:/g, "");
+  const walls = { ivory: [1, 1, 1], rose: [1.02, .88, .94], lilac: [.91, .86, 1.06], sage: [.87, .98, .87] };
+  const floors = { oak: [1, 1, 1], honey: [1.05, .94, .82], smoked: [.74, .72, .74] };
+  const matrix = ([r, g, b]: number[]) => `${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 1 0`;
+  return <g pointerEvents="none">
+    <defs>
+      <clipPath id={`${uid}-wall`}><path d="M0 0H1000V422H0Z" /></clipPath>
+      <clipPath id={`${uid}-floor`}><path d="M0 422H1000V680H0Z" /></clipPath>
+      <clipPath id={`${uid}-window`}><path d="M14 292V128a97 97 0 0 1 194 0v164Z" /></clipPath>
+      <filter id={`${uid}-wall-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(walls[wall])} /></filter>
+      <filter id={`${uid}-floor-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(floors[floor])} /></filter>
+    </defs>
+    <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
+      preserveAspectRatio="none" clipPath={`url(#${uid}-wall)`} filter={`url(#${uid}-wall-tone)`} />
+    <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
+      preserveAspectRatio="none" clipPath={`url(#${uid}-floor)`} filter={`url(#${uid}-floor-tone)`} />
+    <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
+      preserveAspectRatio="none" clipPath={`url(#${uid}-window)`} />
+  </g>;
+}

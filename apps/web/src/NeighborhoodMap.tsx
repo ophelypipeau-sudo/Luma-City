@@ -61,6 +61,7 @@ export function NeighborhoodMap({
   onPets,
   onSalon,
   onArcade,
+  onHome,
 }: {
   homeGifts?: number[] | null;
   onGift: (gift: number) => void;
@@ -70,6 +71,7 @@ export function NeighborhoodMap({
   onPets?: () => void;
   onSalon?: () => void;
   onArcade?: () => void;
+  onHome?: () => void;
 }) {
   const viewport = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<string | null>(null);
@@ -123,7 +125,7 @@ export function NeighborhoodMap({
           {places.map(({ id, name, label, x, y, roomId }) => (
             <div
               key={id}
-              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""} ${id === "home" || (id === "pets" && !onPets) ? "is-soon" : ""}`}
+              className={`place-marker marker-${id} ${selected === id ? "is-open" : ""} ${((id === "home" && !onHome) || (id === "pets" && !onPets)) ? "is-soon" : ""}`}
               style={
                 {
                   left: `${x * 100}%`,
@@ -135,15 +137,16 @@ export function NeighborhoodMap({
               <button
                 className="place-dot"
                 type="button"
-                disabled={id === "home"}
-                aria-label={id === "home" ? "Ma maison · Bientôt" : name}
-                aria-describedby={id === "home" ? undefined : `${tooltipPrefix}-${id}`}
+                disabled={id === "home" && !onHome}
+                aria-label={id === "home" && !onHome ? "Ma maison · Bientôt" : name}
+                aria-describedby={id === "home" && !onHome ? undefined : `${tooltipPrefix}-${id}`}
                 onPointerEnter={() => fitTooltip(id)}
                 onFocus={() => requestAnimationFrame(() => fitTooltip(id))}
                 onClick={(e) => {
                   e.stopPropagation();
                   fitTooltip(id);
                   if (roomId) onEnter(roomId);
+                  else if (id === "home" && onHome) onHome();
                   else if (id === "shop") onShop();
                   else if (id === "pets" && onPets) onPets();
                   else if (id === "salon" && onSalon) onSalon();
@@ -155,10 +158,10 @@ export function NeighborhoodMap({
                 <img className="place-icon" src={`/assets/map-icons/${placeIcons[id]}.png`} alt="" draggable={false} />
                 <span className="place-name" aria-hidden="true">{label ?? name}
                   {roomId && <small className="place-count">{`· ${roomCounts[roomId] ?? 0}`}</small>}
-                  {(id === "home" || (id === "pets" && !onPets)) && <small className="place-soon">· Bientôt</small>}
+                  {((id === "home" && !onHome) || (id === "pets" && !onPets)) && <small className="place-soon">· Bientôt</small>}
                 </span>
               </button>
-              {id !== "home" && <span
+              {(id !== "home" || onHome) && <span
                 className="place-tooltip"
                 role="tooltip"
                 id={`${tooltipPrefix}-${id}`}
@@ -167,7 +170,7 @@ export function NeighborhoodMap({
                 <small>
                   {roomId
                     ? `${roomCounts[roomId] ?? 0} / 15 · Entrer dans la salle`
-                    : id === "shop"
+                    : id === "home" && onHome ? "Ouvrir ton salon et le décorer" : id === "shop"
                       ? "Entrer et essayer les vêtements"
                       : id === "salon" && onSalon
                         ? "Personnaliser ton visage"

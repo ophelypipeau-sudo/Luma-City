@@ -1,0 +1,66 @@
+Recette complète — 19 novembre 2026
+
+Tests ciblés :
+node scripts/run-tests.mjs --test-concurrency=1
+  tests/home-client-state.test.ts tests/home-motion-render.test.ts
+  tests/home-access.test.ts tests/furniture-commerce.test.ts tests/housing.test.ts
+  tests/home-navigation.test.ts tests/home-visits.test.ts tests/companions.test.ts
+  tests/fashion-commerce.test.ts tests/hardening.test.ts tests/prototype.test.ts
+
+Résultat : 58 tests, 58 réussis, 0 échec, 0 ignoré, 0 annulé.
+Durée : 130677.1131 ms. Log : .cache/housing-qa-tests-final.log.
+
+Après modification de l’espacement d’arrivée :
+node scripts/run-tests.mjs --test-concurrency=1 tests/home-visits.test.ts
+  tests/home-navigation.test.ts
+Résultat : 10 tests, 10 réussis, 0 échec, 0 ignoré, 0 annulé.
+Durée : 21329.2596 ms. Log : .cache/housing-qa-arrivals-final.log.
+Ces dix cas sont inclus dans les 58 cas distincts, pas ajoutés au total.
+
+Le nouveau test du filtrage des auteurs bloqués a échoué avant correction
+(1 message au lieu de 0), puis réussi après correction.
+Logs : .cache/housing-qa-chat-before.log et .cache/housing-qa-chat-fixed.log.
+
+npx tsc --noEmit : succès, code 0.
+Log : .cache/housing-qa-typecheck-final.log.
+npx vite build : succès, code 0, 30.89 secondes.
+Log : .cache/housing-qa-build-final.log.
+Avertissements Rollup non bloquants sur des annotations Zod et la taille du
+bundle principal. Aucun changement des dessins d’avatars ou de vêtements.
+git diff --check sur les fichiers suivis modifiés : succès.
+
+Recette UI : deux cookies distincts, comptes de démonstration Iris et June,
+base .cache/housing-review-qa. Les demandes de panne sont propres au proxy de
+recette, désactivé hors du flag --qa. Les données habituelles et DATABASE_URL
+ne sont pas utilisés.
+
+Pannes observées :
+- Réponse de sauvegarde 200 reçue par le proxy puis remplacée par 504.
+  Le client conserve la commande et permet Vérifier la sauvegarde.
+- Indisponibilité 503 avant traitement de la sauvegarde. Brouillon conservé,
+  même commande renvoyée puis confirmée.
+- Réponse d’achat réussie remplacée par 504. Panneau fermé puis rouvert,
+  récupération du même reçu, 11 exemplaires et 8600 pièces conservés.
+- Lecture d’accès retenue vingt secondes, changement vers Privée, puis
+  restitution de l’ancien résultat. Le bouton Privée reste sélectionné.
+
+Persistance réellement vérifiée après arrêt et relance du serveur :
+- Mur Lilas, parquet Chêne miel.
+- Table basse X=470, Y=480.
+- Deux plantes placées après le premier achat ; 11 exemplaires au total.
+- Solde 8600, modes et invitations/exclusions conservés selon les actions.
+
+Après le parcours mobile et rechargement :
+- Un second achat de démonstration à 180 pièces, total 8420 pièces.
+- 12 exemplaires : 11 placés, une plante rangée.
+- Deux tableaux placés, nouveau tableau X=745.2, Y=240, glisser vérifié.
+- Maison Amis uniquement, aucune exclusion active, June autorisée.
+
+Formats : ordinateur 1079 x 883 et 1280 x 720, mobile 390 x 844 et 320 x 740,
+tablette 768 x 1024. Largeurs client/scroll : 320/320 et 768/768 ; panneau
+inventaire étroit : 277/277. Overrides de viewport réinitialisés.
+Les formats mobiles sont simulés dans le navigateur ; aucun appareil matériel
+iOS/Android ni clavier virtuel n’a été certifié par cette recette.
+
+Voir RECETTE-COMPLETE.md pour la matrice de scénarios et les captures.
+Aucun meuble publié en boutique, aucun déploiement.

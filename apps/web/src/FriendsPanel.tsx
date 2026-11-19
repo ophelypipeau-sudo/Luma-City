@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  BookOpen, Check, ChevronLeft, ChevronRight, Globe, Heart, Map as MapIcon, MessageCircle, Search, Sparkles, Star,
+  BookOpen, Check, ChevronLeft, ChevronRight, Globe, Heart, House, Map as MapIcon, MessageCircle, Search, Sparkles, Star,
   UserCheck, UserPlus, UserRound, Users, UserX, X,
 } from "lucide-react";
 import {
@@ -23,7 +23,7 @@ type Scope = "friends" | "server";
 type Entry = { contact: Character & { unread?: number }; kind?: ProfileRelation; found?: PlayerSearchResult };
 
 export function FriendsPanel({
-  contacts, onlineIds, onProfile, onOpenPlayer, onRespond, onSearch, onAddFriend, onMessage, onGuestbook, onClose,
+  contacts, onlineIds, onProfile, onOpenPlayer, onRespond, onSearch, onAddFriend, onMessage, onGuestbook, onClose, onVisit,
 }: {
   contacts: readonly Contact[];
   onlineIds: readonly string[];
@@ -38,6 +38,7 @@ export function FriendsPanel({
   onMessage: (id: string) => void;
   onGuestbook: (id: string) => void;
   onClose: () => void;
+  onVisit?: (id: string) => void;
 }) {
   const [filter, setFilter] = useState<FriendsFilter>("all");
   const [query, setQuery] = useState("");
@@ -270,6 +271,8 @@ export function FriendsPanel({
                     </div>
                   ) : (
                     <div className="friends-actions">
+                        {onVisit && <button type="button" disabled={contacts.find((person) => person.id === c.id)?.blocked}
+                          aria-label={`Visiter la maison de ${c.name}`} title="Visiter sa maison" onClick={() => onVisit(c.id)}><House size={17} aria-hidden="true" /></button>}
                       <button type="button" className="is-accept" aria-label={`Écrire à ${c.name}`}
                         onClick={() => onMessage(c.id)}>
                         <MessageCircle size={17} aria-hidden="true" />

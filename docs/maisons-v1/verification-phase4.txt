@@ -1,0 +1,54 @@
+Phase 4 — vérification locale du 19 novembre 2026
+
+Contrôles terminés :
+- npx tsc --noEmit : succès (code 0).
+- npm run check:poses : succès (code 0), 150 pièces, 558 calques/masques.
+- Suite complète, avec le runner existant et --test-concurrency=1 :
+  181 tests, 181 réussis, 0 échec, 0 ignoré, 0 annulé.
+  Durée : 731967.7057 ms.
+- npx vite build : succès (code 0), 1967 modules transformés.
+  Avertissements Rollup sur des commentaires d’annotation de Zod et sur la
+  taille du bundle principal. Aucun blocage de compilation.
+- git diff --check sur les fichiers suivis modifiés pour la phase 4 : succès.
+
+La commande npm run build initiale n’est pas retenue comme résultat final : elle
+a été interrompue pendant les tests pour limiter la consommation de mémoire.
+Les étapes finales ci-dessus ont ensuite toutes été terminées, avec la suite
+complète limitée à un seul worker. Les tests de couleurs expliquent une part
+importante de la durée totale.
+
+Couverture des maisons :
+- Trois comptes WebSocket, arrivée et départ, propriétaire absent.
+- Apparence existante, équipement et renommage des animaux en direct.
+- Trajets partagés, arrivée pendant un trajet, collision avec le mobilier,
+  révision de décor, position finale et conversion des coordonnées.
+- Remplacement de socket, déconnexion brutale et reconnexion sans doublon.
+- Instantané récent à la reconnexion, inventaire privé masqué aux visiteurs.
+- Chat isolé par salle, nom de personnage autoritaire, historique, renvoi
+  idempotent, délai anti-envoi rapide et refus de modification du décor.
+- Capacité configurable en base, admissions simultanées, refus conservant
+  la salle d’origine, blocage appliqué aux accès HTTP et WebSocket.
+- Sauvegarde du décor et diffusion aux visiteurs, persistance après redémarrage.
+- Collection de meubles transparente, non publiée et sans prix de boutique.
+
+Recette dans le navigateur :
+- Base isolée .cache/housing-review-v4, API 3002, Vite 5176.
+- Iris sur 127.0.0.1 et June sur localhost, cookies séparés.
+- Entrée depuis le bouton Maison de la liste d’amis.
+- Deux personnages présents avec Nuage et Plume, contrôles de décoration
+  réservés à Iris.
+- Déplacement des deux personnages : mêmes coordonnées finales relevées dans
+  les deux DOM ; les compagnons suivent leurs propriétaires.
+- Message de June, indicateur de nouveau message chez Iris, réponse d’Iris,
+  historique commun dans le composant de chat existant.
+- Affichage à 390 × 844 : scène, deux personnages et animaux visibles ;
+  discussion lisible et repliable. Viewport réinitialisé après la recette.
+
+Captures : phase4-visite-chat.jpg, phase4-mobile-visite.jpg,
+phase4-mobile-chat.jpg.
+Logs locaux : .cache/phase4-full-tests-final.log,
+.cache/phase4-typecheck-final.log, .cache/phase4-poses-final.log,
+.cache/phase4-vite-final.log.
+
+Aucune modification des dessins de personnages ou vêtements pour cette phase.
+Aucun meuble publié en boutique. Aucun déploiement effectué.

@@ -27,7 +27,6 @@ import {
 import { playSound } from "./sounds";
 import { SettingsDialog } from "./SettingsDialog";
 import { GameRoom as Room } from "./housing/GameRoom";
-import { HomeInvitations } from "./housing/HomeAccess";
 import type { HomeSnapshot } from "../../../packages/contracts/src/housing";
 
 import { CompanionArt, CompanionPicker, CompanionShop, CompanionSettings } from "./CompanionShop";
@@ -1077,8 +1076,6 @@ function App() {
           </div>
         </header>
         <main>
-          {state?.character && <HomeInvitations key={state.character.id} generation={state.generation}
-            revision={profileRevision} onVisit={(owner) => enterRoom(homeRoom(owner))} />}
           <div className="page-heading">
             <div>
               <div className="eyebrow">
@@ -1315,7 +1312,7 @@ function App() {
                     <div className="scene-wrap">
                       <Room
                         serverTime={presence?.serverTime} receivedAt={presence?.receivedAt}
-                        generation={state?.generation ?? 0} layoutUpdate={homeLayout} accessRevision={profileRevision}
+                        generation={state?.generation ?? 0} layoutUpdate={homeLayout}
                         onStop={() => { if (homeOwner(roomId) && socket.current?.readyState === WebSocket.OPEN) socket.current.send(JSON.stringify({ type: "home-stop", roomId, generation: state?.generation })); }}
                         roomId={roomId}
                         scene={scene}

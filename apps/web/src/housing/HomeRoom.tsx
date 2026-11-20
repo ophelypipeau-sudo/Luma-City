@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState, type ComponentProps, type PointerEvent, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ComponentProps, type PointerEvent } from "react";
 import { Room } from "../Room";
 import { homeOwner } from "../../../../packages/contracts/src/index";
 import { FLOOR_FINISHES, WALL_FINISHES, type FurniturePlacement, type HomeDecoration, type HomeSnapshot } from "../../../../packages/contracts/src/housing";
 import { constrainPlacement, furnitureModel, placementDepth, STARTER_POSITIONS } from "../../../../packages/domain/src/housing";
 import { FurnitureArt, HomeBackground } from "./HomeScene";
 import { FurnitureCollection } from "./FurnitureCollection";
-import { HomeAccessPanel } from "./HomeAccess";
 import { housingRequest, HousingRequestError } from "./home-http";
 import { reconcileHome, saveSignature, canVerifySave } from "./home-state";
 import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
@@ -14,7 +13,6 @@ import "./housing.css";
 export type HomeRoomProps = ComponentProps<typeof Room> & {
   generation: number;
   layoutUpdate?: HomeSnapshot | null;
-  accessRevision?: number;
 };
 async function requestHome(path: "load" | "save", body: unknown, signal?: AbortSignal): Promise<HomeSnapshot> {
   const data = await housingRequest<{ home: HomeSnapshot }>(path, body, { signal });
@@ -22,7 +20,7 @@ async function requestHome(path: "load" | "save", body: unknown, signal?: AbortS
 }
 const wallNames = { ivory: "Ivoire", rose: "Rose poudré", lilac: "Lilas", sage: "Sauge" };
 const floorNames = { oak: "Chêne clair", honey: "Chêne miel", smoked: "Chêne fumé" };
-export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...roomProps }: HomeRoomProps) {
+export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomProps) {
   const owner = homeOwner(roomProps.roomId)!;
   const isOwner = owner === roomProps.me;
   const [home, setHome] = useState<HomeSnapshot | null>(null);
@@ -39,9 +37,6 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
   const [reload, setReload] = useState(0);
   const [inventoryOpen, setInventoryOpen] = useState(true);
   const [collectionOpen, setCollectionOpen] = useState(false);
-  const [accessOpen, setAccessOpen] = useState(false);
-  const [panelHeight, setPanelHeight] = useState(0);
-  const panel = useRef<HTMLElement>(null);
   const pending = useRef<{ signature: string; operationId: string } | null>(null);
   const drag = useRef<{ original: FurniturePlacement; x: number; y: number } | null>(null);
   const mounted = useRef(true);
@@ -50,12 +45,6 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
   useEffect(() => { if (editing) stopMovement.current?.(); }, [editing]);
   const dirty = editing && draft !== null && home !== null && JSON.stringify(draft) !== JSON.stringify(home.decoration);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
-  useEffect(() => {
-    if (!editing || !panel.current) { setPanelHeight(0); return; }
-    const observer = new ResizeObserver(([entry]) => setPanelHeight(entry.target.getBoundingClientRect().height));
-    observer.observe(panel.current);
-    return () => observer.disconnect();
-  }, [editing]);
   useEffect(() => {
     const controller = new AbortController();
     setError("");
@@ -164,15 +153,14 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
         width={model.width + 6} height={model.height + 6} rx="4" className="housing-selection" pointerEvents="none" />}
     </g> }];
   });
-  return <section className={`housing-room ${editing ? "is-decorating" : ""}`} aria-label="Salon personnalisable"
-    style={{ "--housing-panel-space": `${panelHeight + 52}px` } as CSSProperties}>
+  return <section className={`housing-room ${editing ? "is-decorating" : ""}`} aria-label="Salon personnalisable">
     <Room {...roomProps} homeScene={{ background: <HomeBackground wall={decoration.wall} floor={decoration.floor} />, objects, editing }} />
+    <div className="housing-controls">
     <div className="housing-toolbar">
       {isOwner && !editing && <button type="button" onClick={() => {
         setDraft(home.decoration); setDraftRevision(home.revision); setEditing(true); setInventoryOpen(true); setMessage(""); setError("");
       }}>✦ Décorer</button>}
       {isOwner && !editing && <button type="button" onClick={() => setCollectionOpen(true)}>Mes meubles</button>}
-      {isOwner && !editing && <button type="button" onClick={() => setAccessOpen(true)}>Accès & invitations</button>}
       {editing && <><span>Mode décoration</span><button type="button" disabled={saving || (conflict && !verifyingSave)} onClick={() => void save()}>
         {saving ? "Enregistrement…" : verifyingSave ? "Vérifier la sauvegarde" : "Enregistrer"}</button>
         <button type="button" disabled={saving} onClick={() => {
@@ -180,9 +168,6 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
           setEditing(false); setDraft(home.decoration); setSelected(null); setError(""); setMessage("");
         }}>Annuler</button></>}
     </div>
-    {accessOpen && isOwner && <HomeAccessPanel generation={generation} revision={accessRevision}
-      visitors={roomProps.players.filter((p) => p.id !== owner).map((p) => ({ id: p.id, name: p.name }))}
-      onClose={() => setAccessOpen(false)} />}
     {collectionOpen && isOwner && <FurnitureCollection generation={generation} home={home}
       onInventory={(items) => setHome((current) => current && { ...current, items })}
       onClose={() => setCollectionOpen(false)} onDecorate={() => {
@@ -200,7 +185,7 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
       {message && <p>{message}</p>}
       {editing && !error && !conflict && <p>{dirty ? "Modifications non enregistrées" : "Glisse un meuble ou choisis-le dans l’inventaire."}</p>}
     </div>
-    {editing && draft && <aside ref={panel} className="housing-panel" aria-label="Outils de décoration">
+    {editing && draft && <aside className="housing-panel" aria-label="Catalogue de meubles et outils de décoration">
       <details open={inventoryOpen} onToggle={(event) => setInventoryOpen(event.currentTarget.open)}><summary>Meubles & revêtements</summary>
         <div className="housing-finishes">
           <label>Mur<select aria-label="Couleur du mur" disabled={saving} value={draft.wall}
@@ -242,5 +227,6 @@ export function HomeRoom({ generation, layoutUpdate, accessRevision = 0, ...room
         <button type="button" disabled={saving} onClick={() => { change({ ...draft, placements: draft.placements.filter((p) => p.itemId !== selection.itemId) }); setSelected(null); }}>Ranger</button>
       </div>}
     </aside>}
+    </div>
   </section>;
 }

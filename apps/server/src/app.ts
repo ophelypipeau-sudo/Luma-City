@@ -7,8 +7,6 @@ import { buyFurnitureSchema } from "../../../packages/contracts/src/housing.ts";
 import { ensureHome, homeSnapshot } from "./housing.ts";
 import { createHomeNavigation } from "./home-navigation.ts";
 import { createRoomChatReceipts } from "./room-chat-receipts.ts";
-import { homeAllows } from "./home-access.ts";
-import { registerHomeAccess } from "./home-access-routes.ts";
 
 import { imageUpload } from "./atelier-images.ts";
 import type { AtelierProvider } from "./atelier-provider.ts";
@@ -246,7 +244,8 @@ export async function createApp(
     return rows.length > 0;
   }
   async function canVisitHome(q: Query, actor: string, owner: string) {
-    return await allowedHomePeer(q, actor, owner) && await homeAllows(q, actor, owner);
+    // Houses are open to all players. Account visibility and bilateral blocks still apply.
+    return allowedHomePeer(q, actor, owner);
   }
   function leaveRestrictedHome(id: string, owner: string) {
     const p = presence.get(id);
@@ -1007,10 +1006,6 @@ export async function createApp(
     return { entries: rows };
   });
   registerPuzzle(app, db, { active, serialRequest, rewardWheel });
-  registerHomeAccess(app, db, { active, serialRequest,
-    serialHome: (owner, fn) => serialFor(`home:${owner}`, fn), allowedPeer: allowedHomePeer,
-    visiblePeer: (id) => (!irisOnly || id === "iris") && (!publicOrigin || id.startsWith("player-")),
-    revalidate: revalidateHome, occupants: (owner) => [...presence.values()].filter((p) => p.roomId === `home:${owner}`).map((p) => p.id), changed });
   // Explicit local review option only: unpublished furniture never enters the public shop.
   const furniturePreview = !publicOrigin && atelierOptions.housingCommercePreview === true;
   app.post("/api/housing/catalog", (req) => serialRequest(req, () => db.transaction(async (q) => {

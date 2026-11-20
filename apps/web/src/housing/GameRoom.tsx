@@ -3,8 +3,7 @@ import { Room } from "../Room";
 import { HomeRoom, type HomeRoomProps } from "./HomeRoom";
 
 export function GameRoom(props: HomeRoomProps) {
-  const { accessRevision, ...roomProps } = props;
   return homeOwner(props.roomId)
     ? <HomeRoom key={`${props.roomId}:${props.me}:${props.generation}`} {...props} />
-    : <Room {...roomProps} />;
+    : <Room {...props} />;
 }

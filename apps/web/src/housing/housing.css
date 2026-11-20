@@ -48,7 +48,7 @@
   .furniture-collection nav span { width: 100%; margin-left: 0; font-size: .85rem; }
 }
 .housing-viewport .scene-player { transition: none; }
-.housing-room.is-decorating .housing-viewport { height: max(210px, calc(100% - var(--housing-panel-space))); }
+.housing-controls { display: contents; }
 .housing-toolbar { position: absolute; right: 12px; top: 76px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; max-width: calc(100% - 24px); z-index: 5; }
 .housing-toolbar > span { color: #fff; border-radius: 12px; padding: 8px 12px; background: #513759e8; font-weight: 600; }
 .housing-room button, .housing-room select, .housing-room input, .housing-loading button { font: inherit; }
@@ -87,6 +87,22 @@
 .housing-chat-news { display: inline-block; margin-left: 8px; width: 8px; height: 8px; border-radius: 50%; background: #ffde9c; }
 .housing-layout .room-footer .keyboard-hint { display: none; }
 .housing-layout:has(.is-decorating) .room-footer { display: none; }
+.housing-layout:has(.is-decorating) .housing-social-toggle,
+.housing-layout:has(.is-decorating) .housing-social { display: none; }
+.housing-room.is-decorating { --housing-sidebar: clamp(300px, 29vw, 390px); }
+.housing-room.is-decorating .housing-viewport { width: calc(100% - var(--housing-sidebar)); height: 100%; }
+.housing-room.is-decorating .housing-controls { position: absolute; inset: 0 0 0 auto; width: var(--housing-sidebar); box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 10px; background: #e9dcd1; border-left: 1px solid #ccb3c7; }
+.housing-room.is-decorating .housing-toolbar { position: static; max-width: none; flex-shrink: 0; }
+.housing-room.is-decorating .housing-toolbar > span { width: 100%; box-sizing: border-box; text-align: center; }
+.housing-room.is-decorating .housing-status { position: static; max-width: none; flex-shrink: 0; }
+.housing-room.is-decorating .housing-status:empty { display: none; }
+.housing-room.is-decorating .housing-panel { position: static; flex: 1; min-height: 0; max-height: none; margin: 0; box-shadow: none; }
+.housing-room.is-decorating .housing-finishes { flex-direction: column; gap: 8px; }
+.housing-room.is-decorating .housing-finishes label { justify-content: space-between; }
+.housing-room.is-decorating .housing-finishes select { width: 65%; max-width: none; }
+.housing-room.is-decorating .housing-inventory { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
+.housing-room.is-decorating .housing-inventory button { min-width: 0; }
+.housing-room.is-decorating .housing-inspector { margin-top: 8px; }
 @media (max-width: 650px) {
   .game-fullscreen.is-housing .workspace { left: 0; }
   .game-fullscreen.is-housing .rail > :not(.sidebar-brand) { display: none; }
@@ -94,7 +110,7 @@
   .housing-toolbar { top: 75px; right: 7px; gap: 5px; }
   .housing-toolbar > span { display: none; }
   .housing-toolbar button, .housing-toolbar > span { padding: 7px 9px; font-size: .74rem; }
-  .housing-status { top: auto; bottom: calc(var(--housing-panel-space) + 8px); right: 7px; }
+  .housing-status { top: auto; bottom: 45px; right: 7px; }
   .housing-status p { font-size: .7rem; }
   .housing-panel { left: 6px; right: 6px; bottom: 30px; max-height: 42%; padding: 8px; }
   .housing-finishes { gap: 6px; }
@@ -102,4 +118,12 @@
   .housing-finishes select { max-width: 116px; }
   .housing-inventory button { flex-basis: 98px; min-height: 108px; }
   .housing-inspector strong { width: 100%; }
+  .housing-room.is-decorating .housing-viewport { width: 100%; height: 48%; }
+  .housing-room.is-decorating .housing-controls { inset: 48% 0 0; width: 100%; padding: 7px; gap: 6px; border-left: 0; border-top: 1px solid #ccb3c7; }
+  .housing-room.is-decorating .housing-toolbar { justify-content: flex-end; }
+  .housing-room.is-decorating .housing-status p { margin: 0; padding: 5px 8px; }
+  .housing-room.is-decorating .housing-panel { padding: 8px; }
+  .housing-room.is-decorating .housing-finishes { flex-direction: row; }
+  .housing-room.is-decorating .housing-finishes label { flex: 1 1 135px; }
+  .housing-room.is-decorating .housing-inventory { grid-template-columns: repeat(auto-fill,minmax(100px,1fr)); }
 }

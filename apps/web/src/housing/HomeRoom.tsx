@@ -1,25 +1,27 @@
 import { useEffect, useRef, useState, type ComponentProps, type PointerEvent } from "react";
 import { Room } from "../Room";
 import { homeOwner } from "../../../../packages/contracts/src/index";
-import { FLOOR_FINISHES, WALL_FINISHES, type FurniturePlacement, type HomeDecoration, type HomeSnapshot } from "../../../../packages/contracts/src/housing";
+import { type FurniturePlacement, type HomeDecoration, type HomeSnapshot } from "../../../../packages/contracts/src/housing";
 import { constrainPlacement, furnitureModel, placementDepth, STARTER_POSITIONS } from "../../../../packages/domain/src/housing";
 import { FurnitureArt, HomeBackground } from "./HomeScene";
 import { FurnitureCollection } from "./FurnitureCollection";
 import { housingRequest, HousingRequestError } from "./home-http";
-import { reconcileHome, saveSignature, canVerifySave } from "./home-state";
+import { reconcileHome, saveSignature, canVerifySave, unownedHomeFinishes } from "./home-state";
 import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
-import { homeFinish, ownsHomeFinish } from "../../../../packages/domain/src/home-finishes";
+import { finishDecoration, homeFinish } from "../../../../packages/domain/src/home-finishes";
+import { HomeFinishShop } from "./HomeFinishShop";
 import "./housing.css";
 
 export type HomeRoomProps = ComponentProps<typeof Room> & {
   generation: number;
   layoutUpdate?: HomeSnapshot | null;
+  onHomeBalance?: (balance: number) => void;
 };
 async function requestHome(path: "load" | "save", body: unknown, signal?: AbortSignal): Promise<HomeSnapshot> {
   const data = await housingRequest<{ home: HomeSnapshot }>(path, body, { signal });
   return data.home;
 }
-export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomProps) {
+export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps }: HomeRoomProps) {
   const owner = homeOwner(roomProps.roomId)!;
   const isOwner = owner === roomProps.me;
   const [home, setHome] = useState<HomeSnapshot | null>(null);
@@ -36,6 +38,9 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
   const [reload, setReload] = useState(0);
   const [inventoryOpen, setInventoryOpen] = useState(true);
   const [collectionOpen, setCollectionOpen] = useState(false);
+  const [editorTab, setEditorTab] = useState<"wall" | "floor" | "furniture">("wall");
+  const [buyingFinish, setBuyingFinish] = useState(false);
+  const editingBusy = saving || buyingFinish;
   const pending = useRef<{ signature: string; operationId: string } | null>(null);
   const drag = useRef<{ original: FurniturePlacement; x: number; y: number } | null>(null);
   const mounted = useRef(true);
@@ -75,7 +80,7 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
     window.addEventListener("beforeunload", beforeUnload);
     return () => window.removeEventListener("beforeunload", beforeUnload);
   }, [dirty]);
-  function change(decoration: HomeDecoration) { if (!saving) { setDraft(decoration); setError(""); setMessage(""); } }
+  function change(decoration: HomeDecoration) { if (!editingBusy) { setDraft(decoration); setError(""); setMessage(""); } }
   function move(placement: FurniturePlacement) {
     const item = home?.items.find((item) => item.id === placement.itemId);
     const model = item && furnitureModel(item.modelId);
@@ -89,7 +94,8 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
     return cursor.matrixTransform(svg.getScreenCTM()!.inverse());
   }
   async function save() {
-    if (!draft || !home || saving || !isOwner) return;
+    if (!draft || !home || editingBusy || !isOwner) return;
+    if (unownedHomeFinishes(draft, home.ownedFinishes).length) { setError("Achète les revêtements en essai avant d’enregistrer."); return; }
     const signature = saveSignature(draft, draftRevision);
     if (pending.current?.signature !== signature) pending.current = { signature, operationId: crypto.randomUUID() };
     setSaving(true); setError(""); setMessage("");
@@ -109,6 +115,7 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
   if (!home) return <div className="housing-loading" role="status">{error || "Ouverture du salon…"}
     {error && <button type="button" onClick={() => setReload((n) => n + 1)}>Réessayer</button>}</div>;
   const decoration = editing && draft ? draft : home.decoration;
+  const trialFinishes = editing ? unownedHomeFinishes(decoration, home.ownedFinishes) : [];
   const selection = decoration.placements.find((p) => p.itemId === selected);
   const selectedItem = home.items.find((item) => item.id === selected);
   const selectedModel = selectedItem && furnitureModel(selectedItem.modelId);
@@ -122,15 +129,15 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
     return [{ id: p.itemId, depth: placementDepth(model, p), node: <g transform={`translate(${p.x} ${p.y})`}
       className={editing ? "housing-furniture editable" : "housing-furniture"}
       role={editing ? "button" : "img"} aria-label={model.name} tabIndex={editing ? 0 : undefined}
-      onClick={(event) => { if (editing) { event.stopPropagation(); setSelected(p.itemId); } }}
+      onClick={(event) => { if (editing && !editingBusy) { event.stopPropagation(); setSelected(p.itemId); setEditorTab("furniture"); } }}
       onPointerDown={(event) => {
-        if (!editing || saving || (event.pointerType === "mouse" && event.button !== 0)) return;
-        event.preventDefault(); event.stopPropagation(); setSelected(p.itemId);
+        if (!editing || editingBusy || (event.pointerType === "mouse" && event.button !== 0)) return;
+        event.preventDefault(); event.stopPropagation(); setSelected(p.itemId); setEditorTab("furniture");
         const cursor = point(event); drag.current = { original: p, x: cursor.x, y: cursor.y };
         event.currentTarget.setPointerCapture(event.pointerId);
       }}
       onPointerMove={(event) => {
-        if (!editing || saving || drag.current?.original.itemId !== p.itemId) return;
+        if (!editing || editingBusy || drag.current?.original.itemId !== p.itemId) return;
         const cursor = point(event), start = drag.current;
         move({ ...start.original, x: start.original.x + cursor.x - start.x, y: start.original.y + cursor.y - start.y });
       }}
@@ -141,7 +148,7 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
       }}
       onPointerCancel={() => { if (drag.current?.original.itemId === p.itemId) { move(drag.current.original); drag.current = null; } }}
       onKeyDown={(event) => {
-        if (!editing || saving) return;
+        if (!editing || editingBusy) return;
         if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); setSelected(p.itemId); }
         const steps: Record<string, [number, number]> = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
         if (steps[event.key]) { event.preventDefault(); event.stopPropagation(); const [x, y] = steps[event.key];
@@ -157,12 +164,12 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
     <div className="housing-controls">
     <div className="housing-toolbar">
       {isOwner && !editing && <button type="button" onClick={() => {
-        setDraft(home.decoration); setDraftRevision(home.revision); setEditing(true); setInventoryOpen(true); setMessage(""); setError("");
+        setDraft(home.decoration); setDraftRevision(home.revision); setEditing(true); setEditorTab("wall"); setInventoryOpen(true); setMessage(""); setError("");
       }}>✦ Décorer</button>}
       {isOwner && !editing && <button type="button" onClick={() => setCollectionOpen(true)}>Mes meubles</button>}
-      {editing && <><span>Mode décoration</span><button type="button" disabled={saving || (conflict && !verifyingSave)} onClick={() => void save()}>
+      {editing && <><span>Mode décoration</span><button type="button" disabled={editingBusy || trialFinishes.length > 0 || (conflict && !verifyingSave)} onClick={() => void save()}>
         {saving ? "Enregistrement…" : verifyingSave ? "Vérifier la sauvegarde" : "Enregistrer"}</button>
-        <button type="button" disabled={saving} onClick={() => {
+        <button type="button" disabled={editingBusy} onClick={() => {
           clearHomeDraft(sessionStorage, owner); pending.current = null; setSaveUnconfirmed(false);
           setEditing(false); setDraft(home.decoration); setSelected(null); setError(""); setMessage("");
         }}>Annuler</button></>}
@@ -171,29 +178,33 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
       onInventory={(items) => setHome((current) => current && { ...current, items })}
       onClose={() => setCollectionOpen(false)} onDecorate={() => {
         setCollectionOpen(false); setDraft(home.decoration); setDraftRevision(home.revision);
-        setEditing(true); setInventoryOpen(true); setMessage(""); setError("");
+        setEditing(true); setEditorTab("furniture"); setInventoryOpen(true); setMessage(""); setError("");
       }} />}
     <div className="housing-status" aria-live="polite">
       {error && <p role="alert">{error}</p>}
       {conflict && <p role="alert">{verifyingSave ? "Une version a été enregistrée. Vérifie ta dernière sauvegarde sans la dupliquer." : "Une nouvelle version a été enregistrée ailleurs. Ton brouillon est conservé."}</p>}
-      {(conflict || (editing && error)) && <button type="button" disabled={saving} onClick={() => {
+      {(conflict || (editing && error)) && <button type="button" disabled={editingBusy} onClick={() => {
         clearHomeDraft(sessionStorage, owner); pending.current = null; setSaveUnconfirmed(false); setReload((n) => n + 1);
         setEditing(false); setDraft(home.decoration); setDraftRevision(home.revision); setSelected(null); setMessage("");
       }}>Recharger et abandonner le brouillon</button>}
       {editing && dirty && draftStorageUnavailable && <p role="alert">Le brouillon local est indisponible. Enregistre avant de quitter cet écran.</p>}
       {message && <p>{message}</p>}
-      {editing && !error && !conflict && <p>{dirty ? "Modifications non enregistrées" : "Glisse un meuble ou choisis-le dans l’inventaire."}</p>}
+      {trialFinishes.length > 0 && <p role="status">Essai : {trialFinishes.map((id) => homeFinish(id)?.name).join(" et ")}. Achète pour enregistrer.</p>}
+      {editing && !error && !conflict && trialFinishes.length === 0 && <p>{dirty ? "Modifications non enregistrées" : "Essaie un revêtement ou déplace tes meubles."}</p>}
     </div>
-    {editing && draft && <aside className="housing-panel" aria-label="Catalogue de meubles et outils de décoration">
-      <details open={inventoryOpen} onToggle={(event) => setInventoryOpen(event.currentTarget.open)}><summary>Meubles & revêtements</summary>
+    {editing && draft && <aside className="housing-panel" aria-label="Boutique de décoration dans la maison">
+      <nav className="home-editor-tabs" aria-label="Décoration de la maison">
+        {([["wall", "Murs"], ["floor", "Sols"], ["furniture", "Mes meubles"]] as const).map(([id, name]) => <button type="button" key={id}
+          aria-pressed={editorTab === id} disabled={editingBusy} onClick={() => setEditorTab(id)}>{name}</button>)}
+      </nav>
+      <HomeFinishShop generation={generation} owner={owner} kind={editorTab === "floor" ? "floor" : "wall"} hidden={editorTab === "furniture"}
+        decoration={draft} disabled={saving} onBusy={setBuyingFinish} onKind={setEditorTab}
+        onTry={(finish) => { change(finishDecoration(finish, draft)); setSelected(null); }}
+        onInventory={(ownedFinishes, balance) => { setHome((current) => current && { ...current, ownedFinishes }); onHomeBalance?.(balance); }} />
+      <div hidden={editorTab !== "furniture"}>
+      <details open={inventoryOpen} onToggle={(event) => setInventoryOpen(event.currentTarget.open)}><summary>Mes meubles possédés</summary>
         <div className="housing-finishes">
-          <label>Mur<select aria-label="Couleur du mur" disabled={saving} value={draft.wall}
-            onChange={(event) => change({ ...draft, wall: event.target.value as HomeDecoration["wall"] })}>
-            {WALL_FINISHES.filter((wall) => ownsHomeFinish(home.ownedFinishes, "wall", wall)).map((wall) => <option key={wall} value={wall}>{homeFinish(`wall:${wall}`)?.name}</option>)}</select></label>
-          <label>Parquet<select aria-label="Revêtement du sol" disabled={saving} value={draft.floor}
-            onChange={(event) => change({ ...draft, floor: event.target.value as HomeDecoration["floor"] })}>
-            {FLOOR_FINISHES.filter((floor) => ownsHomeFinish(home.ownedFinishes, "floor", floor)).map((floor) => <option key={floor} value={floor}>{homeFinish(`floor:${floor}`)?.name}</option>)}</select></label>
-          <label>Catégorie<select disabled={saving} value={category} onChange={(event) => setCategory(event.target.value)}>
+          <label>Catégorie<select disabled={editingBusy} value={category} onChange={(event) => setCategory(event.target.value)}>
             {categories.map((name) => <option key={name}>{name}</option>)}</select></label>
         </div>
         <div className="housing-inventory" aria-label="Meubles possédés">
@@ -202,7 +213,7 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
             if (!model || (category !== "Tous" && category !== model.category)) return null;
             const placed = draft.placements.some((p) => p.itemId === item.id);
             const elsewhere = item.roomId !== null && item.roomId !== home.roomId;
-            return <button key={item.id} type="button" aria-pressed={selected === item.id} disabled={saving || elsewhere}
+            return <button key={item.id} type="button" aria-pressed={selected === item.id} disabled={editingBusy || elsewhere}
               onClick={() => {
                 setSelected(item.id);
                 setInventoryOpen(false);
@@ -217,14 +228,15 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
       </details>
       {selection && selectedModel && <div className="housing-inspector">
         <strong>{selectedModel.name}</strong>
-        <label>X<input aria-label="Position horizontale" type="number" step="1" value={selection.x} disabled={saving}
+        <label>X<input aria-label="Position horizontale" type="number" step="1" value={selection.x} disabled={editingBusy}
           onChange={(event) => { if (event.target.value !== "" && Number.isFinite(event.target.valueAsNumber)) move({ ...selection, x: event.target.valueAsNumber }); }} /></label>
-        <label>Y<input aria-label="Position verticale" type="number" step="1" value={selection.y} disabled={saving}
+        <label>Y<input aria-label="Position verticale" type="number" step="1" value={selection.y} disabled={editingBusy}
           onChange={(event) => { if (event.target.value !== "" && Number.isFinite(event.target.valueAsNumber)) move({ ...selection, y: event.target.valueAsNumber }); }} /></label>
-        <button type="button" disabled={saving || selection.depth <= -80} onClick={() => move({ ...selection, depth: selection.depth - 10 })}>Derrière</button>
-        <button type="button" disabled={saving || selection.depth >= 80} onClick={() => move({ ...selection, depth: selection.depth + 10 })}>Devant</button>
-        <button type="button" disabled={saving} onClick={() => { change({ ...draft, placements: draft.placements.filter((p) => p.itemId !== selection.itemId) }); setSelected(null); }}>Ranger</button>
+        <button type="button" disabled={editingBusy || selection.depth <= -80} onClick={() => move({ ...selection, depth: selection.depth - 10 })}>Derrière</button>
+        <button type="button" disabled={editingBusy || selection.depth >= 80} onClick={() => move({ ...selection, depth: selection.depth + 10 })}>Devant</button>
+        <button type="button" disabled={editingBusy} onClick={() => { change({ ...draft, placements: draft.placements.filter((p) => p.itemId !== selection.itemId) }); setSelected(null); }}>Ranger</button>
       </div>}
+      </div>
     </aside>}
     </div>
   </section>;

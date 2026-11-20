@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { randomUUID } from "node:crypto";
-import { reconcileHome, canVerifySave, saveSignature } from "../apps/web/src/housing/home-state.ts";
+import { reconcileHome, canVerifySave, saveSignature, unownedHomeFinishes } from "../apps/web/src/housing/home-state.ts";
+import { finishDecoration, homeFinish } from "../packages/domain/src/home-finishes";
 import { housingRequest, HousingRequestError } from "../apps/web/src/housing/home-http.ts";
 import type { HomeSnapshot } from "../packages/contracts/src/housing.ts";
 
@@ -11,6 +12,21 @@ function snapshot(): HomeSnapshot {
     items: [{ id: "placed", modelId: "plant", roomId: "room" }, { id: "stored", modelId: "sofa", roomId: null },
       { id: "elsewhere", modelId: "mirror", roomId: "other-room" }] };
 }
+
+test("Essayer dans la maison conserve le décor enregistré et attend l’achat des deux surfaces avant sauvegarde", () => {
+  const saved = snapshot();
+  const before = structuredClone(saved);
+  const wallTrial = finishDecoration(homeFinish("wall:brick-white")!, saved.decoration);
+  const bothTrials = finishDecoration(homeFinish("floor:tile-checker")!, wallTrial);
+  assert.deepEqual(saved, before);
+  assert.equal(bothTrials.wall, "brick-white");
+  assert.equal(bothTrials.floor, "tile-checker");
+  assert.deepEqual(bothTrials.placements, saved.decoration.placements);
+  assert.deepEqual(unownedHomeFinishes(bothTrials, []), ["wall:brick-white", "floor:tile-checker"]);
+  assert.deepEqual(unownedHomeFinishes(bothTrials, ["wall:brick-white"]), ["floor:tile-checker"]);
+  assert.deepEqual(unownedHomeFinishes(bothTrials, ["wall:brick-white", "floor:tile-checker"]), []);
+  assert.deepEqual(unownedHomeFinishes(saved.decoration, undefined), []);
+});
 test("Un décor reçu ajoute les nouveaux exemplaires sans perdre l’inventaire privé ou les autres pièces", () => {
   const old = { ...snapshot(), ownedFinishes: ["wall:midnight"] };
   const broadcast: HomeSnapshot = { ...old, revision: 2, inventoryComplete: false,

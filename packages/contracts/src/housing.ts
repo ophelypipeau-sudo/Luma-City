@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-export const WALL_FINISHES = ["ivory", "rose", "lilac", "sage"] as const;
-export const FLOOR_FINISHES = ["oak", "honey", "smoked"] as const;
+export const WALL_FINISHES = ["ivory", "rose", "lilac", "sage", "midnight", "peach", "wallpaper-blush", "wallpaper-sage"] as const;
+export const FLOOR_FINISHES = ["oak", "honey", "smoked", "walnut", "white-oak", "rosewood"] as const;
 export const HOME_ACCESS_MODES = ["public", "friends", "private"] as const;
 export type HomeAccessMode = typeof HOME_ACCESS_MODES[number];
 export type HomeInvitation = { id: string; ownerId: string; ownerName: string; guestId: string; guestName: string;
@@ -41,6 +41,7 @@ export type HomeSnapshot = {
   revision: number;
   capacity?: number;
   inventoryComplete?: boolean;
+  ownedFinishes?: string[];
   decoration: HomeDecoration;
   items: OwnedFurniture[];
 };

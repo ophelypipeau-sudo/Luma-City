@@ -5,6 +5,7 @@ import { registerHousing, publicHomeSnapshot } from "./housing-routes.ts";
 import { buyFurniture, furnitureOffers } from "./furniture-commerce.ts";
 import { buyFurnitureSchema } from "../../../packages/contracts/src/housing.ts";
 import { ensureHome, homeSnapshot } from "./housing.ts";
+import { buyHomeFinish, buyHomeFinishSchema, homeFinishCatalog } from "./home-finish-commerce";
 import { createHomeNavigation } from "./home-navigation.ts";
 import { createRoomChatReceipts } from "./room-chat-receipts.ts";
 
@@ -1006,6 +1007,23 @@ export async function createApp(
     return { entries: rows };
   });
   registerPuzzle(app, db, { active, serialRequest, rewardWheel });
+  app.post("/api/housing/finishes", (req) => serialRequest(req, () => db.transaction(async (q) => {
+    const { generation } = z.object({ generation: z.number().int() }).strict().parse(req.body);
+    const character = await activeRow(q, req.cookies.session!, generation);
+    const wheel = await rewardWheel(q, character.id);
+    return homeFinishCatalog(q, character.id, await wardrobe.balance(q, character, wheel.accountCoins));
+  })));
+  app.post("/api/housing/finishes/buy", (req) => serialRequest(req, async () => {
+    const input = buyHomeFinishSchema.parse(req.body);
+    const account = login(req.cookies.session).account;
+    const receipt = await serialFor(`finishes-account:${account}`, () => db.transaction(async (q) => {
+      await q("SELECT id FROM accounts WHERE id=$1 FOR UPDATE", [account]);
+      const character = await activeRow(q, req.cookies.session!, input.generation);
+      const wheel = await rewardWheel(q, character.id);
+      return buyHomeFinish(q, account, character.id, await wardrobe.balance(q, character, wheel.accountCoins), input);
+    }));
+    changed(); return receipt;
+  }));
   // Explicit local review option only: unpublished furniture never enters the public shop.
   const furniturePreview = !publicOrigin && atelierOptions.housingCommercePreview === true;
   app.post("/api/housing/catalog", (req) => serialRequest(req, () => db.transaction(async (q) => {

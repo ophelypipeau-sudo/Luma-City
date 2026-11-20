@@ -6,7 +6,7 @@ import { ensureHome, homeSnapshot, saveHome } from "./housing.ts";
 import { PlayerError } from "./wardrobe.ts";
 
 export const publicHomeSnapshot = (home: HomeSnapshot): HomeSnapshot => ({
-  ...home, inventoryComplete: false, items: home.items.filter((item) => item.roomId === home.roomId),
+  ...home, ownedFinishes: undefined, inventoryComplete: false, items: home.items.filter((item) => item.roomId === home.roomId),
 });
 export function registerHousing(app: FastifyInstance, db: Database, deps: {
   active: (token: string, generation: number, q: Query) => Promise<string>;

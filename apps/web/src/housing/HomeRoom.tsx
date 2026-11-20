@@ -8,6 +8,7 @@ import { FurnitureCollection } from "./FurnitureCollection";
 import { housingRequest, HousingRequestError } from "./home-http";
 import { reconcileHome, saveSignature, canVerifySave } from "./home-state";
 import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
+import { homeFinish, ownsHomeFinish } from "../../../../packages/domain/src/home-finishes";
 import "./housing.css";
 
 export type HomeRoomProps = ComponentProps<typeof Room> & {
@@ -18,8 +19,6 @@ async function requestHome(path: "load" | "save", body: unknown, signal?: AbortS
   const data = await housingRequest<{ home: HomeSnapshot }>(path, body, { signal });
   return data.home;
 }
-const wallNames = { ivory: "Ivoire", rose: "Rose poudré", lilac: "Lilas", sage: "Sauge" };
-const floorNames = { oak: "Chêne clair", honey: "Chêne miel", smoked: "Chêne fumé" };
 export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomProps) {
   const owner = homeOwner(roomProps.roomId)!;
   const isOwner = owner === roomProps.me;
@@ -190,10 +189,10 @@ export function HomeRoom({ generation, layoutUpdate, ...roomProps }: HomeRoomPro
         <div className="housing-finishes">
           <label>Mur<select aria-label="Couleur du mur" disabled={saving} value={draft.wall}
             onChange={(event) => change({ ...draft, wall: event.target.value as HomeDecoration["wall"] })}>
-            {WALL_FINISHES.map((wall) => <option key={wall} value={wall}>{wallNames[wall]}</option>)}</select></label>
+            {WALL_FINISHES.filter((wall) => ownsHomeFinish(home.ownedFinishes, "wall", wall)).map((wall) => <option key={wall} value={wall}>{homeFinish(`wall:${wall}`)?.name}</option>)}</select></label>
           <label>Parquet<select aria-label="Revêtement du sol" disabled={saving} value={draft.floor}
             onChange={(event) => change({ ...draft, floor: event.target.value as HomeDecoration["floor"] })}>
-            {FLOOR_FINISHES.map((floor) => <option key={floor} value={floor}>{floorNames[floor]}</option>)}</select></label>
+            {FLOOR_FINISHES.filter((floor) => ownsHomeFinish(home.ownedFinishes, "floor", floor)).map((floor) => <option key={floor} value={floor}>{homeFinish(`floor:${floor}`)?.name}</option>)}</select></label>
           <label>Catégorie<select disabled={saving} value={category} onChange={(event) => setCategory(event.target.value)}>
             {categories.map((name) => <option key={name}>{name}</option>)}</select></label>
         </div>

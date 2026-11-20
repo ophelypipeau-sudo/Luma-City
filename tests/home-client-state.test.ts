@@ -12,11 +12,12 @@ function snapshot(): HomeSnapshot {
       { id: "elsewhere", modelId: "mirror", roomId: "other-room" }] };
 }
 test("Un décor reçu ajoute les nouveaux exemplaires sans perdre l’inventaire privé ou les autres pièces", () => {
-  const old = snapshot();
+  const old = { ...snapshot(), ownedFinishes: ["wall:midnight"] };
   const broadcast: HomeSnapshot = { ...old, revision: 2, inventoryComplete: false,
     decoration: { ...old.decoration, placements: [{ itemId: "new", x: 835, y: 433, depth: 0 }] },
     items: [{ id: "new", modelId: "plant", roomId: "room" }] };
   const owner = reconcileHome(old, broadcast, true);
+  assert.deepEqual(owner.ownedFinishes, ["wall:midnight"]);
   assert.equal(owner.items.length, 4);
   assert.equal(owner.items.find((i) => i.id === "new")?.roomId, "room");
   assert.equal(owner.items.find((i) => i.id === "placed")?.roomId, null);

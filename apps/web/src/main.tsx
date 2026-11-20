@@ -55,6 +55,7 @@ import { FloatingRewards, walletPickups, type Collectible } from "./FloatingRewa
 import { splitReward } from "../../../packages/domain/src/arcade";
 import { MottoEditor } from "./MottoEditor";
 import { Shop } from "./shop/Shop";
+import { ShopDepartments } from "./housing/ShopDepartments";
 import { DEFAULT_LAYERS, type AvatarLayers } from "./avatar/model";
 import { outfitOwner, readAvatarLayers, shareOutfit, snapshotOutfit } from "./avatar/worn-outfits";
 import { COMMERCE_KEY, readCommerce, equipPurchasedItem, type PurchasedItem } from "./shop/commerce";
@@ -1123,7 +1124,7 @@ function App() {
                 privateChatOpen ? "Messages privés" : guestbook ? `Livre d’or de ${guestbook.name}` : view === "explore"
                   ? "Carte du quartier"
                   : view === "shop"
-                    ? "Boutique de vêtements"
+                    ? "Boutique"
                     : view === "dressing" ? "Mon dressing"
                     : view === "friends" ? "Mes amis" : view === "salon" ? "Salon d’esthétique" : view === "pets" ? "Animalerie" : view === "arcade" ? "Coin détente" : view === "ranking" ? "Classements" : scene.name
               }
@@ -1270,6 +1271,9 @@ function App() {
                   onBack={openMap} onCollection={() => setCompanionPicker(true)}
                   buy={purchaseCompanion} equip={selectCompanion} />
               ) : view === "shop" && state?.character ? (
+                <ShopDepartments key={`${state.character.id}:${state.generation}`} owner={state.character.id} generation={state.generation}
+                  onBalance={(balance) => setState((current) => current && current.character?.id === state.character?.id && current.generation === state.generation && current.wardrobe ? { ...current, wardrobe: { ...current.wardrobe, balance } } : current)}
+                  onHome={() => enterRoom(homeRoom(state.character!.id))}>
                 <Shop
                   canCustomizeColors={state.uiCapabilities?.customGarmentColors === true}
                   key={state.character.id}
@@ -1280,6 +1284,7 @@ function App() {
                   balance={wardrobe.balance}
                   onClose={() => setView("explore")}
                 />
+                </ShopDepartments>
               ) : (
                 <div className={`room-layout ${homeOwner(roomId) ? "housing-layout" : ""}`}>
                   <div className="room-stage">

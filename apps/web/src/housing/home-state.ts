@@ -7,7 +7,7 @@ export function reconcileHome(current: HomeSnapshot, incoming: HomeSnapshot, isO
   const items = new Map(current.items.map((item) => [item.id, item]));
   for (const item of incoming.items) items.set(item.id, item);
   const placed = new Set(incoming.decoration.placements.map((p) => p.itemId));
-  return { ...incoming, items: [...items.values()].map((item) => ({ ...item,
+  return { ...incoming, ownedFinishes: current.ownedFinishes, items: [...items.values()].map((item) => ({ ...item,
     roomId: placed.has(item.id) ? incoming.roomId : item.roomId === incoming.roomId ? null : item.roomId,
   })) };
 }

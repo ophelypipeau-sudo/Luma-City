@@ -2,6 +2,7 @@ import { useId } from "react";
 import type { FurnitureModel } from "../../../../packages/domain/src/housing";
 import type { HomeDecoration } from "../../../../packages/contracts/src/housing";
 import assetManifest from "../../../../public/assets/housing/prune-v1/manifest.json";
+import { homeFinish } from "../../../../packages/domain/src/home-finishes";
 
 type Asset = { width: number; height: number; crop: number[] };
 const manifest = assetManifest as Record<string, Asset>;
@@ -18,19 +19,20 @@ export function FurnitureArt({ model, thumbnail = false }: { model: FurnitureMod
 /** Tint textures together with their original material, lighting and shadows. */
 export function HomeBackground({ wall, floor }: Pick<HomeDecoration, "wall" | "floor">) {
   const uid = useId().replace(/:/g, "");
-  const walls = { ivory: [1, 1, 1], rose: [1.02, .88, .94], lilac: [.91, .86, 1.06], sage: [.87, .98, .87] };
-  const floors = { oak: [1, 1, 1], honey: [1.05, .94, .82], smoked: [.74, .72, .74] };
+  const wallFinish = homeFinish(`wall:${wall}`)!, floorFinish = homeFinish(`floor:${floor}`)!;
   const matrix = ([r, g, b]: number[]) => `${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 1 0`;
   return <g pointerEvents="none">
     <defs>
       <clipPath id={`${uid}-wall`}><path d="M0 0H1000V422H0Z" /></clipPath>
       <clipPath id={`${uid}-floor`}><path d="M0 422H1000V680H0Z" /></clipPath>
       <clipPath id={`${uid}-window`}><path d="M14 292V128a97 97 0 0 1 194 0v164Z" /></clipPath>
-      <filter id={`${uid}-wall-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(walls[wall])} /></filter>
-      <filter id={`${uid}-floor-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(floors[floor])} /></filter>
+      <filter id={`${uid}-wall-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(wallFinish.tone)} /></filter>
+      <filter id={`${uid}-floor-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(floorFinish.tone)} /></filter>
+      <pattern id={`${uid}-stripes`} width="26" height="26" patternUnits="userSpaceOnUse"><rect width="13" height="26" fill="#fff9f1" opacity=".25" /></pattern>
     </defs>
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-wall)`} filter={`url(#${uid}-wall-tone)`} />
+    {wallFinish.pattern && <rect width="1000" height="422" fill={`url(#${uid}-stripes)`} />}
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-floor)`} filter={`url(#${uid}-floor-tone)`} />
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"

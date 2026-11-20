@@ -6,6 +6,8 @@ import { FURNITURE_MODELS, STARTER_POSITIONS, validateDecoration } from "../../.
 import { PlayerError } from "./wardrobe.ts";
 import { ROOM_CAPACITY } from "../../../packages/domain/src/rules.ts";
 import { createHomeNavigationMesh, nearestHomePoint } from "../../../packages/domain/src/home-navigation.ts";
+import { ownedHomeFinishes } from "./home-finish-commerce";
+import { ownsHomeFinish } from "../../../packages/domain/src/home-finishes";
 
 /** The caller owns a DB transaction and has already authorized the character. */
 export async function ensureHome(q: Query, owner: string) {
@@ -36,7 +38,7 @@ export async function homeSnapshot(q: Query, owner: string): Promise<HomeSnapsho
   const { rows: placements } = await q(`SELECT item_id AS "itemId", x,y,depth
     FROM furniture_placements WHERE room_id=$1 ORDER BY item_id`, [row.roomId]);
   return { homeId: row.homeId, ownerId: row.ownerId, roomId: row.roomId, revision: row.revision, inventoryComplete: true, capacity: row.capacity ?? ROOM_CAPACITY,
-    decoration: { wall: row.wall, floor: row.floor, placements }, items };
+    decoration: { wall: row.wall, floor: row.floor, placements }, items, ownedFinishes: await ownedHomeFinishes(q, owner) };
 }
 export async function saveHome(q: Query, owner: string, input: ReturnType<typeof saveHomeSchema.parse>) {
   const { roomId } = await ensureHome(q, owner);
@@ -52,6 +54,8 @@ export async function saveHome(q: Query, owner: string, input: ReturnType<typeof
   // Lock inventory in stable order: an instance can be assigned to only one room.
   await q("SELECT id FROM furniture_items WHERE owner_character_id=$1 ORDER BY id FOR UPDATE", [owner]);
   const snapshot = await homeSnapshot(q, owner);
+  if (!ownsHomeFinish(snapshot.ownedFinishes, "wall", input.decoration.wall) || !ownsHomeFinish(snapshot.ownedFinishes, "floor", input.decoration.floor))
+    throw new PlayerError("Achète ce revêtement dans la boutique avant de l’utiliser.");
   try { validateDecoration(input.decoration, snapshot.items as OwnedFurniture[], roomId); }
   catch (error) { throw new PlayerError((error as Error).message); }
   if (!nearestHomePoint(createHomeNavigationMesh({ items: snapshot.items, decoration: input.decoration }), { x: 750, y: 565 }))

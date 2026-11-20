@@ -26,6 +26,9 @@ test("Essayer dans la maison conserve le décor enregistré et attend l’achat 
   assert.deepEqual(unownedHomeFinishes(bothTrials, ["wall:brick-white"]), ["floor:tile-checker"]);
   assert.deepEqual(unownedHomeFinishes(bothTrials, ["wall:brick-white", "floor:tile-checker"]), []);
   assert.deepEqual(unownedHomeFinishes(saved.decoration, undefined), []);
+  const windows = [{ id: randomUUID(), modelId: "arch-ivory" as const, x: 350, y: 320 }, { id: randomUUID(), modelId: "arch-ivory" as const, x: 700, y: 320 }];
+  assert.deepEqual(unownedHomeFinishes({ ...saved.decoration, windows }, []), ["window:arch-ivory"]);
+  assert.deepEqual(unownedHomeFinishes({ ...saved.decoration, windows }, ["window:arch-ivory"]), []);
 });
 test("Un décor reçu ajoute les nouveaux exemplaires sans perdre l’inventaire privé ou les autres pièces", () => {
   const old = { ...snapshot(), ownedFinishes: ["wall:midnight"] };

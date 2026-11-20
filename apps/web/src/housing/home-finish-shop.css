@@ -30,6 +30,9 @@
 .finish-purchase-confirm { padding: 10px; background: #efdaec; border-radius: 12px; margin-bottom: 10px; }
 .housing-room .finish-purchase-confirm button { font-size: .76rem; padding: 7px 9px; margin: 0 4px 5px 0; }
 .home-finish-shop [role="alert"] { color: #842646; }
+.housing-room .home-editor-tabs { flex-wrap: wrap; }
+.housing-room .home-editor-tabs button { min-width: 55px; }
+.housing-inspector[aria-label="Fenêtre sélectionnée"] { margin-bottom: 10px; padding-bottom: 8px; }
 @media (max-width: 650px) {
   .home-editor-tabs { top: -8px; }
   .home-finish-shop .finish-category-buttons { grid-template-columns: repeat(2,minmax(0,1fr)); }

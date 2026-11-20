@@ -36,7 +36,7 @@ test("Chaque bouton de matière propose plusieurs modèles payants, rendus et ac
     assert.ok(models.length >= 2, category.name);
     assert.ok(models.every((f) => f.price > 0));
   }
-  assert.equal(HOME_FINISHES.filter((f) => f.price > 0).length, 21);
+  assert.equal(HOME_FINISHES.filter((f) => f.price > 0).length, 37);
   assert.equal(new Set(HOME_FINISHES.map((f) => f.id)).size, HOME_FINISHES.length);
   for (const model of HOME_FINISHES) {
     const decoration = finishDecoration(model, { wall: "ivory", floor: "oak", placements: [] });
@@ -51,6 +51,8 @@ test("Toutes les nouvelles matières s'achètent et s'appliquent réellement à 
   const g = await setup();
   try {
     const iris = await g.enter();
+    // Fixture earnings fund the enlarged catalogue in this isolated test only.
+    await g.db.query("INSERT INTO reward_wheel_spins(id,character_id,prize_index,currency,amount,collected_at) VALUES ($1,'iris',0,'coins',100000,NOW())", [randomUUID()]);
     let home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
     for (const finish of HOME_FINISHES.filter((f) => f.surface)) {
       const result = await iris.post("housing/finishes/buy", command(finish.id));
@@ -59,7 +61,7 @@ test("Toutes les nouvelles matières s'achètent et s'appliquent réellement à 
       const saved = await iris.post("housing/save", { operationId: randomUUID(), expectedRevision: home.revision, decoration: finishDecoration(finish, home.decoration) });
       assert.equal(saved.status, 200, finish.id);
       home = saved.data.home;
-      assert.equal(home.decoration[finish.kind], finish.value);
+      assert.equal(home.decoration[finish.kind as "wall" | "floor"], finish.value);
     }
     assert.deepEqual((await iris.post("housing/load", { ownerId: "iris" })).data.home, home);
   } finally { await g.close(); }

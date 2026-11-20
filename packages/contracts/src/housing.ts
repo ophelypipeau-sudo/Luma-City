@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-export const WALL_FINISHES = ["ivory", "rose", "lilac", "sage", "midnight", "peach", "wallpaper-blush", "wallpaper-sage", "floral-rose", "floral-cream", "brick-terracotta", "brick-white", "brick-charcoal", "arches-blush", "arches-ocean"] as const;
+export const WALL_FINISHES = ["ivory", "rose", "lilac", "sage", "midnight", "peach", "wallpaper-blush", "wallpaper-sage", "floral-rose", "floral-cream", "brick-terracotta", "brick-white", "brick-charcoal", "arches-blush", "arches-ocean", "roses-blush", "roses-blue", "daisies-cream", "daisies-lilac", "botanical-sage", "botanical-night", "stars-blush", "stars-midnight", "diamonds-gold", "diamonds-mint", "dots-pearl", "dots-rose"] as const;
+export const WINDOW_MODELS = ["arch-ivory", "loft-black", "round-oak", "bay-garden"] as const;
+export const windowPlacementSchema = z.object({ id: z.uuid(), modelId: z.enum(WINDOW_MODELS), x: z.number().finite().min(0).max(1000), y: z.number().finite().min(0).max(422) }).strict();
+export type WindowPlacement = z.infer<typeof windowPlacementSchema>;
 export const FLOOR_FINISHES = ["oak", "honey", "smoked", "walnut", "white-oak", "rosewood", "herringbone-gold", "herringbone-dark", "tile-ivory", "tile-checker", "tile-rose", "stone-sand", "stone-slate"] as const;
 export const HOME_ACCESS_MODES = ["public", "friends", "private"] as const;
 export type HomeAccessMode = typeof HOME_ACCESS_MODES[number];
@@ -19,6 +22,7 @@ export const homeDecorationSchema = z.object({
   wall: z.enum(WALL_FINISHES),
   floor: z.enum(FLOOR_FINISHES),
   placements: z.array(furniturePlacementSchema).max(100),
+  windows: z.array(windowPlacementSchema).max(6).optional(),
 }).strict();
 export type HomeDecoration = z.infer<typeof homeDecorationSchema>;
 export const saveHomeSchema = z.object({

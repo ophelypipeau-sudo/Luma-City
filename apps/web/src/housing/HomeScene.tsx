@@ -3,6 +3,7 @@ import type { FurnitureModel } from "../../../../packages/domain/src/housing";
 import type { HomeDecoration } from "../../../../packages/contracts/src/housing";
 import assetManifest from "../../../../public/assets/housing/prune-v1/manifest.json";
 import { homeFinish } from "../../../../packages/domain/src/home-finishes";
+import { FinishPattern } from "./FinishPattern";
 
 type Asset = { width: number; height: number; crop: number[] };
 const manifest = assetManifest as Record<string, Asset>;
@@ -28,13 +29,18 @@ export function HomeBackground({ wall, floor }: Pick<HomeDecoration, "wall" | "f
       <clipPath id={`${uid}-window`}><path d="M14 292V128a97 97 0 0 1 194 0v164Z" /></clipPath>
       <filter id={`${uid}-wall-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(wallFinish.tone)} /></filter>
       <filter id={`${uid}-floor-tone`} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={matrix(floorFinish.tone)} /></filter>
-      <pattern id={`${uid}-stripes`} width="26" height="26" patternUnits="userSpaceOnUse"><rect width="13" height="26" fill="#fff9f1" opacity=".25" /></pattern>
+      <FinishPattern finish={wallFinish} id={`${uid}-wall-material`} />
+      <FinishPattern finish={floorFinish} id={`${uid}-floor-material`} />
+      <linearGradient id={`${uid}-wall-light`} x2="0" y2="1"><stop stopColor="#fff4d6" stopOpacity=".24" /><stop offset="1" stopColor="#24171a" stopOpacity=".12" /></linearGradient>
+      <linearGradient id={`${uid}-floor-light`} x2="0" y2="1"><stop stopColor="#2c1b16" stopOpacity=".2" /><stop offset="1" stopColor="#fff5de" stopOpacity=".13" /></linearGradient>
     </defs>
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-wall)`} filter={`url(#${uid}-wall-tone)`} />
-    {wallFinish.pattern && <rect width="1000" height="422" fill={`url(#${uid}-stripes)`} />}
+    {wallFinish.pattern && <rect width="1000" height="422" fill={`url(#${uid}-wall-material)`} />}
+    {wallFinish.surface && <rect width="1000" height="422" fill={`url(#${uid}-wall-light)`} />}
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-floor)`} filter={`url(#${uid}-floor-tone)`} />
+    {floorFinish.pattern && <><rect y="422" width="1000" height="258" fill={`url(#${uid}-floor-material)`} /><rect y="422" width="1000" height="258" fill={`url(#${uid}-floor-light)`} /></>}
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-window)`} />
   </g>;

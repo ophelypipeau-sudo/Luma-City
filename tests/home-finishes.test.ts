@@ -6,7 +6,11 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createApp } from "../apps/server/src/app";
 import { openDatabase } from "../apps/server/src/db";
-import { FINISH_OFFER_VERSION, HOME_FINISHES } from "../packages/domain/src/home-finishes";
+import { FINISH_OFFER_VERSION, FINISH_CATEGORIES, HOME_FINISHES, finishCategory, finishDecoration } from "../packages/domain/src/home-finishes";
+import { homeDecorationSchema } from "../packages/contracts/src/housing";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { HomeBackground } from "../apps/web/src/housing/HomeScene";
 
 async function setup(directory = "memory://") {
   const db = await openDatabase(directory), app = await createApp(db);
@@ -25,6 +29,41 @@ async function setup(directory = "memory://") {
 }
 const command = (finishId = "wall:midnight", operationId = randomUUID()) => ({ finishId, operationId,
   offerVersion: FINISH_OFFER_VERSION, expectedPrice: HOME_FINISHES.find((f) => f.id === finishId)!.price });
+
+test("Chaque bouton de matière propose plusieurs modèles payants, rendus et acceptés par le contrat de sauvegarde", () => {
+  for (const category of FINISH_CATEGORIES) {
+    const models = HOME_FINISHES.filter((f) => f.kind === category.kind && finishCategory(f) === category.id);
+    assert.ok(models.length >= 2, category.name);
+    assert.ok(models.every((f) => f.price > 0));
+  }
+  assert.equal(HOME_FINISHES.filter((f) => f.price > 0).length, 21);
+  assert.equal(new Set(HOME_FINISHES.map((f) => f.id)).size, HOME_FINISHES.length);
+  for (const model of HOME_FINISHES) {
+    const decoration = finishDecoration(model, { wall: "ivory", floor: "oak", placements: [] });
+    assert.ok(homeDecorationSchema.safeParse(decoration).success, model.id);
+    const markup = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground, decoration)));
+    assert.doesNotMatch(markup, /undefined|NaN/);
+    if (model.surface) assert.ok(markup.includes(model.surface.base));
+  }
+});
+
+test("Toutes les nouvelles matières s'achètent et s'appliquent réellement à la maison", async () => {
+  const g = await setup();
+  try {
+    const iris = await g.enter();
+    let home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    for (const finish of HOME_FINISHES.filter((f) => f.surface)) {
+      const result = await iris.post("housing/finishes/buy", command(finish.id));
+      assert.equal(result.status, 200, finish.id);
+      assert.ok(result.data.owned.includes(finish.id));
+      const saved = await iris.post("housing/save", { operationId: randomUUID(), expectedRevision: home.revision, decoration: finishDecoration(finish, home.decoration) });
+      assert.equal(saved.status, 200, finish.id);
+      home = saved.data.home;
+      assert.equal(home.decoration[finish.kind], finish.value);
+    }
+    assert.deepEqual((await iris.post("housing/load", { ownerId: "iris" })).data.home, home);
+  } finally { await g.close(); }
+});
 
 test("Revêtements : achat unique, confirmation rejouable, monnaie partagée et application durable", async () => {
   const directory = await mkdtemp(join(tmpdir(), "luma-finishes-")); let g = await setup(directory);

@@ -27,6 +27,18 @@
 .finish-shop button:disabled { opacity: .5; cursor: default; }
 .finish-shop button:focus-visible, .shop-department-tabs button:focus-visible { outline: 3px solid #ae6caa; outline-offset: 2px; }
 .finish-shop [role="alert"] { color: #842646; }
+.finish-category-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.finish-category-buttons button { display: flex; align-items: center; gap: 9px; text-align: left; padding: 9px 12px; border: 2px solid #decbd9; }
+.finish-category-buttons button[aria-pressed="true"] { border-color: #9d62a0; background: #f1dbec; }
+.finish-category-buttons small { display: block; font-size: .68rem; font-weight: 400; color: #82657f; margin-top: 2px; }
+.finish-category-sample { width: 30px; height: 34px; border-radius: 5px; flex-shrink: 0; border: 1px solid #987d8a66; background: linear-gradient(135deg,#e6c7b6,#ae7188); }
+[data-material="wallpaper"] .finish-category-sample { background: repeating-linear-gradient(90deg,#f0dccb 0 4px,#bca784 4px 7px); }
+[data-material="bricks"] .finish-category-sample { background: repeating-linear-gradient(0deg,transparent 0 9px,#e5c8b0 9px 11px),repeating-linear-gradient(90deg,#ac7158 0 13px,#e5c8b0 13px 15px); }
+[data-material="motifs"] .finish-category-sample { background: repeating-radial-gradient(ellipse at bottom,#e7c9bd 0 4px,#ac7578 5px 6px,#e7c9bd 7px 10px); }
+[data-material="parquet"] .finish-category-sample { background: repeating-linear-gradient(45deg,#b8824d 0 7px,#e0b67c 7px 14px); }
+[data-material="tiles"] .finish-category-sample { background: conic-gradient(#48454b 25%,#ebe2ce 0 50%,#48454b 0 75%,#ebe2ce 0); background-size: 20px 20px; }
+[data-material="slabs"] .finish-category-sample { background: repeating-linear-gradient(0deg,transparent 0 12px,#9a866f 12px 13px),linear-gradient(120deg,#d1bca1,#b09b83); }
+[data-material="included"] .finish-category-sample { background: #eee3d9; }
 @media (max-width: 800px) {
   .finish-shop { padding: 10px; }
   .finish-shop-layout { display: flex; flex-direction: column-reverse; gap: 12px; }
@@ -34,4 +46,6 @@
   .finish-room-preview > svg { max-height: 215px; }
   .finish-room-preview > p { display: none; }
   .finish-catalog { width: 100%; }
+  .finish-category-buttons { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .finish-category-buttons button { padding: 7px; font-size: .78rem; }
 }

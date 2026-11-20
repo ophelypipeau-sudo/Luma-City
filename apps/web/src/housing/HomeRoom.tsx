@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState, type ComponentProps, type PointerEvent } from "react";
 import { Room } from "../Room";
 import { homeOwner } from "../../../../packages/contracts/src/index";
-import { type FurniturePlacement, type HomeDecoration, type HomeSnapshot, type WindowPlacement } from "../../../../packages/contracts/src/housing";
+import { type FurniturePlacement, type HomeDecoration, type HomeSnapshot } from "../../../../packages/contracts/src/housing";
 import { constrainPlacement, furnitureModel, placementDepth, STARTER_POSITIONS } from "../../../../packages/domain/src/housing";
 import { FurnitureArt, HomeBackground } from "./HomeScene";
 import { FurnitureCollection } from "./FurnitureCollection";
 import { housingRequest, HousingRequestError } from "./home-http";
 import { reconcileHome, saveSignature, canVerifySave, unownedHomeFinishes } from "./home-state";
 import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
-import { finishDecoration, homeFinish, type HomeFinish } from "../../../../packages/domain/src/home-finishes";
-import { constrainWindow, WINDOW_SIZES } from "../../../../packages/domain/src/home-windows";
-import { WindowArt } from "./WindowArt";
+import { finishDecoration, homeFinish } from "../../../../packages/domain/src/home-finishes";
 import { HomeFinishShop } from "./HomeFinishShop";
 import "./housing.css";
 
@@ -40,13 +38,11 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
   const [reload, setReload] = useState(0);
   const [inventoryOpen, setInventoryOpen] = useState(true);
   const [collectionOpen, setCollectionOpen] = useState(false);
-  const [editorTab, setEditorTab] = useState<"wall" | "floor" | "window" | "furniture">("wall");
-  const [selectedWindow, setSelectedWindow] = useState<string | null>(null);
+  const [editorTab, setEditorTab] = useState<"wall" | "floor" | "furniture">("wall");
   const [buyingFinish, setBuyingFinish] = useState(false);
   const editingBusy = saving || buyingFinish;
   const pending = useRef<{ signature: string; operationId: string } | null>(null);
   const drag = useRef<{ original: FurniturePlacement; x: number; y: number } | null>(null);
-  const windowDrag = useRef<{ original: WindowPlacement; x: number; y: number } | null>(null);
   const mounted = useRef(true);
   const stopMovement = useRef(roomProps.onStop);
   stopMovement.current = roomProps.onStop;
@@ -92,22 +88,6 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
     const bounded = constrainPlacement(model, placement);
     change({ ...draft, placements: draft.placements.map((p) => p.itemId === bounded.itemId ? bounded : p) });
   }
-  function moveWindow(window: WindowPlacement) {
-    if (!draft) return;
-    const bounded = constrainWindow(window);
-    change({ ...draft, windows: (draft.windows ?? []).map((w) => w.id === bounded.id ? bounded : w) });
-  }
-  function tryFinish(finish: HomeFinish, addWindow = false) {
-    if (!draft || editingBusy) return;
-    setSelected(null);
-    if (finish.kind !== "window") { setSelectedWindow(null); change(finishDecoration(finish, draft)); return; }
-    setEditorTab("window");
-    const windows = draft.windows ?? [], existing = windows.find((w) => w.modelId === finish.value);
-    if (!addWindow && existing) { setSelectedWindow(existing.id); return; }
-    if (windows.length >= 6) { setError("Tu peux placer jusqu’à 6 fenêtres supplémentaires. Retire une fenêtre pour en ajouter une autre."); return; }
-    const window = constrainWindow({ id: crypto.randomUUID(), modelId: finish.value as WindowPlacement["modelId"], x: [760,300,520,870,420,650][windows.length], y: 220 });
-    change({ ...draft, windows: [...windows, window] }); setSelectedWindow(window.id);
-  }
   function point(event: PointerEvent<SVGGElement>) {
     const svg = event.currentTarget.ownerSVGElement!;
     const cursor = svg.createSVGPoint(); cursor.x = event.clientX; cursor.y = event.clientY;
@@ -139,41 +119,9 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
   const selection = decoration.placements.find((p) => p.itemId === selected);
   const selectedItem = home.items.find((item) => item.id === selected);
   const selectedModel = selectedItem && furnitureModel(selectedItem.modelId);
-  const windowSelection = decoration.windows?.find((window) => window.id === selectedWindow);
   const categories = ["Tous", ...new Set(home.items.map((item) => furnitureModel(item.modelId)?.category).filter((v): v is string => !!v))];
   const conflict = editing && !saving && home.revision !== draftRevision;
   const verifyingSave = !!draft && canVerifySave(saveUnconfirmed, pending.current, saveSignature(draft, draftRevision));
-  const windowObjects = (decoration.windows ?? []).map((window, index) => {
-    const size = WINDOW_SIZES[window.modelId], name = homeFinish(`window:${window.modelId}`)!.name;
-    return { id: `window:${window.id}`, depth: -3000 + index, node: <g transform={`translate(${window.x} ${window.y})`}
-      role={editing ? "button" : "img"} aria-label={`${name} ${index + 1}`} tabIndex={editing ? 0 : undefined}
-      className={editing ? "housing-furniture editable" : "housing-window"}
-      onClick={(event) => { if (editing && !editingBusy) { event.stopPropagation(); setSelectedWindow(window.id); setSelected(null); setEditorTab("window"); } }}
-      onPointerDown={(event) => {
-        if (!editing || editingBusy || (event.pointerType === "mouse" && event.button !== 0)) return;
-        event.preventDefault(); event.stopPropagation(); setSelectedWindow(window.id); setSelected(null); setEditorTab("window");
-        const cursor = point(event); windowDrag.current = { original: window, x: cursor.x, y: cursor.y };
-        event.currentTarget.setPointerCapture(event.pointerId);
-      }}
-      onPointerMove={(event) => {
-        if (!editing || editingBusy || windowDrag.current?.original.id !== window.id) return;
-        const cursor = point(event), start = windowDrag.current;
-        moveWindow({ ...start.original, x: start.original.x + cursor.x - start.x, y: start.original.y + cursor.y - start.y });
-      }}
-      onPointerUp={(event) => { if (windowDrag.current?.original.id === window.id) {
-        windowDrag.current = null; if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-      } }}
-      onPointerCancel={() => { if (windowDrag.current?.original.id === window.id) { moveWindow(windowDrag.current.original); windowDrag.current = null; } }}
-      onKeyDown={(event) => {
-        if (!editing || editingBusy) return;
-        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); setSelectedWindow(window.id); setSelected(null); setEditorTab("window"); }
-        const steps: Record<string,[number,number]> = { ArrowLeft: [-1,0], ArrowRight: [1,0], ArrowUp: [0,-1], ArrowDown: [0,1] };
-        if (steps[event.key]) { event.preventDefault(); event.stopPropagation(); const [x,y] = steps[event.key]; moveWindow({ ...window, x: window.x + x * (event.shiftKey ? 10 : 1), y: window.y + y * (event.shiftKey ? 10 : 1) }); }
-      }}>
-      <WindowArt modelId={window.modelId} />
-      {editing && editorTab === "window" && selectedWindow === window.id && <rect x={-size.width/2-4} y={-size.height-4} width={size.width+8} height={size.height+8} rx="4" className="housing-selection" pointerEvents="none" />}
-    </g> };
-  });
   const objects = decoration.placements.flatMap((p) => {
     const item = home.items.find((item) => item.id === p.itemId);
     const model = item && furnitureModel(item.modelId);
@@ -212,7 +160,7 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
     </g> }];
   });
   return <section className={`housing-room ${editing ? "is-decorating" : ""}`} aria-label="Salon personnalisable">
-    <Room {...roomProps} homeScene={{ background: <HomeBackground wall={decoration.wall} floor={decoration.floor} />, objects: [...windowObjects, ...objects], editing }} />
+    <Room {...roomProps} homeScene={{ background: <HomeBackground wall={decoration.wall} floor={decoration.floor} />, objects, editing }} />
     <div className="housing-controls">
     <div className="housing-toolbar">
       {isOwner && !editing && <button type="button" onClick={() => {
@@ -246,20 +194,12 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
     </div>
     {editing && draft && <aside className="housing-panel" aria-label="Boutique de décoration dans la maison">
       <nav className="home-editor-tabs" aria-label="Décoration de la maison">
-        {([["wall", "Murs"], ["floor", "Sols"], ["window", "Fenêtres"], ["furniture", "Mes meubles"]] as const).map(([id, name]) => <button type="button" key={id}
+        {([["wall", "Murs"], ["floor", "Sols"], ["furniture", "Mes meubles"]] as const).map(([id, name]) => <button type="button" key={id}
           aria-pressed={editorTab === id} disabled={editingBusy} onClick={() => setEditorTab(id)}>{name}</button>)}
       </nav>
-      {editorTab === "window" && windowSelection && <section className="housing-inspector" aria-label="Fenêtre sélectionnée">
-        <strong>{homeFinish(`window:${windowSelection.modelId}`)?.name}</strong>
-        <label>X<input type="number" aria-label="Position horizontale de la fenêtre" value={windowSelection.x} disabled={editingBusy}
-          onChange={(event) => { if (event.target.value !== "" && Number.isFinite(event.target.valueAsNumber)) moveWindow({ ...windowSelection, x: event.target.valueAsNumber }); }} /></label>
-        <label>Y<input type="number" aria-label="Position verticale de la fenêtre" value={windowSelection.y} disabled={editingBusy}
-          onChange={(event) => { if (event.target.value !== "" && Number.isFinite(event.target.valueAsNumber)) moveWindow({ ...windowSelection, y: event.target.valueAsNumber }); }} /></label>
-        <button type="button" disabled={editingBusy} onClick={() => { change({ ...draft, windows: draft.windows?.filter((w) => w.id !== windowSelection.id) }); setSelectedWindow(null); }}>Retirer la fenêtre</button>
-      </section>}
-      <HomeFinishShop generation={generation} owner={owner} kind={editorTab === "furniture" ? "wall" : editorTab} hidden={editorTab === "furniture"}
+      <HomeFinishShop generation={generation} owner={owner} kind={editorTab === "floor" ? "floor" : "wall"} hidden={editorTab === "furniture"}
         decoration={draft} disabled={saving} onBusy={setBuyingFinish} onKind={setEditorTab}
-        onTry={tryFinish}
+        onTry={(finish) => { change(finishDecoration(finish, draft)); setSelected(null); }}
         onInventory={(ownedFinishes, balance) => { setHome((current) => current && { ...current, ownedFinishes }); onHomeBalance?.(balance); }} />
       <div hidden={editorTab !== "furniture"}>
       <details open={inventoryOpen} onToggle={(event) => setInventoryOpen(event.currentTarget.open)}><summary>Mes meubles possédés</summary>

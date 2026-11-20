@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { Query } from "./db";
-import { FINISH_OFFER_VERSION, HOME_FINISHES, homeFinish, STARTER_FINISHES } from "../../../packages/domain/src/home-finishes";
+import { FINISH_OFFER_VERSION, DECORATION_FINISHES, homeFinish, STARTER_FINISHES } from "../../../packages/domain/src/home-finishes";
 import { PlayerError } from "./wardrobe";
 
 export const buyHomeFinishSchema = z.object({ generation: z.number().int(), operationId: z.uuid(),
@@ -10,7 +10,7 @@ export async function ownedHomeFinishes(q: Query, character: string) {
   return [...STARTER_FINISHES, ...rows.map((r) => r.finish_id as string)];
 }
 export async function homeFinishCatalog(q: Query, character: string, balance: number) {
-  return { offers: HOME_FINISHES.map((f) => ({ ...f, version: FINISH_OFFER_VERSION })),
+  return { offers: DECORATION_FINISHES.map((f) => ({ ...f, version: FINISH_OFFER_VERSION })),
     owned: await ownedHomeFinishes(q, character), balance };
 }
 /** Caller holds the shared account lock and transaction, like fashion and animal purchases. */
@@ -22,6 +22,7 @@ export async function buyHomeFinish(q: Query, account: string, character: string
     return { ...await homeFinishCatalog(q,character,balance), charged: 0, replayed: true };
   }
   const finish = homeFinish(input.finishId);
+  if (finish?.kind === "window") throw new PlayerError("Les fenêtres seront intégrées aux meubles. Leur achat est désactivé pour le moment.");
   if (!finish || !finish.price) throw new PlayerError("Ce revêtement n’est pas proposé à l’achat.");
   if (input.offerVersion !== FINISH_OFFER_VERSION || input.expectedPrice !== finish.price)
     throw new PlayerError("Cette offre a changé. Actualise la boutique.");

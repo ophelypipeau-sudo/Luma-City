@@ -37,6 +37,10 @@ export function clearHomeDraft(storage: DraftStorage, owner: string) {
   try { storage.removeItem(homeDraftKey(owner)); return true; } catch { return false; }
 }
 export function draftToRestore(home: HomeSnapshot, saved: HomeDraft | null) {
+  if (saved && !saved.unconfirmed) {
+    const { windows: _retiredWindows, ...decoration } = saved.decoration;
+    saved = { ...saved, decoration, pending: null };
+  }
   if (!saved || (!saved.unconfirmed && JSON.stringify(saved.decoration) === JSON.stringify(home.decoration))) return null;
   return saved;
 }

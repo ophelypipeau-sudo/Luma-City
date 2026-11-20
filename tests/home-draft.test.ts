@@ -56,3 +56,14 @@ test("La carte annonce la connexion requise pour la maison et son ouverture pour
   const player = renderToStaticMarkup(React.createElement(NeighborhoodMap, { ...props, onHome() {} }));
   assert.doesNotMatch(player, /Ma maison · Connexion requise/);
 });
+
+test("Les anciens essais de fenêtres sont écartés sans perdre un brouillon mural ni une confirmation incertaine", () => {
+  const windows = [{ id: randomUUID(), modelId: "arch-ivory" as const, x: 500, y: 300 }];
+  const retired = { expectedRevision: home.revision, decoration: { ...home.decoration, windows }, pending: null, unconfirmed: false };
+  assert.equal(draftToRestore(home, retired), null);
+  const recovered = draftToRestore(home, { ...retired, decoration: { ...retired.decoration, wall: "lilac" } });
+  assert.equal(recovered?.decoration.wall, "lilac");assert.equal(recovered?.decoration.windows, undefined);
+  const pending = { signature: saveSignature(retired.decoration, home.revision), operationId: randomUUID() };
+  const uncertain = draftToRestore(home, { ...retired, pending, unconfirmed: true });
+  assert.deepEqual(uncertain?.pending, pending);assert.deepEqual(uncertain?.decoration.windows, windows);
+});

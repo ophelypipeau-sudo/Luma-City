@@ -8,7 +8,6 @@ import { ROOM_CAPACITY } from "../../../packages/domain/src/rules.ts";
 import { createHomeNavigationMesh, nearestHomePoint } from "../../../packages/domain/src/home-navigation.ts";
 import { ownedHomeFinishes } from "./home-finish-commerce";
 import { ownsHomeFinish } from "../../../packages/domain/src/home-finishes";
-import { validateWindows } from "../../../packages/domain/src/home-windows";
 
 /** The caller owns a DB transaction and has already authorized the character. */
 export async function ensureHome(q: Query, owner: string) {
@@ -30,7 +29,7 @@ export async function ensureHome(q: Query, owner: string) {
 }
 export async function homeSnapshot(q: Query, owner: string): Promise<HomeSnapshot> {
   const { rows: [row] } = await q(`SELECT h.id AS "homeId", h.owner_character_id AS "ownerId", r.id AS "roomId",
-    r.wall, r.floor, r.windows, r.revision, r.capacity FROM homes h JOIN home_rooms r ON r.home_id=h.id
+    r.wall, r.floor, r.revision, r.capacity FROM homes h JOIN home_rooms r ON r.home_id=h.id
     WHERE h.owner_character_id=$1 AND r.kind='living-room'`, [owner]);
   if (!row) throw new PlayerError("Cette maison est indisponible.");
   const { rows: items } = await q(`SELECT i.id, i.model_id AS "modelId", p.room_id AS "roomId"
@@ -39,7 +38,7 @@ export async function homeSnapshot(q: Query, owner: string): Promise<HomeSnapsho
   const { rows: placements } = await q(`SELECT item_id AS "itemId", x,y,depth
     FROM furniture_placements WHERE room_id=$1 ORDER BY item_id`, [row.roomId]);
   return { homeId: row.homeId, ownerId: row.ownerId, roomId: row.roomId, revision: row.revision, inventoryComplete: true, capacity: row.capacity ?? ROOM_CAPACITY,
-    decoration: { wall: row.wall, floor: row.floor, placements, ...(row.windows.length ? { windows: row.windows } : {}) }, items, ownedFinishes: await ownedHomeFinishes(q, owner) };
+    decoration: { wall: row.wall, floor: row.floor, placements }, items, ownedFinishes: await ownedHomeFinishes(q, owner) };
 }
 export async function saveHome(q: Query, owner: string, input: ReturnType<typeof saveHomeSchema.parse>) {
   const { roomId } = await ensureHome(q, owner);
@@ -55,13 +54,8 @@ export async function saveHome(q: Query, owner: string, input: ReturnType<typeof
   // Lock inventory in stable order: an instance can be assigned to only one room.
   await q("SELECT id FROM furniture_items WHERE owner_character_id=$1 ORDER BY id FOR UPDATE", [owner]);
   const snapshot = await homeSnapshot(q, owner);
-  const windows = input.decoration.windows ?? snapshot.decoration.windows ?? [];
   if (!ownsHomeFinish(snapshot.ownedFinishes, "wall", input.decoration.wall) || !ownsHomeFinish(snapshot.ownedFinishes, "floor", input.decoration.floor))
     throw new PlayerError("Achète ce revêtement dans la boutique avant de l’utiliser.");
-  if (windows.some((window) => !ownsHomeFinish(snapshot.ownedFinishes, "window", window.modelId)))
-    throw new PlayerError("Achète ce modèle de fenêtre avant de l’enregistrer.");
-  try { validateWindows(windows); }
-  catch (error) { throw new PlayerError((error as Error).message); }
   try { validateDecoration(input.decoration, snapshot.items as OwnedFurniture[], roomId); }
   catch (error) { throw new PlayerError((error as Error).message); }
   if (!nearestHomePoint(createHomeNavigationMesh({ items: snapshot.items, decoration: input.decoration }), { x: 750, y: 565 }))
@@ -69,7 +63,7 @@ export async function saveHome(q: Query, owner: string, input: ReturnType<typeof
   await q("DELETE FROM furniture_placements WHERE room_id=$1", [roomId]);
   for (const p of input.decoration.placements)
     await q("INSERT INTO furniture_placements (item_id,room_id,x,y,depth) VALUES ($1,$2,$3,$4,$5)", [p.itemId, roomId, p.x, p.y, p.depth]);
-  await q("UPDATE home_rooms SET wall=$1,floor=$2,windows=$4::jsonb,revision=revision+1 WHERE id=$3", [input.decoration.wall, input.decoration.floor, roomId, JSON.stringify(windows)]);
+  await q("UPDATE home_rooms SET wall=$1,floor=$2,revision=revision+1 WHERE id=$3", [input.decoration.wall, input.decoration.floor, roomId]);
   await q("INSERT INTO home_save_operations (room_id,operation_id,payload,revision) VALUES ($1,$2,$3,$4)",
     [roomId, input.operationId, payload, room.revision + 1]);
   return homeSnapshot(q, owner);

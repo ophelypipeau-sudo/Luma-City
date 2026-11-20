@@ -62,6 +62,8 @@ export const HOME_FINISHES: readonly HomeFinish[] = [
   { id: "window:bay-garden", kind: "window", value: "bay-garden", name: "Baie Jardin", price: 900, category: "windows", tone: [1,1,1] },
 ];
 export const homeFinish = (id: string) => HOME_FINISHES.find((f) => f.id === id);
+// Window models and receipts are retained for their future furniture integration.
+export const DECORATION_FINISHES = HOME_FINISHES.filter((finish) => finish.kind !== "window");
 export const finishCategory = (finish: HomeFinish): FinishCategory => finish.price === 0 ? "included" : finish.category ?? (finish.kind === "floor" ? "parquet" : finish.pattern ? "wallpaper" : "paint");
 export const STARTER_FINISHES = HOME_FINISHES.filter((f) => f.price === 0).map((f) => f.id);
 export function ownsHomeFinish(owned: readonly string[] | undefined, kind: HomeFinishKind, value: string) {

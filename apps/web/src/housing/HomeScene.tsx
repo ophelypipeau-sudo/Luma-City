@@ -4,7 +4,6 @@ import type { HomeDecoration } from "../../../../packages/contracts/src/housing"
 import assetManifest from "../../../../public/assets/housing/prune-v1/manifest.json";
 import { homeFinish } from "../../../../packages/domain/src/home-finishes";
 import { FinishPattern } from "./FinishPattern";
-import { WindowArt } from "./WindowArt";
 
 type Asset = { width: number; height: number; crop: number[] };
 const manifest = assetManifest as Record<string, Asset>;
@@ -19,7 +18,7 @@ export function FurnitureArt({ model, thumbnail = false }: { model: FurnitureMod
 }
 
 /** Tint textures together with their original material, lighting and shadows. */
-export function HomeBackground({ wall, floor, windows = [] }: Pick<HomeDecoration, "wall" | "floor" | "windows">) {
+export function HomeBackground({ wall, floor }: Pick<HomeDecoration, "wall" | "floor">) {
   const uid = useId().replace(/:/g, "");
   const wallFinish = homeFinish(`wall:${wall}`)!, floorFinish = homeFinish(`floor:${floor}`)!;
   const matrix = ([r, g, b]: number[]) => `${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 1 0`;
@@ -44,6 +43,5 @@ export function HomeBackground({ wall, floor, windows = [] }: Pick<HomeDecoratio
     {floorFinish.pattern && <><rect y="422" width="1000" height="258" fill={`url(#${uid}-floor-material)`} /><rect y="422" width="1000" height="258" fill={`url(#${uid}-floor-light)`} /></>}
     <image href="/assets/housing/prune-v1/room-empty.webp" width="1000" height="680"
       preserveAspectRatio="none" clipPath={`url(#${uid}-window)`} />
-    {windows.map((window) => <g key={window.id} transform={`translate(${window.x} ${window.y})`}><WindowArt modelId={window.modelId} /></g>)}
   </g>;
 }

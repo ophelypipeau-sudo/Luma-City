@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createApp } from "../apps/server/src/app";
 import { openDatabase } from "../apps/server/src/db";
-import { FINISH_OFFER_VERSION, FINISH_CATEGORIES, HOME_FINISHES, finishCategory, finishDecoration } from "../packages/domain/src/home-finishes";
+import { FINISH_OFFER_VERSION, FINISH_CATEGORIES, HOME_FINISHES, DECORATION_FINISHES, finishCategory, finishDecoration } from "../packages/domain/src/home-finishes";
 import { homeDecorationSchema } from "../packages/contracts/src/housing";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -31,12 +31,12 @@ const command = (finishId = "wall:midnight", operationId = randomUUID()) => ({ f
   offerVersion: FINISH_OFFER_VERSION, expectedPrice: HOME_FINISHES.find((f) => f.id === finishId)!.price });
 
 test("Chaque bouton de matière propose plusieurs modèles payants, rendus et acceptés par le contrat de sauvegarde", () => {
-  for (const category of FINISH_CATEGORIES) {
+  for (const category of FINISH_CATEGORIES.filter((c) => c.kind !== "window")) {
     const models = HOME_FINISHES.filter((f) => f.kind === category.kind && finishCategory(f) === category.id);
     assert.ok(models.length >= 2, category.name);
     assert.ok(models.every((f) => f.price > 0));
   }
-  assert.equal(HOME_FINISHES.filter((f) => f.price > 0).length, 37);
+  assert.equal(DECORATION_FINISHES.filter((f) => f.price > 0).length, 33);
   assert.equal(new Set(HOME_FINISHES.map((f) => f.id)).size, HOME_FINISHES.length);
   for (const model of HOME_FINISHES) {
     const decoration = finishDecoration(model, { wall: "ivory", floor: "oak", placements: [] });

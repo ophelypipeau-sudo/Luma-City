@@ -2,10 +2,7 @@ import type { HomeSnapshot } from "../../../../packages/contracts/src/housing";
 import { ownsHomeFinish } from "../../../../packages/domain/src/home-finishes";
 
 export function unownedHomeFinishes(decoration: HomeSnapshot["decoration"], owned: readonly string[] | undefined) {
-  return [...new Set([
-    ...(["wall", "floor"] as const).filter((kind) => !ownsHomeFinish(owned, kind, decoration[kind])).map((kind) => `${kind}:${decoration[kind]}`),
-    ...(decoration.windows ?? []).filter((window) => !ownsHomeFinish(owned, "window", window.modelId)).map((window) => `window:${window.modelId}`),
-  ])];
+  return (["wall", "floor"] as const).filter((kind) => !ownsHomeFinish(owned, kind, decoration[kind])).map((kind) => `${kind}:${decoration[kind]}`);
 }
 
 /** Public broadcasts must not delete stored inventory; complete owner snapshots can replace it. */

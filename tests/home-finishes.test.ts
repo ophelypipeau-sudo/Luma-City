@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createApp } from "../apps/server/src/app";
 import { openDatabase } from "../apps/server/src/db";
-import { FINISH_OFFER_VERSION, FINISH_CATEGORIES, HOME_FINISHES, DECORATION_FINISHES, finishCategory, finishDecoration } from "../packages/domain/src/home-finishes";
+import { FINISH_OFFER_VERSION, FINISH_CATEGORIES, HOME_FINISHES, DECORATION_FINISHES, finishCategory, finishDecoration, distinctFinishOffers, finishVisualFamily } from "../packages/domain/src/home-finishes";
 import { homeDecorationSchema } from "../packages/contracts/src/housing";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -30,13 +30,127 @@ async function setup(directory = "memory://") {
 const command = (finishId = "wall:midnight", operationId = randomUUID()) => ({ finishId, operationId,
   offerVersion: FINISH_OFFER_VERSION, expectedPrice: HOME_FINISHES.find((f) => f.id === finishId)!.price });
 
+test("Le catalogue regroupe les couleurs identiques en préservant les achats, le modèle posé et les dessins distincts", () => {
+  const offers = distinctFinishOffers(DECORATION_FINISHES, ["wall:roses-blue", "floor:walnut"], ["floor:walnut"]);
+  assert.equal(new Set(offers.map(finishVisualFamily)).size, offers.length);
+  assert.ok(offers.some((offer) => offer.id === "wall:roses-blue"), "Le modèle acheté représente sa famille");
+  assert.ok(offers.some((offer) => offer.id === "floor:walnut"), "Le parquet acheté et posé reste disponible");
+  assert.equal(offers.filter((offer) => offer.kind === "floor").length, 10);
+  assert.equal(offers.filter((offer) => offer.kind === "wall" && offer.pattern && offer.pattern !== "bricks").length, 10);
+  assert.ok(offers.some((offer) => offer.value === "tile-checker"));
+  assert.ok(offers.some((offer) => offer.value === "tile-ivory"));
+  assert.equal(offers.filter((offer) => offer.pattern === "bricks").length, 3, "Les briques non recolorables restent distinctes");
+  assert.equal(finishVisualFamily(HOME_FINISHES.find((offer) => offer.value === "dots-rose")!),
+    finishVisualFamily(HOME_FINISHES.find((offer) => offer.value === "daisies-cream")!));
+});
+
+test("Les couleurs du papier peint persistent, restent visibles aux visiteurs et respectent la propriété du modèle", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "luma-wall-colors-"));
+  let g = await setup(directory);
+  const wallColors = { base: "#e5edf2", detail: "#6585a2" };
+  try {
+    const iris = await g.enter();
+    let home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    const decoration = { ...home.decoration, wall: "roses-blush", wallColors };
+    const save = (value: object) => iris.post("housing/save", { expectedRevision: home.revision, operationId: randomUUID(), decoration: value });
+    assert.equal((await save(decoration)).status, 400, "Une couleur ne débloque pas un modèle non acheté");
+    assert.equal((await iris.post("housing/finishes/buy", command("wall:roses-blush"))).status, 200);
+    for (const base of ["red", "#fff", "#000000;display:none", "url(https://example.com)"])
+      assert.equal((await save({ ...decoration, wallColors: { ...wallColors, base } })).status, 400);
+    assert.equal((await save({ ...decoration, wall: "brick-white" })).status, 400);
+    const result = await save(decoration);
+    assert.equal(result.status, 200);
+    home = result.data.home;
+    assert.deepEqual(home.decoration.wallColors, wallColors);
+    const markup = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground, home.decoration)));
+    assert.ok(markup.includes(wallColors.base));
+    assert.ok(markup.includes("roses.webp"));
+    assert.equal((await iris.state()).data.wardrobe.balance, 9400, "Colorer ne facture pas un nouvel achat");
+  } finally { await g.close(); }
+  g = await setup(directory);
+  try {
+    const iris = await g.enter(), june = await g.enter("sacha", "june");
+    const home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    assert.deepEqual(home.decoration.wallColors, wallColors);
+    assert.deepEqual((await june.post("housing/load", { ownerId: "iris" })).data.home.decoration.wallColors, wallColors);
+    const switched = finishDecoration(HOME_FINISHES.find((f) => f.id === "wall:ivory")!, home.decoration);
+    assert.equal(switched.wallColors, undefined);
+    const saved = await iris.post("housing/save", { expectedRevision: home.revision, operationId: randomUUID(), decoration: switched });
+    assert.equal(saved.status, 200);
+    assert.equal((await iris.post("housing/load", { ownerId: "iris" })).data.home.decoration.wallColors, undefined);
+  } finally { await g.close(); }
+});
+
+test("La teinte du parquet persiste avec ses veines, sans changer le mur ni contourner un achat", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "luma-floor-colors-"));
+  let g = await setup(directory);
+  const floorColors = { base: "#eee4d3", detail: "#b5aa98" };
+  try {
+    const iris = await g.enter();
+    let home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    const save = (decoration: object) => iris.post("housing/save", {
+      expectedRevision: home.revision, operationId: randomUUID(), decoration,
+    });
+    assert.equal((await save({ ...home.decoration, floor: "walnut", floorColors })).status, 400);
+    for (const detail of ["#fff", "red", "url(https://example.com)"])
+      assert.equal((await save({ ...home.decoration, floorColors: { ...floorColors, detail } })).status, 400);
+    const saved = await save({ ...home.decoration, floorColors });
+    assert.equal(saved.status, 200);
+    home = saved.data.home;
+    assert.deepEqual(home.decoration.floorColors, floorColors);
+    assert.equal(home.decoration.wall, "ivory");
+    assert.equal((await iris.state()).data.wardrobe.balance, 10000);
+    assert.equal(finishDecoration(HOME_FINISHES.find((f) => f.id === "floor:honey")!, home.decoration).floorColors, undefined);
+    assert.deepEqual(finishDecoration(HOME_FINISHES.find((f) => f.id === "wall:rose")!, home.decoration).floorColors, floorColors);
+    assert.equal((await iris.post("housing/finishes/buy", command("floor:herringbone-gold"))).status, 200);
+    const patterned = await save({ ...home.decoration, floor: "herringbone-gold", floorColors });
+    assert.equal(patterned.status, 200);
+    const markup = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground, patterned.data.home.decoration)));
+    assert.ok(markup.includes(floorColors.base)); assert.ok(markup.includes("floors-realistic-v1/herringbone.webp"));
+    const changedGrain = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground,
+      { ...patterned.data.home.decoration, floorColors: { ...floorColors, detail: "#302b2d" } })));
+    assert.notEqual(markup, changedGrain, "La couleur des veines modifie aussi le rendu de la matière");
+  } finally { await g.close(); }
+  g = await setup(directory);
+  try {
+    const iris = await g.enter(), june = await g.enter("sacha", "june");
+    const home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    assert.deepEqual(home.decoration.floorColors, floorColors);
+    assert.deepEqual((await june.post("housing/load", { ownerId: "iris" })).data.home.decoration.floorColors, floorColors);
+    const { floorColors: _colors, ...original } = home.decoration;
+    assert.equal((await iris.post("housing/save", { expectedRevision: home.revision, operationId: randomUUID(), decoration: original })).status, 200);
+    assert.equal((await iris.post("housing/load", { ownerId: "iris" })).data.home.decoration.floorColors, undefined);
+  } finally { await g.close(); }
+});
+
+test("Le mur Sauge et le Chêne clair gratuits acceptent leurs couleurs et les conservent pour les visiteurs", async () => {
+  const g = await setup();
+  try {
+    const iris = await g.enter(), june = await g.enter("sacha", "june");
+    const home = (await iris.post("housing/load", { ownerId: "iris" })).data.home;
+    const decoration = { ...home.decoration, wall: "sage", floor: "oak",
+      wallColors: { base: "#c6d9e7", detail: "#7891a6" }, floorColors: { base: "#aa8265", detail: "#5e4031" } };
+    const result = await iris.post("housing/save", { expectedRevision: home.revision, operationId: randomUUID(), decoration });
+    assert.equal(result.status, 200);
+    assert.deepEqual(result.data.home.decoration, decoration);
+    assert.deepEqual((await iris.post("housing/load", { ownerId: "iris" })).data.home.decoration, decoration);
+    assert.deepEqual((await june.post("housing/load", { ownerId: "iris" })).data.home.decoration, decoration);
+    assert.equal((await iris.state()).data.wardrobe.balance, 10000);
+    const original = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground,
+      { ...decoration, wallColors: undefined, floorColors: undefined })));
+    const recolored = renderToStaticMarkup(React.createElement("svg", null, React.createElement(HomeBackground, decoration)));
+    assert.notEqual(original, recolored);
+    assert.ok(recolored.includes("floors-realistic-v1/wood.webp"));
+  } finally { await g.close(); }
+});
+
 test("Chaque bouton de matière propose plusieurs modèles payants, rendus et acceptés par le contrat de sauvegarde", () => {
   for (const category of FINISH_CATEGORIES.filter((c) => c.kind !== "window")) {
     const models = HOME_FINISHES.filter((f) => f.kind === category.kind && finishCategory(f) === category.id);
     assert.ok(models.length >= 2, category.name);
     assert.ok(models.every((f) => f.price > 0));
   }
-  assert.equal(DECORATION_FINISHES.filter((f) => f.price > 0).length, 33);
+  assert.equal(DECORATION_FINISHES.filter((f) => f.price > 0).length, 42);
   assert.equal(new Set(HOME_FINISHES.map((f) => f.id)).size, HOME_FINISHES.length);
   for (const model of HOME_FINISHES) {
     const decoration = finishDecoration(model, { wall: "ivory", floor: "oak", placements: [] });

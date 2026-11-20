@@ -1,0 +1,1 @@
+ALTER TABLE home_rooms ADD COLUMN IF NOT EXISTS wall_colors JSONB;

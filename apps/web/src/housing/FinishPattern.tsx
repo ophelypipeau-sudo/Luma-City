@@ -1,31 +1,34 @@
 import type { HomeFinish } from "../../../../packages/domain/src/home-finishes";
+import { RealisticFloorPattern } from "./RealisticFloorPattern";
 
-/** Shared vector materials for the shop preview, thumbnails and the live house. */
+/** Scanned botanical materials share the existing finish palettes and ownership IDs. */
+function BotanicalWallpaper({ finish, id }: { finish: HomeFinish; id: string }) {
+  const base = finish.surface!.base, detail = finish.surface!.detail;
+  const channels = (hex: string) => [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
+  const paper = channels(base), ink = channels(detail);
+  const palePrint = ink.every(channel => channel > .85);
+  const shadow = palePrint ? [.36, .40, .30] : ink.map(channel => channel * .62);
+  const midpoint = palePrint ? ink : ink.map((channel, i) => channel * .66 + paper[i] * .34);
+  const transfer = (channel: number) => [shadow[channel], midpoint[channel], paper[channel]].join(" ");
+  return <pattern id={id} width="310" height="310" patternUnits="userSpaceOnUse">
+    <defs><filter id={id + "-ink"} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues={transfer(0)} />
+        <feFuncG type="table" tableValues={transfer(1)} />
+        <feFuncB type="table" tableValues={transfer(2)} />
+      </feComponentTransfer>
+    </filter></defs>
+    <rect width="310" height="310" fill={base} />
+    <image href={`/assets/housing/wallpapers-realistic-v1/${finish.pattern}.webp`} width="310" height="310" preserveAspectRatio="none" filter={`url(#${id}-ink)`} />
+  </pattern>;
+}
+
+/** Shared materials for the shop preview, thumbnails and the live house. */
 export function FinishPattern({ finish, id }: { finish: HomeFinish; id: string }) {
+  if (finish.kind === "floor") return <RealisticFloorPattern finish={finish} id={id} />;
+  if (finish.surface && ["floral", "roses", "daisies", "botanical", "magnolia", "damask", "linen", "fans"].includes(finish.pattern ?? "")) return <BotanicalWallpaper finish={finish} id={id} />;
   const base = finish.surface?.base ?? "transparent", detail = finish.surface?.detail ?? "#fff9f1";
-  if (finish.pattern === "roses") return <pattern id={id} width="150" height="160" patternUnits="userSpaceOnUse">
-    <rect width="150" height="160" fill={base} />
-    {[[38,40],[112,122]].map(([x,y]) => <g key={x} transform={`translate(${x} ${y})`}>
-      <path d="M0 12Q-12 28-3 45M-4 32Q-24 17-24 31Q-18 41-4 32M-4 38Q17 21 18 35Q13 44-4 38" fill="#84977e" opacity=".65" />
-      <path d="M-2-23C14-27 26-16 22-4C32 9 15 25 3 21C-13 30-29 14-22 2C-31-13-16-29-2-23Z" fill={detail} opacity=".65" />
-      <path d="M-14-11Q4-25 15-7Q21 9 4 13Q-12 19-16 3Q-16-7-5-9Q10-13 11 1Q10 10 0 6Q-8 3-2-3" fill="none" stroke={base} strokeWidth="2.4" opacity=".8" />
-    </g>)}
-  </pattern>;
-  if (finish.pattern === "daisies") return <pattern id={id} width="130" height="140" patternUnits="userSpaceOnUse">
-    <rect width="130" height="140" fill={base} />
-    {[[34,35],[99,106]].map(([x,y]) => <g key={x} transform={`translate(${x} ${y})`}>
-      <path d="M0 12Q14 36 3 49M7 34Q24 20 23 35Q18 43 7 34" stroke="#81987d" fill="#81987d" opacity=".65" />
-      {Array.from({length:8},(_,i) => <ellipse key={i} cy="-12" rx="5" ry="12" fill={detail} transform={`rotate(${i*45})`} />)}
-      <circle r="6" fill="#c7a153" /><circle r="3" fill="#e4c67d" />
-    </g>)}
-  </pattern>;
-  if (finish.pattern === "botanical") return <pattern id={id} width="145" height="175" patternUnits="userSpaceOnUse">
-    <rect width="145" height="175" fill={base} />
-    {[[32,20,-18],[110,105,22]].map(([x,y,r]) => <g key={x} transform={`translate(${x} ${y}) rotate(${r})`} fill={detail} opacity=".75">
-      <path d="M0 0Q-7 45 0 100" fill="none" stroke={detail} strokeWidth="2" />
-      {[14,35,56,77].map((cy,i) => <g key={cy}><ellipse cx="-10" cy={cy} rx="5" ry="15" transform={`rotate(-42 -10 ${cy})`} /><ellipse cx="11" cy={cy+9} rx="5" ry="15" transform={`rotate(42 11 ${cy+9})`} opacity={i%2 ? .65 : 1} /></g>)}
-    </g>)}
-  </pattern>;
   if (finish.pattern === "stars") return <pattern id={id} width="110" height="120" patternUnits="userSpaceOnUse">
     <rect width="110" height="120" fill={base} /><g fill={detail}>
       <path d="M28 9l4 14 14 4-14 4-4 14-4-14-14-4 14-4ZM82 76l3 11 11 3-11 3-3 11-3-11-11-3 11-3Z" />
@@ -38,17 +41,11 @@ export function FinishPattern({ finish, id }: { finish: HomeFinish; id: string }
   if (finish.pattern === "dots") return <pattern id={id} width="55" height="60" patternUnits="userSpaceOnUse">
     <rect width="55" height="60" fill={base} /><circle cx="14" cy="15" r="4" fill={detail} /><circle cx="41" cy="45" r="4" fill={detail} />
   </pattern>;
-  if (finish.pattern === "stripes") return <pattern id={id} width="26" height="26" patternUnits="userSpaceOnUse"><rect width="13" height="26" fill={detail} opacity=".25" /></pattern>;
+  if (finish.pattern === "stripes") return <pattern id={id} width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="26" fill={base} /><rect width="13" height="26" fill={detail} opacity=".25" /></pattern>;
   if (finish.pattern === "bricks") return <pattern id={id} width="150" height="66" patternUnits="userSpaceOnUse">
     <rect width="150" height="66" fill={detail} />
     <g fill={base} stroke="#ffffff" strokeOpacity=".12"><rect x="2" y="2" width="146" height="29" rx="2" /><rect x="-73" y="35" width="146" height="29" rx="2" /><rect x="77" y="35" width="146" height="29" rx="2" /></g>
     <path d="M8 8H140M83 41H140M8 41H65" stroke="#fff" opacity=".1" />
-  </pattern>;
-  if (finish.pattern === "floral") return <pattern id={id} width="105" height="126" patternUnits="userSpaceOnUse">
-    <rect width="105" height="126" fill={base} />
-    <g stroke={detail} strokeWidth="1.6" fill="none" opacity=".65"><path d="M54 126Q10 85 54 52T54-10M54 66Q84 60 88 35M40 98Q17 97 13 76" /></g>
-    <g fill={detail} opacity=".6"><ellipse cx="72" cy="58" rx="12" ry="4" transform="rotate(-30 72 58)" /><ellipse cx="28" cy="91" rx="11" ry="4" transform="rotate(25 28 91)" />
-      <g transform="translate(54 30)"><ellipse cy="-10" rx="5" ry="11" /><ellipse cy="10" rx="5" ry="11" /><ellipse cx="-10" rx="11" ry="5" /><ellipse cx="10" rx="11" ry="5" /><circle r="4" fill={base} /></g></g>
   </pattern>;
   if (finish.pattern === "arches") return <pattern id={id} width="110" height="100" patternUnits="userSpaceOnUse">
     <rect width="110" height="100" fill={base} /><g stroke={detail} strokeWidth="2" fill="none" opacity=".65">

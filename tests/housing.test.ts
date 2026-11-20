@@ -10,6 +10,7 @@ import { openDatabase } from "../apps/server/src/db.ts";
 import { FURNITURE_MODELS, constrainPlacement, placementDepth } from "../packages/domain/src/housing.ts";
 import type { HomeDecoration, HomeSnapshot } from "../packages/contracts/src/housing.ts";
 import manifest from "../public/assets/housing/prune-v1/manifest.json";
+import { FINISH_OFFER_VERSION } from "../packages/domain/src/home-finishes";
 
 type App = Awaited<ReturnType<typeof createApp>>;
 const origin = "http://127.0.0.1:5173";
@@ -149,10 +150,16 @@ test("Une sauvegarde confirmée est diffusée aux visiteurs via le WebSocket exi
     for (const [socket, generation] of [[first.ws, iris.generation], [visitor.ws, june.generation]] as const)
       socket.send(JSON.stringify({ type: "join-room", generation, roomId: "home:iris" }));
     await visitor.wait("room", (event) => event.roomId === "home:iris" && event.players.length === 2);
-    const decoration: HomeDecoration = { ...home.decoration, wall: "sage", placements: home.decoration.placements.slice(1) };
+    assert.equal((await call(app, "housing/finishes/buy", iris.cookie, { generation: iris.generation,
+      finishId: "wall:roses-blush", operationId: randomUUID(), offerVersion: FINISH_OFFER_VERSION, expectedPrice: 600 })).status, 200);
+    const decoration: HomeDecoration = { ...home.decoration, wall: "roses-blush",
+      wallColors: { base: "#e5edf2", detail: "#6585a2" }, floorColors: { base: "#eee4d3", detail: "#b5aa98" },
+      placements: home.decoration.placements.slice(1) };
     assert.equal((await iris.save(home, decoration)).status, 200);
     const update = await visitor.wait("home-layout", (event) => event.home.revision === 1);
-    assert.equal(update.home.revision, 1); assert.equal(update.home.decoration.wall, "sage");
+    assert.equal(update.home.revision, 1); assert.equal(update.home.decoration.wall, "roses-blush");
+    assert.deepEqual(update.home.decoration.wallColors, decoration.wallColors);
+    assert.deepEqual(update.home.decoration.floorColors, decoration.floorColors);
     assert.equal(update.home.decoration.placements.length, 9); assert.equal(update.home.items.length, 9);
     assert.equal(new Set(update.home.items.map((i: { id: string }) => i.id)).size, 9);
     assert.equal((await june.load("iris")).data.home.revision, 1);

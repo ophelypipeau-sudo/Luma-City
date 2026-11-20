@@ -19,18 +19,55 @@
 [data-material="slabs"] .finish-category-sample { background: repeating-linear-gradient(0deg,transparent 0 12px,#9a866f 12px 13px),linear-gradient(120deg,#d1bca1,#b09b83); }
 [data-material="included"] .finish-category-sample { background: #eee3d9; }
 .finish-catalog { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.wallpaper-colors { margin: 0 0 12px; padding: 9px; border: 1px solid #d3b6cf; border-radius: 12px; min-width: 0; background: #fff9f4; }
+.wall-detail { min-width: 0; scroll-margin-top: 65px; }
+.wall-detail > header { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+.wall-detail h3 { margin: 0; font-size: .95rem; }
+.housing-room .wall-detail > header button { padding: 5px 10px; min-height: 30px; }
+.wall-detail-sample { display: block; width: 100%; max-height: 180px; margin: 0 auto 10px; border: 5px solid #f5ecdf; border-radius: 5px; box-sizing: border-box; box-shadow: 0 3px 10px #49302429; background: #f5ecdf; }
+.housing-room .wall-detail > button { padding: 7px 10px; font-size: .76rem; }
+.wall-detail .wallpaper-colors { padding: 6px; margin-bottom: 8px; }
+.wall-detail .wallpaper-palettes { gap: 5px; margin: 7px 0; }
+.housing-room .wall-detail .wallpaper-palettes button { width: 24px; height: 24px; min-height: 24px; }
+.wall-detail .wallpaper-color-inputs input { height: 30px; }
+.wallpaper-colors legend { font-size: .78rem; padding: 0 4px; font-weight: 600; }
+.wallpaper-color-inputs { display: flex; gap: 12px; }
+.wallpaper-color-inputs label { display: flex; align-items: center; gap: 7px; font-size: .75rem; }
+.wallpaper-color-inputs input { width: 38px; height: 34px; padding: 2px; border: 1px solid #d3b6cf; border-radius: 7px; cursor: pointer; }
+.color-code-inputs { display: flex; gap: 7px; margin-top: 6px; }
+.color-code-options { margin-top: 6px; }
+.color-code-options summary { cursor: pointer; font-size: .7rem; color: #76506e; }
+.color-code-inputs label { display: block; flex: 1; min-width: 0; font-size: .6rem; color: #806280; }
+.color-code-inputs input { width: 100%; min-width: 0; box-sizing: border-box; margin-top: 3px; padding: 5px; border: 1px solid #d3b6cf; border-radius: 6px; font-size: .72rem; background: #fff; color: #49314e; }
+.wallpaper-palettes { display: flex; flex-wrap: wrap; gap: 7px; margin: 9px 0; }
+.housing-room .wallpaper-palettes button { width: 32px; height: 32px; min-height: 32px; padding: 0; border: 2px solid #d3b6cf; border-radius: 50%; }
+.housing-room .wallpaper-palettes button[aria-pressed="true"] { outline: 2px solid #654062; outline-offset: 2px; }
+.housing-room .wallpaper-colors > button { padding: 5px 8px; font-size: .72rem; }
 .finish-catalog article { min-width: 0; background: #fff9f4; border: 2px solid #e8dbe3; border-radius: 12px; padding: 6px; text-align: center; }
+.finish-catalog article, .housing-inventory-item { position: relative; }
+.housing-room button.catalog-hide-button { display: grid; place-items: center; width: 32px; height: 32px; min-height: 32px; padding: 6px; border: 1px solid #c8acbe; border-radius: 8px; color: #76506e; background: #fff9f4; }
+.housing-room .finish-catalog article > .catalog-hide-button,
+.housing-room .housing-inventory-item > .catalog-hide-button { position: absolute; top: 4px; right: 4px; width: 32px; min-height: 32px; padding: 6px; z-index: 1; }
+.housing-room .catalog-hide-button svg { display: block; width: 18px; height: 18px; margin: 0; }
+.housing-room .catalog-hidden-toggle { margin: 4px 0 10px; padding: 6px 9px; font-size: .73rem; }
+.housing-inventory-item > button:not(.catalog-hide-button) { width: 100%; height: 100%; }
+.housing-inventory-item > button:not(.catalog-hide-button) > svg { margin-top: 20px; }
 .finish-catalog article.is-selected { border-color: #9d62a0; background: #f8eaf3; }
 .housing-room .finish-catalog .finish-preview-button { border: 0; padding: 0; width: 100%; background: none; min-height: 0; }
 .finish-preview-button svg { display: block; width: 100%; border-radius: 7px; margin-bottom: 6px; }
 .finish-preview-button strong { display: block; font-size: .73rem; min-height: 31px; }
 .finish-preview-button small { font-size: .65rem; display: block; margin: 4px 0; color: #866184; }
-.housing-room .finish-catalog article > button:not(.finish-preview-button) { padding: 6px 4px; font-size: .72rem; width: 100%; }
+.housing-room .finish-catalog article > button:not(.finish-preview-button):not(.catalog-hide-button) { padding: 6px 4px; font-size: .72rem; width: 100%; }
 .finish-owned { display: block; padding: 8px 2px; font-size: .7rem; color: #42654d; }
 .finish-purchase-confirm { padding: 10px; background: #efdaec; border-radius: 12px; margin-bottom: 10px; }
 .housing-room .finish-purchase-confirm button { font-size: .76rem; padding: 7px 9px; margin: 0 4px 5px 0; }
 .home-finish-shop [role="alert"] { color: #842646; }
 @media (max-width: 650px) {
+  .wall-detail { display: flex; flex-direction: column; }
+  .wall-detail > header { order: 0; }
+  .wall-detail > .wallpaper-colors { order: 1; }
+  .wall-detail > .wall-detail-sample { order: 2; }
+  .wall-detail > button, .wall-detail > .finish-owned { order: 3; }
   .home-editor-tabs { top: -8px; }
   .home-finish-shop .finish-category-buttons { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }

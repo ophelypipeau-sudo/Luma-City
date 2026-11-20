@@ -10,6 +10,7 @@ import { reconcileHome, saveSignature, canVerifySave, unownedHomeFinishes } from
 import { readHomeDraft, writeHomeDraft, clearHomeDraft, draftToRestore } from "./home-draft";
 import { finishDecoration, homeFinish } from "../../../../packages/domain/src/home-finishes";
 import { HomeFinishShop } from "./HomeFinishShop";
+import { CatalogVisibilityButton, useCatalogVisibility } from "./catalog-visibility";
 import "./housing.css";
 
 export type HomeRoomProps = ComponentProps<typeof Room> & {
@@ -24,6 +25,8 @@ async function requestHome(path: "load" | "save", body: unknown, signal?: AbortS
 export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps }: HomeRoomProps) {
   const owner = homeOwner(roomProps.roomId)!;
   const isOwner = owner === roomProps.me;
+  const furnitureVisibility = useCatalogVisibility(owner, "furniture");
+  const [showHiddenFurniture, setShowHiddenFurniture] = useState(false);
   const [home, setHome] = useState<HomeSnapshot | null>(null);
   const [draft, setDraft] = useState<HomeDecoration | null>(null);
   const [draftRevision, setDraftRevision] = useState(0);
@@ -160,7 +163,7 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
     </g> }];
   });
   return <section className={`housing-room ${editing ? "is-decorating" : ""}`} aria-label="Salon personnalisable">
-    <Room {...roomProps} homeScene={{ background: <HomeBackground wall={decoration.wall} floor={decoration.floor} />, objects, editing }} />
+    <Room {...roomProps} homeScene={{ background: <HomeBackground wall={decoration.wall} floor={decoration.floor} wallColors={decoration.wallColors} floorColors={decoration.floorColors} />, objects, editing }} />
     <div className="housing-controls">
     <div className="housing-toolbar">
       {isOwner && !editing && <button type="button" onClick={() => {
@@ -199,21 +202,31 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
       </nav>
       <HomeFinishShop generation={generation} owner={owner} kind={editorTab === "floor" ? "floor" : "wall"} hidden={editorTab === "furniture"}
         decoration={draft} disabled={saving} onBusy={setBuyingFinish} onKind={setEditorTab}
+        onColors={(wallColors) => change({ ...draft, wallColors })}
+        onFloorColors={(floorColors) => change({ ...draft, floorColors })}
         onTry={(finish) => { change(finishDecoration(finish, draft)); setSelected(null); }}
         onInventory={(ownedFinishes, balance) => { setHome((current) => current && { ...current, ownedFinishes }); onHomeBalance?.(balance); }} />
       <div hidden={editorTab !== "furniture"}>
       <details open={inventoryOpen} onToggle={(event) => setInventoryOpen(event.currentTarget.open)}><summary>Mes meubles possédés</summary>
+        <button type="button" className="catalog-hidden-toggle" onClick={() => { setShowHiddenFurniture(!showHiddenFurniture); setCategory("Tous"); }}>
+          {showHiddenFurniture ? "Retour au catalogue" : `Articles masqués (${new Set(home.items.filter((item) => furnitureVisibility.ids.includes(item.modelId)).map((item) => item.modelId)).size})`}
+        </button>
+        {furnitureVisibility.storageFailed && <p role="status">Ce navigateur ne peut pas conserver le masquage après fermeture.</p>}
         <div className="housing-finishes">
           <label>Catégorie<select disabled={editingBusy} value={category} onChange={(event) => setCategory(event.target.value)}>
             {categories.map((name) => <option key={name}>{name}</option>)}</select></label>
         </div>
+        {showHiddenFurniture && !home.items.some((item) => furnitureVisibility.ids.includes(item.modelId)) &&
+          <p>Aucun meuble masqué.</p>}
         <div className="housing-inventory" aria-label="Meubles possédés">
           {home.items.map((item, index) => {
             const model = furnitureModel(item.modelId);
-            if (!model || (category !== "Tous" && category !== model.category)) return null;
+            if (!model || (category !== "Tous" && category !== model.category) || furnitureVisibility.ids.includes(item.modelId) !== showHiddenFurniture) return null;
             const placed = draft.placements.some((p) => p.itemId === item.id);
             const elsewhere = item.roomId !== null && item.roomId !== home.roomId;
-            return <button key={item.id} type="button" aria-pressed={selected === item.id} disabled={editingBusy || elsewhere}
+            return <div key={item.id} className="housing-inventory-item"><CatalogVisibilityButton name={model.name}
+              hidden={showHiddenFurniture} disabled={editingBusy} onClick={() => furnitureVisibility.setHidden(item.modelId, !showHiddenFurniture)} />
+              <button type="button" aria-pressed={selected === item.id} disabled={editingBusy || elsewhere}
               onClick={() => {
                 setSelected(item.id);
                 setInventoryOpen(false);
@@ -222,7 +235,7 @@ export function HomeRoom({ generation, layoutUpdate, onHomeBalance, ...roomProps
               }}>
               <svg viewBox={`${-model.width / 2} ${-model.height} ${model.width} ${model.height}`} aria-hidden="true"><FurnitureArt model={model} thumbnail /></svg>
               <span>{model.name}</span><small>Exemplaire {index + 1} · {elsewhere ? "Dans une autre pièce" : placed ? "Dans le salon" : "Rangé · Placer"}</small>
-            </button>;
+            </button></div>;
           })}
         </div>
       </details>
